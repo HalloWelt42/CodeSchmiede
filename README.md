@@ -52,6 +52,19 @@ Browser auf `http://localhost:5173`.
 - `scripts/` -- Setup, Versionierung, Hilfs-Tools
 - `docs/` -- Aufgaben-Format-Dokumentation, Architektur-Notizen
 
+## Neue Aufgaben anlegen
+
+Eine vollständige, autarke Spezifikation des Aufgaben-Formats steht in
+[`docs/AUFGABEN-FORMAT.md`](docs/AUFGABEN-FORMAT.md). Das Dokument ist
+so geschrieben, dass es als Prompt einer Sprachmodell-Instanz übergeben
+werden kann -- die kann daraus eigenständig neue Aufgaben generieren,
+ohne den Quellcode der App zu kennen.
+
+Manuell: ein Verzeichnis unter `aufgaben/<sprache>/NNN-id/` anlegen,
+mindestens `aufgabe.md` (Markdown mit YAML-Frontmatter),
+`solution_naive.py` und `solution_idiomatic.py`. Beim nächsten
+Backend-Start wird die Aufgabe automatisch indiziert.
+
 ## Lizenz
 
 **Nicht-kommerzielle Nutzung** -- Siehe [LICENSE](LICENSE)
