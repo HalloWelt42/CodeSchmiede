@@ -1,27 +1,46 @@
 /*
- * Hash-basiertes Routing. Rein deklarativ: Komponenten lesen `route.aktiv`,
- * Navigation ueber `route.setze(...)`. Initialisierung beim Mount.
+ * Hash-basiertes Routing.
+ * Routen:
+ *   #dashboard           -> Dashboard
+ *   #aufgaben            -> Liste aller Aufgaben
+ *   #pfade               -> Liste aller Pfade
+ *   #aufgabe/<id>        -> Detail-Ansicht einer Aufgabe
  */
 
-export type Route = 'dashboard' | 'aufgaben' | 'pfade';
-
-const ERLAUBT: Route[] = ['dashboard', 'aufgaben', 'pfade'];
+export type Route = 'dashboard' | 'aufgaben' | 'pfade' | 'aufgabe';
 
 class RouteStore {
   aktiv = $state<Route>('dashboard');
+  aufgabeId = $state<string | null>(null);
 
   init(): void {
     this.lese();
     window.addEventListener('hashchange', () => this.lese());
   }
 
-  setze(ziel: Route): void {
-    window.location.hash = `#${ziel}`;
+  setze(ziel: Route, aufgabeId?: string): void {
+    if (ziel === 'aufgabe' && aufgabeId) {
+      window.location.hash = `#aufgabe/${aufgabeId}`;
+    } else {
+      window.location.hash = `#${ziel}`;
+    }
   }
 
   private lese(): void {
-    const hash = window.location.hash.replace(/^#/, '') as Route;
-    this.aktiv = ERLAUBT.includes(hash) ? hash : 'dashboard';
+    const hash = window.location.hash.replace(/^#/, '');
+    if (hash.startsWith('aufgabe/')) {
+      this.aktiv = 'aufgabe';
+      this.aufgabeId = hash.slice('aufgabe/'.length);
+    } else if (hash === 'aufgaben') {
+      this.aktiv = 'aufgaben';
+      this.aufgabeId = null;
+    } else if (hash === 'pfade') {
+      this.aktiv = 'pfade';
+      this.aufgabeId = null;
+    } else {
+      this.aktiv = 'dashboard';
+      this.aufgabeId = null;
+    }
   }
 }
 

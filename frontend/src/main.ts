@@ -1,4 +1,5 @@
 import { mount } from 'svelte';
+import 'katex/dist/katex.min.css';
 import './styles/fonts.css';
 import './styles/global.css';
 import App from './App.svelte';

@@ -1,5 +1,17 @@
 <script lang="ts">
-  import { mockAufgaben } from '../mocks/aufgaben';
+  import { onMount } from 'svelte';
+  import { aufgabenStore } from '../stores/AufgabenStore.svelte';
+  import { route } from '../stores/RouteStore.svelte';
+
+  onMount(() => {
+    if (aufgabenStore.liste.length === 0) {
+      aufgabenStore.ladeListe();
+    }
+  });
+
+  function oeffne(id: string): void {
+    route.setze('aufgabe', id);
+  }
 </script>
 
 <div class="liste">
@@ -7,15 +19,21 @@
     <div>
       <h1>Aufgaben</h1>
       <p class="lead">
-        {mockAufgaben.length} Aufgaben verfügbar. Filter und Suche folgen
-        in einem späteren Schritt.
+        {#if aufgabenStore.ladenListe}
+          Lade ...
+        {:else if aufgabenStore.fehler}
+          Fehler: {aufgabenStore.fehler}
+        {:else}
+          {aufgabenStore.liste.length} Aufgaben verfügbar.
+        {/if}
       </p>
     </div>
   </header>
 
   <div class="tabelle">
-    {#each mockAufgaben as aufgabe (aufgabe.id)}
-      <article class="zeile">
+    {#each aufgabenStore.liste as aufgabe (aufgabe.id)}
+      <article class="zeile" onclick={() => oeffne(aufgabe.id)} role="button" tabindex="0"
+               onkeydown={(e) => { if (e.key === 'Enter') oeffne(aufgabe.id); }}>
         <div class="haupt">
           <span class="id">{aufgabe.id}</span>
           <span class="titel">{aufgabe.titel}</span>
@@ -37,7 +55,7 @@
           {/each}
         </div>
 
-        <button class="oeffnen" aria-label="Aufgabe öffnen">
+        <button class="oeffnen" aria-label="Aufgabe öffnen" onclick={(e) => { e.stopPropagation(); oeffne(aufgabe.id); }}>
           <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
         </button>
       </article>
@@ -79,6 +97,7 @@
     border: 1px solid var(--border);
     padding: var(--sp-3) var(--sp-4);
     transition: border-color 0.15s, transform 0.15s;
+    cursor: pointer;
   }
   .zeile:hover {
     border-color: var(--accent);
@@ -116,23 +135,11 @@
     border-radius: var(--radius-sm);
     background: var(--bg-card);
   }
-  .badge.schwierigkeit-anfaenger {
-    color: var(--green);
-    border-color: var(--green);
-  }
-  .badge.schwierigkeit-mittel {
-    color: var(--orange);
-    border-color: var(--orange);
-  }
+  .badge.schwierigkeit-anfaenger { color: var(--green); border-color: var(--green); }
+  .badge.schwierigkeit-mittel { color: var(--orange); border-color: var(--orange); }
   .badge.schwierigkeit-fortgeschritten,
-  .badge.schwierigkeit-experte {
-    color: var(--red);
-    border-color: var(--red);
-  }
-  .badge.sprache {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
+  .badge.schwierigkeit-experte { color: var(--red); border-color: var(--red); }
+  .badge.sprache { color: var(--accent); border-color: var(--accent); }
   .zeit {
     color: var(--fg-dim);
     font-size: var(--fs-xs);
@@ -140,15 +147,8 @@
     align-items: center;
     gap: 4px;
   }
-  .score {
-    font-size: var(--fs-md);
-    color: var(--fg-dim);
-  }
-  .tags {
-    display: flex;
-    gap: var(--sp-1);
-    flex-wrap: wrap;
-  }
+  .score { font-size: var(--fs-md); color: var(--fg-dim); }
+  .tags { display: flex; gap: var(--sp-1); flex-wrap: wrap; }
   .tag {
     padding: 1px 6px;
     background: var(--bg-elev);
@@ -168,8 +168,5 @@
     border-radius: var(--radius-sm);
     cursor: pointer;
   }
-  .oeffnen:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
+  .oeffnen:hover { color: var(--accent); border-color: var(--accent); }
 </style>

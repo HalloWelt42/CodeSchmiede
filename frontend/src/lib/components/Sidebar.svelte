@@ -12,6 +12,13 @@
     { id: 'aufgaben', titel: 'Aufgaben', icon: 'fa-list-check' },
     { id: 'pfade', titel: 'Pfade', icon: 'fa-route' },
   ];
+
+  function istAktiv(eintrag: NavEintrag): boolean {
+    if (eintrag.id === route.aktiv) return true;
+    // Aufgaben-Detail soll den Aufgaben-Eintrag aktiv markieren
+    if (eintrag.id === 'aufgaben' && route.aktiv === 'aufgabe') return true;
+    return false;
+  }
 </script>
 
 <aside class="sidebar">
@@ -19,7 +26,7 @@
     {#each eintraege as eintrag (eintrag.id)}
       <button
         class="nav-btn"
-        class:aktiv={route.aktiv === eintrag.id}
+        class:aktiv={istAktiv(eintrag)}
         onclick={() => route.setze(eintrag.id)}
       >
         <i class="fa-solid {eintrag.icon}" aria-hidden="true"></i>
@@ -29,8 +36,8 @@
   </nav>
 
   <div class="hinweis">
-    <small>Tag 2</small>
-    <small>Frontend-Skelett</small>
+    <small>Codeschmiede</small>
+    <small class="dim">Lokal &amp; sandboxed</small>
   </div>
 </aside>
 
@@ -88,5 +95,10 @@
     font-size: var(--fs-xs);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+  .hinweis .dim {
+    color: var(--fg-mute);
+    text-transform: none;
+    letter-spacing: 0;
   }
 </style>

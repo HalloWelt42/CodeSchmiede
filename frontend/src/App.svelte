@@ -1,13 +1,7 @@
 <script lang="ts">
   /*
-   * Root-Layout:
-   *   +------------------------------------------------+
-   *   |  Topbar                                        |
-   *   +-------------+----------------------------------+
-   *   |  Sidebar    |  Content (Dashboard / Liste / Pfade)
-   *   +-------------+----------------------------------+
-   *   |  Footer                                        |
-   *   +------------------------------------------------+
+   * Root-Layout (Topbar + Sidebar + Content + Footer).
+   * Routing entscheidet ueber die Content-Komponente.
    */
   import { onMount } from 'svelte';
   import { theme } from './lib/stores/ThemeStore.svelte';
@@ -18,6 +12,7 @@
   import Dashboard from './lib/components/Dashboard.svelte';
   import AufgabenListe from './lib/components/AufgabenListe.svelte';
   import PfadListe from './lib/components/PfadListe.svelte';
+  import AufgabenDetail from './lib/components/AufgabenDetail.svelte';
 
   onMount(() => {
     theme.init();
@@ -36,6 +31,10 @@
         <AufgabenListe />
       {:else if route.aktiv === 'pfade'}
         <PfadListe />
+      {:else if route.aktiv === 'aufgabe' && route.aufgabeId}
+        {#key route.aufgabeId}
+          <AufgabenDetail aufgabeId={route.aufgabeId} />
+        {/key}
       {/if}
     </section>
   </main>
