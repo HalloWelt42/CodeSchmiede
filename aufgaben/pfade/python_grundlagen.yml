@@ -1,0 +1,12 @@
+id: python_grundlagen
+titel: Python-Grundlagen
+beschreibung: |
+  Klassische Einsteiger-Aufgaben fuer Python. Drei beruehmte Klassiker,
+  die zentrale Konzepte testen: Verzweigungen mit `if`/`elif`, den
+  Modulo-Operator, String-Slicing und Rekursion vs. Iteration. Wer
+  diesen Pfad durchgespielt hat, hat ein solides Fundament fuer alles
+  Weitere.
+reihenfolge:
+  - 001-fizzbuzz
+  - 002-palindrom
+  - 003-fibonacci
