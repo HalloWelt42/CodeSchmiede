@@ -1,5 +1,6 @@
 import { HttpBase } from './HttpBase';
 import type { VerwaltungsEintrag } from '../types/Admin';
+import type { Konfiguration } from '../types/Konfig';
 
 export class AdminApi extends HttpBase {
   constructor() {
@@ -8,6 +9,10 @@ export class AdminApi extends HttpBase {
 
   aufgaben(): Promise<VerwaltungsEintrag[]> {
     return this.get<VerwaltungsEintrag[]>('/aufgaben');
+  }
+
+  konfig(): Promise<Konfiguration> {
+    return this.get<Konfiguration>('/konfig');
   }
 }
 

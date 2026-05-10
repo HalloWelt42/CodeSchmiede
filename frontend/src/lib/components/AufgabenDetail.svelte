@@ -9,16 +9,19 @@
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
+  import { konfig } from '../stores/KonfigStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
   import { aufgabenApi } from '../api/AufgabenApi';
   import { progressApi } from '../api/ProgressApi';
   import { submissionsApi } from '../api/SubmissionsApi';
+  import { farbeZuCss } from '../types/Konfig';
   import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
   import type { SubmissionAntwort } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
   import EditorBereich from './EditorBereich.svelte';
   import OutputBereich from './OutputBereich.svelte';
+  import OutputQuizView from './OutputQuizView.svelte';
   import ProbelaufBereich from './ProbelaufBereich.svelte';
 
   let { aufgabeId }: { aufgabeId: string } = $props();
@@ -128,6 +131,10 @@
   }
 
   let aktProgress = $derived(progressStore.proAufgabe[aufgabeId]);
+
+  let schwFarbe = $derived(
+    detail ? farbeZuCss(konfig.schwierigkeitFarbe(detail.schwierigkeit)) : 'var(--accent)',
+  );
 </script>
 
 <div class="detail">
@@ -145,7 +152,11 @@
         <h1>{detail.titel}</h1>
       </div>
       <div class="kopf-meta">
-        <span class="badge schwierigkeit-{detail.schwierigkeit}">{detail.schwierigkeit}</span>
+        <span
+          class="badge"
+          style:color={schwFarbe}
+          style:border-color={schwFarbe}
+        >{konfig.schwierigkeitTitel(detail.schwierigkeit)}</span>
         <span class="badge sprache">{detail.sprache}</span>
         <span class="zeit">
           <i class="fa-regular fa-clock" aria-hidden="true"></i>
@@ -163,6 +174,23 @@
       </div>
     </header>
 
+    {#if detail.gesperrt}
+      <div class="sperre-banner">
+        <i class="fa-solid fa-lock" aria-hidden="true"></i>
+        <span>
+          Diese Aufgabe ist gesperrt -- folgende Voraussetzungen sind noch nicht gelöst:
+          {#each detail.voraussetzungen_offen as v, i}
+            <button class="vor-link" onclick={() => route.setze('aufgabe', v)}>
+              {aufgabenStore.findeKurz(v)?.titel ?? v}
+            </button>{#if i < detail.voraussetzungen_offen.length - 1}, {/if}
+          {/each}
+        </span>
+      </div>
+    {/if}
+
+    {#if detail.task_type === 'output_quiz'}
+      <OutputQuizView {detail} />
+    {:else}
     <div class="spalten">
       <section class="spalte links">
         <BeschreibungsBereich
@@ -225,6 +253,7 @@
         {/if}
       </section>
     </div>
+    {/if}
   {/if}
 </div>
 
@@ -286,11 +315,36 @@
     color: var(--fg-dim);
     border-radius: var(--radius-sm);
   }
-  .badge.schwierigkeit-anfaenger { color: var(--green); border-color: var(--green); }
-  .badge.schwierigkeit-mittel { color: var(--orange); border-color: var(--orange); }
-  .badge.schwierigkeit-fortgeschritten,
-  .badge.schwierigkeit-experte { color: var(--red); border-color: var(--red); }
   .badge.sprache { color: var(--accent); border-color: var(--accent); }
+
+  .sperre-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-3) var(--sp-4);
+    background: color-mix(in srgb, var(--orange) 12%, transparent);
+    border-bottom: 1px solid var(--orange);
+    color: var(--fg);
+    font-family: var(--quick);
+    font-size: var(--fs-sm);
+    flex-wrap: wrap;
+  }
+  .sperre-banner i {
+    color: var(--orange);
+  }
+  .vor-link {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    text-decoration: underline;
+    padding: 0;
+  }
+  .vor-link:hover {
+    color: var(--accent-strong);
+  }
   .zeit {
     color: var(--fg-dim);
     font-size: var(--fs-xs);

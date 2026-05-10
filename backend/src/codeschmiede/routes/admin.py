@@ -7,12 +7,12 @@ Musterlösungen-Anzahl, Statistik). Im Single-User-MVP gibt es kein
 Auth -- das Endpoint ist genauso geschützt wie die App selbst.
 """
 
-import json
 from typing import Any
 
 from fastapi import APIRouter
 from pydantic import BaseModel
 
+from ..models.konfig import Konfiguration
 from ..state import AppState
 
 
@@ -64,6 +64,12 @@ class VerwaltungsEintrag(BaseModel):
 
 def baue_admin_router(state: AppState) -> APIRouter:
     router = APIRouter(prefix="/api/admin", tags=["admin"])
+
+    @router.get("/konfig", response_model=Konfiguration)
+    def konfig() -> Konfiguration:
+        """Liefert die zentrale Konfiguration (Schwierigkeiten, Sprachen,
+        Aufgabentypen). Frontend zieht das beim Start und nutzt es reaktiv."""
+        return state.konfig
 
     @router.get("/aufgaben", response_model=list[VerwaltungsEintrag])
     def aufgaben() -> list[VerwaltungsEintrag]:

@@ -1,0 +1,42 @@
+# Zentrale Konfiguration der Codeschmiede.
+#
+# Hier werden Schwierigkeitsstufen, Sprachen und Aufgabentypen definiert.
+# Backend liest beim Start, Watcher reagiert bei Aenderungen, Frontend
+# zieht reaktiv ueber /api/admin/konfig.
+#
+# Wer eine neue Schwierigkeit haben moechte (z.B. "kind", "meister"),
+# fuegt einfach einen Eintrag dazu -- ohne Code-Aenderung.
+
+schwierigkeiten:
+  - id: anfaenger
+    titel: Anfänger
+    farbe: green
+    score_max: 25
+  - id: mittel
+    titel: Mittel
+    farbe: orange
+    score_max: 50
+  - id: fortgeschritten
+    titel: Fortgeschritten
+    farbe: red
+    score_max: 75
+  - id: experte
+    titel: Experte
+    farbe: red
+    score_max: 100
+
+sprachen:
+  - id: python
+    titel: Python
+    editor_lang: python
+    runner_type: docker_python
+
+aufgabentypen:
+  - id: code_schreiben
+    titel: Code schreiben
+    view: code_aufgabe
+    beschreibung: Klassisches Programmieren -- Editor, Tests, Sandbox-Lauf.
+  - id: output_quiz
+    titel: Output-Quiz
+    view: output_quiz
+    beschreibung: Ein Code-Schnipsel ist gegeben -- waehle die richtige Ausgabe.

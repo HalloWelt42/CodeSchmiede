@@ -1,18 +1,17 @@
 <script lang="ts">
   /*
    * Filter-Leiste für die Aufgabenliste.
-   * Bidirektionale Bindings auf alle Felder, der Parent (`AufgabenListe`)
-   * wendet sie auf die Liste an.
+   * Schwierigkeiten und Sprachen kommen aus dem KonfigStore -- nichts
+   * mehr im Code hardcodiert.
    */
-  import type { Schwierigkeit } from '../types/Aufgabe';
+  import { konfig } from '../stores/KonfigStore.svelte';
   import type { ProgressStatus } from '../api/ProgressApi';
 
   interface Props {
     suche: string;
     sprache: string;
-    schwierigkeit: Schwierigkeit | '';
+    schwierigkeit: string;
     status: ProgressStatus | '';
-    sprachen: string[];
     treffer: number;
     gesamt: number;
   }
@@ -22,7 +21,6 @@
     sprache = $bindable(),
     schwierigkeit = $bindable(),
     status = $bindable(),
-    sprachen,
     treffer,
     gesamt,
   }: Props = $props();
@@ -51,17 +49,16 @@
 
   <select bind:value={sprache} aria-label="Sprache">
     <option value="">Alle Sprachen</option>
-    {#each sprachen as s}
-      <option value={s}>{s}</option>
+    {#each konfig.daten.sprachen as s (s.id)}
+      <option value={s.id}>{s.titel}</option>
     {/each}
   </select>
 
   <select bind:value={schwierigkeit} aria-label="Schwierigkeit">
     <option value="">Alle Stufen</option>
-    <option value="anfaenger">Anfänger</option>
-    <option value="mittel">Mittel</option>
-    <option value="fortgeschritten">Fortgeschritten</option>
-    <option value="experte">Experte</option>
+    {#each konfig.daten.schwierigkeiten as st (st.id)}
+      <option value={st.id}>{st.titel}</option>
+    {/each}
   </select>
 
   <select bind:value={status} aria-label="Status">

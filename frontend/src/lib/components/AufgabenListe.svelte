@@ -2,15 +2,16 @@
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
+  import { konfig } from '../stores/KonfigStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
+  import { farbeZuCss } from '../types/Konfig';
   import type { ProgressStatus } from '../api/ProgressApi';
-  import type { Schwierigkeit } from '../types/Aufgabe';
   import AufgabenFilter from './AufgabenFilter.svelte';
   import EmptyState from './EmptyState.svelte';
 
   let suche = $state('');
   let sprache = $state('');
-  let schwierigkeit = $state<Schwierigkeit | ''>('');
+  let schwierigkeit = $state('');
   let status = $state<ProgressStatus | ''>('');
 
   onMount(async () => {
@@ -28,9 +29,17 @@
     return 'fa-circle';
   }
 
-  let sprachen = $derived(
-    [...new Set(aufgabenStore.liste.map((a) => a.sprache))].sort(),
-  );
+  function schwierigkeitFarbe(id: string): string {
+    return farbeZuCss(konfig.schwierigkeitFarbe(id));
+  }
+
+  function schwierigkeitTitel(id: string): string {
+    return konfig.schwierigkeitTitel(id);
+  }
+
+  function findeTitel(id: string): string {
+    return aufgabenStore.findeKurz(id)?.titel ?? id;
+  }
 
   let gefiltert = $derived(
     aufgabenStore.liste.filter((a) => {
@@ -74,7 +83,6 @@
       bind:sprache
       bind:schwierigkeit
       bind:status
-      {sprachen}
       treffer={gefiltert.length}
       gesamt={aufgabenStore.liste.length}
     />
@@ -89,24 +97,43 @@
       <div class="tabelle">
         {#each gefiltert as aufgabe (aufgabe.id)}
           {@const aktSt = progressStore.status(aufgabe.id)}
+          {@const farbe = schwierigkeitFarbe(aufgabe.schwierigkeit)}
           <article
             class="zeile status-{aktSt}"
+            class:gesperrt={aufgabe.gesperrt}
             onclick={() => oeffne(aufgabe.id)}
             role="button"
             tabindex="0"
             onkeydown={(e) => { if (e.key === 'Enter') oeffne(aufgabe.id); }}
           >
-            <span class="status-icon" aria-label={aktSt} title={aktSt}>
-              <i class="fa-solid {statusIcon(aktSt)}" aria-hidden="true"></i>
+            <span class="status-icon" aria-label={aktSt} title={aufgabe.gesperrt ? 'gesperrt' : aktSt}>
+              {#if aufgabe.gesperrt}
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              {:else}
+                <i class="fa-solid {statusIcon(aktSt)}" aria-hidden="true"></i>
+              {/if}
             </span>
 
             <div class="haupt">
               <span class="id">{aufgabe.id}</span>
               <span class="titel">{aufgabe.titel}</span>
+              {#if aufgabe.gesperrt}
+                <span class="sperre-hint" title="Voraussetzungen offen">
+                  <i class="fa-solid fa-link" aria-hidden="true"></i>
+                  Erst lösen:
+                  {#each aufgabe.voraussetzungen_offen as v, i}
+                    <strong>{findeTitel(v)}</strong>{#if i < aufgabe.voraussetzungen_offen.length - 1}, {/if}
+                  {/each}
+                </span>
+              {/if}
             </div>
 
             <div class="meta">
-              <span class="badge schwierigkeit-{aufgabe.schwierigkeit}">{aufgabe.schwierigkeit}</span>
+              <span
+                class="badge"
+                style:color={farbe}
+                style:border-color={farbe}
+              >{schwierigkeitTitel(aufgabe.schwierigkeit)}</span>
               <span class="badge sprache">{aufgabe.sprache}</span>
               <span class="zeit">
                 <i class="fa-regular fa-clock" aria-hidden="true"></i>
@@ -185,6 +212,13 @@
   .zeile.status-in_arbeit {
     border-left: 3px solid var(--orange);
   }
+  .zeile.gesperrt {
+    opacity: 0.55;
+    border-left: 3px dashed var(--fg-mute);
+  }
+  .zeile.gesperrt:hover {
+    opacity: 0.85;
+  }
   .status-icon {
     display: inline-flex;
     align-items: center;
@@ -197,6 +231,9 @@
   }
   .zeile.status-in_arbeit .status-icon {
     color: var(--orange);
+  }
+  .zeile.gesperrt .status-icon {
+    color: var(--fg-mute);
   }
   .haupt {
     display: flex;
@@ -214,6 +251,19 @@
     font-weight: 600;
     color: var(--fg);
   }
+  .sperre-hint {
+    color: var(--orange);
+    font-size: var(--fs-xs);
+    font-family: var(--quick);
+    margin-top: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .sperre-hint strong {
+    font-weight: 600;
+  }
   .meta {
     display: flex;
     align-items: center;
@@ -230,10 +280,6 @@
     border-radius: var(--radius-sm);
     background: var(--bg-card);
   }
-  .badge.schwierigkeit-anfaenger { color: var(--green); border-color: var(--green); }
-  .badge.schwierigkeit-mittel { color: var(--orange); border-color: var(--orange); }
-  .badge.schwierigkeit-fortgeschritten,
-  .badge.schwierigkeit-experte { color: var(--red); border-color: var(--red); }
   .badge.sprache { color: var(--accent); border-color: var(--accent); }
   .zeit {
     color: var(--fg-dim);

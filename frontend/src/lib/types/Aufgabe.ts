@@ -2,9 +2,12 @@
  * TypeScript-Typen, gespiegelt zu den Pydantic-Modellen im Backend.
  * Aufgabe in zwei Sichten: Kurz (Liste) und Detail (Beschreibung +
  * sichtbare Tests + Hints, ohne tests_versteckt).
+ *
+ * Schwierigkeit ist ein freier String -- die gültigen IDs kommen
+ * dynamisch aus dem KonfigStore (`aufgaben/_konfig.yml`).
  */
 
-export type Schwierigkeit = 'anfaenger' | 'mittel' | 'fortgeschritten' | 'experte';
+export type Schwierigkeit = string;
 
 export interface AufgabeKurz {
   id: string;
@@ -16,6 +19,9 @@ export interface AufgabeKurz {
   tags: string[];
   pfade: string[];
   revision: number;
+  voraussetzungen: string[];
+  voraussetzungen_offen: string[];
+  gesperrt: boolean;
 }
 
 export interface Quelle {
@@ -47,6 +53,8 @@ export interface AufgabeDetail {
   tags: string[];
   pfade: string[];
   voraussetzungen: string[];
+  voraussetzungen_offen: string[];
+  gesperrt: boolean;
   quelle: Quelle;
   lizenz: string;
   autor: string | null;
@@ -58,6 +66,8 @@ export interface AufgabeDetail {
   starter_code: string;
   beschreibung_md: string;
   anzahl_versteckte_tests: number;
+  /** Aufgabentyp-spezifische Zusatzdaten (z.B. quiz für output_quiz). */
+  extra: Record<string, unknown>;
 }
 
 export interface Musterloesung {

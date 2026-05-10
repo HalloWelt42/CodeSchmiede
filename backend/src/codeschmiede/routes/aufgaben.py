@@ -2,13 +2,47 @@
 
 from fastapi import APIRouter, HTTPException
 
-from ..models.aufgabe import AufgabeDetail, AufgabeKurz
+from ..models.aufgabe import Aufgabe, AufgabeDetail, AufgabeKurz
 from ..models.progress import Progress
 from ..state import AppState
 
 
+# Frontmatter-Felder, die direkt in `Aufgabe` modelliert sind. Was hier
+# nicht steht und im Frontmatter vorkommt, landet in `extra` und ist für
+# die jeweilige task_type-View bestimmt (z.B. `quiz`).
+KERNFELDER_FRONTMATTER = {
+    "schema_version", "id", "revision", "titel", "sprache", "task_type",
+    "runner_type", "schwierigkeit", "schwierigkeit_score", "schaetz_minuten",
+    "tags", "pfade", "voraussetzungen", "quelle", "lizenz", "autor",
+    "erstellt_am", "zeitlimit_sekunden", "funktion", "hints",
+    "tests_sichtbar", "tests_versteckt", "starter_code",
+    "beschreibung_md", "dateipfad", "hash",
+}
+
+
+def _voraussetzungen_offen(a: Aufgabe, geloeste_ids: set[str]) -> list[str]:
+    """Liefert die Liste der nicht-gelösten Voraussetzungen."""
+    return [v for v in a.voraussetzungen if v not in geloeste_ids]
+
+
+def _extra_aus_frontmatter(a: Aufgabe) -> dict:
+    """Sammelt zusätzliche Frontmatter-Felder (extra='allow') ein.
+
+    Pydantic legt sie in `model_extra` ab. Damit die jeweilige
+    Aufgabentyp-View darauf zugreifen kann.
+    """
+    return getattr(a, "model_extra", {}) or {}
+
+
 def baue_aufgaben_router(state: AppState) -> APIRouter:
     router = APIRouter(prefix="/api/aufgaben", tags=["aufgaben"])
+
+    def hole_geloeste_ids() -> set[str]:
+        return {
+            p.aufgabe_id
+            for p in state.progress.hole_alle_progress()
+            if p.status == "geloest"
+        }
 
     @router.get("", response_model=list[AufgabeKurz])
     def liste(
@@ -16,6 +50,7 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
         pfad: str | None = None,
         schwierigkeit: str | None = None,
     ) -> list[AufgabeKurz]:
+        geloest = hole_geloeste_ids()
         ergebnis: list[AufgabeKurz] = []
         for a in state.aufgaben.alle_aufgaben():
             if sprache and a.sprache != sprache:
@@ -24,6 +59,7 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
                 continue
             if schwierigkeit and a.schwierigkeit != schwierigkeit:
                 continue
+            offen = _voraussetzungen_offen(a, geloest)
             ergebnis.append(
                 AufgabeKurz(
                     id=a.id,
@@ -35,6 +71,9 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
                     tags=a.tags,
                     pfade=a.pfade,
                     revision=a.revision,
+                    voraussetzungen=a.voraussetzungen,
+                    voraussetzungen_offen=offen,
+                    gesperrt=len(offen) > 0,
                 )
             )
         ergebnis.sort(key=lambda x: x.schwierigkeit_score)
@@ -45,6 +84,8 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
         a = state.aufgaben.aufgabe(aufgabe_id)
         if not a:
             raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+
+        offen = _voraussetzungen_offen(a, hole_geloeste_ids())
 
         return AufgabeDetail(
             schema_version=a.schema_version,
@@ -60,6 +101,8 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
             tags=a.tags,
             pfade=a.pfade,
             voraussetzungen=a.voraussetzungen,
+            voraussetzungen_offen=offen,
+            gesperrt=len(offen) > 0,
             quelle=a.quelle,
             lizenz=a.lizenz,
             autor=a.autor,
@@ -71,6 +114,7 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
             starter_code=a.starter_code,
             beschreibung_md=a.beschreibung_md,
             anzahl_versteckte_tests=len(a.tests_versteckt),
+            extra=_extra_aus_frontmatter(a),
         )
 
     @router.get("/{aufgabe_id}/musterloesungen")

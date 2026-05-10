@@ -4,16 +4,24 @@ Ein Aufgabenfile besteht aus YAML-Frontmatter und Markdown-Beschreibung.
 `Frontmatter` modelliert die Metadaten, `Aufgabe` ist Frontmatter plus
 Beschreibung und Datei-Info (Pfad, Hash). Für die API werden
 schmalere Sichten daraus abgeleitet.
+
+Schwierigkeit ist ein freier String -- die gültigen IDs werden
+zur Laufzeit gegen die `_konfig.yml` validiert (oder nur dort gepflegt).
+Frontmatter erlaubt zusätzliche Felder (`extra="allow"`), damit neue
+Aufgabentypen (z.B. `output_quiz` mit `quiz`-Feld) ohne Schema-
+Erweiterung funktionieren.
 """
 
 from datetime import date
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
 
-Schwierigkeit = Literal["anfaenger", "mittel", "fortgeschritten", "experte"]
+# Schwierigkeit ist ein freier String. Welche IDs erlaubt sind, steht in
+# `_konfig.yml` -- nicht im Code.
+Schwierigkeit = str
 
 
 class Quelle(BaseModel):
@@ -34,7 +42,14 @@ class TestFall(BaseModel):
 
 
 class Frontmatter(BaseModel):
-    """Schema des YAML-Frontmatter-Blocks am Anfang jeder Aufgabe-Datei."""
+    """Schema des YAML-Frontmatter-Blocks am Anfang jeder Aufgabe-Datei.
+
+    `extra="allow"` erlaubt zusätzliche Felder pro Aufgabentyp -- z.B.
+    `quiz` für `task_type=output_quiz`. Diese landen im `extra`-Dict des
+    Pydantic-Models und werden vom jeweiligen Pruefer interpretiert.
+    """
+
+    model_config = ConfigDict(extra="allow")
 
     schema_version: int = 1
     id: str
@@ -62,9 +77,9 @@ class Frontmatter(BaseModel):
 
 
 class Aufgabe(Frontmatter):
-    """Vollstaendige Aufgabe: Frontmatter + Markdown-Beschreibung + Datei-Info."""
+    """Vollständige Aufgabe: Frontmatter + Markdown-Beschreibung + Datei-Info."""
 
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow")
 
     beschreibung_md: str
     dateipfad: Path
@@ -72,7 +87,12 @@ class Aufgabe(Frontmatter):
 
 
 class AufgabeKurz(BaseModel):
-    """Listen-Sicht. Bewusst schmal, damit `GET /api/aufgaben` schnell bleibt."""
+    """Listen-Sicht. Bewusst schmal, damit `GET /api/aufgaben` schnell bleibt.
+
+    Enthält das berechnete Feld `gesperrt` plus die offenen
+    Voraussetzungen, sodass die Liste direkt anzeigen kann, was noch
+    fehlt.
+    """
 
     id: str
     titel: str
@@ -83,10 +103,17 @@ class AufgabeKurz(BaseModel):
     tags: list[str]
     pfade: list[str]
     revision: int
+    voraussetzungen: list[str] = Field(default_factory=list)
+    voraussetzungen_offen: list[str] = Field(default_factory=list)
+    gesperrt: bool = False
 
 
 class AufgabeDetail(BaseModel):
-    """Detail-Sicht. Enthaelt sichtbare Tests, aber nie `tests_versteckt`."""
+    """Detail-Sicht. Enthält sichtbare Tests, aber nie `tests_versteckt`.
+
+    `extra` enthält Aufgabentyp-spezifische Zusatzfelder aus dem
+    Frontmatter (z.B. `quiz` für Output-Quiz-Aufgaben).
+    """
 
     schema_version: int
     id: str
@@ -101,6 +128,8 @@ class AufgabeDetail(BaseModel):
     tags: list[str]
     pfade: list[str]
     voraussetzungen: list[str]
+    voraussetzungen_offen: list[str] = Field(default_factory=list)
+    gesperrt: bool = False
     quelle: Quelle
     lizenz: str
     autor: str | None
@@ -112,3 +141,4 @@ class AufgabeDetail(BaseModel):
     starter_code: str
     beschreibung_md: str
     anzahl_versteckte_tests: int
+    extra: dict[str, Any] = Field(default_factory=dict)

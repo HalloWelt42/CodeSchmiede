@@ -7,6 +7,7 @@
   import { theme } from './lib/stores/ThemeStore.svelte';
   import { route } from './lib/stores/RouteStore.svelte';
   import { layout } from './lib/stores/LayoutStore.svelte';
+  import { konfig } from './lib/stores/KonfigStore.svelte';
   import Topbar from './lib/components/Topbar.svelte';
   import Sidebar from './lib/components/Sidebar.svelte';
   import Footer from './lib/components/Footer.svelte';
@@ -20,6 +21,7 @@
     theme.init();
     route.init();
     layout.init();
+    konfig.init();
   });
 </script>
 

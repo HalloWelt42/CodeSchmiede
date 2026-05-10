@@ -9,6 +9,7 @@ xxx_pruefer  # noqa: F401` hinzu -- mehr nicht.
 from ..models.aufgabe import Aufgabe
 from ..sandbox.runner import Runner
 from . import yaml_pruefer  # noqa: F401  registriert "code_schreiben"
+from . import output_quiz_pruefer  # noqa: F401  registriert "output_quiz"
 from .ergebnis import PruefErgebnis
 from .registry import hole
 

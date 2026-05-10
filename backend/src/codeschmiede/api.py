@@ -29,7 +29,7 @@ class HealthAntwort(BaseModel):
 def app_bauen(settings: Settings | None = None) -> FastAPI:
     aktive_settings = settings or Settings()
     state = AppState(aktive_settings)
-    watcher = AufgabenWatcher(aktive_settings.aufgaben_pfad, state.aufgaben)
+    watcher = AufgabenWatcher(state)
 
     @asynccontextmanager
     async def lifespan(_app: FastAPI):
