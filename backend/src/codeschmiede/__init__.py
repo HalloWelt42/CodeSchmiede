@@ -1,15 +1,24 @@
 """Codeschmiede -- Backend-Paket.
 
-Version wird aus der `VERSION`-Datei im Repo-Wurzel gelesen, damit
-Backend, Frontend und CLI immer den gleichen Stand zeigen.
+Version wird aus der `VERSION`-Datei gelesen. Kandidaten in Reihenfolge:
+1. relativ zum Modul (Dev-Modus, `pip install -e .`)
+2. Container-typische Pfade (Docker)
+3. Fallback "0.0.0", wenn nichts gefunden wurde.
 """
 
 from pathlib import Path
 
 
-_VERSION_DATEI = Path(__file__).resolve().parents[3] / "VERSION"
-__version__ = (
-    _VERSION_DATEI.read_text(encoding="utf-8").strip()
-    if _VERSION_DATEI.exists()
-    else "0.0.0"
-)
+def _finde_version() -> str:
+    kandidaten = [
+        Path(__file__).resolve().parents[3] / "VERSION",
+        Path("/app/VERSION"),
+        Path("/VERSION"),
+    ]
+    for k in kandidaten:
+        if k.exists():
+            return k.read_text(encoding="utf-8").strip()
+    return "0.0.0"
+
+
+__version__ = _finde_version()

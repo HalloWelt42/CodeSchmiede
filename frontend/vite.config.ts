@@ -4,10 +4,15 @@ import { readFileSync, existsSync } from 'fs';
 
 const pkg = JSON.parse(readFileSync('./package.json', 'utf-8'));
 
-// Single source of truth: VERSION-Datei im Repo-Wurzel.
+// Single source of truth: VERSION-Datei. Dev-Modus liegt sie eine
+// Ebene ueber frontend/, im Docker-Build wird sie in den Build-Context
+// kopiert und liegt direkt neben package.json.
 let APP_VERSION = pkg.version;
-if (existsSync('../VERSION')) {
-  APP_VERSION = readFileSync('../VERSION', 'utf-8').trim();
+for (const pfad of ['../VERSION', './VERSION']) {
+  if (existsSync(pfad)) {
+    APP_VERSION = readFileSync(pfad, 'utf-8').trim();
+    break;
+  }
 }
 
 const BACKEND = process.env.VITE_BACKEND || 'http://127.0.0.1:8200';

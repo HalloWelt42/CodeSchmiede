@@ -28,18 +28,43 @@ SQL (In-Memory-SQLite).
 
 ## Schnellstart
 
+### Variante 1 -- Native (Mac, Linux, Pi)
+
 ```bash
-# Sandbox-Image bauen (einmalig)
-./scripts/build-sandbox.sh
-
-# Backend starten
-cd backend && uv pip install -e . && python -m codeschmiede.main
-
-# Frontend starten (in zweitem Terminal)
-cd frontend && npm install && npm run dev
+./scripts/setup.sh
 ```
 
-Browser auf `http://localhost:5173`.
+Das Skript prüft Docker, Python 3.11 und npm, baut das Sandbox-Image,
+legt das Backend-venv an und installiert die Frontend-Pakete.
+
+Danach in zwei Terminals:
+
+```bash
+# Backend
+cd backend && .venv/bin/python -m codeschmiede.main
+
+# Frontend
+cd frontend && npm run dev
+```
+
+Browser: <http://localhost:5184>.
+
+### Variante 2 -- Docker Compose (für Pi-Deploys)
+
+```bash
+./scripts/build-sandbox.sh    # einmalig: Sandbox-Image bauen
+docker compose up -d
+```
+
+Browser: <http://localhost:8201>. Backend liegt auf 8200.
+
+## Hilfs-Skripte
+
+- `scripts/build-sandbox.sh` -- Sandbox-Image bauen (idempotent)
+- `scripts/setup.sh` -- Plattform-Setup (Voraussetzungen + Pakete)
+- `scripts/inspect-db.sh` -- Tabellen-Counts, Submissions, Streak
+- `scripts/reset-db.sh` -- Datenbank löschen (Vorsicht-Modus)
+- `scripts/bump.sh [patch|minor|major]` -- Version anheben
 
 ## Verzeichnisse
 

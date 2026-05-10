@@ -1,0 +1,44 @@
+# Codeschmiede -- Production-aehnliches Setup mit Docker Compose.
+#
+# Voraussetzung: Sandbox-Image einmal bauen, BEVOR der Backend-Container
+# Submissions ausfuehrt:
+#   ./scripts/build-sandbox.sh
+#
+# Start:
+#   docker compose up -d
+#
+# Browser: http://localhost:8201
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: codeschmiede-backend:latest
+    container_name: codeschmiede-backend
+    restart: unless-stopped
+    ports:
+      - "8200:8200"
+    volumes:
+      # Aufgaben read-only -- Editieren erfolgt am Host
+      - ./aufgaben:/app/aufgaben:ro
+      # SQLite-DB persistieren
+      - ./data:/app/data
+      # Docker-Daemon-Socket fuer Sandbox-Container-Spawn
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      CODESCHMIEDE_AUFGABEN_PFAD: /app/aufgaben
+      CODESCHMIEDE_DATEN_PFAD: /app/data
+      CODESCHMIEDE_DB_DATEI: /app/data/codeschmiede.db
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: codeschmiede-frontend:latest
+    container_name: codeschmiede-frontend
+    restart: unless-stopped
+    ports:
+      - "8201:8201"
+    depends_on:
+      - backend
