@@ -359,18 +359,23 @@
   .muster-eintrag pre {
     margin: var(--sp-2) 0 0;
     font-family: var(--mono);
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
+    line-height: 1.5;
     color: var(--fg);
     background: var(--bg);
-    padding: var(--sp-2) var(--sp-3);
+    padding: var(--sp-2);
     border: 1px solid var(--border);
     overflow-x: auto;
     white-space: pre;
+    border-radius: var(--radius-sm);
+    max-height: 280px;
+    overflow-y: auto;
   }
   .muster-eintrag pre code {
     background: transparent;
     border: none;
     padding: 0;
     font-size: inherit;
+    color: inherit;
   }
 </style>

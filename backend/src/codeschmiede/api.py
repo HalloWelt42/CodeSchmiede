@@ -1,10 +1,14 @@
 """FastAPI-App. Mountet Router und stellt einen Health-Check bereit."""
 
+import asyncio
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from . import __version__
+from .aufgaben.watcher import AufgabenWatcher
 from .config import Settings
 from .routes.aufgaben import baue_aufgaben_router
 from .routes.pfade import baue_pfade_router
@@ -24,12 +28,26 @@ class HealthAntwort(BaseModel):
 def app_bauen(settings: Settings | None = None) -> FastAPI:
     aktive_settings = settings or Settings()
     state = AppState(aktive_settings)
+    watcher = AufgabenWatcher(aktive_settings.aufgaben_pfad, state.aufgaben)
+
+    @asynccontextmanager
+    async def lifespan(_app: FastAPI):
+        task = asyncio.create_task(watcher.laufe())
+        try:
+            yield
+        finally:
+            task.cancel()
+            try:
+                await task
+            except asyncio.CancelledError:
+                pass
 
     app = FastAPI(
         title="Codeschmiede",
         version=__version__,
         docs_url="/api/docs",
         openapi_url="/api/openapi.json",
+        lifespan=lifespan,
     )
 
     # Vite-Dev-Server proxied selbst, im Browser direkt aufrufen geht

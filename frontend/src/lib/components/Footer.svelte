@@ -1,11 +1,30 @@
 <script lang="ts">
-  const version = __APP_VERSION__;
+  /*
+   * Footer mit Live-Version aus /api/healthz. Vite cached die VERSION
+   * nur beim Build/Start, das Backend-Modul liest sie bei jedem Request
+   * frisch -- also kommt der Footer immer aktuell.
+   */
+  import { onMount } from 'svelte';
+
+  let version = $state<string | null>(null);
+
+  onMount(async () => {
+    try {
+      const r = await fetch('/api/healthz');
+      if (r.ok) {
+        const j = await r.json();
+        version = j.version;
+      }
+    } catch {
+      // Backend nicht erreichbar -- bleibt bei "..."
+    }
+  });
 </script>
 
 <footer>
   <span class="links">
     <i class="fa-solid fa-hammer" aria-hidden="true"></i>
-    Codeschmiede v{version}
+    Codeschmiede v{version ?? '...'}
   </span>
   <span class="rechts">Lokal, ohne Tracking, ohne Werbung</span>
 </footer>

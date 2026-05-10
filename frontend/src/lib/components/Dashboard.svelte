@@ -4,6 +4,7 @@
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
   import ActionCard from './ActionCard.svelte';
+  import EmptyState from './EmptyState.svelte';
 
   onMount(async () => {
     if (aufgabenStore.liste.length === 0) await aufgabenStore.ladeListe();
@@ -94,6 +95,16 @@
 </script>
 
 <div class="dashboard">
+  {#if aufgabenStore.liste.length === 0 && !aufgabenStore.ladenListe}
+    <EmptyState
+      icon="fa-hammer"
+      titel="Willkommen in der Codeschmiede"
+      hinweis="Es sind noch keine Aufgaben vorhanden. Lege eine erste an unter aufgaben/python/NNN-id/aufgabe.md -- die Vorlage steht in docs/AUFGABEN-FORMAT.md. Das Backend indiziert sie automatisch."
+      ctaText="Aufgaben-Liste öffnen"
+      ctaAction={() => route.setze('aufgaben')}
+    />
+  {:else}
+
   <header class="kopf">
     <h1>Willkommen zurück</h1>
     <p class="lead">
@@ -160,6 +171,7 @@
         </span>
       </div>
     </section>
+  {/if}
   {/if}
 </div>
 

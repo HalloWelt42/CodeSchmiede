@@ -3,6 +3,15 @@
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
+  import type { ProgressStatus } from '../api/ProgressApi';
+  import type { Schwierigkeit } from '../types/Aufgabe';
+  import AufgabenFilter from './AufgabenFilter.svelte';
+  import EmptyState from './EmptyState.svelte';
+
+  let suche = $state('');
+  let sprache = $state('');
+  let schwierigkeit = $state<Schwierigkeit | ''>('');
+  let status = $state<ProgressStatus | ''>('');
 
   onMount(async () => {
     if (aufgabenStore.liste.length === 0) await aufgabenStore.ladeListe();
@@ -13,66 +22,117 @@
     route.setze('aufgabe', id);
   }
 
-  function statusIcon(status: string): string {
-    if (status === 'geloest') return 'fa-circle-check';
-    if (status === 'in_arbeit') return 'fa-pen-to-square';
+  function statusIcon(s: string): string {
+    if (s === 'geloest') return 'fa-circle-check';
+    if (s === 'in_arbeit') return 'fa-pen-to-square';
     return 'fa-circle';
   }
+
+  let sprachen = $derived(
+    [...new Set(aufgabenStore.liste.map((a) => a.sprache))].sort(),
+  );
+
+  let gefiltert = $derived(
+    aufgabenStore.liste.filter((a) => {
+      if (sprache && a.sprache !== sprache) return false;
+      if (schwierigkeit && a.schwierigkeit !== schwierigkeit) return false;
+      if (status && progressStore.status(a.id) !== status) return false;
+      if (suche.trim()) {
+        const q = suche.trim().toLowerCase();
+        const haystack = [
+          a.id,
+          a.titel,
+          ...a.tags,
+        ]
+          .join(' ')
+          .toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
+      return true;
+    }),
+  );
 </script>
 
 <div class="liste">
   <header class="kopf">
-    <div>
-      <h1>Aufgaben</h1>
-      <p class="lead">
-        {#if aufgabenStore.ladenListe}
-          Lade ...
-        {:else if aufgabenStore.fehler}
-          Fehler: {aufgabenStore.fehler}
-        {:else}
-          {aufgabenStore.liste.length} Aufgaben verfügbar.
-        {/if}
-      </p>
-    </div>
+    <h1>Aufgaben</h1>
   </header>
 
-  <div class="tabelle">
-    {#each aufgabenStore.liste as aufgabe (aufgabe.id)}
-      {@const status = progressStore.status(aufgabe.id)}
-      <article class="zeile status-{status}"
-               onclick={() => oeffne(aufgabe.id)} role="button" tabindex="0"
-               onkeydown={(e) => { if (e.key === 'Enter') oeffne(aufgabe.id); }}>
-        <span class="status-icon" aria-label={status} title={status}>
-          <i class="fa-solid {statusIcon(status)}" aria-hidden="true"></i>
-        </span>
+  {#if aufgabenStore.ladenListe}
+    <p class="info">Lade Aufgaben ...</p>
+  {:else if aufgabenStore.fehler}
+    <p class="info fehler">Fehler: {aufgabenStore.fehler}</p>
+  {:else if aufgabenStore.liste.length === 0}
+    <EmptyState
+      icon="fa-folder-open"
+      titel="Noch keine Aufgaben"
+      hinweis="Lege ein Verzeichnis unter aufgaben/python/NNN-id/ an. Das Backend indiziert sie automatisch."
+    />
+  {:else}
+    <AufgabenFilter
+      bind:suche
+      bind:sprache
+      bind:schwierigkeit
+      bind:status
+      {sprachen}
+      treffer={gefiltert.length}
+      gesamt={aufgabenStore.liste.length}
+    />
 
-        <div class="haupt">
-          <span class="id">{aufgabe.id}</span>
-          <span class="titel">{aufgabe.titel}</span>
-        </div>
+    {#if gefiltert.length === 0}
+      <EmptyState
+        icon="fa-magnifying-glass"
+        titel="Kein Treffer"
+        hinweis="Passe die Filter an oder setze sie zurück."
+      />
+    {:else}
+      <div class="tabelle">
+        {#each gefiltert as aufgabe (aufgabe.id)}
+          {@const aktSt = progressStore.status(aufgabe.id)}
+          <article
+            class="zeile status-{aktSt}"
+            onclick={() => oeffne(aufgabe.id)}
+            role="button"
+            tabindex="0"
+            onkeydown={(e) => { if (e.key === 'Enter') oeffne(aufgabe.id); }}
+          >
+            <span class="status-icon" aria-label={aktSt} title={aktSt}>
+              <i class="fa-solid {statusIcon(aktSt)}" aria-hidden="true"></i>
+            </span>
 
-        <div class="meta">
-          <span class="badge schwierigkeit-{aufgabe.schwierigkeit}">{aufgabe.schwierigkeit}</span>
-          <span class="badge sprache">{aufgabe.sprache}</span>
-          <span class="zeit">
-            <i class="fa-regular fa-clock" aria-hidden="true"></i>
-            {aufgabe.schaetz_minuten} min
-          </span>
-          <span class="score num">{aufgabe.schwierigkeit_score}</span>
-        </div>
+            <div class="haupt">
+              <span class="id">{aufgabe.id}</span>
+              <span class="titel">{aufgabe.titel}</span>
+            </div>
 
-        <div class="tags">
-          {#each aufgabe.tags as tag}
-            <span class="tag">#{tag}</span>
-          {/each}
-        </div>
+            <div class="meta">
+              <span class="badge schwierigkeit-{aufgabe.schwierigkeit}">{aufgabe.schwierigkeit}</span>
+              <span class="badge sprache">{aufgabe.sprache}</span>
+              <span class="zeit">
+                <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                {aufgabe.schaetz_minuten} min
+              </span>
+              <span class="score num">{aufgabe.schwierigkeit_score}</span>
+            </div>
 
-        <button class="oeffnen" aria-label="Aufgabe öffnen" onclick={(e) => { e.stopPropagation(); oeffne(aufgabe.id); }}>
-          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-        </button>
-      </article>
-    {/each}
-  </div>
+            <div class="tags">
+              {#each aufgabe.tags as tag}
+                <span class="tag">#{tag}</span>
+              {/each}
+            </div>
+
+            <button
+              class="oeffnen"
+              aria-label="Aufgabe öffnen"
+              onclick={(e) => { e.stopPropagation(); oeffne(aufgabe.id); }}
+            >
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </article>
+        {/each}
+      </div>
+    {/if}
+  {/if}
 </div>
 
 <style>
@@ -81,18 +141,19 @@
     overflow-y: auto;
   }
   .kopf {
-    margin-bottom: var(--sp-4);
+    margin-bottom: var(--sp-2);
   }
   h1 {
-    margin: 0 0 var(--sp-2);
+    margin: 0;
     font-size: var(--fs-xl);
     font-weight: 600;
   }
-  .lead {
-    margin: 0;
+  .info {
     color: var(--fg-dim);
     font-family: var(--quick);
-    font-size: var(--fs-sm);
+  }
+  .info.fehler {
+    color: var(--red);
   }
 
   .tabelle {

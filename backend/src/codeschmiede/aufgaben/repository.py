@@ -23,15 +23,30 @@ class AufgabenRepository:
         self._pfade: dict[str, Pfad] = {}
 
     def neu_aufbauen(self) -> None:
+        """Liest alle Aufgaben + Pfade neu von der Platte und gleicht den
+        SQLite-Index ab. Erhaelt dabei `progress` und `submissions` --
+        diese referenzieren Aufgaben ueber Foreign Keys, ein Bulk-DELETE
+        ist also nicht erlaubt. Stattdessen UPSERT pro Aufgabe und
+        gezieltes Aufraeumen verschwundener IDs.
+        """
         aufgaben = self.loader.lade_alle_aufgaben()
         pfade = self.loader.lade_alle_pfade()
 
         self._aufgaben = {a.id: a for a in aufgaben}
         self._pfade = {p.id: p for p in pfade}
 
+        aktuelle_aufgaben_ids = {a.id for a in aufgaben}
+
         with self.db.connect() as conn:
-            conn.execute("DELETE FROM aufgaben")
-            conn.execute("DELETE FROM pfade")
+            bestehende = {
+                r["id"] for r in conn.execute("SELECT id FROM aufgaben").fetchall()
+            }
+            verschwundene = bestehende - aktuelle_aufgaben_ids
+            for aid in verschwundene:
+                # Progress fuer geloeschte Aufgaben mit aufraeumen
+                # (ansonsten verletzt der naechste Schreibversuch das FK).
+                conn.execute("DELETE FROM progress WHERE aufgabe_id = ?", (aid,))
+                conn.execute("DELETE FROM aufgaben WHERE id = ?", (aid,))
 
             for a in aufgaben:
                 conn.execute(
@@ -42,6 +57,20 @@ class AufgabenRepository:
                         task_type, runner_type, aktuelle_revision,
                         dateipfad, hash
                     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ON CONFLICT(id) DO UPDATE SET
+                        titel=excluded.titel,
+                        sprache=excluded.sprache,
+                        schwierigkeit=excluded.schwierigkeit,
+                        schwierigkeit_score=excluded.schwierigkeit_score,
+                        schaetz_minuten=excluded.schaetz_minuten,
+                        tags=excluded.tags,
+                        pfade=excluded.pfade,
+                        voraussetzungen=excluded.voraussetzungen,
+                        task_type=excluded.task_type,
+                        runner_type=excluded.runner_type,
+                        aktuelle_revision=excluded.aktuelle_revision,
+                        dateipfad=excluded.dateipfad,
+                        hash=excluded.hash
                     """,
                     (
                         a.id, a.titel, a.sprache, a.schwierigkeit, a.schwierigkeit_score,
@@ -55,9 +84,12 @@ class AufgabenRepository:
                     mode="json",
                     exclude={"beschreibung_md", "dateipfad", "hash"},
                 )
+                # Versionen sind unveraenderlich -- INSERT OR IGNORE verhindert,
+                # dass eine bereits gespeicherte (id, revision) ueberschrieben
+                # wird. Wer inhaltlich aendert, muss revision hochzaehlen.
                 conn.execute(
                     """
-                    INSERT OR REPLACE INTO aufgaben_versionen (
+                    INSERT OR IGNORE INTO aufgaben_versionen (
                         aufgabe_id, revision, hash, frontmatter_json,
                         beschreibung_md, gueltig_ab
                     ) VALUES (?, ?, ?, ?, ?, datetime('now'))
@@ -65,6 +97,8 @@ class AufgabenRepository:
                     (a.id, a.revision, a.hash, json.dumps(fm_dict), a.beschreibung_md),
                 )
 
+            # Pfade haben keine FK-Beziehung -- voller Refresh ist OK.
+            conn.execute("DELETE FROM pfade")
             for p in pfade:
                 conn.execute(
                     """
