@@ -1,0 +1,13 @@
+id: python_mathe2
+titel: Python-Mathematik 2
+beschreibung: |
+  Aufbau auf "Python-Mathematik" -- mehr klassische Zahl-Spiele:
+  perfekte und befreundete Zahlen, Armstrong-Zahlen, roemische Zahlen
+  in beide Richtungen. Inspiration teils aus dem Project Euler und
+  Rosetta Code; alle Aufgaben hier in eigenen Worten.
+reihenfolge:
+  - 040-perfekte-zahl
+  - 041-befreundet
+  - 042-armstrong
+  - 043-roemisch-zu-int
+  - 044-int-zu-roemisch

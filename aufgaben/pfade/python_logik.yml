@@ -1,0 +1,13 @@
+id: python_logik
+titel: Python-Logik
+beschreibung: |
+  Brett-Spielereien und Matrizen: TicTacToe-Gewinner finden, Matrix
+  transponieren, Spalten- und Diagonal-Summen, magisches Quadrat
+  validieren. Einstieg in zweidimensionales Denken mit Listen von
+  Listen.
+reihenfolge:
+  - 061-tictactoe
+  - 062-matrix-transponieren
+  - 063-spalten-summe
+  - 064-diagonale-summe
+  - 065-magisches-quadrat

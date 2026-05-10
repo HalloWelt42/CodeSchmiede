@@ -125,32 +125,40 @@ def _baue_skript(code: str, funktion: str, tests: list[dict]) -> str:
     Tests werden als JSON-String an den Container uebergeben und dort per
     `json.loads` geparst -- so klappt es auch für Booleans, None, und
     Sonderzeichen, die in Python-Syntax anders aussehen (true vs True).
+
+    Der gesamte Test-Runner laeuft in einer eigenen Funktion. So
+    koennen Hilfsvariablen des Runners (i, t, actual, ...) nicht mit
+    Helfern aus dem Nutzer-Code kollidieren -- die leben im Modul-
+    Scope, der Runner in einem Funktions-Scope.
     """
     tests_json = json.dumps(tests)
     return (
         f"{code}\n\n"
         "# === codeschmiede test runner (auto generated) ===\n"
-        "import json as _json\n"
-        "import sys as _sys\n"
-        f"_tests = _json.loads({tests_json!r})\n"
-        "_ergebnisse = []\n"
-        "for _i, _t in enumerate(_tests):\n"
-        "    try:\n"
-        f"        _actual = {funktion}(*_t['input'])\n"
-        "        _ergebnisse.append({\n"
-        "            'i': _i,\n"
-        "            'ok': _actual == _t['expected'],\n"
-        "            'actual': _actual,\n"
-        "            'err': None,\n"
-        "        })\n"
-        "    except Exception as _e:\n"
-        "        _ergebnisse.append({\n"
-        "            'i': _i,\n"
-        "            'ok': False,\n"
-        "            'actual': None,\n"
-        "            'err': type(_e).__name__ + ': ' + str(_e),\n"
-        "        })\n"
-        f"_sys.stdout.write({MARKER!r})\n"
-        "_sys.stdout.write(_json.dumps(_ergebnisse, default=str))\n"
-        "_sys.stdout.flush()\n"
+        "def __cs_run_tests():\n"
+        "    import json as __cs_json\n"
+        "    import sys as __cs_sys\n"
+        f"    __cs_tests = __cs_json.loads({tests_json!r})\n"
+        "    __cs_ergebnisse = []\n"
+        "    for __cs_i, __cs_t in enumerate(__cs_tests):\n"
+        "        try:\n"
+        f"            __cs_actual = {funktion}(*__cs_t['input'])\n"
+        "            __cs_ergebnisse.append({\n"
+        "                'i': __cs_i,\n"
+        "                'ok': __cs_actual == __cs_t['expected'],\n"
+        "                'actual': __cs_actual,\n"
+        "                'err': None,\n"
+        "            })\n"
+        "        except Exception as __cs_e:\n"
+        "            __cs_ergebnisse.append({\n"
+        "                'i': __cs_i,\n"
+        "                'ok': False,\n"
+        "                'actual': None,\n"
+        "                'err': type(__cs_e).__name__ + ': ' + str(__cs_e),\n"
+        "            })\n"
+        f"    __cs_sys.stdout.write({MARKER!r})\n"
+        "    __cs_sys.stdout.write(__cs_json.dumps(__cs_ergebnisse, default=str))\n"
+        "    __cs_sys.stdout.flush()\n"
+        "\n"
+        "__cs_run_tests()\n"
     )

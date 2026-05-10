@@ -1,0 +1,12 @@
+id: python_strings3
+titel: Python-Strings 3
+beschreibung: |
+  String-Operationen aus der Tooling-Welt: snake_case und camelCase
+  ineinander ueberfuehren, Substring-Suche, laengstes Wort eines
+  Satzes finden, Worte umkehren. Praktische Bausteine, wie man sie
+  in Linters und Formattern oft findet.
+reihenfolge:
+  - 045-snake-zu-camel
+  - 046-camel-zu-snake
+  - 047-substring-anzahl
+  - 048-laengstes-wort

@@ -1,0 +1,14 @@
+id: python_quiz
+titel: Python-Output-Quiz
+beschreibung: |
+  Code lesen statt schreiben. Quiz-Aufgaben, bei denen man die
+  Ausgabe vorhersagen muss -- mit gemeinen Stolperfallen wie
+  Mutable-Default-Args, Late-Binding-Closures und
+  List-Comprehension-Tricks. Trainiert das genaue Lesen.
+reihenfolge:
+  - 014-quiz-modulo
+  - 015-quiz-listen-slicing
+  - 066-quiz-list-comprehension
+  - 067-quiz-mutable-default
+  - 068-quiz-late-binding
+  - 069-quiz-or-and

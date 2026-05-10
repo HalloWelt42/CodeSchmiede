@@ -1,0 +1,10 @@
+id: python_datum
+titel: Python-Datum
+beschreibung: |
+  Datum und Zeit ohne `datetime`-Modul: Schaltjahr-Test, Tage pro
+  Monat, Wochentag berechnen mit der Formel von Zeller. Trainiert
+  Verzweigungen und das Lesen mathematischer Formeln in Code.
+reihenfolge:
+  - 058-schaltjahr
+  - 059-monatstage
+  - 060-wochentag

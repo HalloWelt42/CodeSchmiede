@@ -1,0 +1,13 @@
+id: python_algorithmen2
+titel: Python-Algorithmen 2
+beschreibung: |
+  Sortier-Algorithmen-Sammlung. Selection-Sort und Insertion-Sort als
+  langsame, aber lehrreiche $O(n^2)$-Klassiker. Merge-Sort und
+  Quicksort als schnelle Divide-and-Conquer-Verfahren in $O(n \log n)$.
+  Wer alle vier durchhat, hat ein gutes Bauchgefuehl fuer Sortier-
+  Strategien.
+reihenfolge:
+  - 049-selection-sort
+  - 050-insertion-sort
+  - 051-merge-sort
+  - 052-quicksort
