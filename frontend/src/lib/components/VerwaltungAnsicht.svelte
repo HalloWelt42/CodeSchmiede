@@ -11,11 +11,54 @@
   import { adminApi } from '../api/AdminApi';
   import type { VerwaltungsEintrag } from '../types/Admin';
   import { route } from '../stores/RouteStore.svelte';
+  import AufgabeEditor from './AufgabeEditor.svelte';
+  import ConfirmModal from './ConfirmModal.svelte';
 
   let eintraege = $state<VerwaltungsEintrag[]>([]);
   let laden = $state(false);
   let fehler = $state<string | null>(null);
   let suche = $state('');
+
+  let editor_offen = $state(false);
+  let editor_eintrag = $state<VerwaltungsEintrag | null>(null);
+  let loesch_eintrag = $state<VerwaltungsEintrag | null>(null);
+
+  function neu_oeffnen(): void {
+    editor_eintrag = null;
+    editor_offen = true;
+  }
+
+  function bearbeiten(e: VerwaltungsEintrag): void {
+    editor_eintrag = e;
+    editor_offen = true;
+  }
+
+  function editor_schliessen(): void {
+    editor_offen = false;
+    editor_eintrag = null;
+  }
+
+  async function nach_speichern(_id: string): Promise<void> {
+    editor_offen = false;
+    editor_eintrag = null;
+    await neuLaden();
+  }
+
+  function loesch_anfordern(e: VerwaltungsEintrag): void {
+    loesch_eintrag = e;
+  }
+
+  async function loesch_bestaetigt(): Promise<void> {
+    if (!loesch_eintrag) return;
+    const id = loesch_eintrag.id;
+    loesch_eintrag = null;
+    try {
+      await adminApi.aufgabeLoeschen(id);
+      await neuLaden();
+    } catch (e) {
+      fehler = (e as Error).message;
+    }
+  }
 
   onMount(async () => {
     await neuLaden();
@@ -72,10 +115,16 @@
         Versteckte Tests sind hier sichtbar -- nur du siehst diese Ansicht.
       </p>
     </div>
-    <button class="reload-btn" onclick={neuLaden} disabled={laden}>
-      <i class="fa-solid fa-rotate" aria-hidden="true"></i>
-      {laden ? 'Lade ...' : 'Neu laden'}
-    </button>
+    <div class="kopf-actions">
+      <button class="primaer-btn" onclick={neu_oeffnen}>
+        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+        Neue Aufgabe
+      </button>
+      <button class="reload-btn" onclick={neuLaden} disabled={laden}>
+        <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+        {laden ? 'Lade ...' : 'Neu laden'}
+      </button>
+    </div>
   </header>
 
   {#if fehler}
@@ -122,7 +171,13 @@
             </div>
 
             <div class="aktionen">
-              <button class="action" onclick={() => route.setze('aufgabe', e.id)} title="Aufgabe öffnen">
+              <button class="action" onclick={() => bearbeiten(e)} title="Bearbeiten" aria-label="Bearbeiten">
+                <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+              </button>
+              <button class="action danger" onclick={() => loesch_anfordern(e)} title="Löschen" aria-label="Löschen">
+                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+              </button>
+              <button class="action" onclick={() => route.setze('aufgabe', e.id)} title="Aufgabe öffnen" aria-label="Öffnen">
                 <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
               </button>
             </div>
@@ -216,6 +271,26 @@
   {/if}
 </div>
 
+<AufgabeEditor
+  offen={editor_offen}
+  bearbeiten={editor_eintrag}
+  onSchliessen={editor_schliessen}
+  onGespeichert={nach_speichern}
+/>
+
+<ConfirmModal
+  offen={loesch_eintrag !== null}
+  titel="Aufgabe löschen?"
+  nachricht={loesch_eintrag
+    ? `Aufgabe '${loesch_eintrag.id}' (${loesch_eintrag.titel}) wird komplett entfernt -- inkl. aller Musterlösungen. Submissions in der Historie bleiben erhalten.`
+    : ''}
+  bestaetigen_text="Löschen"
+  abbrechen_text="Abbrechen"
+  danger={true}
+  onBestaetigen={loesch_bestaetigt}
+  onAbbrechen={() => (loesch_eintrag = null)}
+/>
+
 <style>
   .verwaltung {
     padding: var(--sp-5);
@@ -238,6 +313,30 @@
     color: var(--fg-dim);
     font-family: var(--quick);
     font-size: var(--fs-sm);
+  }
+  .kopf-actions {
+    display: flex;
+    gap: var(--sp-2);
+    flex-shrink: 0;
+    align-items: center;
+  }
+  .primaer-btn {
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 6px 14px;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .primaer-btn:hover {
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
   }
   .reload-btn {
     background: transparent;
@@ -414,6 +513,10 @@
   .action:hover {
     color: var(--accent);
     border-color: var(--accent);
+  }
+  .action.danger:hover {
+    color: var(--red);
+    border-color: var(--red);
   }
 
   .kennzahlen-zeile {

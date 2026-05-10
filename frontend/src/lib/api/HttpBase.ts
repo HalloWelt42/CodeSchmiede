@@ -45,4 +45,12 @@ export class HttpBase {
   protected post<T>(pfad: string, body: unknown): Promise<T> {
     return this.request<T>(pfad, { method: 'POST', body: JSON.stringify(body) });
   }
+
+  protected put<T>(pfad: string, body: unknown): Promise<T> {
+    return this.request<T>(pfad, { method: 'PUT', body: JSON.stringify(body) });
+  }
+
+  protected delete<T>(pfad: string): Promise<T> {
+    return this.request<T>(pfad, { method: 'DELETE' });
+  }
 }

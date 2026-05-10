@@ -2,6 +2,31 @@ import { HttpBase } from './HttpBase';
 import type { VerwaltungsEintrag } from '../types/Admin';
 import type { Konfiguration } from '../types/Konfig';
 
+export interface MusterloesungEintrag {
+  variante: string;
+  code: string;
+}
+
+export interface VarianteErgebnis {
+  variante: string;
+  bestanden: boolean;
+  sichtbar_pass: number;
+  sichtbar_total: number;
+  versteckt_pass: number;
+  versteckt_fail: number;
+  laufzeit_ms: number;
+  fehler_text: string | null;
+}
+
+export interface ValidierungsErgebnis {
+  varianten: VarianteErgebnis[];
+}
+
+export interface AufgabeSchreibAnfrage {
+  frontmatter: Record<string, unknown>;
+  beschreibung_md: string;
+}
+
 export class AdminApi extends HttpBase {
   constructor() {
     super('/api/admin');
@@ -11,8 +36,47 @@ export class AdminApi extends HttpBase {
     return this.get<VerwaltungsEintrag[]>('/aufgaben');
   }
 
+  aufgabe(id: string): Promise<VerwaltungsEintrag> {
+    return this.get<VerwaltungsEintrag>(`/aufgaben/${id}`);
+  }
+
+  aufgabeAnlegen(daten: AufgabeSchreibAnfrage): Promise<VerwaltungsEintrag> {
+    return this.post<VerwaltungsEintrag>('/aufgaben', daten);
+  }
+
+  aufgabeAendern(id: string, daten: AufgabeSchreibAnfrage): Promise<VerwaltungsEintrag> {
+    return this.put<VerwaltungsEintrag>(`/aufgaben/${id}`, daten);
+  }
+
+  aufgabeLoeschen(id: string): Promise<null> {
+    return this.delete<null>(`/aufgaben/${id}`);
+  }
+
   konfig(): Promise<Konfiguration> {
     return this.get<Konfiguration>('/konfig');
+  }
+
+  musterloesungen(id: string): Promise<MusterloesungEintrag[]> {
+    return this.get<MusterloesungEintrag[]>(`/aufgaben/${id}/musterloesungen`);
+  }
+
+  musterloesungSpeichern(
+    id: string,
+    variante: string,
+    code: string,
+  ): Promise<MusterloesungEintrag> {
+    return this.put<MusterloesungEintrag>(
+      `/aufgaben/${id}/musterloesungen/${variante}`,
+      { code },
+    );
+  }
+
+  musterloesungLoeschen(id: string, variante: string): Promise<null> {
+    return this.delete<null>(`/aufgaben/${id}/musterloesungen/${variante}`);
+  }
+
+  validieren(id: string): Promise<ValidierungsErgebnis> {
+    return this.post<ValidierungsErgebnis>(`/aufgaben/${id}/validieren`, {});
   }
 }
 

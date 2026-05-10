@@ -8,6 +8,7 @@ Aufbau aus dem Aufgaben-Verzeichnis, dann ist alles bereit.
 from .aufgaben.konfig_loader import KonfigLoader
 from .aufgaben.loader import AufgabenLoader
 from .aufgaben.repository import AufgabenRepository
+from .aufgaben.schreiber import AufgabenSchreiber
 from .config import Settings
 from .db.connection import Datenbank
 from .models.konfig import Konfiguration
@@ -28,6 +29,8 @@ class AppState:
         self.loader = AufgabenLoader(settings.aufgaben_pfad)
         self.aufgaben = AufgabenRepository(self.db, self.loader)
         self.aufgaben.neu_aufbauen()
+
+        self.schreiber = AufgabenSchreiber(settings.aufgaben_pfad, self.loader)
 
         self.progress = ProgressRepository(self.db)
 
