@@ -65,6 +65,16 @@
   --shadow:    0 4px 14px rgba(0,0,0,0.4);
   --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
   --texture: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'><path d='M0 8L8 0' stroke='%23ffffff' stroke-opacity='0.012' stroke-width='1'/></svg>");
+
+  --code-keyword:  #5eead4;
+  --code-name:     #e7ecf1;
+  --code-string:   #a6e3d0;
+  --code-number:   #d29922;
+  --code-comment:  #6a737e;
+  --code-operator: #5eead4;
+  --code-function: #a6e3d0;
+  --code-property: #a6e3d0;
+  --code-invalid:  #f85149;
 }
 
 /* ========== Hell ========== */
@@ -86,7 +96,29 @@
   --shadow:    0 1px 4px rgba(31,35,40,0.08), 0 4px 14px rgba(31,35,40,0.06);
   --shadow-lg: 0 8px 24px rgba(31,35,40,0.12);
   --texture: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'><path d='M0 8L8 0' stroke='%23000000' stroke-opacity='0.018' stroke-width='1'/></svg>");
+
+  --code-keyword:  #cf222e;
+  --code-name:     #1f2328;
+  --code-string:   #0a3069;
+  --code-number:   #953800;
+  --code-comment:  #6e7781;
+  --code-operator: #0550ae;
+  --code-function: #6639ba;
+  --code-property: #116329;
+  --code-invalid:  #cf222e;
 }
+
+/* CodeMirror-Highlights -- Klassen werden in PetrolTheme angeheftet,
+   Farben aus den --code-*-Variablen pro Theme gezogen. */
+.cm-cs-keyword  { color: var(--code-keyword); font-weight: 600; }
+.cm-cs-name     { color: var(--code-name); }
+.cm-cs-string   { color: var(--code-string); }
+.cm-cs-number   { color: var(--code-number); }
+.cm-cs-comment  { color: var(--code-comment); font-style: italic; }
+.cm-cs-operator { color: var(--code-operator); }
+.cm-cs-function { color: var(--code-function); }
+.cm-cs-property { color: var(--code-property); }
+.cm-cs-invalid  { color: var(--code-invalid); }
 
 * { box-sizing: border-box; }
 

@@ -1,0 +1,11 @@
+id: python_dicts
+titel: Python-Dictionaries
+beschreibung: |
+  Dictionaries -- das Schweizer Taschenmesser fuer alles, was nach
+  Schluessel-Wert riecht. Worte zaehlen, Zuordnungen invertieren,
+  Zeichen-Haeufigkeiten ermitteln. Wer hier sicher wird, hat ein
+  Werkzeug fuer ueberraschend viele reale Probleme.
+reihenfolge:
+  - 022-wortzaehler
+  - 023-dict-invertieren
+  - 024-zeichen-haeufigkeit

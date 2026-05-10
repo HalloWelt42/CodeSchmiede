@@ -1,0 +1,11 @@
+id: python_algorithmen
+titel: Python-Algorithmen
+beschreibung: |
+  Klassische Algorithmen zum Selbst-Implementieren: binaere Suche,
+  Bubble-Sort und das Sieb des Eratosthenes. Trainiert das saubere
+  Denken in Schleifen, Bedingungen und Indizes -- und schaerft das
+  Gefuehl fuer Komplexitaet (linear vs. logarithmisch, quadratisch).
+reihenfolge:
+  - 037-binaere-suche
+  - 038-bubble-sort
+  - 039-eratosthenes

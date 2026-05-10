@@ -1,12 +1,17 @@
 id: python_strings
 titel: Python-Strings
 beschreibung: |
-  Aufgaben rund um Strings: Slicing, String-Methoden, Counter, Sortieren.
-  Vom Vokal-Zählen über Anagramme bis zu eigenen kleinen
-  String-Manipulationen. Ideal als zweiter Pfad nach den Grundlagen.
+  Aufgaben rund um Strings: Slicing, Methoden, Counter, Sortieren,
+  Akronyme, Verschluesselung und Lauflaengen-Codierung. Vom
+  Vokal-Zaehlen bis zur Caesar-Chiffre -- ein breiter Querschnitt
+  durch die String-Werkzeuge.
 reihenfolge:
   - 004-vokale-zaehlen
   - 005-text-umkehren
   - 006-erstes-wort
   - 007-buchstaben-haeufigkeit
   - 008-anagramm-pruefen
+  - 033-grossbuchstaben
+  - 034-caesar
+  - 035-run-length
+  - 036-acronym

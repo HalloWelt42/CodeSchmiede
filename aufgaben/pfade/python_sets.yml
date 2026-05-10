@@ -1,0 +1,10 @@
+id: python_sets
+titel: Python-Sets
+beschreibung: |
+  Mengenoperationen in Python: Schnitt, Differenz und doppelte
+  Eintraege herausfiltern. Sets sind fuer "kommt das vor"-Tests
+  rasend schnell und machen viele Listenprobleme zu One-Linern.
+reihenfolge:
+  - 025-set-schnitt
+  - 026-set-differenz
+  - 027-eindeutige-reihenfolge

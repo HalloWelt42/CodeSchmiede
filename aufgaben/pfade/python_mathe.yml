@@ -1,0 +1,14 @@
+id: python_mathe
+titel: Python-Mathematik
+beschreibung: |
+  Klassische Mathe-Funktionen mit Code: Quersumme, Fakultaet, ggT,
+  Primfaktoren, Collatz-Folge und eigene Potenzfunktion. Trainiert
+  Schleifen, Rekursion und das Denken in Zahlen. Eine schoene Bruecke
+  zwischen reiner Logik und Programmieren.
+reihenfolge:
+  - 016-quersumme
+  - 017-fakultaet
+  - 018-ggt
+  - 019-primfaktoren
+  - 020-collatz
+  - 021-potenz

@@ -1,13 +1,18 @@
 id: python_listen
 titel: Python-Listen
 beschreibung: |
-  Listen-Operationen: Summen und Maxima, Duplikate herausfiltern,
-  Sortieren, einfache mathematische Prüfungen. Plus eine erste
-  Komplexitäts-Übung mit der Primzahl-Prüfung -- naive Lösung
-  funktioniert, optimierte ist deutlich schneller.
+  Listen-Operationen vom Einsteiger bis Fortgeschritten: Summen,
+  Maxima, Duplikate, Sortieren, Mittelwerte, Verschachtelung
+  flachklopfen, in Bloecke teilen, rotieren und zwei Listen verzahnen.
+  Plus eine Komplexitaets-Uebung mit der Primzahl-Pruefung.
 reihenfolge:
   - 009-listen-summe
   - 010-listen-maximum
   - 011-listen-duplikate
   - 012-listen-sortieren
   - 013-zahl-pruefen
+  - 028-flatten
+  - 029-chunks
+  - 030-rotation
+  - 031-zip-listen
+  - 032-mittelwert
