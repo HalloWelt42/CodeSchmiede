@@ -1,5 +1,6 @@
 import { HttpBase } from './HttpBase';
 import type { AufgabeDetail, AufgabeKurz, Musterloesung } from '../types/Aufgabe';
+import type { VerlaufEintrag } from '../types/Submission';
 import type { ProgressEintrag } from './ProgressApi';
 
 export interface LetzteSubmission {
@@ -31,6 +32,10 @@ export class AufgabenApi extends HttpBase {
 
   letzteSubmission(aufgabeId: string): Promise<LetzteSubmission> {
     return this.get<LetzteSubmission>(`/${aufgabeId}/letzte-submission`);
+  }
+
+  submissionsVerlauf(aufgabeId: string, limit = 20): Promise<VerlaufEintrag[]> {
+    return this.get<VerlaufEintrag[]>(`/${aufgabeId}/submissions?limit=${limit}`);
   }
 }
 

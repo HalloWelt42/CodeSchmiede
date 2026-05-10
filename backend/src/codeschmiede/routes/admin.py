@@ -71,6 +71,42 @@ def baue_admin_router(state: AppState) -> APIRouter:
         Aufgabentypen). Frontend zieht das beim Start und nutzt es reaktiv."""
         return state.konfig
 
+    @router.get("/export")
+    def export() -> dict:
+        """Vollständiger Backup als JSON: alle Submissions, Progress,
+        Streak, Konfig. Aufgaben sind als Dateien im Repo, hier nur die
+        ID-Referenzen.
+        """
+        with state.db.connect() as conn:
+            submissions = [
+                dict(row)
+                for row in conn.execute(
+                    """
+                    SELECT id, aufgabe_id, aufgabe_revision,
+                           datetime(zeitstempel) AS zeitstempel,
+                           code, bestanden, laufzeit_ms, codelaenge_zeichen
+                    FROM submissions ORDER BY id
+                    """
+                ).fetchall()
+            ]
+            progress = [
+                dict(row)
+                for row in conn.execute("SELECT * FROM progress").fetchall()
+            ]
+            kv = {
+                row["key"]: row["value"]
+                for row in conn.execute("SELECT key, value FROM kv_state").fetchall()
+            }
+        return {
+            "version": __import__("codeschmiede").__version__,
+            "exportiert_am": __import__("datetime").datetime.now().isoformat(),
+            "submissions": submissions,
+            "progress": progress,
+            "kv_state": kv,
+            "konfig": state.konfig.model_dump(),
+            "aufgaben_ids": [a.id for a in state.aufgaben.alle_aufgaben()],
+        }
+
     @router.get("/aufgaben", response_model=list[VerwaltungsEintrag])
     def aufgaben() -> list[VerwaltungsEintrag]:
         eintraege: list[VerwaltungsEintrag] = []

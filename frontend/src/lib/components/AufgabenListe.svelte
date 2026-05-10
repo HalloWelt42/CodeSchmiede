@@ -41,21 +41,25 @@
     return aufgabenStore.findeKurz(id)?.titel ?? id;
   }
 
+  function tagAnklicken(event: MouseEvent, tag: string): void {
+    event.stopPropagation();
+    suche = suche.trim() === `#${tag}` ? '' : `#${tag}`;
+  }
+
   let gefiltert = $derived(
     aufgabenStore.liste.filter((a) => {
       if (sprache && a.sprache !== sprache) return false;
       if (schwierigkeit && a.schwierigkeit !== schwierigkeit) return false;
       if (status && progressStore.status(a.id) !== status) return false;
-      if (suche.trim()) {
-        const q = suche.trim().toLowerCase();
-        const haystack = [
-          a.id,
-          a.titel,
-          ...a.tags,
-        ]
-          .join(' ')
-          .toLowerCase();
-        if (!haystack.includes(q)) return false;
+      const q = suche.trim().toLowerCase();
+      if (q) {
+        if (q.startsWith('#')) {
+          const wunsch = q.slice(1);
+          if (!a.tags.some((t) => t.toLowerCase() === wunsch)) return false;
+        } else {
+          const haystack = [a.id, a.titel, ...a.tags].join(' ').toLowerCase();
+          if (!haystack.includes(q)) return false;
+        }
       }
       return true;
     }),
@@ -147,7 +151,13 @@
 
             <div class="tags">
               {#each aufgabe.tags as tag}
-                <span class="tag">#{tag}</span>
+                <button
+                  type="button"
+                  class="tag"
+                  class:aktiv={suche.trim() === `#${tag}`}
+                  onclick={(e) => tagAnklicken(e, tag)}
+                  title="Nach #{tag} filtern"
+                >#{tag}</button>
               {/each}
             </div>
 
@@ -304,6 +314,17 @@
     border-radius: var(--radius-sm);
     border: 1px solid var(--border);
     font-family: var(--mono);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .tag:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag.aktiv {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
   }
   .oeffnen {
     background: transparent;

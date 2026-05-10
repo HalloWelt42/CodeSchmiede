@@ -36,19 +36,35 @@ export interface ProgressEintragLeicht {
   letzte_wiederholung: string | null;
 }
 
+export interface VergleichEintrag {
+  variante: string;
+  laufzeit_ms: number;
+  codelaenge_zeichen: number;
+}
+
 export interface SubmissionAntwort {
   bestanden: boolean;
   pruefung: PruefErgebnis;
   codelaenge_zeichen: number;
   submission_id: number;
   progress: ProgressEintragLeicht;
+  vergleich: VergleichEintrag[];
 }
 
 export interface ProbelaufAntwort {
-  rückgabe: unknown;
+  rueckgabe: unknown;
   stdout: string;
   stderr: string;
   laufzeit_ms: number;
   timeout: boolean;
   fehler: string | null;
+}
+
+export interface VerlaufEintrag {
+  id: number;
+  zeitstempel: string;
+  bestanden: boolean;
+  laufzeit_ms: number;
+  codelaenge_zeichen: number;
+  code: string;
 }

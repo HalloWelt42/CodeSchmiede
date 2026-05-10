@@ -147,14 +147,64 @@
         </div>
       </dl>
     </section>
+
+    {#if ergebnis.vergleich.length > 0}
+      {@const max_zeit = Math.max(p.laufzeit_ms, ...ergebnis.vergleich.map((v) => v.laufzeit_ms))}
+      {@const max_laenge = Math.max(ergebnis.codelaenge_zeichen, ...ergebnis.vergleich.map((v) => v.codelaenge_zeichen))}
+      <section class="block vergleich">
+        <h3>Vergleich mit Musterlösungen</h3>
+
+        <div class="vergleich-gruppe">
+          <span class="gruppe-label">Laufzeit</span>
+          <ul class="vergleich-liste">
+            <li class="eigene">
+              <span class="variante">deine Lösung</span>
+              <span class="balken-rahmen">
+                <span class="balken eigen-balken" style="width: {max_zeit > 0 ? (p.laufzeit_ms / max_zeit) * 100 : 0}%"></span>
+              </span>
+              <span class="wert num">{p.laufzeit_ms.toFixed(0)} ms</span>
+            </li>
+            {#each ergebnis.vergleich as v}
+              <li>
+                <span class="variante">{v.variante}</span>
+                <span class="balken-rahmen">
+                  <span class="balken muster-balken" style="width: {max_zeit > 0 ? (v.laufzeit_ms / max_zeit) * 100 : 0}%"></span>
+                </span>
+                <span class="wert num">{v.laufzeit_ms.toFixed(0)} ms</span>
+              </li>
+            {/each}
+          </ul>
+        </div>
+
+        <div class="vergleich-gruppe">
+          <span class="gruppe-label">Codelänge</span>
+          <ul class="vergleich-liste">
+            <li class="eigene">
+              <span class="variante">deine Lösung</span>
+              <span class="balken-rahmen">
+                <span class="balken eigen-balken" style="width: {max_laenge > 0 ? (ergebnis.codelaenge_zeichen / max_laenge) * 100 : 0}%"></span>
+              </span>
+              <span class="wert num">{ergebnis.codelaenge_zeichen} Z.</span>
+            </li>
+            {#each ergebnis.vergleich as v}
+              <li>
+                <span class="variante">{v.variante}</span>
+                <span class="balken-rahmen">
+                  <span class="balken muster-balken" style="width: {max_laenge > 0 ? (v.codelaenge_zeichen / max_laenge) * 100 : 0}%"></span>
+                </span>
+                <span class="wert num">{v.codelaenge_zeichen} Z.</span>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      </section>
+    {/if}
   {/if}
 </div>
 
 <style>
   .output {
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
+    display: block;
   }
   .kopf {
     display: flex;
@@ -163,7 +213,6 @@
     padding: var(--sp-2) var(--sp-3);
     border-bottom: 1px solid var(--border);
     background: var(--bg-card);
-    flex-shrink: 0;
   }
   .label {
     color: var(--fg-dim);
@@ -354,5 +403,63 @@
     margin: 2px 0 0;
     color: var(--fg);
     font-size: var(--fs-md);
+  }
+
+  .vergleich-gruppe {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+  .vergleich-gruppe + .vergleich-gruppe {
+    margin-top: var(--sp-3);
+  }
+  .gruppe-label {
+    color: var(--fg-mute);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .vergleich-liste {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .vergleich-liste li {
+    display: grid;
+    grid-template-columns: 110px 1fr 70px;
+    align-items: center;
+    gap: var(--sp-2);
+    font-size: var(--fs-xs);
+  }
+  .variante {
+    color: var(--fg-dim);
+    font-family: var(--quick);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .vergleich-liste li.eigene .variante {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .balken-rahmen {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    height: 14px;
+    position: relative;
+  }
+  .balken {
+    display: block;
+    height: 100%;
+    transition: width 0.3s ease;
+  }
+  .eigen-balken { background: var(--accent); }
+  .muster-balken { background: var(--fg-mute); }
+  .vergleich-liste .wert {
+    color: var(--fg);
+    text-align: right;
   }
 </style>

@@ -21,6 +21,18 @@ class AufgabenRepository:
         self.loader = loader
         self._aufgaben: dict[str, Aufgabe] = {}
         self._pfade: dict[str, Pfad] = {}
+        # Cache fuer Performance-Vergleich. Wird beim Reindex geleert,
+        # weil sich die Musterloesungen geaendert haben koennten.
+        self._musterloesungen_metriken: dict[str, list[dict]] = {}
+
+    def leere_metriken_cache(self) -> None:
+        self._musterloesungen_metriken.clear()
+
+    def metriken_cache(self, aufgabe_id: str) -> list[dict] | None:
+        return self._musterloesungen_metriken.get(aufgabe_id)
+
+    def setze_metriken_cache(self, aufgabe_id: str, metriken: list[dict]) -> None:
+        self._musterloesungen_metriken[aufgabe_id] = metriken
 
     def neu_aufbauen(self) -> None:
         """Liest alle Aufgaben + Pfade neu von der Platte und gleicht den
@@ -29,6 +41,8 @@ class AufgabenRepository:
         ist also nicht erlaubt. Stattdessen UPSERT pro Aufgabe und
         gezieltes Aufraeumen verschwundener IDs.
         """
+        # Reindex bedeutet, dass sich Inhalte geaendert haben koennten.
+        self.leere_metriken_cache()
         aufgaben = self.loader.lade_alle_aufgaben()
         pfade = self.loader.lade_alle_pfade()
 

@@ -1,5 +1,10 @@
 """HTTP-Routen für Submissions und Probelauf -- Code abschicken,
 ausführen, bewerten oder probieren.
+
+Bei einem bestandenen Submit liefern wir einen Performance-Vergleich
+mit den Musterlösungen mit. Die werden einmal pro Aufgabe durch die
+Sandbox geschickt und im AufgabenRepository gecacht; ein Reindex über
+den Watcher leert den Cache.
 """
 
 import json
@@ -8,6 +13,7 @@ from typing import Any
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
+from ..models.aufgabe import Aufgabe
 from ..models.progress import Progress
 from ..pruefung.ergebnis import PruefErgebnis
 from ..pruefung.orchestrator import pruefe
@@ -23,12 +29,19 @@ class SubmissionAnfrage(BaseModel):
     code: str = Field(min_length=1, max_length=50_000)
 
 
+class VergleichEintrag(BaseModel):
+    variante: str
+    laufzeit_ms: float
+    codelaenge_zeichen: int
+
+
 class SubmissionAntwort(BaseModel):
     bestanden: bool
     pruefung: PruefErgebnis
     codelaenge_zeichen: int
     submission_id: int
     progress: Progress
+    vergleich: list[VergleichEintrag] = Field(default_factory=list)
 
 
 class ProbelaufAnfrage(BaseModel):
@@ -38,12 +51,41 @@ class ProbelaufAnfrage(BaseModel):
 
 
 class ProbelaufAntwort(BaseModel):
-    rückgabe: Any = None
+    rueckgabe: Any = None
     stdout: str = ""
     stderr: str = ""
     laufzeit_ms: float
     timeout: bool = False
     fehler: str | None = None
+
+
+def _berechne_vergleich(state: AppState, aufgabe: Aufgabe) -> list[VergleichEintrag]:
+    """Lazy-cached: einmal pro Aufgabe Musterlösungen durch Sandbox.
+
+    Output-Quizzes etc. haben keine ausführbaren Musterlösungen --
+    Rückgabe ist leere Liste.
+    """
+    if aufgabe.task_type != "code_schreiben":
+        return []
+
+    cached = state.aufgaben.metriken_cache(aufgabe.id)
+    if cached is not None:
+        return [VergleichEintrag(**m) for m in cached]
+
+    eintraege: list[dict] = []
+    for ml in state.loader.lade_musterloesungen(aufgabe.id):
+        ergebnis = pruefe(aufgabe, ml["code"], state.runner)
+        eintraege.append(
+            {
+                "variante": ml["variante"],
+                "laufzeit_ms": ergebnis.laufzeit_ms,
+                "codelaenge_zeichen": sum(
+                    1 for c in ml["code"] if not c.isspace()
+                ),
+            }
+        )
+    state.aufgaben.setze_metriken_cache(aufgabe.id, eintraege)
+    return [VergleichEintrag(**m) for m in eintraege]
 
 
 def baue_submissions_router(state: AppState) -> APIRouter:
@@ -81,17 +123,20 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             aufgabe, ergebnis.bestanden
         )
 
+        vergleich = _berechne_vergleich(state, aufgabe) if ergebnis.bestanden else []
+
         return SubmissionAntwort(
             bestanden=ergebnis.bestanden,
             pruefung=ergebnis,
             codelaenge_zeichen=codelaenge,
             submission_id=submission_id,
             progress=progress,
+            vergleich=vergleich,
         )
 
     @router.post("/probelauf", response_model=ProbelaufAntwort)
     def probelauf(anfrage: ProbelaufAnfrage) -> ProbelaufAntwort:
-        """Fuehrt die Funktion mit benutzerdefiniertem Input aus, ohne
+        """Führt die Funktion mit benutzerdefiniertem Input aus, ohne
         Bewertung. Liefert Rückgabe + stdout zurück.
         """
         aufgabe = state.aufgaben.aufgabe(anfrage.aufgabe_id)
@@ -110,7 +155,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
 
         if PROBELAUF_MARKER not in run.stdout:
             return ProbelaufAntwort(
-                rückgabe=None,
+                rueckgabe=None,
                 stdout=run.stdout,
                 stderr=run.stderr,
                 laufzeit_ms=run.laufzeit_ms,
@@ -123,7 +168,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             ergebnis = json.loads(json_teil.strip())
         except json.JSONDecodeError:
             return ProbelaufAntwort(
-                rückgabe=None,
+                rueckgabe=None,
                 stdout=nutzer_stdout,
                 stderr=run.stderr or "Ergebnis konnte nicht geparst werden",
                 laufzeit_ms=run.laufzeit_ms,
@@ -132,7 +177,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             )
 
         return ProbelaufAntwort(
-            rückgabe=ergebnis.get("rückgabe"),
+            rueckgabe=ergebnis.get("rueckgabe"),
             stdout=nutzer_stdout,
             stderr=run.stderr,
             laufzeit_ms=run.laufzeit_ms,
@@ -153,9 +198,9 @@ def _baue_probelauf_skript(code: str, funktion: str, eingabe: list[Any]) -> str:
         f"_eingabe = _json.loads({eingabe_json!r})\n"
         "try:\n"
         f"    _rueckgabe = {funktion}(*_eingabe)\n"
-        "    _ergebnis = {'rückgabe': _rueckgabe, 'fehler': None}\n"
+        "    _ergebnis = {'rueckgabe': _rueckgabe, 'fehler': None}\n"
         "except Exception as _e:\n"
-        "    _ergebnis = {'rückgabe': None,\n"
+        "    _ergebnis = {'rueckgabe': None,\n"
         "                 'fehler': type(_e).__name__ + ': ' + str(_e)}\n"
         f"_sys.stdout.write({PROBELAUF_MARKER!r})\n"
         "_sys.stdout.write(_json.dumps(_ergebnis, default=str))\n"

@@ -136,6 +136,38 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
             raise HTTPException(status_code=400, detail="Hint-Index ungültig")
         return state.progress.markiere_hint_gesehen(aufgabe_id, hint_index)
 
+    @router.get("/{aufgabe_id}/submissions")
+    def submissions_verlauf(aufgabe_id: str, limit: int = 20) -> list[dict]:
+        """Letzte N Submissions zu einer Aufgabe -- für den Verlauf im
+        Detail-View. Code wird mitgeliefert, damit Re-Open trivial ist.
+        """
+        a = state.aufgaben.aufgabe(aufgabe_id)
+        if not a:
+            raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+        with state.db.connect() as conn:
+            rows = conn.execute(
+                """
+                SELECT id, datetime(zeitstempel) AS zeitstempel,
+                       bestanden, laufzeit_ms, codelaenge_zeichen, code
+                FROM submissions
+                WHERE aufgabe_id = ?
+                ORDER BY id DESC
+                LIMIT ?
+                """,
+                (aufgabe_id, max(1, min(100, limit))),
+            ).fetchall()
+        return [
+            {
+                "id": r["id"],
+                "zeitstempel": r["zeitstempel"],
+                "bestanden": bool(r["bestanden"]),
+                "laufzeit_ms": r["laufzeit_ms"],
+                "codelaenge_zeichen": r["codelaenge_zeichen"],
+                "code": r["code"],
+            }
+            for r in rows
+        ]
+
     @router.get("/{aufgabe_id}/letzte-submission")
     def letzte_submission(aufgabe_id: str) -> dict:
         """Letzte abgeschickte Lösung (egal ob bestanden) -- damit der

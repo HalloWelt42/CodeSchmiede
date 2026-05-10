@@ -113,9 +113,13 @@ class ProgressRepository:
         neue_versuche = bisher.versuche + 1
 
         if not bestanden:
+            # "geloest" bleibt "geloest" -- ein Re-Versuch nach Erfolg
+            # darf den Status nicht zurueckwerfen. Punkte und SM-2-Werte
+            # bleiben ohnehin unangetastet (best-of im else-Zweig).
+            neuer_status = bisher.status if bisher.status == "geloest" else "in_arbeit"
             neu = bisher.model_copy(
                 update={
-                    "status": "in_arbeit",
+                    "status": neuer_status,
                     "versuche": neue_versuche,
                     "letzte_wiederholung": jetzt,
                 }

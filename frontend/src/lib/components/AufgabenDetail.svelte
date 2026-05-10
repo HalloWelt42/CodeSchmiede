@@ -16,7 +16,7 @@
   import { submissionsApi } from '../api/SubmissionsApi';
   import { farbeZuCss } from '../types/Konfig';
   import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
-  import type { SubmissionAntwort } from '../types/Submission';
+  import type { SubmissionAntwort, VerlaufEintrag } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
   import EditorBereich from './EditorBereich.svelte';
@@ -37,6 +37,10 @@
 
   let musterloesungen = $state<Musterloesung[] | null>(null);
   let zeige_loesungen = $state(false);
+
+  let verlauf = $state<VerlaufEintrag[]>([]);
+  let zeige_verlauf = $state(false);
+  let verlauf_geladen = $state(false);
 
   let reset_modal_offen = $state(false);
 
@@ -80,6 +84,9 @@
         musterloesungen = await aufgabenStore.ladeMusterloesungen(detail.id);
       }
       await progressStore.ladeAlles();
+      if (verlauf_geladen) {
+        await ladeVerlauf();
+      }
     } catch (e) {
       pruef_fehler = (e as Error).message;
     } finally {
@@ -101,12 +108,45 @@
     }
   }
 
-  function zurück(): void {
+  function zurueck(): void {
     route.setze('aufgaben');
   }
 
   function resetAnfragen(): void {
     reset_modal_offen = true;
+  }
+
+  async function ladeVerlauf(): Promise<void> {
+    if (!detail) return;
+    try {
+      verlauf = await aufgabenApi.submissionsVerlauf(detail.id, 20);
+      verlauf_geladen = true;
+    } catch (e) {
+      pruef_fehler = (e as Error).message;
+    }
+  }
+
+  async function umschalteVerlauf(): Promise<void> {
+    zeige_verlauf = !zeige_verlauf;
+    if (zeige_verlauf && !verlauf_geladen) {
+      await ladeVerlauf();
+    }
+  }
+
+  function uebernehmeAusVerlauf(eintrag: VerlaufEintrag): void {
+    code = eintrag.code;
+    zeige_verlauf = false;
+  }
+
+  function formatiereDatum(iso: string): string {
+    const d = new Date(iso);
+    return d.toLocaleString('de-DE', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
   }
 
   async function resetBestaetigt(): Promise<void> {
@@ -144,7 +184,7 @@
     <div class="info fehler">Fehler: {fehler}</div>
   {:else if detail}
     <header class="kopf">
-      <button class="kopf-btn" onclick={zurück} title="Zurück zur Liste" aria-label="Zurück">
+      <button class="kopf-btn" onclick={zurueck} title="Zurück zur Liste" aria-label="Zurück">
         <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
       </button>
       <div class="kopf-info">
@@ -251,6 +291,40 @@
             {/if}
           </div>
         {/if}
+
+        <div class="muster verlauf">
+          <button class="muster-toggle" onclick={umschalteVerlauf}>
+            <i class="fa-solid {zeige_verlauf ? 'fa-chevron-down' : 'fa-chevron-right'}" aria-hidden="true"></i>
+            Verlauf{verlauf_geladen ? ` (${verlauf.length})` : ''}
+          </button>
+          {#if zeige_verlauf}
+            {#if !verlauf_geladen}
+              <div class="verlauf-info">Lade Verlauf ...</div>
+            {:else if verlauf.length === 0}
+              <div class="verlauf-info leer">Noch keine Submissions vorhanden.</div>
+            {:else}
+              <ul class="verlauf-liste">
+                {#each verlauf as v (v.id)}
+                  <li class:bestanden={v.bestanden}>
+                    <button
+                      type="button"
+                      class="verlauf-eintrag"
+                      onclick={() => uebernehmeAusVerlauf(v)}
+                      title="Diesen Code in den Editor übernehmen"
+                    >
+                      <span class="verlauf-status">
+                        <i class="fa-solid {v.bestanden ? 'fa-check' : 'fa-xmark'}" aria-hidden="true"></i>
+                      </span>
+                      <span class="verlauf-zeit">{formatiereDatum(v.zeitstempel)}</span>
+                      <span class="verlauf-metrik num">{v.laufzeit_ms.toFixed(0)} ms</span>
+                      <span class="verlauf-metrik num">{v.codelaenge_zeichen} Z.</span>
+                    </button>
+                  </li>
+                {/each}
+              </ul>
+            {/if}
+          {/if}
+        </div>
       </section>
     </div>
     {/if}
@@ -481,5 +555,56 @@
     padding: 0;
     color: inherit;
     font-size: inherit;
+  }
+
+  .verlauf {
+    border-top: 1px dashed var(--border);
+  }
+  .verlauf-info {
+    margin-top: var(--sp-2);
+    color: var(--fg-dim);
+    font-family: var(--quick);
+    font-size: var(--fs-sm);
+  }
+  .verlauf-info.leer {
+    color: var(--fg-mute);
+  }
+  .verlauf-liste {
+    list-style: none;
+    padding: 0;
+    margin: var(--sp-3) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .verlauf-eintrag {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    padding: 6px var(--sp-2);
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 24px 1fr 70px 70px;
+    align-items: center;
+    gap: var(--sp-2);
+    font-size: var(--fs-xs);
+    text-align: left;
+  }
+  .verlauf-eintrag:hover {
+    border-color: var(--accent);
+  }
+  .verlauf-status {
+    color: var(--red);
+    text-align: center;
+  }
+  .verlauf-liste li.bestanden .verlauf-status { color: var(--green); }
+  .verlauf-zeit {
+    font-family: var(--mono);
+    color: var(--fg-dim);
+  }
+  .verlauf-metrik {
+    color: var(--fg);
+    text-align: right;
   }
 </style>
