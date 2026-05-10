@@ -148,6 +148,7 @@
 
   {#if progressStore.gesamt && progressStore.gesamt.aufgaben_gesamt > 0}
     {@const fb = gesamtFortschrittsBalken()}
+    {@const pkt = progressStore.gesamt}
     <section class="gesamt">
       <header class="gesamt-kopf">
         <span>Gesamtfortschritt</span>
@@ -159,15 +160,19 @@
       <div class="aufschluesselung">
         <span class="chip status-geloest">
           <i class="fa-solid fa-check" aria-hidden="true"></i>
-          {progressStore.gesamt.aufgaben_geloest} gelöst
+          {pkt.aufgaben_geloest} gelöst
         </span>
         <span class="chip status-in_arbeit">
           <i class="fa-solid fa-pen" aria-hidden="true"></i>
-          {progressStore.gesamt.aufgaben_in_arbeit} in Arbeit
+          {pkt.aufgaben_in_arbeit} in Arbeit
         </span>
         <span class="chip status-neu">
           <i class="fa-regular fa-circle" aria-hidden="true"></i>
-          {progressStore.gesamt.aufgaben_neu} neu
+          {pkt.aufgaben_neu} neu
+        </span>
+        <span class="chip punkte">
+          <i class="fa-solid fa-coins" aria-hidden="true"></i>
+          {pkt.punkte_gesamt} / {pkt.punkte_maximal} Punkte
         </span>
       </div>
     </section>
@@ -263,5 +268,9 @@
   }
   .chip.status-neu {
     color: var(--fg-mute);
+  }
+  .chip.punkte {
+    color: var(--accent);
+    border-color: var(--accent);
   }
 </style>

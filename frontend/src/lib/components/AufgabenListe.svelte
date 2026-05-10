@@ -112,7 +112,10 @@
                 <i class="fa-regular fa-clock" aria-hidden="true"></i>
                 {aufgabe.schaetz_minuten} min
               </span>
-              <span class="score num">{aufgabe.schwierigkeit_score}</span>
+              <span class="score num" title="Erreicht / Maximum">
+                <i class="fa-solid fa-coins" aria-hidden="true"></i>
+                {progressStore.proAufgabe[aufgabe.id]?.punkte_erreicht ?? 0}/{aufgabe.schwierigkeit_score}
+              </span>
             </div>
 
             <div class="tags">
@@ -239,7 +242,13 @@
     align-items: center;
     gap: 4px;
   }
-  .score { font-size: var(--fs-md); color: var(--fg-dim); }
+  .score {
+    font-size: var(--fs-sm);
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
   .tags { display: flex; gap: var(--sp-1); flex-wrap: wrap; }
   .tag {
     padding: 1px 6px;

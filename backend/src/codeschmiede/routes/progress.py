@@ -1,10 +1,16 @@
-"""HTTP-Routen fuer Progress, Tagesziel und Streak."""
+"""HTTP-Routen fuer Progress, Tagesziel, Streak, Reset und Weiter-Vorschlag."""
 
 from datetime import date
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
-from ..models.progress import GesamtFortschritt, Progress, Streak, Tagesziel
+from ..models.progress import (
+    GesamtFortschritt,
+    Progress,
+    Streak,
+    Tagesziel,
+    WeiterVorschlag,
+)
 from ..progress.streak import streak_aktiv
 from ..state import AppState
 
@@ -14,8 +20,7 @@ def baue_progress_router(state: AppState) -> APIRouter:
 
     @router.get("", response_model=GesamtFortschritt)
     def gesamt() -> GesamtFortschritt:
-        anzahl = len(state.aufgaben.alle_aufgaben())
-        return state.progress.gesamt_fortschritt(anzahl)
+        return state.progress.gesamt_fortschritt(state.aufgaben.alle_aufgaben())
 
     @router.get("/heute", response_model=Tagesziel)
     def heute() -> Tagesziel:
@@ -50,5 +55,52 @@ def baue_progress_router(state: AppState) -> APIRouter:
     @router.get("/aufgaben", response_model=dict[str, Progress])
     def aufgaben_progress() -> dict[str, Progress]:
         return {p.aufgabe_id: p for p in state.progress.hole_alle_progress()}
+
+    @router.delete("/{aufgabe_id}")
+    def reset(aufgabe_id: str) -> dict[str, str]:
+        if not state.aufgaben.aufgabe(aufgabe_id):
+            raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+        state.progress.reset_aufgabe(aufgabe_id)
+        return {"status": "reset", "aufgabe_id": aufgabe_id}
+
+    @router.get("/weiter/{aufgabe_id}", response_model=WeiterVorschlag)
+    def weiter_vorschlag(aufgabe_id: str) -> WeiterVorschlag:
+        """Naechste offene Aufgabe -- bevorzugt im selben Pfad."""
+        aktuell = state.aufgaben.aufgabe(aufgabe_id)
+        if not aktuell:
+            raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+
+        progress_dict = {p.aufgabe_id: p for p in state.progress.hole_alle_progress()}
+
+        def ist_offen(aid: str) -> bool:
+            return aid not in progress_dict or progress_dict[aid].status != "geloest"
+
+        # Erstens: gleichen Pfad nehmen, naechste offene nach der aktuellen
+        for pfad_id in aktuell.pfade:
+            pfad = state.aufgaben.pfad(pfad_id)
+            if not pfad:
+                continue
+            try:
+                idx = pfad.reihenfolge.index(aufgabe_id)
+            except ValueError:
+                continue
+            for kandidat in pfad.reihenfolge[idx + 1 :]:
+                if ist_offen(kandidat):
+                    return WeiterVorschlag(
+                        naechste_id=kandidat, quelle="pfad", pfad_id=pfad_id
+                    )
+
+        # Zweitens: global naechste offene Aufgabe nach Schwierigkeitsscore,
+        # die schwerer ist als die aktuelle (oder die erste offene insgesamt).
+        offene = sorted(
+            (a for a in state.aufgaben.alle_aufgaben() if ist_offen(a.id) and a.id != aufgabe_id),
+            key=lambda x: x.schwierigkeit_score,
+        )
+        nach_aktuell = [a for a in offene if a.schwierigkeit_score >= aktuell.schwierigkeit_score]
+        kandidaten = nach_aktuell or offene
+        if kandidaten:
+            return WeiterVorschlag(naechste_id=kandidaten[0].id, quelle="global")
+
+        return WeiterVorschlag(naechste_id=None, quelle="keine")
 
     return router

@@ -1,25 +1,28 @@
 <script lang="ts">
   /*
    * Linke Spalte der Aufgaben-Detail-Ansicht.
-   * Rendert die Aufgabenbeschreibung als Markdown (mit KaTeX und
-   * Mermaid), zeigt darunter die sichtbaren Tests, gestaffelte Hints
-   * und die Quellen-/Lizenz-Info.
+   * Markdown-Beschreibung (mit KaTeX und Mermaid), darunter sichtbare
+   * Tests, gestaffelte Hints (Klick meldet "geoeffnet" ans Backend),
+   * Quellen-/Lizenz-Info.
    */
   import { onMount, tick } from 'svelte';
+  import { aufgabenApi } from '../api/AufgabenApi';
+  import { progressStore } from '../stores/ProgressStore.svelte';
   import { markdownRenderer } from '../markdown/MarkdownRenderer';
   import type { Hint, Quelle, TestFall } from '../types/Aufgabe';
 
   interface Props {
+    aufgabeId: string;
     markdown: string;
     hints: Hint[];
     tests_sichtbar: TestFall[];
     anzahl_versteckt: number;
     quelle: Quelle;
+    schwierigkeit_score: number;
   }
 
-  let { markdown, hints, tests_sichtbar, anzahl_versteckt, quelle }: Props = $props();
+  let { aufgabeId, markdown, hints, tests_sichtbar, anzahl_versteckt, quelle, schwierigkeit_score }: Props = $props();
 
-  let hintsOffen = $state<Set<number>>(new Set());
   let html = $state('');
   let host: HTMLDivElement | undefined = $state();
 
@@ -30,17 +33,42 @@
     });
   });
 
-  function toggleHint(i: number): void {
-    const neu = new Set(hintsOffen);
-    if (neu.has(i)) neu.delete(i);
-    else neu.add(i);
-    hintsOffen = neu;
+  // Welche Hints sind aktuell aufgeklappt? (lokal pro Sicht)
+  let offen = $state<Set<number>>(new Set());
+
+  // Wieviele Hints schon "verbraucht" (via API getrackt) -- aus Progress
+  let geseheneAnzahl = $derived(progressStore.proAufgabe[aufgabeId]?.hints_genutzt ?? 0);
+
+  async function toggleHint(i: number): Promise<void> {
+    const neu = new Set(offen);
+    const istOffen = neu.has(i);
+    if (istOffen) {
+      neu.delete(i);
+      offen = neu;
+      return;
+    }
+    neu.add(i);
+    offen = neu;
+    if (i + 1 > geseheneAnzahl) {
+      try {
+        await aufgabenApi.hintGeoeffnet(aufgabeId, i);
+        await progressStore.ladeAlles();
+      } catch {
+        // tolerieren -- UI bleibt offen
+      }
+    }
   }
 
   function formatiereTest(t: TestFall): string {
     const args = t.input.map((x) => JSON.stringify(x)).join(', ');
     return `f(${args}) = ${JSON.stringify(t.expected)}`;
   }
+
+  // Aktuell maximal noch erreichbare Punkte
+  let restPunkte = $derived(() => {
+    const verbrauchteKosten = hints.slice(0, geseheneAnzahl).reduce((s, h) => s + h.kosten, 0);
+    return Math.max(0, schwierigkeit_score - verbrauchteKosten);
+  });
 </script>
 
 <div class="beschreibungs-bereich">
@@ -58,7 +86,7 @@
       </ul>
       {#if anzahl_versteckt > 0}
         <p class="hinweis">
-          Plus {anzahl_versteckt} verstecke
+          Plus {anzahl_versteckt} versteckte
           {anzahl_versteckt === 1 ? 'Prüfung' : 'Prüfungen'} -- nur die Anzahl
           des Erfolgs wird zurückgemeldet.
         </p>
@@ -68,24 +96,35 @@
 
   {#if hints.length > 0}
     <section class="block">
-      <h3>Hinweise</h3>
+      <header class="block-kopf">
+        <h3>Hinweise</h3>
+        <span class="punkte-rest num" title="Aktuell noch erreichbare Punkte">
+          {restPunkte()} / {schwierigkeit_score} Punkte
+        </span>
+      </header>
       <ol class="hints">
         {#each hints as hint, i (i)}
+          {@const istGeseht = i < geseheneAnzahl}
+          {@const istOffen = offen.has(i)}
           <li>
             <button
               class="hint-toggle"
               onclick={() => toggleHint(i)}
-              class:offen={hintsOffen.has(i)}
+              class:offen={istOffen}
+              class:gesehen={istGeseht && !istOffen}
             >
-              <i class="fa-solid {hintsOffen.has(i) ? 'fa-eye' : 'fa-eye-slash'}" aria-hidden="true"></i>
+              <i class="fa-solid {istOffen ? 'fa-eye' : istGeseht ? 'fa-eye-low-vision' : 'fa-eye-slash'}" aria-hidden="true"></i>
               Hinweis {i + 1}
+              {#if istGeseht}
+                <span class="status-text">bereits gesehen</span>
+              {/if}
               {#if hint.kosten > 0}
                 <span class="kosten">-{hint.kosten} Punkte</span>
               {:else}
                 <span class="kosten frei">kostenlos</span>
               {/if}
             </button>
-            {#if hintsOffen.has(i)}
+            {#if istOffen}
               <div class="hint-text">
                 {@html markdownRenderer.rendere(hint.text)}
               </div>
@@ -138,17 +177,9 @@
     margin: var(--sp-3) 0 var(--sp-2);
     color: var(--fg);
   }
-  .markdown :global(p) {
-    margin: 0 0 var(--sp-3);
-  }
-  .markdown :global(ul),
-  .markdown :global(ol) {
-    margin: 0 0 var(--sp-3);
-    padding-left: var(--sp-4);
-  }
-  .markdown :global(li) {
-    margin: var(--sp-1) 0;
-  }
+  .markdown :global(p) { margin: 0 0 var(--sp-3); }
+  .markdown :global(ul), .markdown :global(ol) { margin: 0 0 var(--sp-3); padding-left: var(--sp-4); }
+  .markdown :global(li) { margin: var(--sp-1) 0; }
   .markdown :global(code) {
     font-family: var(--mono);
     font-size: 0.92em;
@@ -167,59 +198,28 @@
     font-family: var(--mono);
     font-size: var(--fs-sm);
   }
-  .markdown :global(pre code) {
-    background: transparent;
-    border: none;
-    padding: 0;
-    color: var(--fg);
-    font-size: inherit;
-  }
+  .markdown :global(pre code) { background: transparent; border: none; padding: 0; color: var(--fg); font-size: inherit; }
   .markdown :global(blockquote) {
     margin: 0 0 var(--sp-3);
     padding: var(--sp-2) var(--sp-3);
     background: var(--bg-card-2);
     color: var(--fg-dim);
     border-left: 3px solid var(--accent);
-    font-style: normal;
   }
-  .markdown :global(table) {
-    border-collapse: collapse;
-    margin: 0 0 var(--sp-3);
-    font-family: var(--sans);
-    font-size: var(--fs-sm);
-  }
-  .markdown :global(th),
-  .markdown :global(td) {
-    padding: var(--sp-1) var(--sp-3);
-    border: 1px solid var(--border);
-    text-align: left;
-  }
-  .markdown :global(th) {
-    background: var(--bg-card-2);
-    font-weight: 600;
-  }
-  .markdown :global(.mermaid) {
-    margin: var(--sp-3) 0;
-    text-align: center;
-  }
-  .markdown :global(.katex-display) {
-    margin: var(--sp-3) 0 !important;
-    overflow-x: auto;
-  }
-  .markdown :global(a) {
-    color: var(--accent);
-    text-decoration: underline;
-  }
+  .markdown :global(table) { border-collapse: collapse; margin: 0 0 var(--sp-3); font-family: var(--sans); font-size: var(--fs-sm); }
+  .markdown :global(th), .markdown :global(td) { padding: var(--sp-1) var(--sp-3); border: 1px solid var(--border); text-align: left; }
+  .markdown :global(th) { background: var(--bg-card-2); font-weight: 600; }
+  .markdown :global(.mermaid) { margin: var(--sp-3) 0; text-align: center; }
+  .markdown :global(.katex-display) { margin: var(--sp-3) 0 !important; overflow-x: auto; }
+  .markdown :global(a) { color: var(--accent); text-decoration: underline; }
 
-  .block {
-    margin-top: var(--sp-4);
-    padding-top: var(--sp-4);
-    border-top: 1px solid var(--border);
-  }
-  .block.fuss {
-    margin-top: var(--sp-5);
-    color: var(--fg-dim);
-    font-size: var(--fs-sm);
+  .block { margin-top: var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid var(--border); }
+  .block.fuss { margin-top: var(--sp-5); color: var(--fg-dim); font-size: var(--fs-sm); }
+  .block-kopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--sp-2);
   }
   h3 {
     font-family: var(--sans);
@@ -229,6 +229,11 @@
     color: var(--fg-dim);
     margin: 0 0 var(--sp-2);
   }
+  .punkte-rest {
+    font-size: var(--fs-sm);
+    color: var(--accent);
+  }
+
   .tests {
     list-style: none;
     padding: 0;
@@ -275,13 +280,15 @@
     gap: var(--sp-2);
     border-radius: var(--radius-sm);
   }
-  .hint-toggle:hover {
-    border-color: var(--accent);
-    color: var(--fg);
-  }
-  .hint-toggle.offen {
-    color: var(--accent);
-    border-color: var(--accent);
+  .hint-toggle:hover { border-color: var(--accent); color: var(--fg); }
+  .hint-toggle.offen { color: var(--accent); border-color: var(--accent); }
+  .hint-toggle.gesehen { border-color: var(--fg-mute); }
+  .hint-toggle.gesehen i { color: var(--fg-mute); }
+  .status-text {
+    color: var(--fg-mute);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
   .hint-toggle .kosten {
     margin-left: auto;
@@ -301,7 +308,5 @@
     color: var(--fg);
     font-size: var(--fs-sm);
   }
-  .dim {
-    color: var(--fg-dim);
-  }
+  .dim { color: var(--fg-dim); }
 </style>

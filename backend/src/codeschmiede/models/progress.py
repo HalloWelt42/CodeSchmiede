@@ -16,6 +16,7 @@ class Progress(BaseModel):
     status: Status
     versuche: int = 0
     hints_genutzt: int = 0
+    punkte_erreicht: int = 0
     geloest_am: datetime | None = None
     ease: float = 2.5
     intervall_tage: int = 0
@@ -40,6 +41,8 @@ class GesamtFortschritt(BaseModel):
     aufgaben_neu: int
     submissions_gesamt: int
     bestandene_submissions: int
+    punkte_gesamt: int = 0
+    punkte_maximal: int = 0
 
 
 class Tagesziel(BaseModel):
@@ -52,3 +55,14 @@ class Tagesziel(BaseModel):
     streak_aktiv: bool = False
     aktueller_streak: int = 0
     laengster_streak: int = 0
+
+
+class WeiterVorschlag(BaseModel):
+    """Vorschlag fuer die naechste Aufgabe, ausgehend von einer aktuellen.
+    Bevorzugt eine offene Aufgabe im selben Pfad, sonst global naechste
+    nach Schwierigkeitsscore.
+    """
+
+    naechste_id: str | None = None
+    quelle: Literal["pfad", "global", "keine"] = "keine"
+    pfad_id: str | None = None

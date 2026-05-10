@@ -1,5 +1,6 @@
 import { HttpBase } from './HttpBase';
 import type { AufgabeDetail, AufgabeKurz, Musterloesung } from '../types/Aufgabe';
+import type { ProgressEintrag } from './ProgressApi';
 
 export class AufgabenApi extends HttpBase {
   constructor() {
@@ -16,6 +17,10 @@ export class AufgabenApi extends HttpBase {
 
   musterloesungen(id: string): Promise<Musterloesung[]> {
     return this.get<Musterloesung[]>(`/${id}/musterloesungen`);
+  }
+
+  hintGeoeffnet(aufgabeId: string, hintIndex: number): Promise<ProgressEintrag> {
+    return this.post<ProgressEintrag>(`/${aufgabeId}/hints/${hintIndex}`, {});
   }
 }
 

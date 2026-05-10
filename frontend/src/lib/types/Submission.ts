@@ -23,9 +23,32 @@ export interface PruefErgebnis {
   timeout: boolean;
 }
 
+export interface ProgressEintragLeicht {
+  aufgabe_id: string;
+  status: 'neu' | 'in_arbeit' | 'geloest';
+  versuche: number;
+  hints_genutzt: number;
+  punkte_erreicht: number;
+  geloest_am: string | null;
+  ease: number;
+  intervall_tage: number;
+  faellig_am: string | null;
+  letzte_wiederholung: string | null;
+}
+
 export interface SubmissionAntwort {
   bestanden: boolean;
   pruefung: PruefErgebnis;
   codelaenge_zeichen: number;
   submission_id: number;
+  progress: ProgressEintragLeicht;
+}
+
+export interface ProbelaufAntwort {
+  rueckgabe: unknown;
+  stdout: string;
+  stderr: string;
+  laufzeit_ms: number;
+  timeout: boolean;
+  fehler: string | null;
 }

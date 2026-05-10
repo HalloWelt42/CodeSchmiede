@@ -120,14 +120,19 @@ def _crash_ergebnis(
 
 
 def _baue_skript(code: str, funktion: str, tests: list[dict]) -> str:
-    """Wrapper-Skript: Nutzer-Code + Test-Runner + JSON-Marker auf stdout."""
+    """Wrapper-Skript: Nutzer-Code + Test-Runner + JSON-Marker auf stdout.
+
+    Tests werden als JSON-String an den Container uebergeben und dort per
+    `json.loads` geparst -- so klappt es auch fuer Booleans, None, und
+    Sonderzeichen, die in Python-Syntax anders aussehen (true vs True).
+    """
     tests_json = json.dumps(tests)
     return (
         f"{code}\n\n"
         "# === codeschmiede test runner (auto generated) ===\n"
         "import json as _json\n"
         "import sys as _sys\n"
-        f"_tests = {tests_json}\n"
+        f"_tests = _json.loads({tests_json!r})\n"
         "_ergebnisse = []\n"
         "for _i, _t in enumerate(_tests):\n"
         "    try:\n"

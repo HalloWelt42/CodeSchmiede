@@ -3,6 +3,7 @@
 from fastapi import APIRouter, HTTPException
 
 from ..models.aufgabe import AufgabeDetail, AufgabeKurz
+from ..models.progress import Progress
 from ..state import AppState
 
 
@@ -78,5 +79,17 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
         if not a:
             raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
         return state.loader.lade_musterloesungen(aufgabe_id)
+
+    @router.post("/{aufgabe_id}/hints/{hint_index}", response_model=Progress)
+    def hint_geoeffnet(aufgabe_id: str, hint_index: int) -> Progress:
+        """Markiert Hint Nr. `hint_index` (0-basiert) als gesehen.
+        Idempotent: mehrfaches Aufrufen schadet nicht.
+        """
+        a = state.aufgaben.aufgabe(aufgabe_id)
+        if not a:
+            raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+        if hint_index < 0 or hint_index >= len(a.hints):
+            raise HTTPException(status_code=400, detail="Hint-Index ungueltig")
+        return state.progress.markiere_hint_gesehen(aufgabe_id, hint_index)
 
     return router

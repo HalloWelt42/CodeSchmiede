@@ -1,5 +1,5 @@
 import { HttpBase } from './HttpBase';
-import type { SubmissionAntwort } from '../types/Submission';
+import type { ProbelaufAntwort, SubmissionAntwort } from '../types/Submission';
 
 export class SubmissionsApi extends HttpBase {
   constructor() {
@@ -8,6 +8,10 @@ export class SubmissionsApi extends HttpBase {
 
   submit(aufgabeId: string, code: string): Promise<SubmissionAntwort> {
     return this.post<SubmissionAntwort>('', { aufgabe_id: aufgabeId, code });
+  }
+
+  probelauf(aufgabeId: string, code: string, input: unknown[]): Promise<ProbelaufAntwort> {
+    return this.post<ProbelaufAntwort>('/probelauf', { aufgabe_id: aufgabeId, code, input });
   }
 }
 

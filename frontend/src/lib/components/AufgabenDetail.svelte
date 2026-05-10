@@ -1,23 +1,24 @@
 <script lang="ts">
   /*
    * Drei-Spalten-Layout fuer die Aufgaben-Detail-Ansicht:
-   *   Beschreibung | Editor | Output
+   *   Beschreibung | Editor + Probelauf | Output
    *
-   * Die Komponente laedt das Detail asynchron, zeigt waehrenddessen
-   * einen Lade-Indikator. Klick auf "Pruefen" schickt den aktuellen
-   * Code an POST /api/submissions und rendert das Ergebnis im rechten
-   * OutputBereich.
+   * Header bietet Reset, Body laedt Detail asynchron, OutputBereich
+   * zeigt Ergebnis nach Submit + Weiter-Button.
    */
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
+  import { progressApi } from '../api/ProgressApi';
   import { submissionsApi } from '../api/SubmissionsApi';
   import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
   import type { SubmissionAntwort } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
+  import ConfirmModal from './ConfirmModal.svelte';
   import EditorBereich from './EditorBereich.svelte';
   import OutputBereich from './OutputBereich.svelte';
+  import ProbelaufBereich from './ProbelaufBereich.svelte';
 
   let { aufgabeId }: { aufgabeId: string } = $props();
 
@@ -32,6 +33,8 @@
 
   let musterloesungen = $state<Musterloesung[] | null>(null);
   let zeige_loesungen = $state(false);
+
+  let reset_modal_offen = $state(false);
 
   onMount(async () => {
     await lade();
@@ -64,7 +67,6 @@
       if (ergebnis.bestanden && !musterloesungen) {
         musterloesungen = await aufgabenStore.ladeMusterloesungen(detail.id);
       }
-      // Progress-Store neu laden, damit Dashboard und Listen sofort frische Zahlen zeigen
       await progressStore.ladeAlles();
     } catch (e) {
       pruef_fehler = (e as Error).message;
@@ -73,9 +75,48 @@
     }
   }
 
+  async function geheZuNaechster(): Promise<void> {
+    if (!detail) return;
+    try {
+      const v = await progressApi.weiter(detail.id);
+      if (v.naechste_id) {
+        route.setze('aufgabe', v.naechste_id);
+      } else {
+        route.setze('aufgaben');
+      }
+    } catch {
+      route.setze('aufgaben');
+    }
+  }
+
   function zurueck(): void {
     route.setze('aufgaben');
   }
+
+  function resetAnfragen(): void {
+    reset_modal_offen = true;
+  }
+
+  async function resetBestaetigt(): Promise<void> {
+    if (!detail) {
+      reset_modal_offen = false;
+      return;
+    }
+    try {
+      await progressApi.reset(detail.id);
+      ergebnis = null;
+      musterloesungen = null;
+      zeige_loesungen = false;
+      code = detail.starter_code;
+      await progressStore.ladeAlles();
+    } catch (e) {
+      pruef_fehler = (e as Error).message;
+    } finally {
+      reset_modal_offen = false;
+    }
+  }
+
+  let aktProgress = $derived(progressStore.proAufgabe[aufgabeId]);
 </script>
 
 <div class="detail">
@@ -85,7 +126,7 @@
     <div class="info fehler">Fehler: {fehler}</div>
   {:else if detail}
     <header class="kopf">
-      <button class="zurueck" onclick={zurueck} title="Zurück zur Liste">
+      <button class="kopf-btn" onclick={zurueck} title="Zurück zur Liste" aria-label="Zurück">
         <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
       </button>
       <div class="kopf-info">
@@ -99,18 +140,28 @@
           <i class="fa-regular fa-clock" aria-hidden="true"></i>
           {detail.schaetz_minuten} min
         </span>
-        <span class="score num">{detail.schwierigkeit_score}</span>
+        <span class="score num" title="Erreicht / Maximum">
+          <i class="fa-solid fa-coins" aria-hidden="true"></i>
+          {aktProgress?.punkte_erreicht ?? 0} / {detail.schwierigkeit_score}
+        </span>
+        {#if aktProgress && (aktProgress.versuche > 0 || aktProgress.hints_genutzt > 0)}
+          <button class="kopf-btn warn" onclick={resetAnfragen} title="Aufgabe zurücksetzen" aria-label="Reset">
+            <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+          </button>
+        {/if}
       </div>
     </header>
 
     <div class="spalten">
       <section class="spalte links">
         <BeschreibungsBereich
+          aufgabeId={detail.id}
           markdown={detail.beschreibung_md}
           hints={detail.hints}
           tests_sichtbar={detail.tests_sichtbar}
           anzahl_versteckt={detail.anzahl_versteckte_tests}
           quelle={detail.quelle}
+          schwierigkeit_score={detail.schwierigkeit_score}
         />
       </section>
 
@@ -130,6 +181,7 @@
         <div class="editor-host">
           <EditorBereich sprache={detail.sprache} bind:code />
         </div>
+        <ProbelaufBereich aufgabeId={detail.id} {code} funktion={detail.funktion} />
       </section>
 
       <section class="spalte rechts">
@@ -138,6 +190,8 @@
           fehler={pruef_fehler}
           laeuft={pruefen_laeuft}
           anzahl_versteckt={detail.anzahl_versteckte_tests}
+          schwierigkeit_score={detail.schwierigkeit_score}
+          onWeiter={geheZuNaechster}
         />
 
         {#if ergebnis?.bestanden && musterloesungen}
@@ -163,6 +217,17 @@
   {/if}
 </div>
 
+<ConfirmModal
+  offen={reset_modal_offen}
+  titel="Aufgabe zurücksetzen?"
+  nachricht="Status, Versuche, genutzte Hinweise und erreichte Punkte werden zurückgesetzt. Deine Submissions bleiben in der Historie. Streak und andere Aufgaben sind nicht betroffen."
+  bestaetigen_text="Zurücksetzen"
+  abbrechen_text="Abbrechen"
+  danger={true}
+  onBestaetigen={resetBestaetigt}
+  onAbbrechen={() => (reset_modal_offen = false)}
+/>
+
 <style>
   .detail {
     display: flex;
@@ -170,13 +235,8 @@
     height: 100%;
     min-height: 0;
   }
-  .info {
-    padding: var(--sp-4);
-    color: var(--fg-dim);
-  }
-  .info.fehler {
-    color: var(--red);
-  }
+  .info { padding: var(--sp-4); color: var(--fg-dim); }
+  .info.fehler { color: var(--red); }
 
   .kopf {
     display: flex;
@@ -187,7 +247,7 @@
     background: var(--bg-card);
     flex-shrink: 0;
   }
-  .zurueck {
+  .kopf-btn {
     background: transparent;
     border: 1px solid var(--border);
     color: var(--fg-dim);
@@ -200,32 +260,12 @@
     align-items: center;
     justify-content: center;
   }
-  .zurueck:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-  .kopf-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    flex: 1;
-    min-width: 0;
-  }
-  .id {
-    font-family: var(--mono);
-    font-size: var(--fs-xs);
-    color: var(--fg-mute);
-  }
-  h1 {
-    margin: 0;
-    font-size: var(--fs-lg);
-    font-weight: 600;
-  }
-  .kopf-meta {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-  }
+  .kopf-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .kopf-btn.warn:hover { color: var(--orange); border-color: var(--orange); }
+  .kopf-info { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+  .id { font-family: var(--mono); font-size: var(--fs-xs); color: var(--fg-mute); }
+  h1 { margin: 0; font-size: var(--fs-lg); font-weight: 600; }
+  .kopf-meta { display: flex; align-items: center; gap: var(--sp-2); }
   .badge {
     padding: 2px 8px;
     border: 1px solid var(--border);
@@ -248,8 +288,11 @@
     gap: 4px;
   }
   .score {
-    font-size: var(--fs-md);
-    color: var(--fg-dim);
+    font-size: var(--fs-sm);
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
 
   .spalten {
@@ -270,12 +313,8 @@
     overflow: hidden;
   }
   .spalte.links { overflow-y: auto; }
-  .spalte.mitte {
-    background: var(--bg);
-  }
-  .spalte.rechts {
-    overflow-y: auto;
-  }
+  .spalte.mitte { background: var(--bg); }
+  .spalte.rechts { overflow-y: auto; }
 
   .editor-kopf {
     display: flex;
@@ -375,7 +414,7 @@
     background: transparent;
     border: none;
     padding: 0;
-    font-size: inherit;
     color: inherit;
+    font-size: inherit;
   }
 </style>

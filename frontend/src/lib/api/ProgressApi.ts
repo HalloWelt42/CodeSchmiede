@@ -7,6 +7,8 @@ export interface GesamtFortschritt {
   aufgaben_neu: number;
   submissions_gesamt: number;
   bestandene_submissions: number;
+  punkte_gesamt: number;
+  punkte_maximal: number;
 }
 
 export interface Streak {
@@ -32,11 +34,18 @@ export interface ProgressEintrag {
   status: ProgressStatus;
   versuche: number;
   hints_genutzt: number;
+  punkte_erreicht: number;
   geloest_am: string | null;
   ease: number;
   intervall_tage: number;
   faellig_am: string | null;
   letzte_wiederholung: string | null;
+}
+
+export interface WeiterVorschlag {
+  naechste_id: string | null;
+  quelle: 'pfad' | 'global' | 'keine';
+  pfad_id: string | null;
 }
 
 export class ProgressApi extends HttpBase {
@@ -55,6 +64,12 @@ export class ProgressApi extends HttpBase {
   }
   alleAufgaben(): Promise<Record<string, ProgressEintrag>> {
     return this.get<Record<string, ProgressEintrag>>('/aufgaben');
+  }
+  weiter(aufgabeId: string): Promise<WeiterVorschlag> {
+    return this.get<WeiterVorschlag>(`/weiter/${aufgabeId}`);
+  }
+  reset(aufgabeId: string): Promise<{ status: string; aufgabe_id: string }> {
+    return this.request<{ status: string; aufgabe_id: string }>(`/${aufgabeId}`, { method: 'DELETE' });
   }
 }
 

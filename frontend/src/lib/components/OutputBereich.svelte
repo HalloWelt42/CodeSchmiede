@@ -1,11 +1,9 @@
 <script lang="ts">
   /*
    * Rechte Spalte: Ergebnis der Pruefung.
-   * - Status (gruen / rot / Timeout)
-   * - Liste der sichtbaren Tests mit Pass/Fail, erwartet vs. tatsaechlich
-   * - Aggregat der versteckten Tests
-   * - stdout / stderr aus dem Sandbox-Lauf
-   * - Performance-Metriken
+   * Bei Bestanden zeigt eine Erfolgs-Zeile mit Punkten und einem
+   * Weiter-Button zur naechsten Aufgabe.
+   * Stdout vom Nutzer-Code wird oben angezeigt, wenn nicht leer.
    */
   import type { SubmissionAntwort, TestErgebnis } from '../types/Submission';
 
@@ -14,12 +12,13 @@
     fehler: string | null;
     laeuft: boolean;
     anzahl_versteckt: number;
+    schwierigkeit_score: number;
+    onWeiter: () => void;
   }
 
-  let { ergebnis, fehler, laeuft, anzahl_versteckt }: Props = $props();
+  let { ergebnis, fehler, laeuft, anzahl_versteckt, schwierigkeit_score, onWeiter }: Props = $props();
 
   function formatiereWert(wert: unknown): string {
-    if (typeof wert === 'string') return JSON.stringify(wert);
     return JSON.stringify(wert);
   }
 </script>
@@ -52,6 +51,27 @@
     </div>
   {:else}
     {@const p = ergebnis.pruefung}
+
+    {#if ergebnis.bestanden}
+      <section class="erfolg">
+        <div class="erfolg-info">
+          <span class="punkte num">+{ergebnis.progress.punkte_erreicht}</span>
+          <span class="punkte-text">von {schwierigkeit_score} Punkten</span>
+        </div>
+        <button type="button" class="weiter" onclick={onWeiter}>
+          Weiter
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+      </section>
+    {/if}
+
+    {#if p.stdout}
+      <section class="block stdout-block">
+        <h3>Standardausgabe</h3>
+        <pre class="konsole">{p.stdout}</pre>
+      </section>
+    {/if}
+
     <section class="block">
       <h3>Sichtbare Tests</h3>
       <ul class="test-liste">
@@ -103,13 +123,6 @@
       </section>
     {/if}
 
-    {#if p.stdout}
-      <section class="block">
-        <h3>Standardausgabe</h3>
-        <pre class="konsole">{p.stdout}</pre>
-      </section>
-    {/if}
-
     {#if p.stderr}
       <section class="block">
         <h3>Fehlerausgabe</h3>
@@ -129,8 +142,8 @@
           <dd class="num">{ergebnis.codelaenge_zeichen} Zeichen</dd>
         </div>
         <div>
-          <dt>Submission</dt>
-          <dd class="num">#{ergebnis.submission_id}</dd>
+          <dt>Versuche</dt>
+          <dd class="num">{ergebnis.progress.versuche}</dd>
         </div>
       </dl>
     </section>
@@ -168,9 +181,7 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
-  .status.bestanden {
-    color: var(--green);
-  }
+  .status.bestanden { color: var(--green); }
 
   .leer {
     padding: var(--sp-5);
@@ -183,20 +194,56 @@
     gap: var(--sp-3);
     align-items: center;
   }
-  .leer i {
+  .leer i { font-size: var(--fs-xl); color: var(--fg-mute); }
+  .leer.fehler { color: var(--red); }
+  .leer.fehler i { color: var(--red); }
+
+  .erfolg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--sp-3);
+    background: color-mix(in srgb, var(--green) 10%, transparent);
+    border-bottom: 1px solid var(--green);
+  }
+  .erfolg-info {
+    display: flex;
+    align-items: baseline;
+    gap: var(--sp-2);
+  }
+  .punkte {
+    color: var(--green);
     font-size: var(--fs-xl);
-    color: var(--fg-mute);
   }
-  .leer.fehler {
-    color: var(--red);
+  .punkte-text {
+    color: var(--fg-dim);
+    font-size: var(--fs-sm);
   }
-  .leer.fehler i {
-    color: var(--red);
+  .weiter {
+    background: var(--green);
+    border: 1px solid var(--green);
+    color: var(--bg);
+    padding: 8px 14px;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+  .weiter:hover {
+    filter: brightness(1.1);
   }
 
   .block {
     padding: var(--sp-3);
     border-bottom: 1px solid var(--border);
+  }
+  .block.stdout-block {
+    background: var(--bg-card-2);
   }
   .block.warn {
     background: color-mix(in srgb, var(--orange) 10%, transparent);
@@ -232,12 +279,8 @@
     font-size: var(--fs-xs);
     flex-wrap: wrap;
   }
-  .test-liste li.bestanden i {
-    color: var(--green);
-  }
-  .test-liste li.fail i {
-    color: var(--red);
-  }
+  .test-liste li.bestanden i { color: var(--green); }
+  .test-liste li.fail i { color: var(--red); }
   .test-liste code {
     font-family: var(--mono);
     background: transparent;
@@ -245,18 +288,10 @@
     padding: 0;
     color: var(--fg);
   }
-  .aufruf {
-    color: var(--fg-dim) !important;
-  }
-  .wert.ist {
-    color: var(--red) !important;
-  }
-  .wert.soll {
-    color: var(--green) !important;
-  }
-  .zeichen {
-    color: var(--fg-mute);
-  }
+  .aufruf { color: var(--fg-dim) !important; }
+  .wert.ist { color: var(--red) !important; }
+  .wert.soll { color: var(--green) !important; }
+  .zeichen { color: var(--fg-mute); }
   .fehlertext {
     color: var(--red);
     font-family: var(--mono);
@@ -281,14 +316,8 @@
     background: var(--bg);
     border: 1px solid var(--border);
   }
-  .punkt.pass {
-    background: var(--green);
-    border-color: var(--green);
-  }
-  .punkt.fail {
-    background: var(--red);
-    border-color: var(--red);
-  }
+  .punkt.pass { background: var(--green); border-color: var(--green); }
+  .punkt.fail { background: var(--red); border-color: var(--red); }
   .versteckt-stats {
     color: var(--fg-dim);
     font-size: var(--fs-sm);
@@ -307,9 +336,7 @@
     max-height: 200px;
     overflow-y: auto;
   }
-  .konsole.stderr {
-    color: var(--red);
-  }
+  .konsole.stderr { color: var(--red); }
 
   .performance .metrik {
     display: grid;

@@ -1,4 +1,9 @@
-"""HTTP-Routen fuer Submissions -- Code abschicken, ausfuehren, bewerten."""
+"""HTTP-Routen fuer Submissions und Probelauf -- Code abschicken,
+ausfuehren, bewerten oder probieren.
+"""
+
+import json
+from typing import Any
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
@@ -6,7 +11,11 @@ from pydantic import BaseModel, Field
 from ..models.progress import Progress
 from ..pruefung.ergebnis import PruefErgebnis
 from ..pruefung.orchestrator import pruefe
+from ..sandbox.result import RunLimits
 from ..state import AppState
+
+
+PROBELAUF_MARKER = "===CODESCHMIEDE_PROBELAUF===\n"
 
 
 class SubmissionAnfrage(BaseModel):
@@ -20,6 +29,21 @@ class SubmissionAntwort(BaseModel):
     codelaenge_zeichen: int
     submission_id: int
     progress: Progress
+
+
+class ProbelaufAnfrage(BaseModel):
+    aufgabe_id: str
+    code: str = Field(min_length=1, max_length=50_000)
+    input: list[Any] = Field(default_factory=list)
+
+
+class ProbelaufAntwort(BaseModel):
+    rueckgabe: Any = None
+    stdout: str = ""
+    stderr: str = ""
+    laufzeit_ms: float
+    timeout: bool = False
+    fehler: str | None = None
 
 
 def baue_submissions_router(state: AppState) -> APIRouter:
@@ -54,7 +78,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             submission_id = cursor.lastrowid or 0
 
         progress = state.progress.aktualisiere_nach_submission(
-            aufgabe.id, ergebnis.bestanden
+            aufgabe, ergebnis.bestanden
         )
 
         return SubmissionAntwort(
@@ -65,4 +89,75 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             progress=progress,
         )
 
+    @router.post("/probelauf", response_model=ProbelaufAntwort)
+    def probelauf(anfrage: ProbelaufAnfrage) -> ProbelaufAntwort:
+        """Fuehrt die Funktion mit benutzerdefiniertem Input aus, ohne
+        Bewertung. Liefert Rueckgabe + stdout zurueck.
+        """
+        aufgabe = state.aufgaben.aufgabe(anfrage.aufgabe_id)
+        if not aufgabe:
+            raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+        if not aufgabe.funktion:
+            raise HTTPException(
+                status_code=400, detail="Aufgabe definiert keine Funktion"
+            )
+
+        skript = _baue_probelauf_skript(
+            anfrage.code, aufgabe.funktion, anfrage.input
+        )
+        limits = RunLimits(timeout_sekunden=aufgabe.zeitlimit_sekunden)
+        run = state.runner.run_code(skript, limits=limits)
+
+        if PROBELAUF_MARKER not in run.stdout:
+            return ProbelaufAntwort(
+                rueckgabe=None,
+                stdout=run.stdout,
+                stderr=run.stderr,
+                laufzeit_ms=run.laufzeit_ms,
+                timeout=run.timeout,
+                fehler="Code wurde nicht vollstaendig ausgefuehrt",
+            )
+
+        nutzer_stdout, _, json_teil = run.stdout.partition(PROBELAUF_MARKER)
+        try:
+            ergebnis = json.loads(json_teil.strip())
+        except json.JSONDecodeError:
+            return ProbelaufAntwort(
+                rueckgabe=None,
+                stdout=nutzer_stdout,
+                stderr=run.stderr or "Ergebnis konnte nicht geparst werden",
+                laufzeit_ms=run.laufzeit_ms,
+                timeout=run.timeout,
+                fehler="Ergebnis nicht parsebar",
+            )
+
+        return ProbelaufAntwort(
+            rueckgabe=ergebnis.get("rueckgabe"),
+            stdout=nutzer_stdout,
+            stderr=run.stderr,
+            laufzeit_ms=run.laufzeit_ms,
+            timeout=run.timeout,
+            fehler=ergebnis.get("fehler"),
+        )
+
     return router
+
+
+def _baue_probelauf_skript(code: str, funktion: str, eingabe: list[Any]) -> str:
+    eingabe_json = json.dumps(eingabe)
+    return (
+        f"{code}\n\n"
+        "# === codeschmiede probelauf (auto generated) ===\n"
+        "import json as _json\n"
+        "import sys as _sys\n"
+        f"_eingabe = _json.loads({eingabe_json!r})\n"
+        "try:\n"
+        f"    _rueckgabe = {funktion}(*_eingabe)\n"
+        "    _ergebnis = {'rueckgabe': _rueckgabe, 'fehler': None}\n"
+        "except Exception as _e:\n"
+        "    _ergebnis = {'rueckgabe': None,\n"
+        "                 'fehler': type(_e).__name__ + ': ' + str(_e)}\n"
+        f"_sys.stdout.write({PROBELAUF_MARKER!r})\n"
+        "_sys.stdout.write(_json.dumps(_ergebnis, default=str))\n"
+        "_sys.stdout.flush()\n"
+    )

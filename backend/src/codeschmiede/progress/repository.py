@@ -6,6 +6,7 @@ import sqlite3
 from datetime import date, datetime, timedelta
 
 from ..db.connection import Datenbank
+from ..models.aufgabe import Aufgabe
 from ..models.progress import GesamtFortschritt, Progress, Streak
 from .sm2 import berechne_naechsten_schritt
 from .streak import aktualisiere_streak
@@ -50,8 +51,6 @@ class ProgressRepository:
         return [r["aufgabe_id"] for r in rows]
 
     def letzte_aktive_aufgabe(self) -> str | None:
-        """Aufgabe, an der zuletzt gearbeitet wurde -- bevorzugt im Status
-        `in_arbeit`, sonst die zuletzt geloeste."""
         with self.db.connect() as conn:
             row = conn.execute(
                 """
@@ -73,7 +72,7 @@ class ProgressRepository:
             ).fetchone()
         return row["aufgabe_id"] if row else None
 
-    def gesamt_fortschritt(self, gesamt_aufgaben: int) -> GesamtFortschritt:
+    def gesamt_fortschritt(self, aufgaben: list[Aufgabe]) -> GesamtFortschritt:
         with self.db.connect() as conn:
             rows = conn.execute(
                 "SELECT status, COUNT(*) AS n FROM progress GROUP BY status"
@@ -82,29 +81,34 @@ class ProgressRepository:
             sub_bestanden = conn.execute(
                 "SELECT COUNT(*) FROM submissions WHERE bestanden = 1"
             ).fetchone()[0]
+            punkte_row = conn.execute(
+                "SELECT COALESCE(SUM(punkte_erreicht), 0) FROM progress"
+            ).fetchone()
 
         counts = {r["status"]: r["n"] for r in rows}
         geloest = counts.get("geloest", 0)
         in_arbeit = counts.get("in_arbeit", 0)
         return GesamtFortschritt(
-            aufgaben_gesamt=gesamt_aufgaben,
+            aufgaben_gesamt=len(aufgaben),
             aufgaben_geloest=geloest,
             aufgaben_in_arbeit=in_arbeit,
-            aufgaben_neu=max(0, gesamt_aufgaben - geloest - in_arbeit),
+            aufgaben_neu=max(0, len(aufgaben) - geloest - in_arbeit),
             submissions_gesamt=sub_total,
             bestandene_submissions=sub_bestanden,
+            punkte_gesamt=int(punkte_row[0] or 0),
+            punkte_maximal=sum(a.schwierigkeit_score for a in aufgaben),
         )
 
     # --- Update bei Submission --------------------------------------------
 
     def aktualisiere_nach_submission(
-        self, aufgabe_id: str, bestanden: bool, heute: date | None = None
+        self, aufgabe: Aufgabe, bestanden: bool, heute: date | None = None
     ) -> Progress:
         heute = heute or date.today()
         jetzt = datetime.now()
 
-        bisher = self.hole_progress(aufgabe_id) or Progress(
-            aufgabe_id=aufgabe_id, status="neu"
+        bisher = self.hole_progress(aufgabe.id) or Progress(
+            aufgabe_id=aufgabe.id, status="neu"
         )
         neue_versuche = bisher.versuche + 1
 
@@ -122,10 +126,13 @@ class ProgressRepository:
                 bisher.ease, bisher.intervall_tage, qualitaet
             )
             faellig = heute + timedelta(days=sm2.intervall_tage)
+            erreichte_punkte = self._berechne_punkte(aufgabe, bisher.hints_genutzt)
+            best_of = max(bisher.punkte_erreicht, erreichte_punkte)
             neu = bisher.model_copy(
                 update={
                     "status": "geloest",
                     "versuche": neue_versuche,
+                    "punkte_erreicht": best_of,
                     "geloest_am": bisher.geloest_am or jetzt,
                     "ease": sm2.ease,
                     "intervall_tage": sm2.intervall_tage,
@@ -138,36 +145,34 @@ class ProgressRepository:
         self._schreibe(neu)
         return neu
 
-    def _schreibe(self, p: Progress) -> None:
+    # --- Hint-Tracking ----------------------------------------------------
+
+    def markiere_hint_gesehen(self, aufgabe_id: str, hint_index: int) -> Progress:
+        """Erhoeht hints_genutzt mindestens auf hint_index+1 (idempotent
+        bei mehrfachem Klick auf den gleichen Hint).
+        """
+        bisher = self.hole_progress(aufgabe_id) or Progress(
+            aufgabe_id=aufgabe_id, status="neu"
+        )
+        neuer_status = bisher.status if bisher.status != "neu" else "in_arbeit"
+        neu = bisher.model_copy(
+            update={
+                "hints_genutzt": max(bisher.hints_genutzt, hint_index + 1),
+                "status": neuer_status,
+                "letzte_wiederholung": datetime.now(),
+            }
+        )
+        self._schreibe(neu)
+        return neu
+
+    # --- Reset ------------------------------------------------------------
+
+    def reset_aufgabe(self, aufgabe_id: str) -> None:
+        """Setzt Progress fuer eine Aufgabe zurueck. Submissions bleiben
+        als Historie erhalten. Streak bleibt unangetastet.
+        """
         with self.db.connect() as conn:
-            conn.execute(
-                """
-                INSERT INTO progress (
-                    aufgabe_id, status, versuche, hints_genutzt, geloest_am,
-                    ease, intervall_tage, faellig_am, letzte_wiederholung
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                ON CONFLICT(aufgabe_id) DO UPDATE SET
-                    status=excluded.status,
-                    versuche=excluded.versuche,
-                    hints_genutzt=excluded.hints_genutzt,
-                    geloest_am=excluded.geloest_am,
-                    ease=excluded.ease,
-                    intervall_tage=excluded.intervall_tage,
-                    faellig_am=excluded.faellig_am,
-                    letzte_wiederholung=excluded.letzte_wiederholung
-                """,
-                (
-                    p.aufgabe_id,
-                    p.status,
-                    p.versuche,
-                    p.hints_genutzt,
-                    p.geloest_am.isoformat() if p.geloest_am else None,
-                    p.ease,
-                    p.intervall_tage,
-                    p.faellig_am.isoformat() if p.faellig_am else None,
-                    p.letzte_wiederholung.isoformat() if p.letzte_wiederholung else None,
-                ),
-            )
+            conn.execute("DELETE FROM progress WHERE aufgabe_id = ?", (aufgabe_id,))
 
     # --- Streak -----------------------------------------------------------
 
@@ -201,15 +206,62 @@ class ProgressRepository:
                     (k, v),
                 )
 
-    # --- Hilfsmethoden ----------------------------------------------------
+    # --- Schreib-Helfer ---------------------------------------------------
+
+    def _schreibe(self, p: Progress) -> None:
+        with self.db.connect() as conn:
+            conn.execute(
+                """
+                INSERT INTO progress (
+                    aufgabe_id, status, versuche, hints_genutzt, punkte_erreicht,
+                    geloest_am, ease, intervall_tage, faellig_am, letzte_wiederholung
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(aufgabe_id) DO UPDATE SET
+                    status=excluded.status,
+                    versuche=excluded.versuche,
+                    hints_genutzt=excluded.hints_genutzt,
+                    punkte_erreicht=excluded.punkte_erreicht,
+                    geloest_am=excluded.geloest_am,
+                    ease=excluded.ease,
+                    intervall_tage=excluded.intervall_tage,
+                    faellig_am=excluded.faellig_am,
+                    letzte_wiederholung=excluded.letzte_wiederholung
+                """,
+                (
+                    p.aufgabe_id,
+                    p.status,
+                    p.versuche,
+                    p.hints_genutzt,
+                    p.punkte_erreicht,
+                    p.geloest_am.isoformat() if p.geloest_am else None,
+                    p.ease,
+                    p.intervall_tage,
+                    p.faellig_am.isoformat() if p.faellig_am else None,
+                    p.letzte_wiederholung.isoformat() if p.letzte_wiederholung else None,
+                ),
+            )
+
+    @staticmethod
+    def _berechne_punkte(aufgabe: Aufgabe, hints_genutzt: int) -> int:
+        """Erreichte Punkte = Score - Summe Hint-Kosten der bereits
+        geoeffneten Hints."""
+        kosten = sum(h.kosten for h in aufgabe.hints[:hints_genutzt])
+        return max(0, aufgabe.schwierigkeit_score - kosten)
 
     @staticmethod
     def _row_zu_progress(row: sqlite3.Row) -> Progress:
+        # `punkte_erreicht` kann fehlen, wenn die DB noch nicht migriert
+        # ist (Test-Setup). Sicher abfragen.
+        try:
+            punkte = row["punkte_erreicht"] or 0
+        except (KeyError, IndexError):
+            punkte = 0
         return Progress(
             aufgabe_id=row["aufgabe_id"],
             status=row["status"],
             versuche=row["versuche"],
             hints_genutzt=row["hints_genutzt"],
+            punkte_erreicht=punkte,
             geloest_am=datetime.fromisoformat(row["geloest_am"]) if row["geloest_am"] else None,
             ease=row["ease"],
             intervall_tage=row["intervall_tage"],
