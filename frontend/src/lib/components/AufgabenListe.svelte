@@ -1,16 +1,22 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
+  import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
 
-  onMount(() => {
-    if (aufgabenStore.liste.length === 0) {
-      aufgabenStore.ladeListe();
-    }
+  onMount(async () => {
+    if (aufgabenStore.liste.length === 0) await aufgabenStore.ladeListe();
+    if (!progressStore.gesamt) await progressStore.ladeAlles();
   });
 
   function oeffne(id: string): void {
     route.setze('aufgabe', id);
+  }
+
+  function statusIcon(status: string): string {
+    if (status === 'geloest') return 'fa-circle-check';
+    if (status === 'in_arbeit') return 'fa-pen-to-square';
+    return 'fa-circle';
   }
 </script>
 
@@ -32,8 +38,14 @@
 
   <div class="tabelle">
     {#each aufgabenStore.liste as aufgabe (aufgabe.id)}
-      <article class="zeile" onclick={() => oeffne(aufgabe.id)} role="button" tabindex="0"
+      {@const status = progressStore.status(aufgabe.id)}
+      <article class="zeile status-{status}"
+               onclick={() => oeffne(aufgabe.id)} role="button" tabindex="0"
                onkeydown={(e) => { if (e.key === 'Enter') oeffne(aufgabe.id); }}>
+        <span class="status-icon" aria-label={status} title={status}>
+          <i class="fa-solid {statusIcon(status)}" aria-hidden="true"></i>
+        </span>
+
         <div class="haupt">
           <span class="id">{aufgabe.id}</span>
           <span class="titel">{aufgabe.titel}</span>
@@ -90,7 +102,7 @@
   }
   .zeile {
     display: grid;
-    grid-template-columns: 1.6fr 1.4fr 1.2fr 44px;
+    grid-template-columns: 28px 1.6fr 1.4fr 1.2fr 44px;
     gap: var(--sp-3);
     align-items: center;
     background: var(--bg-card-2);
@@ -102,6 +114,25 @@
   .zeile:hover {
     border-color: var(--accent);
     transform: translateY(-1px);
+  }
+  .zeile.status-geloest {
+    border-left: 3px solid var(--green);
+  }
+  .zeile.status-in_arbeit {
+    border-left: 3px solid var(--orange);
+  }
+  .status-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fg-mute);
+    font-size: var(--fs-md);
+  }
+  .zeile.status-geloest .status-icon {
+    color: var(--green);
+  }
+  .zeile.status-in_arbeit .status-icon {
+    color: var(--orange);
   }
   .haupt {
     display: flex;

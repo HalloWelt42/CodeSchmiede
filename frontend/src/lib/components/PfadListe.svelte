@@ -2,11 +2,14 @@
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { pfadeStore } from '../stores/PfadeStore.svelte';
+  import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
+  import type { Pfad } from '../types/Aufgabe';
 
-  onMount(() => {
-    if (pfadeStore.liste.length === 0) pfadeStore.ladeListe();
-    if (aufgabenStore.liste.length === 0) aufgabenStore.ladeListe();
+  onMount(async () => {
+    if (pfadeStore.liste.length === 0) await pfadeStore.ladeListe();
+    if (aufgabenStore.liste.length === 0) await aufgabenStore.ladeListe();
+    if (!progressStore.gesamt) await progressStore.ladeAlles();
   });
 
   function findeTitel(id: string): string {
@@ -15,6 +18,21 @@
 
   function oeffne(id: string): void {
     route.setze('aufgabe', id);
+  }
+
+  function pfadFortschritt(pfad: Pfad): { geloest: number; gesamt: number; prozent: number } {
+    const gesamt = pfad.reihenfolge.length;
+    const geloest = pfad.reihenfolge.filter(
+      (id) => progressStore.status(id) === 'geloest',
+    ).length;
+    return { geloest, gesamt, prozent: gesamt === 0 ? 0 : Math.round((geloest / gesamt) * 100) };
+  }
+
+  function statusIcon(id: string): string {
+    const s = progressStore.status(id);
+    if (s === 'geloest') return 'fa-circle-check';
+    if (s === 'in_arbeit') return 'fa-pen-to-square';
+    return 'fa-circle';
   }
 </script>
 
@@ -30,6 +48,7 @@
     <p class="info fehler">Fehler: {pfadeStore.fehler}</p>
   {:else}
     {#each pfadeStore.liste as pfad (pfad.id)}
+      {@const fb = pfadFortschritt(pfad)}
       <article class="pfad-karte">
         <header class="pfad-kopf">
           <i class="fa-solid fa-route" aria-hidden="true"></i>
@@ -43,21 +62,23 @@
 
         <ol class="schritte">
           {#each pfad.reihenfolge as id, i (id)}
-            <li onclick={() => oeffne(id)} role="button" tabindex="0"
+            {@const status = progressStore.status(id)}
+            <li class="schritt status-{status}"
+                onclick={() => oeffne(id)} role="button" tabindex="0"
                 onkeydown={(e) => { if (e.key === 'Enter') oeffne(id); }}>
               <span class="nummer num">{i + 1}</span>
               <div class="text">
                 <span class="aufgabe-id">{id}</span>
                 <span class="aufgabe-titel">{findeTitel(id)}</span>
               </div>
-              <i class="fa-solid fa-circle status-neu" aria-hidden="true"></i>
+              <i class="fa-solid {statusIcon(id)} status-icon-{status}" aria-hidden="true"></i>
             </li>
           {/each}
         </ol>
 
         <div class="fortschritt">
-          <span class="balken"><span class="fuell" style="width: 0%"></span></span>
-          <span class="dim num">0 / {pfad.reihenfolge.length} gelöst</span>
+          <span class="balken"><span class="fuell" style="width: {fb.prozent}%"></span></span>
+          <span class="dim num">{fb.geloest} / {fb.gesamt} gelöst</span>
         </div>
       </article>
     {/each}
@@ -133,6 +154,15 @@
     transition: border-color 0.15s;
   }
   .schritte li:hover { border-color: var(--accent); }
+  .schritte li.status-geloest {
+    border-left: 3px solid var(--green);
+  }
+  .schritte li.status-in_arbeit {
+    border-left: 3px solid var(--orange);
+  }
+  .status-icon-geloest { color: var(--green); }
+  .status-icon-in_arbeit { color: var(--orange); }
+  .status-icon-neu { color: var(--fg-mute); }
   .nummer {
     width: 32px;
     height: 32px;
@@ -158,7 +188,6 @@
     color: var(--fg-mute);
   }
   .aufgabe-titel { font-size: var(--fs-md); font-weight: 500; }
-  .status-neu { color: var(--fg-mute); font-size: 10px; }
   .fortschritt {
     display: flex;
     align-items: center;

@@ -3,6 +3,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
+from ..models.progress import Progress
 from ..pruefung.ergebnis import PruefErgebnis
 from ..pruefung.orchestrator import pruefe
 from ..state import AppState
@@ -18,6 +19,7 @@ class SubmissionAntwort(BaseModel):
     pruefung: PruefErgebnis
     codelaenge_zeichen: int
     submission_id: int
+    progress: Progress
 
 
 def baue_submissions_router(state: AppState) -> APIRouter:
@@ -51,11 +53,16 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             )
             submission_id = cursor.lastrowid or 0
 
+        progress = state.progress.aktualisiere_nach_submission(
+            aufgabe.id, ergebnis.bestanden
+        )
+
         return SubmissionAntwort(
             bestanden=ergebnis.bestanden,
             pruefung=ergebnis,
             codelaenge_zeichen=codelaenge,
             submission_id=submission_id,
+            progress=progress,
         )
 
     return router

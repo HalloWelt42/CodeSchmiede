@@ -10,6 +10,7 @@
    */
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
+  import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
   import { submissionsApi } from '../api/SubmissionsApi';
   import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
@@ -63,6 +64,8 @@
       if (ergebnis.bestanden && !musterloesungen) {
         musterloesungen = await aufgabenStore.ladeMusterloesungen(detail.id);
       }
+      // Progress-Store neu laden, damit Dashboard und Listen sofort frische Zahlen zeigen
+      await progressStore.ladeAlles();
     } catch (e) {
       pruef_fehler = (e as Error).message;
     } finally {

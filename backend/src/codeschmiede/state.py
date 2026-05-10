@@ -9,6 +9,7 @@ from .aufgaben.loader import AufgabenLoader
 from .aufgaben.repository import AufgabenRepository
 from .config import Settings
 from .db.connection import Datenbank
+from .progress.repository import ProgressRepository
 from .sandbox.docker_runner import DockerRunner
 
 
@@ -22,5 +23,7 @@ class AppState:
         self.loader = AufgabenLoader(settings.aufgaben_pfad)
         self.aufgaben = AufgabenRepository(self.db, self.loader)
         self.aufgaben.neu_aufbauen()
+
+        self.progress = ProgressRepository(self.db)
 
         self.runner = DockerRunner()
