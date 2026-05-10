@@ -3,7 +3,7 @@
 Beim Start (oder Hot-Reload) wird `neu_aufbauen()` aufgerufen: lese alle
 Aufgaben + Pfade von der Platte, leere die Index-Tabellen, schreibe neu.
 Submissions referenzieren `aufgaben_versionen(aufgabe_id, revision)`,
-sodass alte Submissions auch nach Aufgaben-Aenderungen reproduzierbar
+sodass alte Submissions auch nach Aufgaben-Änderungen reproduzierbar
 bleiben.
 """
 
@@ -25,7 +25,7 @@ class AufgabenRepository:
     def neu_aufbauen(self) -> None:
         """Liest alle Aufgaben + Pfade neu von der Platte und gleicht den
         SQLite-Index ab. Erhaelt dabei `progress` und `submissions` --
-        diese referenzieren Aufgaben ueber Foreign Keys, ein Bulk-DELETE
+        diese referenzieren Aufgaben über Foreign Keys, ein Bulk-DELETE
         ist also nicht erlaubt. Stattdessen UPSERT pro Aufgabe und
         gezieltes Aufraeumen verschwundener IDs.
         """
@@ -43,8 +43,8 @@ class AufgabenRepository:
             }
             verschwundene = bestehende - aktuelle_aufgaben_ids
             for aid in verschwundene:
-                # Progress fuer geloeschte Aufgaben mit aufraeumen
-                # (ansonsten verletzt der naechste Schreibversuch das FK).
+                # Progress für gelöschte Aufgaben mit aufräumen
+                # (ansonsten verletzt der nächste Schreibversuch das FK).
                 conn.execute("DELETE FROM progress WHERE aufgabe_id = ?", (aid,))
                 conn.execute("DELETE FROM aufgaben WHERE id = ?", (aid,))
 
@@ -86,7 +86,7 @@ class AufgabenRepository:
                 )
                 # Versionen sind unveraenderlich -- INSERT OR IGNORE verhindert,
                 # dass eine bereits gespeicherte (id, revision) ueberschrieben
-                # wird. Wer inhaltlich aendert, muss revision hochzaehlen.
+                # wird. Wer inhaltlich ändert, muss revision hochzaehlen.
                 conn.execute(
                     """
                     INSERT OR IGNORE INTO aufgaben_versionen (

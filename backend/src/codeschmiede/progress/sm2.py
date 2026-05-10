@@ -1,4 +1,4 @@
-"""SM-2 Algorithmus (Anki-Stil) fuer Spaced Repetition.
+"""SM-2 Algorithmus (Anki-Stil) für Spaced Repetition.
 
 Ergebnis eines Wiederholungsversuchs ist die Qualitaet `q` (0-5):
   5 = perfekt erinnert
@@ -31,7 +31,7 @@ def berechne_naechsten_schritt(
     intervall_tage: int,
     qualitaet: int,
 ) -> SM2Schritt:
-    """Berechnet das naechste Wiederholungs-Intervall."""
+    """Berechnet das nächste Wiederholungs-Intervall."""
     q = max(0, min(5, qualitaet))
 
     if q < 3:

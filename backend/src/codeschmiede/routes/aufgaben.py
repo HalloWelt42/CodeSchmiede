@@ -1,4 +1,4 @@
-"""HTTP-Routen fuer Aufgaben."""
+"""HTTP-Routen für Aufgaben."""
 
 from fastapi import APIRouter, HTTPException
 
@@ -89,7 +89,35 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
         if not a:
             raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
         if hint_index < 0 or hint_index >= len(a.hints):
-            raise HTTPException(status_code=400, detail="Hint-Index ungueltig")
+            raise HTTPException(status_code=400, detail="Hint-Index ungültig")
         return state.progress.markiere_hint_gesehen(aufgabe_id, hint_index)
+
+    @router.get("/{aufgabe_id}/letzte-submission")
+    def letzte_submission(aufgabe_id: str) -> dict:
+        """Letzte abgeschickte Lösung (egal ob bestanden) -- damit der
+        Editor beim erneuten Öffnen den letzten Stand zeigt statt der
+        Starter-Boilerplate.
+        """
+        a = state.aufgaben.aufgabe(aufgabe_id)
+        if not a:
+            raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+        with state.db.connect() as conn:
+            row = conn.execute(
+                """
+                SELECT code, bestanden, zeitstempel
+                FROM submissions
+                WHERE aufgabe_id = ?
+                ORDER BY id DESC
+                LIMIT 1
+                """,
+                (aufgabe_id,),
+            ).fetchone()
+        if not row:
+            return {"code": None, "bestanden": None, "zeitstempel": None}
+        return {
+            "code": row["code"],
+            "bestanden": bool(row["bestanden"]),
+            "zeitstempel": row["zeitstempel"],
+        }
 
     return router

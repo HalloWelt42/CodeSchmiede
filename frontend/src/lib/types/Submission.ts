@@ -1,6 +1,6 @@
 /*
- * Typen fuer Code-Submissions und das Pruef-Ergebnis vom Backend.
- * Versteckte Tests werden nur als Anzahl uebertragen.
+ * Typen für Code-Submissions und das Pruef-Ergebnis vom Backend.
+ * Versteckte Tests werden nur als Anzahl übertragen.
  */
 
 export interface TestErgebnis {
@@ -45,7 +45,7 @@ export interface SubmissionAntwort {
 }
 
 export interface ProbelaufAntwort {
-  rueckgabe: unknown;
+  rückgabe: unknown;
   stdout: string;
   stderr: string;
   laufzeit_ms: number;

@@ -1,4 +1,4 @@
-"""HTTP-Routen fuer Progress, Tagesziel, Streak, Reset und Weiter-Vorschlag."""
+"""HTTP-Routen für Progress, Tagesziel, Streak, Reset und Weiter-Vorschlag."""
 
 from datetime import date
 
@@ -75,7 +75,7 @@ def baue_progress_router(state: AppState) -> APIRouter:
         def ist_offen(aid: str) -> bool:
             return aid not in progress_dict or progress_dict[aid].status != "geloest"
 
-        # Erstens: gleichen Pfad nehmen, naechste offene nach der aktuellen
+        # Erstens: gleichen Pfad nehmen, nächste offene nach der aktuellen
         for pfad_id in aktuell.pfade:
             pfad = state.aufgaben.pfad(pfad_id)
             if not pfad:
@@ -90,7 +90,7 @@ def baue_progress_router(state: AppState) -> APIRouter:
                         naechste_id=kandidat, quelle="pfad", pfad_id=pfad_id
                     )
 
-        # Zweitens: global naechste offene Aufgabe nach Schwierigkeitsscore,
+        # Zweitens: global nächste offene Aufgabe nach Schwierigkeitsscore,
         # die schwerer ist als die aktuelle (oder die erste offene insgesamt).
         offene = sorted(
             (a for a in state.aufgaben.alle_aufgaben() if ist_offen(a.id) and a.id != aufgabe_id),

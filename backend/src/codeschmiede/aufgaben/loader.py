@@ -70,7 +70,7 @@ class AufgabenLoader:
     def lade_musterloesungen(self, aufgabe_id: str) -> list[dict[str, str]]:
         """Liest alle `solution_*.py`-Dateien neben der `aufgabe.md`.
 
-        Rueckgabe: Liste von `{variante, code}`. Reihenfolge ist stabil
+        Rückgabe: Liste von `{variante, code}`. Reihenfolge ist stabil
         und didaktisch sortiert: naive vor idiomatic vor optimal, der
         Rest alphabetisch.
         """
@@ -106,4 +106,4 @@ class AufgabenLoader:
         for i in range(1, len(lines)):
             if lines[i].strip() == FRONTMATTER_TRENNER:
                 return "".join(lines[1:i]), "".join(lines[i + 1 :])
-        raise ValueError("Schliessendes '---' im Frontmatter fehlt")
+        raise ValueError("Schließendes '---' im Frontmatter fehlt")

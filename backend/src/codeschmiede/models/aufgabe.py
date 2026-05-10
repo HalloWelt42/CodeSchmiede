@@ -1,8 +1,8 @@
-"""Datenmodelle fuer Aufgaben.
+"""Datenmodelle für Aufgaben.
 
 Ein Aufgabenfile besteht aus YAML-Frontmatter und Markdown-Beschreibung.
 `Frontmatter` modelliert die Metadaten, `Aufgabe` ist Frontmatter plus
-Beschreibung und Datei-Info (Pfad, Hash). Fuer die API werden
+Beschreibung und Datei-Info (Pfad, Hash). Für die API werden
 schmalere Sichten daraus abgeleitet.
 """
 
@@ -68,7 +68,7 @@ class Aufgabe(Frontmatter):
 
     beschreibung_md: str
     dateipfad: Path
-    hash: str  # SHA1 ueber den gesamten Datei-Inhalt
+    hash: str  # SHA1 über den gesamten Datei-Inhalt
 
 
 class AufgabeKurz(BaseModel):

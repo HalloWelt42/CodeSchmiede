@@ -1,5 +1,5 @@
 """Streak-Berechnung -- aufeinanderfolgende Tage mit mindestens einer
-geloesten Aufgabe. Inhaltlich klein, aber zentrale Motivations-Mechanik.
+gelösten Aufgabe. Inhaltlich klein, aber zentrale Motivations-Mechanik.
 """
 
 from datetime import date, timedelta
@@ -10,7 +10,7 @@ from ..models.progress import Streak
 def aktualisiere_streak(streak: Streak, heute: date) -> Streak:
     """Wird aufgerufen, wenn heute eine Aufgabe geloest wurde."""
     if streak.letzter_tag == heute:
-        # Heute schon gezaehlt -- Idempotenz wichtig fuer mehrere
+        # Heute schon gezählt -- Idempotenz wichtig für mehrere
         # Submissions am gleichen Tag.
         return streak
 

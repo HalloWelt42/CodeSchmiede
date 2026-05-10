@@ -1,11 +1,23 @@
 <script lang="ts">
+  import { layout } from '../stores/LayoutStore.svelte';
   import { theme } from '../stores/ThemeStore.svelte';
 </script>
 
 <header class="topbar">
-  <div class="brand">
-    <i class="fa-solid fa-hammer" aria-hidden="true"></i>
-    <span class="name">Codeschmiede</span>
+  <div class="links">
+    <button
+      class="hdr-btn icon-only"
+      onclick={() => layout.toggleSidebar()}
+      title={layout.sidebarOffen ? 'Menü einklappen' : 'Menü ausklappen'}
+      aria-label="Menü umschalten"
+    >
+      <i class="fa-solid {layout.sidebarOffen ? 'fa-angles-left' : 'fa-bars'}" aria-hidden="true"></i>
+    </button>
+
+    <div class="brand">
+      <i class="fa-solid fa-hammer" aria-hidden="true"></i>
+      <span class="name">Codeschmiede</span>
+    </div>
   </div>
 
   <div class="actions">
@@ -30,6 +42,11 @@
     justify-content: space-between;
     background: var(--bg-card);
     border-bottom: 1px solid var(--border);
+  }
+  .links {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
   }
   .brand {
     display: flex;

@@ -11,11 +11,11 @@
     { id: 'dashboard', titel: 'Dashboard', icon: 'fa-house' },
     { id: 'aufgaben', titel: 'Aufgaben', icon: 'fa-list-check' },
     { id: 'pfade', titel: 'Pfade', icon: 'fa-route' },
+    { id: 'verwaltung', titel: 'Verwaltung', icon: 'fa-table-cells-large' },
   ];
 
   function istAktiv(eintrag: NavEintrag): boolean {
     if (eintrag.id === route.aktiv) return true;
-    // Aufgaben-Detail soll den Aufgaben-Eintrag aktiv markieren
     if (eintrag.id === 'aufgaben' && route.aktiv === 'aufgabe') return true;
     return false;
   }

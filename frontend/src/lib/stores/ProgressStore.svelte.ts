@@ -1,5 +1,5 @@
 /*
- * Store fuer Progress-Daten. Laedt initial alle vier Endpunkte parallel,
+ * Store für Progress-Daten. Laedt initial alle vier Endpunkte parallel,
  * stellt einen `neuLaden()`-Trigger zur Verfuegung (z.B. nach Submission).
  */
 

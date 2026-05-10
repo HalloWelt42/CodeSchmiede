@@ -10,6 +10,7 @@ from pydantic import BaseModel
 from . import __version__
 from .aufgaben.watcher import AufgabenWatcher
 from .config import Settings
+from .routes.admin import baue_admin_router
 from .routes.aufgaben import baue_aufgaben_router
 from .routes.pfade import baue_pfade_router
 from .routes.progress import baue_progress_router
@@ -51,7 +52,7 @@ def app_bauen(settings: Settings | None = None) -> FastAPI:
     )
 
     # Vite-Dev-Server proxied selbst, im Browser direkt aufrufen geht
-    # ueber CORS. Im MVP ist die App lokal-only -- CORS bewusst offen.
+    # über CORS. Im MVP ist die App lokal-only -- CORS bewusst offen.
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -64,6 +65,7 @@ def app_bauen(settings: Settings | None = None) -> FastAPI:
     app.include_router(baue_pfade_router(state))
     app.include_router(baue_submissions_router(state))
     app.include_router(baue_progress_router(state))
+    app.include_router(baue_admin_router(state))
 
     @app.get("/api/healthz", response_model=HealthAntwort)
     def healthz() -> HealthAntwort:

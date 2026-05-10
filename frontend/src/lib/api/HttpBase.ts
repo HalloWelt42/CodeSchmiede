@@ -1,6 +1,6 @@
 /*
  * Schmaler fetch-Wrapper mit JSON-Parsing und einheitlicher
- * Fehlerbehandlung. Im Dev-Modus laeuft alles ueber den Vite-Proxy
+ * Fehlerbehandlung. Im Dev-Modus laeuft alles über den Vite-Proxy
  * (/api -> http://127.0.0.1:8200).
  */
 

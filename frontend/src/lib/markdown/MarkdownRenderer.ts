@@ -4,8 +4,8 @@
  * Reihenfolge:
  *   1. Mermaid-Bloecke (`mermaid`-fence) werden in <div class="mermaid">
  *      ersetzt -- Mermaid rendert sie spaeter direkt im DOM.
- *   2. Display-Math `$$ ... $$` wird ueber KaTeX zu HTML.
- *   3. Inline-Math `$ ... $` wird ueber KaTeX zu HTML.
+ *   2. Display-Math `$$ ... $$` wird über KaTeX zu HTML.
+ *   3. Inline-Math `$ ... $` wird über KaTeX zu HTML.
  *   4. marked rendert den Rest (GFM, Tabellen, Codebloecke).
  *   5. DOMPurify saeubert das Ergebnis. SVG-Tags werden zugelassen,
  *      damit Mermaid-Output (der spaeter eingefuegt wird) durchlaeuft.

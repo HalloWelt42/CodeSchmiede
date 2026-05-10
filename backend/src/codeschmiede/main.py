@@ -1,4 +1,4 @@
-"""Entry-Point fuer den Codeschmiede-Backend-Server.
+"""Entry-Point für den Codeschmiede-Backend-Server.
 
 Aufruf:
     python -m codeschmiede.main

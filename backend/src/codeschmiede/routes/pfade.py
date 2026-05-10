@@ -1,4 +1,4 @@
-"""HTTP-Routen fuer Pfade."""
+"""HTTP-Routen für Pfade."""
 
 from fastapi import APIRouter, HTTPException
 

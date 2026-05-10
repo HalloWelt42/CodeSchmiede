@@ -10,6 +10,6 @@ class Runner(Protocol):
 
     def run_code(self, code: str, limits: RunLimits | None = None) -> RunResult:
         """Fuehrt `code` aus und liefert das Ergebnis. Keine Exceptions
-        fuer Code-Fehler -- das wandert in `RunResult.stderr` / `exit_code`.
+        für Code-Fehler -- das wandert in `RunResult.stderr` / `exit_code`.
         """
         ...

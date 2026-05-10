@@ -1,4 +1,4 @@
-"""Datenbank-Verbindung fuer SQLite und nummerierte Migrations-Loader.
+"""Datenbank-Verbindung für SQLite und nummerierte Migrations-Loader.
 
 Migrations liegen als `001_*.sql`, `002_*.sql` etc. neben dieser Datei.
 Beim ersten Aufruf von `migriere()` wird eine `schema_version`-Tabelle

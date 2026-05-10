@@ -1,6 +1,6 @@
 /*
  * Theme-Manager. Drei Modi: 'auto' (folgt System), 'dark', 'light'.
- * Persistierung in localStorage, Anwendung ueber data-theme am <html>.
+ * Persistierung in localStorage, Anwendung über data-theme am <html>.
  */
 
 type Modus = 'auto' | 'dark' | 'light';

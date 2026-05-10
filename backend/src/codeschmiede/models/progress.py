@@ -1,4 +1,4 @@
-"""Datenmodelle fuer Fortschritts-Tracking und Streak."""
+"""Datenmodelle für Fortschritts-Tracking und Streak."""
 
 from datetime import date, datetime
 from typing import Literal
@@ -33,7 +33,7 @@ class Streak(BaseModel):
 
 
 class GesamtFortschritt(BaseModel):
-    """Aggregat fuer das Dashboard."""
+    """Aggregat für das Dashboard."""
 
     aufgaben_gesamt: int
     aufgaben_geloest: int
@@ -46,7 +46,7 @@ class GesamtFortschritt(BaseModel):
 
 
 class Tagesziel(BaseModel):
-    """Was steht heute an? Antwort fuer `GET /api/progress/heute`."""
+    """Was steht heute an? Antwort für `GET /api/progress/heute`."""
 
     datum: date
     faellige_wiederholungen: list[str]
@@ -58,8 +58,8 @@ class Tagesziel(BaseModel):
 
 
 class WeiterVorschlag(BaseModel):
-    """Vorschlag fuer die naechste Aufgabe, ausgehend von einer aktuellen.
-    Bevorzugt eine offene Aufgabe im selben Pfad, sonst global naechste
+    """Vorschlag für die nächste Aufgabe, ausgehend von einer aktuellen.
+    Bevorzugt eine offene Aufgabe im selben Pfad, sonst global nächste
     nach Schwierigkeitsscore.
     """
 

@@ -1,4 +1,4 @@
-"""Datenmodell fuer didaktische Pfade -- geordnete Aufgaben-Reihen."""
+"""Datenmodell für didaktische Pfade -- geordnete Aufgaben-Reihen."""
 
 from pydantic import BaseModel
 

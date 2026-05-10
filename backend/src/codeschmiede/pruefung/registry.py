@@ -1,10 +1,10 @@
-"""Pruefer-Registry. Plugin-Pattern fuer Aufgaben-Typen (`task_type`).
+"""Pruefer-Registry. Plugin-Pattern für Aufgaben-Typen (`task_type`).
 
 Jeder Pruefer registriert sich per `@registriere(typ)`-Decorator. Der
-Orchestrator schaut hier nach, welcher Pruefer fuer den `task_type`
+Orchestrator schaut hier nach, welcher Pruefer für den `task_type`
 einer Aufgabe zustaendig ist. Neue Aufgabentypen (Output-Quiz,
 Bug-Finden, ...) brauchen nur eine neue Pruefer-Datei mit Decorator,
-keine Aenderung am Orchestrator.
+keine Änderung am Orchestrator.
 """
 
 from collections.abc import Callable

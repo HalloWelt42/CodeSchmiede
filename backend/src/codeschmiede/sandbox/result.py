@@ -1,10 +1,10 @@
-"""Datenmodelle fuer den Sandbox-Lauf -- Eingabe-Limits und Ausgabe-Ergebnis."""
+"""Datenmodelle für den Sandbox-Lauf -- Eingabe-Limits und Ausgabe-Ergebnis."""
 
 from pydantic import BaseModel, Field
 
 
 class RunLimits(BaseModel):
-    """Ressourcen-Grenzen fuer einen einzelnen Sandbox-Lauf."""
+    """Ressourcen-Grenzen für einen einzelnen Sandbox-Lauf."""
 
     timeout_sekunden: int = Field(default=5, ge=1, le=60)
     memory_mb: int = Field(default=128, ge=32, le=1024)

@@ -1,7 +1,7 @@
 <script lang="ts">
   /*
    * Probelauf-Panel: eigene Eingabe testen, Funktion mit dem Input
-   * aufrufen, Rueckgabe + stdout anzeigen. Kein Test-Vergleich.
+   * aufrufen, Rückgabe + stdout anzeigen. Kein Test-Vergleich.
    */
   import { submissionsApi } from '../api/SubmissionsApi';
   import type { ProbelaufAntwort } from '../types/Submission';
@@ -78,7 +78,7 @@
       class="laufe-button"
       onclick={laufeAb}
       disabled={laeuft || !code.trim()}
-      title="Funktion mit diesem Input ausfuehren"
+      title="Funktion mit diesem Input ausführen"
     >
       {#if laeuft}
         <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
@@ -102,7 +102,7 @@
     {:else}
       <div class="ergebnis ok">
         <span class="ergebnis-label">Rückgabe</span>
-        <code class="rueckgabe">{formatiere(antwort.rueckgabe)}</code>
+        <code class="rückgabe">{formatiere(antwort.rückgabe)}</code>
       </div>
     {/if}
     {#if antwort.stdout}
@@ -244,7 +244,7 @@
     padding: 0;
     color: var(--fg);
   }
-  .rueckgabe {
+  .rückgabe {
     color: var(--accent) !important;
   }
 

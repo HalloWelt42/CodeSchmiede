@@ -168,7 +168,7 @@ class ProgressRepository:
     # --- Reset ------------------------------------------------------------
 
     def reset_aufgabe(self, aufgabe_id: str) -> None:
-        """Setzt Progress fuer eine Aufgabe zurueck. Submissions bleiben
+        """Setzt Progress für eine Aufgabe zurück. Submissions bleiben
         als Historie erhalten. Streak bleibt unangetastet.
         """
         with self.db.connect() as conn:

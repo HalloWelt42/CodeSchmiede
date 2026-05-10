@@ -1,5 +1,5 @@
 """
-Naive Loesung: explizite Schleife, Vergleich Zeichen fuer Zeichen.
+Naive Loesung: explizite Schleife, Vergleich Zeichen für Zeichen.
 """
 
 

@@ -1,6 +1,6 @@
 <script lang="ts">
   /*
-   * Filter-Leiste fuer die Aufgabenliste.
+   * Filter-Leiste für die Aufgabenliste.
    * Bidirektionale Bindings auf alle Felder, der Parent (`AufgabenListe`)
    * wendet sie auf die Liste an.
    */

@@ -1,7 +1,7 @@
 <script lang="ts">
   /*
    * Generisches Bestaetigungs-Modal. Kein window.confirm, kein
-   * Browser-Dialog -- alles im App-Stil. Tastatur: Esc schliesst,
+   * Browser-Dialog -- alles im App-Stil. Tastatur: Esc schließt,
    * Enter bestaetigt.
    */
   interface Props {

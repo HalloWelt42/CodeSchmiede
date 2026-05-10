@@ -1,8 +1,8 @@
 /*
  * Wrapper um die CodeMirror-Initialisierung. Liefert eine EditorView,
  * die in eine Svelte-Komponente per `bind:this` eingehaengt wird.
- * Sprache wird ueber den `sprache`-Parameter ausgewaehlt; fuer noch
- * nicht unterstuetzte Sprachen faellt der Editor auf Plain-Text zurueck.
+ * Sprache wird über den `sprache`-Parameter ausgewaehlt; für noch
+ * nicht unterstuetzte Sprachen faellt der Editor auf Plain-Text zurück.
  */
 
 import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands';

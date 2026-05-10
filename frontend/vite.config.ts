@@ -5,7 +5,7 @@ import { readFileSync, existsSync } from 'fs';
 const pkg = JSON.parse(readFileSync('./package.json', 'utf-8'));
 
 // Single source of truth: VERSION-Datei. Dev-Modus liegt sie eine
-// Ebene ueber frontend/, im Docker-Build wird sie in den Build-Context
+// Ebene über frontend/, im Docker-Build wird sie in den Build-Context
 // kopiert und liegt direkt neben package.json.
 let APP_VERSION = pkg.version;
 for (const pfad of ['../VERSION', './VERSION']) {

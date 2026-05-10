@@ -1,8 +1,8 @@
 """DateiWatcher -- beobachtet das Aufgaben-Verzeichnis und triggert
-einen Repository-Reindex bei Aenderungen.
+einen Repository-Reindex bei Änderungen.
 
 Im Dev-Modus heisst das: neue Aufgabe anlegen oder eine bestehende
-editieren, und das Frontend sieht die Aenderung beim naechsten Request,
+editieren, und das Frontend sieht die Änderung beim nächsten Request,
 ohne dass das Backend neu gestartet werden muss.
 """
 
@@ -35,7 +35,7 @@ class AufgabenWatcher:
             ):
                 try:
                     self.repository.neu_aufbauen()
-                    print(f"[watcher] {len(changes)} Aenderung(en), reindexed", flush=True)
+                    print(f"[watcher] {len(changes)} Änderung(en), reindexed", flush=True)
                 except Exception as e:
                     # Reindex darf den Watcher nicht killen.
                     print(f"[watcher] Reindex-Fehler: {e}", flush=True)

@@ -1,11 +1,12 @@
 <script lang="ts">
   /*
-   * Root-Layout (Topbar + Sidebar + Content + Footer).
-   * Routing entscheidet ueber die Content-Komponente.
+   * Root-Layout (Topbar + optional Sidebar + Content + Footer).
+   * Sidebar lässt sich einklappen (LayoutStore.sidebarOffen).
    */
   import { onMount } from 'svelte';
   import { theme } from './lib/stores/ThemeStore.svelte';
   import { route } from './lib/stores/RouteStore.svelte';
+  import { layout } from './lib/stores/LayoutStore.svelte';
   import Topbar from './lib/components/Topbar.svelte';
   import Sidebar from './lib/components/Sidebar.svelte';
   import Footer from './lib/components/Footer.svelte';
@@ -13,17 +14,21 @@
   import AufgabenListe from './lib/components/AufgabenListe.svelte';
   import PfadListe from './lib/components/PfadListe.svelte';
   import AufgabenDetail from './lib/components/AufgabenDetail.svelte';
+  import VerwaltungAnsicht from './lib/components/VerwaltungAnsicht.svelte';
 
   onMount(() => {
     theme.init();
     route.init();
+    layout.init();
   });
 </script>
 
 <div class="layout">
   <Topbar />
   <main class="body">
-    <div class="sidebar-wrap"><Sidebar /></div>
+    {#if layout.sidebarOffen}
+      <div class="sidebar-wrap"><Sidebar /></div>
+    {/if}
     <section class="right">
       {#if route.aktiv === 'dashboard'}
         <Dashboard />
@@ -31,6 +36,8 @@
         <AufgabenListe />
       {:else if route.aktiv === 'pfade'}
         <PfadListe />
+      {:else if route.aktiv === 'verwaltung'}
+        <VerwaltungAnsicht />
       {:else if route.aktiv === 'aufgabe' && route.aufgabeId}
         {#key route.aufgabeId}
           <AufgabenDetail aufgabeId={route.aufgabeId} />

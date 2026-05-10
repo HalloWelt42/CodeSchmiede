@@ -1,5 +1,5 @@
 /*
- * Mock-Daten fuer das Frontend, solange die Backend-Routen noch nicht
+ * Mock-Daten für das Frontend, solange die Backend-Routen noch nicht
  * stehen. Spiegelt 1:1 den Inhalt der drei Aufgaben-Frontmatter wider.
  * Wird ersetzt durch echten API-Aufruf in einem spaeteren Schritt.
  */

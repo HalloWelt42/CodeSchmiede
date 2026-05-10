@@ -78,19 +78,24 @@
 
   {#if tests_sichtbar.length > 0}
     <section class="block">
-      <h3>Sichtbare Tests</h3>
-      <ul class="tests">
-        {#each tests_sichtbar as t, i (i)}
-          <li><code>{formatiereTest(t)}</code></li>
-        {/each}
-      </ul>
-      {#if anzahl_versteckt > 0}
-        <p class="hinweis">
-          Plus {anzahl_versteckt} versteckte
-          {anzahl_versteckt === 1 ? 'Prüfung' : 'Prüfungen'} -- nur die Anzahl
-          des Erfolgs wird zurückgemeldet.
-        </p>
-      {/if}
+      <details>
+        <summary>
+          <h3>Sichtbare Tests &middot; {tests_sichtbar.length}</h3>
+          <i class="fa-solid fa-chevron-down summary-chevron" aria-hidden="true"></i>
+        </summary>
+        <ul class="tests">
+          {#each tests_sichtbar as t, i (i)}
+            <li><code>{formatiereTest(t)}</code></li>
+          {/each}
+        </ul>
+        {#if anzahl_versteckt > 0}
+          <p class="hinweis">
+            Plus {anzahl_versteckt} versteckte
+            {anzahl_versteckt === 1 ? 'Prüfung' : 'Prüfungen'} -- nur die Anzahl
+            des Erfolgs wird zurückgemeldet.
+          </p>
+        {/if}
+      </details>
     </section>
   {/if}
 
@@ -234,6 +239,31 @@
     color: var(--accent);
   }
 
+  details summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  details summary h3 {
+    margin: 0;
+  }
+  .summary-chevron {
+    color: var(--fg-mute);
+    font-size: var(--fs-xs);
+    transition: transform 0.15s;
+  }
+  details[open] .summary-chevron {
+    transform: rotate(180deg);
+    color: var(--accent);
+  }
+  details > *:not(summary) {
+    margin-top: var(--sp-2);
+  }
   .tests {
     list-style: none;
     padding: 0;

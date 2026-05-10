@@ -4,10 +4,11 @@
  *   #dashboard           -> Dashboard
  *   #aufgaben            -> Liste aller Aufgaben
  *   #pfade               -> Liste aller Pfade
+ *   #verwaltung          -> Verwaltungsübersicht aller Aufgaben (Admin)
  *   #aufgabe/<id>        -> Detail-Ansicht einer Aufgabe
  */
 
-export type Route = 'dashboard' | 'aufgaben' | 'pfade' | 'aufgabe';
+export type Route = 'dashboard' | 'aufgaben' | 'pfade' | 'verwaltung' | 'aufgabe';
 
 class RouteStore {
   aktiv = $state<Route>('dashboard');
@@ -36,6 +37,9 @@ class RouteStore {
       this.aufgabeId = null;
     } else if (hash === 'pfade') {
       this.aktiv = 'pfade';
+      this.aufgabeId = null;
+    } else if (hash === 'verwaltung') {
+      this.aktiv = 'verwaltung';
       this.aufgabeId = null;
     } else {
       this.aktiv = 'dashboard';

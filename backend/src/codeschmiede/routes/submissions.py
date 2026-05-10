@@ -1,5 +1,5 @@
-"""HTTP-Routen fuer Submissions und Probelauf -- Code abschicken,
-ausfuehren, bewerten oder probieren.
+"""HTTP-Routen für Submissions und Probelauf -- Code abschicken,
+ausführen, bewerten oder probieren.
 """
 
 import json
@@ -38,7 +38,7 @@ class ProbelaufAnfrage(BaseModel):
 
 
 class ProbelaufAntwort(BaseModel):
-    rueckgabe: Any = None
+    rückgabe: Any = None
     stdout: str = ""
     stderr: str = ""
     laufzeit_ms: float
@@ -92,7 +92,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
     @router.post("/probelauf", response_model=ProbelaufAntwort)
     def probelauf(anfrage: ProbelaufAnfrage) -> ProbelaufAntwort:
         """Fuehrt die Funktion mit benutzerdefiniertem Input aus, ohne
-        Bewertung. Liefert Rueckgabe + stdout zurueck.
+        Bewertung. Liefert Rückgabe + stdout zurück.
         """
         aufgabe = state.aufgaben.aufgabe(anfrage.aufgabe_id)
         if not aufgabe:
@@ -110,12 +110,12 @@ def baue_submissions_router(state: AppState) -> APIRouter:
 
         if PROBELAUF_MARKER not in run.stdout:
             return ProbelaufAntwort(
-                rueckgabe=None,
+                rückgabe=None,
                 stdout=run.stdout,
                 stderr=run.stderr,
                 laufzeit_ms=run.laufzeit_ms,
                 timeout=run.timeout,
-                fehler="Code wurde nicht vollstaendig ausgefuehrt",
+                fehler="Code wurde nicht vollständig ausgeführt",
             )
 
         nutzer_stdout, _, json_teil = run.stdout.partition(PROBELAUF_MARKER)
@@ -123,7 +123,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             ergebnis = json.loads(json_teil.strip())
         except json.JSONDecodeError:
             return ProbelaufAntwort(
-                rueckgabe=None,
+                rückgabe=None,
                 stdout=nutzer_stdout,
                 stderr=run.stderr or "Ergebnis konnte nicht geparst werden",
                 laufzeit_ms=run.laufzeit_ms,
@@ -132,7 +132,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             )
 
         return ProbelaufAntwort(
-            rueckgabe=ergebnis.get("rueckgabe"),
+            rückgabe=ergebnis.get("rückgabe"),
             stdout=nutzer_stdout,
             stderr=run.stderr,
             laufzeit_ms=run.laufzeit_ms,
@@ -153,9 +153,9 @@ def _baue_probelauf_skript(code: str, funktion: str, eingabe: list[Any]) -> str:
         f"_eingabe = _json.loads({eingabe_json!r})\n"
         "try:\n"
         f"    _rueckgabe = {funktion}(*_eingabe)\n"
-        "    _ergebnis = {'rueckgabe': _rueckgabe, 'fehler': None}\n"
+        "    _ergebnis = {'rückgabe': _rueckgabe, 'fehler': None}\n"
         "except Exception as _e:\n"
-        "    _ergebnis = {'rueckgabe': None,\n"
+        "    _ergebnis = {'rückgabe': None,\n"
         "                 'fehler': type(_e).__name__ + ': ' + str(_e)}\n"
         f"_sys.stdout.write({PROBELAUF_MARKER!r})\n"
         "_sys.stdout.write(_json.dumps(_ergebnis, default=str))\n"

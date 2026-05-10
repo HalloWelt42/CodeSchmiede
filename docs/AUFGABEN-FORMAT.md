@@ -408,7 +408,7 @@ starter_code: |
 # Summe einer Liste
 
 Schreibe eine Funktion `summe(zahlen)`, die die Summe aller Elemente
-einer Liste von ganzen Zahlen zurueckgibt.
+einer Liste von ganzen Zahlen zurückgibt.
 
 ## Beispiele
 
@@ -421,7 +421,7 @@ einer Liste von ganzen Zahlen zurueckgibt.
 ## Worauf zu achten ist
 
 - Eine **leere Liste** soll `0` zurueckgeben (per Konvention -- die
-  Summe ueber das leere Produkt ist das neutrale Element der Addition).
+  Summe über das leere Produkt ist das neutrale Element der Addition).
 - Negative Zahlen sind erlaubt.
 
 ## Hintergrund

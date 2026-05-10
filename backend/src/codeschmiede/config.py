@@ -1,10 +1,10 @@
-"""Settings fuer Codeschmiede. Werte aus Umgebungsvariablen oder Defaults."""
+"""Settings für Codeschmiede. Werte aus Umgebungsvariablen oder Defaults."""
 
 from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# backend/src/codeschmiede/config.py -> Projekt-Wurzel ist 4 Ebenen darueber
+# backend/src/codeschmiede/config.py -> Projekt-Wurzel ist 4 Ebenen darüber
 PROJEKT_WURZEL = Path(__file__).resolve().parents[3]
 
 

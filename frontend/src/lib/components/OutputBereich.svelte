@@ -2,7 +2,7 @@
   /*
    * Rechte Spalte: Ergebnis der Pruefung.
    * Bei Bestanden zeigt eine Erfolgs-Zeile mit Punkten und einem
-   * Weiter-Button zur naechsten Aufgabe.
+   * Weiter-Button zur nächsten Aufgabe.
    * Stdout vom Nutzer-Code wird oben angezeigt, wenn nicht leer.
    */
   import type { SubmissionAntwort, TestErgebnis } from '../types/Submission';

@@ -1,6 +1,6 @@
 <script lang="ts">
   /*
-   * Drei-Spalten-Layout fuer die Aufgaben-Detail-Ansicht:
+   * Drei-Spalten-Layout für die Aufgaben-Detail-Ansicht:
    *   Beschreibung | Editor + Probelauf | Output
    *
    * Header bietet Reset, Body laedt Detail asynchron, OutputBereich
@@ -10,6 +10,7 @@
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
+  import { aufgabenApi } from '../api/AufgabenApi';
   import { progressApi } from '../api/ProgressApi';
   import { submissionsApi } from '../api/SubmissionsApi';
   import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
@@ -50,7 +51,15 @@
         return;
       }
       detail = d;
-      code = d.starter_code;
+      // Letzte abgeschickte Lösung laden, falls vorhanden -- sonst
+      // Starter-Boilerplate. Damit der Editor da weitermacht, wo der
+      // Nutzer aufgehört hat.
+      try {
+        const letzte = await aufgabenApi.letzteSubmission(d.id);
+        code = letzte.code ?? d.starter_code;
+      } catch {
+        code = d.starter_code;
+      }
     } catch (e) {
       fehler = (e as Error).message;
     } finally {
@@ -89,7 +98,7 @@
     }
   }
 
-  function zurueck(): void {
+  function zurück(): void {
     route.setze('aufgaben');
   }
 
@@ -107,6 +116,8 @@
       ergebnis = null;
       musterloesungen = null;
       zeige_loesungen = false;
+      // Beim Reset zurück auf Starter-Boilerplate, nicht auf letzte
+      // Submission -- der Nutzer will von vorn anfangen.
       code = detail.starter_code;
       await progressStore.ladeAlles();
     } catch (e) {
@@ -126,7 +137,7 @@
     <div class="info fehler">Fehler: {fehler}</div>
   {:else if detail}
     <header class="kopf">
-      <button class="kopf-btn" onclick={zurueck} title="Zurück zur Liste" aria-label="Zurück">
+      <button class="kopf-btn" onclick={zurück} title="Zurück zur Liste" aria-label="Zurück">
         <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
       </button>
       <div class="kopf-info">

@@ -2,7 +2,7 @@
 input/expected-Tests (sichtbare + versteckte).
 
 Strategie:
-- Baue ein Skript, das den Nutzer-Code uebernimmt und im Anschluss alle
+- Baue ein Skript, das den Nutzer-Code übernimmt und im Anschluss alle
   Tests gegen die `funktion` aus dem Frontmatter ausfuehrt.
 - Die Test-Ergebnisse werden als JSON nach einem Marker auf stdout
   geschrieben, alles davor ist Nutzer-Output.
@@ -106,7 +106,7 @@ def _crash_ergebnis(
                 eingabe=t.input,
                 erwartet=t.expected,
                 tatsaechlich=None,
-                fehler="Code wurde nicht vollstaendig ausgefuehrt",
+                fehler="Code wurde nicht vollständig ausgeführt",
             )
             for i, t in enumerate(aufgabe.tests_sichtbar)
         ],
@@ -123,7 +123,7 @@ def _baue_skript(code: str, funktion: str, tests: list[dict]) -> str:
     """Wrapper-Skript: Nutzer-Code + Test-Runner + JSON-Marker auf stdout.
 
     Tests werden als JSON-String an den Container uebergeben und dort per
-    `json.loads` geparst -- so klappt es auch fuer Booleans, None, und
+    `json.loads` geparst -- so klappt es auch für Booleans, None, und
     Sonderzeichen, die in Python-Syntax anders aussehen (true vs True).
     """
     tests_json = json.dumps(tests)

@@ -1,5 +1,5 @@
 /*
- * Store fuer Aufgaben. Liste wird einmal geladen, Detail-Daten und
+ * Store für Aufgaben. Liste wird einmal geladen, Detail-Daten und
  * Musterloesungen werden lazy geladen und gecached.
  */
 

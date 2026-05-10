@@ -2,6 +2,12 @@ import { HttpBase } from './HttpBase';
 import type { AufgabeDetail, AufgabeKurz, Musterloesung } from '../types/Aufgabe';
 import type { ProgressEintrag } from './ProgressApi';
 
+export interface LetzteSubmission {
+  code: string | null;
+  bestanden: boolean | null;
+  zeitstempel: string | null;
+}
+
 export class AufgabenApi extends HttpBase {
   constructor() {
     super('/api/aufgaben');
@@ -21,6 +27,10 @@ export class AufgabenApi extends HttpBase {
 
   hintGeoeffnet(aufgabeId: string, hintIndex: number): Promise<ProgressEintrag> {
     return this.post<ProgressEintrag>(`/${aufgabeId}/hints/${hintIndex}`, {});
+  }
+
+  letzteSubmission(aufgabeId: string): Promise<LetzteSubmission> {
+    return this.get<LetzteSubmission>(`/${aufgabeId}/letzte-submission`);
   }
 }
 
