@@ -10,6 +10,7 @@
   import { onMount, tick } from 'svelte';
   import { adminApi } from '../api/AdminApi';
   import type {
+    AufgabeVersion,
     MusterloesungEintrag,
     ValidierungsErgebnis,
   } from '../api/AdminApi';
@@ -68,6 +69,7 @@
   let neuer_solution_code = $state('');
   let validierung = $state<ValidierungsErgebnis | null>(null);
   let validiert_laeuft = $state(false);
+  let versionen = $state<AufgabeVersion[]>([]);
 
   let beschreibung_modus = $state<'quelle' | 'split' | 'vorschau'>('split');
   let vorschau_host: HTMLDivElement | undefined = $state();
@@ -137,8 +139,10 @@
       quiz_richtig_index = quiz?.richtig_index ?? 0;
       if (bearbeiten) {
         await ladeMusterloesungen();
+        await ladeVersionen();
       } else {
         musterloesungen = [];
+        versionen = [];
       }
     } else {
       id = '';
@@ -177,6 +181,15 @@
       musterloesungen = await adminApi.musterloesungen(bearbeiten.id);
     } catch (e) {
       fehler = (e as Error).message;
+    }
+  }
+
+  async function ladeVersionen(): Promise<void> {
+    if (!bearbeiten) return;
+    try {
+      versionen = await adminApi.versionen(bearbeiten.id);
+    } catch {
+      versionen = [];
     }
   }
 
@@ -640,6 +653,26 @@
               {/if}
             </div>
           </fieldset>
+
+          {#if versionen.length > 0}
+            <fieldset>
+              <legend>Versionsgeschichte ({versionen.length})</legend>
+              <p class="lead">
+                Jede inhaltliche Aenderung erhoeht die `revision` -- alte
+                Submissions referenzieren weiterhin die zum Submit-Zeitpunkt
+                gueltige Version.
+              </p>
+              <ul class="versionen-liste">
+                {#each versionen as v (v.revision)}
+                  <li>
+                    <span class="rev num">rev {v.revision}</span>
+                    <span class="hash mono">{v.hash.slice(0, 12)}...</span>
+                    <span class="datum">{v.gueltig_ab}</span>
+                  </li>
+                {/each}
+              </ul>
+            </fieldset>
+          {/if}
         {/if}
       </div>
 
@@ -1139,4 +1172,36 @@
     color: var(--accent);
     border-color: var(--accent);
   }
+
+  .versionen-liste {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .versionen-liste li {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: var(--sp-2);
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 4px var(--sp-2);
+    font-size: var(--fs-xs);
+  }
+  .versionen-liste .rev {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .versionen-liste .hash {
+    font-family: var(--mono);
+    color: var(--fg-mute);
+  }
+  .versionen-liste .datum {
+    color: var(--fg-dim);
+    text-align: right;
+  }
+  .mono { font-family: var(--mono); }
 </style>

@@ -27,6 +27,12 @@ export interface AufgabeSchreibAnfrage {
   beschreibung_md: string;
 }
 
+export interface AufgabeVersion {
+  revision: number;
+  hash: string;
+  gueltig_ab: string;
+}
+
 export interface PfadEintrag {
   id: string;
   titel: string;
@@ -108,6 +114,10 @@ export class AdminApi extends HttpBase {
 
   pfadLoeschen(id: string): Promise<null> {
     return this.delete<null>(`/pfade/${id}`);
+  }
+
+  versionen(id: string): Promise<AufgabeVersion[]> {
+    return this.get<AufgabeVersion[]>(`/aufgaben/${id}/versionen`);
   }
 }
 

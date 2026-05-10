@@ -48,6 +48,32 @@ export interface WeiterVorschlag {
   pfad_id: string | null;
 }
 
+export interface HeatmapTag {
+  datum: string;
+  submissions: number;
+  bestanden: number;
+}
+
+export interface HeatmapAntwort {
+  tage: HeatmapTag[];
+}
+
+export interface Achievement {
+  id: string;
+  titel: string;
+  beschreibung: string;
+  icon: string;
+  erreicht: boolean;
+  fortschritt: number;
+  ziel: number;
+}
+
+export interface AchievementsAntwort {
+  eintraege: Achievement[];
+  erreicht_anzahl: number;
+  gesamt_anzahl: number;
+}
+
 export class ProgressApi extends HttpBase {
   constructor() {
     super('/api/progress');
@@ -70,6 +96,12 @@ export class ProgressApi extends HttpBase {
   }
   reset(aufgabeId: string): Promise<{ status: string; aufgabe_id: string }> {
     return this.request<{ status: string; aufgabe_id: string }>(`/${aufgabeId}`, { method: 'DELETE' });
+  }
+  heatmap(tage = 90): Promise<HeatmapAntwort> {
+    return this.get<HeatmapAntwort>(`/heatmap?tage=${tage}`);
+  }
+  achievements(): Promise<AchievementsAntwort> {
+    return this.get<AchievementsAntwort>('/achievements');
   }
 }
 

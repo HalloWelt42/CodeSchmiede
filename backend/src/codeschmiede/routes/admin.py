@@ -65,6 +65,12 @@ class VerwaltungsEintrag(BaseModel):
     statistik: AufgabenStatistik
 
 
+class AufgabeVersion(BaseModel):
+    revision: int
+    hash: str
+    gueltig_ab: str
+
+
 class PfadSchreibAnfrage(BaseModel):
     id: str
     titel: str
@@ -371,6 +377,28 @@ def baue_admin_router(state: AppState) -> APIRouter:
         except AufgabenSchreiberFehler as exc:
             raise HTTPException(404, str(exc)) from exc
         state.aufgaben.leere_metriken_cache()
+
+    @router.get(
+        "/aufgaben/{aufgabe_id}/versionen", response_model=list[AufgabeVersion]
+    )
+    def aufgabe_versionen(aufgabe_id: str) -> list[AufgabeVersion]:
+        """Frühere Revisionen einer Aufgabe -- aus aufgaben_versionen-Tabelle."""
+        with state.db.connect() as conn:
+            rows = conn.execute(
+                """
+                SELECT revision, hash, datetime(gueltig_ab) AS gueltig_ab
+                FROM aufgaben_versionen
+                WHERE aufgabe_id = ?
+                ORDER BY revision DESC
+                """,
+                (aufgabe_id,),
+            ).fetchall()
+        return [
+            AufgabeVersion(
+                revision=r["revision"], hash=r["hash"], gueltig_ab=r["gueltig_ab"]
+            )
+            for r in rows
+        ]
 
     @router.get("/pfade", response_model=list[PfadEintrag])
     def pfade_liste() -> list[PfadEintrag]:

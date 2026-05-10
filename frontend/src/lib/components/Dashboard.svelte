@@ -3,8 +3,10 @@
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
+  import AchievementListe from './AchievementListe.svelte';
   import ActionCard from './ActionCard.svelte';
   import EmptyState from './EmptyState.svelte';
+  import StreakHeatmap from './StreakHeatmap.svelte';
 
   onMount(async () => {
     if (aufgabenStore.liste.length === 0) await aufgabenStore.ladeListe();
@@ -177,6 +179,11 @@
       </div>
     </section>
   {/if}
+
+  <section class="extras">
+    <StreakHeatmap />
+    <AchievementListe />
+  </section>
   {/if}
 </div>
 
@@ -272,5 +279,12 @@
   .chip.punkte {
     color: var(--accent);
     border-color: var(--accent);
+  }
+
+  .extras {
+    margin-top: var(--sp-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
   }
 </style>
