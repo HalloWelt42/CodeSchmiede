@@ -24,11 +24,11 @@ hints:
   - kosten: 0
     text: |
       `list(set(a))` entfernt Doppelte, vermurkst aber die Reihenfolge.
-      Du brauchst einen anderen Weg, der die Reihenfolge erhaelt.
+      Du brauchst einen anderen Weg, der die Reihenfolge erhält.
   - kosten: 15
     text: |
       Ein "gesehen"-Set fuer den schnellen Lookup, dann pro Element
-      pruefen und ggf. anhaengen.
+      prüfen und ggf. anhaengen.
   - kosten: 25
     text: |
       Seit Python 3.7 garantiert `dict` Insertion-Order. Damit ist
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: ["x"]
 starter_code: |
   def eindeutige(a: list) -> list:
-      # Deine Loesung hier -- Doppelte raus, Reihenfolge wie in a.
+      # Deine Lösung hier -- Doppelte raus, Reihenfolge wie in a.
       pass
 ---
 
@@ -79,11 +79,11 @@ ordnungserhaltend. Es gibt zwei saubere Wege:
 2. `list(dict.fromkeys(a))` -- nutzt aus, dass Dicts seit 3.7
    Insertion-Order garantieren
 
-Beide sind gueltig.
+Beide sind gültig.
 
 ## Hintergrund
 
 Diese Aufgabe ist eines der typischen Beispiele dafuer, dass eine
 augenscheinlich passende Standardloesung (`set`) eine subtile
 Schwaeche hat (Reihenfolge). Solche Faelle sind in echten Codebasen
-sehr haeufig.
+sehr häufig.

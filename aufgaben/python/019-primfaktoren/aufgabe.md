@@ -22,7 +22,7 @@ zeitlimit_sekunden: 5
 funktion: primfaktoren
 hints:
   - kosten: 0
-    text: Teile `n` so oft wie moeglich durch 2, dann durch 3, dann durch 5, ...
+    text: Teile `n` so oft wie möglich durch 2, dann durch 3, dann durch 5, ...
   - kosten: 15
     text: |
       Probiere alle Teiler ab 2 aufsteigend. Wenn `n % i == 0`, fuege `i`
@@ -54,7 +54,7 @@ tests_versteckt:
     expected: [999983]
 starter_code: |
   def primfaktoren(n: int) -> list[int]:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 
@@ -83,7 +83,7 @@ zum naechsten $i$. Wiederhole, bis $n = 1$.
 ## Hintergrund
 
 Der **Fundamentalsatz der Arithmetik** garantiert, dass jede natuerliche
-Zahl groesser 1 eine eindeutige Primfaktorzerlegung hat. Diese
+Zahl größer 1 eine eindeutige Primfaktorzerlegung hat. Diese
 Zerlegung ist die Grundlage vieler kryptographischer Verfahren -- die
 Sicherheit von RSA beruht darauf, dass die Zerlegung sehr grosser
-Zahlen praktisch nicht in vertretbarer Zeit moeglich ist.
+Zahlen praktisch nicht in vertretbarer Zeit möglich ist.

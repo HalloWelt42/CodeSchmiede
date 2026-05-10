@@ -55,7 +55,7 @@ tests_versteckt:
     expected: 45
 starter_code: |
   def quersumme(n: int) -> int:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 

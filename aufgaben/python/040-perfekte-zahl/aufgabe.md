@@ -2,7 +2,7 @@
 schema_version: 1
 id: 040-perfekte-zahl
 revision: 1
-titel: Perfekte Zahl pruefen
+titel: Perfekte Zahl prüfen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -28,7 +28,7 @@ hints:
   - kosten: 15
     text: |
       Schleife `i in range(1, n)` und alle `i` summieren, bei denen
-      `n % i == 0`. Pruefe `summe == n` am Ende.
+      `n % i == 0`. Prüfe `summe == n` am Ende.
   - kosten: 25
     text: |
       Schneller: Teiler treten in Paaren auf. Bis `sqrt(n)` reicht.
@@ -56,11 +56,11 @@ tests_versteckt:
     expected: false
 starter_code: |
   def ist_perfekt(n: int) -> bool:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 
-# Perfekte Zahl pruefen
+# Perfekte Zahl prüfen
 
 Schreibe eine Funktion `ist_perfekt(n)`, die `True` zurueckgibt, wenn
 `n` eine **vollkommene Zahl** (perfekte Zahl) ist -- also gleich der

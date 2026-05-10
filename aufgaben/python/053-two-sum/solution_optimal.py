@@ -1,5 +1,5 @@
 """
-Optimale Loesung mit Dict: O(n) Zeit, O(n) Speicher.
+Optimale Lösung mit Dict: O(n) Zeit, O(n) Speicher.
 """
 
 

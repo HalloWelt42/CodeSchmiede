@@ -1,5 +1,5 @@
 """
-Rekursive Loesung -- direkte Umsetzung der mathematischen Definition.
+Rekursive Lösung -- direkte Umsetzung der mathematischen Definition.
 """
 
 

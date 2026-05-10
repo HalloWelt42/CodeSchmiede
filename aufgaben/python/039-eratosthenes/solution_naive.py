@@ -1,5 +1,5 @@
 """
-Naive Loesung: jede Zahl einzeln auf Primalitaet pruefen.
+Naive Lösung: jede Zahl einzeln auf Primalitaet prüfen.
 Korrekt, aber langsam fuer grosse n.
 """
 

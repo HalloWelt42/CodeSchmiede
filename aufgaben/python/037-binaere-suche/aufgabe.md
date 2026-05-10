@@ -69,7 +69,7 @@ tests_versteckt:
     expected: 1
 starter_code: |
   def binaere_suche(liste: list[int], ziel: int) -> int:
-      # Deine Loesung hier -- Index zurueckgeben oder -1 falls nicht gefunden.
+      # Deine Lösung hier -- Index zurueckgeben oder -1 falls nicht gefunden.
       pass
 ---
 

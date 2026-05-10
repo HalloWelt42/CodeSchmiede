@@ -1,5 +1,5 @@
 """
-Eine-Zeilen-Loesung mit Dict-Comprehension.
+Eine-Zeilen-Lösung mit Dict-Comprehension.
 """
 
 

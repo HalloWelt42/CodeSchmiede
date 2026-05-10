@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Waehle ein Pivot-Element. Teile die Liste in: kleiner als Pivot,
-      gleich Pivot, groesser als Pivot. Sortiere die beiden aeusseren
+      gleich Pivot, größer als Pivot. Sortiere die beiden aeusseren
       Listen rekursiv und setze alles zusammen.
   - kosten: 20
     text: |
@@ -33,8 +33,8 @@ hints:
       ```
       pivot = liste[0]
       kleiner = [x for x in liste[1:] if x < pivot]
-      groesser = [x for x in liste[1:] if x >= pivot]
-      return quicksort(kleiner) + [pivot] + quicksort(groesser)
+      größer = [x for x in liste[1:] if x >= pivot]
+      return quicksort(kleiner) + [pivot] + quicksort(größer)
       ```
 tests_sichtbar:
   - input: [[3, 1, 2]]
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: [3, 3, 3, 3]
 starter_code: |
   def quicksort(liste: list[int]) -> list[int]:
-      # Deine Loesung hier -- ohne sorted() / list.sort().
+      # Deine Lösung hier -- ohne sorted() / list.sort().
       pass
 ---
 
@@ -69,8 +69,8 @@ Schreibe eine Funktion `quicksort(liste)`, die die Liste mit
 
 1. Liste mit 0 oder 1 Element: schon sortiert
 2. Sonst: waehle ein **Pivot-Element**
-3. Teile die Liste in `kleiner`, `gleich`, `groesser`
-4. Sortiere `kleiner` und `groesser` rekursiv
+3. Teile die Liste in `kleiner`, `gleich`, `größer`
+4. Sortiere `kleiner` und `größer` rekursiv
 5. Setze `kleiner_sortiert + gleich + groesser_sortiert` zusammen
 
 ## Komplexitaet

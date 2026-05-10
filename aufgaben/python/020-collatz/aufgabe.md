@@ -11,7 +11,7 @@ schwierigkeit_score: 14
 schaetz_minuten: 8
 tags: [zahlen, schleifen, beruehmt]
 pfade: [python_mathe]
-voraussetzungen: [017-fakultaet]
+voraussetzungen: [017-fakultät]
 quelle:
   url: https://de.wikipedia.org/wiki/Collatz-Problem
   notiz: Beruehmtes ungeloestes Problem, eigene Reformulierung
@@ -49,7 +49,7 @@ tests_versteckt:
     expected: 178
 starter_code: |
   def collatz_laenge(n: int) -> int:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 
@@ -57,8 +57,8 @@ starter_code: |
 
 Die **Collatz-Folge** ist nach folgender Regel definiert:
 
-- ist $n$ **gerade**, dann ist das naechste Glied $n / 2$
-- ist $n$ **ungerade**, dann ist das naechste Glied $3n + 1$
+- ist $n$ **gerade**, dann ist das nächste Glied $n / 2$
+- ist $n$ **ungerade**, dann ist das nächste Glied $3n + 1$
 - die Folge endet, sobald $n = 1$ erreicht wird
 
 Schreibe eine Funktion `collatz_laenge(n)`, die die **Anzahl Schritte**

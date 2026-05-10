@@ -23,7 +23,7 @@ funktion: spalten_summen
 hints:
   - kosten: 0
     text: |
-      Pro Spalte alle Eintraege summieren. Liste der Spaltensummen
+      Pro Spalte alle Einträge summieren. Liste der Spaltensummen
       zurueckgeben.
   - kosten: 15
     text: |
@@ -50,14 +50,14 @@ tests_versteckt:
     expected: [-2, 2]
 starter_code: |
   def spalten_summen(matrix: list[list[int]]) -> list[int]:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 
 # Spaltensumme einer Matrix
 
 Schreibe eine Funktion `spalten_summen(matrix)`, die fuer jede Spalte
-einer Matrix die Summe ihrer Eintraege zurueckgibt.
+einer Matrix die Summe ihrer Einträge zurueckgibt.
 
 ## Beispiele
 

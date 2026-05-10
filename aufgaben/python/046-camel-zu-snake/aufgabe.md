@@ -23,7 +23,7 @@ funktion: camel_zu_snake
 hints:
   - kosten: 0
     text: |
-      Vor jedem Grossbuchstaben einen Unterstrich einfuegen, dann
+      Vor jedem Grossbuchstaben einen Unterstrich einfügen, dann
       alles in Kleinbuchstaben.
   - kosten: 15
     text: |
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: "xml_http_request"
 starter_code: |
   def camel_zu_snake(text: str) -> str:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 
@@ -79,4 +79,4 @@ fuege vorher `_` ein. Dann den Buchstaben kleingeschrieben anhaengen.
 ## Tipp
 
 Mit `re.sub(r'(?<!^)([A-Z])', r'_\1', text).lower()` ginge es per
-Regex in einer Zeile. Hier zur Uebung lieber mit Schleife.
+Regex in einer Zeile. Hier zur Übung lieber mit Schleife.

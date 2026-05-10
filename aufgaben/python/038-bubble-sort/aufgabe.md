@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Doppelte Schleife. Vergleiche jeweils Nachbarn, vertausche, falls
-      links groesser ist als rechts. Wiederhole, bis nichts mehr
+      links größer ist als rechts. Wiederhole, bis nichts mehr
       vertauscht wurde.
   - kosten: 15
     text: |
@@ -50,7 +50,7 @@ tests_versteckt:
     expected: [42]
 starter_code: |
   def bubble_sort(liste: list[int]) -> list[int]:
-      # Deine Loesung hier -- ohne sorted() oder list.sort().
+      # Deine Lösung hier -- ohne sorted() oder list.sort().
       pass
 ---
 

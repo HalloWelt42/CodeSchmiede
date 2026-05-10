@@ -45,7 +45,7 @@ tests_versteckt:
     expected: [5, 4, 2]
 starter_code: |
   def ohne(a: list, b: list) -> list:
-      # Deine Loesung hier -- a in seiner Reihenfolge, ohne b und ohne Doppelte.
+      # Deine Lösung hier -- a in seiner Reihenfolge, ohne b und ohne Doppelte.
       pass
 ---
 
@@ -68,7 +68,7 @@ jedes Element nur einmal.
 
 `set(b)` macht den "ist drin?"-Test schnell. Dann eine Schleife ueber
 `a` mit Duplikat-Tracking -- entweder ueber ein zweites Set oder
-implizit ueber das Pruefen `x not in ergebnis`.
+implizit ueber das Prüfen `x not in ergebnis`.
 
 ## Vergleich mit Set-Operationen
 

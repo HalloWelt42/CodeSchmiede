@@ -25,7 +25,7 @@ hints:
     text: Lücke 1 ist der Modulo-Operator, Lücke 2 die Zahl 5.
   - kosten: 10
     text: |
-      Loesung -- Lücke 1 = `%`, Lücke 2 = `5`, Lücke 3 = `"beides"`,
+      Lösung -- Lücke 1 = `%`, Lücke 2 = `5`, Lücke 3 = `"beides"`,
       Lücke 4 = `"keines"`.
 tests_sichtbar:
   - input: [15]
@@ -63,15 +63,15 @@ lueckentext:
     - nummer: 2
       hinweis: "Zahl"
     - nummer: 3
-      hinweis: "Zeichenkette in Anfuehrungszeichen"
+      hinweis: "Zeichenkette in Anführungszeichen"
     - nummer: 4
-      hinweis: "Zeichenkette in Anfuehrungszeichen"
+      hinweis: "Zeichenkette in Anführungszeichen"
 ---
 
 # Lückentext -- Mini-FizzBuzz
 
 Eine vereinfachte Variante: gibt `"drei"`, `"fuenf"` oder `"beides"`
-zurueck, je nachdem ob `n` durch 3, durch 5, oder durch beides
+zurück, je nachdem ob `n` durch 3, durch 5, oder durch beides
 teilbar ist. Wenn nichts passt: `"keines"`.
 
 ## Beispiele

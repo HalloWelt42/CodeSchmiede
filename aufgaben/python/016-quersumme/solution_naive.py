@@ -1,5 +1,5 @@
 """
-Naive Loesung: Wandle die Zahl in einen String und summiere die
+Naive Lösung: Wandle die Zahl in einen String und summiere die
 einzelnen Ziffern.
 """
 

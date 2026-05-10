@@ -26,7 +26,7 @@ hints:
       `text.split()` zerlegt nach Whitespace. Dann `max(woerter, key=len)`.
   - kosten: 10
     text: |
-      Bei mehreren gleich langen Woertern soll das **erste** zurueck.
+      Bei mehreren gleich langen Woertern soll das **erste** zurück.
       `max()` mit `key=len` waehlt automatisch das erste.
 tests_sichtbar:
   - input: ["Hallo Welt"]
@@ -48,7 +48,7 @@ tests_versteckt:
     expected: "leerzeichen"
 starter_code: |
   def laengstes_wort(text: str) -> str:
-      # Deine Loesung hier -- bei Gleichstand das erste.
+      # Deine Lösung hier -- bei Gleichstand das erste.
       pass
 ---
 

@@ -14,7 +14,7 @@ pfade: [python_dicts]
 voraussetzungen: [022-wortzaehler]
 quelle:
   url: null
-  notiz: Standard-Dict-Uebung
+  notiz: Standard-Dict-Übung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -46,7 +46,7 @@ tests_versteckt:
     expected: { "1": "eins" }
 starter_code: |
   def invertiere(d: dict) -> dict:
-      # Deine Loesung hier -- Schluessel und Werte tauschen.
+      # Deine Lösung hier -- Schluessel und Werte tauschen.
       # Werte werden im Ergebnis als Strings verwendet (str(wert)).
       pass
 ---

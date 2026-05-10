@@ -326,7 +326,7 @@
       {#if detail.task_type === 'bug_finden'}
         <div class="bug-banner">
           <i class="fa-solid fa-bug" aria-hidden="true"></i>
-          <span><strong>Bug finden!</strong> Im Editor steht Code mit einem Fehler. Finde ihn, fixe ihn, drueck Pruefen.</span>
+          <span><strong>Bug finden!</strong> Im Editor steht Code mit einem Fehler. Finde ihn, fixe ihn, drück Prüfen.</span>
         </div>
       {/if}
     <div class="spalten" bind:this={spaltenContainer} style={spaltenStil}>
@@ -349,7 +349,7 @@
         aria-label="Linke Spalte verschieben"
         onpointerdown={(e) => startDrag(e, 0)}
         ondblclick={() => layout.resetSpalten()}
-        title="Ziehen zum Anpassen, Doppelklick setzt zurueck"
+        title="Ziehen zum Anpassen, Doppelklick setzt zurück"
       ></div>
 
       <section class="spalte mitte">
@@ -378,7 +378,7 @@
         aria-label="Rechte Spalte verschieben"
         onpointerdown={(e) => startDrag(e, 1)}
         ondblclick={() => layout.resetSpalten()}
-        title="Ziehen zum Anpassen, Doppelklick setzt zurueck"
+        title="Ziehen zum Anpassen, Doppelklick setzt zurück"
       ></div>
 
       <section class="spalte rechts">

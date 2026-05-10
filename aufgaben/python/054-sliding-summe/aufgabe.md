@@ -23,7 +23,7 @@ funktion: max_fenster_summe
 hints:
   - kosten: 0
     text: |
-      Naive Loesung: alle Fenster der Groesse k pruefen, jeweils
+      Naive Lösung: alle Fenster der Groesse k prüfen, jeweils
       summieren. O(n*k).
   - kosten: 15
     text: |
@@ -52,7 +52,7 @@ tests_versteckt:
     expected: 0
 starter_code: |
   def max_fenster_summe(zahlen: list[int], k: int) -> int:
-      # Deine Loesung hier -- groesste Summe ueber k aufeinander-
+      # Deine Lösung hier -- groesste Summe ueber k aufeinander-
       # folgenden Elementen. Bei leerer Liste oder k > len(zahlen)
       # liefere 0.
       pass

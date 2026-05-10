@@ -1,5 +1,5 @@
 """
-Klassische Linien-Pruefung mit if-Kette.
+Klassische Linien-Prüfung mit if-Kette.
 """
 
 

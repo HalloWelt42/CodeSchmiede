@@ -27,7 +27,7 @@ hints:
       0 = Sonntag, 1 = Montag, ..., 6 = Samstag.
   - kosten: 25
     text: |
-      Trick: Januar und Februar zaehlen als Monat 13 und 14 des
+      Trick: Januar und Februar zählen als Monat 13 und 14 des
       **Vorjahres**.
 
       ```
@@ -61,7 +61,7 @@ tests_versteckt:
     expected: 5
 starter_code: |
   def wochentag(jahr: int, monat: int, tag: int) -> int:
-      # Deine Loesung hier -- 0=Sonntag, 1=Montag, ..., 6=Samstag.
+      # Deine Lösung hier -- 0=Sonntag, 1=Montag, ..., 6=Samstag.
       pass
 ---
 

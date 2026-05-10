@@ -58,7 +58,7 @@ tests_versteckt:
     expected: [1, 2, 3, 4, 5, 6]
 starter_code: |
   def prefix_summe(zahlen: list[int]) -> list[int]:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 

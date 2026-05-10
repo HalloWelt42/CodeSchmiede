@@ -2,7 +2,7 @@
 schema_version: 1
 id: 033-grossbuchstaben
 revision: 1
-titel: Grossbuchstaben zaehlen
+titel: Grossbuchstaben zählen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -50,13 +50,13 @@ tests_versteckt:
     expected: 7
 starter_code: |
   def zaehle_gross(text: str) -> int:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 
-# Grossbuchstaben zaehlen
+# Grossbuchstaben zählen
 
-Schreibe eine Funktion `zaehle_gross(text)`, die zaehlt, wie viele
+Schreibe eine Funktion `zaehle_gross(text)`, die zählt, wie viele
 **Grossbuchstaben** im String vorkommen.
 
 ## Beispiele
@@ -71,7 +71,7 @@ Schreibe eine Funktion `zaehle_gross(text)`, die zaehlt, wie viele
 
 ## Idee
 
-Schleife ueber jedes Zeichen, Test mit `c.isupper()`, Zaehler hoch.
+Schleife ueber jedes Zeichen, Test mit `c.isupper()`, Zähler hoch.
 
 ## Verwandt
 

@@ -2,7 +2,7 @@
 schema_version: 1
 id: 069-quiz-or-and
 revision: 1
-titel: "or und and -- was kommt zurueck?"
+titel: "or und and -- was kommt zurück?"
 sprache: python
 task_type: output_quiz
 runner_type: docker_python
@@ -35,7 +35,7 @@ quiz:
   richtig_index: 1
 ---
 
-# `or` und `and`: was kommt zurueck?
+# `or` und `and`: was kommt zurück?
 
 Was wird hier gedruckt?
 

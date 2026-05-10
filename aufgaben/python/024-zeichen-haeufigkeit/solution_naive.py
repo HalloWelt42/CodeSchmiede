@@ -1,5 +1,5 @@
 """
-Klassisches Dict-Zaehlen mit if/else.
+Klassisches Dict-Zählen mit if/else.
 """
 
 

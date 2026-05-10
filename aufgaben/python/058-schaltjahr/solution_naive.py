@@ -1,5 +1,5 @@
 """
-Naive Loesung mit verschachteltem if/else.
+Naive Lösung mit verschachteltem if/else.
 """
 
 

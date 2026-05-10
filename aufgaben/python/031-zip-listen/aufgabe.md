@@ -51,7 +51,7 @@ tests_versteckt:
     expected: [1, 2, 1, 2, 1, 2]
 starter_code: |
   def verzahne(a: list, b: list) -> list:
-      # Deine Loesung hier -- abwechselnd aus a und b, Reste anhaengen.
+      # Deine Lösung hier -- abwechselnd aus a und b, Reste anhaengen.
       pass
 ---
 

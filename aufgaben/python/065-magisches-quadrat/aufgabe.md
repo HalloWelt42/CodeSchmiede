@@ -2,7 +2,7 @@
 schema_version: 1
 id: 065-magisches-quadrat
 revision: 1
-titel: Magisches Quadrat pruefen
+titel: Magisches Quadrat prüfen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -46,12 +46,12 @@ tests_versteckt:
     expected: true
 starter_code: |
   def ist_magisch(matrix: list[list[int]]) -> bool:
-      # Deine Loesung hier -- alle Zeilen-, Spalten- und Diagonal-
+      # Deine Lösung hier -- alle Zeilen-, Spalten- und Diagonal-
       # summen muessen gleich sein.
       pass
 ---
 
-# Magisches Quadrat pruefen
+# Magisches Quadrat prüfen
 
 Schreibe eine Funktion `ist_magisch(matrix)`, die prueft, ob eine
 quadratische Matrix ein **magisches Quadrat** ist -- also die Summen
@@ -86,7 +86,7 @@ magisch.
 ## Hintergrund
 
 Magische Quadrate sind seit ca. 2000 v. Chr. bekannt -- das aelteste
-Lo-Shu-Quadrat geht zurueck auf eine chinesische Legende ueber eine
+Lo-Shu-Quadrat geht zurück auf eine chinesische Legende ueber eine
 Schildkroete am Lo-Fluss. Albrecht Duerer baute eines in seinen
 Kupferstich "Melancolia I" ein, mit `1514` (dem Jahr der Entstehung)
 in der unteren Zeile.

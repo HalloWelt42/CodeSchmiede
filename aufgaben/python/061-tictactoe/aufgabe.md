@@ -23,13 +23,13 @@ funktion: gewinner
 hints:
   - kosten: 0
     text: |
-      Pruefe alle 8 moeglichen Gewinn-Linien: 3 Zeilen, 3 Spalten,
+      Prüfe alle 8 möglichen Gewinn-Linien: 3 Zeilen, 3 Spalten,
       2 Diagonalen. Wenn alle 3 Felder gleich und nicht leer sind,
       ist das der Gewinner.
   - kosten: 15
     text: |
       Felder mit "."  bedeuten leer. Bei leerem Feld nicht als
-      Gewinner zaehlen.
+      Gewinner zählen.
 tests_sichtbar:
   - input: [[["X", "X", "X"], ["O", "O", "."], [".", ".", "."]]]
     expected: "X"
@@ -52,7 +52,7 @@ tests_versteckt:
     expected: "."
 starter_code: |
   def gewinner(brett: list[list[str]]) -> str:
-      # Deine Loesung hier -- "X", "O" oder "." (kein Gewinner / unentschieden)
+      # Deine Lösung hier -- "X", "O" oder "." (kein Gewinner / unentschieden)
       pass
 ---
 
@@ -60,7 +60,7 @@ starter_code: |
 
 Schreibe eine Funktion `gewinner(brett)`, die fuer ein 3x3-TicTacToe-
 Brett den Gewinner zurueckgibt -- `"X"` oder `"O"`. Wenn keiner
-gewonnen hat, gib `"."` zurueck.
+gewonnen hat, gib `"."` zurück.
 
 Felder enthalten `"X"`, `"O"` oder `"."` (leer).
 
@@ -76,7 +76,7 @@ Felder enthalten `"X"`, `"O"` oder `"."` (leer).
 
 ## Idee
 
-Pruefe alle 8 Linien:
+Prüfe alle 8 Linien:
 
 - 3 Zeilen: `brett[i][0] == brett[i][1] == brett[i][2]`
 - 3 Spalten: `brett[0][j] == brett[1][j] == brett[2][j]`
@@ -87,5 +87,5 @@ das der Gewinner.
 
 ## Annahme
 
-Wir nehmen an, das Brett ist gueltig -- es gibt also nicht zwei
+Wir nehmen an, das Brett ist gültig -- es gibt also nicht zwei
 Gewinner gleichzeitig.

@@ -1,5 +1,5 @@
 """
-Naive Loesung mit Schleife und String-Konkatenation.
+Naive Lösung mit Schleife und String-Konkatenation.
 """
 
 

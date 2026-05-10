@@ -1,5 +1,5 @@
 """
-Naive Loesung: jedes Fenster komplett neu summieren. O(n*k).
+Naive Lösung: jedes Fenster komplett neu summieren. O(n*k).
 """
 
 

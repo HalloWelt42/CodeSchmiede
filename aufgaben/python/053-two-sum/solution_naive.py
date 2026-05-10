@@ -1,5 +1,5 @@
 """
-Naive Loesung: doppelte Schleife. O(n^2).
+Naive Lösung: doppelte Schleife. O(n^2).
 """
 
 

@@ -49,7 +49,7 @@ tests_versteckt:
     expected: [42]
 starter_code: |
   def selection_sort(liste: list[int]) -> list[int]:
-      # Deine Loesung hier -- ohne sorted() / list.sort().
+      # Deine Lösung hier -- ohne sorted() / list.sort().
       pass
 ---
 

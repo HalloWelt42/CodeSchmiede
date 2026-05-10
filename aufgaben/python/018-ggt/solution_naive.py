@@ -1,5 +1,5 @@
 """
-Naive Loesung: alle Teiler bis min(a, b) durchprobieren und das groesste
+Naive Lösung: alle Teiler bis min(a, b) durchprobieren und das groesste
 gemeinsame Ergebnis merken. Funktioniert, ist aber langsam fuer grosse
 Zahlen.
 """

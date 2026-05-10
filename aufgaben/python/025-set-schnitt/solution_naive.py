@@ -1,5 +1,5 @@
 """
-Naive Loesung: doppelte verschachtelte Schleife. O(n*m).
+Naive Lösung: doppelte verschachtelte Schleife. O(n*m).
 """
 
 

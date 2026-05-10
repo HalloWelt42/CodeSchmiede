@@ -25,7 +25,7 @@ hints:
     text: |
       Gehe alle Werte vom groessten zum kleinsten durch (inkl.
       Sonderfaelle 900, 400, 90, 40, 9, 4) und ziehe so viele wie
-      moeglich vom n ab, fuege das jeweilige Symbol hinzu.
+      möglich vom n ab, fuege das jeweilige Symbol hinzu.
   - kosten: 20
     text: |
       Liste von Tupeln `(wert, symbol)` absteigend, dann pro Tupel
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: "MMMDCCCLXXXVIII"
 starter_code: |
   def int_zu_roemisch(n: int) -> str:
-      # Deine Loesung hier -- Eingabe 1 bis 3999.
+      # Deine Lösung hier -- Eingabe 1 bis 3999.
       pass
 ---
 
@@ -104,4 +104,4 @@ Symbol an und ziehe ab. So entsteht die kanonische Schreibweise.
 
 Die Roemer selbst haben uebrigens keinen klaren Standard fuer
 Subtraktionsschreibweise gehabt -- `IIII` neben `IV` war lange
-ueblich (Uhrenziffernblaetter zeigen das oft heute noch).
+üblich (Uhrenziffernblaetter zeigen das oft heute noch).

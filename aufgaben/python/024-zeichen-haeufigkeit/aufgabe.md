@@ -1,8 +1,8 @@
 ---
 schema_version: 1
-id: 024-zeichen-haeufigkeit
+id: 024-zeichen-häufigkeit
 revision: 1
-titel: Zeichen-Haeufigkeit als Dict
+titel: Zeichen-Häufigkeit als Dict
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,7 +23,7 @@ funktion: zeichen_haeufigkeit
 hints:
   - kosten: 0
     text: |
-      Schleife ueber `text`, jedes Zeichen ins Dict zaehlen.
+      Schleife ueber `text`, jedes Zeichen ins Dict zählen.
   - kosten: 10
     text: |
       `dict.get(c, 0) + 1` spart das if/else.
@@ -45,13 +45,13 @@ tests_versteckt:
     expected: { "1": 2, "2": 2, "3": 1 }
 starter_code: |
   def zeichen_haeufigkeit(text: str) -> dict[str, int]:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 
-# Zeichen-Haeufigkeit
+# Zeichen-Häufigkeit
 
-Schreibe eine Funktion `zeichen_haeufigkeit(text)`, die zaehlt, wie oft
+Schreibe eine Funktion `zeichen_haeufigkeit(text)`, die zählt, wie oft
 jedes einzelne **Zeichen** im String vorkommt -- inklusive Leerzeichen
 und Sonderzeichen.
 
@@ -72,6 +72,6 @@ Reihenfolge der Schluessel im Ergebnis ist egal.
 
 ## Verwandt
 
-Die Aufgabe ist die Buchstaben-Variante von [Wortzaehler aus Satz](#).
-Wer beide gemacht hat, hat das Standard-Pattern fuer Zaehl-Dicts in
+Die Aufgabe ist die Buchstaben-Variante von [Wortzähler aus Satz](#).
+Wer beide gemacht hat, hat das Standard-Pattern fuer Zähl-Dicts in
 Python sicher drauf.

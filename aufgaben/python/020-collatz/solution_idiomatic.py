@@ -1,5 +1,5 @@
 """
-Idiomatische Loesung mit Bit-Trick: `n & 1` ist genau dann 1, wenn n
+Idiomatische Lösung mit Bit-Trick: `n & 1` ist genau dann 1, wenn n
 ungerade ist. Spart das `% 2` und liest sich kompakt.
 """
 

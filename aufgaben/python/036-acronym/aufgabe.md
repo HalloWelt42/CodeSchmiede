@@ -52,7 +52,7 @@ tests_versteckt:
     expected: "ABCDE"
 starter_code: |
   def akronym(text: str) -> str:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 

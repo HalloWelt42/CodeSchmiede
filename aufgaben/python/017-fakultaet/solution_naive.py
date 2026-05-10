@@ -1,5 +1,5 @@
 """
-Iterative Loesung mit klassischer for-Schleife.
+Iterative Lösung mit klassischer for-Schleife.
 """
 
 

@@ -2,7 +2,7 @@
 schema_version: 1
 id: 022-wortzaehler
 revision: 1
-titel: Wortzaehler aus Satz
+titel: Wortzähler aus Satz
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -51,13 +51,13 @@ tests_versteckt:
     expected: { "abc": 3, "def": 2, "ghi": 1 }
 starter_code: |
   def wortzaehler(text: str) -> dict[str, int]:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 
-# Wortzaehler aus Satz
+# Wortzähler aus Satz
 
-Schreibe eine Funktion `wortzaehler(text)`, die zaehlt, wie oft jedes
+Schreibe eine Funktion `wortzaehler(text)`, die zählt, wie oft jedes
 Wort im Text vorkommt, und das Ergebnis als **Dictionary** zurueckgibt.
 
 Die Worte werden an Whitespace getrennt; Gross-/Kleinschreibung wird
@@ -82,7 +82,7 @@ zwar Insertion-Order, der Test prueft aber gegen einen Dict-Vergleich.
 
 ## Hintergrund
 
-Wortzaehler sind die Eintrittskarte zu **Text-Statistik** und einem
+Wortzähler sind die Eintrittskarte zu **Text-Statistik** und einem
 grossen Teil von NLP -- vom simplen Such-Index bis zur
 TF-IDF-Berechnung. Wer Python und Dict-Operationen kann, kann genau
 solche Sachen bauen.

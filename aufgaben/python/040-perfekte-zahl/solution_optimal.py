@@ -1,5 +1,5 @@
 """
-Optimale Loesung: nur bis sqrt(n) suchen, Teiler-Paare nutzen.
+Optimale Lösung: nur bis sqrt(n) suchen, Teiler-Paare nutzen.
 O(sqrt(n)) statt O(n).
 """
 

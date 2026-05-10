@@ -27,7 +27,7 @@ hints:
       separat behandeln, abhaengig vom Schaltjahr.
   - kosten: 15
     text: |
-      Wenn Monat ausserhalb 1-12, gib 0 zurueck (kein Crash).
+      Wenn Monat ausserhalb 1-12, gib 0 zurück (kein Crash).
 tests_sichtbar:
   - input: [2024, 2]
     expected: 29
@@ -52,7 +52,7 @@ tests_versteckt:
     expected: 0
 starter_code: |
   def tage_im_monat(jahr: int, monat: int) -> int:
-      # Deine Loesung hier -- 0 bei ungueltigem Monat.
+      # Deine Lösung hier -- 0 bei ungueltigem Monat.
       pass
 ---
 
@@ -68,7 +68,7 @@ der Tage im gegebenen Monat zurueckgibt.
 | Februar (Schaltjahr)                                | 29 |
 | Februar (sonst)                                     | 28 |
 
-Bei einem Monat ausserhalb von 1-12 gib `0` zurueck.
+Bei einem Monat ausserhalb von 1-12 gib `0` zurück.
 
 ## Beispiele
 

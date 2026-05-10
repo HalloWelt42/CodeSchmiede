@@ -51,7 +51,7 @@ tests_versteckt:
     expected: "LeerDoppelt"
 starter_code: |
   def snake_zu_camel(text: str) -> str:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 

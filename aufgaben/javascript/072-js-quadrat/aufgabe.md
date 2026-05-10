@@ -35,7 +35,7 @@ tests_sichtbar:
 tests_versteckt: []
 starter_code: |
   function quadrat(n) {
-      // Deine Loesung hier
+      // Deine Lösung hier
   }
 ---
 

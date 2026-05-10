@@ -1,5 +1,5 @@
 """
-Iterative Loesung: ergebnis startet bei 1, dann exponent-mal
+Iterative Lösung: ergebnis startet bei 1, dann exponent-mal
 multiplizieren.
 """
 

@@ -24,12 +24,12 @@ hints:
   - kosten: 0
     text: |
       "Aufsteigend" hier: streng monoton wachsend (jedes Element strikt
-      groesser als das vorherige). Zusammenhaengend, also direkte
+      größer als das vorherige). Zusammenhaengend, also direkte
       Nachbarn in der Liste.
   - kosten: 15
     text: |
       Schleife mit "aktuelle Laenge" und "beste Laenge". Wenn
-      `liste[i] > liste[i-1]`: aktuell + 1, sonst zurueck auf 1.
+      `liste[i] > liste[i-1]`: aktuell + 1, sonst zurück auf 1.
 tests_sichtbar:
   - input: [[1, 2, 3, 1, 2]]
     expected: 3
@@ -50,7 +50,7 @@ tests_versteckt:
     expected: 5
 starter_code: |
   def laengste_aufsteigend(liste: list[int]) -> int:
-      # Deine Loesung hier -- streng monoton, zusammenhaengend.
+      # Deine Lösung hier -- streng monoton, zusammenhaengend.
       pass
 ---
 
@@ -60,7 +60,7 @@ Schreibe eine Funktion `laengste_aufsteigend(liste)`, die die **Laenge
 der laengsten zusammenhaengenden, streng monoton aufsteigenden
 Teilfolge** zurueckgibt.
 
-"Streng monoton" heisst: jedes Element ist **groesser** als das
+"Streng monoton" heisst: jedes Element ist **größer** als das
 vorherige -- nicht gleich. "Zusammenhaengend" heisst: direkte Nachbarn,
 keine Luecken.
 
@@ -77,9 +77,9 @@ keine Luecken.
 
 ## Idee
 
-Lineare Schleife, ein Zaehler fuer die aktuelle und einer fuer die
-beste Laenge. Bei jedem Schritt: ist das aktuelle Element groesser als
-das vorherige, Zaehler hoch; sonst zurueck auf 1.
+Lineare Schleife, ein Zähler fuer die aktuelle und einer fuer die
+beste Laenge. Bei jedem Schritt: ist das aktuelle Element größer als
+das vorherige, Zähler hoch; sonst zurück auf 1.
 
 ## Variante (nicht zusammenhaengend)
 

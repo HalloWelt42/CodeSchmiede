@@ -28,7 +28,7 @@ hints:
       die vierten Potenzen, usw.
   - kosten: 15
     text: |
-      `s = str(n)`, `k = len(s)`. Dann pruefe
+      `s = str(n)`, `k = len(s)`. Dann prüfe
       `sum(int(c)**k for c in s) == n`.
 tests_sichtbar:
   - input: [153]
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: false
 starter_code: |
   def ist_armstrong(n: int) -> bool:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 

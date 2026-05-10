@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       `k` Positionen nach links: nimm die ersten `k` Elemente und haenge
-      sie ans Ende. Aber pass auf: `k` kann groesser sein als die Liste.
+      sie ans Ende. Aber pass auf: `k` kann größer sein als die Liste.
   - kosten: 15
     text: |
       Mit Modulo gegen Ueberlauf:
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: [8, 9, 10, 1, 2, 3, 4, 5, 6, 7]
 starter_code: |
   def rotiere(liste: list, k: int) -> list:
-      # Deine Loesung hier -- k Positionen nach links.
+      # Deine Lösung hier -- k Positionen nach links.
       pass
 ---
 
@@ -74,7 +74,7 @@ Positionen **nach links** rotiert.
 
 ## Knackpunkt: k > len(liste)
 
-`k` kann groesser sein als die Liste. `5` Rotationen bei einer
+`k` kann größer sein als die Liste. `5` Rotationen bei einer
 4-elementigen Liste sind dasselbe wie `5 % 4 = 1` Rotation. Ohne
 Modulo bekommst du einen `IndexError` -- oder schlimmer, einen still
 falschen Wert.

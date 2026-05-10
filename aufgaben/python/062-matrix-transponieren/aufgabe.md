@@ -45,7 +45,7 @@ tests_versteckt:
     expected: [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
 starter_code: |
   def transponieren(matrix: list[list]) -> list[list]:
-      # Deine Loesung hier -- m x n -> n x m
+      # Deine Lösung hier -- m x n -> n x m
       pass
 ---
 

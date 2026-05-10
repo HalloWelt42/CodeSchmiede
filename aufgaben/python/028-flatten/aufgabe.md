@@ -50,7 +50,7 @@ tests_versteckt:
     expected: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 starter_code: |
   def flatten(liste: list[list]) -> list:
-      # Deine Loesung hier -- nur eine Ebene Verschachtelung.
+      # Deine Lösung hier -- nur eine Ebene Verschachtelung.
       pass
 ---
 

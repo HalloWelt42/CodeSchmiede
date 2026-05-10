@@ -24,12 +24,12 @@ hints:
   - kosten: 0
     text: |
       `ord('A')` liefert den ASCII-Wert. Verschiebe um `k`, dann
-      `chr()` zurueck. Modulo `26` halt den Buchstaben im Alphabet.
+      `chr()` zurück. Modulo `26` halt den Buchstaben im Alphabet.
   - kosten: 15
     text: |
-      Pro Zeichen: pruefen ob Buchstabe (`isalpha`), bei Grossbuchstabe
+      Pro Zeichen: prüfen ob Buchstabe (`isalpha`), bei Grossbuchstabe
       `'A'`-Basis verwenden, bei Kleinbuchstabe `'a'`-Basis.
-      Nicht-Buchstaben unveraendert lassen.
+      Nicht-Buchstaben unverändert lassen.
   - kosten: 30
     text: |
       ```
@@ -59,7 +59,7 @@ tests_versteckt:
     expected: "Gur dhvpx oebja sbk"
 starter_code: |
   def caesar(text: str, k: int) -> str:
-      # Deine Loesung hier -- nur a-z und A-Z verschieben, Rest unveraendert.
+      # Deine Lösung hier -- nur a-z und A-Z verschieben, Rest unverändert.
       pass
 ---
 
@@ -68,7 +68,7 @@ starter_code: |
 Schreibe eine Funktion `caesar(text, k)`, die jeden **Buchstaben** im
 String um `k` Positionen im Alphabet verschiebt. Gross-/Kleinschreibung
 bleibt erhalten. Nicht-Buchstaben (Leerzeichen, Ziffern,
-Satzzeichen, ...) bleiben unveraendert.
+Satzzeichen, ...) bleiben unverändert.
 
 ## Beispiele
 
@@ -85,7 +85,7 @@ Pro Zeichen:
 
 1. Falls Buchstabe: Basis ermitteln (`'A'` oder `'a'`)
 2. `(ord(c) - basis + k) % 26 + basis` ist der neue Code
-3. Falls kein Buchstabe: 1:1 uebernehmen
+3. Falls kein Buchstabe: 1:1 übernehmen
 
 ## Hintergrund
 

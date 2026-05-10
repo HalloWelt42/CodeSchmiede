@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Stell dir vor, du sortierst Spielkarten in der Hand. Linke Seite
-      ist sortiert. Nimm die naechste Karte und schiebe sie nach links,
+      ist sortiert. Nimm die nächste Karte und schiebe sie nach links,
       bis sie an der richtigen Stelle liegt.
   - kosten: 15
     text: |
@@ -50,7 +50,7 @@ tests_versteckt:
     expected: [42]
 starter_code: |
   def insertion_sort(liste: list[int]) -> list[int]:
-      # Deine Loesung hier -- ohne sorted() / list.sort().
+      # Deine Lösung hier -- ohne sorted() / list.sort().
       pass
 ---
 
@@ -63,7 +63,7 @@ Schreibe eine Funktion `insertion_sort(liste)`, die die Liste mit
 
 Der **linke Teil** der Liste ist immer sortiert. Pro Durchlauf:
 
-1. Nimm das naechste Element vom unsortierten Teil
+1. Nimm das nächste Element vom unsortierten Teil
 2. Schiebe es nach links, bis es an der richtigen Stelle steht
 
 Bildlich wie Spielkarten sortieren -- man hebt eine Karte hoch und

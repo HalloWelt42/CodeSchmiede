@@ -1,5 +1,5 @@
 """
-Optimale Loesung: Bricht die Schleife ab, sobald i*i > n -- der Rest
+Optimale Lösung: Bricht die Schleife ab, sobald i*i > n -- der Rest
 ist dann selbst eine Primzahl. Das macht den Algorithmus auf O(sqrt(n))
 fuer grosse Primzahlen.
 """

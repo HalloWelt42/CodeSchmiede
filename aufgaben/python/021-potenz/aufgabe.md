@@ -11,7 +11,7 @@ schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [zahlen, schleifen, rekursion]
 pfade: [python_mathe]
-voraussetzungen: [017-fakultaet]
+voraussetzungen: [017-fakultät]
 quelle:
   url: null
   notiz: Klassische Reimplementierung von ** als Lernuebung
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: -8
 starter_code: |
   def potenz(basis: int, exponent: int) -> int:
-      # Deine Loesung hier -- ohne ** und ohne pow()
+      # Deine Lösung hier -- ohne ** und ohne pow()
       pass
 ---
 
@@ -79,12 +79,12 @@ Der Exponent ist immer eine nicht-negative ganze Zahl.
 
 Per Definition ist $b^0 = 1$. Fuer $n > 0$ gilt $b^n = b \cdot b^{n-1}$.
 Daraus laesst sich sowohl eine **Schleife** als auch eine **rekursive**
-Loesung bauen.
+Lösung bauen.
 
 ## Wofuer ist das gut?
 
 Reimplementierungen von Standardfunktionen sind eine schoene
 Lernuebung -- man lernt, was die Sprache eigentlich fuer einen
-erledigt. Spaeter (in einer separaten Aufgabe) kann man das gleiche
+erledigt. Später (in einer separaten Aufgabe) kann man das gleiche
 Problem mit **schneller Exponentiation** in $O(\log n)$ statt $O(n)$
 loesen.

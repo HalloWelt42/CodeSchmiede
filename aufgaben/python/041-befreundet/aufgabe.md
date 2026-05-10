@@ -51,7 +51,7 @@ tests_versteckt:
     expected: false
 starter_code: |
   def sind_befreundet(a: int, b: int) -> bool:
-      # Deine Loesung hier -- Hilfsfunktion fuer Teilersumme erlaubt.
+      # Deine Lösung hier -- Hilfsfunktion fuer Teilersumme erlaubt.
       pass
 ---
 

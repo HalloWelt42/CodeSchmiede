@@ -42,7 +42,7 @@ Was wird hier ausgegeben?
 ## Hintergrund
 
 In Python "merkt" sich eine **Closure** den **Namen** der Variable,
-nicht den **Wert**. Wenn die Lambda spaeter aufgerufen wird, schaut
+nicht den **Wert**. Wenn die Lambda später aufgerufen wird, schaut
 sie nach, **was `i` jetzt ist** -- und `i` ist nach der Schleife `2`.
 
 Alle drei Lambdas zeigen also auf dasselbe `i` und liefern den

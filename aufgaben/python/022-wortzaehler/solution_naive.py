@@ -1,5 +1,5 @@
 """
-Naive Loesung mit explizitem if/else fuer den ersten Eintrag eines
+Naive Lösung mit explizitem if/else fuer den ersten Eintrag eines
 Wortes.
 """
 

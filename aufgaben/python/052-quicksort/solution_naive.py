@@ -9,12 +9,12 @@ def quicksort(liste: list[int]) -> list[int]:
     pivot = liste[0]
     kleiner: list[int] = []
     gleich: list[int] = []
-    groesser: list[int] = []
+    größer: list[int] = []
     for x in liste:
         if x < pivot:
             kleiner.append(x)
         elif x > pivot:
-            groesser.append(x)
+            größer.append(x)
         else:
             gleich.append(x)
-    return quicksort(kleiner) + gleich + quicksort(groesser)
+    return quicksort(kleiner) + gleich + quicksort(größer)

@@ -23,7 +23,7 @@ funktion: mittelwert
 hints:
   - kosten: 0
     text: |
-      Summe / Anzahl. Achtung beim leeren Fall: gib `0.0` zurueck.
+      Summe / Anzahl. Achtung beim leeren Fall: gib `0.0` zurück.
   - kosten: 10
     text: |
       ```
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: 7.0
 starter_code: |
   def mittelwert(zahlen: list[float]) -> float:
-      # Deine Loesung hier -- leere Liste liefert 0.0
+      # Deine Lösung hier -- leere Liste liefert 0.0
       pass
 ---
 

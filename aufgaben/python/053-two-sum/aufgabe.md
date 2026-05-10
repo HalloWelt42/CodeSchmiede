@@ -24,10 +24,10 @@ hints:
   - kosten: 0
     text: |
       Gesucht: zwei Indizes, deren Werte sich zur Zielsumme addieren.
-      Naive Loesung: doppelte Schleife. O(n^2).
+      Naive Lösung: doppelte Schleife. O(n^2).
   - kosten: 15
     text: |
-      Schneller mit Dict: pro Element pruefen, ob "ziel - x" bereits
+      Schneller mit Dict: pro Element prüfen, ob "ziel - x" bereits
       gesehen wurde. Falls ja, Indizes zurueckgeben.
   - kosten: 25
     text: |
@@ -62,7 +62,7 @@ tests_versteckt:
     expected: [0, 3]
 starter_code: |
   def two_sum(zahlen: list[int], ziel: int) -> list[int]:
-      # Deine Loesung hier -- gibt zwei Indizes [i, j] mit i<j zurueck,
+      # Deine Lösung hier -- gibt zwei Indizes [i, j] mit i<j zurück,
       # oder [] falls kein Paar existiert.
       pass
 ---
@@ -71,8 +71,8 @@ starter_code: |
 
 Gegeben eine Liste von Zahlen und eine Zielsumme. Finde **zwei Indizes**
 `i < j`, sodass `zahlen[i] + zahlen[j] == ziel`. Gibt es mehrere
-gueltige Paare, ist jedes davon ein gueltiges Ergebnis. Existiert
-keines, gib `[]` zurueck.
+gültige Paare, ist jedes davon ein gueltiges Ergebnis. Existiert
+keines, gib `[]` zurück.
 
 ## Beispiele
 
@@ -92,7 +92,7 @@ keines, gib `[]` zurueck.
 | Mit Dict     | $O(n)$   | $O(n)$   |
 
 Das Dict speichert bereits gesehene Werte mit ihrem Index. Pro Element
-pruefst du, ob das Komplement (`ziel - x`) schon im Dict ist. Wenn ja,
+prüfst du, ob das Komplement (`ziel - x`) schon im Dict ist. Wenn ja,
 hast du das Paar.
 
 ## Hintergrund

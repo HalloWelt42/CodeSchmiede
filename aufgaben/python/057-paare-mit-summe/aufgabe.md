@@ -23,11 +23,11 @@ funktion: paare_anzahl
 hints:
   - kosten: 0
     text: |
-      Naive Loesung: doppelte Schleife, Paare zaehlen.
+      Naive Lösung: doppelte Schleife, Paare zählen.
   - kosten: 15
     text: |
-      Schneller mit Counter: pro Wert x pruefen, wie oft (ziel - x)
-      vorkommt. Nicht doppelt zaehlen.
+      Schneller mit Counter: pro Wert x prüfen, wie oft (ziel - x)
+      vorkommt. Nicht doppelt zählen.
 tests_sichtbar:
   - input: [[1, 2, 3, 4, 5], 6]
     expected: 2
@@ -48,7 +48,7 @@ tests_versteckt:
     expected: 3
 starter_code: |
   def paare_anzahl(zahlen: list[int], ziel: int) -> int:
-      # Deine Loesung hier -- ungeordnete Paare (i,j) mit i<j zaehlen,
+      # Deine Lösung hier -- ungeordnete Paare (i,j) mit i<j zählen,
       # bei denen zahlen[i] + zahlen[j] == ziel.
       pass
 ---
@@ -56,7 +56,7 @@ starter_code: |
 # Anzahl Paare mit Zielsumme
 
 Schreibe eine Funktion `paare_anzahl(zahlen, ziel)`, die die **Anzahl
-der Index-Paare** `(i, j)` mit `i < j` zaehlt, deren Werte sich zur
+der Index-Paare** `(i, j)` mit `i < j` zählt, deren Werte sich zur
 `ziel`-Summe addieren.
 
 ## Beispiele

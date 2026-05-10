@@ -2,7 +2,7 @@
 schema_version: 1
 id: 058-schaltjahr
 revision: 1
-titel: Schaltjahr pruefen
+titel: Schaltjahr prüfen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -24,8 +24,8 @@ hints:
   - kosten: 0
     text: |
       Regel im Gregorianischen Kalender:
-      - durch 4 teilbar: ja, ausser
-      - durch 100 teilbar: nein, ausser
+      - durch 4 teilbar: ja, außer
+      - durch 100 teilbar: nein, außer
       - durch 400 teilbar: ja
   - kosten: 10
     text: |
@@ -54,11 +54,11 @@ tests_versteckt:
     expected: false
 starter_code: |
   def ist_schaltjahr(jahr: int) -> bool:
-      # Deine Loesung hier -- Gregorianischer Kalender.
+      # Deine Lösung hier -- Gregorianischer Kalender.
       pass
 ---
 
-# Schaltjahr pruefen
+# Schaltjahr prüfen
 
 Schreibe eine Funktion `ist_schaltjahr(jahr)`, die prueft, ob ein Jahr
 ein **Schaltjahr** im Gregorianischen Kalender ist.

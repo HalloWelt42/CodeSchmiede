@@ -1,5 +1,5 @@
 """
-Pythonic: alle Summen in ein Set, pruefen, ob nur ein Wert drin steht.
+Pythonic: alle Summen in ein Set, prüfen, ob nur ein Wert drin steht.
 """
 
 

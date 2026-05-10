@@ -2,7 +2,7 @@
 schema_version: 1
 id: 017-fakultaet
 revision: 1
-titel: Fakultaet n!
+titel: Fakultät n!
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -53,13 +53,13 @@ tests_versteckt:
     expected: 2432902008176640000
 starter_code: |
   def fakultaet(n: int) -> int:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 
-# Fakultaet $n!$
+# Fakultät $n!$
 
-Schreibe eine Funktion `fakultaet(n)`, die die **Fakultaet** einer
+Schreibe eine Funktion `fakultaet(n)`, die die **Fakultät** einer
 nicht-negativen ganzen Zahl `n` zurueckgibt.
 
 Per Definition gilt:
@@ -88,6 +88,6 @@ fuer grosse `n` ist die Iteration in Python aber bequemer.
 
 ## Hintergrund
 
-Die Fakultaet zaehlt die Anzahl moeglicher Anordnungen von $n$ Objekten.
+Die Fakultät zählt die Anzahl möglicher Anordnungen von $n$ Objekten.
 $5! = 120$ heisst: 5 Buecher kannst du auf 120 verschiedene Arten in
 ein Regal sortieren.

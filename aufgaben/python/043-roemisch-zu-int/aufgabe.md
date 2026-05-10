@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Werte: I=1, V=5, X=10, L=50, C=100, D=500, M=1000.
-      Wenn ein Zeichen kleiner ist als das naechste, wird es subtrahiert,
+      Wenn ein Zeichen kleiner ist als das nächste, wird es subtrahiert,
       sonst addiert.
   - kosten: 15
     text: |
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: 0
 starter_code: |
   def roemisch_zu_int(s: str) -> int:
-      # Deine Loesung hier -- I=1, V=5, X=10, L=50, C=100, D=500, M=1000
+      # Deine Lösung hier -- I=1, V=5, X=10, L=50, C=100, D=500, M=1000
       pass
 ---
 
@@ -77,7 +77,7 @@ in eine Dezimalzahl umwandelt.
 
 ## Subtraktionsregel
 
-Steht ein kleineres Zeichen vor einem groesseren, wird es **abgezogen**:
+Steht ein kleineres Zeichen vor einem größeren, wird es **abgezogen**:
 
 - `IV` = `5 - 1` = `4`
 - `IX` = `10 - 1` = `9`
@@ -100,4 +100,4 @@ Steht ein kleineres Zeichen vor einem groesseren, wird es **abgezogen**:
 ## Idee
 
 Vergleiche jedes Zeichen mit seinem **Nachfolger**: ist der Nachfolger
-groesser, ziehe ab; sonst addiere.
+größer, ziehe ab; sonst addiere.

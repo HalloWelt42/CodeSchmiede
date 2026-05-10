@@ -45,7 +45,7 @@ tests_versteckt:
     expected: [10, 0]
 starter_code: |
   def diagonal_summen(matrix: list[list[int]]) -> list[int]:
-      # Deine Loesung hier -- gibt [haupt, neben] zurueck.
+      # Deine Lösung hier -- gibt [haupt, neben] zurück.
       pass
 ---
 

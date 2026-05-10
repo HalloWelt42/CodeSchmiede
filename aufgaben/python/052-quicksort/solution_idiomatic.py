@@ -9,5 +9,5 @@ def quicksort(liste: list[int]) -> list[int]:
     pivot = liste[len(liste) // 2]
     kleiner = [x for x in liste if x < pivot]
     gleich = [x for x in liste if x == pivot]
-    groesser = [x for x in liste if x > pivot]
-    return quicksort(kleiner) + gleich + quicksort(groesser)
+    größer = [x for x in liste if x > pivot]
+    return quicksort(kleiner) + gleich + quicksort(größer)

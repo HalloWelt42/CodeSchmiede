@@ -1,5 +1,5 @@
 """
-Naive Loesung mit O(n*m)-Lookup.
+Naive Lösung mit O(n*m)-Lookup.
 """
 
 

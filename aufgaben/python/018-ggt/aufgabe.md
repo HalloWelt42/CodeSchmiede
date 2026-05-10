@@ -56,7 +56,7 @@ tests_versteckt:
     expected: 13
 starter_code: |
   def ggt(a: int, b: int) -> int:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 

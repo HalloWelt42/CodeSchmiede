@@ -11,7 +11,7 @@ schwierigkeit_score: 18
 schaetz_minuten: 12
 tags: [strings, kompression, schleifen]
 pfade: [python_strings]
-voraussetzungen: [007-buchstaben-haeufigkeit]
+voraussetzungen: [007-buchstaben-häufigkeit]
 quelle:
   url: https://de.wikipedia.org/wiki/Lauflaengenkodierung
   notiz: Klassischer Kompressionsalgorithmus
@@ -23,12 +23,12 @@ funktion: rle
 hints:
   - kosten: 0
     text: |
-      Schleife durch den String. Aktuelles Zeichen + Zaehler merken.
-      Wenn das naechste Zeichen anders ist: ans Ergebnis anhaengen,
-      Zaehler reset.
+      Schleife durch den String. Aktuelles Zeichen + Zähler merken.
+      Wenn das nächste Zeichen anders ist: ans Ergebnis anhaengen,
+      Zähler reset.
   - kosten: 15
     text: |
-      Wenn der Zaehler 1 ist, schreibe nur das Zeichen (z.B. `"a"`),
+      Wenn der Zähler 1 ist, schreibe nur das Zeichen (z.B. `"a"`),
       sonst Zeichen + Zahl (z.B. `"a3"`).
 tests_sichtbar:
   - input: ["aaabbc"]
@@ -50,7 +50,7 @@ tests_versteckt:
     expected: "ab4c3d3e"
 starter_code: |
   def rle(text: str) -> str:
-      # Deine Loesung hier -- einzelne Zeichen ohne 1, Mehrfache mit Zahl.
+      # Deine Lösung hier -- einzelne Zeichen ohne 1, Mehrfache mit Zahl.
       pass
 ---
 
@@ -75,7 +75,7 @@ nicht `"a1b1c1"`).
 ## Idee
 
 Zwei "Zustaende" mitlaufen lassen: das **aktuelle Zeichen** und sein
-**Zaehler**. Bei jedem neuen Zeichen pruefen, ob es das gleiche ist.
+**Zähler**. Bei jedem neuen Zeichen prüfen, ob es das gleiche ist.
 Falls nicht: aktuelles Zeichen ans Ergebnis anhaengen (mit Zahl, falls
 > 1) und Zustaende neu setzen.
 

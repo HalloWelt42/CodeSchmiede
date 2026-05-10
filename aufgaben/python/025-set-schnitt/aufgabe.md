@@ -54,7 +54,7 @@ tests_versteckt:
     expected: [2, 3]
 starter_code: |
   def schnittmenge(a: list, b: list) -> list:
-      # Deine Loesung hier -- Reihenfolge nach a, ohne Doppelte.
+      # Deine Lösung hier -- Reihenfolge nach a, ohne Doppelte.
       pass
 ---
 
@@ -78,7 +78,7 @@ Ergebnis nur **einmal** vor.
 ## Idee
 
 Sets sind hier dein Freund: `set(b)` macht den `in`-Test sehr schnell.
-Ueber `a` iterieren, jedes Element pruefen, ob es in `set(b)` ist und
+Ueber `a` iterieren, jedes Element prüfen, ob es in `set(b)` ist und
 noch nicht im Ergebnis steht.
 
 ## Hintergrund

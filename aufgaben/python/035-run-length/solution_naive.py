@@ -1,5 +1,5 @@
 """
-Klassische Schleife mit aktuellem Zeichen + Zaehler.
+Klassische Schleife mit aktuellem Zeichen + Zähler.
 """
 
 

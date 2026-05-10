@@ -2,7 +2,7 @@
 schema_version: 1
 id: 029-chunks
 revision: 1
-titel: Liste in n-grosse Stuecke teilen
+titel: Liste in n-grosse Stücke teilen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Schleife `for i in range(0, len(liste), n)` und nimm jeweils
-      `liste[i:i+n]` als naechstes Stueck.
+      `liste[i:i+n]` als nächstes Stück.
   - kosten: 15
     text: |
       Eine Zeile mit Comprehension:
@@ -33,7 +33,7 @@ hints:
       return [liste[i:i+n] for i in range(0, len(liste), n)]
       ```
 
-      Kein Padding -- der letzte Block kann kuerzer sein.
+      Kein Padding -- der letzte Block kann kürzer sein.
 tests_sichtbar:
   - input: [[1, 2, 3, 4, 5], 2]
     expected: [[1, 2], [3, 4], [5]]
@@ -52,15 +52,15 @@ tests_versteckt:
     expected: [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]]
 starter_code: |
   def chunks(liste: list, n: int) -> list[list]:
-      # Deine Loesung hier -- letzter Block darf kuerzer sein.
+      # Deine Lösung hier -- letzter Block darf kürzer sein.
       pass
 ---
 
-# Liste in n-grosse Stuecke teilen
+# Liste in n-grosse Stücke teilen
 
 Schreibe eine Funktion `chunks(liste, n)`, die die Liste in
 **zusammenhaengende Bloecke** der Groesse `n` zerlegt. Der letzte
-Block darf kuerzer sein, falls die Laenge nicht aufgeht.
+Block darf kürzer sein, falls die Laenge nicht aufgeht.
 
 ## Beispiele
 

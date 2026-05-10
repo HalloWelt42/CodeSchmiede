@@ -1,5 +1,5 @@
 """
-Idiomatische Loesung: rein numerisch mit Modulo und ganzzahliger
+Idiomatische Lösung: rein numerisch mit Modulo und ganzzahliger
 Division. Vermeidet die Konvertierung nach String und ist daher
 unabhaengig von der Stringdarstellung.
 """

@@ -1,5 +1,5 @@
 """
-Naive Loesung: alle Teiler von 1 bis n-1 durchprobieren und summieren.
+Naive Lösung: alle Teiler von 1 bis n-1 durchprobieren und summieren.
 """
 
 

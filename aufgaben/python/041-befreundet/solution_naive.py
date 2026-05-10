@@ -1,5 +1,5 @@
 """
-Naive Loesung mit linearer Teilersumme.
+Naive Lösung mit linearer Teilersumme.
 """
 
 

@@ -2,7 +2,7 @@
 schema_version: 1
 id: 047-substring-anzahl
 revision: 1
-titel: Substring zaehlen (mit Ueberlappung)
+titel: Substring zählen (mit Ueberlappung)
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -28,7 +28,7 @@ hints:
   - kosten: 15
     text: |
       Schleife mit Index: `for i in range(len(text) - len(sub) + 1)`,
-      pruefen `text[i:i+len(sub)] == sub`.
+      prüfen `text[i:i+len(sub)] == sub`.
 tests_sichtbar:
   - input: ["aaaa", "aa"]
     expected: 3
@@ -51,13 +51,13 @@ tests_versteckt:
     expected: 3
 starter_code: |
   def zaehle_vorkommen(text: str, sub: str) -> int:
-      # Deine Loesung hier -- mit Ueberlappung. Leerer sub liefert 0.
+      # Deine Lösung hier -- mit Ueberlappung. Leerer sub liefert 0.
       pass
 ---
 
-# Substring zaehlen (mit Ueberlappung)
+# Substring zählen (mit Ueberlappung)
 
-Schreibe eine Funktion `zaehle_vorkommen(text, sub)`, die zaehlt, wie
+Schreibe eine Funktion `zaehle_vorkommen(text, sub)`, die zählt, wie
 oft `sub` in `text` vorkommt -- inklusive **ueberlappender** Treffer.
 
 `"aaaa"` enthaelt den Substring `"aa"` an Position 0, 1 und 2 --
@@ -76,11 +76,11 @@ also dreimal.
 
 ## Falle
 
-Pythons eingebautes `str.count()` zaehlt **ohne** Ueberlappung --
+Pythons eingebautes `str.count()` zählt **ohne** Ueberlappung --
 fuer `"aaaa".count("aa")` bekommst du `2`. Hier brauchen wir die
 Ueberlappung.
 
 ## Idee
 
-Schleife durch alle moeglichen Startpositionen, an jeder den Substring
+Schleife durch alle möglichen Startpositionen, an jeder den Substring
 mit Slicing herausschneiden und vergleichen.

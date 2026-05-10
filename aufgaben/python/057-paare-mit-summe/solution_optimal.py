@@ -6,12 +6,12 @@ from collections import Counter
 
 
 def paare_anzahl(zahlen: list[int], ziel: int) -> int:
-    zaehler = Counter(zahlen)
+    zähler = Counter(zahlen)
     anzahl = 0
-    for wert, n in zaehler.items():
+    for wert, n in zähler.items():
         partner = ziel - wert
         if partner == wert:
             anzahl += n * (n - 1) // 2
         elif partner > wert:
-            anzahl += n * zaehler.get(partner, 0)
+            anzahl += n * zähler.get(partner, 0)
     return anzahl
