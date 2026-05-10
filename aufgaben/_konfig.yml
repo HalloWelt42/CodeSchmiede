@@ -40,3 +40,11 @@ aufgabentypen:
     titel: Output-Quiz
     view: output_quiz
     beschreibung: Ein Code-Schnipsel ist gegeben -- waehle die richtige Ausgabe.
+  - id: bug_finden
+    titel: Bug finden
+    view: bug_finden
+    beschreibung: Code mit Bug ist gegeben -- finde den Fehler und fixe ihn.
+  - id: lueckentext
+    titel: Lückentext
+    view: lueckentext
+    beschreibung: Code mit Platzhaltern (___1___, ___2___) -- fuelle die Luecken aus.

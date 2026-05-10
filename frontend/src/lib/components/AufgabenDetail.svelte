@@ -21,6 +21,7 @@
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
   import EditorBereich from './EditorBereich.svelte';
+  import LueckentextView from './LueckentextView.svelte';
   import OutputBereich from './OutputBereich.svelte';
   import OutputQuizView from './OutputQuizView.svelte';
   import ProbelaufBereich from './ProbelaufBereich.svelte';
@@ -276,7 +277,15 @@
 
     {#if detail.task_type === 'output_quiz'}
       <OutputQuizView {detail} />
+    {:else if detail.task_type === 'lueckentext'}
+      <LueckentextView {detail} />
     {:else}
+      {#if detail.task_type === 'bug_finden'}
+        <div class="bug-banner">
+          <i class="fa-solid fa-bug" aria-hidden="true"></i>
+          <span><strong>Bug finden!</strong> Im Editor steht Code mit einem Fehler. Finde ihn, fixe ihn, drueck Pruefen.</span>
+        </div>
+      {/if}
     <div class="spalten" bind:this={spaltenContainer} style={spaltenStil}>
       <section class="spalte links">
         <BeschreibungsBereich
@@ -469,6 +478,18 @@
     font-size: var(--fs-sm);
     flex-wrap: wrap;
   }
+  .bug-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-2) var(--sp-4);
+    background: color-mix(in srgb, var(--red) 10%, transparent);
+    border-bottom: 1px solid var(--red);
+    color: var(--fg);
+    font-family: var(--quick);
+    font-size: var(--fs-sm);
+  }
+  .bug-banner i { color: var(--red); }
   .sperre-banner i {
     color: var(--orange);
   }
