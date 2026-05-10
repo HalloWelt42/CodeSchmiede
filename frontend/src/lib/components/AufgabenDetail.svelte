@@ -15,6 +15,7 @@
   import { aufgabenApi } from '../api/AufgabenApi';
   import { progressApi } from '../api/ProgressApi';
   import { submissionsApi } from '../api/SubmissionsApi';
+  import { webWorkerRunner } from '../sandbox/WebWorkerRunner';
   import { farbeZuCss } from '../types/Konfig';
   import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
   import type { SubmissionAntwort, VerlaufEintrag } from '../types/Submission';
@@ -81,7 +82,11 @@
     pruefen_laeuft = true;
     pruef_fehler = null;
     try {
-      ergebnis = await submissionsApi.submit(detail.id, code);
+      if (detail.sprache === 'javascript') {
+        ergebnis = await pruefe_lokal();
+      } else {
+        ergebnis = await submissionsApi.submit(detail.id, code);
+      }
       if (ergebnis.bestanden && !musterloesungen) {
         musterloesungen = await aufgabenStore.ladeMusterloesungen(detail.id);
       }
@@ -94,6 +99,44 @@
     } finally {
       pruefen_laeuft = false;
     }
+  }
+
+  async function pruefe_lokal(): Promise<SubmissionAntwort> {
+    if (!detail) throw new Error('kein detail');
+    // tests_versteckt liegt clientseitig nicht vor (Anti-Hardcoding).
+    // Wir nutzen daher nur tests_sichtbar. Die Backend-Pruefung wuerde
+    // weiterhin funktionieren -- aber JS hat keinen Backend-Runner.
+    // Konsequenz: bei JS-Aufgaben werden nur sichtbare Tests bewertet.
+    // Deep-Clone via JSON, damit Svelte-Reactive-Proxies in plain Objects
+    // landen -- structuredClone (postMessage) versteht Proxies nicht.
+    const tests = JSON.parse(JSON.stringify(
+      detail.tests_sichtbar.map((t) => ({ input: t.input, expected: t.expected })),
+    ));
+    const lauf = await webWorkerRunner.run(
+      code,
+      detail.funktion ?? 'main',
+      tests,
+      [],
+      (detail.zeitlimit_sekunden ?? 5) * 1000,
+    );
+    const pruefung = {
+      bestanden: lauf.bestanden,
+      sichtbar: lauf.sichtbar.map((s) => ({
+        index: s.index,
+        bestanden: s.bestanden,
+        eingabe: s.eingabe,
+        erwartet: s.erwartet,
+        tatsaechlich: s.tatsaechlich,
+        fehler: s.fehler,
+      })),
+      versteckt_pass: 0,
+      versteckt_fail: 0,
+      laufzeit_ms: lauf.laufzeit_ms,
+      stdout: lauf.stdout,
+      stderr: lauf.stderr,
+      timeout: lauf.timeout,
+    };
+    return await submissionsApi.submitLokal(detail.id, code, pruefung);
   }
 
   async function geheZuNaechster(): Promise<void> {

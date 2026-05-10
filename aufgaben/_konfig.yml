@@ -30,6 +30,10 @@ sprachen:
     titel: Python
     editor_lang: python
     runner_type: docker_python
+  - id: javascript
+    titel: JavaScript
+    editor_lang: javascript
+    runner_type: webworker_js
 
 aufgabentypen:
   - id: code_schreiben

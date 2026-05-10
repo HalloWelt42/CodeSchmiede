@@ -38,11 +38,10 @@
 
   let werte = $state<Record<string, string>>({});
 
-  $effect(() => {
-    // Beim ersten Render mit leeren Werten initialisieren
+  onMount(() => {
     const neu: Record<string, string> = {};
     for (const l of luecken) {
-      neu[String(l.nummer)] = werte[String(l.nummer)] ?? '';
+      neu[String(l.nummer)] = '';
     }
     werte = neu;
   });

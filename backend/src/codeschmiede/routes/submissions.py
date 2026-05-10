@@ -44,6 +44,20 @@ class SubmissionAntwort(BaseModel):
     vergleich: list[VergleichEintrag] = Field(default_factory=list)
 
 
+class LokaleSubmissionAnfrage(BaseModel):
+    """Submission, deren Pruefung clientseitig (z.B. WebWorker) lief.
+
+    Das Frontend liefert das fertige PruefErgebnis mit; das Backend
+    speichert es nur und aktualisiert Progress + Streak. Wir vertrauen
+    dem Client hier explizit -- die Codeschmiede ist Single-User-MVP
+    ohne Auth, und ein Nutzer hat keinen Anreiz sich selbst zu betruegen.
+    """
+
+    aufgabe_id: str
+    code: str = Field(min_length=1, max_length=50_000)
+    pruefung: PruefErgebnis
+
+
 class ProbelaufAnfrage(BaseModel):
     aufgabe_id: str
     code: str = Field(min_length=1, max_length=50_000)
@@ -132,6 +146,49 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             submission_id=submission_id,
             progress=progress,
             vergleich=vergleich,
+        )
+
+    @router.post("/lokal", response_model=SubmissionAntwort)
+    def submit_lokal(anfrage: LokaleSubmissionAnfrage) -> SubmissionAntwort:
+        """Speichert eine Submission, die clientseitig ausgefuehrt wurde
+        (z.B. JavaScript im WebWorker)."""
+        aufgabe = state.aufgaben.aufgabe(anfrage.aufgabe_id)
+        if not aufgabe:
+            raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+
+        ergebnis = anfrage.pruefung
+        codelaenge = sum(1 for c in anfrage.code if not c.isspace())
+
+        with state.db.connect() as conn:
+            cursor = conn.execute(
+                """
+                INSERT INTO submissions (
+                    aufgabe_id, aufgabe_revision, code, bestanden,
+                    laufzeit_ms, codelaenge_zeichen
+                ) VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    aufgabe.id,
+                    aufgabe.revision,
+                    anfrage.code,
+                    1 if ergebnis.bestanden else 0,
+                    ergebnis.laufzeit_ms,
+                    codelaenge,
+                ),
+            )
+            submission_id = cursor.lastrowid or 0
+
+        progress = state.progress.aktualisiere_nach_submission(
+            aufgabe, ergebnis.bestanden
+        )
+
+        return SubmissionAntwort(
+            bestanden=ergebnis.bestanden,
+            pruefung=ergebnis,
+            codelaenge_zeichen=codelaenge,
+            submission_id=submission_id,
+            progress=progress,
+            vergleich=[],
         )
 
     @router.post("/probelauf", response_model=ProbelaufAntwort)
