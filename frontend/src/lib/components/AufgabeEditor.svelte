@@ -7,23 +7,28 @@
    * Test-Werte (input + expected) sind JSON-Strings, damit Booleans,
    * Listen und Dicts gehen. Validierung beim Speichern.
    */
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { adminApi } from '../api/AdminApi';
   import type {
     MusterloesungEintrag,
     ValidierungsErgebnis,
   } from '../api/AdminApi';
   import { konfig } from '../stores/KonfigStore.svelte';
+  import { markdownRenderer } from '../markdown/MarkdownRenderer';
   import type { VerwaltungsEintrag } from '../types/Admin';
+  import EditorBereich from './EditorBereich.svelte';
 
   interface Props {
     offen: boolean;
     bearbeiten: VerwaltungsEintrag | null;
+    /** Wenn gesetzt: Form mit Daten dieser Aufgabe vorbefuellen,
+     *  aber als neu speichern (ID muss angepasst werden). */
+    vorlage: VerwaltungsEintrag | null;
     onSchliessen: () => void;
     onGespeichert: (id: string) => void;
   }
 
-  let { offen, bearbeiten, onSchliessen, onGespeichert }: Props = $props();
+  let { offen, bearbeiten, vorlage, onSchliessen, onGespeichert }: Props = $props();
 
   // Form-State
   let id = $state('');
@@ -64,8 +69,22 @@
   let validierung = $state<ValidierungsErgebnis | null>(null);
   let validiert_laeuft = $state(false);
 
+  let beschreibung_modus = $state<'quelle' | 'split' | 'vorschau'>('split');
+  let vorschau_host: HTMLDivElement | undefined = $state();
+
   let ist_neu = $derived(bearbeiten === null);
   let titel_modal = $derived(ist_neu ? 'Neue Aufgabe' : `Bearbeiten: ${bearbeiten?.id}`);
+
+  let beschreibung_html = $derived(markdownRenderer.rendere(beschreibung_md));
+
+  $effect(() => {
+    if (vorschau_host && beschreibung_modus !== 'quelle') {
+      void tick().then(() => {
+        if (vorschau_host) markdownRenderer.rendereMermaids(vorschau_host);
+      });
+    }
+    return undefined;
+  });
 
   $effect(() => {
     if (offen) {
@@ -76,10 +95,13 @@
   async function initialisieren(): Promise<void> {
     fehler = null;
     validierung = null;
-    if (bearbeiten) {
-      const a = bearbeiten;
-      id = a.id;
-      titel = a.titel;
+    // Quelle der Daten: bearbeiten > vorlage > leer
+    const daten = bearbeiten ?? vorlage;
+    if (daten) {
+      const a = daten;
+      // Bei Vorlage: ID leer lassen, damit Nutzer eine neue waehlt
+      id = bearbeiten ? a.id : '';
+      titel = bearbeiten ? a.titel : `Kopie von ${a.titel}`;
       sprache = a.sprache;
       task_type = a.task_type;
       runner_type = a.runner_type;
@@ -93,7 +115,7 @@
       voraussetzungen_text = a.voraussetzungen.join(', ');
       lizenz = a.lizenz;
       autor = a.autor ?? '';
-      erstellt_am = a.erstellt_am ?? '';
+      erstellt_am = bearbeiten ? (a.erstellt_am ?? '') : new Date().toISOString().slice(0, 10);
       quelle_url = a.quelle?.url ?? '';
       quelle_notiz = a.quelle?.notiz ?? '';
       starter_code = a.starter_code;
@@ -113,7 +135,11 @@
       quiz_code = quiz?.code ?? '';
       quiz_optionen = quiz?.optionen ? [...quiz.optionen] : [];
       quiz_richtig_index = quiz?.richtig_index ?? 0;
-      await ladeMusterloesungen();
+      if (bearbeiten) {
+        await ladeMusterloesungen();
+      } else {
+        musterloesungen = [];
+      }
     } else {
       id = '';
       titel = '';
@@ -445,8 +471,24 @@
         </fieldset>
 
         <fieldset>
-          <legend>Beschreibung (Markdown)</legend>
-          <textarea rows="10" bind:value={beschreibung_md} placeholder="# Titel...&#10;&#10;Aufgabentext..."></textarea>
+          <legend>
+            Beschreibung (Markdown)
+            <span class="modus-tabs">
+              <button type="button" class:aktiv={beschreibung_modus === 'quelle'} onclick={() => (beschreibung_modus = 'quelle')}>Quelle</button>
+              <button type="button" class:aktiv={beschreibung_modus === 'split'} onclick={() => (beschreibung_modus = 'split')}>Split</button>
+              <button type="button" class:aktiv={beschreibung_modus === 'vorschau'} onclick={() => (beschreibung_modus = 'vorschau')}>Vorschau</button>
+            </span>
+          </legend>
+          <div class="md-bereich {beschreibung_modus}">
+            {#if beschreibung_modus !== 'vorschau'}
+              <textarea rows="14" bind:value={beschreibung_md} placeholder="# Titel...&#10;&#10;Aufgabentext..."></textarea>
+            {/if}
+            {#if beschreibung_modus !== 'quelle'}
+              <div class="md-vorschau" bind:this={vorschau_host}>
+                {@html beschreibung_html}
+              </div>
+            {/if}
+          </div>
         </fieldset>
 
         {#if task_type === 'output_quiz'}
@@ -475,7 +517,9 @@
         {:else}
           <fieldset>
             <legend>Starter-Code</legend>
-            <textarea rows="6" class="mono" bind:value={starter_code} placeholder="def meine_funktion(...):&#10;    pass"></textarea>
+            <div class="cm-host">
+              <EditorBereich {sprache} bind:code={starter_code} />
+            </div>
           </fieldset>
 
           <fieldset>
@@ -541,27 +585,30 @@
           <fieldset>
             <legend>Musterlösungen</legend>
             {#each musterloesungen as ml (ml.variante)}
-              <details class="muster-eintrag">
+              <details class="muster-eintrag" open>
                 <summary>
                   <span class="m-titel">{ml.variante}</span>
-                  <button type="button" class="entf" onclick={(e) => { e.preventDefault(); musterloesung_loeschen(ml.variante); }} aria-label="Löschen">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                  </button>
+                  <span class="muster-actions">
+                    <button type="button" class="speichern-mini" onclick={(e) => { e.preventDefault(); musterloesung_aktualisieren(ml.variante, ml.code); }}>
+                      <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> speichern
+                    </button>
+                    <button type="button" class="entf" onclick={(e) => { e.preventDefault(); musterloesung_loeschen(ml.variante); }} aria-label="Löschen">
+                      <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </span>
                 </summary>
-                <textarea
-                  rows="8"
-                  class="mono"
-                  bind:value={ml.code}
-                  onblur={() => musterloesung_aktualisieren(ml.variante, ml.code)}
-                ></textarea>
-                <small class="hint">Speichert beim Verlassen des Feldes.</small>
+                <div class="cm-host muster-cm">
+                  <EditorBereich {sprache} bind:code={ml.code} />
+                </div>
               </details>
             {/each}
 
             <div class="neu-loesung">
               <span class="neu-label">Neue Variante</span>
               <input type="text" bind:value={neue_variante} placeholder="z.B. naive, idiomatic, optimal" />
-              <textarea rows="4" class="mono" bind:value={neuer_solution_code} placeholder="def funktion(...):&#10;    return ..."></textarea>
+              <div class="cm-host muster-cm">
+                <EditorBereich {sprache} bind:code={neuer_solution_code} />
+              </div>
               <button type="button" class="add" onclick={musterloesung_speichern_neu} disabled={!neue_variante.trim() || !neuer_solution_code.trim()}>
                 <i class="fa-solid fa-plus" aria-hidden="true"></i> Hinzufügen
               </button>
@@ -972,5 +1019,124 @@
     font-family: var(--mono);
     font-size: var(--fs-xs);
     white-space: pre-wrap;
+  }
+
+  /* Markdown-Vorschau */
+  .modus-tabs {
+    display: inline-flex;
+    margin-left: var(--sp-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .modus-tabs button {
+    background: transparent;
+    border: none;
+    color: var(--fg-mute);
+    padding: 2px 8px;
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .modus-tabs button.aktiv {
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: var(--accent);
+  }
+  .md-bereich {
+    display: grid;
+    gap: var(--sp-2);
+    align-items: stretch;
+    min-height: 280px;
+  }
+  .md-bereich.split { grid-template-columns: 1fr 1fr; }
+  .md-bereich.quelle, .md-bereich.vorschau { grid-template-columns: 1fr; }
+  .md-bereich textarea {
+    min-height: 280px;
+    height: 100%;
+    font-family: var(--mono);
+    font-size: var(--fs-xs);
+  }
+  .md-vorschau {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--sp-3);
+    overflow-y: auto;
+    font-family: var(--quick);
+    font-size: var(--fs-sm);
+    color: var(--fg);
+    min-height: 280px;
+    max-height: 500px;
+  }
+  .md-vorschau :global(h1) { font-size: var(--fs-xl); margin: 0 0 var(--sp-2); color: var(--accent); }
+  .md-vorschau :global(h2) { font-size: var(--fs-lg); margin: var(--sp-3) 0 var(--sp-2); color: var(--accent); }
+  .md-vorschau :global(h3) { font-size: var(--fs-md); margin: var(--sp-2) 0; color: var(--fg); }
+  .md-vorschau :global(p), .md-vorschau :global(ul), .md-vorschau :global(ol) { margin: 0 0 var(--sp-2); }
+  .md-vorschau :global(code) {
+    font-family: var(--mono);
+    background: var(--bg);
+    padding: 1px 4px;
+    border: 1px solid var(--border);
+    font-size: 0.95em;
+  }
+  .md-vorschau :global(pre) {
+    background: var(--bg);
+    padding: var(--sp-2);
+    border: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .md-vorschau :global(table) {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: var(--sp-2);
+  }
+  .md-vorschau :global(th), .md-vorschau :global(td) {
+    border: 1px solid var(--border);
+    padding: 4px 8px;
+    font-size: var(--fs-xs);
+  }
+  .md-vorschau :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding-left: var(--sp-2);
+    color: var(--fg-dim);
+    margin: 0 0 var(--sp-2);
+  }
+
+  /* CodeMirror-Container im Editor */
+  .cm-host {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    height: 240px;
+    overflow: hidden;
+  }
+  .cm-host.muster-cm {
+    height: 200px;
+  }
+
+  .muster-actions {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .speichern-mini {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--fg-dim);
+    padding: 2px 8px;
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .speichern-mini:hover {
+    color: var(--accent);
+    border-color: var(--accent);
   }
 </style>

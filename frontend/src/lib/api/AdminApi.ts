@@ -27,6 +27,21 @@ export interface AufgabeSchreibAnfrage {
   beschreibung_md: string;
 }
 
+export interface PfadEintrag {
+  id: string;
+  titel: string;
+  beschreibung: string;
+  reihenfolge: string[];
+  aufgaben_anzahl: number;
+}
+
+export interface PfadSchreibAnfrage {
+  id: string;
+  titel: string;
+  beschreibung: string;
+  reihenfolge: string[];
+}
+
 export class AdminApi extends HttpBase {
   constructor() {
     super('/api/admin');
@@ -77,6 +92,22 @@ export class AdminApi extends HttpBase {
 
   validieren(id: string): Promise<ValidierungsErgebnis> {
     return this.post<ValidierungsErgebnis>(`/aufgaben/${id}/validieren`, {});
+  }
+
+  pfade(): Promise<PfadEintrag[]> {
+    return this.get<PfadEintrag[]>('/pfade');
+  }
+
+  pfadAnlegen(daten: PfadSchreibAnfrage): Promise<PfadEintrag> {
+    return this.post<PfadEintrag>('/pfade', daten);
+  }
+
+  pfadAendern(id: string, daten: PfadSchreibAnfrage): Promise<PfadEintrag> {
+    return this.put<PfadEintrag>(`/pfade/${id}`, daten);
+  }
+
+  pfadLoeschen(id: string): Promise<null> {
+    return this.delete<null>(`/pfade/${id}`);
   }
 }
 

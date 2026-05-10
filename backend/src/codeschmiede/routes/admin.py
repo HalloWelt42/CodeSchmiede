@@ -65,6 +65,21 @@ class VerwaltungsEintrag(BaseModel):
     statistik: AufgabenStatistik
 
 
+class PfadSchreibAnfrage(BaseModel):
+    id: str
+    titel: str
+    beschreibung: str = ""
+    reihenfolge: list[str] = Field(default_factory=list)
+
+
+class PfadEintrag(BaseModel):
+    id: str
+    titel: str
+    beschreibung: str
+    reihenfolge: list[str]
+    aufgaben_anzahl: int
+
+
 class AufgabeSchreibAnfrage(BaseModel):
     """Was das Frontend zum Anlegen / Aendern einer Aufgabe schickt.
 
@@ -356,6 +371,81 @@ def baue_admin_router(state: AppState) -> APIRouter:
         except AufgabenSchreiberFehler as exc:
             raise HTTPException(404, str(exc)) from exc
         state.aufgaben.leere_metriken_cache()
+
+    @router.get("/pfade", response_model=list[PfadEintrag])
+    def pfade_liste() -> list[PfadEintrag]:
+        eintraege: list[PfadEintrag] = []
+        for p in state.aufgaben.alle_pfade():
+            eintraege.append(
+                PfadEintrag(
+                    id=p.id,
+                    titel=p.titel,
+                    beschreibung=p.beschreibung,
+                    reihenfolge=p.reihenfolge,
+                    aufgaben_anzahl=len(p.reihenfolge),
+                )
+            )
+        return eintraege
+
+    @router.post("/pfade", response_model=PfadEintrag, status_code=201)
+    def pfad_anlegen(daten: PfadSchreibAnfrage) -> PfadEintrag:
+        try:
+            state.schreiber.schreibe_pfad(
+                pfad_id=daten.id,
+                titel=daten.titel,
+                beschreibung=daten.beschreibung,
+                reihenfolge=daten.reihenfolge,
+                existiert_pruefen=True,
+            )
+        except AufgabenSchreiberFehler as exc:
+            raise HTTPException(400, str(exc)) from exc
+        state.aufgaben.neu_aufbauen()
+        p = state.aufgaben.pfad(daten.id)
+        if p is None:
+            raise HTTPException(500, "Pfad nicht indiziert")
+        return PfadEintrag(
+            id=p.id,
+            titel=p.titel,
+            beschreibung=p.beschreibung,
+            reihenfolge=p.reihenfolge,
+            aufgaben_anzahl=len(p.reihenfolge),
+        )
+
+    @router.put("/pfade/{pfad_id}", response_model=PfadEintrag)
+    def pfad_aendern(pfad_id: str, daten: PfadSchreibAnfrage) -> PfadEintrag:
+        if daten.id != pfad_id:
+            raise HTTPException(400, "ID im Pfad und im Body muessen uebereinstimmen")
+        if state.aufgaben.pfad(pfad_id) is None:
+            raise HTTPException(404, f"Pfad '{pfad_id}' nicht gefunden")
+        try:
+            state.schreiber.schreibe_pfad(
+                pfad_id=daten.id,
+                titel=daten.titel,
+                beschreibung=daten.beschreibung,
+                reihenfolge=daten.reihenfolge,
+                existiert_pruefen=False,
+            )
+        except AufgabenSchreiberFehler as exc:
+            raise HTTPException(400, str(exc)) from exc
+        state.aufgaben.neu_aufbauen()
+        p = state.aufgaben.pfad(pfad_id)
+        if p is None:
+            raise HTTPException(500, "Pfad nicht indiziert")
+        return PfadEintrag(
+            id=p.id,
+            titel=p.titel,
+            beschreibung=p.beschreibung,
+            reihenfolge=p.reihenfolge,
+            aufgaben_anzahl=len(p.reihenfolge),
+        )
+
+    @router.delete("/pfade/{pfad_id}", status_code=204)
+    def pfad_loeschen(pfad_id: str) -> None:
+        try:
+            state.schreiber.loesche_pfad(pfad_id)
+        except AufgabenSchreiberFehler as exc:
+            raise HTTPException(404, str(exc)) from exc
+        state.aufgaben.neu_aufbauen()
 
     @router.post(
         "/aufgaben/{aufgabe_id}/validieren",

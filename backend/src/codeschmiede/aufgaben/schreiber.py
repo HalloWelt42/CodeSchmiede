@@ -28,6 +28,7 @@ from .loader import AufgabenLoader, FRONTMATTER_TRENNER, RESERVIERTE_VERZEICHNIS
 
 ID_MUSTER = re.compile(r"^[0-9]{3}-[a-z][a-z0-9-]*[a-z0-9]$")
 VARIANTE_MUSTER = re.compile(r"^[a-z][a-z0-9_]*$")
+PFAD_ID_MUSTER = re.compile(r"^[a-z][a-z0-9_]*$")
 
 
 class AufgabenSchreiberFehler(ValueError):
@@ -151,6 +152,49 @@ class AufgabenSchreiber:
             raise AufgabenSchreiberFehler(
                 f"Musterloesung '{variante}' nicht gefunden"
             )
+        ziel.unlink()
+        return ziel
+
+    # ---- Pfade ---------------------------------------------------------
+
+    def schreibe_pfad(
+        self,
+        pfad_id: str,
+        titel: str,
+        beschreibung: str,
+        reihenfolge: list[str],
+        existiert_pruefen: bool = True,
+    ) -> Path:
+        if not PFAD_ID_MUSTER.match(pfad_id):
+            raise AufgabenSchreiberFehler(
+                f"Ungueltige Pfad-ID '{pfad_id}'. Format: kleinbuchstaben + ziffern + underscore"
+            )
+        ziel_dir = self.wurzel / "pfade"
+        ziel_dir.mkdir(parents=True, exist_ok=True)
+        ziel = ziel_dir / f"{pfad_id}.yml"
+        if existiert_pruefen and ziel.exists():
+            raise AufgabenSchreiberFehler(
+                f"Pfad '{pfad_id}' existiert bereits"
+            )
+        daten = {
+            "id": pfad_id,
+            "titel": titel,
+            "beschreibung": beschreibung,
+            "reihenfolge": reihenfolge,
+        }
+        text = yaml.safe_dump(
+            daten,
+            sort_keys=False,
+            default_flow_style=False,
+            allow_unicode=True,
+        )
+        self._atomar_schreiben(ziel, text)
+        return ziel
+
+    def loesche_pfad(self, pfad_id: str) -> Path:
+        ziel = self.wurzel / "pfade" / f"{pfad_id}.yml"
+        if not ziel.exists():
+            raise AufgabenSchreiberFehler(f"Pfad '{pfad_id}' nicht gefunden")
         ziel.unlink()
         return ziel
 

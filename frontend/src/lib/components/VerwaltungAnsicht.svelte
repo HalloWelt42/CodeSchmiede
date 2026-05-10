@@ -9,10 +9,12 @@
    */
   import { onMount } from 'svelte';
   import { adminApi } from '../api/AdminApi';
+  import type { PfadEintrag } from '../api/AdminApi';
   import type { VerwaltungsEintrag } from '../types/Admin';
   import { route } from '../stores/RouteStore.svelte';
   import AufgabeEditor from './AufgabeEditor.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
+  import PfadEditor from './PfadEditor.svelte';
 
   let eintraege = $state<VerwaltungsEintrag[]>([]);
   let laden = $state(false);
@@ -21,26 +23,83 @@
 
   let editor_offen = $state(false);
   let editor_eintrag = $state<VerwaltungsEintrag | null>(null);
+  let editor_vorlage = $state<VerwaltungsEintrag | null>(null);
   let loesch_eintrag = $state<VerwaltungsEintrag | null>(null);
+
+  let aktiver_tab = $state<'aufgaben' | 'pfade'>('aufgaben');
+  let pfade = $state<PfadEintrag[]>([]);
+  let pfad_editor_offen = $state(false);
+  let pfad_editor_eintrag = $state<PfadEintrag | null>(null);
+  let pfad_loesch_eintrag = $state<PfadEintrag | null>(null);
+
+  async function ladePfade(): Promise<void> {
+    try {
+      pfade = await adminApi.pfade();
+    } catch (e) {
+      fehler = (e as Error).message;
+    }
+  }
+
+  function pfad_neu(): void {
+    pfad_editor_eintrag = null;
+    pfad_editor_offen = true;
+  }
+  function pfad_bearbeiten(p: PfadEintrag): void {
+    pfad_editor_eintrag = p;
+    pfad_editor_offen = true;
+  }
+  function pfad_editor_schliessen(): void {
+    pfad_editor_offen = false;
+    pfad_editor_eintrag = null;
+  }
+  async function pfad_nach_speichern(): Promise<void> {
+    pfad_editor_offen = false;
+    pfad_editor_eintrag = null;
+    await ladePfade();
+  }
+  function pfad_loesch_anfordern(p: PfadEintrag): void {
+    pfad_loesch_eintrag = p;
+  }
+  async function pfad_loesch_bestaetigt(): Promise<void> {
+    if (!pfad_loesch_eintrag) return;
+    const id = pfad_loesch_eintrag.id;
+    pfad_loesch_eintrag = null;
+    try {
+      await adminApi.pfadLoeschen(id);
+      await ladePfade();
+    } catch (e) {
+      fehler = (e as Error).message;
+    }
+  }
 
   function neu_oeffnen(): void {
     editor_eintrag = null;
+    editor_vorlage = null;
     editor_offen = true;
   }
 
   function bearbeiten(e: VerwaltungsEintrag): void {
     editor_eintrag = e;
+    editor_vorlage = null;
+    editor_offen = true;
+  }
+
+  function duplizieren(e: VerwaltungsEintrag): void {
+    editor_eintrag = null;
+    editor_vorlage = e;
     editor_offen = true;
   }
 
   function editor_schliessen(): void {
     editor_offen = false;
     editor_eintrag = null;
+    editor_vorlage = null;
   }
 
   async function nach_speichern(_id: string): Promise<void> {
     editor_offen = false;
     editor_eintrag = null;
+    editor_vorlage = null;
     await neuLaden();
   }
 
@@ -61,7 +120,7 @@
   }
 
   onMount(async () => {
-    await neuLaden();
+    await Promise.all([neuLaden(), ladePfade()]);
   });
 
   async function neuLaden(): Promise<void> {
@@ -116,22 +175,50 @@
       </p>
     </div>
     <div class="kopf-actions">
-      <button class="primaer-btn" onclick={neu_oeffnen}>
-        <i class="fa-solid fa-plus" aria-hidden="true"></i>
-        Neue Aufgabe
-      </button>
-      <button class="reload-btn" onclick={neuLaden} disabled={laden}>
-        <i class="fa-solid fa-rotate" aria-hidden="true"></i>
-        {laden ? 'Lade ...' : 'Neu laden'}
-      </button>
+      {#if aktiver_tab === 'aufgaben'}
+        <button class="primaer-btn" onclick={neu_oeffnen}>
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          Neue Aufgabe
+        </button>
+        <button class="reload-btn" onclick={neuLaden} disabled={laden}>
+          <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+          {laden ? 'Lade ...' : 'Neu laden'}
+        </button>
+      {:else}
+        <button class="primaer-btn" onclick={pfad_neu}>
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          Neuer Pfad
+        </button>
+        <button class="reload-btn" onclick={ladePfade}>
+          <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+          Neu laden
+        </button>
+      {/if}
     </div>
   </header>
+
+  <nav class="tabs">
+    <button
+      class:aktiv={aktiver_tab === 'aufgaben'}
+      onclick={() => (aktiver_tab = 'aufgaben')}
+    >
+      <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+      Aufgaben <span class="num">{eintraege.length}</span>
+    </button>
+    <button
+      class:aktiv={aktiver_tab === 'pfade'}
+      onclick={() => (aktiver_tab = 'pfade')}
+    >
+      <i class="fa-solid fa-route" aria-hidden="true"></i>
+      Pfade <span class="num">{pfade.length}</span>
+    </button>
+  </nav>
 
   {#if fehler}
     <p class="fehler">Fehler: {fehler}</p>
   {/if}
 
-  {#if !laden && eintraege.length > 0}
+  {#if aktiver_tab === 'aufgaben' && !laden && eintraege.length > 0}
     <section class="aggregat">
       <div class="kennzahl"><span class="num">{aggregat.gesamt}</span><small>Aufgaben</small></div>
       <div class="kennzahl"><span class="num">{aggregat.sprachen}</span><small>Sprachen</small></div>
@@ -173,6 +260,9 @@
             <div class="aktionen">
               <button class="action" onclick={() => bearbeiten(e)} title="Bearbeiten" aria-label="Bearbeiten">
                 <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+              </button>
+              <button class="action" onclick={() => duplizieren(e)} title="Duplizieren" aria-label="Duplizieren">
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
               </button>
               <button class="action danger" onclick={() => loesch_anfordern(e)} title="Löschen" aria-label="Löschen">
                 <i class="fa-solid fa-trash" aria-hidden="true"></i>
@@ -266,14 +356,56 @@
         </article>
       {/each}
     </div>
-  {:else if !laden}
+  {:else if aktiver_tab === 'aufgaben' && !laden}
     <p class="info">Keine Aufgaben gefunden.</p>
+  {/if}
+
+  {#if aktiver_tab === 'pfade'}
+    <div class="pfad-tabelle">
+      {#if pfade.length === 0}
+        <p class="info">Noch keine Pfade.</p>
+      {:else}
+        {#each pfade as p (p.id)}
+          <article class="pfad-zeile">
+            <header class="zeilen-kopf">
+              <div class="haupt">
+                <span class="id">{p.id}</span>
+                <span class="titel">{p.titel}</span>
+              </div>
+              <div class="meta">
+                <span class="badge num">{p.aufgaben_anzahl} Aufgaben</span>
+              </div>
+              <div class="aktionen">
+                <button class="action" onclick={() => pfad_bearbeiten(p)} title="Bearbeiten" aria-label="Bearbeiten">
+                  <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+                </button>
+                <button class="action danger" onclick={() => pfad_loesch_anfordern(p)} title="Löschen" aria-label="Löschen">
+                  <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                </button>
+              </div>
+            </header>
+            {#if p.beschreibung}
+              <p class="pfad-beschreibung">{p.beschreibung}</p>
+            {/if}
+            <ol class="pfad-aufgaben">
+              {#each p.reihenfolge as aid (aid)}
+                <li>
+                  <span class="num pos">{p.reihenfolge.indexOf(aid) + 1}.</span>
+                  <code>{aid}</code>
+                </li>
+              {/each}
+            </ol>
+          </article>
+        {/each}
+      {/if}
+    </div>
   {/if}
 </div>
 
 <AufgabeEditor
   offen={editor_offen}
   bearbeiten={editor_eintrag}
+  vorlage={editor_vorlage}
   onSchliessen={editor_schliessen}
   onGespeichert={nach_speichern}
 />
@@ -289,6 +421,27 @@
   danger={true}
   onBestaetigen={loesch_bestaetigt}
   onAbbrechen={() => (loesch_eintrag = null)}
+/>
+
+<PfadEditor
+  offen={pfad_editor_offen}
+  bearbeiten={pfad_editor_eintrag}
+  aufgaben={eintraege}
+  onSchliessen={pfad_editor_schliessen}
+  onGespeichert={pfad_nach_speichern}
+/>
+
+<ConfirmModal
+  offen={pfad_loesch_eintrag !== null}
+  titel="Pfad löschen?"
+  nachricht={pfad_loesch_eintrag
+    ? `Pfad '${pfad_loesch_eintrag.id}' (${pfad_loesch_eintrag.titel}) wird entfernt. Aufgaben selbst bleiben erhalten -- nur die Pfad-Zuordnung verschwindet.`
+    : ''}
+  bestaetigen_text="Löschen"
+  abbrechen_text="Abbrechen"
+  danger={true}
+  onBestaetigen={pfad_loesch_bestaetigt}
+  onAbbrechen={() => (pfad_loesch_eintrag = null)}
 />
 
 <style>
@@ -517,6 +670,85 @@
   .action.danger:hover {
     color: var(--red);
     border-color: var(--red);
+  }
+
+  .tabs {
+    display: flex;
+    gap: var(--sp-1);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--sp-3);
+  }
+  .tabs button {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--fg-dim);
+    padding: 8px 16px;
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: -1px;
+  }
+  .tabs button.aktiv {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .tabs .num {
+    color: var(--fg-mute);
+    font-size: var(--fs-xs);
+  }
+  .tabs button.aktiv .num { color: var(--accent); }
+
+  .pfad-tabelle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+  .pfad-zeile {
+    background: var(--bg-card-2);
+    border: 1px solid var(--border);
+    padding: var(--sp-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  .pfad-beschreibung {
+    margin: 0;
+    color: var(--fg-dim);
+    font-family: var(--quick);
+    font-size: var(--fs-sm);
+  }
+  .pfad-aufgaben {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-1);
+  }
+  .pfad-aufgaben li {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    font-size: var(--fs-xs);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .pfad-aufgaben .pos {
+    color: var(--fg-mute);
+  }
+  .pfad-aufgaben code {
+    font-family: var(--mono);
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--accent);
   }
 
   .kennzahlen-zeile {
