@@ -103,6 +103,9 @@ export class ProgressApi extends HttpBase {
   heatmap(tage = 90): Promise<HeatmapAntwort> {
     return this.get<HeatmapAntwort>(`/heatmap?tage=${tage}`);
   }
+  heatmapJahr(jahr: number): Promise<HeatmapAntwort> {
+    return this.get<HeatmapAntwort>(`/heatmap?jahr=${jahr}`);
+  }
   achievements(): Promise<AchievementsAntwort> {
     return this.get<AchievementsAntwort>('/achievements');
   }

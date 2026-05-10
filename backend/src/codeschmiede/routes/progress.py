@@ -141,23 +141,50 @@ def baue_progress_router(state: AppState) -> APIRouter:
         return WeiterVorschlag(naechste_id=None, quelle="keine")
 
     @router.get("/heatmap", response_model=HeatmapAntwort)
-    def heatmap(tage: int = 90) -> HeatmapAntwort:
-        """Submissions pro Tag für die letzten N Tage."""
-        if tage < 1 or tage > 365:
-            raise HTTPException(400, "tage muss zwischen 1 und 365 sein")
+    def heatmap(jahr: int | None = None, tage: int | None = None) -> HeatmapAntwort:
+        """Submissions pro Tag.
+
+        Zwei Modi:
+        - `jahr=YYYY`: liefert alle Tage des Jahres mit mind. einer Submission
+          (GitHub-Style fuer einen Jahres-Block).
+        - `tage=N`: liefert die letzten N Tage als rolling window. Backward-
+          kompatibel zur ersten Heatmap-Variante.
+        Kein Parameter -> aktuelles Jahr.
+        """
+        if jahr is None and tage is None:
+            jahr = date.today().year
+
         with state.db.connect() as conn:
-            rows = conn.execute(
-                """
-                SELECT date(zeitstempel) AS datum,
-                       COUNT(*) AS submissions,
-                       SUM(CASE WHEN bestanden = 1 THEN 1 ELSE 0 END) AS bestanden
-                FROM submissions
-                WHERE date(zeitstempel) >= date('now', ?)
-                GROUP BY date(zeitstempel)
-                ORDER BY datum
-                """,
-                (f"-{tage - 1} days",),
-            ).fetchall()
+            if jahr is not None:
+                if jahr < 2000 or jahr > 2100:
+                    raise HTTPException(400, "Jahr muss zwischen 2000 und 2100 sein")
+                rows = conn.execute(
+                    """
+                    SELECT date(zeitstempel) AS datum,
+                           COUNT(*) AS submissions,
+                           SUM(CASE WHEN bestanden = 1 THEN 1 ELSE 0 END) AS bestanden
+                    FROM submissions
+                    WHERE strftime('%Y', zeitstempel) = ?
+                    GROUP BY date(zeitstempel)
+                    ORDER BY datum
+                    """,
+                    (str(jahr),),
+                ).fetchall()
+            else:
+                if tage is None or tage < 1 or tage > 730:
+                    raise HTTPException(400, "tage muss zwischen 1 und 730 sein")
+                rows = conn.execute(
+                    """
+                    SELECT date(zeitstempel) AS datum,
+                           COUNT(*) AS submissions,
+                           SUM(CASE WHEN bestanden = 1 THEN 1 ELSE 0 END) AS bestanden
+                    FROM submissions
+                    WHERE date(zeitstempel) >= date('now', ?)
+                    GROUP BY date(zeitstempel)
+                    ORDER BY datum
+                    """,
+                    (f"-{tage - 1} days",),
+                ).fetchall()
         eintraege = [
             HeatmapTag(
                 datum=r["datum"],
