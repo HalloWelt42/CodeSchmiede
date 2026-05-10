@@ -1,14 +1,15 @@
 id: python_listen3
 titel: Python-Listen 3
 beschreibung: |
-  Listen-Aufgaben aus der Interview-Welt: Two-Sum (LeetCode-Klassiker
-  Nr. 1), Sliding-Window-Summe, Prefix-Summen, laengste aufsteigende
-  Subsequenz, Paare mit Zielsumme. Alle in eigenen Worten formuliert
-  -- die Probleme selbst sind seit Jahrzehnten Teil des Standard-
-  Repertoires.
+  Listen-Aufgaben aus der Interview-Welt: Two-Sum (LeetCode Nr. 1),
+  Sliding-Window-Summe, Prefix-Summen, längste aufsteigende Subsequenz,
+  Paare mit Zielsumme, größte Lücke, Listen-Beziehung (Sublist).
+  Klassiker, die seit Jahren in Bewerbungsgesprächen vorkommen.
 reihenfolge:
   - 053-two-sum
   - 054-sliding-summe
   - 055-prefix-summe
   - 056-laengste-aufsteigende
   - 057-paare-mit-summe
+  - 112-groesste-luecke
+  - 118-sublist

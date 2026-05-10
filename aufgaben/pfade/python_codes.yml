@@ -1,10 +1,15 @@
 id: python_codes
 titel: Python-Codes & Krypto
 beschreibung: |
-  Klassische Codes und Prüfziffern: Atbash-Chiffre, Luhn-Algorithmus
-  fuer Kreditkarten, ISBN-10-Validierung. Eintauchen in die Welt der
-  Identifier-Verifikation und einfacher Verschluesselung.
+  Klassische Codes, Prüfziffern und Verschlüsselungen: Atbash, ROT-N
+  und Vigenère als Polyalphabet. Plus Luhn und ISBN-10 als Standards
+  für Identifier-Validierung. Und Basis-Konvertierung als
+  Fundament für viele Algorithmen.
 reihenfolge:
   - 076-atbash
+  - 104-rot-chiffre
+  - 105-vigenere
   - 073-luhn
   - 074-isbn
+  - 093-binary-zu-decimal
+  - 094-decimal-zu-binary

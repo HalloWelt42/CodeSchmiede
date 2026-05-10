@@ -68,23 +68,30 @@ class AufgabenLoader:
         return pfade
 
     def lade_musterloesungen(self, aufgabe_id: str) -> list[dict[str, str]]:
-        """Liest alle `solution_*.py`-Dateien neben der `aufgabe.md`.
+        """Liest alle `solution_*.{py,js,ts,html,css,sql}`-Dateien neben
+        der `aufgabe.md`.
 
         Rückgabe: Liste von `{variante, code}`. Reihenfolge ist stabil
         und didaktisch sortiert: naive vor idiomatic vor optimal, der
         Rest alphabetisch.
         """
+        endungen = ("*.py", "*.js", "*.ts", "*.html", "*.css", "*.sql")
         for sprache_dir in self.wurzel.iterdir():
             if not sprache_dir.is_dir() or sprache_dir.name in RESERVIERTE_VERZEICHNISSE:
                 continue
             kandidat = sprache_dir / aufgabe_id
             if (kandidat / "aufgabe.md").exists():
                 ergebnis: list[dict[str, str]] = []
-                for datei in kandidat.glob("solution_*.py"):
-                    variante = datei.stem.removeprefix("solution_")
-                    ergebnis.append(
-                        {"variante": variante, "code": datei.read_text(encoding="utf-8")}
-                    )
+                gesehen: set[str] = set()
+                for muster in endungen:
+                    for datei in kandidat.glob(f"solution_{muster}"):
+                        variante = datei.stem.removeprefix("solution_")
+                        if variante in gesehen:
+                            continue
+                        gesehen.add(variante)
+                        ergebnis.append(
+                            {"variante": variante, "code": datei.read_text(encoding="utf-8")}
+                        )
 
                 ordnung = ["naive", "idiomatic", "optimal"]
 

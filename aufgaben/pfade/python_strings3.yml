@@ -1,12 +1,20 @@
 id: python_strings3
 titel: Python-Strings 3
 beschreibung: |
-  String-Operationen aus der Tooling-Welt: snake_case und camelCase
-  ineinander ueberfuehren, Substring-Suche, laengstes Wort eines
-  Satzes finden, Worte umkehren. Praktische Bausteine, wie man sie
-  in Linters und Formattern oft findet.
+  Aufgabentyp aus der Tooling-Welt: snake/camelCase, Substring-Suche
+  mit Überlappung, längstes Wort, Hamming-Distanz, Pangram, Isogram,
+  Scrabble-Punkte, eindeutige Teilstrings, Anagramm-Finder, und
+  Akronym mit gemischten Trennzeichen. Praktische Bausteine für
+  Linter, Formatter und Text-Statistik.
 reihenfolge:
   - 045-snake-zu-camel
   - 046-camel-zu-snake
   - 047-substring-anzahl
   - 048-laengstes-wort
+  - 077-hamming-distanz
+  - 078-pangram
+  - 079-isogram
+  - 081-scrabble
+  - 110-eindeutige-teilstrings
+  - 119-anagramm-finder
+  - 120-trennzeichen-akronym

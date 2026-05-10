@@ -1,13 +1,19 @@
 id: python_mathe2
 titel: Python-Mathematik 2
 beschreibung: |
-  Aufbau auf "Python-Mathematik" -- mehr klassische Zahl-Spiele:
-  perfekte und befreundete Zahlen, Armstrong-Zahlen, roemische Zahlen
-  in beide Richtungen. Inspiration teils aus dem Project Euler und
-  Rosetta Code; alle Aufgaben hier in eigenen Worten.
+  Aufbau-Pfad nach "Python-Mathematik": perfekte/befreundete/Armstrong-
+  Zahlen, römische Zahlen in beide Richtungen, Pythagoras-Tripel und
+  Project-Euler-Klassiker (Vielfache, Quadrat-Summen-Differenz, größtes
+  Produkt), das Pascalsche Dreieck und die n-te Primzahl.
 reihenfolge:
   - 040-perfekte-zahl
   - 041-befreundet
   - 042-armstrong
   - 043-roemisch-zu-int
   - 044-int-zu-roemisch
+  - 084-pythagoras-tripel
+  - 085-summen-vielfache
+  - 086-quadrat-summen-differenz
+  - 096-groesstes-produkt
+  - 106-pascal-dreieck
+  - 121-nte-primzahl

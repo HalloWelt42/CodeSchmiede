@@ -4,7 +4,9 @@
    * Schwierigkeiten und Sprachen kommen aus dem KonfigStore -- nichts
    * mehr im Code hardcodiert.
    */
+  import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { konfig } from '../stores/KonfigStore.svelte';
+  import { pfadeStore } from '../stores/PfadeStore.svelte';
   import type { ProgressStatus } from '../api/ProgressApi';
 
   interface Props {
@@ -12,6 +14,7 @@
     sprache: string;
     schwierigkeit: string;
     status: ProgressStatus | '';
+    pfad: string;
     treffer: number;
     gesamt: number;
   }
@@ -21,6 +24,7 @@
     sprache = $bindable(),
     schwierigkeit = $bindable(),
     status = $bindable(),
+    pfad = $bindable(),
     treffer,
     gesamt,
   }: Props = $props();
@@ -30,11 +34,14 @@
     sprache = '';
     schwierigkeit = '';
     status = '';
+    pfad = '';
   }
 
   let aktiv = $derived(
-    suche.length > 0 || sprache !== '' || schwierigkeit !== '' || status !== '',
+    suche.length > 0 || sprache !== '' || schwierigkeit !== '' || status !== '' || pfad !== '',
   );
+
+  let pfade_sortiert = $derived([...pfadeStore.liste].sort((a, b) => a.titel.localeCompare(b.titel)));
 </script>
 
 <div class="filter">
@@ -66,6 +73,14 @@
     <option value="neu">Neu</option>
     <option value="in_arbeit">In Arbeit</option>
     <option value="geloest">Gelöst</option>
+  </select>
+
+  <select bind:value={pfad} aria-label="Pfad">
+    <option value="">Alle Pfade</option>
+    <option value="__ohne__">Ohne Pfad</option>
+    {#each pfade_sortiert as p (p.id)}
+      <option value={p.id}>{p.titel}</option>
+    {/each}
   </select>
 
   <span class="treffer num">

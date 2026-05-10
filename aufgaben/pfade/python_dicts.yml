@@ -1,11 +1,15 @@
 id: python_dicts
 titel: Python-Dictionaries
 beschreibung: |
-  Dictionaries -- das Schweizer Taschenmesser fuer alles, was nach
-  Schluessel-Wert riecht. Worte zaehlen, Zuordnungen invertieren,
-  Zeichen-Haeufigkeiten ermitteln. Wer hier sicher wird, hat ein
-  Werkzeug fuer ueberraschend viele reale Probleme.
+  Dictionaries als Schweizer Taschenmesser für Schlüssel-Wert-Daten.
+  Worte und Zeichen zählen, Zuordnungen invertieren, Format-Wechsel
+  per ETL, Anagramm-Klassen gruppieren, Schüler nach Klassen
+  sortieren -- praktische Daten-Operationen, die in jedem Job
+  vorkommen.
 reihenfolge:
   - 022-wortzaehler
-  - 023-dict-invertieren
   - 024-zeichen-haeufigkeit
+  - 023-dict-invertieren
+  - 091-etl
+  - 109-anagramm-gruppen
+  - 117-klassen-sortierung

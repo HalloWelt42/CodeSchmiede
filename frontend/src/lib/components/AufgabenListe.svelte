@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
+  import { pfadeStore } from '../stores/PfadeStore.svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { konfig } from '../stores/KonfigStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
@@ -13,10 +14,12 @@
   let sprache = $state('');
   let schwierigkeit = $state('');
   let status = $state<ProgressStatus | ''>('');
+  let pfad = $state('');
 
   onMount(async () => {
     if (aufgabenStore.liste.length === 0) await aufgabenStore.ladeListe();
     if (!progressStore.gesamt) await progressStore.ladeAlles();
+    if (pfadeStore.liste.length === 0) await pfadeStore.ladeListe();
   });
 
   function oeffne(id: string): void {
@@ -51,6 +54,8 @@
       if (sprache && a.sprache !== sprache) return false;
       if (schwierigkeit && a.schwierigkeit !== schwierigkeit) return false;
       if (status && progressStore.status(a.id) !== status) return false;
+      if (pfad === '__ohne__' && a.pfade.length > 0) return false;
+      if (pfad && pfad !== '__ohne__' && !a.pfade.includes(pfad)) return false;
       const q = suche.trim().toLowerCase();
       if (q) {
         if (q.startsWith('#')) {
@@ -87,6 +92,7 @@
       bind:sprache
       bind:schwierigkeit
       bind:status
+      bind:pfad
       treffer={gefiltert.length}
       gesamt={aufgabenStore.liste.length}
     />
