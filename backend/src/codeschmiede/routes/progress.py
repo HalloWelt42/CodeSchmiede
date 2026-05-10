@@ -90,6 +90,16 @@ def baue_progress_router(state: AppState) -> APIRouter:
         state.progress.reset_aufgabe(aufgabe_id)
         return {"status": "reset", "aufgabe_id": aufgabe_id}
 
+    @router.post("/reset-alles")
+    def reset_alles() -> dict[str, str]:
+        """Globaler Reset: löscht alle Submissions, Progress und Streak.
+        Aufgaben-Dateien bleiben unangetastet -- man fängt komplett von
+        vorne an.
+        """
+        state.progress.reset_alles()
+        state.aufgaben.leere_metriken_cache()
+        return {"status": "alles zurückgesetzt"}
+
     @router.get("/weiter/{aufgabe_id}", response_model=WeiterVorschlag)
     def weiter_vorschlag(aufgabe_id: str) -> WeiterVorschlag:
         """Naechste offene Aufgabe -- bevorzugt im selben Pfad."""

@@ -178,6 +178,15 @@ class ProgressRepository:
         with self.db.connect() as conn:
             conn.execute("DELETE FROM progress WHERE aufgabe_id = ?", (aufgabe_id,))
 
+    def reset_alles(self) -> None:
+        """Globaler Reset: Submissions + Progress + Streak komplett weg.
+        Aufgaben-Dateien bleiben unangetastet.
+        """
+        with self.db.connect() as conn:
+            conn.execute("DELETE FROM submissions")
+            conn.execute("DELETE FROM progress")
+            conn.execute("DELETE FROM kv_state WHERE key LIKE 'streak.%'")
+
     # --- Streak -----------------------------------------------------------
 
     def hole_streak(self) -> Streak:

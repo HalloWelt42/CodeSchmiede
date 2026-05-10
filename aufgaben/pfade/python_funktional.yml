@@ -1,0 +1,8 @@
+id: python_funktional
+titel: Python-Funktional
+beschreibung: |
+  Higher-Order-Functions selbst nachbauen: filter, map, reduce.
+  Macht klar, was unter der Haube von functools und itertools
+  passiert. Eintauchen in funktionales Denken.
+reihenfolge:
+  - 090-strain-filter

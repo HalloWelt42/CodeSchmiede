@@ -97,6 +97,9 @@ export class ProgressApi extends HttpBase {
   reset(aufgabeId: string): Promise<{ status: string; aufgabe_id: string }> {
     return this.request<{ status: string; aufgabe_id: string }>(`/${aufgabeId}`, { method: 'DELETE' });
   }
+  resetAlles(): Promise<{ status: string }> {
+    return this.post<{ status: string }>('/reset-alles', {});
+  }
   heatmap(tage = 90): Promise<HeatmapAntwort> {
     return this.get<HeatmapAntwort>(`/heatmap?tage=${tage}`);
   }

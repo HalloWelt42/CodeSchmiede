@@ -10,6 +10,8 @@
   import { onMount } from 'svelte';
   import { adminApi } from '../api/AdminApi';
   import type { PfadEintrag } from '../api/AdminApi';
+  import { progressApi } from '../api/ProgressApi';
+  import { progressStore } from '../stores/ProgressStore.svelte';
   import type { VerwaltungsEintrag } from '../types/Admin';
   import { route } from '../stores/RouteStore.svelte';
   import AufgabeEditor from './AufgabeEditor.svelte';
@@ -25,6 +27,17 @@
   let editor_eintrag = $state<VerwaltungsEintrag | null>(null);
   let editor_vorlage = $state<VerwaltungsEintrag | null>(null);
   let loesch_eintrag = $state<VerwaltungsEintrag | null>(null);
+  let reset_alles_bestaetigung = $state(false);
+
+  async function reset_alles_anwenden(): Promise<void> {
+    reset_alles_bestaetigung = false;
+    try {
+      await progressApi.resetAlles();
+      await Promise.all([neuLaden(), progressStore.ladeAlles()]);
+    } catch (e) {
+      fehler = (e as Error).message;
+    }
+  }
 
   let aktiver_tab = $state<'aufgaben' | 'pfade'>('aufgaben');
   let pfade = $state<PfadEintrag[]>([]);
@@ -183,6 +196,10 @@
         <button class="reload-btn" onclick={neuLaden} disabled={laden}>
           <i class="fa-solid fa-rotate" aria-hidden="true"></i>
           {laden ? 'Lade ...' : 'Neu laden'}
+        </button>
+        <button class="danger-btn" onclick={() => (reset_alles_bestaetigung = true)} title="Alle Submissions, Punkte und Streak löschen">
+          <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+          Alles zurücksetzen
         </button>
       {:else}
         <button class="primaer-btn" onclick={pfad_neu}>
@@ -432,6 +449,17 @@
 />
 
 <ConfirmModal
+  offen={reset_alles_bestaetigung}
+  titel="Alles zurücksetzen?"
+  nachricht="Alle Submissions, Fortschritte, Punkte und der Streak werden komplett gelöscht. Die Aufgaben-Dateien selbst bleiben erhalten -- du fängst von vorne an. Dieser Schritt ist nicht umkehrbar."
+  bestaetigen_text="Komplett zurücksetzen"
+  abbrechen_text="Abbrechen"
+  danger={true}
+  onBestaetigen={reset_alles_anwenden}
+  onAbbrechen={() => (reset_alles_bestaetigung = false)}
+/>
+
+<ConfirmModal
   offen={pfad_loesch_eintrag !== null}
   titel="Pfad löschen?"
   nachricht={pfad_loesch_eintrag
@@ -490,6 +518,24 @@
   }
   .primaer-btn:hover {
     background: color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  .danger-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--fg-mute);
+    padding: 6px 14px;
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .danger-btn:hover {
+    color: var(--red);
+    border-color: var(--red);
   }
   .reload-btn {
     background: transparent;
