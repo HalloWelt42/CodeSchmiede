@@ -1,0 +1,1 @@
+SELECT pr.name, p.menge, p.einzelpreis, ROUND(p.menge * p.einzelpreis * (CASE WHEN p.menge >= 5 THEN 0.9 ELSE 1.0 END), 2) AS preis FROM bestellpositionen p JOIN produkte pr ON p.produkt_id = pr.id ORDER BY pr.name, p.menge DESC;

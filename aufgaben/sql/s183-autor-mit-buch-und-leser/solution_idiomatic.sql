@@ -1,0 +1,1 @@
+SELECT a.name, COUNT(DISTINCT b.id) AS buecher, COUNT(DISTINCT au.leser_id) AS leser FROM autoren a JOIN buecher b ON b.autor_id = a.id LEFT JOIN ausleihen au ON au.buch_id = b.id GROUP BY a.id, a.name ORDER BY a.name;

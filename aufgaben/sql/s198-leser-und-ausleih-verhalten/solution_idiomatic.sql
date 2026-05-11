@@ -1,0 +1,1 @@
+SELECT l.name, SUM(CASE WHEN a.zurueck_am IS NOT NULL THEN 1 ELSE 0 END) AS abgeschlossen, SUM(CASE WHEN a.zurueck_am IS NULL THEN 1 ELSE 0 END) AS offen FROM leser l LEFT JOIN ausleihen a ON a.leser_id = l.id GROUP BY l.id, l.name ORDER BY l.name;

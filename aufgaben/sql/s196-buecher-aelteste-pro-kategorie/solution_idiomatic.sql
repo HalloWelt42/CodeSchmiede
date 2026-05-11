@@ -1,0 +1,1 @@
+WITH r AS (  SELECT titel, jahr, kategorie,   ROW_NUMBER() OVER (PARTITION BY kategorie ORDER BY jahr, titel) AS rn   FROM buecher) SELECT kategorie, titel, jahr FROM r WHERE rn = 1 ORDER BY kategorie;

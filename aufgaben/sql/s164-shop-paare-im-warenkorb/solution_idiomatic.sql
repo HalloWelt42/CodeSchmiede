@@ -1,0 +1,1 @@
+SELECT p1.produkt_id AS produkt_a, p2.produkt_id AS produkt_b, COUNT(*) AS gemeinsam FROM bestellpositionen p1 JOIN bestellpositionen p2 ON p1.bestellung_id = p2.bestellung_id AND p1.produkt_id < p2.produkt_id GROUP BY p1.produkt_id, p2.produkt_id ORDER BY gemeinsam DESC, p1.produkt_id, p2.produkt_id LIMIT 10;

@@ -1,0 +1,1 @@
+SELECT CASE WHEN seiten < 200 THEN '< 200' WHEN seiten < 400 THEN '200-399' WHEN seiten < 600 THEN '400-599' ELSE '>= 600' END AS stufe, COUNT(*) AS anzahl FROM buecher GROUP BY stufe ORDER BY MIN(seiten);

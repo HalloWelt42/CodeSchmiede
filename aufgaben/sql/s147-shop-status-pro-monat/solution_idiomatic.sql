@@ -1,0 +1,1 @@
+SELECT strftime('%Y-%m', bestellt_am) AS monat, SUM(CASE WHEN status = 'offen' THEN 1 ELSE 0 END) AS offen, SUM(CASE WHEN status = 'versandt' THEN 1 ELSE 0 END) AS versandt, SUM(CASE WHEN status = 'geliefert' THEN 1 ELSE 0 END) AS geliefert, SUM(CASE WHEN status = 'storniert' THEN 1 ELSE 0 END) AS storniert FROM bestellungen GROUP BY monat ORDER BY monat;

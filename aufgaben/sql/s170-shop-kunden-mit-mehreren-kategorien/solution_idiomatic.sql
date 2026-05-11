@@ -1,0 +1,1 @@
+SELECT k.name, COUNT(DISTINCT pr.kategorie_id) AS kategorien FROM bestellpositionen p JOIN bestellungen b ON p.bestellung_id = b.id JOIN kunden k ON b.kunde_id = k.id JOIN produkte pr ON p.produkt_id = pr.id GROUP BY k.id, k.name HAVING COUNT(DISTINCT pr.kategorie_id) >= 3 ORDER BY kategorien DESC, k.name;

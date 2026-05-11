@@ -1,0 +1,1 @@
+SELECT b.titel, COUNT(*) AS ausleihen FROM ausleihen a JOIN buecher b ON a.buch_id = b.id WHERE strftime('%Y', a.ausgeliehen_am) = '2025' GROUP BY b.id, b.titel HAVING COUNT(*) >= 1 ORDER BY ausleihen DESC, b.titel LIMIT 5;

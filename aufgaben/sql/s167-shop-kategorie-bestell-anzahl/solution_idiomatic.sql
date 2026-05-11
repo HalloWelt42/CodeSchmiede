@@ -1,0 +1,1 @@
+SELECT k.name AS kategorie, COUNT(DISTINCT p.bestellung_id) AS bestellungen FROM bestellpositionen p JOIN produkte pr ON p.produkt_id = pr.id JOIN kategorien k ON pr.kategorie_id = k.id GROUP BY k.id, k.name ORDER BY bestellungen DESC, k.name;

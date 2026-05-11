@@ -1,0 +1,1 @@
+SELECT 'autoren' AS tabelle, COUNT(*) AS anzahl FROM autoren UNION ALL SELECT 'buecher', COUNT(*) FROM buecher UNION ALL SELECT 'leser', COUNT(*) FROM leser UNION ALL SELECT 'ausleihen', COUNT(*) FROM ausleihen;

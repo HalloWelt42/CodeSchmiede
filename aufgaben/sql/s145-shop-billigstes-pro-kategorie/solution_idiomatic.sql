@@ -1,0 +1,1 @@
+WITH r AS (  SELECT p.name, p.preis, k.name AS kategorie,   ROW_NUMBER() OVER (PARTITION BY k.id ORDER BY p.preis, p.name) AS rn   FROM produkte p JOIN kategorien k ON p.kategorie_id = k.id) SELECT kategorie, name, preis FROM r WHERE rn = 1 ORDER BY kategorie;

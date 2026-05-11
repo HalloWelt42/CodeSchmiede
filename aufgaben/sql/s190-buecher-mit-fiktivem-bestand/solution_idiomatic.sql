@@ -1,0 +1,1 @@
+SELECT b.titel, b.exemplare, (b.exemplare - COUNT(a.id)) AS verfuegbar, CASE WHEN (b.exemplare - COUNT(a.id)) = 0 THEN 'ausgeliehen' ELSE 'verfuegbar' END AS status FROM buecher b LEFT JOIN ausleihen a ON a.buch_id = b.id AND a.zurueck_am IS NULL GROUP BY b.id, b.titel, b.exemplare ORDER BY verfuegbar, b.titel;

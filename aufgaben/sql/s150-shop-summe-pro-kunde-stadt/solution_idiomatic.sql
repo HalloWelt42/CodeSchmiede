@@ -1,0 +1,1 @@
+SELECT k.ort, ROUND(SUM(p.menge * p.einzelpreis), 2) AS umsatz FROM bestellpositionen p JOIN bestellungen b ON p.bestellung_id = b.id JOIN kunden k ON b.kunde_id = k.id GROUP BY k.ort ORDER BY umsatz DESC, k.ort;

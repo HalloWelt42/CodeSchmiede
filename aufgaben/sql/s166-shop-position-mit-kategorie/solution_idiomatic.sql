@@ -1,0 +1,1 @@
+SELECT b.id, pr.name AS produkt, k.name AS kategorie, p.menge FROM bestellpositionen p JOIN bestellungen b ON p.bestellung_id = b.id JOIN produkte pr ON p.produkt_id = pr.id JOIN kategorien k ON pr.kategorie_id = k.id WHERE b.status = 'geliefert' ORDER BY b.id, pr.name;

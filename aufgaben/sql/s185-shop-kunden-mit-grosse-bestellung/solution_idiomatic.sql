@@ -1,0 +1,1 @@
+SELECT DISTINCT k.name FROM bestellungen b JOIN kunden k ON b.kunde_id = k.id JOIN bestellpositionen p ON p.bestellung_id = b.id GROUP BY b.id, k.name HAVING SUM(p.menge * p.einzelpreis) > 15 ORDER BY k.name;

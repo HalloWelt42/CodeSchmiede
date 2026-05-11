@@ -1,0 +1,1 @@
+SELECT k.ort, COUNT(DISTINCT p.produkt_id) AS produkte FROM bestellpositionen p JOIN bestellungen b ON p.bestellung_id = b.id JOIN kunden k ON b.kunde_id = k.id GROUP BY k.ort ORDER BY produkte DESC, k.ort;

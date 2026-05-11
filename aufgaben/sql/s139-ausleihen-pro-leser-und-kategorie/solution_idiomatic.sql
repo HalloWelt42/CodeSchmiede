@@ -1,0 +1,1 @@
+SELECT l.name, b.kategorie, COUNT(*) AS anzahl FROM ausleihen a JOIN leser l ON a.leser_id = l.id JOIN buecher b ON a.buch_id = b.id GROUP BY l.id, l.name, b.kategorie ORDER BY l.name, anzahl DESC, b.kategorie;

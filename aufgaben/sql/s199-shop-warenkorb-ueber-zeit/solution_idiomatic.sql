@@ -1,0 +1,1 @@
+SELECT bestellt_am AS tag, COUNT(DISTINCT b.id) AS bestellungen, SUM(p.menge) AS gesamt_stueck FROM bestellungen b JOIN bestellpositionen p ON p.bestellung_id = b.id GROUP BY bestellt_am ORDER BY bestellt_am;
