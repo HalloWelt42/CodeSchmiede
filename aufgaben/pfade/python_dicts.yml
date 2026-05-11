@@ -14,3 +14,7 @@ reihenfolge:
   - 091-etl
   - 109-anagramm-gruppen
   - 117-klassen-sortierung
+  - 291-json-zu-dict
+  - 292-dict-zu-json
+  - 297-nested-dict-pfad
+  - 298-deep-merge
