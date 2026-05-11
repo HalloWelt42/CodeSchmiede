@@ -1,0 +1,1 @@
+SELECT DISTINCT l.name, FIRST_VALUE(b.titel) OVER (PARTITION BY l.id ORDER BY a.ausgeliehen_am) AS erstes_buch FROM ausleihen a JOIN leser l ON a.leser_id = l.id JOIN buecher b ON a.buch_id = b.id ORDER BY l.name;

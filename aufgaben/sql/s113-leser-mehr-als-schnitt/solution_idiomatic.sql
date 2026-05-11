@@ -1,0 +1,1 @@
+WITH zaehler AS (  SELECT l.id, l.name, COUNT(a.id) AS anz   FROM leser l LEFT JOIN ausleihen a ON a.leser_id = l.id   GROUP BY l.id, l.name) SELECT name, anz FROM zaehler WHERE anz > (SELECT AVG(anz) FROM zaehler) ORDER BY anz DESC, name;

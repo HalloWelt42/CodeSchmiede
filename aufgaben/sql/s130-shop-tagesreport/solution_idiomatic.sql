@@ -1,0 +1,1 @@
+SELECT b.bestellt_am AS tag, COUNT(DISTINCT b.id) AS bestellungen, ROUND(SUM(p.menge * p.einzelpreis), 2) AS umsatz FROM bestellungen b JOIN bestellpositionen p ON p.bestellung_id = b.id GROUP BY b.bestellt_am ORDER BY b.bestellt_am;

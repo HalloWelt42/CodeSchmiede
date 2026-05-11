@@ -1,0 +1,1 @@
+WITH umsatz AS (  SELECT k.id, k.name, ROUND(SUM(p.menge * p.einzelpreis), 2) AS gesamt   FROM bestellpositionen p   JOIN bestellungen b ON p.bestellung_id = b.id   JOIN kunden k ON b.kunde_id = k.id   GROUP BY k.id, k.name) SELECT name, gesamt, RANK() OVER (ORDER BY gesamt DESC) AS rang FROM umsatz ORDER BY rang, name;

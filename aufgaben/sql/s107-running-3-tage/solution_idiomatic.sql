@@ -1,0 +1,1 @@
+WITH pro_tag AS (  SELECT bestellt_am, COUNT(*) AS tag FROM bestellungen GROUP BY bestellt_am) SELECT bestellt_am, tag, SUM(tag) OVER (ORDER BY bestellt_am ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS letzte3 FROM pro_tag ORDER BY bestellt_am;

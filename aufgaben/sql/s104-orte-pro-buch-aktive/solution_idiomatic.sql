@@ -1,0 +1,1 @@
+SELECT pr.name, GROUP_CONCAT(DISTINCT k.ort) AS orte FROM bestellpositionen p JOIN bestellungen b ON p.bestellung_id = b.id JOIN kunden k ON b.kunde_id = k.id JOIN produkte pr ON p.produkt_id = pr.id GROUP BY pr.id, pr.name ORDER BY pr.name;

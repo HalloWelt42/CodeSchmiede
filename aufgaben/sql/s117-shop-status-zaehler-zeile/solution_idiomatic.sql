@@ -1,0 +1,1 @@
+SELECT COUNT(*) AS gesamt, SUM(CASE WHEN status = 'offen' THEN 1 ELSE 0 END) AS offen, ROUND(100.0 * SUM(CASE WHEN status = 'offen' THEN 1 ELSE 0 END) / COUNT(*), 1) AS anteil_offen FROM bestellungen;
