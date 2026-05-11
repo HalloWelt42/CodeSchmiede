@@ -33,7 +33,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `LIKE 'Die %'` -- `%` ist Platzhalter fuer beliebigen Text.
+      `LIKE 'Die %'` -- `%` ist Platzhalter für beliebigen Text.
 starter_code: |
   SELECT ___
   FROM ___

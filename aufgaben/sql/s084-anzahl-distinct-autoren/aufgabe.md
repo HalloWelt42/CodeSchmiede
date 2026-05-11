@@ -2,7 +2,7 @@
 schema_version: 1
 id: s084-anzahl-distinct-autoren
 revision: 1
-titel: "Anzahl verschiedener Autoren mit Buechern"
+titel: "Anzahl verschiedener Autoren mit Büchern"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -31,7 +31,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `COUNT(DISTINCT spalte)` zaehlt verschiedene Werte.
+      `COUNT(DISTINCT spalte)` zählt verschiedene Werte.
 starter_code: |
   SELECT ___
   FROM ___
@@ -40,4 +40,4 @@ starter_code: |
 
 # Anzahl verschiedener Autoren
 
-Wieviele verschiedene Autoren tauchen in der Buecher-Tabelle auf?
+Wieviele verschiedene Autoren tauchen in der Bücher-Tabelle auf?

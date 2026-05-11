@@ -23,13 +23,13 @@ funktion: url_encode
 hints:
   - kosten: 0
     text: |
-      Codiere einen String fuer URLs:
-      - unreserviert (RFC 3986): A-Z a-z 0-9 - _ . ~ unveraendert
-      - alles andere als %XX (zwei Hex-Stellen, gross)
-      Hinweis: in UTF-8 codieren, dann Byte-fuer-Byte mit %.
+      Codiere einen String für URLs:
+      - unreserviert (RFC 3986): A-Z a-z 0-9 - _ . ~ unverändert
+      - alles andere als %XX (zwei Hex-Stellen, groß)
+      Hinweis: in UTF-8 codieren, dann Byte-für-Byte mit %.
   - kosten: 17
     text: |
-      Bytes via s.encode("utf-8"), pro Byte if-else fuer unreserviert
+      Bytes via s.encode("utf-8"), pro Byte if-else für unreserviert
       ODER f"%{b:02X}".
 tests_sichtbar:
   - input: ["Hallo"]
@@ -67,9 +67,9 @@ Schreibe `url_encode(s)`, die einen String **URL-codiert** -- nach
 RFC 3986 (Prozent-Codierung).
 
 Regel:
-- **Unreservierte Zeichen** (`A-Z a-z 0-9 - _ . ~`) bleiben unveraendert.
-- Alles andere wird zu `%XX` (zwei Hex-Stellen, **gross**).
-- Vorher in **UTF-8** kodieren, dann Byte-fuer-Byte verarbeiten.
+- **Unreservierte Zeichen** (`A-Z a-z 0-9 - _ . ~`) bleiben unverändert.
+- Alles andere wird zu `%XX` (zwei Hex-Stellen, **groß**).
+- Vorher in **UTF-8** kodieren, dann Byte-für-Byte verarbeiten.
 
 ## Beispiele
 
@@ -85,8 +85,8 @@ Regel:
 
 ## Idee
 
-`s.encode("utf-8")` liefert ein `bytes`-Objekt. Iteration darueber
-gibt Integer-Werte (0-255). Fuer ASCII-Bytes ist `chr(byte)` das
+`s.encode("utf-8")` liefert ein `bytes`-Objekt. Iteration darüber
+gibt Integer-Werte (0-255). Für ASCII-Bytes ist `chr(byte)` das
 entsprechende Zeichen.
 
 ## Stolperstein -- Umlaute (UTF-8)
@@ -102,5 +102,5 @@ das Pattern klar wird.
 
 ## Pendant
 
-`url_decode` (entgegengesetzte Richtung) waere die Erweiterung:
-`%XX` zurueck zu Byte, dann UTF-8-decoden.
+`url_decode` (entgegengesetzte Richtung) wäre die Erweiterung:
+`%XX` zurück zu Byte, dann UTF-8-decoden.

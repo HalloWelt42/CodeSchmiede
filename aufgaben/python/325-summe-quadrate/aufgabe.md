@@ -79,8 +79,8 @@ Bei `n <= 0` → `0`.
 
 $$\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$$
 
-Der Beweis ueber Induktion ist Schul-Standard. Carl Friedrich Gauß
-hatte als Schueler die analoge Formel fuer die Summe ohne Quadrat
+Der Beweis über Induktion ist Schul-Standard. Carl Friedrich Gauß
+hatte als Schüler die analoge Formel für die Summe ohne Quadrat
 gefunden ($\frac{n(n+1)}{2}$, siehe Aufgabe 131).
 
 ## Idee 1 -- Formel (O(1))
@@ -89,7 +89,7 @@ Konstante Zeit -- funktioniert auch bei `n = 10**18` instant.
 
 ## Idee 2 -- Schleife (O(n))
 
-Klar lesbar, fuer kleine `n` voellig ausreichend.
+Klar lesbar, für kleine `n` völlig ausreichend.
 
 ## Anwendung
 

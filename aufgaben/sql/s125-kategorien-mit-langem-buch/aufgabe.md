@@ -2,7 +2,7 @@
 schema_version: 1
 id: s125-kategorien-mit-langem-buch
 revision: 1
-titel: "Kategorien mit mind. einem Buch ueber 500 Seiten"
+titel: "Kategorien mit mind. einem Buch über 500 Seiten"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -42,4 +42,4 @@ starter_code: |
 
 # Kategorien mit dickem Buch
 
-Kategorie + maximaler Seitenzahl fuer Kategorien, in denen mindestens ein Buch > 500 Seiten hat.
+Kategorie + maximaler Seitenzahl für Kategorien, in denen mindestens ein Buch > 500 Seiten hat.

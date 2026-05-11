@@ -47,7 +47,7 @@ starter_code: |
 # JavaScript -- Josephus-Problem
 
 `n` Personen stehen im Kreis (Index `0..n-1`). Jede `k`-te wird
-eliminiert. Wer ueberlebt?
+eliminiert. Wer überlebt?
 
 `n <= 0` oder `k <= 0` → `-1`.
 
@@ -68,10 +68,10 @@ um `k` modulo der neuen Anzahl.
 ## Hintergrund
 
 Benannt nach **Flavius Josephus** (1. Jh.), der laut Legende
-diesen Trick beim Yodfat-Selbstmord-Pakt nutzte um zu ueberleben.
+diesen Trick beim Yodfat-Selbstmord-Pakt nutzte um zu überleben.
 
 ## Vergleich mit Python
 
 Beide Sprachen haben den selben Modulo-Operator `%` und gleiche
-for-Loop-Syntax -- die Loesungen sind nahezu identisch. Auch die
+for-Loop-Syntax -- die Lösungen sind nahezu identisch. Auch die
 asymptotische Laufzeit `O(n)` ist gleich.

@@ -2,7 +2,7 @@
 schema_version: 1
 id: s025-leser-mit-buchnamen
 revision: 1
-titel: "Leser und ihre ausgeliehenen Buecher"
+titel: "Leser und ihre ausgeliehenen Bücher"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -38,7 +38,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      Zwei JOINs verkettet: `ausleihen` -> `leser` und `ausleihen` -> `buecher`.
+      Zwei JOINs verkettet: `ausleihen` -> `leser` und `ausleihen` -> .
 starter_code: |
   SELECT ___
   FROM ___
@@ -47,4 +47,4 @@ starter_code: |
 
 # Leser und ihre offenen Ausleihen
 
-Leser-Name + Buch-Titel aller noch nicht zurueckgegebenen Ausleihen, sortiert nach Leser dann Titel.
+Leser-Name + Buch-Titel aller noch nicht zurückgegebenen Ausleihen, sortiert nach Leser dann Titel.

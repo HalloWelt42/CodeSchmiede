@@ -85,8 +85,8 @@ immer "gesamt - links - aktuelles_element".
 
 ## Naiv -- O(n²)
 
-Lesbar, aber bei jeder Iteration neue Summe -- zu langsam fuer
-grosse Listen.
+Lesbar, aber bei jeder Iteration neue Summe -- zu langsam für
+große Listen.
 
 ## Anwendung
 

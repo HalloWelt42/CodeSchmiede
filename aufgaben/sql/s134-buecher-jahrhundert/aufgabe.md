@@ -2,7 +2,7 @@
 schema_version: 1
 id: s134-buecher-jahrhundert
 revision: 1
-titel: "Buecher pro Jahrhundert"
+titel: "Bücher pro Jahrhundert"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -40,6 +40,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Buecher pro Jahrhundert
+# Bücher pro Jahrhundert
 
-Jahrhundert + Anzahl Buecher, chronologisch.
+Jahrhundert + Anzahl Bücher, chronologisch.

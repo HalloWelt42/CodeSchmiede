@@ -2,7 +2,7 @@
 schema_version: 1
 id: s122-buecher-anzahl-leser-kombiniert
 revision: 1
-titel: "Buecher mit aktueller Verfuegbarkeit"
+titel: "Bücher mit aktueller Verfügbarkeit"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -57,6 +57,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Aktuelle Verfuegbarkeit
+# Aktuelle Verfügbarkeit
 
-Buch + Anzahl verfuegbare Exemplare (Exemplare minus offene Ausleihen), wenig verfuegbar zuerst.
+Buch + Anzahl verfügbare Exemplare (Exemplare minus offene Ausleihen), wenig verfügbar zuerst.

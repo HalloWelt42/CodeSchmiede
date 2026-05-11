@@ -2,7 +2,7 @@
 schema_version: 1
 id: s105-ntile-buecher-quartile
 revision: 1
-titel: "NTILE: Buecher in Seiten-Quartile"
+titel: "NTILE: Bücher in Seiten-Quartile"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend

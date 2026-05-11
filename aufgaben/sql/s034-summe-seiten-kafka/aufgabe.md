@@ -40,4 +40,4 @@ starter_code: |
 
 # Summe Seiten von Kafka
 
-Gesamtseitenzahl aller Buecher von Franz Kafka.
+Gesamtseitenzahl aller Bücher von Franz Kafka.

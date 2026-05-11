@@ -23,10 +23,10 @@ funktion: inkrement
 hints:
   - kosten: 0
     text: |
-      Erhoehe einen numerischen String um 1. Sehr lange Zahlen
-      muessen funktionieren -- nutze BigInt!
+      Erhöhe einen numerischen String um 1. Sehr lange Zahlen
+      müssen funktionieren -- nutze BigInt!
       "499" -> "500", "999999999999999999" -> "1000000000000000000".
-      Ungueltige Eingabe -> "".
+      Ungültige Eingabe -> "".
   - kosten: 8
     text: |
       try { return (BigInt(s) + 1n).toString(); } catch { return ""; }
@@ -51,9 +51,9 @@ Schreibe `inkrement(s)`, die einen numerischen String um `1`
 erhoeht.
 
 **Wichtig**: Sehr lange Zahlen (jenseits Number.MAX_SAFE_INTEGER)
-muessen funktionieren -- daher **BigInt** nutzen.
+müssen funktionieren -- daher **BigInt** nutzen.
 
-Ungueltige Eingabe -> `""`.
+Ungültige Eingabe -> `""`.
 
 ## Beispiele
 
@@ -69,7 +69,7 @@ Ungueltige Eingabe -> `""`.
 
 ## Idee mit BigInt
 
-`BigInt(s)` parst beliebig grosse ganze Zahlen. `1n` ist eine
+`BigInt(s)` parst beliebig große ganze Zahlen. `1n` ist eine
 BigInt-Literal-Konstante. `.toString()` macht wieder String draus
 (ohne `n`-Suffix).
 
@@ -78,10 +78,10 @@ BigInt-Literal-Konstante. `.toString()` macht wieder String draus
 Number in JavaScript ist `float64` -- praezise nur bis
 `2^53 - 1 = 9007199254740991`. Daruber gehen Werte verloren:
 
-BigInt loest das Problem -- erfordert aber explizite Konvertierung
+BigInt löst das Problem -- erfordert aber explizite Konvertierung
 und das `n`-Suffix.
 
 ## Vergleich mit Python
 
 Python hat **immer** unbegrenzte ints. In JS musste man bis ES2020
-auf String-basierte Big-Number-Bibliotheken zurueckgreifen.
+auf String-basierte Big-Number-Bibliotheken zurückgreifen.

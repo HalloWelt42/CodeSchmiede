@@ -52,4 +52,4 @@ starter_code: |
 
 # Top-Produkt pro Kunde
 
-Fuer jeden Kunden: das Produkt, von dem er am meisten bestellt hat (mit Stueckzahl).
+Für jeden Kunden: das Produkt, von dem er am meisten bestellt hat (mit Stückzahl).

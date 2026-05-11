@@ -2,7 +2,7 @@
 schema_version: 1
 id: s177-buecher-mit-ausleihzahlen
 revision: 1
-titel: "Buecher mit Ausleihzahl"
+titel: "Bücher mit Ausleihzahl"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend

@@ -2,7 +2,7 @@
 schema_version: 1
 id: s109-ueberfaellig
 revision: 1
-titel: "Ueberfaellige Buecher (> 30 Tage offen)"
+titel: "Überfaellige Bücher (> 30 Tage offen)"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -45,6 +45,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Ueberfaellige Buecher
+# Überfaellige Bücher
 
 Ausleihen, die noch offen sind und vor mehr als 30 Tagen (Stichtag 2026-05-11) begonnen wurden.

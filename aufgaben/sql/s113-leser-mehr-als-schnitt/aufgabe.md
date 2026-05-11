@@ -47,6 +47,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Vielleser ueber dem Schnitt
+# Vielleser über dem Schnitt
 
 Leser, die mehr Ausleihen haben als der Leser-Durchschnitt.

@@ -2,7 +2,7 @@
 schema_version: 1
 id: s030-buecher-ohne-ausleihe
 revision: 1
-titel: "Buecher ohne jemals ausgeliehen"
+titel: "Bücher ohne jemals ausgeliehen"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -38,6 +38,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Buecher ohne Ausleihe
+# Bücher ohne Ausleihe
 
-Titel aller Buecher, die nie ausgeliehen wurden.
+Titel aller Bücher, die nie ausgeliehen wurden.

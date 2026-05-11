@@ -30,8 +30,8 @@ sortierung_egal: false
 erwartetes_ergebnis:
   - ["Berlin", 32.25]
   - ["Hamburg", 26.31]
-  - ["Koeln", 17.63]
-  - ["Muenchen", 13.86]
+  - ["Köln", 17.63]
+  - ["München", 13.86]
   - ["Leipzig", 12.47]
   - ["Frankfurt", 7.88]
   - ["Stuttgart", 6.56]

@@ -29,7 +29,7 @@ sortierung_egal: false
 erwartetes_ergebnis:
   - ["Roman", 1813, 2002, 189]
   - ["Kinderbuch", 1945, 2003, 58]
-  - ["Erzaehlung", 1915, 1942, 27]
+  - ["Erzählung", 1915, 1942, 27]
   - ["Biographie", 1942, 1942, 0]
   - ["Fantasy", 1968, 1968, 0]
   - ["Sci-Fi", 1969, 1969, 0]

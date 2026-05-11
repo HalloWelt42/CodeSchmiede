@@ -2,7 +2,7 @@
 schema_version: 1
 id: s137-buecher-pro-kategorie-prozent
 revision: 1
-titel: "Buecher: Verteilung pro Kategorie"
+titel: "Bücher: Verteilung pro Kategorie"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -29,7 +29,7 @@ sortierung_egal: false
 erwartetes_ergebnis:
   - ["Roman", 11, 55.0]
   - ["Kinderbuch", 4, 20.0]
-  - ["Erzaehlung", 2, 10.0]
+  - ["Erzählung", 2, 10.0]
   - ["Biographie", 1, 5.0]
   - ["Fantasy", 1, 5.0]
   - ["Sci-Fi", 1, 5.0]

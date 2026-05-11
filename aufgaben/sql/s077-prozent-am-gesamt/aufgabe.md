@@ -47,7 +47,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `SUM(SUM(...)) OVER ()` -- aeussere SUM ueber alle gruppierten Zeilen.
+      `SUM(SUM(...)) OVER ()` -- aeussere SUM über alle gruppierten Zeilen.
 starter_code: |
   SELECT ___
   FROM ___

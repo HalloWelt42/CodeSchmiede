@@ -41,6 +41,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Tabellen-Zaehler
+# Tabellen-Zähler
 
-Für jede Tabelle: Name + Zeilenzahl, in dieser Reihenfolge: autoren, buecher, leser, ausleihen.
+Für jede Tabelle: Name + Zeilenzahl, in dieser Reihenfolge: autoren, bücher, leser, ausleihen.

@@ -50,4 +50,4 @@ starter_code: |
 
 # Aeltestes Buch jedes Autors
 
-Fuer jeden Autor das frueh erschienene Buch.
+Für jeden Autor das früh erschienene Buch.

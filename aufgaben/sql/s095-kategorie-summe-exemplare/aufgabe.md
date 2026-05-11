@@ -29,7 +29,7 @@ sortierung_egal: false
 erwartetes_ergebnis:
   - ["Roman", 26]
   - ["Kinderbuch", 19]
-  - ["Erzaehlung", 9]
+  - ["Erzählung", 9]
   - ["Fantasy", 2]
   - ["Sci-Fi", 2]
   - ["Biographie", 1]

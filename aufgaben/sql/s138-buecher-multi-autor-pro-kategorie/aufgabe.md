@@ -28,7 +28,7 @@ erwartete_spalten: ["kategorie", "autoren"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Roman", 6]
-  - ["Erzaehlung", 2]
+  - ["Erzählung", 2]
   - ["Kinderbuch", 2]
   - ["Biographie", 1]
   - ["Fantasy", 1]

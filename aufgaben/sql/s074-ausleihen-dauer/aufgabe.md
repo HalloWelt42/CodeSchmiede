@@ -58,4 +58,4 @@ starter_code: |
 
 # Ausleih-Dauer in Tagen
 
-Fuer alle zurueckgegebenen Ausleihen: ID + Anzahl Tage (Integer), laengste zuerst.
+Für alle zurückgegebenen Ausleihen: ID + Anzahl Tage (Integer), laengste zuerst.

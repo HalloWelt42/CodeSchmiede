@@ -40,4 +40,4 @@ starter_code: |
 
 # Aeltester Autor
 
-Name und Geburtsjahr des am frueh geborenen Autors.
+Name und Geburtsjahr des am früh geborenen Autors.

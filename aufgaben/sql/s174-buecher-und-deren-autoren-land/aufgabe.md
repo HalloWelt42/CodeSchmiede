@@ -2,7 +2,7 @@
 schema_version: 1
 id: s174-buecher-und-deren-autoren-land
 revision: 1
-titel: "Buecher mit Land des Autors"
+titel: "Bücher mit Land des Autors"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -27,20 +27,20 @@ schema_hinweis: |
 erwartete_spalten: ["titel", "land"]
 sortierung_egal: false
 erwartetes_ergebnis:
-  - ["1984", "Grossbritannien"]
-  - ["Emma", "Grossbritannien"]
-  - ["Farm der Tiere", "Grossbritannien"]
-  - ["Stolz und Vorurteil", "Grossbritannien"]
+  - ["1984", "Großbritannien"]
+  - ["Emma", "Großbritannien"]
+  - ["Farm der Tiere", "Großbritannien"]
+  - ["Stolz und Vorurteil", "Großbritannien"]
   - ["Kafka am Strand", "Japan"]
   - ["Naokos Laecheln", "Japan"]
-  - ["Die Welt von Gestern", "Oesterreich"]
-  - ["Schachnovelle", "Oesterreich"]
   - ["Karlsson vom Dach", "Schweden"]
   - ["Pippi Langstrumpf", "Schweden"]
   - ["Der Process", "Tschechien"]
   - ["Die Verwandlung", "Tschechien"]
   - ["Die linke Hand der Dunkelheit", "USA"]
   - ["Erdsee", "USA"]
+  - ["Die Welt von Gestern", "Österreich"]
+  - ["Schachnovelle", "Österreich"]
 hints:
   - kosten: 0
     text: |

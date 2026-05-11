@@ -41,4 +41,4 @@ starter_code: |
 
 # VIP-Kunden
 
-Kunden mit Gesamtumsatz > 30 EUR -- Name + Umsatz, hoechste zuerst.
+Kunden mit Gesamtumsatz > 30 EUR -- Name + Umsatz, höchste zuerst.

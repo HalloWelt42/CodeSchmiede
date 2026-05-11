@@ -2,7 +2,7 @@
 schema_version: 1
 id: s017-top-3-dickste
 revision: 1
-titel: "Top 3 dickste Buecher"
+titel: "Top 3 dickste Bücher"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -40,6 +40,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Top 3 dickste Buecher
+# Top 3 dickste Bücher
 
-Die drei Buecher mit den meisten Seiten.
+Die drei Bücher mit den meisten Seiten.

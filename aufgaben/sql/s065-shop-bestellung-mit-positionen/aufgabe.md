@@ -43,4 +43,4 @@ starter_code: |
 
 # Positionen einer Bestellung
 
-Fuer Bestellung 1: ID, Kunden-Name, Produktname, Menge.
+Für Bestellung 1: ID, Kunden-Name, Produktname, Menge.

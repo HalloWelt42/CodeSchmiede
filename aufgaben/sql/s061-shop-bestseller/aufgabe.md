@@ -45,4 +45,4 @@ starter_code: |
 
 # Top 5 Bestseller
 
-Produktname + verkaufte Gesamtmenge, hoechste zuerst.
+Produktname + verkaufte Gesamtmenge, höchste zuerst.

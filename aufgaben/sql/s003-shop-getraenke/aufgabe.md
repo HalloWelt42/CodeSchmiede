@@ -22,7 +22,7 @@ dataset: shop
 schema_hinweis: |
   produkte(id, name, kategorie_id, preis, lager, marke)
   kategorien(id, name)
-erwartete_spalten: [name, preis]
+erwartete_spalten: ["name", "preis"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Apfelsaft 1L", 1.89]
@@ -30,12 +30,12 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      Verknuepfe `produkte` per JOIN mit `kategorien` (Kategorie-Name = 'Getraenke')
+      Verknuepfe `produkte` per JOIN mit `kategorien` (Kategorie-Name = 'Getränke')
       und filtere `preis < 2.0`.
   - kosten: 4
     text: |
       `SELECT p.name, p.preis FROM produkte p JOIN kategorien k ON p.kategorie_id = k.id
-       WHERE k.name = 'Getraenke' AND p.preis < 2.0 ORDER BY p.id;`
+       WHERE k.name = 'Getränke' AND p.preis < 2.0 ORDER BY p.id;`
 starter_code: |
   SELECT p.name, p.preis FROM produkte p
   JOIN ___ ON ___

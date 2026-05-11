@@ -60,4 +60,4 @@ starter_code: |
 
 # Produkt vs. Kategorie-Schnitt
 
-Fuer jedes Produkt: Name, Preis, Durchschnittspreis seiner Kategorie.
+Für jedes Produkt: Name, Preis, Durchschnittspreis seiner Kategorie.

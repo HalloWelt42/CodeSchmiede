@@ -2,7 +2,7 @@
 schema_version: 1
 id: s031-buecher-mit-vielen-exemplaren
 revision: 1
-titel: "Buecher mit ueberdurchschnittlich vielen Exemplaren"
+titel: "Bücher mit überdurchschnittlich vielen Exemplaren"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -47,6 +47,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Ueberdurchschnittlich viele Exemplare
+# Überdurchschnittlich viele Exemplare
 
-Buecher mit mehr Exemplaren als der Durchschnitt.
+Bücher mit mehr Exemplaren als der Durchschnitt.

@@ -52,4 +52,4 @@ starter_code: |
 
 # Umsatz pro Kunde
 
-Name + Gesamtumsatz aller Bestellungen, hoechster Umsatz zuerst.
+Name + Gesamtumsatz aller Bestellungen, höchster Umsatz zuerst.

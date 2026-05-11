@@ -2,7 +2,7 @@
 schema_version: 1
 id: s175-buecher-ohne-kategorie-roman
 revision: 1
-titel: "Buecher: alle ausser Roman"
+titel: "Bücher: alle außer Roman"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -28,8 +28,8 @@ erwartete_spalten: ["titel", "kategorie"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Die Welt von Gestern", "Biographie"]
-  - ["Die Verwandlung", "Erzaehlung"]
-  - ["Schachnovelle", "Erzaehlung"]
+  - ["Die Verwandlung", "Erzählung"]
+  - ["Schachnovelle", "Erzählung"]
   - ["Erdsee", "Fantasy"]
   - ["Drachenreiter", "Kinderbuch"]
   - ["Karlsson vom Dach", "Kinderbuch"]

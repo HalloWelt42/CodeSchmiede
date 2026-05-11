@@ -2,7 +2,7 @@
 schema_version: 1
 id: s026-buecher-mit-autoren
 revision: 1
-titel: "Buecher mit Autorenname"
+titel: "Bücher mit Autorenname"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -50,13 +50,13 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      INNER JOIN ueber `autor_id = id`.
+      INNER JOIN über `autor_id = id`.
 starter_code: |
   SELECT ___
   FROM ___
   WHERE ___;
 ---
 
-# Buecher mit Autorenname
+# Bücher mit Autorenname
 
 Titel + Autorenname, sortiert nach Autor und dann Titel.

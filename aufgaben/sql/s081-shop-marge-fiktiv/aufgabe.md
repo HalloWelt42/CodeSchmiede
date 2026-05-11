@@ -50,4 +50,4 @@ starter_code: |
 
 # Top 10 Lagerwert
 
-Name + Preis-mal-Lager als Lagerwert, hoechster zuerst (max 10 Zeilen).
+Name + Preis-mal-Lager als Lagerwert, höchster zuerst (max 10 Zeilen).

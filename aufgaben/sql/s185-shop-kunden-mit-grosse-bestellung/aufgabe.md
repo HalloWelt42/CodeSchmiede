@@ -2,7 +2,7 @@
 schema_version: 1
 id: s185-shop-kunden-mit-grosse-bestellung
 revision: 1
-titel: "Shop: Kunden mit grosse Bestellung"
+titel: "Shop: Kunden mit große Bestellung"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend

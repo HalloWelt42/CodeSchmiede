@@ -2,7 +2,7 @@
 schema_version: 1
 id: s001-alle-buecher
 revision: 1
-titel: "SELECT alle Buecher: Titel und Jahr"
+titel: "SELECT alle Bücher: Titel und Jahr"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -24,7 +24,7 @@ schema_hinweis: |
   autoren(id, name, geburtsjahr, land)
   leser(id, name, ort, alter_jahre, mitglied_seit)
   ausleihen(id, leser_id, buch_id, ausgeliehen_am, zurueck_am)
-erwartete_spalten: [titel, jahr]
+erwartete_spalten: ["titel", "jahr"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Siddhartha", 1922]
@@ -51,7 +51,7 @@ hints:
   - kosten: 0
     text: |
       `SELECT spalte1, spalte2 FROM tabelle` -- ohne WHERE liefert
-      es alle Zeilen, in der Reihenfolge wie sie eingefuegt wurden.
+      es alle Zeilen, in der Reihenfolge wie sie eingefügt wurden.
   - kosten: 2
     text: |
       `SELECT titel, jahr FROM buecher;`
@@ -59,9 +59,9 @@ starter_code: |
   SELECT ___ FROM buecher;
 ---
 
-# SELECT alle Buecher: Titel und Jahr
+# SELECT alle Bücher: Titel und Jahr
 
-Schreibe eine Abfrage, die fuer **alle Buecher** den `titel` und das
+Schreibe eine Abfrage, die für **alle Bücher** den `titel` und das
 `jahr` liefert -- in der Reihenfolge, wie sie in der Tabelle stehen.
 
 ## Spalten

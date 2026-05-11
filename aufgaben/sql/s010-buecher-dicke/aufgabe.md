@@ -2,7 +2,7 @@
 schema_version: 1
 id: s010-buecher-dicke
 revision: 1
-titel: "Lange Buecher (über 500 Seiten)"
+titel: "Lange Bücher (über 500 Seiten)"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -42,6 +42,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Lange Buecher
+# Lange Bücher
 
-Titel und Seitenzahl aller Buecher mit mehr als 500 Seiten, dickstes zuerst.
+Titel und Seitenzahl aller Bücher mit mehr als 500 Seiten, dickstes zuerst.

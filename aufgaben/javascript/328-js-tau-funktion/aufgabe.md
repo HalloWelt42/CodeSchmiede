@@ -68,4 +68,4 @@ Quadratzahlen (`i² = n`) sind beide Teiler gleich, also `+= 1`.
 
 Pythons `//` und JavaScripts `Math.floor` haben den gleichen
 Effekt, aber wir brauchen hier nur Modulo (`%`) -- der Vergleich
-`i * i === n` ist exakt fuer ganze Zahlen.
+`i * i === n` ist exakt für ganze Zahlen.

@@ -31,9 +31,9 @@ erwartetes_ergebnis:
   - ["Bio-Hof Schulz", 19.45]
   - ["AquaPur", 14.97]
   - ["GartenFrisch", 14.87]
-  - ["Alpenglueck", 14.41]
-  - ["KaeseHof", 13.16]
-  - ["Bauernbaeckerei", 11.35]
+  - ["Alpenglück", 14.41]
+  - ["KäseHof", 13.16]
+  - ["Bauernbäckerei", 11.35]
   - ["KakaoLuxus", 7.96]
   - ["BlubberCo", 6.45]
   - ["FruchtFest", 5.67]
@@ -53,4 +53,4 @@ starter_code: |
 
 # Umsatz pro Marke
 
-Marke + Gesamtumsatz, hoechste zuerst.
+Marke + Gesamtumsatz, höchste zuerst.

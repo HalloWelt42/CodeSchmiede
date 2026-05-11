@@ -47,4 +47,4 @@ starter_code: |
 
 # Offene Ausleihen
 
-IDs, Leser-ID und Buch-ID aller noch nicht zurueckgegebenen Ausleihen.
+IDs, Leser-ID und Buch-ID aller noch nicht zurückgegebenen Ausleihen.

@@ -47,6 +47,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Autor: Buecher und Leser
+# Autor: Bücher und Leser
 
 Für jeden Autor: Anzahl Bücher + Anzahl unterschiedlicher Leser.

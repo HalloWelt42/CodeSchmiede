@@ -64,9 +64,9 @@ $$\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$$
 
 ## Idee -- O(1) per Formel
 
-`Math.floor` ist hier nicht streng noetig (das Produkt
+`Math.floor` ist hier nicht streng nötig (das Produkt
 `n(n+1)(2n+1)` ist immer durch 6 teilbar), aber durch
-Float-Arithmetik koennte ein Werte wie `385.0000000001` entstehen.
+Float-Arithmetik könnte ein Werte wie `385.0000000001` entstehen.
 Floor sichert die ganze Zahl.
 
 ## Vergleich mit Python

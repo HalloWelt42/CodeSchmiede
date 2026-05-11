@@ -2,7 +2,7 @@
 schema_version: 1
 id: s148-shop-grosser-bestellungen
 revision: 1
-titel: "Shop: Grosse Bestellungen (Umsatz > 10 EUR)"
+titel: "Shop: Große Bestellungen (Umsatz > 10 EUR)"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -41,6 +41,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Grosse Bestellungen
+# Große Bestellungen
 
 Bestellung-ID + Kunde + Umsatz für Bestellungen mit > 10 EUR Umsatz.

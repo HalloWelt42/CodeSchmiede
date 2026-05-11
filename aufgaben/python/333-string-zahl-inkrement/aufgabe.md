@@ -23,10 +23,10 @@ funktion: inkrement
 hints:
   - kosten: 0
     text: |
-      Erhoehe einen numerischen String um 1 und liefere das Ergebnis
-      als String zurueck.
+      Erhöhe einen numerischen String um 1 und liefere das Ergebnis
+      als String zurück.
       "499" -> "500", "-1" -> "0", "9999" -> "10000".
-      Bei ungueltiger Eingabe -> "".
+      Bei ungültiger Eingabe -> "".
   - kosten: 5
     text: |
       str(int(s) + 1) und ein try/except um Fehler abzufangen.
@@ -63,9 +63,9 @@ starter_code: |
 # Numerischen String inkrementieren
 
 Schreibe `inkrement(s)`, die einen numerischen String um `1`
-erhoeht und das Ergebnis als String zurueckgibt.
+erhoeht und das Ergebnis als String zurückgibt.
 
-Bei ungueltiger Eingabe (Buchstaben, leerer String, Dezimalpunkt)
+Bei ungültiger Eingabe (Buchstaben, leerer String, Dezimalpunkt)
 -> `""`.
 
 ## Beispiele
@@ -86,7 +86,7 @@ Bei ungueltiger Eingabe (Buchstaben, leerer String, Dezimalpunkt)
 ## Idee
 
 Pythons `int` akzeptiert fuehrendes `+`/`-`, aber kein Dezimalpunkt.
-Beliebig grosse Zahlen sind kein Problem -- Python hat unbegrenzte
+Beliebig große Zahlen sind kein Problem -- Python hat unbegrenzte
 ganze Zahlen.
 
 ## Stolperstein -- in anderen Sprachen
@@ -96,7 +96,7 @@ In **C** oder **Java** ist `int` 32 oder 64 Bit -- bei
 das nie.
 
 In **JavaScript** gibt es seit ES2020 `BigInt`, aber `parseInt`
-liefert ein normales Number (bis $2^{53}$). Fuer sehr grosse
+liefert ein normales Number (bis $2^{53}$). Für sehr große
 Zahlen muss man dort `BigInt(s) + 1n` nutzen.
 
 ## Anwendung

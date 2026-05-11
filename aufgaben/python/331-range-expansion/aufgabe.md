@@ -29,7 +29,7 @@ hints:
       Bei leerem String -> [].
   - kosten: 17
     text: |
-      Splitte an "," -- pro Stueck pruefen ob Bindestrich (Trenner)
+      Splitte an "," -- pro Stück prüfen ob Bindestrich (Trenner)
       drin steckt. Bei negativen Untergrenzen ist der Trenner ein
       Bindestrich, der NICHT direkt nach dem ersten Zeichen steht.
 tests_sichtbar:
@@ -68,7 +68,7 @@ Schreibe `bereich_entpacken(s)`, die einen Bereichs-String in eine
 Liste von Ganzzahlen umwandelt.
 
 Format:
-- Komma trennt Stuecke: `"1-3,5,7-9"`
+- Komma trennt Stücke: `"1-3,5,7-9"`
 - Bindestrich trennt Unter- und Obergrenze: `"1-3"` -> `[1, 2, 3]`
 - Einzelne Zahlen ohne Bindestrich: `"5"` -> `[5]`
 - Negative Untergrenzen: `"-3--1"` -> `[-3, -2, -1]`
@@ -88,14 +88,14 @@ Bei leerem String -> `[]`.
 
 ## Idee
 
-`stueck.find("-", 1)` sucht ab Index 1 -- damit wird ein fuehrendes
+`stück.find("-", 1)` sucht ab Index 1 -- damit wird ein fuehrendes
 Minus (negative Untergrenze) **nicht** als Trenner missverstanden.
 
 ## Pendant -- Range Extraction
 
 Die umgekehrte Operation gibt's auch in Rosetta:
-`[1,2,3,5,7,8,9]` zurueck zu `"1-3,5,7-9"`. Tricky weil man
-zusammenhaengende Folgen erkennen muss.
+`[1,2,3,5,7,8,9]` zurück zu `"1-3,5,7-9"`. Tricky weil man
+zusammenhängende Folgen erkennen muss.
 
 ## Anwendung
 

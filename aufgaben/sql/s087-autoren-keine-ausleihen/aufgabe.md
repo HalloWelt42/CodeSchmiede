@@ -2,7 +2,7 @@
 schema_version: 1
 id: s087-autoren-keine-ausleihen
 revision: 1
-titel: "Autoren, deren Buecher nie ausgeliehen wurden"
+titel: "Autoren, deren Bücher nie ausgeliehen wurden"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -38,6 +38,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Autoren ohne ausgeliehene Buecher
+# Autoren ohne ausgeliehene Bücher
 
 Alle Autoren, von denen kein Buch jemals ausgeliehen wurde.

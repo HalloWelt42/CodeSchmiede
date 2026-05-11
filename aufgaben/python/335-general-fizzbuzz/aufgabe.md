@@ -24,12 +24,12 @@ hints:
   - kosten: 0
     text: |
       Wie FizzBuzz, aber konfigurierbar: regeln ist eine Liste von
-      [teiler, wort]-Paaren. Pro Zahl 1..n: alle Woerter konkatenieren,
+      [teiler, wort]-Paaren. Pro Zahl 1..n: alle Wörter konkatenieren,
       deren Teiler aufgehen. Sonst die Zahl als String.
       Klassisches FizzBuzz: regeln = [[3,"Fizz"],[5,"Buzz"]].
   - kosten: 15
     text: |
-      Fuer jedes i: ''.join(wort fuer (teiler, wort) in regeln if i % teiler == 0)
+      Für jedes i: ''.join(wort für (teiler, wort) in regeln if i % teiler == 0)
       or str(i)
 tests_sichtbar:
   - input: [5, [[3, "Fizz"], [5, "Buzz"]]]
@@ -63,10 +63,10 @@ starter_code: |
 
 Schreibe `general_fizzbuzz(n, regeln)`, die FizzBuzz **konfigurierbar**
 spielt: statt fest `3 -> Fizz, 5 -> Buzz` wird eine Liste von
-`[teiler, wort]`-Paaren uebergeben.
+`[teiler, wort]`-Paaren übergeben.
 
 Pro Zahl `i` von 1 bis n:
-1. Sammle alle Woerter, deren Teiler `i` teilt -- konkateniere sie.
+1. Sammle alle Wörter, deren Teiler `i` teilt -- konkateniere sie.
 2. Wenn nichts zusammenkommt, nimm `str(i)`.
 
 `n <= 0` oder leere Regelliste behandeln wie folgt:

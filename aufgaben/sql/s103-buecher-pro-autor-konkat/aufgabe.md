@@ -47,6 +47,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Buecher pro Autor als String
+# Bücher pro Autor als String
 
-Fuer jeden Autor: name + komma-separierte Liste aller Buchtitel.
+Für jeden Autor: name + komma-separierte Liste aller Buchtitel.

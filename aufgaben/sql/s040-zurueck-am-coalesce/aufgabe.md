@@ -2,7 +2,7 @@
 schema_version: 1
 id: s040-zurueck-am-coalesce
 revision: 1
-titel: "Rueckgabe-Datum oder 'offen'"
+titel: "Rückgabe-Datum oder 'offen'"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -64,6 +64,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Rueckgabe-Datum oder offen
+# Rückgabe-Datum oder offen
 
-Fuer jede Ausleihe ID + Rueckgabe-Datum oder 'offen' wenn NULL.
+Für jede Ausleihe ID + Rückgabe-Datum oder 'offen' wenn NULL.

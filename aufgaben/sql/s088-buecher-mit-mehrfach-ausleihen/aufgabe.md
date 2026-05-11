@@ -2,7 +2,7 @@
 schema_version: 1
 id: s088-buecher-mit-mehrfach-ausleihen
 revision: 1
-titel: "Buecher, die mehr als 2x ausgeliehen wurden"
+titel: "Bücher, die mehr als 2x ausgeliehen wurden"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -38,6 +38,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Beliebte Buecher
+# Beliebte Bücher
 
-Buecher mit mehr als 2 Ausleihen + Anzahl, hauefigste zuerst.
+Bücher mit mehr als 2 Ausleihen + Anzahl, hauefigste zuerst.

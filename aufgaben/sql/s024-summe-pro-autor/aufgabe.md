@@ -2,7 +2,7 @@
 schema_version: 1
 id: s024-summe-pro-autor
 revision: 1
-titel: "Anzahl Buecher pro Autor"
+titel: "Anzahl Bücher pro Autor"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -47,6 +47,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Anzahl Buecher pro Autor
+# Anzahl Bücher pro Autor
 
-Autor-ID und wieviele Buecher der Autor hat, sortiert nach Autor-ID.
+Autor-ID und wieviele Bücher der Autor hat, sortiert nach Autor-ID.

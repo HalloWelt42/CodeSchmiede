@@ -2,7 +2,7 @@
 schema_version: 1
 id: s007-buecher-nach-1950
 revision: 1
-titel: "Buecher nach 1950"
+titel: "Bücher nach 1950"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -44,6 +44,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Buecher nach 1950
+# Bücher nach 1950
 
-Titel und Jahr aller Buecher, die **nach 1950** erschienen sind, aufsteigend nach Jahr.
+Titel und Jahr aller Bücher, die **nach 1950** erschienen sind, aufsteigend nach Jahr.

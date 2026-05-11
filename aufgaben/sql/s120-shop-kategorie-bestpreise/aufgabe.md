@@ -29,11 +29,11 @@ erwartete_spalten: ["kategorie", "min_preis", "max_preis"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Backwaren", 0.99, 2.79]
-  - ["Gemuese", 0.65, 1.99]
-  - ["Getraenke", 1.29, 4.99]
+  - ["Gemüse", 0.65, 1.99]
+  - ["Getränke", 1.29, 4.99]
   - ["Milchprodukte", 0.89, 3.29]
   - ["Obst", 0.3, 3.99]
-  - ["Suesswaren", 1.99, 2.49]
+  - ["Süßwaren", 1.99, 2.49]
 hints:
   - kosten: 0
     text: |
@@ -46,4 +46,4 @@ starter_code: |
 
 # Min/Max-Preis pro Kategorie
 
-Kategorie + niedrigster und hoechster Preis, alphabetisch.
+Kategorie + niedrigster und höchster Preis, alphabetisch.

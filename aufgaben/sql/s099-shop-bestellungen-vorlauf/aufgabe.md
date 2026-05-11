@@ -47,7 +47,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      LAG fuer vorherigen Termin, julianday-Differenz fuer Tage.
+      LAG für vorherigen Termin, julianday-Differenz für Tage.
 starter_code: |
   SELECT ___
   FROM ___

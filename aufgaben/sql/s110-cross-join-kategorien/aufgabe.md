@@ -28,21 +28,21 @@ schema_hinweis: |
 erwartete_spalten: ["a", "b"]
 sortierung_egal: false
 erwartetes_ergebnis:
-  - ["Backwaren", "Getraenke"]
-  - ["Backwaren", "Suesswaren"]
-  - ["Gemuese", "Backwaren"]
-  - ["Gemuese", "Getraenke"]
-  - ["Gemuese", "Milchprodukte"]
-  - ["Gemuese", "Suesswaren"]
-  - ["Getraenke", "Suesswaren"]
+  - ["Backwaren", "Getränke"]
+  - ["Backwaren", "Süßwaren"]
+  - ["Gemüse", "Backwaren"]
+  - ["Gemüse", "Getränke"]
+  - ["Gemüse", "Milchprodukte"]
+  - ["Gemüse", "Süßwaren"]
+  - ["Getränke", "Süßwaren"]
   - ["Milchprodukte", "Backwaren"]
-  - ["Milchprodukte", "Getraenke"]
-  - ["Milchprodukte", "Suesswaren"]
+  - ["Milchprodukte", "Getränke"]
+  - ["Milchprodukte", "Süßwaren"]
   - ["Obst", "Backwaren"]
-  - ["Obst", "Gemuese"]
-  - ["Obst", "Getraenke"]
+  - ["Obst", "Gemüse"]
+  - ["Obst", "Getränke"]
   - ["Obst", "Milchprodukte"]
-  - ["Obst", "Suesswaren"]
+  - ["Obst", "Süßwaren"]
 hints:
   - kosten: 0
     text: |

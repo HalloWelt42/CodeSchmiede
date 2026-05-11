@@ -54,4 +54,4 @@ starter_code: |
 
 # Vor- und Nachname
 
-Fuer jeden Leser: name + vorname + nachname als drei Spalten, sortiert nach Nachname.
+Für jeden Leser: name + vorname + nachname als drei Spalten, sortiert nach Nachname.

@@ -23,7 +23,7 @@ funktion: fizzbuzzListe
 hints:
   - kosten: 0
     text: |
-      Liefere ein Array mit FizzBuzz-Strings fuer die Zahlen 1..n.
+      Liefere ein Array mit FizzBuzz-Strings für die Zahlen 1..n.
       Regeln wie Klassiker (3->Fizz, 5->Buzz, 15->FizzBuzz).
       n <= 0 -> [].
   - kosten: 7
@@ -47,7 +47,7 @@ starter_code: |
 
 # JavaScript -- FizzBuzz als Liste
 
-Schreibe `fizzbuzzListe(n)`, die FizzBuzz fuer die Zahlen `1..n`
+Schreibe `fizzbuzzListe(n)`, die FizzBuzz für die Zahlen `1..n`
 als Array liefert.
 
 Regeln:
@@ -74,7 +74,7 @@ Trick.
 
 ## Idee -- ternaer (kompakt)
 
-Schoener Pythonismus: leerer String ist falsy, also greift `||`.
+Schöner Pythonismus: leerer String ist falsy, also greift `||`.
 
 ## Vergleich mit Python
 

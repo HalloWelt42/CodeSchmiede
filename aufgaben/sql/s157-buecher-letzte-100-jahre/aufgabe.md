@@ -2,7 +2,7 @@
 schema_version: 1
 id: s157-buecher-letzte-100-jahre
 revision: 1
-titel: "Buecher der letzten 100 Jahre"
+titel: "Bücher der letzten 100 Jahre"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -50,6 +50,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Buecher seit 1926
+# Bücher seit 1926
 
 Bücher der letzten 100 Jahre (Stand 2026).

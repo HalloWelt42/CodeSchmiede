@@ -24,10 +24,10 @@ hints:
   - kosten: 0
     text: |
       Entpacke "1-3,5,7-9" zu [1,2,3,5,7,8,9]. Negative Untergrenzen
-      ("-3--1") muessen funktionieren. Leerer String -> [].
+      ("-3--1") müssen funktionieren. Leerer String -> [].
   - kosten: 17
     text: |
-      split(",") -- pro Stueck indexOf("-", 1) fuer den Trenner.
+      split(",") -- pro Stück indexOf("-", 1) für den Trenner.
       Array.from({length: b-a+1}, (_, i) => a+i) erzeugt den Bereich.
 tests_sichtbar:
   - input: ["1-3,5,7-9"]
@@ -49,8 +49,8 @@ starter_code: |
 Schreibe `bereichEntpacken(s)`, die einen Bereichs-String wie
 `"1-3,5,7-9"` in das Array `[1, 2, 3, 5, 7, 8, 9]` umwandelt.
 
-- Komma trennt Stuecke
-- Bindestrich trennt Unter-/Obergrenze in einem Stueck
+- Komma trennt Stücke
+- Bindestrich trennt Unter-/Obergrenze in einem Stück
 - Negative Untergrenzen: `"-3--1"` -> `[-3, -2, -1]`
 - Leer -> `[]`
 

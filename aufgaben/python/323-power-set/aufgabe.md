@@ -24,12 +24,12 @@ hints:
   - kosten: 0
     text: |
       Liefere alle Teilmengen einer Liste -- inklusive leerer Menge
-      und Gesamtmenge. Reihenfolge: nach Groesse aufsteigend, innerhalb
-      gleicher Groesse lexikographisch.
+      und Gesamtmenge. Reihenfolge: nach Größe aufsteigend, innerhalb
+      gleicher Größe lexikographisch.
       Bei [] -> [[]] (genau eine Teilmenge: die leere).
   - kosten: 20
     text: |
-      itertools.combinations(liste, k) fuer k = 0..len(liste).
+      itertools.combinations(liste, k) für k = 0..len(liste).
       Doppelte for-Comprehension flach machen.
 tests_sichtbar:
   - input: [[]]
@@ -62,10 +62,10 @@ starter_code: |
 # Potenzmenge -- alle Teilmengen
 
 Schreibe `potenzmenge(liste)`, die **alle Teilmengen** der Liste
-liefert -- die leere Menge zaehlt mit, die Gesamtmenge auch.
+liefert -- die leere Menge zählt mit, die Gesamtmenge auch.
 
-Reihenfolge: zuerst nach **Groesse aufsteigend**, innerhalb gleicher
-Groesse **lexikographisch**.
+Reihenfolge: zuerst nach **Größe aufsteigend**, innerhalb gleicher
+Größe **lexikographisch**.
 
 Anzahl der Teilmengen einer n-elementigen Menge: $2^n$.
 
@@ -78,7 +78,7 @@ Anzahl der Teilmengen einer n-elementigen Menge: $2^n$.
 | `[1, 2]`    | `[[], [1], [2], [1, 2]]` (4)                            |
 | `[1, 2, 3]` | `[[], [1], [2], [3], [1,2], [1,3], [2,3], [1,2,3]]` (8) |
 
-Bei vier Elementen waeren es 16, bei zehn schon 1024 Teilmengen.
+Bei vier Elementen wären es 16, bei zehn schon 1024 Teilmengen.
 
 ## Idee
 
@@ -89,10 +89,10 @@ lexikographisch geordnet.
 ## Idee -- Bit-Maskierung
 
 Jede Teilmenge entspricht einer Binaer-Zahl: Bit `i` gesetzt ↔
-Element `i` enthalten. Elegant, aber Sortierung am Ende noetig.
+Element `i` enthalten. Elegant, aber Sortierung am Ende nötig.
 
 ## Anwendung
 
-- **Brute-Force-Loesungen** fuer Subset-Sum (Aufgabe 166), Knapsack
+- **Brute-Force-Lösungen** für Subset-Sum (Aufgabe 166), Knapsack
 - **Feature-Selection** in Machine Learning
 - **Mengen-Algebren** und Boolesche Funktionen

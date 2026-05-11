@@ -2,7 +2,7 @@
 schema_version: 1
 id: s013-buecher-zwischen-1900-1950
 revision: 1
-titel: "Buecher 1900-1950"
+titel: "Bücher 1900-1950"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -48,6 +48,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Buecher 1900-1950
+# Bücher 1900-1950
 
-Titel und Jahr aller Buecher zwischen 1900 und 1950 (inklusiv).
+Titel und Jahr aller Bücher zwischen 1900 und 1950 (inklusiv).

@@ -2,7 +2,7 @@
 schema_version: 1
 id: s097-kategorien-mit-buechern
 revision: 1
-titel: "Kategorien mit mind. 3 Buechern"
+titel: "Kategorien mit mind. 3 Büchern"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -39,6 +39,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Kategorien mit min. 3 Buechern
+# Kategorien mit min. 3 Büchern
 
 Kategorie + Anzahl, hauefigste zuerst.

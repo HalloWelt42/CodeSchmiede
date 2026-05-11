@@ -28,7 +28,7 @@ schema_hinweis: |
 erwartete_spalten: ["marke", "anzahl"]
 sortierung_egal: false
 erwartetes_ergebnis:
-  - ["Alpenglueck", 3]
+  - ["Alpenglück", 3]
   - ["Bio-Hof Schulz", 3]
   - ["GartenFrisch", 3]
 hints:

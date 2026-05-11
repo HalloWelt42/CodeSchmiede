@@ -38,7 +38,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      3 JOINs hintereinander: ausleihen->leser, ausleihen->buecher, buecher->autoren.
+      3 JOINs hintereinander: ausleihen->leser, ausleihen->bücher, bücher->autoren.
 starter_code: |
   SELECT ___
   FROM ___
@@ -47,4 +47,4 @@ starter_code: |
 
 # Leser, Buch, Autor (offene Ausleihen)
 
-Fuer jede offene Ausleihe: Leser-Name, Buch-Titel, Autor-Name.
+Für jede offene Ausleihe: Leser-Name, Buch-Titel, Autor-Name.

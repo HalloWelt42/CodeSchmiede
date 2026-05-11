@@ -2,7 +2,7 @@
 schema_version: 1
 id: s181-buecher-mit-letztes-ausleihe
 revision: 1
-titel: "Buecher: letztes Ausleihdatum"
+titel: "Bücher: letztes Ausleihdatum"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend

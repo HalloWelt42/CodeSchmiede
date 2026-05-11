@@ -31,7 +31,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `SUM(exemplare)` summiert die Spalte ueber alle Zeilen.
+      `SUM(exemplare)` summiert die Spalte über alle Zeilen.
 starter_code: |
   SELECT ___
   FROM ___

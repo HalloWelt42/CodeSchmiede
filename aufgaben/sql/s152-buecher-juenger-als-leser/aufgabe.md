@@ -2,7 +2,7 @@
 schema_version: 1
 id: s152-buecher-juenger-als-leser
 revision: 1
-titel: "Buecher juenger als der jüngste Leser"
+titel: "Bücher jünger als der jüngste Leser"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -43,6 +43,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Buecher nach Geburtsjahr des jüngsten Lesers
+# Bücher nach Geburtsjahr des jüngsten Lesers
 
 Bücher erschienen nach dem Geburtsjahr des jüngsten Lesers (in 2026).

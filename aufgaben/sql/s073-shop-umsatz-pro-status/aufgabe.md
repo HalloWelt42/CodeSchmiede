@@ -44,4 +44,4 @@ starter_code: |
 
 # Umsatz pro Bestellstatus
 
-Status + Gesamtumsatz, hoechster zuerst.
+Status + Gesamtumsatz, höchster zuerst.

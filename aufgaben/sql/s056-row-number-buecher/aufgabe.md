@@ -2,7 +2,7 @@
 schema_version: 1
 id: s056-row-number-buecher
 revision: 1
-titel: "Buecher mit fortlaufender Nummer pro Kategorie"
+titel: "Bücher mit fortlaufender Nummer pro Kategorie"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -28,8 +28,8 @@ erwartete_spalten: ["titel", "kategorie", "nummer"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Die Welt von Gestern", "Biographie", 1]
-  - ["Die Verwandlung", "Erzaehlung", 1]
-  - ["Schachnovelle", "Erzaehlung", 2]
+  - ["Die Verwandlung", "Erzählung", 1]
+  - ["Schachnovelle", "Erzählung", 2]
   - ["Erdsee", "Fantasy", 1]
   - ["Drachenreiter", "Kinderbuch", 1]
   - ["Karlsson vom Dach", "Kinderbuch", 2]
@@ -59,4 +59,4 @@ starter_code: |
 
 # Fortlaufende Nummer pro Kategorie
 
-In jeder Kategorie nummerieren die Buecher alphabetisch ab 1.
+In jeder Kategorie nummerieren die Bücher alphabetisch ab 1.

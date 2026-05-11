@@ -2,7 +2,7 @@
 schema_version: 1
 id: s132-shop-not-equal
 revision: 1
-titel: "Shop: alles ausser Suesswaren"
+titel: "Shop: alles außer Suesswaren"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -29,22 +29,22 @@ erwartete_spalten: ["name", "kategorie"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Apfel Boskoop", "Obst"]
-  - ["Apfelsaft 1L", "Getraenke"]
+  - ["Apfelsaft 1L", "Getränke"]
   - ["Banane", "Obst"]
-  - ["Brokkoli", "Gemuese"]
+  - ["Brokkoli", "Gemüse"]
   - ["Brot Roggen 500g", "Backwaren"]
   - ["Brötchen 5er-Pack", "Backwaren"]
   - ["Butter 250g", "Milchprodukte"]
-  - ["Cola 1L", "Getraenke"]
+  - ["Cola 1L", "Getränke"]
   - ["Croissant", "Backwaren"]
   - ["Erdbeeren 500g", "Obst"]
   - ["Gouda Scheiben 200g", "Milchprodukte"]
-  - ["Gurke", "Gemuese"]
+  - ["Gurke", "Gemüse"]
   - ["Joghurt Natur 500g", "Milchprodukte"]
-  - ["Karotte 1kg", "Gemuese"]
-  - ["Mineralwasser 6x1L", "Getraenke"]
+  - ["Karotte 1kg", "Gemüse"]
+  - ["Mineralwasser 6x1L", "Getränke"]
   - ["Orange Navel", "Obst"]
-  - ["Tomate Strauch", "Gemuese"]
+  - ["Tomate Strauch", "Gemüse"]
   - ["Vollmilch 1L", "Milchprodukte"]
 hints:
   - kosten: 0

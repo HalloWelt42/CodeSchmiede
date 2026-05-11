@@ -2,7 +2,7 @@
 schema_version: 1
 id: s083-buecher-jahresalter
 revision: 1
-titel: "Alter der Buecher (in 2026)"
+titel: "Alter der Bücher (in 2026)"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -57,6 +57,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Alter der Buecher
+# Alter der Bücher
 
-Titel + Alter in Jahren (Stand 2026), aelteste zuerst.
+Titel + Alter in Jahren (Stand 2026), älteste zuerst.

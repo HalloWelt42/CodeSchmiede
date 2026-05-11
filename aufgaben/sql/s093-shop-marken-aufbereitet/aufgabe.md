@@ -28,17 +28,17 @@ schema_hinweis: |
 erwartete_spalten: ["marke", "marke_gross"]
 sortierung_egal: false
 erwartetes_ergebnis:
-  - ["Alpenglueck", "ALPENGLUECK"]
+  - ["Alpenglück", "ALPENGLüCK"]
   - ["AquaPur", "AQUAPUR"]
-  - ["Bauernbaeckerei", "BAUERNBAECKEREI"]
+  - ["Bauernbäckerei", "BAUERNBäCKEREI"]
   - ["Bio-Hof Schulz", "BIO-HOF SCHULZ"]
   - ["BlubberCo", "BLUBBERCO"]
   - ["Citrus Plus", "CITRUS PLUS"]
   - ["FruchtFest", "FRUCHTFEST"]
   - ["GartenFrisch", "GARTENFRISCH"]
-  - ["KaeseHof", "KAESEHOF"]
   - ["KakaoLuxus", "KAKAOLUXUS"]
   - ["KekseRoll", "KEKSEROLL"]
+  - ["KäseHof", "KäSEHOF"]
   - ["Pariser Art", "PARISER ART"]
   - ["Tropico", "TROPICO"]
 hints:

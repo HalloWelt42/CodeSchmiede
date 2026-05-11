@@ -2,7 +2,7 @@
 schema_version: 1
 id: s022-min-max-jahr
 revision: 1
-titel: "Aelteste und neueste Veroeffentlichung"
+titel: "Aelteste und neueste Veröffentlichung"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -31,13 +31,13 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `MIN()` und `MAX()` koennen in einer Zeile kombiniert werden.
+      `MIN()` und `MAX()` können in einer Zeile kombiniert werden.
 starter_code: |
   SELECT ___
   FROM ___
   WHERE ___;
 ---
 
-# Aelteste und neueste Veroeffentlichung
+# Aelteste und neueste Veröffentlichung
 
-Frueheste und spaeteste `jahr`-Spalte als `aeltestes` und `neuestes`.
+Früheste und spaeteste `jahr`-Spalte als `ältestes` und `neuestes`.

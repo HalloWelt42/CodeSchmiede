@@ -2,7 +2,7 @@
 schema_version: 1
 id: s136-leser-mit-langer-mitgliedschaft
 revision: 1
-titel: "Mitglieder ueber 5 Jahre"
+titel: "Mitglieder über 5 Jahre"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -49,6 +49,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Mitglieder ueber 5 Jahre
+# Mitglieder über 5 Jahre
 
-Name + Beitritt fuer alle, die schon ueber 5 Jahre dabei sind (Stand 2026-05-11).
+Name + Beitritt für alle, die schon über 5 Jahre dabei sind (Stand 2026-05-11).

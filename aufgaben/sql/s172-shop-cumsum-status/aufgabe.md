@@ -2,7 +2,7 @@
 schema_version: 1
 id: s172-shop-cumsum-status
 revision: 1
-titel: "Shop: laufender Bestellzaehler pro Status"
+titel: "Shop: laufender Bestellzähler pro Status"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend

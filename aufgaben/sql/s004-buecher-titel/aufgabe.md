@@ -59,4 +59,4 @@ starter_code: |
 
 # Alle Buchtitel
 
-Liefere nur die `titel`-Spalte aller Buecher.
+Liefere nur die `titel`-Spalte aller Bücher.

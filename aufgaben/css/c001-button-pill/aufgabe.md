@@ -71,7 +71,7 @@ starter_code: |
 # Pill-Button mit Petrol-Akzent
 
 Style den Button so, dass er rund (Pille), petrol-türkis und mit
-fettem dunklem Text erscheint -- ohne Rahmen, mit grosszügigem
+fettem dunklem Text erscheint -- ohne Rahmen, mit großzügigem
 Innenabstand.
 
 ## Vorgaben

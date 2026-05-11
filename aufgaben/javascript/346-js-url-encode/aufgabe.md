@@ -24,8 +24,8 @@ hints:
   - kosten: 0
     text: |
       URL-Encoding nach RFC 3986. Unreserviert (A-Z a-z 0-9 - _ . ~)
-      bleibt, der Rest wird %XX (Hex gross).
-      Tipp: encodeURIComponent + Workaround fuer ! * ' ( ) -- die werden
+      bleibt, der Rest wird %XX (Hex groß).
+      Tipp: encodeURIComponent + Workaround für ! * ' ( ) -- die werden
       nicht codiert vom Builtin, RFC 3986 will sie aber codiert.
   - kosten: 8
     text: |
@@ -52,7 +52,7 @@ codiert.
 
 Regel:
 - Unreserviert (`A-Z a-z 0-9 - _ . ~`) bleibt
-- Alles andere zu `%XX` (Hex, **gross**)
+- Alles andere zu `%XX` (Hex, **groß**)
 
 ## Beispiele
 
@@ -76,12 +76,12 @@ Daher der `replace`-Nachsatz.
 | `encodeURI`          | `; / ? : @ & = + $ , #` (URI-Sonderzeichen) |
 | `encodeURIComponent` | nur `A-Z a-z 0-9 - _ . ! ~ * ' ( )` |
 
-`encodeURI` ist fuer GANZE URLs (laesst Sonderzeichen drin),
-`encodeURIComponent` fuer **Werte** in URLs (codiert mehr) -- 
+`encodeURI` ist für GANZE URLs (laesst Sonderzeichen drin),
+`encodeURIComponent` für **Werte** in URLs (codiert mehr) -- 
 hier richtig.
 
 ## Vergleich mit Python
 
 Python: `urllib.parse.quote(s, safe='')`. Hier wie in JS muss man
-ueber den Builtin "drueberbessern" -- weil Standards leicht
+über den Builtin "drüberbessern" -- weil Standards leicht
 abweichen vom RFC.

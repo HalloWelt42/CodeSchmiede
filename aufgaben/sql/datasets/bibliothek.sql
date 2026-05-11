@@ -36,12 +36,12 @@ CREATE TABLE ausleihen (
 
 INSERT INTO autoren (id, name, geburtsjahr, land) VALUES
   (1, 'Hermann Hesse',   1877, 'Deutschland'),
-  (2, 'Stefan Zweig',    1881, 'Oesterreich'),
+  (2, 'Stefan Zweig',    1881, 'Österreich'),
   (3, 'Franz Kafka',     1883, 'Tschechien'),
   (4, 'Thomas Mann',     1875, 'Deutschland'),
   (5, 'Astrid Lindgren', 1907, 'Schweden'),
-  (6, 'George Orwell',   1903, 'Grossbritannien'),
-  (7, 'Jane Austen',     1775, 'Grossbritannien'),
+  (6, 'George Orwell',   1903, 'Großbritannien'),
+  (7, 'Jane Austen',     1775, 'Großbritannien'),
   (8, 'Haruki Murakami', 1949, 'Japan'),
   (9, 'Cornelia Funke',  1958, 'Deutschland'),
   (10,'Ursula K. Le Guin', 1929,'USA');
@@ -49,9 +49,9 @@ INSERT INTO autoren (id, name, geburtsjahr, land) VALUES
 INSERT INTO buecher (id, titel, autor_id, jahr, seiten, kategorie, exemplare) VALUES
   (1,  'Siddhartha',                1, 1922, 153, 'Roman',          3),
   (2,  'Der Steppenwolf',           1, 1927, 288, 'Roman',          2),
-  (3,  'Schachnovelle',             2, 1942,  96, 'Erzaehlung',     4),
+  (3,  'Schachnovelle',             2, 1942,  96, 'Erzählung',     4),
   (4,  'Die Welt von Gestern',      2, 1942, 528, 'Biographie',     1),
-  (5,  'Die Verwandlung',           3, 1915,  74, 'Erzaehlung',     5),
+  (5,  'Die Verwandlung',           3, 1915,  74, 'Erzählung',     5),
   (6,  'Der Process',               3, 1925, 312, 'Roman',          2),
   (7,  'Buddenbrooks',              4, 1901, 759, 'Roman',          1),
   (8,  'Der Zauberberg',            4, 1924, 992, 'Roman',          1),
@@ -71,19 +71,19 @@ INSERT INTO buecher (id, titel, autor_id, jahr, seiten, kategorie, exemplare) VA
 INSERT INTO leser (id, name, ort, alter_jahre, mitglied_seit) VALUES
   (1,  'Anna Schmidt',     'Berlin',     34, '2018-03-15'),
   (2,  'Bernd Mueller',    'Hamburg',    42, '2015-07-01'),
-  (3,  'Clara Weber',      'Muenchen',   28, '2020-01-20'),
+  (3,  'Clara Weber',      'München',   28, '2020-01-20'),
   (4,  'David Fischer',    'Berlin',     19, '2022-09-10'),
-  (5,  'Eva Schulz',       'Koeln',      56, '2010-05-04'),
+  (5,  'Eva Schulz',       'Köln',      56, '2010-05-04'),
   (6,  'Felix Bauer',      'Frankfurt',  37, '2017-11-30'),
   (7,  'Greta Hoffmann',   'Hamburg',    25, '2021-06-12'),
   (8,  'Hans Wagner',      'Stuttgart',  61, '2008-02-22'),
   (9,  'Ines Becker',      'Berlin',     45, '2014-04-18'),
-  (10, 'Jonas Schaefer',   'Muenchen',   30, '2019-08-25'),
+  (10, 'Jonas Schaefer',   'München',   30, '2019-08-25'),
   (11, 'Karin Koehler',    'Leipzig',    52, '2012-10-09'),
   (12, 'Lukas Richter',    'Dresden',    22, '2023-01-11'),
   (13, 'Maria Klein',      'Hamburg',    39, '2016-03-03'),
   (14, 'Niklas Wolf',      'Berlin',     27, '2020-12-07'),
-  (15, 'Olivia Krueger',   'Muenchen',   33, '2018-06-20');
+  (15, 'Olivia Krueger',   'München',   33, '2018-06-20');
 
 INSERT INTO ausleihen (id, leser_id, buch_id, ausgeliehen_am, zurueck_am) VALUES
   (1,   1,  1, '2025-01-05', '2025-01-19'),

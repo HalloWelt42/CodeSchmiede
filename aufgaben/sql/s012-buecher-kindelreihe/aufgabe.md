@@ -2,7 +2,7 @@
 schema_version: 1
 id: s012-buecher-kindelreihe
 revision: 1
-titel: "Kinderbuecher mit mehr als 4 Exemplaren"
+titel: "Kinderbücher mit mehr als 4 Exemplaren"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -39,6 +39,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Kinderbuecher mit mehr als 4 Exemplaren
+# Kinderbücher mit mehr als 4 Exemplaren
 
-Titel + Exemplare aller Kinderbuecher mit > 4 Exemplaren.
+Titel + Exemplare aller Kinderbücher mit > 4 Exemplaren.

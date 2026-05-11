@@ -2,7 +2,7 @@
 schema_version: 1
 id: s055-cte-deutsche-buecher
 revision: 1
-titel: "CTE: Buecher von deutschen Autoren"
+titel: "CTE: Bücher von deutschen Autoren"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -43,6 +43,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# CTE: Buecher von deutschen Autoren
+# CTE: Bücher von deutschen Autoren
 
-Mit einer CTE die deutschen Autoren vorbereiten und dann Buecher dazu joinen.
+Mit einer CTE die deutschen Autoren vorbereiten und dann Bücher dazu joinen.

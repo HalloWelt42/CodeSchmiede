@@ -21,7 +21,7 @@ zeitlimit_sekunden: 5
 dataset: bibliothek
 schema_hinweis: |
   autoren(id, name, geburtsjahr, land)
-erwartete_spalten: [name]
+erwartete_spalten: ["name"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Cornelia Funke"]

@@ -66,7 +66,7 @@ Folge** liefert.
 
 Definition:
 - `P(0) = P(1) = P(2) = 1`
-- `P(n) = P(n-2) + P(n-3)` fuer `n >= 3`
+- `P(n) = P(n-2) + P(n-3)` für `n >= 3`
 
 `n <= 0` → `[]`.
 
@@ -92,7 +92,7 @@ Padovan** benannt (1994). Wie die Fibonacci-Folge basiert sie auf
 einer linearen Rekurrenz, aber mit Verzoegerung um 2 statt 1.
 
 Das Verhaeltnis benachbarter Padovan-Zahlen konvergiert gegen die
-**plastische Zahl** $\rho \approx 1{,}3247$ -- die Loesung von
+**plastische Zahl** $\rho \approx 1{,}3247$ -- die Lösung von
 $x^3 = x + 1$.
 
 ## Verwandte Folgen

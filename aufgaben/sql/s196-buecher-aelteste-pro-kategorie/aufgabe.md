@@ -2,7 +2,7 @@
 schema_version: 1
 id: s196-buecher-aelteste-pro-kategorie
 revision: 1
-titel: "Buecher: Älteste pro Kategorie"
+titel: "Bücher: Älteste pro Kategorie"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -28,7 +28,7 @@ erwartete_spalten: ["kategorie", "titel", "jahr"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Biographie", "Die Welt von Gestern", 1942]
-  - ["Erzaehlung", "Die Verwandlung", 1915]
+  - ["Erzählung", "Die Verwandlung", 1915]
   - ["Fantasy", "Erdsee", 1968]
   - ["Kinderbuch", "Pippi Langstrumpf", 1945]
   - ["Roman", "Stolz und Vorurteil", 1813]

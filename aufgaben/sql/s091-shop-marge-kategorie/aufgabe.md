@@ -29,11 +29,11 @@ erwartete_spalten: ["kategorie", "umsatz"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Milchprodukte", 27.57]
-  - ["Getraenke", 27.09]
+  - ["Getränke", 27.09]
   - ["Obst", 21.97]
-  - ["Gemuese", 17.85]
+  - ["Gemüse", 17.85]
   - ["Backwaren", 15.31]
-  - ["Suesswaren", 10.45]
+  - ["Süßwaren", 10.45]
 hints:
   - kosten: 0
     text: |
@@ -46,4 +46,4 @@ starter_code: |
 
 # Umsatz pro Kategorie
 
-Kategorie + Gesamtumsatz, hoechster zuerst.
+Kategorie + Gesamtumsatz, höchster zuerst.

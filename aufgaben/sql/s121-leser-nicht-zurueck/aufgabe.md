@@ -2,7 +2,7 @@
 schema_version: 1
 id: s121-leser-nicht-zurueck
 revision: 1
-titel: "Leser mit offenen Buechern"
+titel: "Leser mit offenen Büchern"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -44,6 +44,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Leser mit offenen Buechern
+# Leser mit offenen Büchern
 
-Distinkte Leser, die mindestens ein noch nicht zurueckgegebenes Buch haben.
+Distinkte Leser, die mindestens ein noch nicht zurückgegebenes Buch haben.

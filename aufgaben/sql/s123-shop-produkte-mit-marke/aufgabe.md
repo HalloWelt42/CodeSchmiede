@@ -32,22 +32,22 @@ erwartetes_ergebnis:
   - ["Apfelsaft 1L (FruchtFest)"]
   - ["Banane (Tropico)"]
   - ["Brokkoli (GartenFrisch)"]
-  - ["Brot Roggen 500g (Bauernbaeckerei)"]
-  - ["Brötchen 5er-Pack (Bauernbaeckerei)"]
-  - ["Butter 250g (Alpenglueck)"]
+  - ["Brot Roggen 500g (Bauernbäckerei)"]
+  - ["Brötchen 5er-Pack (Bauernbäckerei)"]
+  - ["Butter 250g (Alpenglück)"]
   - ["Cola 1L (BlubberCo)"]
   - ["Croissant (Pariser Art)"]
   - ["Erdbeeren 500g (Bio-Hof Schulz)"]
-  - ["Gouda Scheiben 200g (KaeseHof)"]
+  - ["Gouda Scheiben 200g (KäseHof)"]
   - ["Gurke (GartenFrisch)"]
-  - ["Joghurt Natur 500g (Alpenglueck)"]
+  - ["Joghurt Natur 500g (Alpenglück)"]
   - ["Karotte 1kg (Bio-Hof Schulz)"]
   - ["Kekse 200g (KekseRoll)"]
   - ["Mineralwasser 6x1L (AquaPur)"]
   - ["Orange Navel (Citrus Plus)"]
   - ["Schokolade 100g (KakaoLuxus)"]
   - ["Tomate Strauch (GartenFrisch)"]
-  - ["Vollmilch 1L (Alpenglueck)"]
+  - ["Vollmilch 1L (Alpenglück)"]
 hints:
   - kosten: 0
     text: |
@@ -60,4 +60,4 @@ starter_code: |
 
 # Produkt + Marke
 
-Fuer jedes Produkt: Bezeichnung `Name (Marke)` als einzelne Spalte, alphabetisch.
+Für jedes Produkt: Bezeichnung `Name (Marke)` als einzelne Spalte, alphabetisch.

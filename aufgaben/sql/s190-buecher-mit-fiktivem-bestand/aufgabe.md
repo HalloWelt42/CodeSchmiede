@@ -2,7 +2,7 @@
 schema_version: 1
 id: s190-buecher-mit-fiktivem-bestand
 revision: 1
-titel: "Buecher mit Verfügbarkeitsstatus"
+titel: "Bücher mit Verfügbarkeitsstatus"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend

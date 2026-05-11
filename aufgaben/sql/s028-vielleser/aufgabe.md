@@ -41,4 +41,4 @@ starter_code: |
 
 # Viel-Leser
 
-Leser, die mindestens 3 Buecher ausgeliehen haben (auch zurueckgegebene zaehlen).
+Leser, die mindestens 3 Bücher ausgeliehen haben (auch zurückgegebene zählen).

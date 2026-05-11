@@ -29,11 +29,11 @@ erwartete_spalten: ["kategorie", "name", "preis"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Backwaren", "Brot Roggen 500g", 2.79]
-  - ["Gemuese", "Brokkoli", 1.99]
-  - ["Getraenke", "Mineralwasser 6x1L", 4.99]
+  - ["Gemüse", "Brokkoli", 1.99]
+  - ["Getränke", "Mineralwasser 6x1L", 4.99]
   - ["Milchprodukte", "Gouda Scheiben 200g", 3.29]
   - ["Obst", "Erdbeeren 500g", 3.99]
-  - ["Suesswaren", "Kekse 200g", 2.49]
+  - ["Süßwaren", "Kekse 200g", 2.49]
 hints:
   - kosten: 0
     text: |

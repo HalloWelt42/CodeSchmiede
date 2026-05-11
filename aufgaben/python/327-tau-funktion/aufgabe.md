@@ -101,4 +101,4 @@ Beispiel: $12 = 2^2 \cdot 3^1$, also $\tau(12) = (2+1)(1+1) = 6$.
 
 **138-alle-teiler** liefert die **Liste** der Teiler.
 **327 hier** liefert nur die **Anzahl** -- effizienter, weil
-keine Speicherung der Teiler noetig.
+keine Speicherung der Teiler nötig.

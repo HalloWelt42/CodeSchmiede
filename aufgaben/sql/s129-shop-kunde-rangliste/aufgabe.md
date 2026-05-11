@@ -52,4 +52,4 @@ starter_code: |
 
 # Kunden-Rangliste
 
-Name + Umsatz + Rang, hoechster Umsatz = Rang 1.
+Name + Umsatz + Rang, höchster Umsatz = Rang 1.

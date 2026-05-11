@@ -30,8 +30,8 @@ sortierung_egal: false
 erwartetes_ergebnis:
   - ["Berlin", 8]
   - ["Hamburg", 6]
-  - ["Koeln", 6]
-  - ["Muenchen", 5]
+  - ["Köln", 6]
+  - ["München", 5]
   - ["Dresden", 2]
   - ["Frankfurt", 2]
   - ["Leipzig", 2]

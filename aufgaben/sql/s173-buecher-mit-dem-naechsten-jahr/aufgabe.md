@@ -2,7 +2,7 @@
 schema_version: 1
 id: s173-buecher-mit-dem-naechsten-jahr
 revision: 1
-titel: "Buecher mit Jahr des nächsten"
+titel: "Bücher mit Jahr des nächsten"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend

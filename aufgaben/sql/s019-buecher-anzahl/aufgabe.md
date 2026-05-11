@@ -2,7 +2,7 @@
 schema_version: 1
 id: s019-buecher-anzahl
 revision: 1
-titel: "Anzahl der Buecher"
+titel: "Anzahl der Bücher"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -31,13 +31,13 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `COUNT(*)` zaehlt alle Zeilen.
+      `COUNT(*)` zählt alle Zeilen.
 starter_code: |
   SELECT ___
   FROM ___
   WHERE ___;
 ---
 
-# Anzahl der Buecher
+# Anzahl der Bücher
 
-Wieviele Buecher gibt es insgesamt? Spalte heißt `anzahl`.
+Wieviele Bücher gibt es insgesamt? Spalte heißt `anzahl`.

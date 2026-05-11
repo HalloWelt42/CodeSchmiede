@@ -41,7 +41,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `WHERE kategorie = 'Roman'` -- String in einfachen Anfuehrungszeichen.
+      `WHERE kategorie = 'Roman'` -- String in einfachen Anführungszeichen.
 starter_code: |
   SELECT ___
   FROM ___
@@ -50,4 +50,4 @@ starter_code: |
 
 # Romane
 
-Alle Buecher der Kategorie `Roman`, alphabetisch nach Titel.
+Alle Bücher der Kategorie `Roman`, alphabetisch nach Titel.

@@ -23,7 +23,7 @@ funktion: fizzbuzz_liste
 hints:
   - kosten: 0
     text: |
-      Liefere FizzBuzz fuer alle Zahlen von 1 bis n als Liste von
+      Liefere FizzBuzz für alle Zahlen von 1 bis n als Liste von
       Strings. Regeln wie Klassiker:
       - durch 3 und 5: "FizzBuzz"
       - nur durch 3: "Fizz"
@@ -32,7 +32,7 @@ hints:
       n <= 0 -> [].
   - kosten: 7
     text: |
-      Listen-Comprehension. Pro i pruefen, am elegantesten ist
+      Listen-Comprehension. Pro i prüfen, am elegantesten ist
       "Fizz" * (i%3==0) + "Buzz" * (i%5==0) or str(i).
 tests_sichtbar:
   - input: [5]
@@ -63,7 +63,7 @@ starter_code: |
 # FizzBuzz als Liste 1 bis n
 
 Sammelvariante des FizzBuzz-Klassikers (Aufgabe 001 liefert nur
-einen Wert): liefere die FizzBuzz-Strings fuer **alle Zahlen
+einen Wert): liefere die FizzBuzz-Strings für **alle Zahlen
 von 1 bis n** als Liste.
 
 Regeln:
@@ -90,8 +90,8 @@ Pythonismus: `"Fizz" * True` ist `"Fizz"`, `"Fizz" * False` ist
 
 ## Vergleich mit Aufgabe 001
 
-**001-fizzbuzz**: `fizzbuzz(n)` → einzelner String fuer eine Zahl.
-**329 hier**: `fizzbuzz_liste(n)` → Liste fuer 1..n.
+**001-fizzbuzz**: `fizzbuzz(n)` → einzelner String für eine Zahl.
+**329 hier**: `fizzbuzz_liste(n)` → Liste für 1..n.
 
-In der Praxis ist die Listen-Variante haeufiger -- man will meist
+In der Praxis ist die Listen-Variante häufiger -- man will meist
 den ganzen Lauf, nicht einzelne Werte.

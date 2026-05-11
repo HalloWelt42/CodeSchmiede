@@ -2,7 +2,7 @@
 schema_version: 1
 id: s159-buecher-pro-monat-ausleihen
 revision: 1
-titel: "Top-Buecher in 2025 nach Ausleihen"
+titel: "Top-Bücher in 2025 nach Ausleihen"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend

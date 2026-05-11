@@ -54,4 +54,4 @@ starter_code: |
 
 # Anzahl Ausleihen pro Leser
 
-Leser-Name + wieviel Buecher er ausgeliehen hat (gesamt), absteigend.
+Leser-Name + wieviel Bücher er ausgeliehen hat (gesamt), absteigend.

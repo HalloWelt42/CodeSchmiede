@@ -2,7 +2,7 @@
 schema_version: 1
 id: s072-buecher-pro-jahrzehnt
 revision: 1
-titel: "Buecher pro Jahrzehnt"
+titel: "Bücher pro Jahrzehnt"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -47,6 +47,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Buecher pro Jahrzehnt
+# Bücher pro Jahrzehnt
 
-Jahrzehnt + Anzahl Buecher. 1903 -> 1900, 1949 -> 1940 etc.
+Jahrzehnt + Anzahl Bücher. 1903 -> 1900, 1949 -> 1940 etc.

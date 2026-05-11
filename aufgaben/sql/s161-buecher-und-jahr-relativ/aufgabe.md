@@ -2,7 +2,7 @@
 schema_version: 1
 id: s161-buecher-und-jahr-relativ
 revision: 1
-titel: "Buecher mit Jahrhundert-Label"
+titel: "Bücher mit Jahrhundert-Label"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend

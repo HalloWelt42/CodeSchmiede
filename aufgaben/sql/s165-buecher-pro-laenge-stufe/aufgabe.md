@@ -2,7 +2,7 @@
 schema_version: 1
 id: s165-buecher-pro-laenge-stufe
 revision: 1
-titel: "Buecher: Längen-Stufe + Anzahl"
+titel: "Bücher: Längen-Stufe + Anzahl"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend

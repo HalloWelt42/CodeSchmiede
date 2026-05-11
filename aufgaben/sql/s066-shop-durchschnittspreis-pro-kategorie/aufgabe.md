@@ -28,11 +28,11 @@ schema_hinweis: |
 erwartete_spalten: ["kategorie", "schnitt"]
 sortierung_egal: false
 erwartetes_ergebnis:
-  - ["Getraenke", 2.72]
-  - ["Suesswaren", 2.24]
+  - ["Getränke", 2.72]
+  - ["Süßwaren", 2.24]
   - ["Milchprodukte", 1.99]
   - ["Backwaren", 1.76]
-  - ["Gemuese", 1.33]
+  - ["Gemüse", 1.33]
   - ["Obst", 1.32]
 hints:
   - kosten: 0

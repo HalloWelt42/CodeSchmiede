@@ -2,7 +2,7 @@
 schema_version: 1
 id: s194-buecher-lange-titel
 revision: 1
-titel: "Buecher mit langem Titel"
+titel: "Bücher mit langem Titel"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend

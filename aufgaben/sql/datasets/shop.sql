@@ -39,11 +39,11 @@ CREATE TABLE bestellpositionen (
 
 INSERT INTO kategorien (id, name) VALUES
   (1, 'Obst'),
-  (2, 'Gemuese'),
+  (2, 'Gemüse'),
   (3, 'Milchprodukte'),
   (4, 'Backwaren'),
-  (5, 'Getraenke'),
-  (6, 'Suesswaren');
+  (5, 'Getränke'),
+  (6, 'Süßwaren');
 
 INSERT INTO produkte (id, name, kategorie_id, preis, lager, marke) VALUES
   (1,  'Apfel Boskoop',        1, 0.45,  200, 'Bio-Hof Schulz'),
@@ -54,12 +54,12 @@ INSERT INTO produkte (id, name, kategorie_id, preis, lager, marke) VALUES
   (6,  'Gurke',                 2, 1.20,  140, 'GartenFrisch'),
   (7,  'Karotte 1kg',           2, 1.49,  300, 'Bio-Hof Schulz'),
   (8,  'Brokkoli',              2, 1.99,   90, 'GartenFrisch'),
-  (9,  'Vollmilch 1L',          3, 1.29,  400, 'Alpenglueck'),
-  (10, 'Joghurt Natur 500g',    3, 0.89,  260, 'Alpenglueck'),
-  (11, 'Butter 250g',           3, 2.49,  180, 'Alpenglueck'),
-  (12, 'Gouda Scheiben 200g',   3, 3.29,  120, 'KaeseHof'),
-  (13, 'Brot Roggen 500g',      4, 2.79,   50, 'Bauernbaeckerei'),
-  (14, 'Brötchen 5er-Pack',     4, 1.49,   80, 'Bauernbaeckerei'),
+  (9,  'Vollmilch 1L',          3, 1.29,  400, 'Alpenglück'),
+  (10, 'Joghurt Natur 500g',    3, 0.89,  260, 'Alpenglück'),
+  (11, 'Butter 250g',           3, 2.49,  180, 'Alpenglück'),
+  (12, 'Gouda Scheiben 200g',   3, 3.29,  120, 'KäseHof'),
+  (13, 'Brot Roggen 500g',      4, 2.79,   50, 'Bauernbäckerei'),
+  (14, 'Brötchen 5er-Pack',     4, 1.49,   80, 'Bauernbäckerei'),
   (15, 'Croissant',             4, 0.99,   60, 'Pariser Art'),
   (16, 'Mineralwasser 6x1L',    5, 4.99,  150, 'AquaPur'),
   (17, 'Apfelsaft 1L',          5, 1.89,  200, 'FruchtFest'),
@@ -70,14 +70,14 @@ INSERT INTO produkte (id, name, kategorie_id, preis, lager, marke) VALUES
 INSERT INTO kunden (id, name, ort, plz, alter_jahre) VALUES
   (1,  'Alex Becker',     'Berlin',     '10115', 31),
   (2,  'Beate Frank',     'Hamburg',    '20095', 44),
-  (3,  'Carla Diaz',      'Muenchen',   '80331', 28),
+  (3,  'Carla Diaz',      'München',   '80331', 28),
   (4,  'Daniel Engel',    'Berlin',     '10247', 19),
-  (5,  'Elena Vogel',     'Koeln',      '50667', 56),
+  (5,  'Elena Vogel',     'Köln',      '50667', 56),
   (6,  'Frank Berger',    'Frankfurt',  '60311', 37),
   (7,  'Gisela Hahn',     'Hamburg',    '22041', 65),
   (8,  'Hugo Meier',      'Stuttgart',  '70173', 22),
   (9,  'Iris Schaefer',   'Berlin',     '10405', 49),
-  (10, 'Jan Petersen',    'Muenchen',   '80801', 33),
+  (10, 'Jan Petersen',    'München',   '80801', 33),
   (11, 'Karin Berger',    'Leipzig',    '04109', 41),
   (12, 'Leon Wolf',       'Dresden',    '01067', 26);
 

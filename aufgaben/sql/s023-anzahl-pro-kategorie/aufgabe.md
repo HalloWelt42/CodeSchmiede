@@ -2,7 +2,7 @@
 schema_version: 1
 id: s023-anzahl-pro-kategorie
 revision: 1
-titel: "Buecher pro Kategorie"
+titel: "Bücher pro Kategorie"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -29,7 +29,7 @@ sortierung_egal: false
 erwartetes_ergebnis:
   - ["Roman", 11]
   - ["Kinderbuch", 4]
-  - ["Erzaehlung", 2]
+  - ["Erzählung", 2]
   - ["Biographie", 1]
   - ["Fantasy", 1]
   - ["Sci-Fi", 1]
@@ -43,6 +43,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Buecher pro Kategorie
+# Bücher pro Kategorie
 
-Kategorie und Anzahl der Buecher, hauefigste zuerst.
+Kategorie und Anzahl der Bücher, hauefigste zuerst.

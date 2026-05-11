@@ -24,12 +24,12 @@ hints:
   - kosten: 0
     text: |
       Liefere alle Teilmengen eines Arrays als Array von Arrays.
-      Reihenfolge: nach Groesse aufsteigend, gleich gross dann
+      Reihenfolge: nach Größe aufsteigend, gleich groß dann
       lexikographisch.
       Bei [] -> [[]].
   - kosten: 20
     text: |
-      Bit-Maskierung: fuer m = 0..2^n - 1 die Bits ausziehen.
+      Bit-Maskierung: für m = 0..2^n - 1 die Bits ausziehen.
       Dann sortieren mit (a.length - b.length) || a.localeCompare-Trick.
 tests_sichtbar:
   - input: [[]]
@@ -49,10 +49,10 @@ starter_code: |
 # JavaScript -- Potenzmenge
 
 Schreibe `potenzmenge(arr)`, die alle Teilmengen eines Arrays
-zurueckgibt -- inklusive leerer Menge und Gesamtmenge.
+zurückgibt -- inklusive leerer Menge und Gesamtmenge.
 
-Reihenfolge: zuerst **Groesse aufsteigend**, innerhalb gleicher
-Groesse **lexikographisch**.
+Reihenfolge: zuerst **Größe aufsteigend**, innerhalb gleicher
+Größe **lexikographisch**.
 
 ## Beispiele
 
@@ -72,11 +72,11 @@ Bit `i` gesetzt ↔ Element `i` enthalten.
 
 ## Idee -- Reduce-Pattern (funktional)
 
-Klassisches funktionales Pattern: starte mit `[[]]`, fuer jedes
+Klassisches funktionales Pattern: starte mit `[[]]`, für jedes
 Element x verdopple die Menge -- einmal ohne x, einmal mit x.
 
 ## Vergleich mit Python
 
 Pythons `itertools.combinations(arr, k)` liefert gleich
-gruppiert nach Groesse. In JS gibt es kein `itertools` -- man
+gruppiert nach Größe. In JS gibt es kein `itertools` -- man
 baut es per `reduce` oder Bit-Maske selbst.

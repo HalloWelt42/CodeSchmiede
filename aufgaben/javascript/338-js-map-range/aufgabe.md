@@ -2,7 +2,7 @@
 schema_version: 1
 id: 338-js-map-range
 revision: 1
-titel: JavaScript -- Wert in anderen Bereich uebersetzen
+titel: JavaScript -- Wert in anderen Bereich übersetzen
 sprache: javascript
 task_type: code_schreiben
 runner_type: webworker_js
@@ -43,10 +43,10 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Wert in anderen Bereich uebersetzen
+# JavaScript -- Wert in anderen Bereich übersetzen
 
 Schreibe `mapRange(x, a1, a2, b1, b2)`, die `x` aus `[a1, a2]`
-linear in `[b1, b2]` uebersetzt.
+linear in `[b1, b2]` übersetzt.
 
 Auf 4 Nachkommastellen gerundet. Bei `a1 == a2` -> `b1`.
 

@@ -28,7 +28,7 @@ hints:
   - kosten: 10
     text: |
       Array mit [1,1,1] starten, in Schleife folge[folge.length - 2]
-      + folge[folge.length - 3] anhaengen.
+      + folge[folge.length - 3] anhängen.
 tests_sichtbar:
   - input: [0]
     expected: []

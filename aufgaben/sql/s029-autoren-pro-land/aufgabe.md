@@ -28,12 +28,12 @@ erwartete_spalten: ["land", "anzahl"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Deutschland", 3]
-  - ["Grossbritannien", 2]
+  - ["Großbritannien", 2]
   - ["Japan", 1]
-  - ["Oesterreich", 1]
   - ["Schweden", 1]
   - ["Tschechien", 1]
   - ["USA", 1]
+  - ["Österreich", 1]
 hints:
   - kosten: 0
     text: |

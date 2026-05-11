@@ -29,11 +29,11 @@ erwartete_spalten: ["kategorie", "name", "preis"]
 sortierung_egal: false
 erwartetes_ergebnis:
   - ["Backwaren", "Croissant", 0.99]
-  - ["Gemuese", "Tomate Strauch", 0.65]
-  - ["Getraenke", "Cola 1L", 1.29]
+  - ["Gemüse", "Tomate Strauch", 0.65]
+  - ["Getränke", "Cola 1L", 1.29]
   - ["Milchprodukte", "Joghurt Natur 500g", 0.89]
   - ["Obst", "Banane", 0.3]
-  - ["Suesswaren", "Schokolade 100g", 1.99]
+  - ["Süßwaren", "Schokolade 100g", 1.99]
 hints:
   - kosten: 0
     text: |

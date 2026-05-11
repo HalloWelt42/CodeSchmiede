@@ -31,9 +31,9 @@ erwartetes_ergebnis:
   - ["Dresden"]
   - ["Frankfurt"]
   - ["Hamburg"]
-  - ["Koeln"]
+  - ["Köln"]
   - ["Leipzig"]
-  - ["Muenchen"]
+  - ["München"]
   - ["Stuttgart"]
 hints:
   - kosten: 0

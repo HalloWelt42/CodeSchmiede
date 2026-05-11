@@ -2,7 +2,7 @@
 schema_version: 1
 id: 337-map-range
 revision: 1
-titel: Wert linear in anderen Bereich uebersetzen
+titel: Wert linear in anderen Bereich übersetzen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -61,10 +61,10 @@ starter_code: |
       pass
 ---
 
-# Wert linear in anderen Bereich uebersetzen
+# Wert linear in anderen Bereich übersetzen
 
 Schreibe `map_range(x, a1, a2, b1, b2)`, die einen Wert `x` aus dem
-Bereich `[a1, a2]` linear in den Bereich `[b1, b2]` uebersetzt.
+Bereich `[a1, a2]` linear in den Bereich `[b1, b2]` übersetzt.
 
 Auf 4 Nachkommastellen gerundet. Bei `a1 == a2` (kein Bereich)
 liefere `b1`.
@@ -88,13 +88,13 @@ Die "Lineare Interpolation zwischen zwei Bereichen".
 ## Anwendung
 
 - **Sensor-Werte**: Spannung 0-5V -> Temperatur -10..50°C
-- **UI-Slider**: Position 0-100px -> Lautstaerke 0.0-1.0
+- **UI-Slider**: Position 0-100px -> Lautstärke 0.0-1.0
 - **Animation**: Frame 0-60 -> Winkel 0-360°
 - **Farbverlaeufe**: Gradient-Position -> Farbwert
 
 ## Erweiterung -- Clamp
 
-Soll x **ausserhalb** [a1, a2] auch korrekt arbeiten? Ohne Clamp
-liegt das Ergebnis dann ausserhalb [b1, b2]. Mit Clamp:
+Soll x **außerhalb** [a1, a2] auch korrekt arbeiten? Ohne Clamp
+liegt das Ergebnis dann außerhalb [b1, b2]. Mit Clamp:
 
 In Spielen oft so genutzt, damit kein Wert "explodiert".

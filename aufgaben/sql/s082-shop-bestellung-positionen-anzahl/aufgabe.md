@@ -45,4 +45,4 @@ starter_code: |
 
 # Bestellungen mit > 2 Positionen
 
-Bestellungs-ID + Positionsanzahl fuer Bestellungen mit mehr als 2 Positionen.
+Bestellungs-ID + Positionsanzahl für Bestellungen mit mehr als 2 Positionen.

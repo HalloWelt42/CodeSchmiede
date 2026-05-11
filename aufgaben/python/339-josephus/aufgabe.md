@@ -2,7 +2,7 @@
 schema_version: 1
 id: 339-josephus
 revision: 1
-titel: Josephus-Problem -- letzter Ueberlebender
+titel: Josephus-Problem -- letzter Überlebender
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -25,7 +25,7 @@ hints:
     text: |
       n Personen stehen im Kreis (Index 0..n-1). Beginnend bei 0
       wird jede k-te Person eliminiert. Liefere den Index des letzten
-      Ueberlebenden.
+      Überlebenden.
       Beispiel: n=5, k=2 → Eliminations-Folge 1, 3, 0, 4 → Sieger ist 2.
       n <= 0 oder k <= 0 → -1.
   - kosten: 8
@@ -72,9 +72,9 @@ starter_code: |
 # Josephus-Problem
 
 `n` Personen stehen im Kreis (Index `0` bis `n-1`). Beginnend bei
-Index 0 wird **jede k-te Person** eliminiert. Wer ueberlebt?
+Index 0 wird **jede k-te Person** eliminiert. Wer überlebt?
 
-Liefere den **Index des letzten Ueberlebenden**.
+Liefere den **Index des letzten Überlebenden**.
 
 `n <= 0` oder `k <= 0` → `-1`.
 
@@ -95,11 +95,11 @@ verschiebt sich der Sieger um `k` modulo der neuen Anzahl.
 ## Hintergrund
 
 Der Algorithmus geht auf den juedischen Historiker **Flavius
-Josephus** zurueck (1. Jh. n. Chr.). Bei der Belagerung von
+Josephus** zurück (1. Jh. n. Chr.). Bei der Belagerung von
 Yodfat (67 n. Chr.) sollen sich er und 40 Soldaten in einer
 Hoehle versteckt und einen Selbstmord-Pakt geschlossen haben:
 im Kreis stehen, jeden dritten toeten. Josephus angeblich
-berechnete seine Position so, dass er ueberlebte.
+berechnete seine Position so, dass er überlebte.
 
 ## Naive Variante mit Liste -- O(n²)
 

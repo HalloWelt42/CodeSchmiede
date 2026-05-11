@@ -43,4 +43,4 @@ starter_code: |
 
 # Lieblingsautoren der Top-Leser
 
-Fuer jeden Leser mit 3+ Ausleihen: Name + Autoren + Anzahl Ausleihen dieses Autors.
+Für jeden Leser mit 3+ Ausleihen: Name + Autoren + Anzahl Ausleihen dieses Autors.

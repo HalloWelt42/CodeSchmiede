@@ -28,12 +28,12 @@ schema_hinweis: |
 erwartete_spalten: ["name", "anzahl"]
 sortierung_egal: false
 erwartetes_ergebnis:
-  - ["Gemuese", 4]
+  - ["Gemüse", 4]
   - ["Milchprodukte", 4]
   - ["Obst", 4]
   - ["Backwaren", 3]
-  - ["Getraenke", 3]
-  - ["Suesswaren", 2]
+  - ["Getränke", 3]
+  - ["Süßwaren", 2]
 hints:
   - kosten: 0
     text: |

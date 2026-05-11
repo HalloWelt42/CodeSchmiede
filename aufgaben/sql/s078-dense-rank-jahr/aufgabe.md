@@ -2,7 +2,7 @@
 schema_version: 1
 id: s078-dense-rank-jahr
 revision: 1
-titel: "Buecher: DENSE_RANK nach Jahr"
+titel: "Bücher: DENSE_RANK nach Jahr"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -50,7 +50,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `DENSE_RANK()` -- gleiche Werte teilen sich den Rang, ohne Luecken im naechsten.
+      `DENSE_RANK()` -- gleiche Werte teilen sich den Rang, ohne Lücken im nächsten.
 starter_code: |
   SELECT ___
   FROM ___
@@ -59,4 +59,4 @@ starter_code: |
 
 # DENSE_RANK nach Jahr
 
-Buchtitel + Jahr + DENSE_RANK nach Erscheinungsjahr (frueh = 1).
+Buchtitel + Jahr + DENSE_RANK nach Erscheinungsjahr (früh = 1).

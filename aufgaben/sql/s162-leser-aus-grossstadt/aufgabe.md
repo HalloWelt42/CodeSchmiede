@@ -34,9 +34,9 @@ erwartetes_ergebnis:
   - ["Bernd Mueller", "Hamburg"]
   - ["Greta Hoffmann", "Hamburg"]
   - ["Maria Klein", "Hamburg"]
-  - ["Clara Weber", "Muenchen"]
-  - ["Jonas Schaefer", "Muenchen"]
-  - ["Olivia Krueger", "Muenchen"]
+  - ["Clara Weber", "München"]
+  - ["Jonas Schaefer", "München"]
+  - ["Olivia Krueger", "München"]
 hints:
   - kosten: 0
     text: |

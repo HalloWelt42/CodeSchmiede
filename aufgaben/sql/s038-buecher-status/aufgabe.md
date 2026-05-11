@@ -59,7 +59,7 @@ starter_code: |
 
 # Buchstatus per CASE
 
-Kategorisiere Buecher nach Exemplar-Anzahl:
+Kategorisiere Bücher nach Exemplar-Anzahl:
 - 1 -> 'einzeln'
 - 2-4 -> 'wenige'
 - sonst -> 'viele'

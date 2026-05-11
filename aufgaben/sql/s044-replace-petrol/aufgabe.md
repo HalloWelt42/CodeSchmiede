@@ -28,17 +28,17 @@ schema_hinweis: |
 erwartete_spalten: ["marke_kurz"]
 sortierung_egal: false
 erwartetes_ergebnis:
-  - ["Alpenglueck"]
+  - ["Alpenglück"]
   - ["AquaPur"]
-  - ["Bauernbaeckerei"]
+  - ["Bauernbäckerei"]
   - ["Bio Schulz"]
   - ["BlubberCo"]
   - ["Citrus Plus"]
   - ["FruchtFest"]
   - ["GartenFrisch"]
-  - ["KaeseHof"]
   - ["KakaoLuxus"]
   - ["KekseRoll"]
+  - ["KäseHof"]
   - ["Pariser Art"]
   - ["Tropico"]
 hints:

@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Konfigurierbares FizzBuzz: regeln ist Array von [teiler, wort].
-      Pro Zahl: Woerter passender Teiler joinen, sonst Zahl als String.
+      Pro Zahl: Wörter passender Teiler joinen, sonst Zahl als String.
       n <= 0 -> []. Leere Regeln -> nur Zahlen.
   - kosten: 15
     text: |
@@ -49,7 +49,7 @@ starter_code: |
 Schreibe `generalFizzbuzz(n, regeln)`, die FizzBuzz konfigurierbar
 spielt -- mit beliebigen `[teiler, wort]`-Paaren.
 
-Pro Zahl 1..n: alle passenden Woerter konkatenieren, sonst Zahl
+Pro Zahl 1..n: alle passenden Wörter konkatenieren, sonst Zahl
 als String.
 
 `n <= 0` -> `[]`, leere Regeln -> nur Zahlen.
@@ -64,8 +64,8 @@ als String.
 
 ## Idee -- modernes JS
 
-Schoenheit: **Destructuring** `([t]) => ...` zieht das erste
-Element des Tupels raus, `[, w]` ueberspringt das erste und nimmt
+Schönheit: **Destructuring** `([t]) => ...` zieht das erste
+Element des Tupels raus, `[, w]` überspringt das erste und nimmt
 das zweite.
 
 ## Vergleich -- direkter Loop
@@ -76,5 +76,5 @@ kritischem Code (kein Closure pro Iteration).
 ## Anwendung
 
 Konfigurierbares FizzBuzz steckt in **Cron-Jobs**, **Pattern-
-Matching** und ueberall wo "wenn X, dann Wort A; wenn Y, dann
+Matching** und überall wo "wenn X, dann Wort A; wenn Y, dann
 Wort B" zusammengesetzt werden soll.

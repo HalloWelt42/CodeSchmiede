@@ -2,7 +2,7 @@
 schema_version: 1
 id: s112-buecher-mit-stufen
 revision: 1
-titel: "Buecher mit Dichte-Stufen"
+titel: "Bücher mit Dichte-Stufen"
 sprache: sql
 task_type: sql_abfrage
 runner_type: sqlite_backend
@@ -57,6 +57,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Buecher mit Dicke-Klassifizierung
+# Bücher mit Dicke-Klassifizierung
 
 Titel + Seitenzahl + Klassifizierung: <200=duenn, <500=mittel, sonst dick.

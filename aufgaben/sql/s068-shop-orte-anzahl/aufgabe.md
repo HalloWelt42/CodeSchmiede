@@ -30,10 +30,10 @@ sortierung_egal: false
 erwartetes_ergebnis:
   - ["Berlin", 3]
   - ["Hamburg", 2]
-  - ["Muenchen", 2]
+  - ["München", 2]
   - ["Dresden", 1]
   - ["Frankfurt", 1]
-  - ["Koeln", 1]
+  - ["Köln", 1]
   - ["Leipzig", 1]
   - ["Stuttgart", 1]
 hints:

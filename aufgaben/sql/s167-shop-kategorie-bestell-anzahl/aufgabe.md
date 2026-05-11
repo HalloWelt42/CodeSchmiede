@@ -30,10 +30,10 @@ sortierung_egal: false
 erwartetes_ergebnis:
   - ["Milchprodukte", 7]
   - ["Obst", 7]
-  - ["Getraenke", 6]
+  - ["Getränke", 6]
   - ["Backwaren", 4]
-  - ["Gemuese", 4]
-  - ["Suesswaren", 2]
+  - ["Gemüse", 4]
+  - ["Süßwaren", 2]
 hints:
   - kosten: 0
     text: |
