@@ -91,19 +91,6 @@ Folge zurückgibt (`n = 1` → `"1"`).
 `itertools.groupby` gruppiert aufeinanderfolgende gleiche Zeichen.
 Pro Gruppe: Anzahl + Zeichen.
 
-```python
-from itertools import groupby
-
-def schritt(s):
-    return "".join(f"{len(list(g))}{z}" for z, g in groupby(s))
-
-def look_and_say(n):
-    s = "1"
-    for _ in range(n - 1):
-        s = schritt(s)
-    return s
-```
-
 ## Hintergrund
 
 John Conway hat 1986 das **kosmologische Theorem** bewiesen: jeder

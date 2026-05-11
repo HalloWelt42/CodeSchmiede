@@ -82,28 +82,10 @@ selber rechnen.
 
 ## Idee 1 -- Modulo-Schleife
 
-```python
-def bit_anzahl(n):
-    z = 0
-    while n > 0:
-        z += n & 1
-        n >>= 1
-    return z
-```
-
 Pro Schritt das niedrigste Bit auslesen (`n & 1`), dann nach rechts
 schieben.
 
 ## Idee 2 -- Brian-Kernighan-Trick (eleganter)
-
-```python
-def bit_anzahl(n):
-    z = 0
-    while n:
-        n &= n - 1
-        z += 1
-    return z
-```
 
 `n & (n-1)` löscht **immer das niedrigste gesetzte Bit** -- darum
 laeuft die Schleife nur so oft wie 1-en da sind. Bei sparsam besetzten

@@ -80,17 +80,6 @@ Gleichstand: **kleinerer Wert zuerst**.
 
 ## Idee
 
-```python
-from collections import Counter
-
-def top_n(liste, n):
-    if n <= 0:
-        return []
-    c = Counter(liste)
-    sortiert = sorted(c.items(), key=lambda x: (-x[1], x[0]))
-    return [[wert, anzahl] for wert, anzahl in sortiert[:n]]
-```
-
 Tupel-Key sortiert lexikographisch:
 - erstes Element: `-anzahl` → absteigend nach Anzahl
 - zweites Element: `wert` → bei Gleichstand aufsteigend

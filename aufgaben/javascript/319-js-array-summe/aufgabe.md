@@ -61,17 +61,7 @@ Bei leerem Array → `0`.
 
 ## Idee -- modernes JS
 
-```javascript
-function arraySumme(arr) {
-    return arr.reduce((akk, x) => akk + x, 0);
-}
-```
-
 Oder als **Arrow Function**:
-
-```javascript
-const arraySumme = (arr) => arr.reduce((a, x) => a + x, 0);
-```
 
 `Array.reduce` ist das JavaScript-Aequivalent von Pythons
 `functools.reduce`. Der **Startwert** `0` ist wichtig: ohne ihn

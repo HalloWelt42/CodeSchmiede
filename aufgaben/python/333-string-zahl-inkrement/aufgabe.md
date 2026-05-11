@@ -85,14 +85,6 @@ Bei ungueltiger Eingabe (Buchstaben, leerer String, Dezimalpunkt)
 
 ## Idee
 
-```python
-def inkrement(s):
-    try:
-        return str(int(s) + 1)
-    except ValueError:
-        return ""
-```
-
 Pythons `int` akzeptiert fuehrendes `+`/`-`, aber kein Dezimalpunkt.
 Beliebig grosse Zahlen sind kein Problem -- Python hat unbegrenzte
 ganze Zahlen.

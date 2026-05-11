@@ -80,20 +80,10 @@ Bei leerem Dict → `""`.
 
 ## Idee
 
-```python
-def query_build(d):
-    return "&".join(f"{k}={v}" for k, v in sorted(d.items()))
-```
-
 `sorted(d.items())` sortiert nach Schlüssel (alphabetisch).
 `f"{k}={v}"` formatiert pro Eintrag, `"&".join(...)` verkettet.
 
 ## Pendant -- Round-Trip
-
-```python
-query_parse(query_build({"a": "1", "b": "2"}))
-# == {"a": "1", "b": "2"}
-```
 
 Achtung: Werte werden in `query_build` zu Strings, in `query_parse`
 bleiben sie Strings. Ein vollstaendiger Round-Trip braucht

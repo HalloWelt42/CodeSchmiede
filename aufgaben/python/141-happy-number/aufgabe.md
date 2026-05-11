@@ -94,15 +94,6 @@ Zyklus, der nie `1` erreicht.
 Set für schon gesehene Zahlen. Solange weiter rechnen, bis entweder
 `n == 1` (glücklich) oder `n` schon im Set steht (Zyklus).
 
-```python
-def glückszahl(n):
-    gesehen = set()
-    while n != 1 and n not in gesehen:
-        gesehen.add(n)
-        n = sum(int(z) ** 2 for z in str(n))
-    return n == 1
-```
-
 ## Hintergrund
 
 Mathematisch interessant: alle nicht-glucklichen Zahlen landen im

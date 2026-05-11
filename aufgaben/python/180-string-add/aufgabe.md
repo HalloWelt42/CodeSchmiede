@@ -83,22 +83,6 @@ addiert -- aber **die Eingaben und Ausgabe sind Strings**.
 Von **rechts nach links** Stelle für Stelle addieren, Über-Trag
 merken.
 
-```python
-def zahl_addieren(a, b):
-    i, j = len(a) - 1, len(b) - 1
-    übertrag = 0
-    teile = []
-    while i >= 0 or j >= 0 or übertrag:
-        za = ord(a[i]) - ord("0") if i >= 0 else 0
-        zb = ord(b[j]) - ord("0") if j >= 0 else 0
-        s = za + zb + übertrag
-        teile.append(str(s % 10))
-        übertrag = s // 10
-        i -= 1
-        j -= 1
-    return "".join(reversed(teile))
-```
-
 ## Warum nicht `int()`?
 
 In Sprachen wie C oder Java gibt es keinen unbegrenzten Integer-Typ.

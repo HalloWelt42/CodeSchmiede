@@ -82,34 +82,10 @@ schon im Cache war (also wir nicht wirklich neu rechnen mussten).
 unterscheidet das nicht aufgrund vom Quadrat, sondern vom rohen
 Eingabe-Wert.
 
-## Idee
-
-```python
-def memoize_lauf(eingaben):
-    cache = {}
-    out = []
-    for x in eingaben:
-        if x in cache:
-            out.append([cache[x], True])
-        else:
-            wert = x * x
-            cache[x] = wert
-            out.append([wert, False])
-    return out
-```
-
 ## Pattern -- Memoization
 
 In echtem Code nutzt man oft `functools.lru_cache` oder
 `functools.cache` als **Decorator**:
-
-```python
-from functools import cache
-
-@cache
-def square(x):
-    return x * x
-```
 
 Damit wird jeder Aufruf automatisch gecached. Der **Hash-Lookup**
 ist `O(1)` -- bei teuren Funktionen massiv schneller als

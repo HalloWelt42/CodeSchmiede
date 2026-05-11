@@ -90,19 +90,6 @@ zu `&amp;lt;`.
 | `"a & b"`                  | `"a &amp; b"`                                   |
 | `"<script>alert(1)</script>"` | `"&lt;script&gt;alert(1)&lt;/script&gt;"`    |
 
-## Idee
-
-```python
-def html_escape(s):
-    return (
-        s.replace("&", "&amp;")
-         .replace("<", "&lt;")
-         .replace(">", "&gt;")
-         .replace('"', "&quot;")
-         .replace("'", "&#39;")
-    )
-```
-
 ## Sicherheitskontext -- XSS
 
 Diese Funktion ist die Grundlage zur Verhinderung von **XSS**

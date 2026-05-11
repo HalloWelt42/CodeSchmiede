@@ -81,17 +81,6 @@ Bei `betrag == 0` → `0` (keine Muenzen nötig).
 
 `dp[k]` = minimale Anzahl Muenzen für Betrag `k`.
 
-```python
-def muenz_wechsel(muenzen, betrag):
-    dp = [float('inf')] * (betrag + 1)
-    dp[0] = 0
-    for k in range(1, betrag + 1):
-        for m in muenzen:
-            if m <= k and dp[k - m] + 1 < dp[k]:
-                dp[k] = dp[k - m] + 1
-    return dp[betrag] if dp[betrag] != float('inf') else -1
-```
-
 ## Vorsicht: Greedy reicht nicht!
 
 Bei `[1, 3, 4]` und Betrag 6 gibt Greedy (immer größte Muenze

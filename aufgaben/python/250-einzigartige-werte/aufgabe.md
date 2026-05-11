@@ -75,14 +75,6 @@ Liste **genau einmal** vorkommen -- als **sortierte** Liste.
 
 ## Idee
 
-```python
-from collections import Counter
-
-def einzigartig(liste):
-    c = Counter(liste)
-    return sorted(k for k, v in c.items() if v == 1)
-```
-
 `Counter` zählt jedes Vorkommen. `c.items()` liefert
 `(key, count)`-Paare -- wir filtern auf `count == 1` und sortieren.
 

@@ -75,33 +75,10 @@ Bei leerer Liste → `[0, 0, 0, 0]`.
 
 ## Idee
 
-```python
-def bbox(punkte):
-    if not punkte:
-        return [0, 0, 0, 0]
-    xs = [p[0] for p in punkte]
-    ys = [p[1] for p in punkte]
-    return [min(xs), min(ys), max(xs), max(ys)]
-```
-
 Vier `min`/`max`-Aufrufe -- konzeptuell vier Schleifen, real durch
 Pythons C-Implementierung sehr schnell.
 
 ## Effizientere Variante (eine Schleife)
-
-```python
-def bbox(punkte):
-    if not punkte:
-        return [0, 0, 0, 0]
-    xmin = ymin = float("inf")
-    xmax = ymax = float("-inf")
-    for x, y in punkte:
-        xmin = min(xmin, x)
-        ymin = min(ymin, y)
-        xmax = max(xmax, x)
-        ymax = max(ymax, y)
-    return [xmin, ymin, xmax, ymax]
-```
 
 Für extrem große Listen schneller -- vier Builtins durch eine
 Schleife ersetzt.

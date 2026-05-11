@@ -86,39 +86,12 @@ Unbekanntes Predicate → unveränderte Liste.
 | `[1, 2, 3, 4, 5]`       | `"odd"`      | `[1, 3, 5]` |
 | `[-1, 0, 1, 2, 0]`      | `"nonzero"`  | `[-1, 1, 2]`|
 
-## Idee
-
-```python
-PREDS = {
-    "positive": lambda x: x > 0,
-    "negative": lambda x: x < 0,
-    "even": lambda x: x % 2 == 0,
-    "odd": lambda x: x % 2 != 0,
-    "nonzero": lambda x: x != 0,
-}
-
-
-def filter_pred(liste, pred):
-    if pred not in PREDS:
-        return list(liste)
-    fn = PREDS[pred]
-    return [x for x in liste if fn(x)]
-```
-
 ## Lehrziel -- Predicate-Pattern
 
 Predicates (Funktionen `(x) -> bool`) sind das Herzstück von
 **Filter-Operationen**. In Pythons Builtin:
 
-```python
-list(filter(lambda x: x > 0, [1, -2, 3]))  # [1, 3]
-```
-
 Mit Listen-Comprehension liest sich das aber in Python besser:
-
-```python
-[x for x in [1, -2, 3] if x > 0]
-```
 
 ## Anwendung
 

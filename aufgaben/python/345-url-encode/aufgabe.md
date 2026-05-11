@@ -85,20 +85,6 @@ Regel:
 
 ## Idee
 
-```python
-UNRES = set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~")
-
-def url_encode(s):
-    out = []
-    for byte in s.encode("utf-8"):
-        c = chr(byte)
-        if c in UNRES:
-            out.append(c)
-        else:
-            out.append(f"%{byte:02X}")
-    return "".join(out)
-```
-
 `s.encode("utf-8")` liefert ein `bytes`-Objekt. Iteration darueber
 gibt Integer-Werte (0-255). Fuer ASCII-Bytes ist `chr(byte)` das
 entsprechende Zeichen.

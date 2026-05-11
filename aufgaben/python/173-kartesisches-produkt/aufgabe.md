@@ -75,11 +75,6 @@ durchgehen.
 
 ## Idee -- Listen-Comprehension
 
-```python
-def kartesisch(a, b):
-    return [[x, y] for x in a for y in b]
-```
-
 Die zwei Schleifen werden in einer Comprehension verschachtelt -- die
 **erste** ist die aeussere, die **zweite** die innere.
 
@@ -87,12 +82,6 @@ Die zwei Schleifen werden in einer Comprehension verschachtelt -- die
 
 `itertools.product(a, b)` liefert dasselbe als Tupel-Generator und ist
 für mehr als zwei Argumente sehr handlich:
-
-```python
-from itertools import product
-list(product([1, 2], [3, 4], [5, 6]))
-# [(1, 3, 5), (1, 3, 6), (1, 4, 5), (1, 4, 6), (2, 3, 5), ...]
-```
 
 ## Hintergrund
 

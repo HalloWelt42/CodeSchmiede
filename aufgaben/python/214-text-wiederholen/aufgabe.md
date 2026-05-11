@@ -79,14 +79,6 @@ Bei leerem Muster oder `laenge <= 0` → `""`.
 
 ## Idee -- Multiplikation + Slice
 
-```python
-def wiederhole(muster, laenge):
-    if not muster or laenge <= 0:
-        return ""
-    anzahl = laenge // len(muster) + 1
-    return (muster * anzahl)[:laenge]
-```
-
 Die `+1` stellt sicher, dass wir **mindestens** `laenge` Zeichen haben.
 Das Slicing schneidet auf die genaue Laenge.
 

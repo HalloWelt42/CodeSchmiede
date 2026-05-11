@@ -67,35 +67,10 @@ Anzahl: $2^n$ Teilmengen.
 
 ## Idee -- Bit-Maskierung
 
-```javascript
-function potenzmenge(arr) {
-    const n = arr.length;
-    const out = [];
-    for (let m = 0; m < 2 ** n; m++) {
-        const subset = [];
-        for (let i = 0; i < n; i++) {
-            if (m & (1 << i)) subset.push(arr[i]);
-        }
-        out.push(subset);
-    }
-    return out.sort((a, b) =>
-        a.length - b.length || JSON.stringify(a).localeCompare(JSON.stringify(b))
-    );
-}
-```
-
 Jede Teilmenge entspricht einer Binaerzahl von 0 bis $2^n - 1$.
 Bit `i` gesetzt ↔ Element `i` enthalten.
 
 ## Idee -- Reduce-Pattern (funktional)
-
-```javascript
-const potenzmenge = (arr) =>
-    arr.reduce(
-        (subsets, x) => subsets.concat(subsets.map((s) => [...s, x])),
-        [[]]
-    ).sort((a, b) => a.length - b.length || JSON.stringify(a).localeCompare(JSON.stringify(b)));
-```
 
 Klassisches funktionales Pattern: starte mit `[[]]`, fuer jedes
 Element x verdopple die Menge -- einmal ohne x, einmal mit x.

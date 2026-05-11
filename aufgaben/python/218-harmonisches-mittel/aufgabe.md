@@ -78,17 +78,6 @@ Auf **4 Nachkommastellen** gerundet. Bei leerer Liste oder Werten
 | `[1, 0, 5]`        | `0.0`    | Null vorhanden            |
 | `[10, 20, 30, 40]` | `19.2`   |                           |
 
-## Idee
-
-```python
-def harmonisches_mittel(zahlen):
-    if not zahlen:
-        return 0.0
-    if any(x <= 0 for x in zahlen):
-        return 0.0
-    return round(len(zahlen) / sum(1 / x for x in zahlen), 4)
-```
-
 ## Klassisches Beispiel -- Durchschnittsgeschwindigkeit
 
 Du faehrst die ersten 60 km mit 60 km/h und die zweiten 60 km mit

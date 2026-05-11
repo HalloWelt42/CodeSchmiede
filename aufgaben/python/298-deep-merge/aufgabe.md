@@ -84,17 +84,6 @@ Original-Dicts **nicht mutieren** -- neue Dicts bauen.
 
 ## Idee -- Rekursion
 
-```python
-def deep_merge(a, b):
-    out = dict(a)  # Kopie!
-    for key, b_val in b.items():
-        if key in out and isinstance(out[key], dict) and isinstance(b_val, dict):
-            out[key] = deep_merge(out[key], b_val)
-        else:
-            out[key] = b_val
-    return out
-```
-
 `dict(a)` macht eine **flache Kopie** -- ändert nicht die innere
 Dicts. Diese werden bei Bedarf rekursiv ersetzt.
 

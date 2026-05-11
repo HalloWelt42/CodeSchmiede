@@ -73,18 +73,6 @@ das Ergebnis exakt reproduzierbar ist.
 Iteriere von hinten nach vorn. Tausche jedes Element `a[i]` mit einem
 zufaellig gewählten Element aus `a[0..i]` (inklusive `i` selbst).
 
-```python
-import random
-
-def shuffle_seed(a, seed):
-    a = list(a)
-    rng = random.Random(seed)
-    for i in range(len(a) - 1, 0, -1):
-        j = rng.randint(0, i)
-        a[i], a[j] = a[j], a[i]
-    return a
-```
-
 ## Wichtig
 
 - **Original nicht verändern** → erst kopieren.

@@ -81,14 +81,6 @@ Negativzahlen verhalten sich wie ihr Betrag, das Vorzeichen bleibt.
 | `-1`  | `Tag`    | `Tage`   | `"-1 Tag"`      |
 | `100` | `Buch`   | `Bücher`| `"100 Bücher"` |
 
-## Idee
-
-```python
-def plural(n, singular, plural):
-    wort = singular if abs(n) == 1 else plural
-    return f"{n} {wort}"
-```
-
 ## Hintergrund -- i18n
 
 In manchen Sprachen gibt es **mehr als zwei** Plural-Formen

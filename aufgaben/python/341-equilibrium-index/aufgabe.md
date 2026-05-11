@@ -80,31 +80,10 @@ Element → `[0]` (beide Seiten leer).
 
 ## Idee -- O(n) mit laufender Differenz
 
-```python
-def gleichgewicht(liste):
-    gesamt = sum(liste)
-    links = 0
-    out = []
-    for i, x in enumerate(liste):
-        rechts = gesamt - links - x
-        if links == rechts:
-            out.append(i)
-        links += x
-    return out
-```
-
 Eine Schleife. `links` wird laufend aufaddiert, `rechts` ist
 immer "gesamt - links - aktuelles_element".
 
 ## Naiv -- O(n²)
-
-```python
-def gleichgewicht(liste):
-    return [
-        i for i in range(len(liste))
-        if sum(liste[:i]) == sum(liste[i+1:])
-    ]
-```
 
 Lesbar, aber bei jeder Iteration neue Summe -- zu langsam fuer
 grosse Listen.

@@ -86,23 +86,9 @@ Funktioniert sowohl mit `int` als auch `float`.
 
 ## Idee 1 -- if/elif
 
-```python
-def sign(x):
-    if x > 0:
-        return 1
-    if x < 0:
-        return -1
-    return 0
-```
-
 Klar lesbar, drei Faelle.
 
 ## Idee 2 -- Boolean-Trick
-
-```python
-def sign(x):
-    return (x > 0) - (x < 0)
-```
 
 Kompakte Variante: `True - True == 0`, `True - False == 1`,
 `False - True == -1`. Ein Pythonismus.

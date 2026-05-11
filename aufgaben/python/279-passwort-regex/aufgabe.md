@@ -93,15 +93,6 @@ Schreibe `passwort_ok(p)`, die `True` zurückgibt, wenn das Passwort
 
 ## Idee -- Lookahead-Regex
 
-```python
-import re
-
-def passwort_ok(p):
-    return bool(re.fullmatch(
-        r"(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}", p
-    ))
-```
-
 `(?=...)` ist eine **Lookahead-Assertion**: prüft das Pattern,
 bewegt den Cursor aber **nicht weiter**. Damit können wir mehrere
 unabhängige Bedingungen "an die selbe Stelle" hängen.

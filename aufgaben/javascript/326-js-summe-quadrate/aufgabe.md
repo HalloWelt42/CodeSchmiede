@@ -64,13 +64,6 @@ $$\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$$
 
 ## Idee -- O(1) per Formel
 
-```javascript
-function summeQuadrate(n) {
-    if (n <= 0) return 0;
-    return Math.floor((n * (n + 1) * (2 * n + 1)) / 6);
-}
-```
-
 `Math.floor` ist hier nicht streng noetig (das Produkt
 `n(n+1)(2n+1)` ist immer durch 6 teilbar), aber durch
 Float-Arithmetik koennte ein Werte wie `385.0000000001` entstehen.

@@ -79,28 +79,11 @@ Punkt = `[x, y]`, Mittelpunkt = `[cx, cy]`, Radius = `r`.
 
 ## Idee -- ohne sqrt!
 
-```python
-def im_kreis(punkt, mittelpunkt, r):
-    dx = punkt[0] - mittelpunkt[0]
-    dy = punkt[1] - mittelpunkt[1]
-    return dx * dx + dy * dy <= r * r
-```
-
 **Wichtig**: Wir vergleichen **Distanz²** mit **Radius²**, nicht
 Distanz mit Radius. Das spart die teure `sqrt`-Berechnung und
 vermeidet Float-Praezisionsprobleme.
 
 ## Vergleich -- mit sqrt
-
-```python
-import math
-
-def im_kreis(punkt, mittelpunkt, r):
-    return math.hypot(
-        punkt[0] - mittelpunkt[0],
-        punkt[1] - mittelpunkt[1]
-    ) <= r
-```
 
 Funktioniert auch, aber langsamer und numerisch leicht schlechter.
 

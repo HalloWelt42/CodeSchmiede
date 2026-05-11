@@ -77,16 +77,6 @@ Liefere auf **2 Nachkommastellen** gerundet.
 | `85.50`  | `18%`| `4`     | `25.22`    |
 | `200`    | `25%`| `5`     | `50.00`    |
 
-## Idee
-
-```python
-def pro_person(rechnung, tip_prozent, personen):
-    if personen <= 0 or rechnung < 0:
-        return 0.0
-    gesamt = rechnung * (1 + tip_prozent / 100)
-    return round(gesamt / personen, 2)
-```
-
 ## Hintergrund -- Trinkgeld-Konvention
 
 In Deutschland sind 5-10% üblich, in den USA werden 15-20% erwartet,

@@ -60,29 +60,6 @@ starter_code: |
 Schreibe eine Funktion `baue_baum(records)`, die aus einer flachen
 Liste von Knoten-Records einen **verschachtelten Baum** aufbaut.
 
-## Eingabe-Format
-
-```python
-[
-  {"id": 0, "parent": 0},   # Wurzel: id == parent
-  {"id": 1, "parent": 0},
-  {"id": 2, "parent": 1},
-  ...
-]
-```
-
-## Ausgabe-Format
-
-```python
-{
-  "id": 0,
-  "kinder": [
-    {"id": 1, "kinder": [{"id": 2, "kinder": []}]},
-    ...
-  ]
-}
-```
-
 ## Validierungs-Regeln
 
 - IDs müssen genau `0, 1, ..., n-1` sein (keine Lücken)

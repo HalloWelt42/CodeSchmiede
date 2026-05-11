@@ -65,15 +65,6 @@ Regel:
 
 ## Idee -- encodeURIComponent + Korrektur
 
-```javascript
-function urlEncode(s) {
-    return encodeURIComponent(s).replace(
-        /[!*'()]/g,
-        (c) => '%' + c.charCodeAt(0).toString(16).toUpperCase()
-    );
-}
-```
-
 `encodeURIComponent` macht 95 % der Arbeit -- aber **lasst die
 Zeichen `! * ' ( )` unbehandelt**. RFC 3986 will sie aber codiert.
 Daher der `replace`-Nachsatz.

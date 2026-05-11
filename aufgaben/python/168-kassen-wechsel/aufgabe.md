@@ -83,19 +83,6 @@ noch passt.
 | `99`   | `[0,0,1,2,0,1,2,0]` -- 50 + 2*20 + 5 + 2*2   |
 | `1000` | `[5,0,0,0,0,0,0,0]` -- 5 mal 2-Euro          |
 
-## Idee
-
-```python
-STUECKELUNG = [200, 100, 50, 20, 10, 5, 2, 1]
-
-def wechselgeld(cent):
-    out = []
-    for s in STUECKELUNG:
-        out.append(cent // s)
-        cent %= s
-    return out
-```
-
 ## Greedy ist hier garantiert optimal
 
 Die Euro-Stückelung ist ein **kanonisches Muenz-System** -- Greedy

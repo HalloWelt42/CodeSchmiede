@@ -83,13 +83,6 @@ Vielfachen von `k` rundet (Richtung -unendlich).
 
 ## Idee
 
-```python
-def floor_vielfache(n, k):
-    if k <= 0:
-        return n
-    return n // k * k
-```
-
 Pythons `//` rundet immer **abwärts** (Richtung -unendlich), auch
 bei negativen Zahlen. Das macht es zur perfekten Floor-Division
 für diese Aufgabe.
@@ -102,10 +95,6 @@ In **C** rundet `/` Richtung 0:
 ```
 
 In **Python**:
-```python
--13 // 5   # -3 (Richtung -inf)
-```
-
 Daher liefert Python `-13 // 5 * 5 = -15`, was wir wollen.
 C würde `-10` liefern.
 

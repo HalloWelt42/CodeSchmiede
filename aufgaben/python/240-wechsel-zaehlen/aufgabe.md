@@ -77,11 +77,6 @@ Bei leerer oder einelementiger Liste → `0`.
 
 ## Idee
 
-```python
-def wechsel(liste):
-    return sum(1 for a, b in zip(liste, liste[1:]) if a != b)
-```
-
 `zip(liste, liste[1:])` paart aufeinanderfolgende Elemente -- ein
 Pattern, das auch in **230-ist-aufsteigend** vorkommt.
 

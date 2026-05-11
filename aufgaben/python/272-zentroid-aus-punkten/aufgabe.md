@@ -79,28 +79,7 @@ Bei leerer Liste → `[0.0, 0.0]`.
 | `[[10, 0], [0, 10]]`            | `[5.0, 5.0]`        |
 | `[]`                            | `[0.0, 0.0]`        |
 
-## Idee
-
-```python
-def zentroid(punkte):
-    if not punkte:
-        return [0.0, 0.0]
-    n = len(punkte)
-    cx = sum(p[0] for p in punkte) / n
-    cy = sum(p[1] for p in punkte) / n
-    return [round(cx, 4), round(cy, 4)]
-```
-
 ## Mit `zip` etwas pythonischer
-
-```python
-def zentroid(punkte):
-    if not punkte:
-        return [0.0, 0.0]
-    xs, ys = zip(*punkte)
-    n = len(punkte)
-    return [round(sum(xs) / n, 4), round(sum(ys) / n, 4)]
-```
 
 `zip(*punkte)` "transponiert" die Punkte-Liste: aus `[[1,2], [3,4]]`
 werden `(1, 3)` und `(2, 4)`.

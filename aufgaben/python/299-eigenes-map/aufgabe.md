@@ -90,35 +90,11 @@ Unbekannte Operation → unveränderte Liste zurückgeben.
 
 ## Idee -- Dispatch-Dict
 
-```python
-OPS = {
-    "double": lambda x: x * 2,
-    "square": lambda x: x ** 2,
-    "negate": lambda x: -x,
-    "increment": lambda x: x + 1,
-    "absolute": abs,
-}
-
-
-def map_op(liste, op):
-    if op not in OPS:
-        return list(liste)
-    fn = OPS[op]
-    return [fn(x) for x in liste]
-```
-
 `abs` ist schon eine Funktion, kein Lambda nötig.
 
 ## Lehrziel
 
 In echtem Python würde man die Funktion **direkt** übergeben:
-
-```python
-def map_op(liste, fn):
-    return [fn(x) for x in liste]
-
-map_op([1, 2, 3], lambda x: x * 2)
-```
 
 Aber JSON-Tests können keine Funktionen serialisieren -- daher
 der **String-Workaround**. Das Pattern (Dispatch-Dict) ist auch

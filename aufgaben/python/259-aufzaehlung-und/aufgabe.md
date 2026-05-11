@@ -78,17 +78,6 @@ allen Elementen und " und " vor dem letzten.
 
 ## Idee
 
-```python
-def aufzählung(wörter):
-    if not wörter:
-        return ""
-    if len(wörter) == 1:
-        return wörter[0]
-    if len(wörter) == 2:
-        return f"{wörter[0]} und {wörter[1]}"
-    return ", ".join(wörter[:-1]) + " und " + wörter[-1]
-```
-
 Drei Sonderfaelle (0, 1, 2 Elemente), dann der allgemeine Fall.
 
 ## Englisch -- "Oxford Comma"

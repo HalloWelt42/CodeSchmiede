@@ -74,15 +74,6 @@ Liste zurückgibt.
 | `[1, 2, 3]`        | 0  | `[]`            |
 | `[1, 2, 3]`        | -1 | `[]`            |
 
-## Idee
-
-```python
-def letzte_n(liste, n):
-    if n <= 0:
-        return []
-    return list(liste[-n:])
-```
-
 ## Stolperstein -- `liste[-0:]`
 
 `liste[-0:]` ist nicht `[]`, sondern die **ganze Liste**, weil

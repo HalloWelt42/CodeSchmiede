@@ -76,13 +76,6 @@ $$F = C \cdot \frac{9}{5} + 32$$
 | `-273.15` | `-459.7`   |
 | `25`      | `77.0`     |
 
-## Idee
-
-```python
-def celsius_zu_fahrenheit(c):
-    return round(c * 9 / 5 + 32, 1)
-```
-
 ## Spezialfall -40
 
 `-40 °C = -40 °F` -- der einzige Wert, bei dem beide Skalen

@@ -88,23 +88,6 @@ Bei leerem String -> `[]`.
 
 ## Idee
 
-```python
-def bereich_entpacken(s):
-    if not s:
-        return []
-    out = []
-    for stueck in s.split(","):
-        # Bindestrich-Trenner finden: erstes "-" das nicht ganz vorne ist
-        idx = stueck.find("-", 1)
-        if idx > 0:
-            a = int(stueck[:idx])
-            b = int(stueck[idx + 1:])
-            out.extend(range(a, b + 1))
-        else:
-            out.append(int(stueck))
-    return out
-```
-
 `stueck.find("-", 1)` sucht ab Index 1 -- damit wird ein fuehrendes
 Minus (negative Untergrenze) **nicht** als Trenner missverstanden.
 

@@ -83,32 +83,7 @@ Regeln:
 | `1` | `["1"]`                                                 |
 | `0` | `[]`                                                    |
 
-## Idee 1 -- klassisch
-
-```python
-def fizzbuzz_liste(n):
-    out = []
-    for i in range(1, n + 1):
-        if i % 15 == 0:
-            out.append("FizzBuzz")
-        elif i % 3 == 0:
-            out.append("Fizz")
-        elif i % 5 == 0:
-            out.append("Buzz")
-        else:
-            out.append(str(i))
-    return out
-```
-
 ## Idee 2 -- elegant mit String-Multiplikation
-
-```python
-def fizzbuzz_liste(n):
-    return [
-        ("Fizz" * (i % 3 == 0) + "Buzz" * (i % 5 == 0)) or str(i)
-        for i in range(1, n + 1)
-    ]
-```
 
 Pythonismus: `"Fizz" * True` ist `"Fizz"`, `"Fizz" * False` ist
 `""`. `"" or str(i)` liefert die Zahl, sobald keine Regel greift.

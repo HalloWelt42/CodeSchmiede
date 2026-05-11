@@ -74,11 +74,6 @@ Doppelte Werte in den Eingaben werden zu einem Eintrag verdichtet.
 
 ## Idee -- Set-Operation
 
-```python
-def schnitt(a, b):
-    return sorted(set(a) & set(b))
-```
-
 Effizient (`O(n + m)` Hash-Vergleiche) und **lesbar**.
 
 ## Verwandte Operationen

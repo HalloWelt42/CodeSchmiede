@@ -78,29 +78,12 @@ nach dem Umdrehen entfallen automatisch.
 
 ## Idee -- per String
 
-```python
-def zahl_umdrehen(n):
-    vorzeichen = -1 if n < 0 else 1
-    return vorzeichen * int(str(abs(n))[::-1])
-```
-
 `str(abs(n))[::-1]` dreht die Ziffernkette, `int(...)` killt fuehrende
 Nullen automatisch.
 
 ## Idee -- ohne String
 
 Per Modulo / Division:
-
-```python
-def zahl_umdrehen(n):
-    vorzeichen = -1 if n < 0 else 1
-    n = abs(n)
-    ergebnis = 0
-    while n > 0:
-        ergebnis = ergebnis * 10 + n % 10
-        n //= 10
-    return vorzeichen * ergebnis
-```
 
 Klassische Schul-Variante -- gleichzeitig die Vorlage für
 Konvertierungen in andere Zahlensysteme (Basis statt 10).

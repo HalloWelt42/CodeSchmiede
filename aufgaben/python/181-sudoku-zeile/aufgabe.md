@@ -80,19 +80,7 @@ oder `0` zählen nicht als gültig.
 
 ## Idee
 
-```python
-def sudoku_zeile(zeile):
-    return sorted(zeile) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
-```
-
 oder mit Set:
-
-```python
-ZIFFERN = set(range(1, 10))
-
-def sudoku_zeile(zeile):
-    return len(zeile) == 9 and set(zeile) == ZIFFERN
-```
 
 Beide Varianten erkennen Duplikate, fehlende Ziffern und falsche
 Laengen automatisch.

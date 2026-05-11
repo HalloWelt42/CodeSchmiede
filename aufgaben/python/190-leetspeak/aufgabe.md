@@ -89,26 +89,12 @@ Groß/Kleinschreibung haben -- die Ausgabe ist **immer klein**.
 
 ## Idee
 
-```python
-TABELLE = {"a": "4", "e": "3", "i": "1", "o": "0", "s": "5", "t": "7"}
-
-def leetspeak(text):
-    return "".join(TABELLE.get(c, c) for c in text.lower())
-```
-
 `dict.get(c, c)` liefert die Ziffer, wenn vorhanden, sonst das
 Original-Zeichen.
 
 ## Mit `str.translate`
 
 Effizienter über Python-Translate-Tabelle:
-
-```python
-TRANS = str.maketrans({"a":"4","e":"3","i":"1","o":"0","s":"5","t":"7"})
-
-def leetspeak(text):
-    return text.lower().translate(TRANS)
-```
 
 ## Hintergrund
 

@@ -61,19 +61,6 @@ liefert. Bei `n < 1` → `0`.
 
 ## Idee
 
-```javascript
-function tau(n) {
-    if (n < 1) return 0;
-    let z = 0;
-    for (let i = 1; i * i <= n; i++) {
-        if (n % i === 0) {
-            z += (i * i === n) ? 1 : 2;
-        }
-    }
-    return z;
-}
-```
-
 Pro Teiler `i` bekommt man `n / i` als Partner -- `+= 2`. Bei
 Quadratzahlen (`i² = n`) sind beide Teiler gleich, also `+= 1`.
 

@@ -76,13 +76,6 @@ abgeschnitten (wie das eingebaute `zip` es tut).
 
 ## Idee -- itertools.zip_longest
 
-```python
-from itertools import zip_longest
-
-def zip_fuell(a, b, fuell):
-    return [list(p) for p in zip_longest(a, b, fillvalue=fuell)]
-```
-
 `zip_longest` ist die "geht-weiter-bis-die-laengste-Liste-fertig-ist"-
 Variante. Pro Element ein Tupel -- wir konvertieren zu Listen.
 

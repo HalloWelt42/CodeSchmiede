@@ -72,20 +72,7 @@ Bei ungerader Anzahl wird das **letzte Element ignoriert**.
 | `[]`                     | `[]`                              |
 | `[1]`                    | `[]`                              |
 
-## Idee 1 -- Slicing
-
-```python
-def paare(liste):
-    n = len(liste) // 2 * 2  # gerader Cut
-    return [list(liste[i:i + 2]) for i in range(0, n, 2)]
-```
-
 ## Idee 2 -- zip mit Schritt-Slicing
-
-```python
-def paare(liste):
-    return [list(p) for p in zip(liste[::2], liste[1::2])]
-```
 
 `liste[::2]` sind die Elemente an geraden Indizes (0, 2, 4...),
 `liste[1::2]` an ungeraden (1, 3, 5...). `zip` schneidet die

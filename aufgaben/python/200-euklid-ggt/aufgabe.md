@@ -92,24 +92,10 @@ zwei Zahlen mit `n` Stellen ist sie nach `O(n)` Schritten am Ende.
 
 ## Idee -- iterativ
 
-```python
-def ggt(a, b):
-    a, b = abs(a), abs(b)
-    while b:
-        a, b = b, a % b
-    return a
-```
-
 Pythons Tupel-Zuweisung macht den Variablen-Tausch in **einer Zeile**
 moeglich -- in C oder Java braucht man eine Hilfsvariable.
 
 ## Idee -- rekursiv
-
-```python
-def ggt(a, b):
-    a, b = abs(a), abs(b)
-    return a if b == 0 else ggt(b, a % b)
-```
 
 Eleganter, aber bei sehr großen Zahlen Stack-Limit beachten.
 

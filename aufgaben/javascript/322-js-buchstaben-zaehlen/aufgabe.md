@@ -70,18 +70,6 @@ Schreibe `zähleBuchstaben(text)`, die ein Object liefert, das jeden
 
 ## Idee -- modernes JS
 
-```javascript
-function zähleBuchstaben(text) {
-    const z = [...text.toLowerCase()].reduce((akk, c) => {
-        if (c >= 'a' && c <= 'z') {
-            akk[c] = (akk[c] || 0) + 1;
-        }
-        return akk;
-    }, {});
-    return Object.fromEntries(Object.entries(z).sort());
-}
-```
-
 **Patterns**:
 - `[...text]` -- Spread macht aus String ein Array von Zeichen.
   Sicher für Unicode (anders als `text.split('')` bei Surrogate-Pairs).
@@ -93,18 +81,6 @@ function zähleBuchstaben(text) {
 ## Variante mit Object.fromEntries
 
 Funktional auch elegant:
-
-```javascript
-const zähleBuchstaben = (text) =>
-    Object.fromEntries(
-        Object.entries(
-            [...text.toLowerCase()].reduce((a, c) => {
-                if (c >= 'a' && c <= 'z') a[c] = (a[c] || 0) + 1;
-                return a;
-            }, {})
-        ).sort()  // alphabetische Reihenfolge
-    );
-```
 
 Lesbarkeit leidet -- die direkte Variante ist hier besser.
 

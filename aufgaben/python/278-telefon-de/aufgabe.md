@@ -96,13 +96,6 @@ Formate** ist:
 
 ## Idee
 
-```python
-import re
-
-def ist_telefon_de(s):
-    return bool(re.fullmatch(r"(?:\+49 |0)\d{2,5}[ /]\d{4,}", s))
-```
-
 `(?:...)` ist eine **non-capturing** Gruppe -- gruppiert nur, ohne
 das Ergebnis zu sammeln. `\d{2,5}` heisst "2 bis 5 Ziffern".
 

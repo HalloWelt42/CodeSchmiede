@@ -79,20 +79,6 @@ falls kein Paar existiert.
 Da die Liste sortiert ist, können wir mit zwei Zeigern von aussen
 nach innen wandern.
 
-```python
-def zwei_summe_sortiert(zahlen, ziel):
-    links, rechts = 0, len(zahlen) - 1
-    while links < rechts:
-        s = zahlen[links] + zahlen[rechts]
-        if s == ziel:
-            return [links, rechts]
-        if s < ziel:
-            links += 1
-        else:
-            rechts -= 1
-    return []
-```
-
 ## Warum nicht Brute-Force?
 
 Bei `n = 10000` wären das 50 Mio. Vergleiche. Mit Two Pointers nur

@@ -76,21 +76,11 @@ Bei `a > b` → `0`.
 
 ## Idee
 
-```python
-def im_bereich_zählen(zahlen, a, b):
-    return sum(1 for x in zahlen if a <= x <= b)
-```
-
 `a <= x <= b` ist Pythons **chained comparison** -- liest sich wie
 in Mathematik. In den meisten anderen Sprachen müsste man
 `x >= a and x <= b` schreiben.
 
 ## Idee -- Boolean-Trick
-
-```python
-def im_bereich_zählen(zahlen, a, b):
-    return sum(a <= x <= b for x in zahlen)
-```
 
 Da `True == 1` und `False == 0` in Python, ist `sum` über Booleans
 das Gleiche wie eine Zähl-Funktion. Sehr kurz, sehr Pythonisch.

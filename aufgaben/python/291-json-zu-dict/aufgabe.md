@@ -80,33 +80,11 @@ Python-Objekt umwandelt. Bei ungültigem JSON → `None`.
 | `'nicht-json'`               | `None`                  |
 | `'{ungültig}'`              | `None`                  |
 
-## Idee
-
-```python
-import json
-
-def json_parse(s):
-    try:
-        return json.loads(s)
-    except json.JSONDecodeError:
-        return None
-```
-
 ## Stolperstein -- `'null'` gibt `None`
 
 JSON's `null` ist Pythons `None`. Daher kann man **nicht** unterscheiden
 zwischen "valider JSON-Wert null" und "Parse-Fehler" -- beide ergeben
 `None`. Wenn das wichtig ist, braucht man eine Sentinel-Variante:
-
-```python
-SENTINEL = object()
-
-def json_parse(s):
-    try:
-        return json.loads(s)
-    except json.JSONDecodeError:
-        return SENTINEL
-```
 
 ## Pendant
 

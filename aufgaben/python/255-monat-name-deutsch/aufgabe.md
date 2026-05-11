@@ -89,20 +89,6 @@ Namen liefert. Ungültige Eingaben → `""`.
 
 ## Idee
 
-```python
-NAMEN = [
-    "",
-    "Januar", "Februar", "März", "April",
-    "Mai", "Juni", "Juli", "August",
-    "September", "Oktober", "November", "Dezember",
-]
-
-def monatsname(monat):
-    if 1 <= monat <= 12:
-        return NAMEN[monat]
-    return ""
-```
-
 Liste-Lookup mit Index 0 als Fueller -- damit `monat == 1`
 direkt `NAMEN[1]` ist.
 

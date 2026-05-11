@@ -85,16 +85,6 @@ Die "Lineare Interpolation zwischen zwei Bereichen".
 | 25 | [0, 100] | [-50, 50] | `-25.0`  | Verschiebung mit Skalierung |
 | 98.6| [32,212]| [0, 100]  | `37.0`   | Fahrenheit -> Celsius    |
 
-## Idee
-
-```python
-def map_range(x, a1, a2, b1, b2):
-    if a1 == a2:
-        return b1
-    y = b1 + (x - a1) * (b2 - b1) / (a2 - a1)
-    return round(y, 4)
-```
-
 ## Anwendung
 
 - **Sensor-Werte**: Spannung 0-5V -> Temperatur -10..50°C
@@ -106,14 +96,5 @@ def map_range(x, a1, a2, b1, b2):
 
 Soll x **ausserhalb** [a1, a2] auch korrekt arbeiten? Ohne Clamp
 liegt das Ergebnis dann ausserhalb [b1, b2]. Mit Clamp:
-
-```python
-import math
-
-def map_range_clamp(x, a1, a2, b1, b2):
-    y = map_range(x, a1, a2, b1, b2)
-    lo, hi = sorted([b1, b2])
-    return max(lo, min(hi, y))
-```
 
 In Spielen oft so genutzt, damit kein Wert "explodiert".

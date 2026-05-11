@@ -80,20 +80,6 @@ Liste von Zahlen liefert.
 | `[3, 1, 4, 1, 5, 9, 2, 6, 5]`   | `4`    |
 | `[-3, -1, 1, 3]`                | `0.0`  |
 
-## Idee
-
-```python
-def median(zahlen):
-    if not zahlen:
-        return None
-    s = sorted(zahlen)
-    n = len(s)
-    mid = n // 2
-    if n % 2 == 1:
-        return s[mid]
-    return (s[mid - 1] + s[mid]) / 2
-```
-
 ## Median vs. Mittelwert
 
 Der **Mittelwert** (Durchschnitt) ist anfaellig für Ausreisser

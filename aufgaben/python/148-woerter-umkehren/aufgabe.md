@@ -78,11 +78,6 @@ nachfolgende Leerzeichen entfallen.
 Pythons `str.split()` ohne Argument macht beide Dinge gleichzeitig:
 es teilt an **beliebigem Whitespace** und filtert leere Stücke heraus.
 
-```python
-def wörter_umkehren(text):
-    return " ".join(reversed(text.split()))
-```
-
 ## Vergleich mit Buchstaben-Umkehr
 
 Nicht zu verwechseln mit `text[::-1]`, das **jeden einzelnen

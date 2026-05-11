@@ -83,17 +83,6 @@ zusammenhängenden Teil-Liste liefert.
 
 Linear, ohne DP-Tabelle:
 
-```python
-def max_summe(zahlen):
-    if not zahlen:
-        return 0
-    akt = bestes = zahlen[0]
-    for x in zahlen[1:]:
-        akt = max(x, akt + x)
-        bestes = max(bestes, akt)
-    return bestes
-```
-
 Pro Element entscheiden wir: **dranbleiben** an der laufenden Summe,
 oder mit dem aktuellen Element **neu starten**. Die maximale
 gesehene Summe wird laufend mitgefuehrt.

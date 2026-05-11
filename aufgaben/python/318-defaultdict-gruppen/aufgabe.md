@@ -81,31 +81,11 @@ Leere Strings werden übersprungen.
 
 ## Idee
 
-```python
-from collections import defaultdict
-
-def gruppiere_anfang(strings):
-    gruppen = defaultdict(list)
-    for s in strings:
-        if not s:
-            continue
-        gruppen[s[0].lower()].append(s)
-    # Innen alphabetisch sortieren, aussen sortiert ausgeben
-    return {k: sorted(v) for k, v in sorted(gruppen.items())}
-```
-
 `defaultdict(list)` legt automatisch eine leere Liste an, wenn ein
 Key zum ersten Mal angefasst wird -- spart die `if key in dict`-
 Prüfung.
 
 ## Vergleich mit `dict.setdefault`
-
-```python
-gruppen = {}
-for s in strings:
-    if s:
-        gruppen.setdefault(s[0].lower(), []).append(s)
-```
 
 Funktioniert auch, ist aber laenger zu lesen. `defaultdict` ist
 idiomatischer.

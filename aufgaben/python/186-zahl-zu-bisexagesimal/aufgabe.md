@@ -81,16 +81,6 @@ Bei `sekunden < 0` → `"00:00:00"`.
 
 ## Idee
 
-```python
-def zeit_format(sekunden):
-    if sekunden < 0:
-        return "00:00:00"
-    h = sekunden // 3600
-    m = (sekunden // 60) % 60
-    s = sekunden % 60
-    return f"{h:02}:{m:02}:{s:02}"
-```
-
 Der Format-Specifier `:02` fuellt mit fuehrenden Nullen auf zwei
 Stellen auf.
 
@@ -104,10 +94,5 @@ was Bruchrechnungen ohne Dezimalpunkt erleichtert.
 ## Erweiterung
 
 Mit `divmod` könnte man die Berechnung verdichten:
-
-```python
-m, s = divmod(sekunden, 60)
-h, m = divmod(m, 60)
-```
 
 Geschmackssache -- liest sich kompakter, ist aber subtiler.

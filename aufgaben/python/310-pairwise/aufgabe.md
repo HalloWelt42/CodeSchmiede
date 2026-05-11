@@ -74,34 +74,12 @@ Bei Liste der Laenge < 2 → `[]`.
 | `["a", "b", "c"]`    | `[["a", "b"], ["b", "c"]]`                      |
 | `[5, 10, 15, 20]`    | `[[5,10], [10,15], [15,20]]`                    |
 
-## Idee 1 -- Generator mit yield
-
-```python
-def pairwise(a):
-    def gen():
-        for i in range(len(a) - 1):
-            yield [a[i], a[i + 1]]
-    return list(gen())
-```
-
 ## Idee 2 -- zip mit Slice (Pythonisch)
-
-```python
-def pairwise(a):
-    return [list(p) for p in zip(a, a[1:])]
-```
 
 `zip(a, a[1:])` paart Element 0 mit 1, 1 mit 2, etc. -- super
 elegant und in der Praxis das übliche Idiom.
 
 ## Idee 3 -- itertools.pairwise (Python 3.10+)
-
-```python
-from itertools import pairwise as ip
-
-def pairwise(a):
-    return [list(p) for p in ip(a)]
-```
 
 Die `pairwise`-Funktion gibt es seit Python 3.10 in `itertools`.
 

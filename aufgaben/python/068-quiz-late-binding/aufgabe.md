@@ -52,10 +52,6 @@ letzten Wert.
 
 Um den Wert zur Definitionszeit zu binden:
 
-```python
-funktionen.append(lambda i=i: i)
-```
-
 Der Default-Parameter `i=i` erzeugt eine eigene lokale Variable in
 jeder Lambda -- die wird zur Definitionszeit ausgewertet.
 

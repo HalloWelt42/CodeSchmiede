@@ -82,20 +82,6 @@ Schreibe `morse_decode(morse)`, die einen Morse-String wieder zu
 
 Invertiertes Dict, Wort-für-Wort dekodieren:
 
-```python
-TABELLE = {".-": "A", "-...": "B", ...}
-
-def morse_decode(morse):
-    if not morse:
-        return ""
-    wörter = []
-    for wort in morse.split(" / "):
-        zeichen = [TABELLE[t] for t in wort.split() if t in TABELLE]
-        if zeichen:
-            wörter.append("".join(zeichen))
-    return " ".join(wörter)
-```
-
 ## Stolperstein -- Trennung mit Spaces
 
 Morse hat **drei** Trenner-Stufen:

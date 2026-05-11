@@ -87,29 +87,6 @@ Liefere den **finalen Bestand** als **alphabetisch sortierte** Liste.
 
 ## Idee -- Set + Methoden
 
-```python
-class Bibliothek:
-    def __init__(self, bestand):
-        self.bücher = set(bestand)
-
-    def leihen(self, titel):
-        self.bücher.discard(titel)  # discard wirft KEIN KeyError
-
-    def zurück(self, titel):
-        self.bücher.add(titel)
-
-
-def ausleihen(bestand, operationen):
-    bib = Bibliothek(bestand)
-    for op in operationen:
-        if op[0] == "leihen":
-            bib.leihen(op[1])
-        elif op[0] == "zurück":
-            bib.zurück(op[1])
-        # "prüfen" ignorieren
-    return sorted(bib.bücher)
-```
-
 `set.discard(x)` ist wie `set.remove(x)`, wirft aber **keinen
 Fehler**, wenn das Element nicht da ist -- ideal für "lösche falls
 vorhanden". `set.add(x)` ist idempotent (fuegt nicht doppelt).

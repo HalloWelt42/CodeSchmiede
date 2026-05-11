@@ -89,14 +89,6 @@ Trennzeichen splittet:
 
 ## Idee -- re.split + Filter
 
-```python
-import re
-
-def split_alles(text):
-    teile = re.split(r"[,;|\s]+", text)
-    return [t for t in teile if t]
-```
-
 `[,;|\s]+` ist eine **Zeichen-Klasse**: matcht eines der
 aufgefuehrten Zeichen, **`+`** matcht eines oder mehr (das
 verschluckt mehrfache Trenner direkt).

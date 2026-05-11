@@ -78,13 +78,6 @@ Liste zurückgibt.
 
 ## Idee
 
-```python
-def erste_n(liste, n):
-    if n <= 0:
-        return []
-    return list(liste[:n])
-```
-
 `liste[:n]` verhaelt sich elegant: bei `n > len(liste)` gibt es einfach
 die ganze Liste zurück -- kein Out-of-Bounds-Error. `list(...)`
 sorgt dafür, dass wir eine **Kopie** liefern (statt einer Slice-Sicht).

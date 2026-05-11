@@ -85,15 +85,6 @@ Pro Zahl `i` von 1 bis n:
 
 ## Idee
 
-```python
-def general_fizzbuzz(n, regeln):
-    out = []
-    for i in range(1, n + 1):
-        wort = "".join(w for (t, w) in regeln if i % t == 0)
-        out.append(wort or str(i))
-    return out
-```
-
 Generator-Ausdruck `(w for ...)` baut den Wort-Strom. `"".join`
 konkateniert. `or str(i)` greift wenn das ergebnis leer ist
 (falsy).

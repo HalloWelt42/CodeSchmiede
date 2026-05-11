@@ -79,15 +79,6 @@ Werte außerhalb `0..255` werden **geclampt** (auf 0 bzw. 255).
 
 ## Idee
 
-```python
-def rgb_zu_hex(rgb):
-    r, g, b = rgb
-    r = max(0, min(255, r))
-    g = max(0, min(255, g))
-    b = max(0, min(255, b))
-    return f"#{r:02x}{g:02x}{b:02x}"
-```
-
 Der Format-Specifier `:02x` formatiert eine Zahl als Hex (klein),
 mit mindestens **zwei Stellen** -- bei Bedarf mit fuehrender Null.
 Für Großbuchstaben: `:02X`.

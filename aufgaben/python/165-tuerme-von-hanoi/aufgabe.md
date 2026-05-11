@@ -91,17 +91,6 @@ Um `n` Scheiben von `von` nach `nach` zu bringen:
 2. Bewege die unterste Scheibe von `von` nach `nach`.
 3. Bringe die `n-1` Scheiben von `über` nach `nach` (nutze `von` als Zwischenlager).
 
-```python
-def hanoi(n, von="A", über="B", nach="C"):
-    if n == 0:
-        return []
-    return (
-        hanoi(n - 1, von, nach, über)
-        + [[von, nach]]
-        + hanoi(n - 1, über, von, nach)
-    )
-```
-
 ## Anekdote
 
 Der Legende nach lösen Moenche im Tempel von Brahma das Ratsel mit

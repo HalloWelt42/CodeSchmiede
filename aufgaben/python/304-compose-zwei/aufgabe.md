@@ -93,24 +93,6 @@ Bei unbekannter Op wird sie als `identity` behandelt (gibt x zurück).
 
 ## Idee
 
-```python
-OPS = {
-    "double": lambda x: x * 2,
-    "square": lambda x: x ** 2,
-    "negate": lambda x: -x,
-    "increment": lambda x: x + 1,
-    "absolute": abs,
-}
-
-IDENTITY = lambda x: x
-
-
-def compose_anwenden(x, f, g):
-    fn_f = OPS.get(f, IDENTITY)
-    fn_g = OPS.get(g, IDENTITY)
-    return fn_g(fn_f(x))
-```
-
 `OPS.get(name, IDENTITY)` -- bei unbekanntem Namen das Identitaets-
 Lambda als Fallback.
 

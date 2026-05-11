@@ -72,11 +72,6 @@ jede weitere ist um 1 nach links rotiert.
 
 ## Idee -- Slicing
 
-```python
-def alle_rotationen(liste):
-    return [list(liste[i:] + liste[:i]) for i in range(len(liste))]
-```
-
 Pro Index `i`: `liste[i:]` ist der Schwanz, `liste[:i]` der Kopf --
 zusammengesetzt ergibt das die i-te Rotation.
 

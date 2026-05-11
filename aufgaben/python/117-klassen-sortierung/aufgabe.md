@@ -57,24 +57,7 @@ Schreibe eine Funktion `sortiere_schüler(eintraege)`, die eine
 Liste von Schüler-Records nach Klasse gruppiert und die Namen pro
 Klasse alphabetisch sortiert.
 
-## Eingabe
-
-```python
-[
-  {"name": "Tom", "klasse": 5},
-  {"name": "Anna", "klasse": 5},
-  {"name": "Lisa", "klasse": 6},
-]
-```
-
 ## Ausgabe
-
-```python
-{
-  "5": ["Anna", "Tom"],
-  "6": ["Lisa"],
-}
-```
 
 Klassen-Schlüssel werden als Strings zurückgegeben (JSON-kompatibel).
 

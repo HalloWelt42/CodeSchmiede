@@ -79,35 +79,10 @@ Bei leerer Buchungsliste → `[]`.
 
 ## Idee -- mit interner Klasse
 
-```python
-class Konto:
-    def __init__(self, saldo):
-        self.saldo = saldo
-
-    def buchen(self, betrag):
-        self.saldo += betrag
-        return self.saldo
-
-
-def konto_saldi(start, buchungen):
-    konto = Konto(start)
-    return [konto.buchen(b) for b in buchungen]
-```
-
 Die Klasse haelt den Zustand (`self.saldo`), die Methode mutiert
 ihn und liefert den neuen Wert -- das ist klassisches OOP.
 
 ## Idee -- ohne Klasse (procedural)
-
-```python
-def konto_saldi(start, buchungen):
-    saldo = start
-    out = []
-    for b in buchungen:
-        saldo += b
-        out.append(saldo)
-    return out
-```
 
 Genauso korrekt, kürzer. Die OOP-Variante zeigt aber, wie man
 **Zustand kapseln** kann -- was bei mehreren Konten oder zusaetzlichen

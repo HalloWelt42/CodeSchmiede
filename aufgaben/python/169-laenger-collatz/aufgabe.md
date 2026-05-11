@@ -90,28 +90,6 @@ Bei `n <= 1` → `0`.
 Naive Schleife pro Startwert ist langsam, weil dieselben Zahlen oft
 mehrfach durchgerechnet werden. Mit einem Cache:
 
-```python
-def laengster_collatz(n):
-    if n <= 1:
-        return 0
-    laenge = {1: 0}
-
-    def L(k):
-        if k in laenge:
-            return laenge[k]
-        weiter = k // 2 if k % 2 == 0 else 3 * k + 1
-        laenge[k] = 1 + L(weiter)
-        return laenge[k]
-
-    bester = 1
-    beste_laenge = 0
-    for s in range(1, n):
-        ls = L(s)
-        if ls > beste_laenge:
-            bester, beste_laenge = s, ls
-    return bester
-```
-
 ## Bemerkung
 
 Die **Collatz-Vermutung** besagt, dass jeder Startwert irgendwann bei

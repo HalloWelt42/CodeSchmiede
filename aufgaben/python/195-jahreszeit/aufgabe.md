@@ -94,38 +94,6 @@ Ungültige Monate → `"ungültig"`.
 | `0`   | `"ungültig"` |
 | `13`  | `"ungültig"` |
 
-## Idee 1 -- Tabelle
-
-```python
-JAHRESZEITEN = [
-    "ungültig",  # Index 0 als Fueller
-    "winter", "winter", "frühling",
-    "frühling", "frühling", "sommer",
-    "sommer", "sommer", "herbst",
-    "herbst", "herbst", "winter",
-]
-
-def jahreszeit(monat):
-    if 1 <= monat <= 12:
-        return JAHRESZEITEN[monat]
-    return "ungültig"
-```
-
-## Idee 2 -- if/elif
-
-```python
-def jahreszeit(monat):
-    if monat in (12, 1, 2):
-        return "winter"
-    if monat in (3, 4, 5):
-        return "frühling"
-    if monat in (6, 7, 8):
-        return "sommer"
-    if monat in (9, 10, 11):
-        return "herbst"
-    return "ungültig"
-```
-
 ## Hintergrund
 
 Auf der **Südhalbkugel** sind Jahreszeiten umgekehrt -- in

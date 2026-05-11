@@ -85,21 +85,9 @@ gefunden ($\frac{n(n+1)}{2}$, siehe Aufgabe 131).
 
 ## Idee 1 -- Formel (O(1))
 
-```python
-def summe_quadrate(n):
-    if n <= 0:
-        return 0
-    return n * (n + 1) * (2 * n + 1) // 6
-```
-
 Konstante Zeit -- funktioniert auch bei `n = 10**18` instant.
 
 ## Idee 2 -- Schleife (O(n))
-
-```python
-def summe_quadrate(n):
-    return sum(i * i for i in range(1, n + 1))
-```
 
 Klar lesbar, fuer kleine `n` voellig ausreichend.
 

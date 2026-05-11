@@ -76,25 +76,10 @@ fester Konstante `c` baut und auf jedes Element der Liste anwendet.
 
 ## Idee 1 -- Closure mit Lambda
 
-```python
-def addiere_zu_allen(c, liste):
-    add_c = lambda x: x + c
-    return [add_c(x) for x in liste]
-```
-
 Das Lambda **fängt** den aktuellen Wert von `c` aus dem
 umschließenden Scope ein -- das ist eine **Closure**.
 
 ## Idee 2 -- functools.partial
-
-```python
-from functools import partial
-from operator import add
-
-def addiere_zu_allen(c, liste):
-    add_c = partial(add, c)
-    return [add_c(x) for x in liste]
-```
 
 `partial(add, c)` erzeugt eine neue Funktion, die `add(c, x)`
 ausführt -- das ist **partielle Anwendung**: aus einer 2-stelligen

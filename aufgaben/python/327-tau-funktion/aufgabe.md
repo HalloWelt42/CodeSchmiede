@@ -83,19 +83,6 @@ Bei `n < 1` → `0`.
 
 ## Idee -- Schleife bis Wurzel
 
-```python
-def tau(n):
-    if n < 1:
-        return 0
-    z = 0
-    i = 1
-    while i * i <= n:
-        if n % i == 0:
-            z += 2 if i * i != n else 1
-        i += 1
-    return z
-```
-
 Pro Treffer `i` als Teiler bekommt man **automatisch** `n // i`
 als Partner-Teiler -- daher `+= 2`. Bei Quadratzahlen
 (`i * i == n`) sind beide Teiler gleich, also nur `+= 1`.

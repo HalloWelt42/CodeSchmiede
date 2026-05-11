@@ -83,17 +83,6 @@ Schleife nur bis $\sqrt{n}$. Wenn `i` Teiler ist, ist `n // i` auch
 einer (das **Partner-Teiler-Pattern**). Quadratzahlen wie 25 haben
 einen Sonderfall: bei `i == n // i` nur einmal einfuegen.
 
-```python
-teiler = set()
-i = 1
-while i * i <= n:
-    if n % i == 0:
-        teiler.add(i)
-        teiler.add(n // i)
-    i += 1
-return sorted(teiler)
-```
-
 ## Hintergrund
 
 Damit kann man prüfen, ob eine Zahl **vollkommen** ist (siehe 040-perfekte-zahl),

@@ -81,13 +81,6 @@ mit `K_0` = Anfangskapital, `p` = Zinssatz in Prozent, `n` = Jahre.
 | `10000` | `3%` | `10`  | `13439.16` |
 | `1`     | `100%`|`10`  | `1024.00`  |
 
-## Idee
-
-```python
-def zinseszins(kapital, zinssatz_prozent, jahre):
-    return round(kapital * (1 + zinssatz_prozent / 100) ** jahre, 2)
-```
-
 ## Beobachtung -- Verdopplungs-Faustregel
 
 Bei einem Zinssatz `p` verdoppelt sich Kapital nach etwa `72/p` Jahren

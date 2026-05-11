@@ -88,23 +88,6 @@ Regeln:
 
 ## Idee
 
-```python
-def query_parse(s):
-    if not s:
-        return {}
-    s = s.lstrip("?")
-    if not s:
-        return {}
-    out = {}
-    for paar in s.split("&"):
-        if "=" in paar:
-            k, v = paar.split("=", 1)
-            out[k] = v
-        else:
-            out[paar] = ""
-    return out
-```
-
 `split("=", 1)` mit Limit 1: spaltet nur am **ersten** `=`,
 spaetere bleiben Teil des Werts.
 

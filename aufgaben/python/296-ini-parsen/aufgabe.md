@@ -92,36 +92,7 @@ user=admin
 | `"; comment\n[s]\n# auch comment\nk=v"` | `{"s": {"k": "v"}}`                       |
 | `"k=v"`                              | `{}` (kein Sektion vorher)                  |
 
-## Idee
-
-```python
-def ini_parse(s):
-    out = {}
-    aktuelle_sektion = None
-    for zeile in s.splitlines():
-        z = zeile.strip()
-        if not z or z.startswith(";") or z.startswith("#"):
-            continue
-        if z.startswith("[") and z.endswith("]"):
-            aktuelle_sektion = z[1:-1].strip()
-            out.setdefault(aktuelle_sektion, {})
-        elif "=" in z and aktuelle_sektion is not None:
-            k, v = z.split("=", 1)
-            out[aktuelle_sektion][k.strip()] = v.strip()
-    return out
-```
-
 ## Variante -- mit `configparser`
-
-```python
-import configparser
-from io import StringIO
-
-def ini_parse(s):
-    parser = configparser.ConfigParser()
-    parser.read_file(StringIO(s))
-    return {sec: dict(parser[sec]) for sec in parser.sections()}
-```
 
 Pythons eingebauter Parser ist robuster (multi-line values,
 Interpolation, etc.) -- aber komplexer in der Prüfung. Hier

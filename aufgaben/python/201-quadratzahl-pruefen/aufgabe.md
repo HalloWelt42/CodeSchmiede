@@ -87,16 +87,6 @@ Bei `n < 0` → `False`. `0` zählt als Quadrat (`0 = 0^2`).
 
 ## Idee mit `math.isqrt` (exakt!)
 
-```python
-import math
-
-def ist_quadratzahl(n):
-    if n < 0:
-        return False
-    w = math.isqrt(n)
-    return w * w == n
-```
-
 `math.isqrt(n)` liefert die **ganzzahlige Wurzel** ohne Float-Rundung.
 Damit ist die Prüfung auch für riesige Zahlen exakt.
 
@@ -104,11 +94,6 @@ Damit ist die Prüfung auch für riesige Zahlen exakt.
 
 `math.sqrt` arbeitet mit Floats (`float64`). Bei sehr großen Zahlen
 (> $2^{52}$) verliert `float` Genauigkeit:
-
-```python
-math.sqrt(99980001) == 9999.0   # OK
-math.sqrt(10**20)              # 1e10, aber 10**20 hat 11 Ziffern
-```
 
 Für "kleine" `n` reicht `int(math.sqrt(n) + 0.5)` plus Vergleich --
 aber `isqrt` ist sauberer.

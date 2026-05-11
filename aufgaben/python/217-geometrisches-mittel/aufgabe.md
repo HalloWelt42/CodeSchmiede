@@ -84,19 +84,6 @@ in den reellen Zahlen).
 | `[1, 0, 5]`        | `0.0`   | Null vorhanden            |
 | `[-1, 2, 3]`       | `0.0`   | Negativ                   |
 
-## Idee
-
-```python
-import math
-
-def geometrisches_mittel(zahlen):
-    if not zahlen:
-        return 0.0
-    if any(x <= 0 for x in zahlen):
-        return 0.0
-    return round(math.prod(zahlen) ** (1 / len(zahlen)), 4)
-```
-
 ## Geometrisches vs. arithmetisches Mittel
 
 Bei `[1, 100]`:

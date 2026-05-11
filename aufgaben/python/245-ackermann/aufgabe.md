@@ -90,15 +90,6 @@ A(m-1, A(m, n-1)) & \text{wenn } m > 0, n > 0
 
 ## Idee -- direkte Rekursion
 
-```python
-def ackermann(m, n):
-    if m == 0:
-        return n + 1
-    if n == 0:
-        return ackermann(m - 1, 1)
-    return ackermann(m - 1, ackermann(m, n - 1))
-```
-
 Drei Faelle, eine doppelt verschachtelte Rekursion -- der Klassiker.
 
 ## Warum so beruehmt?

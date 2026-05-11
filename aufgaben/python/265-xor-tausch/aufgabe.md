@@ -87,23 +87,9 @@ funktioniert das.
 | 42    | 99    | `[99, 42]`   |
 | 7     | 7     | `[7, 7]`     |
 
-## Idee
-
-```python
-def xor_tausch(a, b):
-    a ^= b
-    b ^= a
-    a ^= b
-    return [a, b]
-```
-
 ## Vergleich -- Pythonisch vs Bit-Trick
 
 In Python ist der **schönste** Tausch:
-
-```python
-a, b = b, a
-```
 
 Tupel-Zuweisung -- kein Hilfsvariable nötig, **liest** sich
 selbsterklärend. Der XOR-Trick ist ein **Show-Off** aus C-Zeiten.

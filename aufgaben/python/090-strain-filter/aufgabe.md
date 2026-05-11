@@ -77,14 +77,6 @@ echte Funktion.
 | `[1,2,3,4,5]`      | `False` (alle weg)    | `[]`            |
 | `[0,1,2,3,0,0,4]`  | `x` (truthy-Check)    | `[1,2,3,4]`     |
 
-## Idee
-
-```python
-def behalte(liste, funktion_text):
-    f = eval(funktion_text)
-    return [x for x in liste if f(x)]
-```
-
 ## Hintergrund
 
 Die eingebaute `filter()`-Funktion ist nur ein dünner Wrapper um

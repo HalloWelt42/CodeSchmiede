@@ -81,28 +81,6 @@ Wenn keiner gewonnen hat → `None`.
 
 ## Idee -- vier Richtungen
 
-```python
-def vier_gewinnt(brett):
-    if not brett or not brett[0]:
-        return None
-    rows, cols = len(brett), len(brett[0])
-    DIR = [(0, 1), (1, 0), (1, 1), (1, -1)]
-    for i in range(rows):
-        for j in range(cols):
-            c = brett[i][j]
-            if c == " ":
-                continue
-            for di, dj in DIR:
-                if all(
-                    0 <= i + k * di < rows
-                    and 0 <= j + k * dj < cols
-                    and brett[i + k * di][j + k * dj] == c
-                    for k in range(4)
-                ):
-                    return c
-    return None
-```
-
 Die Symmetrie der vier Richtungen ist wichtig: `(0,1)` deckt sowohl
 "links nach rechts" als auch "rechts nach links" ab, weil wir
 über alle Startpositionen iterieren.

@@ -73,11 +73,6 @@ zurückgibt, die **kürzer als n Zeichen** sind.
 
 ## Idee
 
-```python
-def kürzer_als(text, n):
-    return [w for w in text.split() if len(w) < n]
-```
-
 Spiegelbild zu **256-wörter-laenger-als**: nur das Vergleichs-
 Operator dreht.
 
@@ -85,14 +80,6 @@ Operator dreht.
 
 Mit Predicate-Funktion ließe sich beides in eine generische
 "filter"-Funktion verpacken:
-
-```python
-def filter_wörter(text, predicate):
-    return [w for w in text.split() if predicate(w)]
-
-filter_wörter("Hallo Welt", lambda w: len(w) > 4)
-filter_wörter("Hallo Welt", lambda w: len(w) < 5)
-```
 
 In Tests aber schwer zu serialisieren -- darum die spezialisierten
 Aufgaben.

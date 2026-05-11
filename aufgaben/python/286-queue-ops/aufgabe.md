@@ -81,34 +81,6 @@ Liefere den finalen Queue-Inhalt als Liste, vorne zuerst.
 | `[["enqueue",1],["enqueue",2],["dequeue"]]`                    | `[2]`         |
 | `[["enqueue",1],["enqueue",2],["enqueue",3],["dequeue"],["enqueue",4]]` | `[2,3,4]` |
 
-## Idee -- Klasse mit deque
-
-```python
-from collections import deque
-
-
-class Queue:
-    def __init__(self):
-        self.daten = deque()
-
-    def enqueue(self, wert):
-        self.daten.append(wert)
-
-    def dequeue(self):
-        if self.daten:
-            self.daten.popleft()
-
-
-def queue_lauf(operationen):
-    q = Queue()
-    for op in operationen:
-        if op[0] == "enqueue":
-            q.enqueue(op[1])
-        else:
-            q.dequeue()
-    return list(q.daten)
-```
-
 ## Warum `deque` und nicht `list`?
 
 `list.pop(0)` ist `O(n)` -- alle Elemente müssen nach links

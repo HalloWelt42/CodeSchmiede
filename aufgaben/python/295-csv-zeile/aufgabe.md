@@ -88,15 +88,6 @@ Quoting-Regel:
 
 ## Idee mit `csv`-Modul
 
-```python
-import csv
-
-def csv_zeile(s):
-    if not s:
-        return []
-    return list(csv.reader([s]))[0]
-```
-
 Pythons `csv.reader` macht alles richtig -- inklusive
 **escaped Quotes** (`""` innerhalb Quotes wird zu `"`),
 Whitespace-Tolerieren etc.
@@ -106,25 +97,6 @@ Datei). Wir geben `[s]` (Liste mit einer Zeile) und nehmen das
 erste Ergebnis.
 
 ## Idee per Hand (lehrreich)
-
-```python
-def csv_zeile(s):
-    if not s:
-        return []
-    out = []
-    aktuell = ""
-    in_quotes = False
-    for c in s:
-        if c == '"':
-            in_quotes = not in_quotes
-        elif c == "," and not in_quotes:
-            out.append(aktuell)
-            aktuell = ""
-        else:
-            aktuell += c
-    out.append(aktuell)
-    return out
-```
 
 Klassischer **State-Machine**-Parser. Prüfe `in_quotes`-Flag bevor
 das Komma als Trenner gilt.

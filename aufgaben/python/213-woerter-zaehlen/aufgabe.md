@@ -82,11 +82,6 @@ Bei leerem oder nur Whitespace-haltigem Text → `0`.
 
 ## Idee
 
-```python
-def wörter_zählen(text):
-    return len(text.split())
-```
-
 Eine Zeile -- Pythons `str.split()` ohne Argument macht alles
 Würdige: trennen an Whitespace, leere Stücke filtern, fertig.
 

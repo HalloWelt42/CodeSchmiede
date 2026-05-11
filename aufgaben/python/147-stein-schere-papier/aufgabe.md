@@ -86,19 +86,6 @@ Unbekannte Zuege → `"ungültig"`.
 | `papier`  | `stein`   | `"spieler1"`      |
 | `stein`   | `feuer`   | `"ungültig"`     |
 
-## Idee -- Schlag-Tabelle als Dict
-
-```python
-SCHLAEGT = {"stein": "schere", "schere": "papier", "papier": "stein"}
-
-def gewinner(zug1, zug2):
-    if zug1 not in SCHLAEGT or zug2 not in SCHLAEGT:
-        return "ungültig"
-    if zug1 == zug2:
-        return "unentschieden"
-    return "spieler1" if SCHLAEGT[zug1] == zug2 else "spieler2"
-```
-
 ## Erweiterung -- Stein-Schere-Papier-Echse-Spock
 
 Sheldon Coopers Lieblings-Variante hat 5 Zuege und 10 Schlag-Beziehungen.

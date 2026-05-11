@@ -73,11 +73,6 @@ selbst bleibt erhalten.
 
 ## Idee
 
-```python
-def zeilen_umkehren(zeilen):
-    return [z[::-1] for z in zeilen]
-```
-
 `s[::-1]` ist Pythons Slicing-Trick für **String/Liste umkehren**:
 Start, Stop weglassen, Step `-1` -- liest die Sequenz rückwärts.
 

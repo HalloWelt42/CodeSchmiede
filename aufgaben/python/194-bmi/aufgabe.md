@@ -95,22 +95,6 @@ Bei ungültigen Eingaben (`größe_m <= 0` oder `gewicht_kg <= 0`)
 | `85`    | `1.75`  | `27.8`| `"übergewicht"` |
 | `100`   | `1.75`  | `32.7`| `"adipositas"`   |
 
-## Idee
-
-```python
-def bmi_klasse(gewicht_kg, größe_m):
-    if gewicht_kg <= 0 or größe_m <= 0:
-        return "ungültig"
-    bmi = gewicht_kg / (größe_m ** 2)
-    if bmi < 18.5:
-        return "untergewicht"
-    if bmi < 25:
-        return "normal"
-    if bmi < 30:
-        return "übergewicht"
-    return "adipositas"
-```
-
 ## Hintergrund
 
 Die BMI-Formel wurde **1832** vom belgischen Mathematiker Adolphe

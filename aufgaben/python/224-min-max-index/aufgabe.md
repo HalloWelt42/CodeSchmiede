@@ -77,30 +77,10 @@ Bei leerer Liste → `[-1, -1]`.
 
 ## Idee 1 -- Builtins
 
-```python
-def min_max_index(liste):
-    if not liste:
-        return [-1, -1]
-    return [liste.index(min(liste)), liste.index(max(liste))]
-```
-
 Sehr lesbar, aber **3 Iterationen** durch die Liste (`min`, `max`,
 `index`).
 
 ## Idee 2 -- in einer Schleife
-
-```python
-def min_max_index(liste):
-    if not liste:
-        return [-1, -1]
-    i_min = i_max = 0
-    for i in range(1, len(liste)):
-        if liste[i] < liste[i_min]:
-            i_min = i
-        elif liste[i] > liste[i_max]:
-            i_max = i
-    return [i_min, i_max]
-```
 
 Eine Schleife, weniger Vergleiche -- bei sehr großen Listen
 relevant. Pythons Builtins sind aber so optimiert, dass die

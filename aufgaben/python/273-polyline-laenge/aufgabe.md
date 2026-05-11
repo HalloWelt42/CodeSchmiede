@@ -81,19 +81,6 @@ Bei < 2 Punkten → `0.0`. Auf 4 Nachkommastellen.
 
 ## Idee
 
-```python
-import math
-
-def polyline(punkte):
-    if len(punkte) < 2:
-        return 0.0
-    total = sum(
-        math.hypot(p2[0] - p1[0], p2[1] - p1[1])
-        for p1, p2 in zip(punkte, punkte[1:])
-    )
-    return round(total, 4)
-```
-
 `zip(punkte, punkte[1:])` paart **aufeinanderfolgende** Punkte --
 ein Pattern, das wir auch in **230-ist-aufsteigend** und
 **240-wechsel-zählen** nutzen.

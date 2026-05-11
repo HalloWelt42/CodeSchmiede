@@ -96,29 +96,6 @@ Pro Position würde sich Wasser auf **min(max-links, max-rechts) -
 höhe** sammeln. Naive Lösung: zwei Praefix-Arrays mit den jeweiligen
 Maxima -- `O(n)` Zeit, `O(n)` Speicher. Kürzer per Two-Pointers:
 
-```python
-def regenwasser(höhen):
-    if not höhen:
-        return 0
-    links, rechts = 0, len(höhen) - 1
-    max_l = max_r = 0
-    wasser = 0
-    while links <= rechts:
-        if höhen[links] < höhen[rechts]:
-            if höhen[links] >= max_l:
-                max_l = höhen[links]
-            else:
-                wasser += max_l - höhen[links]
-            links += 1
-        else:
-            if höhen[rechts] >= max_r:
-                max_r = höhen[rechts]
-            else:
-                wasser += max_r - höhen[rechts]
-            rechts -= 1
-    return wasser
-```
-
 Wir bewegen immer den **kleineren** Zeiger -- die Begrenzung kommt
 also garantiert von der anderen Seite. So sparen wir uns die
 Praefix-Arrays.

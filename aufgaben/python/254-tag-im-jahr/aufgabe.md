@@ -87,36 +87,10 @@ Bei ungültigen Eingaben → `0`.
 
 ## Idee mit `datetime`
 
-```python
-from datetime import date
-
-def tag_im_jahr(jahr, monat, tag):
-    try:
-        return date(jahr, monat, tag).timetuple().tm_yday
-    except ValueError:
-        return 0
-```
-
 `date(...)` validiert automatisch (z.B. `date(2026, 13, 1)` wirft
 einen `ValueError`). `tm_yday` ist genau der "day of year".
 
 ## Idee ohne `datetime`
-
-```python
-TAGE = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-def ist_schaltjahr(j):
-    return j % 4 == 0 and (j % 100 != 0 or j % 400 == 0)
-
-def tag_im_jahr(jahr, monat, tag):
-    if not (1 <= monat <= 12):
-        return 0
-    schalt = ist_schaltjahr(jahr)
-    tage_im_monat = TAGE[monat - 1] + (1 if monat == 2 and schalt else 0)
-    if not (1 <= tag <= tage_im_monat):
-        return 0
-    return sum(TAGE[:monat - 1]) + (1 if monat > 2 and schalt else 0) + tag
-```
 
 Komplizierter, aber lehrreich -- enthält die **Gregorianische
 Schaltjahr-Regel** (Aufgabe 058).

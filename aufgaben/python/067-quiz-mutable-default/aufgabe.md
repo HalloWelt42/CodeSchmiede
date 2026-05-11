@@ -51,12 +51,3 @@ ausgewertet -- beim Definieren der Funktion. Wenn der Default ein
 Das ist eine der **klassischsten Stolperfallen** in Python und ein
 Standard-Test in Code-Reviews.
 
-## Korrekte Variante
-
-```python
-def add(x, lst=None):
-    if lst is None:
-        lst = []
-    lst.append(x)
-    return lst
-```

@@ -84,31 +84,6 @@ manipuliert. Liefere den **finalen Inhalt** des Stacks als Liste
 | `[["push",5],["push",10],["push",15],["pop"],["pop"]]` | `[5]` |
 | `[["pop"]]`                                  | `[]` (leerer Stack toleriert) |
 
-## Idee -- Klasse mit Liste intern
-
-```python
-class Stack:
-    def __init__(self):
-        self.daten = []
-
-    def push(self, wert):
-        self.daten.append(wert)
-
-    def pop(self):
-        if self.daten:
-            self.daten.pop()
-
-
-def stack_lauf(operationen):
-    s = Stack()
-    for op in operationen:
-        if op[0] == "push":
-            s.push(op[1])
-        else:
-            s.pop()
-    return s.daten
-```
-
 ## Warum Stack als Klasse?
 
 Pythons `list` mit `append`/`pop()` IST schon ein Stack. Aber:

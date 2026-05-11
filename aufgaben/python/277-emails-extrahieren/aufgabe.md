@@ -87,15 +87,6 @@ Pattern (vereinfacht):
 | `"@nichts.de"`                                | `[]` (kein lokaler Teil)                   |
 | `"nichts@.de"`                                | `[]` (kein Domain-Body)                    |
 
-## Idee
-
-```python
-import re
-
-def emails(text):
-    return re.findall(r"[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}", text)
-```
-
 ## Warum kein "perfektes" Email-Regex?
 
 Die offizielle RFC-5322-Email-Spec ist mehrere hundert Zeichen lang

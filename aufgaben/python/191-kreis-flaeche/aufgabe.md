@@ -81,17 +81,6 @@ $$A = \pi r^2 \qquad U = 2 \pi r$$
 | `10`  | `314.16`| `62.83`|
 | `0.5` | `0.79`  | `3.14` |
 
-## Idee
-
-```python
-import math
-
-def kreis(r):
-    if r <= 0:
-        return [0.0, 0.0]
-    return [round(math.pi * r * r, 2), round(2 * math.pi * r, 2)]
-```
-
 ## Spezialfall r=2
 
 Bei `r = 2` sind Flaeche und Umfang gleich (`12.57`):

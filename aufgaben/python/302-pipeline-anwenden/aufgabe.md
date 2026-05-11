@@ -91,39 +91,10 @@ Leere Op-Liste → Original-Liste zurück.
 
 ## Idee
 
-```python
-OPS = {
-    "double": lambda x: x * 2,
-    "square": lambda x: x ** 2,
-    "negate": lambda x: -x,
-    "increment": lambda x: x + 1,
-    "absolute": abs,
-}
-
-
-def pipeline(liste, ops):
-    aktuell = list(liste)
-    for op in ops:
-        if op in OPS:
-            aktuell = [OPS[op](x) for x in aktuell]
-    return aktuell
-```
-
 Pro Operation wird die ganze Liste neu transformiert -- klar lesbar,
 einfach zu erweitern.
 
 ## Aequivalente Variante
-
-```python
-def pipeline(liste, ops):
-    return [reduce_einzeln(x, ops) for x in liste]
-
-def reduce_einzeln(x, ops):
-    for op in ops:
-        if op in OPS:
-            x = OPS[op](x)
-    return x
-```
 
 Pro Element wird durch alle Ops gefaltet. Aequivalent für pure
 Funktionen, anders bei seitlichen Effekten (z.B. Logging pro Op).

@@ -80,25 +80,12 @@ Bei ungültiger Eingabe → `""`.
 
 ## Idee
 
-```python
-def ip_zusammen(zahlen):
-    if len(zahlen) != 4:
-        return ""
-    if not all(0 <= x <= 255 for x in zahlen):
-        return ""
-    return ".".join(str(x) for x in zahlen)
-```
-
 Drei Schritte: Laenge prüfen, Werte prüfen, joinen.
 
 ## Pendant
 
 Aufgabe **260-ip-zu-zahlen** macht den Weg hin (String → Liste).
 Zusammen ist es ein **Round-Trip**:
-
-```python
-ip_zusammen(ip_zerlegen("8.8.8.8")) == "8.8.8.8"
-```
 
 ## Loopback und 0.0.0.0
 

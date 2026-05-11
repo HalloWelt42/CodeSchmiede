@@ -95,23 +95,6 @@ Beispiel: `(2, 2, 4)` ist **kein** Dreieck, weil `2 + 2 = 4`
 | `(0, 1, 1)`     | `"ungültig"`        |
 | `(2, 2, 4)`     | `"ungültig"`        |
 
-## Idee
-
-```python
-def dreieck_typ(a, b, c):
-    if min(a, b, c) <= 0:
-        return "ungültig"
-    seiten = sorted([a, b, c])
-    if seiten[0] + seiten[1] <= seiten[2]:
-        return "ungültig"
-    eindeutig = len(set([a, b, c]))
-    if eindeutig == 1:
-        return "gleichseitig"
-    if eindeutig == 2:
-        return "gleichschenklig"
-    return "ungleichseitig"
-```
-
 ## Hintergrund
 
 In der Geometrie sind Dreiecke die einfachste polygonale Figur und

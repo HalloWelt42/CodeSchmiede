@@ -77,20 +77,10 @@ Haelfte.
 
 ## Idee
 
-```python
-def halbieren(liste):
-    mid = len(liste) // 2
-    return [list(liste[:mid]), list(liste[mid:])]
-```
-
 Pythons `//` rundet **ab** -- bei `len == 5` ist `mid = 2`, also
 liegen Elemente 0-1 in der ersten Haelfte und 2-4 in der zweiten.
 
 ## Wenn die mittlere Stelle zur ERSTEN Haelfte soll
-
-```python
-mid = (len(liste) + 1) // 2  # rundet auf
-```
 
 Mit `len == 5` ergibt das `3`, also `[1,2,3] | [4,5]`.
 

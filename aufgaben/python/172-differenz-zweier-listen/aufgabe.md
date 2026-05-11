@@ -71,13 +71,6 @@ sortierte, eindeutige** Liste.
 
 Doppelte Werte in `a` werden zu einem Eintrag verdichtet.
 
-## Idee -- Set-Operation
-
-```python
-def differenz(a, b):
-    return sorted(set(a) - set(b))
-```
-
 ## Set-Differenz vs. Symmetrische Differenz
 
 | Operator      | Bedeutung                                     |

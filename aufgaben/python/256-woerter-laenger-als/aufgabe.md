@@ -80,11 +80,6 @@ mehrfache Leerzeichen.
 
 ## Idee
 
-```python
-def laenger_als(text, n):
-    return [w for w in text.split() if len(w) > n]
-```
-
 Die wohl häufigste Form: split + Filter mit Comprehension.
 
 ## Pendant

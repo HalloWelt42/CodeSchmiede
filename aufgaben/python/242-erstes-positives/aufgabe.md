@@ -78,23 +78,10 @@ Schreibe `erstes_positiv(zahlen)`, die das **erste positive Element**
 
 ## Idee 1 -- next mit Default
 
-```python
-def erstes_positiv(zahlen):
-    return next((x for x in zahlen if x > 0), None)
-```
-
 `next` mit zwei Argumenten: erstes ist der Generator, zweites der
 **Default**, wenn der Generator leer ist. Sehr elegant.
 
 ## Idee 2 -- klassische Schleife
-
-```python
-def erstes_positiv(zahlen):
-    for x in zahlen:
-        if x > 0:
-            return x
-    return None
-```
 
 Liest sich vielleicht klarer. Pythonisch ist beides.
 
@@ -107,10 +94,6 @@ Liest sich vielleicht klarer. Pythonisch ist beides.
 ## Pattern -- "find first matching"
 
 Diese Idee ist universell:
-
-```python
-next((x for x in liste if irgendeine_bedingung(x)), default)
-```
 
 Damit lassen sich alle "find first"-Aufgaben in einer Zeile lösen --
 ein wichtiger Pythonismus.

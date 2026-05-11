@@ -81,24 +81,6 @@ Bei `jahre <= 0` → `[]`. Negative Zinsen funktionieren (Strafzinsen).
 | 1000  | 0%   | 3     | `[1000, 1000, 1000]`                    |
 | 1000  | -5%  | 2     | `[950, 902.5]`                          |
 
-## Idee -- Klasse mit Zinsen-Methode
-
-```python
-class Bankkonto:
-    def __init__(self, saldo, zinssatz):
-        self.saldo = saldo
-        self.zinssatz = zinssatz / 100  # in Dezimal
-
-    def zinsen_buchen(self):
-        self.saldo += self.saldo * self.zinssatz
-        return self.saldo
-
-
-def jahres_endsaldi(start, zinssatz_prozent, jahre):
-    konto = Bankkonto(start, zinssatz_prozent)
-    return [round(konto.zinsen_buchen(), 2) for _ in range(jahre)]
-```
-
 ## Vergleich mit Aufgabe 160
 
 Aufgabe **160-zinseszins** liefert nur den **End-Wert** nach n Jahren.

@@ -94,16 +94,6 @@ akzeptiert -- die semantische Prüfung wäre eine eigene Aufgabe.
 
 ## Idee -- Capture-Groups
 
-```python
-import re
-
-def datum_parse(s):
-    m = re.fullmatch(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", s)
-    if not m:
-        return []
-    return [int(m.group(1)), int(m.group(2)), int(m.group(3))]
-```
-
 `re.fullmatch` mit Capture-Groups: jedes Klammern-Paar ist eine
 Gruppe, `m.group(i)` (1-basiert) liefert den Inhalt.
 
@@ -111,14 +101,6 @@ Gruppe, `m.group(i)` (1-basiert) liefert den Inhalt.
 Backslash wäre `.` "beliebiges Zeichen".
 
 ## Idiomatischer mit `groups()`
-
-```python
-def datum_parse(s):
-    m = re.fullmatch(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", s)
-    if not m:
-        return []
-    return [int(x) for x in m.groups()]
-```
 
 `m.groups()` liefert ein Tupel aller Capture-Groups, das wir
 list-comprehensiv konvertieren.
@@ -129,7 +111,3 @@ Datums-Parsing ist Standard in Log-Analyse, CSV-Import, Web-Form-
 Validierung. Für **echte** Datums-Validierung mit Existenz-Prüfung
 (siehe Aufgabe 254) nutzt man `datetime.strptime`:
 
-```python
-from datetime import datetime
-datetime.strptime("11.05.2026", "%d.%m.%Y")  # wirft ValueError bei ungültig
-```

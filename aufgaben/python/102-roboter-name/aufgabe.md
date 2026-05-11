@@ -70,17 +70,6 @@ Der Name muss bei **gleichem Seed reproduzierbar** sein.
 
 ## Idee
 
-```python
-import random
-import string
-
-def roboter_name(seed):
-    rng = random.Random(seed)
-    buchstaben = "".join(rng.choice(string.ascii_uppercase) for _ in range(2))
-    ziffern = "".join(str(rng.randint(0, 9)) for _ in range(3))
-    return buchstaben + ziffern
-```
-
 `random.Random(seed)` ist ein **lokaler Generator** -- er beruehrt
 nicht das globale `random`-State. Gut für Tests und parallele
 Verarbeitung.

@@ -88,23 +88,6 @@ Unbekannte Op → `start` zurückgeben (kein Fehler).
 
 ## Idee
 
-```python
-from functools import reduce
-
-OPS = {
-    "add": lambda a, x: a + x,
-    "mul": lambda a, x: a * x,
-    "max": max,
-    "min": min,
-}
-
-
-def reduce_op(liste, op, start):
-    if op not in OPS:
-        return start
-    return reduce(OPS[op], liste, start)
-```
-
 `functools.reduce` mit Startwert **erlaubt leere Listen** (liefert
 dann den Start). Ohne Startwert würde es bei leerer Liste einen
 Fehler werfen.

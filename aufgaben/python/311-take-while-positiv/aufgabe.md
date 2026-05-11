@@ -79,28 +79,10 @@ der Rest wird **nicht** mitgenommen.
 
 ## Idee -- Generator mit break
 
-```python
-def take_while_positiv(liste):
-    def gen():
-        for x in liste:
-            if x > 0:
-                yield x
-            else:
-                break
-    return list(gen())
-```
-
 `break` beendet den Generator -- alle Werte nach dem ersten
 nicht-positiven werden übersprungen.
 
 ## Mit itertools.takewhile
-
-```python
-from itertools import takewhile
-
-def take_while_positiv(liste):
-    return list(takewhile(lambda x: x > 0, liste))
-```
 
 `takewhile` ist exakt dafür gemacht: nimmt Elemente, solange das
 Predicate True liefert, bricht beim ersten False ab.

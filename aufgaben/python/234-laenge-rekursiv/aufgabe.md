@@ -79,26 +79,11 @@ zurückgibt -- **ohne** `len()` oder `__len__()` zu nutzen.
 
 ## Idee -- Rekursion
 
-```python
-def laenge(liste):
-    if not liste:
-        return 0
-    return 1 + laenge(liste[1:])
-```
-
 Klassisches **Divide and Conquer** im Mini-Stil:
 - **Basis**: leere Liste → `0`.
 - **Schritt**: 1 + Laenge des Rests.
 
 ## Iterativer Vergleich
-
-```python
-def laenge(liste):
-    z = 0
-    for _ in liste:
-        z += 1
-    return z
-```
 
 Auch ohne `len`. In der Praxis bevorzugt -- weil Python kein
 Tail-Call-Optimization macht und die Rekursion bei sehr langen

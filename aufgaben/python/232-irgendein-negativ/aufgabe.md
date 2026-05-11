@@ -78,11 +78,6 @@ Null zählt nicht. Leere Liste → `False`.
 
 ## Idee
 
-```python
-def irgendein_negativ(zahlen):
-    return any(x < 0 for x in zahlen)
-```
-
 Pythons `any` liefert `False` bei leerem Iterable, sonst `True`,
 sobald **eine** Bedingung wahr ist.
 

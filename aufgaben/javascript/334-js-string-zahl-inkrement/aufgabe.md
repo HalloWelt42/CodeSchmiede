@@ -69,16 +69,6 @@ Ungueltige Eingabe -> `""`.
 
 ## Idee mit BigInt
 
-```javascript
-function inkrement(s) {
-    try {
-        return (BigInt(s) + 1n).toString();
-    } catch {
-        return "";
-    }
-}
-```
-
 `BigInt(s)` parst beliebig grosse ganze Zahlen. `1n` ist eine
 BigInt-Literal-Konstante. `.toString()` macht wieder String draus
 (ohne `n`-Suffix).
@@ -87,12 +77,6 @@ BigInt-Literal-Konstante. `.toString()` macht wieder String draus
 
 Number in JavaScript ist `float64` -- praezise nur bis
 `2^53 - 1 = 9007199254740991`. Daruber gehen Werte verloren:
-
-```javascript
-parseInt("999999999999999999") + 1
-// 1000000000000000000  -- aber falsch berechnet!
-// (intern: 999999999999999900 + 1 = ...000)
-```
 
 BigInt loest das Problem -- erfordert aber explizite Konvertierung
 und das `n`-Suffix.

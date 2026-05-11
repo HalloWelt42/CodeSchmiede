@@ -88,23 +88,7 @@ hat dann an dieser Stelle und allen tieferen Stellen die Bits
 **umgeklappt**. Folge: `n & (n - 1) == 0` genau dann, wenn `n` eine
 Zweierpotenz ist (und `n > 0`).
 
-```python
-def ist_zweierpotenz(n):
-    return n > 0 and (n & (n - 1)) == 0
-```
-
 ## Idee 2 -- Schleife durch Halbierungen
-
-```python
-def ist_zweierpotenz(n):
-    if n < 1:
-        return False
-    while n > 1:
-        if n % 2 != 0:
-            return False
-        n //= 2
-    return True
-```
 
 Eindeutig korrekt, aber `O(log n)` statt `O(1)`.
 

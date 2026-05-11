@@ -85,15 +85,6 @@ Zeichen** auffuellt.
 
 ## Idee
 
-```python
-def zentrieren(text, breite, pad):
-    if len(pad) != 1:
-        return text
-    if len(text) >= breite:
-        return text
-    return text.center(breite, pad)
-```
-
 `str.center` macht alles -- aber nur, wenn `pad` genau **ein**
 Zeichen ist, sonst wirft Python einen `TypeError`. Wir fangen das
 explizit ab.

@@ -77,34 +77,10 @@ Bei `k > n` oder `k <= 0` → `[]`.
 | `[10,20,30,40]`    | 2 | `[15.0, 25.0, 35.0]`|
 | `[1,2,3]`          | 5 | `[]`                |
 
-## Idee
-
-```python
-def gleitend(zahlen, k):
-    n = len(zahlen)
-    if k <= 0 or k > n:
-        return []
-    return [round(sum(zahlen[i:i + k]) / k, 4) for i in range(n - k + 1)]
-```
-
 ## Effizienz-Hinweis
 
 Diese naive Variante ist `O(n * k)`. Mit einer **rollierenden Summe**
 geht es in `O(n)`:
-
-```python
-def gleitend(zahlen, k):
-    n = len(zahlen)
-    if k <= 0 or k > n:
-        return []
-    out = []
-    s = sum(zahlen[:k])
-    out.append(round(s / k, 4))
-    for i in range(k, n):
-        s += zahlen[i] - zahlen[i - k]
-        out.append(round(s / k, 4))
-    return out
-```
 
 Bei sehr großen Listen oder großem `k` macht das einen Unterschied.
 

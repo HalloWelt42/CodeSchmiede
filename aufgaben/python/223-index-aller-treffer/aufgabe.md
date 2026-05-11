@@ -76,11 +76,6 @@ liefert.
 
 ## Idee
 
-```python
-def alle_indizes(liste, wert):
-    return [i for i, x in enumerate(liste) if x == wert]
-```
-
 `enumerate` liefert `(index, element)`-Paare -- die elegante Art,
 in Python über Indizes UND Werte gleichzeitig zu iterieren.
 

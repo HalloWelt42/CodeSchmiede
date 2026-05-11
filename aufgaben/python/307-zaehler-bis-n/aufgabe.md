@@ -76,14 +76,6 @@ auch wenn die finale Form eine Liste ist.
 
 ## Idee -- Generator intern
 
-```python
-def zähler_bis(n):
-    def gen():
-        for i in range(1, n + 1):
-            yield i
-    return list(gen())
-```
-
 `yield` macht aus einer Funktion einen **Generator**. `list(gen())`
 materialisiert ihn zur Liste.
 

@@ -60,20 +60,8 @@ starter_code: |
 Bei einem **alten** Format der Scrabble-Punkte sind die Werte
 gruppiert: pro Punktzahl eine Liste der Buchstaben.
 
-```python
-{1: ["A", "E", "I", "O", "U"],
- 2: ["D", "G"],
- 3: ["B", "C", "M", "P"]}
-```
-
 Du sollst das in das **neue** Format umbauen: pro Buchstabe die
 Punktzahl, alles kleingeschrieben.
-
-```python
-{"a": 1, "e": 1, "i": 1, "o": 1, "u": 1,
- "d": 2, "g": 2,
- "b": 3, "c": 3, "m": 3, "p": 3}
-```
 
 ## Hintergrund
 

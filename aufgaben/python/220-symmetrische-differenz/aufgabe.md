@@ -76,11 +76,6 @@ $$A \triangle B = (A \cup B) \setminus (A \cap B)$$
 
 ## Idee
 
-```python
-def symdiff(a, b):
-    return sorted(set(a) ^ set(b))
-```
-
 Der `^`-Operator (XOR) auf Sets ist die symmetrische Differenz --
 "in genau einem von beiden".
 

@@ -83,13 +83,6 @@ Klassische **3-4-5** und **5-12-13** Tripel ergeben ganze Zahlen.
 
 ## Idee
 
-```python
-import math
-
-def distanz(p1, p2):
-    return round(math.hypot(p2[0] - p1[0], p2[1] - p1[1]), 4)
-```
-
 `math.hypot(a, b)` ist genau `sqrt(a*a + b*b)` -- mit **besserer
 numerischer Stabilitaet** bei extremen Werten (vermeidet Overflow
 durch Vor-Skalierung).
@@ -97,11 +90,6 @@ durch Vor-Skalierung).
 ## Erweiterung -- N Dimensionen
 
 Für 3D oder beliebig:
-
-```python
-def distanz(p1, p2):
-    return math.sqrt(sum((a - b) ** 2 for a, b in zip(p1, p2)))
-```
 
 Seit Python 3.8 kann `math.dist(p1, p2)` das direkt für beliebige
 Dimensionen.

@@ -67,12 +67,6 @@ Leere Liste → `0`.
 ggT ist assoziativ: `ggt(a, b, c) = ggt(ggt(a, b), c)`. Damit
 reduzierst du paarweise.
 
-```python
-from functools import reduce
-from math import gcd
-return reduce(gcd, zahlen, 0)
-```
-
 `reduce(gcd, [12, 18, 24], 0)` rechnet `gcd(0,12)=12`, `gcd(12,18)=6`,
 `gcd(6,24)=6`. Der Anker `0` ist das **neutrale Element** für ggT.
 

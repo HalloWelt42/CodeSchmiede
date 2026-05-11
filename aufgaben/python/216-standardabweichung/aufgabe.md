@@ -89,20 +89,6 @@ mit $\bar{x}$ = Mittelwert.
 | `[100, 200, 300]`            | `81.6497` | linear verteilt      |
 | `[-2, 0, 2]`                 | `1.633`   | symmetrisch um 0     |
 
-## Idee
-
-```python
-import math
-
-def stdabw(zahlen):
-    n = len(zahlen)
-    if n < 2:
-        return 0.0
-    mittel = sum(zahlen) / n
-    varianz = sum((x - mittel) ** 2 for x in zahlen) / n
-    return round(math.sqrt(varianz), 4)
-```
-
 ## Population vs. Stichprobe
 
 | Variante      | Divisor | Wann?                           |

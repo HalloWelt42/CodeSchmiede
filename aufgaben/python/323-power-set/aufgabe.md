@@ -82,31 +82,11 @@ Bei vier Elementen waeren es 16, bei zehn schon 1024 Teilmengen.
 
 ## Idee
 
-```python
-from itertools import combinations
-
-def potenzmenge(liste):
-    return [
-        list(t)
-        for k in range(len(liste) + 1)
-        for t in combinations(liste, k)
-    ]
-```
-
 Doppelte Comprehension: aussen `k` von 0 bis `n`, innen alle
 k-elementigen Kombinationen. `combinations` liefert bereits
 lexikographisch geordnet.
 
 ## Idee -- Bit-Maskierung
-
-```python
-def potenzmenge(liste):
-    n = len(liste)
-    out = []
-    for maske in range(2 ** n):
-        out.append([liste[i] for i in range(n) if maske & (1 << i)])
-    return sorted(out, key=lambda s: (len(s), s))
-```
 
 Jede Teilmenge entspricht einer Binaer-Zahl: Bit `i` gesetzt ↔
 Element `i` enthalten. Elegant, aber Sortierung am Ende noetig.

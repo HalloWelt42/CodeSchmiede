@@ -82,16 +82,6 @@ ein RGB-Tripel `[255, 0, 0]` umwandelt.
 | `"#abc"`     | `[0, 0, 0]`          |
 | `""`         | `[0, 0, 0]`          |
 
-## Idee
-
-```python
-def hex_zu_rgb(s):
-    s = s.lstrip("#")
-    if len(s) != 6 or not all(c in "0123456789abcdefABCDEF" for c in s):
-        return [0, 0, 0]
-    return [int(s[0:2], 16), int(s[2:4], 16), int(s[4:6], 16)]
-```
-
 ## Erweiterung -- Kurzform
 
 In CSS gibt's auch die **Kurzform** `#abc` = `#aabbcc`

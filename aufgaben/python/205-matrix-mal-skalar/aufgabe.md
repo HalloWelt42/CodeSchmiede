@@ -80,11 +80,6 @@ Bei leerer Matrix → `[]`.
 
 ## Idee
 
-```python
-def skalar_mal(matrix, c):
-    return [[c * x for x in zeile] for zeile in matrix]
-```
-
 Verschachtelte Listen-Comprehension -- aussere Schleife durch
 Zeilen, innere durch Elemente.
 

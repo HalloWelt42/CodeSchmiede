@@ -84,13 +84,6 @@ serialisiert -- mit zwei Konventionen:
 
 ## Idee
 
-```python
-import json
-
-def json_dump(obj):
-    return json.dumps(obj, sort_keys=True, separators=(",", ":"))
-```
-
 `sort_keys=True` sortiert die Dict-Schlüssel.
 `separators=(",", ":")` ist der **kompakte** Modus -- Default ist
 `(", ", ": ")` mit Leerzeichen.
@@ -99,10 +92,6 @@ def json_dump(obj):
 
 Aufgabe **291-json-zu-dict** macht den Weg zurück. Zusammen sind
 es ein **Round-Trip**:
-
-```python
-json_parse(json_dump(obj))  # Sollte == obj ergeben
-```
 
 (mit Caveat: `tuple` wird zu `list`, weil JSON keine Tuple kennt)
 

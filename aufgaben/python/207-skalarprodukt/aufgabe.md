@@ -78,15 +78,6 @@ Bei verschiedener Laenge → `0`. Bei `[] [] → 0`.
 | `[-1, 2]`     | `[3, -4]`     | `-11`         |
 | `[1.5, 2.5]`  | `[2, 4]`      | `13.0`        |
 
-## Idee
-
-```python
-def skalarprodukt(a, b):
-    if len(a) != len(b):
-        return 0
-    return sum(x * y for x, y in zip(a, b))
-```
-
 ## Geometrische Bedeutung
 
 $$\vec{a} \cdot \vec{b} = |\vec{a}| \cdot |\vec{b}| \cdot \cos(\theta)$$

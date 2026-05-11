@@ -88,21 +88,6 @@ $$s = \frac{a + b + c}{2} \qquad A = \sqrt{s(s-a)(s-b)(s-c)}$$
 | 1 | 1 | 1  | `0.4330` | Einheits-Dreieck    |
 | 1 | 2 | 5  | `0.0`    | Ungültig (1+2 < 5) |
 
-## Idee
-
-```python
-import math
-
-def dreieck_flaeche(a, b, c):
-    if min(a, b, c) <= 0:
-        return 0.0
-    seiten = sorted([a, b, c])
-    if seiten[0] + seiten[1] <= seiten[2]:
-        return 0.0
-    s = (a + b + c) / 2
-    return round(math.sqrt(s * (s - a) * (s - b) * (s - c)), 4)
-```
-
 ## Vergleich mit alternativer Formel
 
 Bei spitzwinkligen Dreiecken auch:

@@ -89,29 +89,8 @@ Ungültig sind:
 
 ## Idee
 
-```python
-def ip_zerlegen(s):
-    teile = s.split(".")
-    if len(teile) != 4:
-        return []
-    out = []
-    for t in teile:
-        if not t or t.startswith(("-", "+")) or not t.isdigit():
-            return []
-        n = int(t)
-        if not 0 <= n <= 255:
-            return []
-        out.append(n)
-    return out
-```
-
 `isdigit` schließt auch fuehrende Nullen wie `"007"` als gültig ein.
 Wer das verbieten will, kann zusaetzlich prüfen:
-
-```python
-if len(t) > 1 and t[0] == "0":
-    return []
-```
 
 ## Pendant
 

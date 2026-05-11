@@ -79,23 +79,10 @@ Elemente in der Liste **gleich** sind. Leere Liste → `True`.
 
 ## Idee 1 -- Set-Trick
 
-```python
-def alle_gleich(liste):
-    return len(set(liste)) <= 1
-```
-
 Wenn das Set höchstens **ein Element** hat, sind alle gleich (oder
 es gibt keine).
 
 ## Idee 2 -- All mit Vergleich
-
-```python
-def alle_gleich(liste):
-    if not liste:
-        return True
-    erstes = liste[0]
-    return all(x == erstes for x in liste)
-```
 
 Spart die Set-Konstruktion -- bei sehr großen Listen mit vielen
 unterschiedlichen Werten ein **Short-Circuit**: bricht beim ersten

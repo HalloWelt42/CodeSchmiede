@@ -78,24 +78,6 @@ Schreibe `rahmen(zeilen)`, die einen Text mit einem **Rahmen aus
 Bei `[]` liefere `["++", "++"]` (leerer Rahmen).
 Bei `[""]` liefere `["++", "||", "++"]`.
 
-## Idee
-
-```python
-def rahmen(zeilen):
-    if not zeilen:
-        return ["++", "++"]
-    breite = max(len(z) for z in zeilen)
-    rand = "+" + "-" * (breite + 2) + "+" if breite > 0 else "++"
-    out = [rand]
-    for z in zeilen:
-        if breite == 0:
-            out.append("||")
-        else:
-            out.append(f"| {z.ljust(breite)} |")
-    out.append(rand)
-    return out
-```
-
 ## Stolperstein -- alle Zeilen gleich lang
 
 Damit der rechte Rand sauber bleibt, müssen kürzere Zeilen mit

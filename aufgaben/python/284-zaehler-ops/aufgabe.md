@@ -88,30 +88,6 @@ Bei leerer Liste → `[]`.
 | `["inc","double","double","double","double"]` | `[1,2,4,8,16]` |
 | `["double"]`                             | `[0]` (0×2 = 0) |
 
-## Idee -- Klasse mit Dispatch
-
-```python
-class Zähler:
-    def __init__(self):
-        self.wert = 0
-
-    def anwenden(self, op):
-        if op == "inc":
-            self.wert += 1
-        elif op == "dec":
-            self.wert -= 1
-        elif op == "reset":
-            self.wert = 0
-        elif op == "double":
-            self.wert *= 2
-        return self.wert
-
-
-def zähler_lauf(operationen):
-    z = Zähler()
-    return [z.anwenden(op) for op in operationen]
-```
-
 ## Stilfrage -- Dispatch per Methode
 
 Statt `if/elif`-Kette könnte man jede Op als eigene Methode
@@ -120,27 +96,6 @@ elegant -- aber **gefaehrlich**, wenn die Op-Strings von Nutzern
 kommen (Method-Injection).
 
 Sicher und kurz: explizites Dispatch-Dict:
-
-```python
-class Zähler:
-    def __init__(self):
-        self.wert = 0
-
-    def inc(self): self.wert += 1
-    def dec(self): self.wert -= 1
-    def reset(self): self.wert = 0
-    def double(self): self.wert *= 2
-
-
-def zähler_lauf(operationen):
-    z = Zähler()
-    OPS = {"inc": z.inc, "dec": z.dec, "reset": z.reset, "double": z.double}
-    out = []
-    for op in operationen:
-        OPS[op]()
-        out.append(z.wert)
-    return out
-```
 
 ## Anwendung
 

@@ -79,11 +79,6 @@ in einen formatierten **Prozent-String** umwandelt -- mit genau
 
 ## Idee
 
-```python
-def zu_prozent(anteil):
-    return f"{anteil * 100:.2f}%"
-```
-
 `:.2f` rundet auf zwei Nachkommastellen -- mathematisches Runden
 ("banker's rounding" in CPython, abweichend bei `.5`-Werten).
 

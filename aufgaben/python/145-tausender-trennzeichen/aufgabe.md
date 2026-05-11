@@ -78,26 +78,6 @@ String mit **deutschem Tausender-Trennzeichen** (Punkt) zurückgibt.
 Python kennt seit 3.6 das `_`-Format als Tausender-Trenner. Danach
 einmal `replace`:
 
-```python
-def mit_punkten(n):
-    return f"{n:_}".replace("_", ".")
-```
-
-## Alternative -- per Hand
-
-```python
-def mit_punkten(n):
-    if n < 0:
-        return "-" + mit_punkten(-n)
-    s = str(n)
-    teile = []
-    while len(s) > 3:
-        teile.append(s[-3:])
-        s = s[:-3]
-    teile.append(s)
-    return ".".join(reversed(teile))
-```
-
 ## Locale-Hinweis
 
 Über `locale.format_string("%d", n, grouping=True)` ginge es auch,

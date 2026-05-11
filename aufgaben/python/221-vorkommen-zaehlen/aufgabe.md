@@ -76,19 +76,9 @@ Bei leerer Liste → `0`.
 
 ## Idee 1 -- Builtin
 
-```python
-def vorkommen(liste, wert):
-    return liste.count(wert)
-```
-
 `list.count` ist in C implementiert -- maximal schnell.
 
 ## Idee 2 -- per Comprehension
-
-```python
-def vorkommen(liste, wert):
-    return sum(1 for x in liste if x == wert)
-```
 
 Lehrreich, weil es das Pattern "zähle wie oft Bedingung wahr ist"
 zeigt -- mit `sum(1 for ... if ...)`.

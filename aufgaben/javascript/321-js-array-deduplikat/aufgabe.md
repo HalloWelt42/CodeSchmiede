@@ -60,10 +60,6 @@ Schreibe `dedup(arr)`, die Duplikate aus einem Array entfernt --
 
 ## Idee -- modernes JS
 
-```javascript
-const dedup = (arr) => [...new Set(arr)];
-```
-
 Drei Schritte in einer Zeile:
 1. `new Set(arr)` -- erzeugt Set aus dem Array (Duplikate raus)
 2. `[...]` -- Spread macht aus dem Set wieder ein Array
@@ -78,18 +74,10 @@ Drei Schritte in einer Zeile:
 
 ## Vergleich mit klassischem Filter-Ansatz
 
-```javascript
-const dedup = (arr) => arr.filter((x, i, a) => a.indexOf(x) === i);
-```
-
 Funktioniert, aber `O(n²)` -- jedes Element ruft `indexOf` auf.
 Set-Variante ist `O(n)`.
 
 ## Stolperstein -- Object-Eindeutigkeit
-
-```javascript
-[...new Set([{a: 1}, {a: 1}])]  // bleibt 2 Eintraege!
-```
 
 Sets vergleichen Referenzen, nicht Inhalte. Bei Objekten muss man
 manuell deduplizieren (z.B. via JSON-Stringify als Key).

@@ -79,15 +79,6 @@ Bei `[]` → `0.0`.
 | `[-3, -4]`   | `5.0`     |
 | `[6, 8, 10]` | `14.1421` |
 
-## Idee
-
-```python
-import math
-
-def betrag(v):
-    return round(math.sqrt(sum(x * x for x in v)), 4)
-```
-
 ## Pythagoras-Tripel
 
 Bei Vektoren wie `[3, 4]`, `[5, 12]`, `[8, 15]` ergibt die Norm eine

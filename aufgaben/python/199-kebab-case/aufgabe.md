@@ -86,13 +86,6 @@ Regeln:
 
 ## Idee mit Regex
 
-```python
-import re
-
-def kebab_case(text):
-    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
-```
-
 `[^a-z0-9]+` matcht eine **Folge** von Nicht-Slug-Zeichen → wird
 durch ein einzelnes `-` ersetzt. `strip("-")` entfernt Rand-Trenner.
 

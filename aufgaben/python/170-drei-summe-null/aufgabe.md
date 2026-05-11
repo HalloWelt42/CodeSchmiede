@@ -82,32 +82,6 @@ Ohne Sortierung ist Brute-Force `O(n^3)` -- zu langsam für große `n`.
 Mit Sortierung kann man für jedes festgesetzte `a` die übrigen zwei
 Werte mit Two-Pointers in `O(n)` finden → insgesamt `O(n^2)`.
 
-```python
-def drei_summe(zahlen):
-    z = sorted(zahlen)
-    n = len(z)
-    out = []
-    for i in range(n - 2):
-        if i > 0 and z[i] == z[i - 1]:
-            continue                       # Duplikate auf erster Position
-        j, k = i + 1, n - 1
-        while j < k:
-            s = z[i] + z[j] + z[k]
-            if s == 0:
-                out.append([z[i], z[j], z[k]])
-                j += 1
-                k -= 1
-                while j < k and z[j] == z[j - 1]:
-                    j += 1                  # Duplikate auf zweiter Pos.
-                while j < k and z[k] == z[k + 1]:
-                    k -= 1                  # Duplikate auf dritter Pos.
-            elif s < 0:
-                j += 1
-            else:
-                k -= 1
-    return out
-```
-
 ## Stolpersteine
 
 - **Duplikate überspringen** ist Pflicht, sonst kommen `[-1, 0, 1]`

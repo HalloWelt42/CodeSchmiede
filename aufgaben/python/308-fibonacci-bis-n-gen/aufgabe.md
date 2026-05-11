@@ -81,16 +81,6 @@ Fibonacci: $F_0 = 0, F_1 = 1, F_n = F_{n-1} + F_{n-2}$.
 
 ## Idee -- Generator intern
 
-```python
-def fibs_bis(max_wert):
-    def gen():
-        a, b = 0, 1
-        while a <= max_wert:
-            yield a
-            a, b = b, a + b
-    return list(gen())
-```
-
 Der Generator endet, wenn `a` zu groß wird. Die Tupel-Zuweisung
 `a, b = b, a + b` ist Pythons elegante Form für den Fibonacci-
 Schritt -- in C/Java braucht man eine Hilfsvariable.
@@ -100,11 +90,6 @@ Schritt -- in C/Java braucht man eine Hilfsvariable.
 Bei sehr großen `max_wert` (oder unbekanntem Limit) kann man den
 Generator iterieren, bis man genug hat -- ohne die ganze Liste im
 Speicher zu halten.
-
-```python
-gen = fibs_bis_gen(10**100)
-nächste_drei = [next(gen) for _ in range(3)]
-```
 
 Das ist mit einer Liste nicht so elegant moeglich.
 

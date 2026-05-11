@@ -97,13 +97,6 @@ Schreibe `dreieckszahl(n)`. Bei `n <= 0` → `0`.
 
 ## Idee -- Gauss-Formel
 
-```python
-def dreieckszahl(n):
-    if n <= 0:
-        return 0
-    return n * (n + 1) // 2
-```
-
 `O(1)` und exakt -- kein Float-Trick nötig.
 
 ## Anekdote -- Der kleine Gauss

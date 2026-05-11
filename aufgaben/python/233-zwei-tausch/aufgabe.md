@@ -75,20 +75,9 @@ Trivial in Python, aber ein didaktischer Einstieg in
 
 ## Idee 1 -- direkt
 
-```python
-def tauschen(a, b):
-    return [b, a]
-```
-
 Geht nicht kürzer.
 
 ## Idee 2 -- Tupel-Zuweisung (äquivalent, aber anschaulich)
-
-```python
-def tauschen(a, b):
-    a, b = b, a
-    return [a, b]
-```
 
 Hier sieht man die **Pythonische Variablen-Tausch-Form**: `a, b = b, a`.
 In C oder Java braucht man eine **Hilfsvariable**:

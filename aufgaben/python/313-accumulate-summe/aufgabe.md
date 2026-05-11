@@ -81,36 +81,14 @@ Bei leerer Liste → `[]`.
 
 ## Idee -- Generator
 
-```python
-def laufende_summen(liste):
-    def gen():
-        summe = 0
-        for x in liste:
-            summe += x
-            yield summe
-    return list(gen())
-```
-
 Der Akkumulator `summe` wird zwischen den `yield`-Aufrufen
 **erhalten** -- das ist die Magie der Generator-Funktionen.
 
 ## Mit itertools.accumulate
 
-```python
-from itertools import accumulate
-
-def laufende_summen(liste):
-    return list(accumulate(liste))
-```
-
 `accumulate` macht es default mit Addition. Mit dem `func`-
 Parameter kann man auch Multiplikation, Maximum oder beliebige
 binaere Operationen nehmen:
-
-```python
-list(accumulate([1, 2, 3, 4], func=operator.mul))
-# [1, 2, 6, 24] (laufendes Produkt = Fakultaet!)
-```
 
 ## Verwandt
 

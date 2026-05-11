@@ -79,37 +79,14 @@ Bei leerer Liste → `1` (neutrales Element der Multiplikation, wie
 
 ## Idee 1 -- math.prod (seit Python 3.8)
 
-```python
-import math
-
-def produkt(liste):
-    return math.prod(liste)
-```
-
 Eine Zeile -- standardisiert, getestet, schnell.
 
 ## Idee 2 -- reduce
-
-```python
-from functools import reduce
-from operator import mul
-
-def produkt(liste):
-    return reduce(mul, liste, 1)
-```
 
 Allgemeineres Pattern -- `reduce` faltet jede binaere Operation
 über eine Liste.
 
 ## Idee 3 -- Schleife
-
-```python
-def produkt(liste):
-    p = 1
-    for x in liste:
-        p *= x
-    return p
-```
 
 Klar lesbar, jede Sprache versteht das.
 

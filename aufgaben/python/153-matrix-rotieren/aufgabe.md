@@ -76,11 +76,6 @@ Bei `[]` → `[]`.
 
 **Trick 1**: Erst **Zeilen umdrehen**, dann **transponieren**:
 
-```python
-def rotieren(matrix):
-    return [list(z) for z in zip(*matrix[::-1])]
-```
-
 **Trick 2**: Direkt mit Index-Math:
 
 ```

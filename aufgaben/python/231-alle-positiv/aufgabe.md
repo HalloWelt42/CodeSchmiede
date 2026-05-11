@@ -80,11 +80,6 @@ Leere Liste → `True` (vacuous truth).
 
 ## Idee
 
-```python
-def alle_positiv(zahlen):
-    return all(x > 0 for x in zahlen)
-```
-
 Pythons `all` liefert `True` bei leerem Iterable -- vacuous truth.
 Bei nicht-leerem Iterable: `True` genau dann, wenn jedes Element
 **truthy** ist. Mit dem Generator-Ausdruck prüfen wir die

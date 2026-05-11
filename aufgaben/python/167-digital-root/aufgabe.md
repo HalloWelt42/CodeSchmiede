@@ -76,28 +76,12 @@ noch eine **einzelne Ziffer** (0-9) übrig bleibt.
 | `9875`  | `29 → 11 → 2`            | `2`    |
 | `12345` | `15 → 6`                 | `6`    |
 
-## Lösung 1 -- naive Schleife
-
-```python
-def digitale_wurzel(n):
-    while n > 9:
-        n = sum(int(z) for z in str(n))
-    return n
-```
-
 ## Lösung 2 -- Modulo-Trick
 
 Eine Zahl ist genau dann durch 9 teilbar, wenn ihre Quersumme es ist.
 Daraus folgt:
 
 $$dr(n) = \begin{cases} 0 & n = 0 \\ 1 + ((n-1) \bmod 9) & n > 0 \end{cases}$$
-
-```python
-def digitale_wurzel(n):
-    if n == 0:
-        return 0
-    return 1 + (n - 1) % 9
-```
 
 Eine einzige Operation -- unabhängig von der Anzahl der Stellen.
 

@@ -82,43 +82,11 @@ Bis 100 gibt es **25 Primzahlen**.
 
 ## Idee 1 -- Sieb des Eratosthenes mit Generator
 
-```python
-def primzahlen_bis(n):
-    def gen():
-        if n < 2:
-            return
-        sieb = [True] * (n + 1)
-        sieb[0] = sieb[1] = False
-        for i in range(2, n + 1):
-            if sieb[i]:
-                yield i
-                for j in range(i * i, n + 1, i):
-                    sieb[j] = False
-    return list(gen())
-```
-
 **Wichtig**: Das `yield` kommt **VOR** dem Streichen, sonst
 verpasst man `i = 2`. Generator-Logik und Sieb-Logik werden
 verschraenkt.
 
 ## Idee 2 -- Trial-Division im Generator
-
-```python
-def primzahlen_bis(n):
-    def ist_prim(k):
-        if k < 2:
-            return False
-        for i in range(2, int(k ** 0.5) + 1):
-            if k % i == 0:
-                return False
-        return True
-
-    def gen():
-        for k in range(2, n + 1):
-            if ist_prim(k):
-                yield k
-    return list(gen())
-```
 
 Klarer, aber langsamer (`O(n*sqrt(n))` statt `O(n*log log n)`).
 

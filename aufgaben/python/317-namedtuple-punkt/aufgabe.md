@@ -83,21 +83,6 @@ Implementiere intern einen `namedtuple` `Punkt` mit Feldern `x, y`.
 
 ## Idee mit namedtuple
 
-```python
-import math
-from collections import namedtuple
-
-Punkt = namedtuple('Punkt', ['x', 'y'])
-
-def punkt_paar_info(x1, y1, x2, y2):
-    a = Punkt(x1, y1)
-    b = Punkt(x2, y2)
-    distanz = math.hypot(b.x - a.x, b.y - a.y)
-    mid_x = (a.x + b.x) / 2
-    mid_y = (a.y + b.y) / 2
-    return [round(distanz, 4), round(mid_x, 4), round(mid_y, 4)]
-```
-
 `namedtuple` ist eine **leichte Klasse** ohne Boilerplate -- perfekt
 für kleine Daten-Container mit benannten Feldern. Liest sich besser
 als `(x, y)` Tupel oder `{"x": ..., "y": ...}` Dict.

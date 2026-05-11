@@ -86,33 +86,12 @@ Die leere Teilmenge zählt (Summe `0`).
 Pro neue Zahl `x` können wir entweder weglassen (Summen unverändert)
 oder dazunehmen (Summen + x). Das Set wird in jeder Runde erweitert.
 
-```python
-def subset_sum(zahlen, ziel):
-    erreichbar = {0}
-    for x in zahlen:
-        erreichbar |= {s + x for s in erreichbar}
-        if ziel in erreichbar:
-            return True
-    return ziel == 0
-```
-
 Effizienz: `O(n * S)`, wo `S` die Anzahl unterscheidbarer Summen ist
 (maximal `Sum(zahlen) + 1`).
 
 ## Klassische DP-Tabelle
 
 Aequivalent als Boolean-Tabelle `dp[i][s]`:
-
-```python
-def subset_sum(zahlen, ziel):
-    dp = [False] * (ziel + 1)
-    dp[0] = True
-    for x in zahlen:
-        for s in range(ziel, x - 1, -1):
-            if dp[s - x]:
-                dp[s] = True
-    return dp[ziel]
-```
 
 Rückwaerts iterieren, damit eine Zahl nicht doppelt verbraucht wird.
 

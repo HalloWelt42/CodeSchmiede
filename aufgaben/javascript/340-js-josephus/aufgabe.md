@@ -62,17 +62,6 @@ eliminiert. Wer ueberlebt?
 
 ## Idee -- Rekurrenz O(n)
 
-```javascript
-function josephus(n, k) {
-    if (n <= 0 || k <= 0) return -1;
-    let j = 0;
-    for (let i = 2; i <= n; i++) {
-        j = (j + k) % i;
-    }
-    return j;
-}
-```
-
 `J(1) = 0`. Pro hinzukommender Person verschiebt sich der Sieger
 um `k` modulo der neuen Anzahl.
 

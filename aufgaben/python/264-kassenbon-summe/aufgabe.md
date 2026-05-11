@@ -79,20 +79,11 @@ Bei leerer Liste → `0.0`.
 
 ## Idee
 
-```python
-def bon_summe(posten):
-    return round(sum(z[1] * z[2] for z in posten), 2)
-```
-
 Generator-Expression in `sum`. Pro Posten: `anzahl * einzelpreis`.
 
 ## Float-Stolperstein
 
 Mit Floats kann **Rundungs-Drift** entstehen:
-
-```python
-0.1 + 0.2 == 0.30000000000000004
-```
 
 Für **echte Geld-Anwendungen** sollte man `decimal.Decimal` nutzen
 oder in **Cent-Ints** rechnen (`299` statt `2.99`). Pythons `round`

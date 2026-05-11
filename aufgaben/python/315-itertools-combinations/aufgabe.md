@@ -83,15 +83,6 @@ Bei `[1,2,3,4]` mit `k=2`: $\binom{4}{2} = 6$.
 
 ## Idee
 
-```python
-from itertools import combinations
-
-def kombis(liste, k):
-    if k <= 0 or k > len(liste):
-        return []
-    return [list(t) for t in combinations(liste, k)]
-```
-
 `itertools.combinations` ist hochoptimiert (C-Implementierung) und
 liefert die Reihenfolge **lexikographisch** -- also genau wie in
 unseren Tests erwartet.

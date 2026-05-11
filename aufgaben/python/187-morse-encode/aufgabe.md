@@ -91,30 +91,6 @@ G --.     N -.      U ..-
 | `"E"`         | `"."`                                |
 | `"123"`       | `".---- ..--- ...--"`                |
 
-## Idee
-
-```python
-TABELLE = {
-    "A": ".-", "B": "-...", "C": "-.-.", "D": "-..", "E": ".",
-    "F": "..-.", "G": "--.", "H": "....", "I": "..", "J": ".---",
-    "K": "-.-", "L": ".-..", "M": "--", "N": "-.", "O": "---",
-    "P": ".--.", "Q": "--.-", "R": ".-.", "S": "...", "T": "-",
-    "U": "..-", "V": "...-", "W": ".--", "X": "-..-", "Y": "-.--",
-    "Z": "--..",
-    "0": "-----", "1": ".----", "2": "..---", "3": "...--",
-    "4": "....-", "5": ".....", "6": "-....", "7": "--...",
-    "8": "---..", "9": "----.",
-}
-
-def morse_encode(text):
-    wörter = []
-    for wort in text.upper().split():
-        teile = [TABELLE[c] for c in wort if c in TABELLE]
-        if teile:
-            wörter.append(" ".join(teile))
-    return " / ".join(wörter)
-```
-
 ## Hintergrund
 
 Samuel Morse erfand den Code 1838 zusammen mit Alfred Vail. Die

@@ -84,13 +84,6 @@ Markdown-Link-Syntax: `[Anzeigetext](https://url.example)`.
 
 ## Idee -- zwei Capture-Groups
 
-```python
-import re
-
-def markdown_links(text):
-    return [list(t) for t in re.findall(r"\[([^\]]+)\]\(([^)]+)\)", text)]
-```
-
 Pattern aufgedroeselt:
 
 | Stück       | Bedeutung                                |

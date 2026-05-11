@@ -85,13 +85,6 @@ Ein Hashtag ist `#` gefolgt von einem oder mehreren **Wort-Zeichen**
 
 ## Idee -- Capture-Group
 
-```python
-import re
-
-def hashtags(text):
-    return re.findall(r"#(\w+)", text)
-```
-
 Die Klammern `(\w+)` sind eine **Capture-Group**: `re.findall`
 liefert nur den Inhalt der Gruppe, also den Wort-Teil **ohne** das `#`.
 

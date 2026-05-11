@@ -80,29 +80,10 @@ alle weiteren Elemente übernommen, auch wenn `0` darunter sind.
 
 ## Idee -- Generator mit Flag
 
-```python
-def drop_while_null(liste):
-    def gen():
-        dropping = True
-        for x in liste:
-            if dropping and x == 0:
-                continue
-            dropping = False
-            yield x
-    return list(gen())
-```
-
 Sobald `dropping = False` gesetzt ist, kommt jedes weitere Element
 durch -- auch nullen.
 
 ## Mit itertools.dropwhile
-
-```python
-from itertools import dropwhile
-
-def drop_while_null(liste):
-    return list(dropwhile(lambda x: x == 0, liste))
-```
 
 `dropwhile` ist das Standard-Tool für dieses Pattern -- spiegelbildlich
 zu `takewhile`.

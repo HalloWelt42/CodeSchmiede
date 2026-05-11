@@ -76,19 +76,9 @@ Null zählt als gerade. Negative gerade Zahlen ebenso.
 
 ## Idee
 
-```python
-def nur_gerade(zahlen):
-    return [x for x in zahlen if x % 2 == 0]
-```
-
 Die wohl häufigste Form einer Listen-Comprehension: filtern.
 
 ## Mit Builtin filter
-
-```python
-def nur_gerade(zahlen):
-    return list(filter(lambda x: x % 2 == 0, zahlen))
-```
 
 Funktional äquivalent, aber Lambda + `filter` liest sich oft
 schwerer als die Comprehension. In Python wird die Comprehension

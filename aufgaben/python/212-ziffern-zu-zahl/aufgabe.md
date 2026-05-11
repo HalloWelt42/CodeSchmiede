@@ -78,14 +78,6 @@ Bei leerer Liste → `0`. Fuehrende Nullen entfallen automatisch.
 
 ## Idee -- Horner-Schema
 
-```python
-def aus_ziffern(ziffern):
-    n = 0
-    for d in ziffern:
-        n = 10 * n + d
-    return n
-```
-
 Pro Stelle "verschieben" wir die bisherige Zahl eine Stelle nach
 links (Multiplikation mit 10) und addieren die neue Ziffer.
 
@@ -98,13 +90,6 @@ Beispiel `[1, 2, 3]`:
 | 3      | 12       | 123 |
 
 ## Idee -- per Join + int
-
-```python
-def aus_ziffern(ziffern):
-    if not ziffern:
-        return 0
-    return int("".join(str(d) for d in ziffern))
-```
 
 Liest sich kompakt, macht aber den Umweg über String -- bei sehr
 großen Listen langsamer als Horner.

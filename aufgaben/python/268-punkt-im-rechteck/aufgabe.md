@@ -77,22 +77,11 @@ Rechteck = `[xmin, ymin, xmax, ymax]`. **Inklusive Raender**.
 
 ## Idee
 
-```python
-def im_rechteck(punkt, rect):
-    x, y = punkt
-    xmin, ymin, xmax, ymax = rect
-    return xmin <= x <= xmax and ymin <= y <= ymax
-```
-
 Pythons **chained comparisons** machen das sehr lesbar.
 
 ## Variante -- exklusive Raender
 
 Wenn Punkte **auf** dem Rand nicht zählen sollen: `<` statt `<=`.
-
-```python
-return xmin < x < xmax and ymin < y < ymax
-```
 
 ## Anwendung
 

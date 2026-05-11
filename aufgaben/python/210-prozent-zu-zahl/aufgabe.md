@@ -89,15 +89,6 @@ Bei ungültiger Eingabe → `0.0`.
 
 ## Idee
 
-```python
-def aus_prozent(s):
-    s = s.strip().rstrip("%").replace(",", ".")
-    try:
-        return float(s) / 100
-    except ValueError:
-        return 0.0
-```
-
 Drei Schritte:
 
 1. **Reinigen**: `strip` + `rstrip("%")` + Komma-zu-Punkt.

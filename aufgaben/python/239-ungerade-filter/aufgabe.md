@@ -73,13 +73,6 @@ Schreibe `nur_ungerade(zahlen)`, die alle **ungeraden Zahlen**
 | `[0]`              | `[]`            |
 | `[-3, -2, -1, 0, 1]`| `[-3, -1, 1]`  |
 
-## Idee
-
-```python
-def nur_ungerade(zahlen):
-    return [x for x in zahlen if x % 2 != 0]
-```
-
 ## Stolperstein -- Negative Modulo
 
 In **Python** gilt `-3 % 2 == 1` (nicht -1, wie in C/Java). Darum

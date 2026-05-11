@@ -77,11 +77,6 @@ Bei `a > b` → `[]`.
 
 ## Idee
 
-```python
-def im_bereich(zahlen, a, b):
-    return [x for x in zahlen if a <= x <= b]
-```
-
 `a <= x <= b` ist Pythons **chained comparison**, das wie in der
 Mathematik liest.
 
@@ -94,14 +89,6 @@ unterscheidet.
 ## Verallgemeinerung
 
 Mit einer **Predicate-Funktion**:
-
-```python
-def filter_pred(liste, predicate):
-    return [x for x in liste if predicate(x)]
-
-# im Bereich [2, 4]:
-filter_pred([1,2,3,4,5], lambda x: 2 <= x <= 4)
-```
 
 Sehr universell -- aber in Tests schwer zu serialisieren (Funktionen
 gehen schlecht durch JSON). Daher hier die spezialisierte Variante.

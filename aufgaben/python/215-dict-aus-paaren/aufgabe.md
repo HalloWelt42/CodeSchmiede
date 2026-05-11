@@ -76,20 +76,9 @@ Leere Liste → `{}`.
 
 ## Idee
 
-```python
-def paare_zu_dict(paare):
-    return dict(paare)
-```
-
 `dict()` akzeptiert ein Iterable von 2-Element-Iterables direkt.
 Bei doppelten Keys gewinnt automatisch das **letzte** Paar -- weil
 es spaeter eingesetzt wird und das frühere überschreibt.
-
-## Pendant -- Dict zu Paaren
-
-```python
-list(dict.items())   # [("a", 1), ("b", 2)]
-```
 
 ## Hintergrund
 

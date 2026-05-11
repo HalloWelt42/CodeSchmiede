@@ -70,11 +70,6 @@ Schreibe `vereinigung(a, b)`, die alle Elemente aus `a` oder `b` als
 
 ## Idee -- Set-Operation
 
-```python
-def vereinigung(a, b):
-    return sorted(set(a) | set(b))
-```
-
 Der `|`-Operator ist die Set-Vereinigung. Sehr lesbar, sehr schnell
 (`O(n + m)`).
 

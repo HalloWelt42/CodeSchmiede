@@ -89,16 +89,6 @@ Liefere den **Index des letzten Ueberlebenden**.
 
 ## Idee -- iterative Rekurrenz O(n)
 
-```python
-def josephus(n, k):
-    if n <= 0 or k <= 0:
-        return -1
-    j = 0
-    for i in range(2, n + 1):
-        j = (j + k) % i
-    return j
-```
-
 `J(1) = 0` (allein -> Sieger). Bei jedem Hinzufuegen einer Person
 verschiebt sich der Sieger um `k` modulo der neuen Anzahl.
 
@@ -112,18 +102,6 @@ im Kreis stehen, jeden dritten toeten. Josephus angeblich
 berechnete seine Position so, dass er ueberlebte.
 
 ## Naive Variante mit Liste -- O(n²)
-
-```python
-def josephus_naiv(n, k):
-    if n <= 0 or k <= 0:
-        return -1
-    leute = list(range(n))
-    i = 0
-    while len(leute) > 1:
-        i = (i + k - 1) % len(leute)
-        del leute[i]
-    return leute[0]
-```
 
 Klar lesbar, aber bei `n = 10000` schon merkbar langsam. Die
 Rekurrenz oben ist viel eleganter.

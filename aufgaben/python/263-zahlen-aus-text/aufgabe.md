@@ -85,13 +85,6 @@ Vorzeichen einleitet.
 
 ## Idee -- Regex
 
-```python
-import re
-
-def zahlen_extrahieren(text):
-    return [int(s) for s in re.findall(r"-?\d+", text)]
-```
-
 `-?\d+` matcht eine optionale `-` gefolgt von einer oder mehreren
 Ziffern. `re.findall` liefert alle Treffer als Liste von Strings,
 die wir mit `int(...)` konvertieren.
@@ -101,10 +94,6 @@ die wir mit `int(...)` konvertieren.
 Im Test `"Score: -10 vs +5"` extrahieren wir `[-10, 5]` -- das `+`
 wird **nicht** mitgenommen, weil `re.findall(r"-?\d+", ...)` nur
 das `-` als Teil der Zahl erkennt. Wer auch `+` mitnehmen will:
-
-```python
-re.findall(r"[+-]?\d+", text)
-```
 
 ## Anwendung
 

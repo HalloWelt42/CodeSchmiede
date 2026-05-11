@@ -81,41 +81,6 @@ wird in eine Liste der **Laute** umgewandelt.
 | `["Katze","Drachen","Hahn"]`  | `["Miau","?","Kikeriki"]`            |
 | `[]`                          | `[]`                                 |
 
-## Idee -- Vererbung mit Polymorphismus
-
-```python
-class Tier:
-    def laut(self):
-        return "?"
-
-
-class Hund(Tier):
-    def laut(self):
-        return "Wuff"
-
-
-class Katze(Tier):
-    def laut(self):
-        return "Miau"
-
-
-class Kuh(Tier):
-    def laut(self):
-        return "Muh"
-
-
-class Hahn(Tier):
-    def laut(self):
-        return "Kikeriki"
-
-
-KLASSEN = {"Hund": Hund, "Katze": Katze, "Kuh": Kuh, "Hahn": Hahn}
-
-
-def tier_konzert(tiere):
-    return [KLASSEN.get(name, Tier)().laut() for name in tiere]
-```
-
 ## Konzepte hier
 
 1. **Vererbung**: Hund ist ein Tier. `class Hund(Tier)` bedeutet
@@ -127,13 +92,6 @@ def tier_konzert(tiere):
    Fallback für unbekannte Subklassen.
 
 ## Vergleich -- Dict ohne Klassen
-
-```python
-LAUTE = {"Hund": "Wuff", "Katze": "Miau", "Kuh": "Muh", "Hahn": "Kikeriki"}
-
-def tier_konzert(tiere):
-    return [LAUTE.get(t, "?") for t in tiere]
-```
 
 Funktioniert genauso. Der Punkt der OOP-Variante ist die
 **Erweiterbarkeit**: wenn ein Tier zusaetzlich `größe()`,

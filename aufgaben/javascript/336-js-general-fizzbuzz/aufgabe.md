@@ -64,39 +64,11 @@ als String.
 
 ## Idee -- modernes JS
 
-```javascript
-function generalFizzbuzz(n, regeln) {
-    if (n <= 0) return [];
-    return Array.from({ length: n }, (_, i) => {
-        const k = i + 1;
-        const wort = regeln
-            .filter(([t]) => k % t === 0)
-            .map(([, w]) => w)
-            .join("");
-        return wort || String(k);
-    });
-}
-```
-
 Schoenheit: **Destructuring** `([t]) => ...` zieht das erste
 Element des Tupels raus, `[, w]` ueberspringt das erste und nimmt
 das zweite.
 
 ## Vergleich -- direkter Loop
-
-```javascript
-function generalFizzbuzz(n, regeln) {
-    const out = [];
-    for (let k = 1; k <= n; k++) {
-        let wort = "";
-        for (const [t, w] of regeln) {
-            if (k % t === 0) wort += w;
-        }
-        out.push(wort || String(k));
-    }
-    return out;
-}
-```
 
 Genauso korrekt, weniger funktional aber besser bei Performance-
 kritischem Code (kein Closure pro Iteration).

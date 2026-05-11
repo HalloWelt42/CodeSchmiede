@@ -80,11 +80,6 @@ Leere oder 1-elementige Liste → `True`.
 
 ## Idee
 
-```python
-def ist_aufsteigend(liste):
-    return all(a <= b for a, b in zip(liste, liste[1:]))
-```
-
 `zip(liste, liste[1:])` paart **aufeinanderfolgende** Elemente:
 `zip([1,2,3], [2,3]) → (1,2), (2,3)`. `all` liefert `True`, sobald
 alle Paare die Bedingung erfüllen -- bei leerer Liste auch (vacuous
@@ -93,10 +88,6 @@ truth).
 ## Strikt aufsteigend
 
 Wer `<` statt `<=` will (also keine Duplikate):
-
-```python
-return all(a < b for a, b in zip(liste, liste[1:]))
-```
 
 ## Verwandt
 

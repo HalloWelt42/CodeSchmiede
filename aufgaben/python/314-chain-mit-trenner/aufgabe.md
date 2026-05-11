@@ -88,20 +88,6 @@ Regeln:
 
 ## Idee -- Generator mit Flag
 
-```python
-def verketten_mit_trenner(listen, trenner):
-    def gen():
-        zuerst = True
-        for liste in listen:
-            if not liste:
-                continue
-            if not zuerst:
-                yield trenner
-            yield from liste
-            zuerst = False
-    return list(gen())
-```
-
 `yield from` ist eine **delegierende** Yield: liefert alle Werte
 des inneren Iterables -- elegant für "leere alle Werte aus dieser
 Liste".

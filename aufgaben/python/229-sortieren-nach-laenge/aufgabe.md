@@ -75,21 +75,12 @@ Original-Liste **nicht** verändern.
 
 ## Idee -- key mit Tupel
 
-```python
-def nach_laenge(strings):
-    return sorted(strings, key=lambda s: (len(s), s))
-```
-
 Pythons `sorted` mit Tupel-Key sortiert **lexikographisch** über
 das Tupel: zuerst nach `len(s)`, bei Gleichstand nach `s` selbst.
 
 ## Warum nicht zwei separate Sortierungen?
 
 Wegen Pythons **stabiler Sortierung** könnte man auch:
-
-```python
-return sorted(sorted(strings), key=len)
-```
 
 Erst alphabetisch, dann nach Laenge -- die Stabilitaet erhaelt die
 alphabetische Reihenfolge bei Gleichstand. Funktioniert -- aber

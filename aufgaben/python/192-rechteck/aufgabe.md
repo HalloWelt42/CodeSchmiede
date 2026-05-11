@@ -89,21 +89,6 @@ Bei ungültigen Eingaben (`b <= 0` oder `h <= 0`) → `[0, 0, 0]`.
 
 Quadrate sind Sonderfaelle, bei denen $d = b \sqrt{2}$.
 
-## Idee
-
-```python
-import math
-
-def rechteck(b, h):
-    if b <= 0 or h <= 0:
-        return [0, 0, 0]
-    return [
-        round(b * h, 2),
-        round(2 * (b + h), 2),
-        round(math.sqrt(b * b + h * h), 2),
-    ]
-```
-
 ## Pythagoras-Klassiker
 
 Die Tripel `(3, 4, 5)`, `(6, 8, 10)`, `(5, 12, 13)` erscheinen oft

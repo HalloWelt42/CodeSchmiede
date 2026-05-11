@@ -87,28 +87,12 @@ Vielfachen von `k` rundet (Richtung +unendlich).
 
 ## Idee
 
-```python
-import math
-
-def ceil_vielfache(n, k):
-    if k <= 0:
-        return n
-    return math.ceil(n / k) * k
-```
-
 `math.ceil` liefert die kleinste **ganzzahlige** Obergrenze.
 `math.ceil(13/5)` ist `math.ceil(2.6)` = `3`. Mal `5` ergibt `15`.
 
 ## Idee -- ohne math
 
 Eleganter Trick:
-
-```python
-def ceil_vielfache(n, k):
-    if k <= 0:
-        return n
-    return -(-n // k) * k
-```
 
 `-(-n // k)` ist Pythons Idiom für "ceil division" -- weil
 `//` immer **abwärts** rundet (auch bei negativen Zahlen), bringt

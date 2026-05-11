@@ -91,12 +91,6 @@ Schnapszahl, weil `44` eine ist.
 Wenn `set(str(abs(n)))` genau 1 Element enthält UND die Zahl mindestens
 2 Stellen hat, ist es eine Schnapszahl.
 
-```python
-def ist_schnapszahl(n):
-    s = str(abs(n))
-    return len(s) >= 2 and len(set(s)) == 1
-```
-
 ## Hintergrund
 
 Der Name kommt aus dem Kartenspiel **Schnapsen** -- dort schreibt man

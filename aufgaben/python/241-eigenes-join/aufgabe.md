@@ -79,16 +79,6 @@ zusammenfuegt -- **ohne** `str.join` zu nutzen.
 
 ## Idee
 
-```python
-def verbinden(strings, trenner):
-    if not strings:
-        return ""
-    out = strings[0]
-    for s in strings[1:]:
-        out += trenner + s
-    return out
-```
-
 Erstes Element ohne Trenner, alle weiteren mit. Dadurch landet der
 Trenner **zwischen** den Elementen, nicht davor oder dahinter.
 
@@ -97,16 +87,6 @@ Trenner **zwischen** den Elementen, nicht davor oder dahinter.
 In Python ist `out += s` in einer Schleife eigentlich **O(n^2)** --
 weil jedes Mal ein neuer String erzeugt wird. Bei tausenden Elementen
 besser:
-
-```python
-def verbinden(strings, trenner):
-    teile = []
-    for i, s in enumerate(strings):
-        if i > 0:
-            teile.append(trenner)
-        teile.append(s)
-    return "".join(teile)
-```
 
 Aber wir wollen ja `join` **vermeiden** -- dann lieber die naive
 Variante akzeptieren oder selbst das `"".join` nochmal hand-bauen.

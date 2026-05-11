@@ -82,12 +82,3 @@ Mit `zip(*strings)` bekommst du pro Position die Spalte aller Strings.
 Solange `set(spalte)` einen einzigen Eintrag hat, ist es ein
 gemeinsamer Buchstabe.
 
-```python
-out = []
-for spalte in zip(*strings):
-    if len(set(spalte)) == 1:
-        out.append(spalte[0])
-    else:
-        break
-return "".join(out)
-```

@@ -88,15 +88,6 @@ muss der **echte Wert** zurückkommen -- nicht der `default`.
 
 ## Idee
 
-```python
-def dict_pfad(d, pfad, default):
-    for teil in pfad.split("."):
-        if not isinstance(d, dict) or teil not in d:
-            return default
-        d = d[teil]
-    return d
-```
-
 Pro Schritt:
 1. Prüfen, ob aktueller `d` ein Dict ist UND der Schlüssel drin.
 2. Falls nicht → default.
@@ -105,10 +96,6 @@ Pro Schritt:
 ## Stolperstein -- `False` vs. `default`
 
 Wer es so schreibt:
-
-```python
-return d.get(pfad, default)  # falsch für dotted!
-```
 
 bekommt es bei einer Ebene noch hin, aber nicht für Pfade. Und
 **`d.get` mit Default** unterscheidet nicht zwischen "Key da, Wert ist

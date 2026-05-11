@@ -84,25 +84,11 @@ Vielfache von k** rundet.
 
 ## Idee
 
-```python
-def runde_zu_vielfache(n, k):
-    if k <= 0:
-        return n
-    return round(n / k) * k
-```
-
 Der Trick: durch k teilen, runden, mit k multiplizieren.
 
 ## Banker's Rounding
 
 In Python rundet `round` bei `.5` auf die **gerade** Zahl:
-
-```python
-round(0.5)   # 0
-round(1.5)   # 2
-round(2.5)   # 2
-round(3.5)   # 4
-```
 
 Das ist statistisch fairer als immer aufrunden -- vermeidet **Bias**
 bei vielen Werten. In der Praxis gemerkenswert, wenn man "runden"

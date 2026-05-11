@@ -78,19 +78,6 @@ Wert** einer Liste zurückgibt.
 | `[1, 2, 3, 4, 5]`      | `1`   | alle 1x → kleinster    |
 | `[]`                   | `None`|                        |
 
-## Idee mit `collections.Counter`
-
-```python
-from collections import Counter
-
-def häufigster(zahlen):
-    if not zahlen:
-        return None
-    c = Counter(zahlen)
-    max_anzahl = max(c.values())
-    return min(k for k, v in c.items() if v == max_anzahl)
-```
-
 ## Tie-Breaking
 
 Standard-`Counter.most_common(1)` liefert bei Gleichstand das **zuerst

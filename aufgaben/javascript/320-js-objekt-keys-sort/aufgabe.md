@@ -62,10 +62,6 @@ Bei leerem Objekt → `[]`.
 
 ## Idee -- modernes JS
 
-```javascript
-const keysSortiert = (obj) => Object.keys(obj).sort();
-```
-
 `Object.keys(obj)` liefert ein Array aller eigenen, enumerable
 Keys -- immer als **Strings** (auch wenn die Keys Zahlen wären).
 `Array.sort()` sortiert in-place und liefert das sortierte Array
@@ -75,11 +71,6 @@ zurück.
 
 In JavaScript werden **numerische Keys** in Objekten automatisch
 zu Strings konvertiert UND iteriert in numerischer Reihenfolge:
-
-```javascript
-const o = {3: "c", 1: "a", 2: "b"};
-Object.keys(o);  // ["1", "2", "3"] -- nicht alphabetisch!
-```
 
 Das ist ein **historischer Quirk** von JavaScript. Bei rein
 numerischen Keys liefert `.sort()` lexikographisch (`["1","2","3"]`),

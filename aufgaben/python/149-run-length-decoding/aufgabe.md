@@ -79,19 +79,6 @@ Format: `<Zahl><Zeichen>` paarweise -- die Zahl kann mehrstellig sein.
 Einmal durchlaufen, Ziffern sammeln, beim ersten Nicht-Ziffer-Zeichen
 die Wiederholung erzeugen.
 
-```python
-def rle_decode(s):
-    teile = []
-    zahl = ""
-    for c in s:
-        if c.isdigit():
-            zahl += c
-        else:
-            teile.append(c * int(zahl))
-            zahl = ""
-    return "".join(teile)
-```
-
 ## Pendant: Encoding (Aufgabe 035)
 
 Encoding macht das Umgekehrte -- aus `"aaabbc"` wird `"3a2b1c"`. Wenn

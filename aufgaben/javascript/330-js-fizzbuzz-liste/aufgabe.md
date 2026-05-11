@@ -68,33 +68,11 @@ Regeln:
 
 ## Idee -- modernes JS
 
-```javascript
-function fizzbuzzListe(n) {
-    if (n <= 0) return [];
-    return Array.from({ length: n }, (_, i) => {
-        const k = i + 1;
-        if (k % 15 === 0) return "FizzBuzz";
-        if (k % 3 === 0) return "Fizz";
-        if (k % 5 === 0) return "Buzz";
-        return String(k);
-    });
-}
-```
-
 `Array.from({ length: n }, fn)` ist das **moderne Pattern** zum
 Erzeugen eines Arrays mit n Elementen, ohne `new Array(n).fill()`-
 Trick.
 
 ## Idee -- ternaer (kompakt)
-
-```javascript
-const fizzbuzzListe = (n) =>
-    Array.from({ length: n }, (_, i) => {
-        const k = i + 1;
-        const t = (k % 3 === 0 ? "Fizz" : "") + (k % 5 === 0 ? "Buzz" : "");
-        return t || String(k);
-    });
-```
 
 Schoener Pythonismus: leerer String ist falsy, also greift `||`.
 

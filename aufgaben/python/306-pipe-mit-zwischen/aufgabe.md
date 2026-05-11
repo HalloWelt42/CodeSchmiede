@@ -92,26 +92,6 @@ wird aber als Snapshot eingetragen).
 
 ## Idee
 
-```python
-OPS = {
-    "double": lambda x: x * 2,
-    "square": lambda x: x ** 2,
-    "negate": lambda x: -x,
-    "increment": lambda x: x + 1,
-    "absolute": abs,
-}
-
-
-def pipe_mit_zwischen(start, ops):
-    aktuell = start
-    out = []
-    for op in ops:
-        if op in OPS:
-            aktuell = OPS[op](aktuell)
-        out.append(aktuell)
-    return out
-```
-
 Pro Op: anwenden (oder bei unbekannt: überspringen) und Snapshot
 einsammeln.
 

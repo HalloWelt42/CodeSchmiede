@@ -87,23 +87,11 @@ Whitespace, Buchstaben, andere Laengen → `False`.
 
 ## Idee -- Regex
 
-```python
-import re
-
-def ist_plz(s):
-    return bool(re.fullmatch(r"\d{5}", s))
-```
-
 `re.fullmatch` erwartet, dass das **gesamte String** dem Pattern
 entspricht (im Gegensatz zu `match`, das nur am Anfang prüft).
 `\d{5}` heisst "genau 5 Ziffern".
 
 ## Variante ohne Regex
-
-```python
-def ist_plz(s):
-    return len(s) == 5 and s.isdigit()
-```
 
 Funktioniert auch -- `str.isdigit` schließt `' '` und Buchstaben aus.
 `len(s) == 5` hängt mit dran.

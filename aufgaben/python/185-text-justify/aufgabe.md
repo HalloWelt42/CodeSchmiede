@@ -84,17 +84,6 @@ Bei zentriert: wenn die Anzahl freier Stellen ungerade ist, ist
 
 ## Idee
 
-```python
-def ausrichten(text, breite, modus):
-    if modus == "links":
-        return text.ljust(breite)
-    if modus == "rechts":
-        return text.rjust(breite)
-    if modus == "zentriert":
-        return text.center(breite)
-    return text
-```
-
 `ljust`/`rjust`/`center` liefern den Originaltext unverändert
 zurück, wenn er bereits `>= breite` ist -- genau wie gewuenscht.
 

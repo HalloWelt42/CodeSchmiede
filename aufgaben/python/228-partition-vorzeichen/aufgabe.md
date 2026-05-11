@@ -79,44 +79,14 @@ Die Reihenfolge **innerhalb** jeder Teil-Liste bleibt wie im Original.
 
 ## Idee 1 -- Drei Comprehensions
 
-```python
-def partition_vorzeichen(zahlen):
-    return [
-        [x for x in zahlen if x < 0],
-        [x for x in zahlen if x == 0],
-        [x for x in zahlen if x > 0],
-    ]
-```
-
 Sehr lesbar -- aber die Liste wird **dreimal** durchlaufen.
 
 ## Idee 2 -- Eine Schleife
-
-```python
-def partition_vorzeichen(zahlen):
-    neg, null, pos = [], [], []
-    for x in zahlen:
-        if x < 0:
-            neg.append(x)
-        elif x == 0:
-            null.append(x)
-        else:
-            pos.append(x)
-    return [neg, null, pos]
-```
 
 Effizient -- bei sehr großen Listen merkbar schneller.
 
 ## Pattern -- Allgemeine Partition
 
 Die Idee laesst sich mit einem **Predicate** verallgemeinern:
-
-```python
-from itertools import groupby
-
-def partition_nach(liste, schlüssel):
-    sortiert = sorted(liste, key=schlüssel)
-    return {k: list(g) for k, g in groupby(sortiert, key=schlüssel)}
-```
 
 Geht in einer Zeile, wenn die Sortier-Reihenfolge egal ist.

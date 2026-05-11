@@ -78,27 +78,10 @@ Liste ihrer **Ziffern** zerlegt -- höchstwertige Stelle zuerst.
 
 ## Idee 1 -- per String
 
-```python
-def zu_ziffern(n):
-    return [int(c) for c in str(abs(n))]
-```
-
 Kürzeste Variante -- nutzt aus, dass `str` die Ziffern in
 **richtiger Reihenfolge** liefert.
 
 ## Idee 2 -- per Modulo
-
-```python
-def zu_ziffern(n):
-    n = abs(n)
-    if n == 0:
-        return [0]
-    out = []
-    while n > 0:
-        out.append(n % 10)
-        n //= 10
-    return list(reversed(out))
-```
 
 Das geht **ohne String-Konvertierung**. Wichtig: am Ende umdrehen,
 weil wir die niedrigste Stelle zuerst sammeln.

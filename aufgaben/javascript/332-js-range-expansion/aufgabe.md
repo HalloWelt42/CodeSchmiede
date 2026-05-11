@@ -66,41 +66,10 @@ Schreibe `bereichEntpacken(s)`, die einen Bereichs-String wie
 
 ## Idee
 
-```javascript
-function bereichEntpacken(s) {
-    if (!s) return [];
-    const out = [];
-    for (const stueck of s.split(",")) {
-        const idx = stueck.indexOf("-", 1);
-        if (idx > 0) {
-            const a = parseInt(stueck.slice(0, idx), 10);
-            const b = parseInt(stueck.slice(idx + 1), 10);
-            for (let i = a; i <= b; i++) out.push(i);
-        } else {
-            out.push(parseInt(stueck, 10));
-        }
-    }
-    return out;
-}
-```
-
 `indexOf("-", 1)` sucht ab Index 1 -- damit greift ein fuehrendes
 Minus (negative Untergrenze) nicht als Trenner.
 
 ## Variante mit Array.from + Spread
-
-```javascript
-const bereichEntpacken = (s) => {
-    if (!s) return [];
-    return s.split(",").flatMap((stueck) => {
-        const idx = stueck.indexOf("-", 1);
-        if (idx <= 0) return [parseInt(stueck, 10)];
-        const a = parseInt(stueck.slice(0, idx), 10);
-        const b = parseInt(stueck.slice(idx + 1), 10);
-        return Array.from({ length: b - a + 1 }, (_, i) => a + i);
-    });
-};
-```
 
 `flatMap` ist die elegante Form, wenn pro Element 0..n Ergebnisse
 geliefert werden.
