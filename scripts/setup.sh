@@ -48,10 +48,14 @@ echo "  OK"
 echo
 echo "=== Fertig ==="
 echo
-echo "Backend starten:"
-echo "  cd backend && .venv/bin/python -m codeschmiede.main"
+echo "Schnellster Start (beide Server in einem Schritt):"
+echo "  $SCRIPT_DIR/start.sh"
 echo
-echo "Frontend starten (in einem zweiten Terminal):"
-echo "  cd frontend && npm run dev"
+echo "Oder einzeln:"
+echo "  cd $ROOT_DIR/backend && .venv/bin/python -m codeschmiede.main"
+echo "  cd $ROOT_DIR/frontend && npm run dev -- --port 5184"
 echo
-echo "Browser: http://localhost:5184"
+echo "Oder vollstaendig dockerisiert:"
+echo "  cd $ROOT_DIR && docker compose up -d  # Browser dann auf http://localhost:8201"
+echo
+echo "Lokale Entwicklung -- Browser: http://localhost:5184"
