@@ -1,0 +1,1 @@
+SELECT bestellung_id, ROUND(SUM(menge * einzelpreis), 2) AS umsatz, ROUND(100.0 * SUM(menge * einzelpreis) / SUM(SUM(menge * einzelpreis)) OVER (), 2) AS prozent FROM bestellpositionen GROUP BY bestellung_id ORDER BY umsatz DESC, bestellung_id;

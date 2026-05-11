@@ -1,0 +1,1 @@
+SELECT k.name AS kategorie, ROUND(SUM(p.menge * p.einzelpreis), 2) AS umsatz FROM bestellpositionen p JOIN produkte pr ON p.produkt_id = pr.id JOIN kategorien k ON pr.kategorie_id = k.id GROUP BY k.id, k.name ORDER BY umsatz DESC, k.name;

@@ -1,0 +1,1 @@
+SELECT l.name, l.alter_jahre, COUNT(a.id) AS ausleihen FROM leser l LEFT JOIN ausleihen a ON a.leser_id = l.id WHERE l.alter_jahre < 35 GROUP BY l.id, l.name, l.alter_jahre HAVING COUNT(a.id) >= 1 ORDER BY ausleihen DESC, l.name;

@@ -1,0 +1,1 @@
+SELECT id, kunde_id, bestellt_am, CAST(julianday(bestellt_am) - julianday(LAG(bestellt_am) OVER (PARTITION BY kunde_id ORDER BY bestellt_am)) AS INTEGER) AS tage_seit_letzter FROM bestellungen ORDER BY kunde_id, bestellt_am;

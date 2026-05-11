@@ -1,0 +1,1 @@
+SELECT k.name, ROUND(SUM(p.menge * p.einzelpreis), 2) AS umsatz FROM bestellpositionen p JOIN bestellungen b ON p.bestellung_id = b.id JOIN kunden k ON b.kunde_id = k.id GROUP BY k.id, k.name HAVING SUM(p.menge * p.einzelpreis) > 30 ORDER BY umsatz DESC, k.name;
