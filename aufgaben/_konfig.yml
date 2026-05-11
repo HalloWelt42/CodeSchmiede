@@ -34,6 +34,10 @@ sprachen:
     titel: JavaScript
     editor_lang: javascript
     runner_type: webworker_js
+  - id: css
+    titel: CSS
+    editor_lang: css
+    runner_type: iframe_css
 
 aufgabentypen:
   - id: code_schreiben
@@ -52,3 +56,7 @@ aufgabentypen:
     titel: Lückentext
     view: lueckentext
     beschreibung: Code mit Platzhaltern (___1___, ___2___) -- fuelle die Luecken aus.
+  - id: css_klon
+    titel: CSS-Klon
+    view: css_klon
+    beschreibung: Visuelles Ziel ist gegeben -- schreibe das CSS, das den selben Look erzeugt.

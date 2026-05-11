@@ -1,0 +1,14 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 400px;
+}
+.zelle {
+  background: rgb(45, 212, 191);
+  color: rgb(26, 29, 35);
+  padding: 24px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 4px;
+}

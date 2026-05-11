@@ -21,6 +21,7 @@
   import type { SubmissionAntwort, VerlaufEintrag } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
+  import CssKlonView from './CssKlonView.svelte';
   import EditorBereich from './EditorBereich.svelte';
   import LueckentextView from './LueckentextView.svelte';
   import OutputBereich from './OutputBereich.svelte';
@@ -322,6 +323,8 @@
       <OutputQuizView {detail} />
     {:else if detail.task_type === 'lueckentext'}
       <LueckentextView {detail} />
+    {:else if detail.task_type === 'css_klon'}
+      <CssKlonView {detail} />
     {:else}
       {#if detail.task_type === 'bug_finden'}
         <div class="bug-banner">
