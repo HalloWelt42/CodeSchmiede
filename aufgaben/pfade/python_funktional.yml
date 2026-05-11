@@ -14,3 +14,11 @@ reihenfolge:
   - 304-compose-zwei
   - 305-curry-add
   - 306-pipe-mit-zwischen
+  - 307-zaehler-bis-n
+  - 308-fibonacci-bis-n-gen
+  - 309-primzahlen-gen
+  - 310-pairwise
+  - 311-take-while-positiv
+  - 312-drop-while-null
+  - 313-accumulate-summe
+  - 314-chain-mit-trenner
