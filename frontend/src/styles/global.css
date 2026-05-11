@@ -184,6 +184,17 @@ button:focus-visible {
 }
 button:disabled { opacity: 0.45; cursor: not-allowed; }
 
+/* Icon-only Buttons: einziges Kind ist ein <i>-Element. Per :has zentrieren
+   wir Icon und Text-Baseline sauber, ohne in jeder Komponente extra
+   display:inline-flex schreiben zu muessen. */
+button:has(> i:only-child) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+button:has(> i:only-child) > i { display: block; }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 

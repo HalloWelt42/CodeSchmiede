@@ -12,6 +12,7 @@
   import type { PfadEintrag } from '../api/AdminApi';
   import { progressApi } from '../api/ProgressApi';
   import { progressStore } from '../stores/ProgressStore.svelte';
+  import { konfig } from '../stores/KonfigStore.svelte';
   import type { VerwaltungsEintrag } from '../types/Admin';
   import { route } from '../stores/RouteStore.svelte';
   import AufgabeEditor from './AufgabeEditor.svelte';
@@ -287,7 +288,7 @@
 
             <div class="meta">
               <span class="badge">{e.sprache}</span>
-              <span class="badge schw-{e.schwierigkeit}">{e.schwierigkeit}</span>
+              <span class="badge schw-{e.schwierigkeit}">{konfig.schwierigkeitTitel(e.schwierigkeit)}</span>
               <span class="badge num">{e.schwierigkeit_score}</span>
               <span class="badge revision">rev {e.revision}</span>
               <span class="badge lizenz">{e.lizenz}</span>
@@ -726,11 +727,16 @@
   .action {
     width: 32px;
     height: 32px;
+    padding: 0;
     background: transparent;
     border: 1px solid var(--border);
     color: var(--fg-dim);
     border-radius: var(--radius-sm);
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
   .action:hover {
     color: var(--accent);
