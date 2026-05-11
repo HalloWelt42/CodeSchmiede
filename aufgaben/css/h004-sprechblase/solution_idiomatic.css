@@ -1,0 +1,20 @@
+.blase {
+  position: relative;
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  border-radius: 12px;
+  font-weight: 600;
+}
+.blase::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #2dd4bf;
+}

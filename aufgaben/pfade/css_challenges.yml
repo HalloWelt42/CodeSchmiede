@@ -1,0 +1,21 @@
+id: css_challenges
+titel: CSS-Herausforderungen
+beschreibung: |
+  6 Mini-Aufgaben im CSSBattle-Stil: ein simples visuelles Ziel mit
+  moeglichst wenig Mitteln. Lehrziel: kreatives Property-Repertoire,
+  Pseudo-Elemente, Gradients, Border-Tricks.
+
+  Reihenfolge:
+    01  Halbkreis nur mit border-radius
+    02  Pfeil aus transparenten Borders (CSS-Triangle-Trick)
+    03  Diagonaler linear-gradient
+    04  Sprechblase mit ::after-Spitze
+    05  Schachbrett-Hintergrund per repeating-Gradient
+    06  Zweifarbiger Kreis (Halbierung mit hartem Gradient-Stop)
+reihenfolge:
+  - h001-halbkreis
+  - h002-pfeil-border
+  - h003-verlauf-diagonal
+  - h004-sprechblase
+  - h005-schachbrett
+  - h006-zwei-tone-kreis

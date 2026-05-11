@@ -1,0 +1,45 @@
+.track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 480px;
+  padding: 8px 12px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  border-radius: 6px;
+}
+.cover {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.titel {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kuenstler {
+  font-size: 13px;
+  color: #9ca3af;
+}
+.dauer {
+  font-family: monospace;
+  font-size: 13px;
+  color: #9ca3af;
+  flex-shrink: 0;
+}

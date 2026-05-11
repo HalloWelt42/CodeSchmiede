@@ -1,0 +1,53 @@
+.repo {
+  width: 480px;
+  padding: 16px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  border: 1px solid #3a4049;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.kopf {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.name {
+  color: #2dd4bf;
+  font-weight: 600;
+  font-size: 16px;
+  margin-right: auto;
+}
+.sichtbar {
+  font-size: 11px;
+  padding: 2px 8px;
+  border: 1px solid #3a4049;
+  border-radius: 999px;
+  color: #9ca3af;
+  text-transform: uppercase;
+}
+.bschr {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 14px;
+}
+.meta {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+.sprache {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.punkt {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fbbf24;
+  display: inline-block;
+}

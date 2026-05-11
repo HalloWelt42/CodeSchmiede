@@ -1,0 +1,6 @@
+.halbkreis {
+  width: 120px;
+  height: 60px;
+  background-color: #2dd4bf;
+  border-radius: 120px 120px 0 0;
+}

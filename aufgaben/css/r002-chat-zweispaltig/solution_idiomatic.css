@@ -1,0 +1,39 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 480px;
+  padding: 16px;
+  background-color: #1a1d23;
+}
+.zeile {
+  display: flex;
+  gap: 8px;
+}
+.zeile.eigen {
+  justify-content: flex-end;
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #fb923c;
+  color: #1a1d23;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.bubble {
+  padding: 8px 12px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  border-radius: 12px 12px 12px 4px;
+  max-width: 240px;
+}
+.bubble.selber {
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  border-radius: 12px 12px 4px 12px;
+}

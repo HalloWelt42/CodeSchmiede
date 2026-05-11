@@ -1,0 +1,21 @@
+id: css_reproduktionen
+titel: Bekannte UI-Patterns nachbauen
+beschreibung: |
+  6 Reproduktions-Aufgaben: typische UI-Komponenten aus echten Apps
+  nachbauen. Eigene Versionen (keine Marken-Logos), aber visuell wieder-
+  erkennbar -- damit du das Gelernte in realem Kontext anwendest.
+
+  Reihenfolge:
+    01  Repository-Karte mit Header + Beschreibung + Meta-Footer
+    02  Chat-Dialog mit eigener und fremder Nachricht (asymmetrische Bubbles)
+    03  Musik-Track-Zeile mit Truncation-Trick fuer lange Titel
+    04  Issue-Tracker-Zeile mit Status-Punkt + Labels + Prioritaet
+    05  Einstellungs-Zeile mit Toggle-Switch (Schiene + absoluter Knopf)
+    06  Dashboard-KPI-Trio mit Trend-Anzeige (gruen/rot)
+reihenfolge:
+  - r001-repo-karte
+  - r002-chat-zweispaltig
+  - r003-track-reihe
+  - r004-issue-zeile
+  - r005-einstellungs-reihe
+  - r006-stat-trio
