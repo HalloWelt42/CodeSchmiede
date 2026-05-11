@@ -11,10 +11,18 @@ reihenfolge:
   - 046-camel-zu-snake
   - 047-substring-anzahl
   - 048-laengstes-wort
+  - 148-woerter-umkehren
   - 077-hamming-distanz
+  - 139-levenshtein
   - 078-pangram
   - 079-isogram
   - 081-scrabble
+  - 145-tausender-trennzeichen
+  - 130-zahl-zu-text
   - 110-eindeutige-teilstrings
   - 119-anagramm-finder
   - 120-trennzeichen-akronym
+  - 126-laengster-praefix
+  - 136-rindex-eigen
+  - 142-look-and-say
+  - 149-run-length-decoding

@@ -7,9 +7,16 @@ beschreibung: |
   Klassiker, die seit Jahren in Bewerbungsgesprächen vorkommen.
 reihenfolge:
   - 053-two-sum
+  - 163-zwei-summe-sortiert
   - 054-sliding-summe
   - 055-prefix-summe
+  - 176-max-subarray
   - 056-laengste-aufsteigende
   - 057-paare-mit-summe
+  - 170-drei-summe-null
   - 112-groesste-luecke
   - 118-sublist
+  - 123-listen-merge
+  - 137-naechste-permutation
+  - 140-fisher-yates
+  - 177-trapped-water

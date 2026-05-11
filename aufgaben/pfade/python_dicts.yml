@@ -9,6 +9,7 @@ beschreibung: |
 reihenfolge:
   - 022-wortzaehler
   - 024-zeichen-haeufigkeit
+  - 162-haeufigster-wert
   - 023-dict-invertieren
   - 091-etl
   - 109-anagramm-gruppen

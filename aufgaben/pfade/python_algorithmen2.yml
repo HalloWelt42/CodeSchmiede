@@ -11,9 +11,13 @@ reihenfolge:
   - 051-merge-sort
   - 052-quicksort
   - 115-klammer-balance
+  - 134-klammer-tiefe
   - 107-rpn-rechner
   - 108-permutationen
   - 113-baum-aus-eltern
   - 101-zwei-eimer
   - 114-grid-kuerzester-weg
   - 122-flash-karten
+  - 165-tuerme-von-hanoi
+  - 143-coin-change
+  - 166-subset-sum

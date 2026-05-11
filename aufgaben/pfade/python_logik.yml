@@ -8,7 +8,9 @@ beschreibung: |
   Multiplikations-Tabelle und Magischem Quadrat.
 reihenfolge:
   - 061-tictactoe
+  - 147-stein-schere-papier
   - 062-matrix-transponieren
+  - 153-matrix-rotieren
   - 063-spalten-summe
   - 064-diagonale-summe
   - 065-magisches-quadrat
@@ -16,8 +18,10 @@ reihenfolge:
   - 089-bob-antwort
   - 095-multiplikations-tabelle
   - 097-spirale-matrix
+  - 155-spiralmatrix
   - 098-diamond-muster
   - 099-saddle-points
   - 100-yacht-wurf
   - 102-roboter-name
   - 103-bier-lied
+  - 168-kassen-wechsel

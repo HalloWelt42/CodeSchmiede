@@ -11,5 +11,8 @@ reihenfolge:
   - 105-vigenere
   - 073-luhn
   - 074-isbn
+  - 128-ipv4-validierung
+  - 129-passwort-staerke
   - 093-binary-zu-decimal
   - 094-decimal-zu-binary
+  - 159-bit-zaehlen

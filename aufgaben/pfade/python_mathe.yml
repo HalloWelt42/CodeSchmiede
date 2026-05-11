@@ -9,8 +9,17 @@ reihenfolge:
   - 016-quersumme
   - 017-fakultaet
   - 018-ggt
+  - 124-ggt-multi
+  - 125-kgv
   - 019-primfaktoren
+  - 138-alle-teiler
   - 021-potenz
+  - 133-letzte-ziffer-potenz
   - 020-collatz
   - 111-collatz-pfad
+  - 169-laenger-collatz
   - 092-fibonacci-folge
+  - 131-gauss-summe
+  - 167-digital-root
+  - 151-schnapszahl
+  - 160-zinseszins

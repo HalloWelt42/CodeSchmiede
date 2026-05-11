@@ -6,5 +6,8 @@ beschreibung: |
   rasend schnell und machen viele Listenprobleme zu One-Linern.
 reihenfolge:
   - 025-set-schnitt
+  - 171-schnitt-zweier-listen
   - 026-set-differenz
+  - 172-differenz-zweier-listen
   - 027-eindeutige-reihenfolge
+  - 173-kartesisches-produkt

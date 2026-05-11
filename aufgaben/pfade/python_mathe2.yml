@@ -9,6 +9,7 @@ reihenfolge:
   - 040-perfekte-zahl
   - 041-befreundet
   - 042-armstrong
+  - 141-happy-number
   - 043-roemisch-zu-int
   - 044-int-zu-roemisch
   - 084-pythagoras-tripel
@@ -16,4 +17,8 @@ reihenfolge:
   - 086-quadrat-summen-differenz
   - 096-groesstes-produkt
   - 106-pascal-dreieck
+  - 132-binomialkoeffizient
   - 121-nte-primzahl
+  - 127-primzahlen-bis-n-zahl
+  - 144-goldbach-paar
+  - 135-fakultaet-stellen
