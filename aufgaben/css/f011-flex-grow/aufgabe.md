@@ -19,9 +19,9 @@ autor: HalloWelt42
 erstellt_am: 2026-05-11
 zeitlimit_sekunden: 5
 ziel_html: |
-  <div class="teich"><div class="frosch fest">A</div><div class="frosch flex">B (waechst)</div><div class="frosch fest">C</div></div>
+  <div class="bahn"><div class="kachel fest">A</div><div class="kachel flex">B (waechst)</div><div class="kachel fest">C</div></div>
 ziel_css: |
-  .teich {
+  .bahn {
     display: flex;
     width: 400px;
     height: 100px;
@@ -29,7 +29,7 @@ ziel_css: |
     padding: 8px;
     gap: 8px;
   }
-  .frosch {
+  .kachel {
     height: 60px;
     background-color: #2dd4bf;
     color: #1a1d23;
@@ -48,7 +48,7 @@ asserts:
   - selector: ".flex"
     property: flex-grow
     expected: "1"
-  - selector: ".teich"
+  - selector: ".bahn"
     property: display
     expected: "flex"
 hints:
@@ -60,7 +60,7 @@ hints:
     text: |
       Setze auf `.flex`: `flex-grow: 1;`
 starter_code: |
-  .teich {
+  .bahn {
     display: flex;
     width: 400px;
     height: 100px;
@@ -68,7 +68,7 @@ starter_code: |
     padding: 8px;
     gap: 8px;
   }
-  .frosch {
+  .kachel {
     height: 60px;
     background-color: #2dd4bf;
     color: #1a1d23;

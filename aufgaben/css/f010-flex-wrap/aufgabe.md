@@ -19,16 +19,16 @@ autor: HalloWelt42
 erstellt_am: 2026-05-11
 zeitlimit_sekunden: 5
 ziel_html: |
-  <div class="teich"><div class="frosch a">A</div><div class="frosch b">B</div><div class="frosch c">C</div><div class="frosch d">D</div></div>
+  <div class="bahn"><div class="kachel a">A</div><div class="kachel b">B</div><div class="kachel c">C</div><div class="kachel d">D</div></div>
 ziel_css: |
-  .teich {
+  .bahn {
     width: 400px;
     height: 120px;
     background-color: #22262d;
     border: 1px solid #3a4049;
     padding: 8px;
   }
-  .frosch {
+  .kachel {
     width: 60px;
     height: 60px;
     background-color: #2dd4bf;
@@ -39,15 +39,15 @@ ziel_css: |
     font-weight: 700;
     margin: 4px;
   }
-  .teich {
+  .bahn {
     display: flex;
     flex-wrap: wrap;
   }
 asserts:
-  - selector: ".teich"
+  - selector: ".bahn"
     property: display
     expected: "flex"
-  - selector: ".teich"
+  - selector: ".bahn"
     property: flex-wrap
     expected: "wrap"
 hints:
@@ -60,20 +60,20 @@ hints:
       `display: flex;
         flex-wrap: wrap;`
 starter_code: |
-  .teich {
+  .bahn {
     display: flex;
     /* erlauben, dass Items in neue Zeilen umbrechen */
   }
 ---
 
-# Flexbox 10: Vier Froesche, der vierte landet in einer zweiten Zeile, weil er nicht mehr in die erste passt
+# Flexbox 10: Vier Kacheln, der vierte landet in einer zweiten Zeile, weil er nicht mehr in die erste passt
 
 ## Aufgabe
 
-Im Teich-Rahmen sollen die drei Froesche so angeordnet werden, dass
+Im Bahn-Rahmen sollen die drei Kacheln so angeordnet werden, dass
 **vier froesche, der vierte landet in einer zweiten zeile, weil er nicht mehr in die erste passt**.
 
-Schreib **nur** die fehlende Flexbox-Anweisung in `.teich` -- der Rest
+Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` -- der Rest
 (Größe, Farbe, Quadrate) ist schon da.
 
 ## Aha

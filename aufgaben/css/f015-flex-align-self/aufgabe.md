@@ -19,9 +19,9 @@ autor: HalloWelt42
 erstellt_am: 2026-05-11
 zeitlimit_sekunden: 5
 ziel_html: |
-  <div class="teich"><div class="frosch">A</div><div class="frosch oben">B (oben)</div><div class="frosch">C</div></div>
+  <div class="bahn"><div class="kachel">A</div><div class="kachel oben">B (oben)</div><div class="kachel">C</div></div>
 ziel_css: |
-  .teich {
+  .bahn {
     display: flex;
     align-items: center;
     width: 400px;
@@ -30,7 +30,7 @@ ziel_css: |
     padding: 8px;
     gap: 8px;
   }
-  .frosch {
+  .kachel {
     width: 80px;
     height: 60px;
     background-color: #2dd4bf;
@@ -45,7 +45,7 @@ ziel_css: |
     background-color: #fb923c;
   }
 asserts:
-  - selector: ".teich"
+  - selector: ".bahn"
     property: align-items
     expected: "center"
   - selector: ".oben"
@@ -60,7 +60,7 @@ hints:
     text: |
       Setze auf `.oben`: `align-self: flex-start;`
 starter_code: |
-  .teich {
+  .bahn {
     display: flex;
     align-items: center;
     width: 400px;
@@ -69,7 +69,7 @@ starter_code: |
     padding: 8px;
     gap: 8px;
   }
-  .frosch {
+  .kachel {
     width: 80px;
     height: 60px;
     background-color: #2dd4bf;
@@ -89,7 +89,7 @@ starter_code: |
 
 ## Aufgabe
 
-Der Teich richtet alle Froesche vertikal **mittig** aus.
+Der Bahn richtet alle Kacheln vertikal **mittig** aus.
 **B soll als Ausnahme oben kleben** -- während A und C in der Mitte
 bleiben.
 

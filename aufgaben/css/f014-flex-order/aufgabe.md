@@ -19,9 +19,9 @@ autor: HalloWelt42
 erstellt_am: 2026-05-11
 zeitlimit_sekunden: 5
 ziel_html: |
-  <div class="teich"><div class="frosch">A</div><div class="frosch vorne">B (zuerst)</div><div class="frosch">C</div></div>
+  <div class="bahn"><div class="kachel">A</div><div class="kachel vorne">B (zuerst)</div><div class="kachel">C</div></div>
 ziel_css: |
-  .teich {
+  .bahn {
     display: flex;
     width: 400px;
     height: 80px;
@@ -29,7 +29,7 @@ ziel_css: |
     padding: 8px;
     gap: 8px;
   }
-  .frosch {
+  .kachel {
     width: 80px;
     height: 60px;
     background-color: #2dd4bf;
@@ -56,7 +56,7 @@ hints:
     text: |
       Setze auf `.vorne`: `order: -1;`
 starter_code: |
-  .teich {
+  .bahn {
     display: flex;
     width: 400px;
     height: 80px;
@@ -64,7 +64,7 @@ starter_code: |
     padding: 8px;
     gap: 8px;
   }
-  .frosch {
+  .kachel {
     width: 80px;
     height: 60px;
     background-color: #2dd4bf;

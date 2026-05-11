@@ -1,0 +1,31 @@
+id: css_grid
+titel: CSS-Grid Lernpfad
+beschreibung: |
+  12 Grid-Aufgaben mit progressivem Aufbau: vom Aktivieren des
+  Rasters bis zur responsiven Galerie ohne eine Media-Query.
+  Jede Aufgabe lehrt EIN neues Konzept, mit Aha-Notiz und Praxis-Bezug.
+
+  Reihenfolge:
+    01     display: grid einschalten
+    02-03  Spalten festlegen (Pixel + fr-Verhaeltnis)
+    04     gap zwischen Zellen
+    05     repeat() fuer Wiederholungen
+    06-07  Einzelne Zellen ueber mehrere Spalten ziehen (span / explizit)
+    08     grid-template-rows
+    09     2D-Positionierung mit grid-row + grid-column
+    10     Benannte Bereiche per grid-template-areas
+    11     minmax() fuer untere/obere Grenzen
+    12     auto-fit + minmax -- das wichtigste Pattern in modernem CSS
+reihenfolge:
+  - g001-grid-aktivieren
+  - g002-grid-feste-breiten
+  - g003-grid-fr-verteilung
+  - g004-grid-luecken
+  - g005-grid-repeat
+  - g006-grid-span-zwei
+  - g007-grid-spalten-bereich
+  - g008-grid-rows
+  - g009-grid-zwei-dimensionen
+  - g010-grid-areas
+  - g011-grid-minmax
+  - g012-grid-auto-fit

@@ -19,9 +19,9 @@ autor: HalloWelt42
 erstellt_am: 2026-05-11
 zeitlimit_sekunden: 5
 ziel_html: |
-  <div class="teich"><div class="frosch">A</div><div class="frosch breit">B (Basis 200px)</div><div class="frosch">C</div></div>
+  <div class="bahn"><div class="kachel">A</div><div class="kachel breit">B (Basis 200px)</div><div class="kachel">C</div></div>
 ziel_css: |
-  .teich {
+  .bahn {
     display: flex;
     width: 400px;
     height: 80px;
@@ -29,7 +29,7 @@ ziel_css: |
     padding: 8px;
     gap: 8px;
   }
-  .frosch {
+  .kachel {
     height: 60px;
     background-color: #2dd4bf;
     color: #1a1d23;
@@ -57,7 +57,7 @@ hints:
     text: |
       Setze auf `.breit`: `flex-basis: 200px;`
 starter_code: |
-  .teich {
+  .bahn {
     display: flex;
     width: 400px;
     height: 80px;
@@ -65,7 +65,7 @@ starter_code: |
     padding: 8px;
     gap: 8px;
   }
-  .frosch {
+  .kachel {
     height: 60px;
     background-color: #2dd4bf;
     color: #1a1d23;
@@ -85,7 +85,7 @@ starter_code: |
 
 ## Aufgabe
 
-Alle drei Froesche starten mit 60px Basis. **Der mittlere
+Alle drei Kacheln starten mit 60px Basis. **Der mittlere
 soll mit 200px starten** -- er nimmt damit von Anfang an mehr Platz ein.
 
 ## Aha

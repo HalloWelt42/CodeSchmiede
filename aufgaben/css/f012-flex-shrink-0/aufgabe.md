@@ -19,9 +19,9 @@ autor: HalloWelt42
 erstellt_am: 2026-05-11
 zeitlimit_sekunden: 5
 ziel_html: |
-  <div class="teich"><div class="frosch">A</div><div class="frosch fix">B (bleibt)</div><div class="frosch">C</div></div>
+  <div class="bahn"><div class="kachel">A</div><div class="kachel fix">B (bleibt)</div><div class="kachel">C</div></div>
 ziel_css: |
-  .teich {
+  .bahn {
     display: flex;
     width: 280px;
     height: 80px;
@@ -29,7 +29,7 @@ ziel_css: |
     padding: 8px;
     gap: 8px;
   }
-  .frosch {
+  .kachel {
     width: 120px;
     height: 60px;
     background-color: #2dd4bf;
@@ -56,7 +56,7 @@ hints:
     text: |
       Setze auf `.fix`: `flex-shrink: 0;`
 starter_code: |
-  .teich {
+  .bahn {
     display: flex;
     width: 280px;
     height: 80px;
@@ -64,7 +64,7 @@ starter_code: |
     padding: 8px;
     gap: 8px;
   }
-  .frosch {
+  .kachel {
     width: 120px;
     height: 60px;
     background-color: #2dd4bf;
@@ -84,7 +84,7 @@ starter_code: |
 
 ## Aufgabe
 
-Die drei Froesche wollen 120px breit sein, der Teich ist aber
+Die drei Kacheln wollen 120px breit sein, der Bahn ist aber
 nur 280px breit. Standardmaessig schrumpfen alle drei. **B (in der Mitte)
 soll aber seine volle Breite behalten** -- A und C schrumpfen dafür.
 

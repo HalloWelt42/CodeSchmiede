@@ -1,0 +1,16 @@
+.setzkasten {
+  width: 360px;
+  background-color: #22262d;
+  border: 1px solid #3a4049;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.kachel {
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  padding: 12px;
+  font-weight: 700;
+  text-align: center;
+}

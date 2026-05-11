@@ -1,4 +1,4 @@
-.teich {
+.bahn {
   display: flex;
   width: 400px;
   height: 100px;
@@ -6,7 +6,7 @@
   padding: 8px;
   gap: 8px;
 }
-.frosch {
+.kachel {
   height: 60px;
   background-color: #2dd4bf;
   color: #1a1d23;
