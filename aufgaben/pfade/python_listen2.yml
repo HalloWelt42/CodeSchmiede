@@ -1,0 +1,42 @@
+id: python_listen2
+titel: "Python-Listen erweitert"
+beschreibung: |
+  Weitere 37 Listen-Aufgaben aus den jüngeren Chargen -- Indizes, Slicing, Partitionierung, Filterung, Sortierung nach Eigenschaft, Rotation, Range-Expansion, Permutationen.
+reihenfolge:
+  - 070-bug-summe
+  - 181-sudoku-zeile
+  - 215-dict-aus-paaren
+  - 219-vereinigung
+  - 220-symmetrische-differenz
+  - 221-vorkommen-zaehlen
+  - 222-alle-gleich
+  - 223-index-aller-treffer
+  - 224-min-max-index
+  - 227-zip-mit-fuellwert
+  - 228-partition-vorzeichen
+  - 230-ist-aufsteigend
+  - 231-alle-positiv
+  - 232-irgendein-negativ
+  - 233-zwei-tausch
+  - 234-laenge-rekursiv
+  - 235-erste-n
+  - 236-letzte-n
+  - 237-paare-aus-liste
+  - 238-gerade-filter
+  - 239-ungerade-filter
+  - 240-wechsel-zaehlen
+  - 242-erstes-positives
+  - 244-gleitender-mittelwert
+  - 246-bereich-zaehlen
+  - 248-alle-rotationen
+  - 249-bereich-filtern
+  - 250-einzigartige-werte
+  - 258-liste-halbieren
+  - 264-kassenbon-summe
+  - 315-itertools-combinations
+  - 316-counter-most-common
+  - 323-power-set
+  - 329-fizzbuzz-liste
+  - 335-general-fizzbuzz
+  - 339-josephus
+  - 341-equilibrium-index

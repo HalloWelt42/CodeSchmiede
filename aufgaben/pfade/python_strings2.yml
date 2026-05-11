@@ -1,0 +1,36 @@
+id: python_strings2
+titel: "Python-Strings erweitert"
+beschreibung: |
+  Weitere 31 String-Aufgaben: Parsing (Range-Notation, IP-Adressen, Bisexagesimal), Codieren/Dekodieren (Morse, URL, HTML-Escape, Leetspeak), Formatieren und Wort-Manipulation.
+reihenfolge:
+  - 154-zahl-umkehren-int
+  - 180-string-add
+  - 185-text-justify
+  - 187-morse-encode
+  - 188-morse-decode
+  - 189-html-escape
+  - 190-leetspeak
+  - 197-hex-zu-rgb
+  - 198-rgb-zu-hex
+  - 199-kebab-case
+  - 203-plural
+  - 204-ascii-rahmen
+  - 209-zahl-zu-prozent
+  - 210-prozent-zu-zahl
+  - 211-zahl-zu-ziffern
+  - 213-woerter-zaehlen
+  - 214-text-wiederholen
+  - 226-zentrieren-padchar
+  - 229-sortieren-nach-laenge
+  - 241-eigenes-join
+  - 243-zeilen-umkehren
+  - 251-laengstes-gemeinsames-substring
+  - 256-woerter-laenger-als
+  - 257-woerter-kuerzer-als
+  - 259-aufzaehlung-und
+  - 260-ip-zu-zahlen
+  - 261-zahlen-zu-ip
+  - 318-defaultdict-gruppen
+  - 331-range-expansion
+  - 333-string-zahl-inkrement
+  - 345-url-encode

@@ -1,0 +1,34 @@
+id: javascript_grundlagen
+titel: "JavaScript-Grundlagen"
+beschreibung: |
+  17 JavaScript-Aufgaben, die modernes Vokabular ueben: Array-Methoden
+  (reduce, filter, map, Set), Object-Operationen, Template-Strings,
+  Spread/Rest, Recursion. Die Aufgaben laufen clientseitig im Web-Worker
+  und sind paarweise mit der jeweiligen Python-Aufgabe (gleiche
+  Nummer ohne -js) verbunden -- so sieht man dasselbe Problem in beiden
+  Sprachen.
+
+  Themen:
+    Array-Methoden    Summe via reduce, Dedupe via Set, FizzBuzz-Liste
+    String-Verarbeitung Buchstaben zaehlen, Range-Notation, URL-Encode
+    Mathematik        Quadrate, Tau, Padovan, Map-Range, Josephus
+    Algorithmen       Power-Set, Equilibrium-Index, General-FizzBuzz
+    Klassiker         Inkrement-String, einfaches Quadrat
+reihenfolge:
+  - 072-js-quadrat
+  - 319-js-array-summe
+  - 320-js-objekt-keys-sort
+  - 321-js-array-deduplikat
+  - 322-js-buchstaben-zaehlen
+  - 324-js-power-set
+  - 326-js-summe-quadrate
+  - 328-js-tau-funktion
+  - 330-js-fizzbuzz-liste
+  - 332-js-range-expansion
+  - 334-js-string-zahl-inkrement
+  - 336-js-general-fizzbuzz
+  - 338-js-map-range
+  - 340-js-josephus
+  - 342-js-equilibrium-index
+  - 344-js-padovan-folge
+  - 346-js-url-encode

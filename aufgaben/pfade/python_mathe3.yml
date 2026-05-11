@@ -1,0 +1,30 @@
+id: python_mathe3
+titel: "Python-Mathematik erweitert"
+beschreibung: |
+  Weitere 25 Mathe-Aufgaben: Zahlentheorie (Primzahlen, Teiler, GGT), Geometrie-Berechnungen, Statistik (Vorzeichen, Mittelwerte) und klassische numerische Algorithmen.
+reihenfolge:
+  - 179-zweierpotenz
+  - 182-trinkgeld-aufteilen
+  - 194-bmi
+  - 196-celsius-fahrenheit
+  - 200-euklid-ggt
+  - 201-quadratzahl-pruefen
+  - 202-dreieckszahl
+  - 205-matrix-mal-skalar
+  - 206-matrix-mal-matrix
+  - 207-skalarprodukt
+  - 208-vektor-betrag
+  - 212-ziffern-zu-zahl
+  - 216-standardabweichung
+  - 217-geometrisches-mittel
+  - 218-harmonisches-mittel
+  - 225-produkt-elemente
+  - 245-ackermann
+  - 247-runden-zu-vielfache
+  - 252-ceil-zu-vielfache
+  - 253-floor-zu-vielfache
+  - 266-vorzeichen
+  - 325-summe-quadrate
+  - 327-tau-funktion
+  - 337-map-range
+  - 343-padovan-folge

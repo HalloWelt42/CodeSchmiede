@@ -1,0 +1,16 @@
+id: python_diverses
+titel: "Python-Diverses"
+beschreibung: |
+  Aufgaben aus Themen, die noch nicht genug eigene Aufgaben haben, um einen ganzen Pfad zu fuellen: Datum/Zeit, Matrix-Operationen, Klassen-Einsatz, Bit-Operationen, Quizze, Regex.
+reihenfolge:
+  - 071-luecken-fizzbuzz
+  - 183-bingo-karte
+  - 184-vier-gewinnt
+  - 186-zahl-zu-bisexagesimal
+  - 195-jahreszeit
+  - 254-tag-im-jahr
+  - 255-monat-name-deutsch
+  - 262-dauer-hms-text
+  - 263-zahlen-aus-text
+  - 265-xor-tausch
+  - 317-namedtuple-punkt

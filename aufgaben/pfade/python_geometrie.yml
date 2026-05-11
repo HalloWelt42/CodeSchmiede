@@ -1,0 +1,16 @@
+id: python_geometrie
+titel: "Python-Geometrie"
+beschreibung: |
+  Geometrische Berechnungen in der Ebene: Distanz, Bounding-Boxes, Zentroid, Polylinien-Länge, Dreiecks-Typ, Punkt-in-Form-Tests.
+reihenfolge:
+  - 191-kreis-flaeche
+  - 192-rechteck
+  - 193-dreieck-typ
+  - 267-distanz-punkte
+  - 268-punkt-im-rechteck
+  - 269-punkt-im-kreis
+  - 270-heron-flaeche
+  - 271-bbox-aus-punkten
+  - 272-zentroid-aus-punkten
+  - 273-polyline-laenge
+  - 274-dreieck-winkel-typ

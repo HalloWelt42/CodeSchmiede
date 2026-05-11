@@ -1,0 +1,71 @@
+id: css_komponenten
+titel: CSS-Komponenten
+beschreibung: |
+  47 fertige UI-Bauteile zum Nachbauen. Anders als die Atom-Pfade
+  (Flexbox/Grid/Grundlagen) kombiniert jede Aufgabe hier mehrere
+  Konzepte zu einem realen Stueck UI. Wer Grundlagen, Flexbox und Grid
+  sicher beherrscht, kann diesen Pfad als 'Bibliothek nachbauen'
+  durcharbeiten.
+
+  Sortiert nach Komponenten-Typ:
+    Grundformen      Pill-Button, zentrierte Karte, einfaches Grid
+    Flex-Ausrichtung Flex-Zeile, Spalte, Wrap, Beides-Mittig, Auto-Grid
+    Kreis            Avatar / Indikator
+    Buttons          Outline, Ghost, Icon-only, FAB, Block
+    Cards            Basis, Schatten, horizontal, KPI
+    Loader           Ring, Drei-Punkte (statisch)
+    Navigation       Header, Sidebar, Tabs, Bottom-Bar
+    Forms            Input, Textarea, Toggle, Checkbox, Label-Gruppe
+    Layouts          Hero, zwei Spalten
+    Komponenten      Breadcrumb, Pagination, Tooltip, Chat-Bubble,
+                     Search-Box, Skeleton, Rating, Stepper, Drop-Zone,
+                     Sticky-Footer, Modal, Empty-State, Quote, Code-Block,
+                     Banner
+reihenfolge:
+  - c001-button-pill
+  - c002-karte-zentriert
+  - c003-grid-zwei-spalten
+  - c024-flex-row-center
+  - c029-flex-row-beides
+  - c030-flex-column
+  - c032-flex-wrap
+  - c033-grid-zwei-gleich
+  - c038-grid-auto-1fr
+  - c062-kreis-petrol-tief
+  - c125-button-outline
+  - c126-button-ghost
+  - c127-button-icon
+  - c128-button-fab
+  - c129-button-block
+  - c138-card-basis
+  - c139-card-shadow
+  - c140-card-horizontal
+  - c141-card-stat
+  - c150-loader-ring
+  - c151-loader-dots
+  - c152-nav-header
+  - c153-nav-sidebar
+  - c154-nav-tabs
+  - c155-nav-bottom
+  - c156-form-input
+  - c157-form-textarea
+  - c158-form-toggle
+  - c159-form-checkbox
+  - c160-form-group
+  - c161-hero-center
+  - c162-layout-zwei-spalten
+  - c163-breadcrumb
+  - c164-pagination
+  - c165-tooltip
+  - c166-chat-bubble
+  - c167-search-box
+  - c168-skeleton
+  - c169-rating
+  - c170-stepper
+  - c171-dropzone
+  - c172-sticky-footer
+  - c173-modal
+  - c174-empty-state
+  - c175-quote
+  - c176-code-block
+  - c177-banner
