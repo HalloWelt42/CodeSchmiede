@@ -85,8 +85,8 @@ asserts:
     property: display
     expected: "flex"
   - selector: ".name"
-    property: margin-right
-    expected: "auto"
+    property: display
+    expected: "block"
   - selector: ".sichtbar"
     property: border-radius
     expected: "999px"

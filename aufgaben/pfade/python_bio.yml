@@ -2,7 +2,7 @@ id: python_bio
 titel: Python-Bioinformatik
 beschreibung: |
   Sequenzanalyse-Aufgaben aus der Bioinformatik. DNA in RNA
-  uebersetzen, Nukleotide zaehlen, Hamming-Distanz fuer
+  übersetzen, Nukleotide zaehlen, Hamming-Distanz fuer
   Sequenzvergleich. Klein, aber realer Anwendungsbezug.
 reihenfolge:
   - 082-rna-transkription

@@ -1,0 +1,62 @@
+id: sql_basics
+titel: "SQL-Basics: SELECT, WHERE, ORDER"
+beschreibung: |
+  Einfache Abfragen ohne JOIN, ohne Aggregate. Hier lernst du, wie man Spalten wählt, Zeilen filtert (WHERE/BETWEEN/IN/LIKE/IS NULL), sortiert (ORDER BY), Treffer begrenzt (LIMIT) und Duplikate entfernt (DISTINCT). Fundament für alle weiteren SQL-Pfade.
+reihenfolge:
+  - s001-alle-buecher
+  - s002-deutsche-autoren
+  - s004-buecher-titel
+  - s005-autoren-namen
+  - s006-leser-orte
+  - s007-buecher-nach-1950
+  - s008-buecher-roman
+  - s009-leser-jung
+  - s010-buecher-dicke
+  - s011-leser-berlin
+  - s012-buecher-kindelreihe
+  - s013-buecher-zwischen-1900-1950
+  - s014-leser-orte-norden
+  - s015-titel-mit-die
+  - s016-ausleihe-offen
+  - s017-top-3-dickste
+  - s018-altester-autor
+  - s033-mitglieder-vor-2020
+  - s035-produkte-billig
+  - s036-bestellungen-offen
+  - s038-buecher-status
+  - s039-leser-altersgruppen
+  - s040-zurueck-am-coalesce
+  - s041-titel-laenge
+  - s042-orte-gross
+  - s043-anfangsbuchstabe
+  - s044-replace-petrol
+  - s045-jahr-mitglied
+  - s047-ausleihen-april
+  - s054-personen-union
+  - s062-shop-leeres-lager
+  - s074-ausleihen-dauer
+  - s081-shop-marge-fiktiv
+  - s083-buecher-jahresalter
+  - s092-leser-vorname-nachname
+  - s093-shop-marken-aufbereitet
+  - s108-orte-only-leser
+  - s109-ueberfaellig
+  - s111-shop-rabatt-simuliert
+  - s112-buecher-mit-stufen
+  - s123-shop-produkte-mit-marke
+  - s131-buecher-mittel-roman
+  - s133-shop-or-bedingung
+  - s136-leser-mit-langer-mitgliedschaft
+  - s149-shop-status-zeit-letzte
+  - s153-ausleihen-letzten-30-tage
+  - s155-autoren-jahre-zwischen
+  - s156-leser-im-alter
+  - s157-buecher-letzte-100-jahre
+  - s160-leser-laenge-mitgliedschaft
+  - s161-buecher-und-jahr-relativ
+  - s175-buecher-ohne-kategorie-roman
+  - s179-shop-marge-fiktiv-2
+  - s180-produkt-preis-runden
+  - s187-shop-position-mit-summe
+  - s193-shop-letzter-monat
+  - s194-buecher-lange-titel

@@ -51,6 +51,7 @@ class IframeCssRunner {
     ziel_html: string,
     nutzer_css: string,
     asserts: CssAssert[],
+    timeout_ms: number = 3000,
   ): Promise<CssLaufErgebnis> {
     const start = performance.now();
     const iframe = document.createElement('iframe');
@@ -59,39 +60,73 @@ class IframeCssRunner {
     // weil wir es selbst befuellen). 'allow-same-origin' WIRD gesetzt,
     // damit getComputedStyle ueberhaupt funktioniert.
     iframe.setAttribute('sandbox', 'allow-same-origin');
-    iframe.style.cssText = 'position:absolute;left:-9999px;top:-9999px;width:600px;height:400px;border:0;';
+    // Sichtbares aber off-screen platzieren -- ein wirklich hidden Iframe
+    // (display: none) wuerde keine Layout-Berechnung ausfuehren und
+    // getComputedStyle koennte schimaerische Werte liefern. Daher: an die
+    // linke Seite raus, aber ins Layout.
+    iframe.style.cssText = 'position:fixed;left:-9999px;top:0;width:600px;height:400px;border:0;visibility:hidden;';
     document.body.appendChild(iframe);
     try {
-      const doc = iframe.contentDocument!;
-      doc.open();
-      doc.write(`<!doctype html>
-<html><head><meta charset="utf-8"><style>
-* { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, sans-serif; }
-${nutzer_css}
-</style></head><body>${ziel_html}</body></html>`);
-      doc.close();
-      // Frame-Layout abwarten -- ein rAF reicht im Normalfall.
-      await new Promise<void>((r) => requestAnimationFrame(() => r()));
-
-      const ergebnisse: CssAssertErgebnis[] = [];
-      for (let i = 0; i < asserts.length; i++) {
-        ergebnisse.push(this.pruefe_assert(doc, asserts[i], i));
-      }
-      const bestanden = ergebnisse.every((e) => e.bestanden);
-      return {
-        bestanden,
-        sichtbar: ergebnisse,
-        versteckt_pass: 0,
-        versteckt_fail: 0,
-        laufzeit_ms: performance.now() - start,
-        stdout: '',
-        stderr: '',
-        timeout: false,
-      };
+      const lauf = this.lauf_intern(iframe, ziel_html, nutzer_css, asserts);
+      const timer = new Promise<CssLaufErgebnis>((resolve) =>
+        setTimeout(() => resolve({
+          bestanden: false,
+          sichtbar: asserts.map((a, i) => ({
+            index: i, selector: a.selector, property: a.property,
+            expected: a.expected, tatsaechlich: '(Timeout)',
+            bestanden: false, fehler: 'Auswertung dauerte zu lange',
+          })),
+          versteckt_pass: 0, versteckt_fail: 0,
+          laufzeit_ms: performance.now() - start,
+          stdout: '', stderr: 'Timeout', timeout: true,
+        }), timeout_ms),
+      );
+      return await Promise.race([lauf, timer]);
     } finally {
       iframe.remove();
     }
+  }
+
+  private async lauf_intern(
+    iframe: HTMLIFrameElement,
+    ziel_html: string,
+    nutzer_css: string,
+    asserts: CssAssert[],
+  ): Promise<CssLaufErgebnis> {
+    const start = performance.now();
+    const doc = iframe.contentDocument!;
+    doc.open();
+    doc.write(`<!doctype html>
+<html><head><meta charset="utf-8"><style>
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; color: rgb(231, 236, 241); }
+${nutzer_css}
+</style></head><body>${ziel_html}</body></html>`);
+    doc.close();
+    // Layout-Berechnung anstossen + abwarten. getComputedStyle erzwingt
+    // selbst schon ein Layout, aber wir geben dem Browser eine Mikro-
+    // Pause -- das hat sich als zuverlaessiger erwiesen als
+    // requestAnimationFrame im versteckten Iframe.
+    await new Promise<void>((r) => setTimeout(r, 0));
+    // Layout-Erzwingung per offsetHeight-Read auf body, damit Browser
+    // garantiert gerendert hat.
+    void doc.body.offsetHeight;
+
+    const ergebnisse: CssAssertErgebnis[] = [];
+    for (let i = 0; i < asserts.length; i++) {
+      ergebnisse.push(this.pruefe_assert(doc, asserts[i], i));
+    }
+    const bestanden = ergebnisse.every((e) => e.bestanden);
+    return {
+      bestanden,
+      sichtbar: ergebnisse,
+      versteckt_pass: 0,
+      versteckt_fail: 0,
+      laufzeit_ms: performance.now() - start,
+      stdout: '',
+      stderr: '',
+      timeout: false,
+    };
   }
 
   private pruefe_assert(

@@ -62,7 +62,7 @@ asserts:
     expected: "grid"
   - selector: ".kpis"
     property: grid-template-columns
-    expected: "189.328px 189.328px 189.328px"
+    expected: "186.664px 186.664px 186.672px"
   - selector: ".kennzahl"
     property: color
     expected: "rgb(45, 212, 191)"

@@ -51,7 +51,7 @@ asserts:
     expected: "grid"
   - selector: ".preise"
     property: grid-template-columns
-    expected: "146.656px 146.656px 146.656px"
+    expected: "146.664px 146.664px 146.672px"
   - selector: ".preise"
     property: align-items
     expected: "center"

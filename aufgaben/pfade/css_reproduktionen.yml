@@ -8,7 +8,7 @@ beschreibung: |
   Reihenfolge:
     01  Repository-Karte mit Header + Beschreibung + Meta-Footer
     02  Chat-Dialog mit eigener und fremder Nachricht (asymmetrische Bubbles)
-    03  Musik-Track-Zeile mit Truncation-Trick fuer lange Titel
+    03  Musik-Track-Zeile mit Truncation-Trick für lange Titel
     04  Issue-Tracker-Zeile mit Status-Punkt + Labels + Prioritaet
     05  Einstellungs-Zeile mit Toggle-Switch (Schiene + absoluter Knopf)
     06  Dashboard-KPI-Trio mit Trend-Anzeige (gruen/rot)

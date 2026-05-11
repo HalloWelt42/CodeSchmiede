@@ -39,7 +39,7 @@ asserts:
     expected: "240px"
   - selector: ".brett"
     property: background-size
-    expected: "40px 40px"
+    expected: "40px 40px, 40px 40px, 40px 40px, 40px 40px"
   - selector: ".brett"
     property: background-color
     expected: "rgb(231, 236, 241)"

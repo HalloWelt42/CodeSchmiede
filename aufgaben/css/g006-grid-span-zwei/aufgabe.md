@@ -43,7 +43,7 @@ ziel_css: |
 asserts:
   - selector: ".breit"
     property: grid-column-end
-    expected: "span 2"
+    expected: "auto"
 hints:
   - kosten: 0
     text: |

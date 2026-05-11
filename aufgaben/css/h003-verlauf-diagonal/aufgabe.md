@@ -29,7 +29,7 @@ ziel_css: |
 asserts:
   - selector: ".kasten"
     property: background-image
-    expected: "linear-gradient(rgb(45, 212, 191) 0%, rgb(99, 102, 241) 100%)"
+    expected: "linear-gradient(135deg, rgb(45, 212, 191) 0%, rgb(99, 102, 241) 100%)"
 hints:
   - kosten: 0
     text: |

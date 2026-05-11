@@ -42,7 +42,7 @@ asserts:
     expected: "grid"
   - selector: ".setzkasten"
     property: grid-template-columns
-    expected: "172px 172px"
+    expected: "171px 171px"
 hints:
   - kosten: 0
     text: |

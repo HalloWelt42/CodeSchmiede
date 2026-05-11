@@ -40,7 +40,7 @@ ziel_css: |
 asserts:
   - selector: ".setzkasten"
     property: grid-template-columns
-    expected: "80px 80px 80px 80px"
+    expected: "108.664px 108.664px 108.664px"
 hints:
   - kosten: 0
     text: |

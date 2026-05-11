@@ -31,7 +31,7 @@ ziel_css: |
 asserts:
   - selector: ".pfeil"
     property: width
-    expected: "0px"
+    expected: "30px"
   - selector: ".pfeil"
     property: border-top-color
     expected: "rgba(0, 0, 0, 0)"

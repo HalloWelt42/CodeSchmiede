@@ -1,0 +1,45 @@
+id: sql_aggregate
+titel: SQL-Aggregate und GROUP BY
+beschreibung: |
+  Sobald du mehr als einzelne Zeilen brauchst -- Summen, Durchschnitte, Zählungen, Gruppierungen: dieser Pfad. COUNT/SUM/AVG/MIN/MAX einzeln und in Kombination mit GROUP BY und HAVING. Inkl. CASE WHEN als Conditional Aggregate für Pivot-Tabellen.
+reihenfolge:
+  - s019-buecher-anzahl
+  - s020-summe-exemplare
+  - s021-schnitt-seiten
+  - s022-min-max-jahr
+  - s023-anzahl-pro-kategorie
+  - s024-summe-pro-autor
+  - s029-autoren-pro-land
+  - s046-mitglieder-pro-jahr
+  - s058-shop-bestellung-summen
+  - s063-shop-status-zaehlen
+  - s064-shop-marken
+  - s068-shop-orte-anzahl
+  - s070-shop-position-anzahl
+  - s071-shop-status-zaehlen-pivot
+  - s072-buecher-pro-jahrzehnt
+  - s075-bestellungen-pro-monat
+  - s082-shop-bestellung-positionen-anzahl
+  - s084-anzahl-distinct-autoren
+  - s085-shop-aktive-kunden
+  - s094-ausleihen-pro-monat
+  - s095-kategorie-summe-exemplare
+  - s097-kategorien-mit-buechern
+  - s114-leser-kohorten
+  - s117-shop-status-zaehler-zeile
+  - s124-leser-nach-anfang
+  - s125-kategorien-mit-langem-buch
+  - s127-shop-bestellung-status-zeit
+  - s134-buecher-jahrhundert
+  - s137-buecher-pro-kategorie-prozent
+  - s138-buecher-multi-autor-pro-kategorie
+  - s141-shop-bestellung-pos-anz
+  - s143-shop-status-und-anzahl-kunden
+  - s144-shop-marken-anzahl-produkte
+  - s147-shop-status-pro-monat
+  - s154-leser-laengster-name
+  - s165-buecher-pro-laenge-stufe
+  - s176-leser-juenger-als-buch
+  - s186-buecher-kategorie-jahresspanne
+  - s197-buecher-und-kategorien-uebersicht
+  - s200-meta-statistik

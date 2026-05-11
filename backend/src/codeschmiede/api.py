@@ -72,9 +72,13 @@ def app_bauen(settings: Settings | None = None) -> FastAPI:
 
     @app.get("/api/healthz", response_model=HealthAntwort)
     def healthz() -> HealthAntwort:
+        # Version pro Aufruf frisch aus der VERSION-Datei lesen --
+        # sonst zeigt der Endpunkt nach Bumps die alte Zahl, bis das
+        # Backend neu startet.
+        from . import _finde_version
         return HealthAntwort(
             status="ok",
-            version=__version__,
+            version=_finde_version(),
             aufgaben_anzahl=len(state.aufgaben.alle_aufgaben()),
             pfade_anzahl=len(state.aufgaben.alle_pfade()),
             sandbox_image=aktive_settings.sandbox_image,

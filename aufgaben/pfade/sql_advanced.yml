@@ -1,0 +1,33 @@
+id: sql_advanced
+titel: "SQL-Advanced: Window-Funktionen und CTEs"
+beschreibung: |
+  Die mächtigsten SQL-Werkzeuge. Window-Funktionen (ROW_NUMBER, RANK, DENSE_RANK, LAG/LEAD, SUM OVER) erlauben Berechnungen über Gruppen ohne den Datenfluss zu brechen. CTEs (WITH ...) machen komplexe Queries lesbar. Recursive CTEs erzeugen Zahlenfolgen, traversieren Bäume.
+reihenfolge:
+  - s055-cte-deutsche-buecher
+  - s056-row-number-buecher
+  - s057-rank-seiten
+  - s076-cumsum-bestellungen
+  - s077-prozent-am-gesamt
+  - s078-dense-rank-jahr
+  - s079-lag-bestellungen
+  - s080-top-pro-kategorie
+  - s086-mult-cte-leser-buecher
+  - s089-shop-mittelpreis-kategorie
+  - s099-shop-bestellungen-vorlauf
+  - s100-bestellungen-mit-rang-pro-kunde
+  - s101-rcte-zahlen-1-10
+  - s102-rcte-fibonacci
+  - s105-ntile-buecher-quartile
+  - s106-first-value-leser
+  - s107-running-3-tage
+  - s113-leser-mehr-als-schnitt
+  - s119-shop-top-produkte-pro-kunde
+  - s129-shop-kunde-rangliste
+  - s145-shop-billigstes-pro-kategorie
+  - s171-percent-rank-buecher
+  - s172-shop-cumsum-status
+  - s173-buecher-mit-dem-naechsten-jahr
+  - s184-buecher-pro-leser-schnitt
+  - s189-shop-warenkorb-durchschnitt
+  - s191-leser-mit-ausleihen-anzahl-rang
+  - s196-buecher-aelteste-pro-kategorie

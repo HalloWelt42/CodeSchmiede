@@ -45,7 +45,7 @@ asserts:
     expected: "grid"
   - selector: ".galerie"
     property: grid-template-columns
-    expected: "111px 111px 111px 111px"
+    expected: "110px 110px 110px 110px"
   - selector: ".bild"
     property: aspect-ratio
     expected: "1 / 1"

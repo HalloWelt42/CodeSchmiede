@@ -36,7 +36,7 @@ asserts:
     expected: "50%"
   - selector: ".kreis"
     property: background-image
-    expected: "linear-gradient(180deg, rgb(45, 212, 191) 50%, rgb(251, 146, 60) 50%)"
+    expected: "linear-gradient(rgb(45, 212, 191) 50%, rgb(251, 146, 60) 50%)"
 hints:
   - kosten: 0
     text: |

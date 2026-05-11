@@ -9,12 +9,12 @@ beschreibung: |
     01     display: grid einschalten
     02-03  Spalten festlegen (Pixel + fr-Verhaeltnis)
     04     gap zwischen Zellen
-    05     repeat() fuer Wiederholungen
-    06-07  Einzelne Zellen ueber mehrere Spalten ziehen (span / explizit)
+    05     repeat() für Wiederholungen
+    06-07  Einzelne Zellen über mehrere Spalten ziehen (span / explizit)
     08     grid-template-rows
     09     2D-Positionierung mit grid-row + grid-column
     10     Benannte Bereiche per grid-template-areas
-    11     minmax() fuer untere/obere Grenzen
+    11     minmax() für untere/obere Grenzen
     12     auto-fit + minmax -- das wichtigste Pattern in modernem CSS
 reihenfolge:
   - g001-grid-aktivieren

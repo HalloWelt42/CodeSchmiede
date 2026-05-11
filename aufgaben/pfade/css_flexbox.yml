@@ -13,8 +13,8 @@ beschreibung: |
     08-09  flex-direction (Achsen-Drehung)
     10     flex-wrap (mehrzeilig)
     11-13  Item-Eigenschaften: grow / shrink / basis
-    14     order (Reihenfolge ohne DOM-Aenderung)
-    15     align-self (Container-Ausrichtung ueberschreiben)
+    14     order (Reihenfolge ohne DOM-Änderung)
+    15     align-self (Container-Ausrichtung überschreiben)
 reihenfolge:
   - f001-flex-aktivieren
   - f002-flex-justify-end
