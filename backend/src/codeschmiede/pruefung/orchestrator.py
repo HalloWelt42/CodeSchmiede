@@ -12,6 +12,7 @@ from . import yaml_pruefer  # noqa: F401  registriert "code_schreiben"
 from . import output_quiz_pruefer  # noqa: F401  registriert "output_quiz"
 from . import bug_finden_pruefer  # noqa: F401  registriert "bug_finden"
 from . import lueckentext_pruefer  # noqa: F401  registriert "lueckentext"
+from . import sql_pruefer  # noqa: F401  registriert "sql_abfrage"
 from .ergebnis import PruefErgebnis
 from .registry import hole
 

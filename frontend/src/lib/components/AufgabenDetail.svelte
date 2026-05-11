@@ -27,6 +27,7 @@
   import OutputBereich from './OutputBereich.svelte';
   import OutputQuizView from './OutputQuizView.svelte';
   import ProbelaufBereich from './ProbelaufBereich.svelte';
+  import SqlAbfrageView from './SqlAbfrageView.svelte';
 
   let { aufgabeId }: { aufgabeId: string } = $props();
 
@@ -325,6 +326,8 @@
       <LueckentextView {detail} />
     {:else if detail.task_type === 'css_klon'}
       <CssKlonView {detail} />
+    {:else if detail.task_type === 'sql_abfrage'}
+      <SqlAbfrageView {detail} />
     {:else}
       {#if detail.task_type === 'bug_finden'}
         <div class="bug-banner">

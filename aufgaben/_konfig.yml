@@ -38,6 +38,10 @@ sprachen:
     titel: CSS
     editor_lang: css
     runner_type: iframe_css
+  - id: sql
+    titel: SQL
+    editor_lang: sql
+    runner_type: sqlite_backend
 
 aufgabentypen:
   - id: code_schreiben
@@ -60,3 +64,7 @@ aufgabentypen:
     titel: CSS-Klon
     view: css_klon
     beschreibung: Visuelles Ziel ist gegeben -- schreibe das CSS, das den selben Look erzeugt.
+  - id: sql_abfrage
+    titel: SQL-Abfrage
+    view: sql_abfrage
+    beschreibung: Ein Datensatz ist vorgegeben -- schreibe eine SELECT-Abfrage, die das erwartete Ergebnis liefert.
