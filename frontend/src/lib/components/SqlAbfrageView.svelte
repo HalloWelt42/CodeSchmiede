@@ -286,6 +286,10 @@
         <i class="fa-solid fa-table" aria-hidden="true"></i>
         Datensatz · {dataset}
       </span>
+      <span class="panel-hinweis">
+        <i class="fa-solid fa-up-down-left-right" aria-hidden="true"></i>
+        Header zum Verschieben · Ecke unten rechts zum Größe ändern
+      </span>
       <button
         class="panel-schliessen"
         onclick={() => (schema_panel_offen = false)}
@@ -454,8 +458,12 @@
 
   .schema-panel {
     position: fixed;
-    width: 420px;
-    max-height: 70vh;
+    width: 480px;
+    height: 520px;
+    min-width: 320px;
+    min-height: 240px;
+    max-width: 95vw;
+    max-height: 90vh;
     background: var(--bg-card);
     border: 1px solid var(--accent);
     border-radius: var(--radius-sm);
@@ -464,6 +472,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    resize: both;
   }
   .panel-kopf {
     display: flex;
@@ -483,6 +492,15 @@
     align-items: center;
     gap: var(--sp-2);
     letter-spacing: 0.04em;
+  }
+  .panel-hinweis {
+    color: var(--fg-mute);
+    font-size: var(--fs-xs);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    margin-right: 8px;
   }
   .panel-schliessen {
     background: transparent;
