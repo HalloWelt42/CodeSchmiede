@@ -25,7 +25,7 @@ hints:
     text: |
       Berechne 1² + 2² + 3² + ... + n².
       n <= 0 -> 0. Geschlossene Formel: n(n+1)(2n+1)/6.
-  - kosten: 10
+  - kosten: 5
     text: |
       Direkt: sum(i*i for i in range(1, n+1)).
       Schneller (O(1)): n * (n + 1) * (2 * n + 1) // 6.

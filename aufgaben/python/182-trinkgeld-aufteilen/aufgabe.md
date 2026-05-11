@@ -27,7 +27,7 @@ hints:
       gesamt = rechnung * (1 + tip_prozent/100), geteilt durch personen.
       Auf 2 Nachkommastellen gerundet.
       personen <= 0 oder rechnung < 0 → 0.0.
-  - kosten: 10
+  - kosten: 8
     text: |
       round((rechnung * (1 + tip_prozent / 100)) / personen, 2).
 tests_sichtbar:

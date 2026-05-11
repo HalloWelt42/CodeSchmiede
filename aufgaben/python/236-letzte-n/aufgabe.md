@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere die letzten n Elemente einer Liste.
       n <= 0 → []. n > Listenlaenge → ganze Liste.
-  - kosten: 10
+  - kosten: 4
     text: |
       list(liste[-n:]) hat einen Sonderfall: bei n == 0 ist [-0:]
       die ganze Liste, nicht []. Darum vorab prüfen.

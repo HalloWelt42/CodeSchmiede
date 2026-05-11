@@ -27,7 +27,7 @@ hints:
       muessen funktionieren -- nutze BigInt!
       "499" -> "500", "999999999999999999" -> "1000000000000000000".
       Ungueltige Eingabe -> "".
-  - kosten: 15
+  - kosten: 8
     text: |
       try { return (BigInt(s) + 1n).toString(); } catch { return ""; }
 tests_sichtbar:

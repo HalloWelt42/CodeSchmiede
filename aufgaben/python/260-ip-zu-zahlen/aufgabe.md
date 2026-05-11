@@ -26,7 +26,7 @@ hints:
       Zerlege "a.b.c.d" in [a, b, c, d] (4 Ints, je 0..255).
       Bei UNGUELTIGER Eingabe (zu wenig/viel Teile, Wert > 255,
       nicht-numerisch, leer) → [].
-  - kosten: 15
+  - kosten: 12
     text: |
       teile = s.split("."); prüfen len == 4 und alle 0..255.
       try/except ValueError für int().

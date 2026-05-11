@@ -26,7 +26,7 @@ hints:
       Liefere alle GERADEN Zahlen aus der Liste.
       Reihenfolge wie im Original.
       Null zählt als gerade.
-  - kosten: 5
+  - kosten: 2
     text: |
       [x for x in liste if x % 2 == 0].
 tests_sichtbar:

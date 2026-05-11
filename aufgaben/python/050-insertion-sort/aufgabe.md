@@ -26,7 +26,7 @@ hints:
       Stell dir vor, du sortierst Spielkarten in der Hand. Linke Seite
       ist sortiert. Nimm die nächste Karte und schiebe sie nach links,
       bis sie an der richtigen Stelle liegt.
-  - kosten: 15
+  - kosten: 9
     text: |
       Aussere Schleife `i` von 1 bis n. Innere `j` von i abwärts.
       Solange `liste[j-1] > liste[j]`: tauschen, j -= 1.

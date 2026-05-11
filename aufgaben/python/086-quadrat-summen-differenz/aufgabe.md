@@ -25,7 +25,7 @@ hints:
     text: |
       Berechne $S_1 = (1+2+\ldots+n)^2$ und $S_2 = 1^2+2^2+\ldots+n^2$.
       Gib $S_1 - S_2$ zurück.
-  - kosten: 15
+  - kosten: 8
     text: |
       Schneller mit Formel:
       $S_1 = (n(n+1)/2)^2$ und $S_2 = n(n+1)(2n+1)/6$.

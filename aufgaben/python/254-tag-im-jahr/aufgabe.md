@@ -27,7 +27,7 @@ hints:
       1. Januar → 1. 31. Dezember (kein Schaltjahr) → 365.
       Schaltjahre bei Februar beachten!
       Ungültige Eingaben → 0.
-  - kosten: 15
+  - kosten: 12
     text: |
       datetime.date(jahr, monat, tag).timetuple().tm_yday liefert es direkt.
       Manuell: Tage-pro-Monat-Liste, Schaltjahr für Februar +1.

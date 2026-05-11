@@ -26,7 +26,7 @@ hints:
       Liefere alle Werte, die in der Liste GENAU EINMAL vorkommen --
       sortiert.
       [1,2,2,3,3,4] → [1,4].
-  - kosten: 10
+  - kosten: 8
     text: |
       collections.Counter -- dann Keys filtern, wo value == 1.
 tests_sichtbar:

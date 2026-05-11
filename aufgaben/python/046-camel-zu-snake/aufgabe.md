@@ -25,7 +25,7 @@ hints:
     text: |
       Vor jedem Großbuchstaben einen Unterstrich einfügen, dann
       alles in Kleinbuchstaben.
-  - kosten: 15
+  - kosten: 9
     text: |
       Achtung: Vor dem ersten Zeichen kein Unterstrich, auch wenn
       es groß ist.

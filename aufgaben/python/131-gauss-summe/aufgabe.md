@@ -25,7 +25,7 @@ hints:
     text: |
       Summe 1+2+...+n. Mit Gauss-Formel: n*(n+1)/2.
       Bei n < 1 → 0.
-  - kosten: 10
+  - kosten: 5
     text: |
       Verboten wäre `sum(range(1, n+1))`. Ist nicht verboten,
       aber die Formel ist O(1) statt O(n) -- der ganze Witz.

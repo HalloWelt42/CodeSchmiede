@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere eine Liste, in der das i-te Element die Summe aller
       Elemente von Index 0 bis i (inklusive) ist.
-  - kosten: 10
+  - kosten: 3
     text: |
       Schleife mit Akkumulator:
 
@@ -37,7 +37,7 @@ hints:
           out.append(summe)
       return out
       ```
-  - kosten: 20
+  - kosten: 5
     text: |
       `itertools.accumulate(zahlen)` macht das in einer Zeile.
 tests_sichtbar:

@@ -26,7 +26,7 @@ hints:
       Liefere die ersten n Elemente einer Liste.
       n <= 0 → []. n > Listenlaenge → ganze Liste.
       Original-Liste nicht verändern.
-  - kosten: 5
+  - kosten: 2
     text: |
       list(liste[:n]) -- Slicing erledigt alle Sonderfaelle.
 tests_sichtbar:

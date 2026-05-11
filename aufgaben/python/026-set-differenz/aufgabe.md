@@ -23,7 +23,7 @@ funktion: ohne
 hints:
   - kosten: 0
     text: Behalte alle Elemente aus `a`, die nicht in `b` vorkommen. Reihenfolge wie in a, ohne Doppelte.
-  - kosten: 10
+  - kosten: 7
     text: |
       `set(b)` für schnellen Lookup, dann List-Comprehension mit
       Duplikat-Filter.

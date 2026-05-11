@@ -27,7 +27,7 @@ hints:
       Jede Zeile hat genau zwei gleiche Buchstaben (außer die
       `A`-Zeile, die hat nur eines). Innen Leerzeichen, außerhalb
       Padding zur Symmetrie. Rückgabe als Liste von Zeilen.
-  - kosten: 25
+  - kosten: 11
     text: |
       Buchstaben-Index: `i = ord(c) - ord('A')`. Outer Padding pro
       Zeile: `n - i` Leerzeichen. Inner Spacing (zwischen den zwei

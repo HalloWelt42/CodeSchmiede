@@ -25,7 +25,7 @@ hints:
     text: |
       Tausch: G→C, C→G, T→A, A→U. Andere Zeichen bleiben (oder werfen
       einen Fehler -- hier: bleiben).
-  - kosten: 10
+  - kosten: 5
     text: |
       `str.translate(str.maketrans("GCTA", "CGAU"))` ist ein Einzeiler.
 tests_sichtbar:

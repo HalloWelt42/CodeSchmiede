@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere alle Teiler von n (inkl. 1 und n) in aufsteigender Reihenfolge.
       Bei n < 1 → []. Negative Eingaben behandelt wie ungültig.
-  - kosten: 15
+  - kosten: 8
     text: |
       Effizient: Schleife nur bis sqrt(n). Pro Treffer i auch n//i
       einfuegen. Set verwenden gegen Doppelte (Quadratzahlen!).

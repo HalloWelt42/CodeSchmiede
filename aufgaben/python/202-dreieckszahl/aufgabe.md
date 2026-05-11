@@ -26,7 +26,7 @@ hints:
       Liefere die n-te Dreieckszahl: T(n) = 1 + 2 + 3 + ... + n.
       n = 0 → 0. n < 0 → 0.
       T(1)=1, T(2)=3, T(3)=6, T(4)=10, T(5)=15, ...
-  - kosten: 10
+  - kosten: 4
     text: |
       Direkte Formel (Gauss): T(n) = n * (n + 1) // 2.
 tests_sichtbar:

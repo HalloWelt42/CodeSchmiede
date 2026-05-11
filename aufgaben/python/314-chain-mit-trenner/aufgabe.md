@@ -29,7 +29,7 @@ hints:
       [[1,2], [3,4], [5,6]] mit trenner=0 → [1,2,0,3,4,0,5,6].
       Leere Listen werden geskippt (kein Trenner davor/danach).
       Bei [] (keine Listen) → [].
-  - kosten: 25
+  - kosten: 19
     text: |
       Generator: Flag erste=True. Pro Liste: wenn nicht erste UND
       vorige war nicht-leer: yield trenner. Dann yield from liste.

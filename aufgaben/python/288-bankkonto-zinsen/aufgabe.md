@@ -29,7 +29,7 @@ hints:
       Funktion jahres_endsaldi(start, zins, jahre) → Liste der
       Endsaldi nach jedem Jahr (nur Zinsen, keine Bewegungen).
       Auf 2 Nachkommastellen.
-  - kosten: 20
+  - kosten: 19
     text: |
       Konto-Klasse implementieren, dann Funktion wrappen:
       Pro Jahr zinsen_buchen aufrufen, runden, sammeln.

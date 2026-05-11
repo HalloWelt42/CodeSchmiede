@@ -26,7 +26,7 @@ hints:
       Werte: I=1, V=5, X=10, L=50, C=100, D=500, M=1000.
       Wenn ein Zeichen kleiner ist als das nächste, wird es subtrahiert,
       sonst addiert.
-  - kosten: 15
+  - kosten: 11
     text: |
       Schleife durch jedes Zeichen, dabei Wert in einem Dict
       nachschlagen. Vergleiche mit Nachfolger.

@@ -25,7 +25,7 @@ hints:
     text: |
       Wenn die Zahl gerade ist, halbiere sie. Wenn ungerade, mal 3 plus 1.
       Zähle die Schritte bis du bei 1 ankommst.
-  - kosten: 10
+  - kosten: 9
     text: |
       Schleife `while n != 1`, mit Schrittzähler. Achtung: bei `n == 1`
       sofort 0 Schritte zurückgeben.

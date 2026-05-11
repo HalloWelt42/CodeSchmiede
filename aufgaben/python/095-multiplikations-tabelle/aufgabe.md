@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Doppelte Liste -- `[[1*1, 1*2, ...], [2*1, 2*2, ...], ...]`.
-  - kosten: 10
+  - kosten: 5
     text: |
       Mit Comprehension:
       `[[i*j for j in range(1, n+1)] for i in range(1, n+1)]`.

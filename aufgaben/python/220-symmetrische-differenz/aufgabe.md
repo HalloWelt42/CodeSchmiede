@@ -26,7 +26,7 @@ hints:
       Liefere die Elemente, die in genau EINER der beiden Listen
       vorkommen (in a oder b, aber NICHT in beiden).
       Eindeutig, aufsteigend sortiert.
-  - kosten: 10
+  - kosten: 8
     text: |
       sorted(set(a) ^ set(b)) -- der ^-Operator ist die symmetrische
       Differenz auf Sets.

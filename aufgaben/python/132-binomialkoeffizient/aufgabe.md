@@ -25,7 +25,7 @@ hints:
     text: |
       n über k = n! / (k! * (n-k)!).
       Bei k < 0 oder k > n → 0.
-  - kosten: 10
+  - kosten: 8
     text: |
       `from math import comb` macht es in einer Zeile. Du darfst auch
       die Pascal-Identität nehmen: C(n,0)=1, C(n,k)=C(n-1,k-1)+C(n-1,k).

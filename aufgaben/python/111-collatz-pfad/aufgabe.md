@@ -25,7 +25,7 @@ hints:
     text: |
       Wie 020-collatz, aber liefere die ganze Folge als Liste --
       inkl. Startwert und finaler 1.
-  - kosten: 10
+  - kosten: 7
     text: |
       `pfad = [n]`. while n != 1: n = n//2 oder 3n+1. pfad.append(n).
 tests_sichtbar:

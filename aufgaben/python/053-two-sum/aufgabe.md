@@ -25,11 +25,11 @@ hints:
     text: |
       Gesucht: zwei Indizes, deren Werte sich zur Zielsumme addieren.
       Naive Lösung: doppelte Schleife. O(n^2).
-  - kosten: 15
+  - kosten: 4
     text: |
       Schneller mit Dict: pro Element prüfen, ob "ziel - x" bereits
       gesehen wurde. Falls ja, Indizes zurückgeben.
-  - kosten: 25
+  - kosten: 7
     text: |
       ```
       gesehen = {}

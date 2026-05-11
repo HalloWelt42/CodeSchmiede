@@ -26,7 +26,7 @@ hints:
       Zähle die Anzahl der Wörter in einem Text. Mehrfache
       Leerzeichen zählen als ein Trenner. Leerer/whitespace-only
       Text → 0.
-  - kosten: 10
+  - kosten: 4
     text: |
       str.split() ohne Argument splittet an beliebigem Whitespace
       und filtert leere Strings raus. Dann len().

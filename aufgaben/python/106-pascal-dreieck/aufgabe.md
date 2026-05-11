@@ -25,7 +25,7 @@ hints:
     text: |
       Zeile 0: [1]. Zeile 1: [1, 1]. Jede weitere Zeile: aussen 1,
       innen Summe der zwei Werte direkt darüber.
-  - kosten: 15
+  - kosten: 9
     text: |
       Aus Zeile `[a, b, c, d]` wird die nächste:
       `[1, a+b, b+c, c+d, 1]`.

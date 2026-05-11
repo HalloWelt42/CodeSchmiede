@@ -28,7 +28,7 @@ hints:
       "odd" (ungerade), "nonzero" (!= 0).
       Bei UNBEKANNTEM Predicate → Original-Liste.
       Bei [] → [].
-  - kosten: 10
+  - kosten: 8
     text: |
       Dict {pred_name: lambda x: bool} und [x for x in liste if pred(x)].
 tests_sichtbar:

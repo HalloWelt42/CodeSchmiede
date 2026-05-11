@@ -23,11 +23,11 @@ funktion: sortiere_absteigend
 hints:
   - kosten: 0
     text: Python hat `sorted()` als Built-In.
-  - kosten: 10
+  - kosten: 3
     text: |
       `sorted()` hat einen Parameter `reverse=True` für absteigende
       Reihenfolge.
-  - kosten: 25
+  - kosten: 6
     text: |
       ```
       return sorted(zahlen, reverse=True)

@@ -25,7 +25,7 @@ hints:
     text: |
       Multipliziere alle Zahlen in der Liste miteinander.
       Bei leerer Liste → 1 (neutrales Element der Multiplikation).
-  - kosten: 5
+  - kosten: 4
     text: |
       math.prod(liste) macht es in einem Aufruf.
       Alternativ: functools.reduce(operator.mul, liste, 1).

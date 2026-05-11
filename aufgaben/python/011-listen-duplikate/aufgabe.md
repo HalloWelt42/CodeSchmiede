@@ -23,11 +23,11 @@ funktion: ohne_duplikate
 hints:
   - kosten: 0
     text: Ein `set` enthält jedes Element nur einmal -- aber die Reihenfolge geht verloren.
-  - kosten: 15
+  - kosten: 6
     text: |
       Wenn die Reihenfolge bleiben soll: in einer Schleife jedes Element
       nur dann anhängen, wenn es noch nicht in der Ergebnisliste steht.
-  - kosten: 30
+  - kosten: 11
     text: |
       Idiomatisch (Python 3.7+, dict ist insertion-ordered):
 

@@ -26,7 +26,7 @@ hints:
       n! Permutationen. Rekursion: für jeden Buchstaben als Anfang
       die Permutationen des Restes davorsetzen. Liefere sortierte
       Liste eindeutiger Permutationen.
-  - kosten: 20
+  - kosten: 11
     text: |
       `itertools.permutations` zählt alle (mit Doppelten bei doppelten
       Buchstaben). `set(...)` für Eindeutigkeit, `sorted(...)` für

@@ -25,7 +25,7 @@ hints:
     text: |
       `text.split()` zerlegt nach Whitespace. Aus jedem Wort den
       ersten Buchstaben holen, alles in Großbuchstaben.
-  - kosten: 10
+  - kosten: 7
     text: |
       Eine Zeile:
 

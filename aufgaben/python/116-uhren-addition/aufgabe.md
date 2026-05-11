@@ -26,7 +26,7 @@ hints:
       Eingabe: stunde (0-23), minute (0-59), zusatz_minuten (kann negativ
       sein). Liefere "HH:MM" als String. Modulo + Division regeln den
       Tagesübergang.
-  - kosten: 15
+  - kosten: 8
     text: |
       `gesamt = stunde * 60 + minute + zusatz_minuten`. Dann
       `gesamt %= 24 * 60` (auch bei negativen Werten -- Python

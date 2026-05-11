@@ -25,7 +25,7 @@ hints:
     text: |
       Erlaubt: ()[]{}. Andere Zeichen ignorieren. Stack-Verfahren:
       öffnende Klammern push, bei schließenden den Top vergleichen.
-  - kosten: 15
+  - kosten: 9
     text: |
       Mapping `{'(': ')', '[': ']', '{': '}'}`. Bei schließender:
       Stack leer? → False. Top mismatch? → False. Sonst pop.

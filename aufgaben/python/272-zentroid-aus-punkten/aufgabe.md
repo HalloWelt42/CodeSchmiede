@@ -27,7 +27,7 @@ hints:
       [Mittelwert(x), Mittelwert(y)].
       Bei leerer Liste → [0.0, 0.0].
       Auf 4 Nachkommastellen.
-  - kosten: 10
+  - kosten: 5
     text: |
       sum(p[0] for p in punkte) / n und sum(p[1] for p in punkte) / n.
 tests_sichtbar:

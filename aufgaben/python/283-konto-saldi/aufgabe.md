@@ -27,7 +27,7 @@ hints:
       start = Anfangs-Saldo, buchungen = Liste von Betraegen (+/-).
       Beispiel: start=100, buchungen=[10, -30, 50] → [110, 80, 130].
       Bei buchungen == [] → [].
-  - kosten: 15
+  - kosten: 8
     text: |
       Klasse Konto mit __init__(saldo) und buchen(betrag).
       Funktion erzeugt Konto, ruft für jede Buchung buchen() auf,

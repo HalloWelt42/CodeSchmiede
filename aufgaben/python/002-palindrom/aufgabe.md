@@ -23,9 +23,9 @@ funktion: ist_palindrom
 hints:
   - kosten: 0
     text: Ein Palindrom liest sich vorwaerts genauso wie rueckwaerts.
-  - kosten: 10
+  - kosten: 3
     text: In Python kannst du einen String mit `text[::-1]` umkehren.
-  - kosten: 25
+  - kosten: 9
     text: |
       Eleganteste Lösung:
 

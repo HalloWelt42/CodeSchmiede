@@ -27,7 +27,7 @@ hints:
       wählt eine Wertungs-Kategorie und bekommt entsprechende Punkte.
       Kategorien: zahlen (1-6), full_house, four_of_a_kind, little_straight,
       big_straight, choice, yacht.
-  - kosten: 30
+  - kosten: 12
     text: |
       Erst Counter() machen, dann pro Kategorie:
       - "ones".."sixes": Anzahl × Wert

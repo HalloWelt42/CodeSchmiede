@@ -26,7 +26,7 @@ hints:
       Serialisiere ein Python-Objekt (Dict, Liste, etc.) zu JSON-String.
       Schlüssel ALPHABETISCH sortiert.
       Keine Leerzeichen nach , und : (compact mode).
-  - kosten: 10
+  - kosten: 5
     text: |
       json.dumps(obj, sort_keys=True, separators=(",", ":")).
 tests_sichtbar:

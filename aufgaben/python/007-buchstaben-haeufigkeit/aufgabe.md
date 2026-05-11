@@ -23,11 +23,11 @@ funktion: buchstaben_haeufigkeit
 hints:
   - kosten: 0
     text: Ein Dictionary mappt Buchstaben auf Anzahl.
-  - kosten: 15
+  - kosten: 7
     text: |
       `dict.get(schlüssel, 0)` liefert den aktuellen Wert oder 0
       wenn der Schlüssel noch nicht existiert.
-  - kosten: 25
+  - kosten: 12
     text: |
       Idiomatisch mit `collections.Counter`:
 

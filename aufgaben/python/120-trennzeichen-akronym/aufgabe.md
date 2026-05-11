@@ -27,7 +27,7 @@ hints:
       getrennt. Pro Wort ersten Buchstaben in Großschreibung.
       camelCase wird auch aufgespalten -- jedes Großbuchstaben-Vorkommen
       mitten im Wort startet ein neues Wort.
-  - kosten: 20
+  - kosten: 8
     text: |
       Mit `re.split(r"[\s_-]+", text)` zerlegen, leere Bestandteile
       filtern. Pro Wort: erster Buchstabe groß. Für camelCase einfach:

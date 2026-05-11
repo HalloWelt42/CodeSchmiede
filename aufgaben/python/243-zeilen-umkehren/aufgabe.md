@@ -26,7 +26,7 @@ hints:
       Liefere die Liste mit jeder Zeile zeichenweise umgedreht.
       Reihenfolge der Zeilen bleibt!
       ["abc", "def"] -> ["cba", "fed"].
-  - kosten: 5
+  - kosten: 4
     text: |
       [z[::-1] for z in zeilen].
 tests_sichtbar:

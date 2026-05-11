@@ -26,7 +26,7 @@ hints:
       Liefere [flaeche, umfang] eines Kreises mit Radius r.
       Beide auf 2 Nachkommastellen gerundet.
       r < 0 -> [0.0, 0.0]. Verwende math.pi.
-  - kosten: 10
+  - kosten: 4
     text: |
       flaeche = pi * r^2, umfang = 2 * pi * r.
       [round(flaeche, 2), round(umfang, 2)].

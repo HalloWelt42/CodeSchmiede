@@ -25,7 +25,7 @@ hints:
     text: |
       Per Definition: `basis^0 = 1`. Sonst Schleife: `ergebnis = 1`,
       dann `n` mal mit `basis` multiplizieren.
-  - kosten: 15
+  - kosten: 8
     text: |
       Schöner mit `range(n)`:
 

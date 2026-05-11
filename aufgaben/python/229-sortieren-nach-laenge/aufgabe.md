@@ -26,7 +26,7 @@ hints:
       Sortiere eine Liste von Strings AUFSTEIGEND nach LAENGE.
       Bei gleicher Laenge: alphabetisch.
       Original-Liste nicht verändern.
-  - kosten: 10
+  - kosten: 5
     text: |
       sorted mit key=lambda s: (len(s), s).
       Tupel-Sortierung: zuerst nach laenge, dann alphabetisch.

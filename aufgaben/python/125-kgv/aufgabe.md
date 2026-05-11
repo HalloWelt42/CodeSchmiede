@@ -25,7 +25,7 @@ hints:
     text: |
       kgV von zwei Zahlen: a*b // ggt(a,b). Auch für Listen
       assoziativ -- reduce über Paare.
-  - kosten: 10
+  - kosten: 8
     text: |
       `from math import lcm; from functools import reduce`.
       `reduce(lcm, zahlen, 1)`. Bei leerer Liste 0 als Konvention.

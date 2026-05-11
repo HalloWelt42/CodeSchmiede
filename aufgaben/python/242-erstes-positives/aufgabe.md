@@ -26,7 +26,7 @@ hints:
       Liefere das erste Element > 0 aus der Liste, oder None wenn
       keins existiert.
       [-1, -2, 5, -3] → 5. [-1, -2] → None.
-  - kosten: 10
+  - kosten: 5
     text: |
       next((x for x in liste if x > 0), None).
       next mit Default ist die elegante Form.

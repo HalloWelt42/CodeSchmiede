@@ -26,7 +26,7 @@ hints:
       Zerlege eine nicht-negative ganze Zahl in eine Liste ihrer Ziffern,
       höchstwertige zuerst.
       0 -> [0], 12345 -> [1,2,3,4,5]. Negative Zahlen wie ihr Betrag.
-  - kosten: 10
+  - kosten: 5
     text: |
       Per String: [int(c) for c in str(abs(n))].
       Per Modulo: while n>0 von rechts sammeln + reverse.

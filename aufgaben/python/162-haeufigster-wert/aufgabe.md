@@ -26,7 +26,7 @@ hints:
       Liefere den häufigsten Wert (Modus) einer Liste. Bei
       Gleichstand: den **kleinsten** der häufigsten Werte.
       Bei leerer Liste -> None.
-  - kosten: 15
+  - kosten: 12
     text: |
       collections.Counter(...) liefert die Häufigkeiten.
       max-Anzahl bestimmen, dann unter allen mit dieser Anzahl

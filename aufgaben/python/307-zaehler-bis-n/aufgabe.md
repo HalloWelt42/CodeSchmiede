@@ -26,7 +26,7 @@ hints:
       Liefere die Zahlen 1, 2, ..., n als Liste.
       Implementiere INTERN einen Generator (yield), wandle dann zu Liste.
       n <= 0 → [].
-  - kosten: 10
+  - kosten: 7
     text: |
       def gen(): for i in range(1, n+1): yield i
       Funktion gibt list(gen()) zurück.

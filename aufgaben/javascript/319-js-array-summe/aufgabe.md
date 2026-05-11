@@ -26,7 +26,7 @@ hints:
       Summiere alle Zahlen im Array mit Array.reduce.
       Bei leerem Array → 0.
       Arrow function + reduce ist die moderne Form.
-  - kosten: 10
+  - kosten: 5
     text: |
       arr.reduce((akk, x) => akk + x, 0).
       Der Startwert 0 ist wichtig für den leeren Array-Fall.

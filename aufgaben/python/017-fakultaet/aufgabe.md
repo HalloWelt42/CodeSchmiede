@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Per Definition: `0! = 1` und `n! = n * (n-1)!`. Also `5! = 5 * 4 * 3 * 2 * 1 = 120`.
-  - kosten: 10
+  - kosten: 7
     text: |
       Iterativ mit `range(2, n+1)`:
 

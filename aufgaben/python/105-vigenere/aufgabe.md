@@ -27,7 +27,7 @@ hints:
       durch den Schlüssel. Schlüssel 'a'=0, 'b'=1, ..., 'z'=25.
       Schlüssel wird zyklisch wiederholt; Nicht-Buchstaben überspringen
       die Schlüsselposition NICHT.
-  - kosten: 25
+  - kosten: 12
     text: |
       Pro Buchstabe: shift = ord(schlüssel[i % len(schlüssel)]) - ord('a').
       Verschiebung wie bei ROT, Groß/Klein bleibt erhalten.

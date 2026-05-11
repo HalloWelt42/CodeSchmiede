@@ -25,7 +25,7 @@ hints:
     text: |
       `text.count(sub)` ohne Überlappung. Hier soll Überlappung
       mitgezählt werden -- "aaa" enthält "aa" zweimal!
-  - kosten: 15
+  - kosten: 8
     text: |
       Schleife mit Index: `for i in range(len(text) - len(sub) + 1)`,
       prüfen `text[i:i+len(sub)] == sub`.

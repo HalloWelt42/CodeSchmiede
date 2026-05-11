@@ -26,7 +26,7 @@ hints:
       Berechne die Summe der echten Teiler von a -- nenn das `s(a)`.
       Genauso `s(b)`. Die Zahlen sind befreundet, wenn `s(a) == b` und
       `s(b) == a` -- und beide verschieden sind.
-  - kosten: 15
+  - kosten: 11
     text: |
       Hilfsfunktion `teiler_summe(n)` schreiben, dann zwei Aufrufe.
 tests_sichtbar:

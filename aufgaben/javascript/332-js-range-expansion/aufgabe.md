@@ -25,7 +25,7 @@ hints:
     text: |
       Entpacke "1-3,5,7-9" zu [1,2,3,5,7,8,9]. Negative Untergrenzen
       ("-3--1") muessen funktionieren. Leerer String -> [].
-  - kosten: 20
+  - kosten: 17
     text: |
       split(",") -- pro Stueck indexOf("-", 1) fuer den Trenner.
       Array.from({length: b-a+1}, (_, i) => a+i) erzeugt den Bereich.

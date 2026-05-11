@@ -27,7 +27,7 @@ hints:
       Beim ersten ungleich-0: STOP Skipping, alles ab da behalten
       (auch wenn weitere 0en kommen).
       [0, 0, 0, 1, 0, 2] → [1, 0, 2].
-  - kosten: 15
+  - kosten: 12
     text: |
       Flag dropping=True. Pro x: if dropping and x==0: skip.
       Sonst dropping=False, yield x.

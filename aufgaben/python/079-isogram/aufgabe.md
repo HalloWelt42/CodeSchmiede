@@ -25,7 +25,7 @@ hints:
     text: |
       Ein Isogramm hat **keinen Buchstaben mehrfach**. Bindestriche und
       Leerzeichen werden ignoriert. Groß-/Kleinschreibung egal.
-  - kosten: 10
+  - kosten: 5
     text: |
       Filtere alle Buchstaben, vergleiche `len(buchstaben) == len(set(buchstaben))`.
 tests_sichtbar:

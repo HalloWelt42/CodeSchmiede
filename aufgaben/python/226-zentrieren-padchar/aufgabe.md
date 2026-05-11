@@ -27,7 +27,7 @@ hints:
       gegebenen Padding-Zeichen. text laenger als breite → unverändert.
       Bei pad mit Laenge != 1 → text unverändert.
       Pythons str.center erlaubt das pad-Zeichen direkt.
-  - kosten: 10
+  - kosten: 8
     text: |
       text.center(breite, pad). Aber pad muss genau ein Zeichen sein,
       sonst Error oder eigene Prüfung.

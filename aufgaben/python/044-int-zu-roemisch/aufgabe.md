@@ -26,7 +26,7 @@ hints:
       Gehe alle Werte vom größten zum kleinsten durch (inkl.
       Sonderfaelle 900, 400, 90, 40, 9, 4) und ziehe so viele wie
       möglich vom n ab, fuege das jeweilige Symbol hinzu.
-  - kosten: 20
+  - kosten: 12
     text: |
       Liste von Tupeln `(wert, symbol)` absteigend, dann pro Tupel
       `n // wert` mal Symbol anhängen und `n %= wert`.

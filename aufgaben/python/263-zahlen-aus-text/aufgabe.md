@@ -27,7 +27,7 @@ hints:
       "abc 123 def -45" → [123, -45].
       Reihenfolge wie im Text.
       Bei keiner Zahl → [].
-  - kosten: 15
+  - kosten: 12
     text: |
       re.findall(r"-?\d+", text), dann int(s) pro Match.
 tests_sichtbar:

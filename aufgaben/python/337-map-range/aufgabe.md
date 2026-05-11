@@ -28,7 +28,7 @@ hints:
       Beispiel: x=5 in [0, 10] -> in [0, 100] = 50.
       Auf 4 Nachkommastellen runden.
       Wenn a1 == a2 -> b1 (Division durch 0 vermeiden).
-  - kosten: 15
+  - kosten: 10
     text: |
       b1 + (x - a1) * (b2 - b1) / (a2 - a1) ist die Standard-Formel.
 tests_sichtbar:

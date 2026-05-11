@@ -27,7 +27,7 @@ hints:
       [1, 2, 3, 4] → [1, 3, 6, 10] (1, 1+2, 1+2+3, 1+2+3+4).
       Bei [] → [].
       Intern Generator mit yield.
-  - kosten: 10
+  - kosten: 8
     text: |
       def gen(): summe=0; for x in liste: summe+=x; yield summe.
 tests_sichtbar:

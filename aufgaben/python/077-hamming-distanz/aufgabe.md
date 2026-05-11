@@ -26,7 +26,7 @@ hints:
       Vergleiche Position für Position. Zähle, wo sich die Strings
       unterscheiden. Nur erlaubt für Strings gleicher Länge --
       sonst -1 zurückgeben.
-  - kosten: 10
+  - kosten: 7
     text: |
       `sum(1 for a, b in zip(s1, s2) if a != b)` -- aber vorher
       Längen-Check.

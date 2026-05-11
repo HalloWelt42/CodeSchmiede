@@ -25,7 +25,7 @@ hints:
     text: |
       Die Aufgabe: schreibe filter() selbst nach. Für jedes Element
       `x` aus der Liste: ist `funktion(x)` truthy, behalte es.
-  - kosten: 10
+  - kosten: 8
     text: |
       List-Comprehension ist ein schöner One-Liner:
       `[x for x in liste if funktion(x)]`. Aber bewusst NICHT die

@@ -23,11 +23,11 @@ funktion: text_umkehren
 hints:
   - kosten: 0
     text: Python kann Strings rückwärts mit Slicing lesen.
-  - kosten: 15
+  - kosten: 2
     text: |
       Slicing-Notation `[start:stop:schritt]`. Wenn Schritt `-1` ist,
       geht es rückwärts.
-  - kosten: 25
+  - kosten: 3
     text: |
       Idiomatisch:
 

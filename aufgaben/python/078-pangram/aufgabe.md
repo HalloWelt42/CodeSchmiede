@@ -25,7 +25,7 @@ hints:
     text: |
       Ein Pangramm enthält jeden Buchstaben des Alphabets a-z mindestens
       einmal. Groß-/Kleinschreibung egal.
-  - kosten: 10
+  - kosten: 5
     text: |
       Mit Sets: `set(text.lower()) >= set("abcdefghijklmnopqrstuvwxyz")`
       oder kurz `set("abcdefghijklmnopqrstuvwxyz") <= set(text.lower())`.

@@ -32,7 +32,7 @@ hints:
       Finde die minimale Zugzahl, um genau `ziel` Liter in einem Eimer
       zu haben. Verbotener Zustand: Start-Eimer leer + anderer voll
       (nicht erlaubt direkt zurück zum Anfang).
-  - kosten: 30
+  - kosten: 17
     text: |
       BFS! Zustände: `(a_inhalt, b_inhalt)`. Start: je nach
       `start_eimer` entweder `(a, 0)` oder `(0, b)`. Verbotener

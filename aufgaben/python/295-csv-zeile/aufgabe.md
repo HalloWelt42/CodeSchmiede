@@ -27,7 +27,7 @@ hints:
       Felder in DOPPELTEN ANFUEHRUNGSZEICHEN dürfen Kommas enthalten.
       Quotes selbst werden NICHT in Felder übernommen.
       Bsp: '1,"Hallo, Welt",3' → ["1", "Hallo, Welt", "3"].
-  - kosten: 25
+  - kosten: 21
     text: |
       Modul csv.reader([s]) macht das exakt nach RFC 4180.
       Liefer-Form: list(csv.reader([s]))[0].

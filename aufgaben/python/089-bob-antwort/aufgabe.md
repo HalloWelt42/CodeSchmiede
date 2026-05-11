@@ -29,7 +29,7 @@ hints:
       - Nur geschrien → "Schrei mich nicht an!"
       - Nur Frage → "Klar."
       - Sonst → "Naja."
-  - kosten: 15
+  - kosten: 8
     text: |
       Test fürs Schreien: Text muss mindestens einen Buchstaben haben
       UND alle Buchstaben sind Großbuchstaben.

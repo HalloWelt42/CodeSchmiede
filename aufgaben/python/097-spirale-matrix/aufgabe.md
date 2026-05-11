@@ -27,7 +27,7 @@ hints:
       in Spirale: nach rechts, dann unten, dann links, dann oben,
       und so weiter -- jeweils bis du an einen Rand oder bereits
       gefuelltes Feld stoesst.
-  - kosten: 25
+  - kosten: 15
     text: |
       Richtungs-Vektoren `[(0,1), (1,0), (0,-1), (-1,0)]`. Pro Schritt
       prüfen ob nächste Position frei und im Raster ist. Falls nicht:

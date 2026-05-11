@@ -26,7 +26,7 @@ hints:
       Zwei Wörter sind Anagramme, wenn sie nach Sortieren der
       Buchstaben identisch sind. Liefere Liste von Listen --
       jede Innen-Liste ist eine Anagramm-Gruppe.
-  - kosten: 15
+  - kosten: 8
     text: |
       `defaultdict(list)`. Pro Wort: `key = "".join(sorted(wort.lower()))`.
       Dict-Werte sammeln. Am Ende `sorted(dict.values())` für stabile

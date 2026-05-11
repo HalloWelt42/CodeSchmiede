@@ -27,7 +27,7 @@ hints:
       Reihenfolge wie im Original.
       Mehrfache Whitespaces zählen als ein Trenner.
       Bei text == "" oder n < 0 → [].
-  - kosten: 10
+  - kosten: 4
     text: |
       [w for w in text.split() if len(w) > n].
 tests_sichtbar:

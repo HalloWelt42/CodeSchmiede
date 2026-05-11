@@ -25,7 +25,7 @@ hints:
     text: |
       `k` Positionen nach links: nimm die ersten `k` Elemente und haenge
       sie ans Ende. Aber pass auf: `k` kann größer sein als die Liste.
-  - kosten: 15
+  - kosten: 9
     text: |
       Mit Modulo gegen Überlauf:
 

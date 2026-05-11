@@ -23,7 +23,7 @@ funktion: zaehle_gross
 hints:
   - kosten: 0
     text: Jedes Zeichen hat eine `.isupper()`-Methode.
-  - kosten: 10
+  - kosten: 5
     text: |
       Mit `sum(...)`:
 

@@ -25,7 +25,7 @@ hints:
     text: |
       `text.split('_')` zerlegt an den Unterstrichen. Erstes Wort
       bleibt klein, danach `.capitalize()` pro Wort.
-  - kosten: 15
+  - kosten: 8
     text: |
       ```
       teile = text.split('_')

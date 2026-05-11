@@ -27,7 +27,7 @@ hints:
       Akzeptiere mit/ohne %, mit Komma oder Punkt.
       "50%" → 0.5, "12,5%" → 0.125, "100" → 1.0.
       Bei ungültiger Eingabe → 0.0.
-  - kosten: 15
+  - kosten: 8
     text: |
       strip("%"), Komma zu Punkt, float(), durch 100.
       In try/except wegen ungültiger Eingaben.

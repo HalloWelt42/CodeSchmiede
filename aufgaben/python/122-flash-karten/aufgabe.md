@@ -27,7 +27,7 @@ hints:
       eigenen Wiederholungs-System. Eingabe: aktueller `ease` (>=1.3),
       `intervall_tage`, `wiederholungen` und `bewertung` (0-5).
       Liefere neuen Zustand als Dict.
-  - kosten: 25
+  - kosten: 12
     text: |
       Bewertung < 3: zurück auf wiederholungen=0, intervall=1, ease bleibt.
       Bewertung >= 3: 

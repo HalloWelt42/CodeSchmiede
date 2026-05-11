@@ -26,7 +26,7 @@ hints:
       Prüfe ob die Liste NICHT-FALLEND sortiert ist (also a[i] <= a[i+1]).
       Leere Liste / 1-elementig → True.
       Gleiche Werte sind erlaubt.
-  - kosten: 10
+  - kosten: 5
     text: |
       all(a <= b for a, b in zip(liste, liste[1:])).
 tests_sichtbar:

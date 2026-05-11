@@ -25,7 +25,7 @@ hints:
     text: |
       Sortiere die Liste, dann max der Differenzen aufeinanderfolgender
       Werte. Bei < 2 Elementen → 0.
-  - kosten: 10
+  - kosten: 7
     text: |
       `s = sorted(zahlen)`, dann `max(b - a for a, b in zip(s, s[1:]))`.
 tests_sichtbar:

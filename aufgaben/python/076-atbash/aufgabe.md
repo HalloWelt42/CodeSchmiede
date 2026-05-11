@@ -26,7 +26,7 @@ hints:
       Atbash spiegelt das Alphabet: a->z, b->y, c->x, ..., z->a.
       Großbuchstaben werden klein. Ziffern bleiben. Sonderzeichen weg.
       Ausgabe in Fünfer-Gruppen, durch Leerzeichen getrennt.
-  - kosten: 20
+  - kosten: 9
     text: |
       Pro Zeichen: ist es Buchstabe → 25 - (ord(c) - ord('a')) als
       Index ins Alphabet. Ziffern direkt durchreichen. Andere Zeichen

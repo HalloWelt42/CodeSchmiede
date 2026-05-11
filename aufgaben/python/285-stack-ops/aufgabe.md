@@ -28,7 +28,7 @@ hints:
       ["pop"] → entfernt das oberste, ignoriert wenn leer
       Liefere den FINALEN Stack-Inhalt als Liste.
       Bei [] → [].
-  - kosten: 15
+  - kosten: 12
     text: |
       Klasse Stack mit interner Liste, push/pop-Methoden.
       Liste ist von unten nach oben (Index 0 = unten).

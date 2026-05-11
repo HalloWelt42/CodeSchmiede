@@ -26,7 +26,7 @@ hints:
       ROT13 als Spezialfall von Caesar -- aber: Groß-/Kleinschreibung
       bleibt erhalten, Nicht-Buchstaben bleiben unverändert. Leerzeichen
       und Satzzeichen werden NICHT entfernt.
-  - kosten: 15
+  - kosten: 8
     text: |
       Pro Zeichen: ist es Großbuchstabe → 'A'-Basis. Kleinbuchstabe →
       'a'-Basis. Sonst → unverändert. `(ord(c) - basis + n) % 26 + basis`.

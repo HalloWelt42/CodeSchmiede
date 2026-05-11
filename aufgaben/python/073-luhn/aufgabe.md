@@ -25,7 +25,7 @@ hints:
     text: |
       Whitespace ignorieren. Zahl muss mind. 2 Ziffern haben, alles
       andere ungültig.
-  - kosten: 15
+  - kosten: 11
     text: |
       Von rechts: jede zweite Ziffer verdoppeln. Falls > 9, ziehe 9 ab.
       Summe aller Ziffern muss durch 10 teilbar sein.

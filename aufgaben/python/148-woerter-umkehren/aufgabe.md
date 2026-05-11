@@ -26,7 +26,7 @@ hints:
       Drehe die Reihenfolge der Wörter um. Mehrfache Leerzeichen
       werden zu einem Einzel-Leerzeichen reduziert.
       "Hallo  Welt" → "Welt Hallo".
-  - kosten: 10
+  - kosten: 8
     text: |
       str.split() ohne Argument splittet an beliebigem Whitespace
       und entfernt leere Strings. Dann reversed() + " ".join().

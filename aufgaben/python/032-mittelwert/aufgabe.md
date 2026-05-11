@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Summe / Anzahl. Achtung beim leeren Fall: gib `0.0` zurück.
-  - kosten: 10
+  - kosten: 5
     text: |
       ```
       if not zahlen:

@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Liefere ein Liste [b, a] mit den Werten getauscht.
-  - kosten: 5
+  - kosten: 2
     text: |
       Tupel-Zuweisung: a, b = b, a.
       Oder direkt return [b, a].

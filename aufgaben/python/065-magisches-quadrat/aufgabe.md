@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Alle Zeilen-, Spalten- und Diagonalsummen müssen gleich sein.
-  - kosten: 15
+  - kosten: 12
     text: |
       Berechne alle Summen, sammle sie in einem Set. Wenn das Set
       genau ein Element enthält, ist die Matrix magisch.

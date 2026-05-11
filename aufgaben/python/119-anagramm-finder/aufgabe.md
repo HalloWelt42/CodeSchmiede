@@ -26,7 +26,7 @@ hints:
       Liefere die Worte aus `kandidaten`, die Anagramme von `wort`
       sind -- Groß-/Kleinschreibung egal. Aber: das Wort selbst
       (gleiche Buchstaben gleich groß/klein) ist KEIN Anagramm.
-  - kosten: 15
+  - kosten: 8
     text: |
       Sortier-Schlüssel: `sorted(w.lower())`. Vergleiche pro
       Kandidat. Filtere selbe Wort raus (case-insensitive).

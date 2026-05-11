@@ -26,7 +26,7 @@ hints:
       Liefere ein Array mit FizzBuzz-Strings fuer die Zahlen 1..n.
       Regeln wie Klassiker (3->Fizz, 5->Buzz, 15->FizzBuzz).
       n <= 0 -> [].
-  - kosten: 10
+  - kosten: 7
     text: |
       Array.from({length: n}, (_, i) => ...) ist die moderne Form.
       Index ist 0-basiert, also i+1 verwenden.

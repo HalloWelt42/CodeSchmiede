@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Naive Lösung: doppelte Schleife, Paare zählen.
-  - kosten: 15
+  - kosten: 9
     text: |
       Schneller mit Counter: pro Wert x prüfen, wie oft (ziel - x)
       vorkommt. Nicht doppelt zählen.

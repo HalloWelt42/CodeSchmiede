@@ -27,7 +27,7 @@ hints:
       Pattern: word@word.word -- Buchstaben, Ziffern, Punkt,
       Unterstrich, Bindestrich vor dem @, gleicher Charset nach @,
       dann ein Punkt und mind. 2 Buchstaben.
-  - kosten: 15
+  - kosten: 8
     text: |
       re.findall(r"[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}", text).
       Achtung: das ist nur EIN sinnvolles Pattern -- echte

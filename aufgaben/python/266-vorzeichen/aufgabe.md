@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere -1 wenn x < 0, 0 wenn x == 0, +1 wenn x > 0.
       Funktioniert mit int und float.
-  - kosten: 5
+  - kosten: 4
     text: |
       Direkter if/elif/else.
       Oder Trick: (x > 0) - (x < 0).

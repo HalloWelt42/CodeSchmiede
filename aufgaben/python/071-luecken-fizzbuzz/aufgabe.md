@@ -23,7 +23,7 @@ funktion: drei_oder_fuenf
 hints:
   - kosten: 0
     text: Lücke 1 ist der Modulo-Operator, Lücke 2 die Zahl 5.
-  - kosten: 10
+  - kosten: 5
     text: |
       Lösung -- Lücke 1 = `%`, Lücke 2 = `5`, Lücke 3 = `"beides"`,
       Lücke 4 = `"keines"`.

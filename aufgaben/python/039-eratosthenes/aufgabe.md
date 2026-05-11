@@ -25,7 +25,7 @@ hints:
     text: |
       Lege eine Liste an, die für jede Zahl markiert "ist Primzahl?".
       Streiche alle Vielfachen jeder gefundenen Primzahl ab i*i.
-  - kosten: 20
+  - kosten: 15
     text: |
       ```
       ist_prim = [True] * (n + 1)

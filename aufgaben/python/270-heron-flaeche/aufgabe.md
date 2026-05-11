@@ -29,7 +29,7 @@ hints:
       Auf 4 Nachkommastellen.
       Bei UNGUELTIGEM Dreieck (negative Seiten oder Dreiecks-
       ungleichung verletzt) → 0.0.
-  - kosten: 15
+  - kosten: 12
     text: |
       Prüfe alle Seiten > 0 UND laengste < Summe der anderen.
       Dann Heron.

@@ -30,7 +30,7 @@ hints:
       >  →  &gt;
       "  →  &quot;
       '  →  &#39;
-  - kosten: 10
+  - kosten: 8
     text: |
       Wichtig: & zuerst ersetzen, sonst wird "&lt;" zu "&amp;lt;".
       Reihenfolge der replace-Aufrufe ist sicherheitsrelevant.

@@ -29,7 +29,7 @@ hints:
       ["a", "b"] → "a und b"
       ["a", "b", "c"] → "a, b und c"
       ["a", "b", "c", "d"] → "a, b, c und d"
-  - kosten: 10
+  - kosten: 8
     text: |
       Sonderfaelle: 0, 1, 2 Elemente getrennt.
       Sonst: ", ".join(wörter[:-1]) + " und " + wörter[-1].

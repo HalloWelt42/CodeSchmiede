@@ -25,7 +25,7 @@ hints:
     text: |
       Fibonacci: F(0)=0, F(1)=1, F(n)=F(n-1)+F(n-2).
       Liefere die ersten n Zahlen als Liste.
-  - kosten: 10
+  - kosten: 7
     text: |
       Iterativ in einer Schleife mit zwei Variablen `a, b`. Pro Schritt
       `a, b = b, a+b` und `a` an die Liste anhängen.

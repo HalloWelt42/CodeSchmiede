@@ -26,7 +26,7 @@ hints:
       Doppelte Schleife. Vergleiche jeweils Nachbarn, vertausche, falls
       links größer ist als rechts. Wiederhole, bis nichts mehr
       vertauscht wurde.
-  - kosten: 15
+  - kosten: 11
     text: |
       Aussere Schleife `n` mal, innere von 0 bis n-i-1. Vertauschen mit
       Tuple-Unpacking: `a[j], a[j+1] = a[j+1], a[j]`.

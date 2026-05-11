@@ -26,7 +26,7 @@ hints:
       Jede Allergie hat einen Bit-Wert: Eier=1, Erdnuesse=2, Schalentiere=4,
       Erdbeeren=8, Tomaten=16, Schokolade=32, Pollen=64, Katzen=128.
       Bit-AND `score & wert` testet ob Allergie vorhanden.
-  - kosten: 15
+  - kosten: 9
     text: |
       Liste der Allergien in fester Reihenfolge. Pro Eintrag testen,
       ob das entsprechende Bit gesetzt ist. Höhere Bits (>=256)

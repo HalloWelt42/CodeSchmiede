@@ -27,7 +27,7 @@ hints:
       Bei Gleichstand: Standard-Python-Rundung (banker's rounding).
       k <= 0 → n unverändert.
       Negative n und k werden korrekt behandelt.
-  - kosten: 10
+  - kosten: 8
     text: |
       round(n / k) * k -- Standard-Trick.
 tests_sichtbar:

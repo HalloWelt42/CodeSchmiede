@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Schleife über `text`, jedes Zeichen ins Dict zählen.
-  - kosten: 10
+  - kosten: 8
     text: |
       `dict.get(c, 0) + 1` spart das if/else.
 tests_sichtbar:

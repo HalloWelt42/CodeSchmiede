@@ -27,7 +27,7 @@ hints:
       n = 13, k = 5 → 10. n = 10, k = 5 → 10.
       k <= 0 → n unverändert.
       Negative n: -13 mit k=5 → -15.
-  - kosten: 10
+  - kosten: 8
     text: |
       n // k * k -- Pythons // ist Floor-Division (rundet abwärts).
 tests_sichtbar:

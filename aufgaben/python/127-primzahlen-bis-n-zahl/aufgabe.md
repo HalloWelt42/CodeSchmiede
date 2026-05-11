@@ -25,7 +25,7 @@ hints:
     text: |
       Wie viele Primzahlen <= n? Sieb des Eratosthenes, Anzahl
       True-Werte zählen.
-  - kosten: 10
+  - kosten: 8
     text: |
       Bei n < 2 → 0. Sonst Sieb bauen, `sum(ist_prim)` zählt
       die True-Werte.

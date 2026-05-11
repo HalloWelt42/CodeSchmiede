@@ -25,7 +25,7 @@ hints:
     text: |
       Eingabe sind zwei bereits sortierte Listen. Zwei Zeiger,
       pro Schritt das kleinere vordere Element nehmen.
-  - kosten: 15
+  - kosten: 8
     text: |
       Verboten: `sorted(a + b)`. Eigene Schleife.
 tests_sichtbar:

@@ -26,7 +26,7 @@ hints:
       Liefere den DEUTSCHEN Monatsnamen aus der Monatsnummer 1-12.
       1 → "Januar", ..., 12 → "Dezember".
       Ungültige Eingaben → "".
-  - kosten: 5
+  - kosten: 2
     text: |
       Liste mit 13 Eintraegen (Index 0 = Fueller). Prüfe Bereich.
 tests_sichtbar:

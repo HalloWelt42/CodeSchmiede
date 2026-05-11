@@ -29,7 +29,7 @@ hints:
       - mind. 1 Großbuchstabe
       - mind. 1 Ziffer
       Liefere True/False -- KEIN Score wie 129.
-  - kosten: 25
+  - kosten: 21
     text: |
       Mit Lookahead-Asseritionen alle Bedingungen in einem Pattern:
       r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$".

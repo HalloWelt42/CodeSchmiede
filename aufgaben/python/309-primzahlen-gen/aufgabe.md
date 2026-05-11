@@ -26,7 +26,7 @@ hints:
       Liefere alle Primzahlen <= n als Liste.
       Intern: Generator mit Sieb des Eratosthenes ODER Trial-Division.
       n < 2 → [].
-  - kosten: 25
+  - kosten: 24
     text: |
       Sieb: bool-Liste der Größe n+1, false markieren.
       Generator: yield i wenn sieb[i] True.

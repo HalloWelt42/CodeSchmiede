@@ -26,7 +26,7 @@ hints:
       Schleife durch den String. Aktuelles Zeichen + Zähler merken.
       Wenn das nächste Zeichen anders ist: ans Ergebnis anhängen,
       Zähler reset.
-  - kosten: 15
+  - kosten: 12
     text: |
       Wenn der Zähler 1 ist, schreibe nur das Zeichen (z.B. `"a"`),
       sonst Zeichen + Zahl (z.B. `"a3"`).

@@ -26,7 +26,7 @@ hints:
       Prüfe alle 8 möglichen Gewinn-Linien: 3 Zeilen, 3 Spalten,
       2 Diagonalen. Wenn alle 3 Felder gleich und nicht leer sind,
       ist das der Gewinner.
-  - kosten: 15
+  - kosten: 11
     text: |
       Felder mit "."  bedeuten leer. Bei leerem Feld nicht als
       Gewinner zählen.

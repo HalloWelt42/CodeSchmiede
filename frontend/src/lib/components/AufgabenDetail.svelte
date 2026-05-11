@@ -39,7 +39,7 @@
   let pruef_fehler = $state<string | null>(null);
 
   let musterloesungen = $state<Musterloesung[] | null>(null);
-  let zeige_loesungen = $state(false);
+  let aktiver_tab = $state<'aufgabe' | 'loesungen'>('aufgabe');
 
   let verlauf = $state<VerlaufEintrag[]>([]);
   let zeige_verlauf = $state(false);
@@ -203,7 +203,7 @@
       await progressApi.reset(detail.id);
       ergebnis = null;
       musterloesungen = null;
-      zeige_loesungen = false;
+      aktiver_tab = 'aufgabe';
       // Beim Reset zurück auf Starter-Boilerplate, nicht auf letzte
       // Submission -- der Nutzer will von vorn anfangen.
       code = detail.starter_code;
@@ -331,15 +331,52 @@
       {/if}
     <div class="spalten" bind:this={spaltenContainer} style={spaltenStil}>
       <section class="spalte links">
-        <BeschreibungsBereich
-          aufgabeId={detail.id}
-          markdown={detail.beschreibung_md}
-          hints={detail.hints}
-          tests_sichtbar={detail.tests_sichtbar}
-          anzahl_versteckt={detail.anzahl_versteckte_tests}
-          quelle={detail.quelle}
-          schwierigkeit_score={detail.schwierigkeit_score}
-        />
+        <div class="tab-leiste" role="tablist">
+          <button
+            class="tab"
+            class:aktiv={aktiver_tab === 'aufgabe'}
+            role="tab"
+            aria-selected={aktiver_tab === 'aufgabe'}
+            onclick={() => (aktiver_tab = 'aufgabe')}
+          >
+            <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+            Aufgabe
+          </button>
+          {#if musterloesungen && musterloesungen.length > 0}
+            <button
+              class="tab"
+              class:aktiv={aktiver_tab === 'loesungen'}
+              role="tab"
+              aria-selected={aktiver_tab === 'loesungen'}
+              onclick={() => (aktiver_tab = 'loesungen')}
+            >
+              <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+              Musterlösungen ({musterloesungen.length})
+            </button>
+          {/if}
+        </div>
+        <div class="tab-inhalt">
+          {#if aktiver_tab === 'aufgabe'}
+            <BeschreibungsBereich
+              aufgabeId={detail.id}
+              markdown={detail.beschreibung_md}
+              hints={detail.hints}
+              tests_sichtbar={detail.tests_sichtbar}
+              anzahl_versteckt={detail.anzahl_versteckte_tests}
+              quelle={detail.quelle}
+              schwierigkeit_score={detail.schwierigkeit_score}
+            />
+          {:else if aktiver_tab === 'loesungen' && musterloesungen}
+            <div class="muster-liste">
+              {#each musterloesungen as ml (ml.variante)}
+                <details class="muster-eintrag" open>
+                  <summary>{ml.variante}</summary>
+                  <pre><code>{ml.code}</code></pre>
+                </details>
+              {/each}
+            </div>
+          {/if}
+        </div>
       </section>
 
       <div
@@ -390,25 +427,6 @@
           schwierigkeit_score={detail.schwierigkeit_score}
           onWeiter={geheZuNaechster}
         />
-
-        {#if ergebnis?.bestanden && musterloesungen}
-          <div class="muster">
-            <button class="muster-toggle" onclick={() => (zeige_loesungen = !zeige_loesungen)}>
-              <i class="fa-solid {zeige_loesungen ? 'fa-chevron-down' : 'fa-chevron-right'}" aria-hidden="true"></i>
-              Musterlösungen ({musterloesungen.length})
-            </button>
-            {#if zeige_loesungen}
-              <div class="muster-liste">
-                {#each musterloesungen as ml (ml.variante)}
-                  <details class="muster-eintrag" open>
-                    <summary>{ml.variante}</summary>
-                    <pre><code>{ml.code}</code></pre>
-                  </details>
-                {/each}
-              </div>
-            {/if}
-          </div>
-        {/if}
 
         <div class="muster verlauf">
           <button class="muster-toggle" onclick={umschalteVerlauf}>
@@ -594,7 +612,44 @@
   .resizer:hover {
     background: var(--accent);
   }
-  .spalte.links { overflow-y: auto; }
+  .spalte.links { overflow: hidden; }
+  .tab-leiste {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-card);
+    flex-shrink: 0;
+  }
+  .tab {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--fg-dim);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: var(--sp-2) var(--sp-3);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    font-family: inherit;
+  }
+  .tab:hover { color: var(--accent); }
+  .tab.aktiv {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .tab-inhalt {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .tab-inhalt > .muster-liste {
+    padding: var(--sp-3);
+  }
   .spalte.mitte { background: var(--bg); }
   .spalte.rechts { overflow-y: auto; }
 

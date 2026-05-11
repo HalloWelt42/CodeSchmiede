@@ -25,7 +25,7 @@ hints:
     text: |
       Setze [a, b, c, d] zu "a.b.c.d" zusammen.
       Bei UNGUELTIGEN Werten (nicht 4 Teile, nicht 0..255) → "".
-  - kosten: 10
+  - kosten: 8
     text: |
       Prüfe len == 4 und alle Werte 0..255.
       ".".join(str(x) for x in zahlen).

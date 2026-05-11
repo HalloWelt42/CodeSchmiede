@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere die Elemente, die in a aber NICHT in b vorkommen --
       eindeutig und aufsteigend sortiert.
-  - kosten: 10
+  - kosten: 8
     text: |
       sorted(set(a) - set(b)) erledigt es in einem Ausdruck.
 tests_sichtbar:

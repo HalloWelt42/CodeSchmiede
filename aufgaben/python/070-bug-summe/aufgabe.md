@@ -23,7 +23,7 @@ funktion: summe
 hints:
   - kosten: 0
     text: Schau dir die Schleifenbedingung genau an.
-  - kosten: 10
+  - kosten: 4
     text: |
       `range(len(zahlen) - 1)` lässt das letzte Element aus. Korrekt
       wäre `range(len(zahlen))`.

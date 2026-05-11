@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere alle Wörter aus dem Text, die KUERZER als n Zeichen sind.
       Reihenfolge wie im Original.
-  - kosten: 5
+  - kosten: 4
     text: |
       [w for w in text.split() if len(w) < n].
 tests_sichtbar:

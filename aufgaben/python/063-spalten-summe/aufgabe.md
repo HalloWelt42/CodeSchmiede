@@ -25,7 +25,7 @@ hints:
     text: |
       Pro Spalte alle Einträge summieren. Liste der Spaltensummen
       zurückgeben.
-  - kosten: 15
+  - kosten: 7
     text: |
       Mit zip + list comp:
 

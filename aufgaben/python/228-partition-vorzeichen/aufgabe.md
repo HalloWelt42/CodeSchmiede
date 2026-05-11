@@ -26,7 +26,7 @@ hints:
       Teile eine Liste in [negative, nullen, positive] auf.
       Reihenfolge IN den Listen wie im Original.
       Bei [] -> [[], [], []].
-  - kosten: 10
+  - kosten: 7
     text: |
       Drei Listen vorbereiten und einmal durchlaufen.
       Oder drei List-Comprehensions.

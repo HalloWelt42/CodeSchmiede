@@ -26,7 +26,7 @@ hints:
       Waehle ein Pivot-Element. Teile die Liste in: kleiner als Pivot,
       gleich Pivot, größer als Pivot. Sortiere die beiden aeusseren
       Listen rekursiv und setze alles zusammen.
-  - kosten: 20
+  - kosten: 15
     text: |
       Pythonic mit Comprehensions:
 

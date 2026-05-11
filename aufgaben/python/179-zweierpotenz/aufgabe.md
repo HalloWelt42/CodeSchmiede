@@ -26,7 +26,7 @@ hints:
       Prüfe ob n eine Zweierpotenz ist (1, 2, 4, 8, 16, ...).
       n <= 0 → False. 1 → True (= 2^0).
       Hinweis: Bit-Trick mit n & (n - 1).
-  - kosten: 15
+  - kosten: 12
     text: |
       Zweierpotenzen haben in Binaer GENAU EIN gesetztes Bit.
       n & (n - 1) löscht das niedrigste Bit. Wenn 0 herauskommt,

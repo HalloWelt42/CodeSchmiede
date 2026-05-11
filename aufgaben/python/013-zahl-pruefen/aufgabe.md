@@ -23,11 +23,11 @@ funktion: ist_primzahl
 hints:
   - kosten: 0
     text: Eine Primzahl ist nur durch 1 und sich selbst ohne Rest teilbar.
-  - kosten: 15
+  - kosten: 7
     text: |
       Prüfe alle Zahlen von 2 bis n-1 -- wenn eine davon `n` teilt,
       ist es keine Primzahl. Vorsicht mit den Sonderfällen `n < 2`.
-  - kosten: 30
+  - kosten: 15
     text: |
       Schneller: nur bis $\sqrt{n}$ prüfen reicht.
 

@@ -27,7 +27,7 @@ hints:
       [1,2,3,4,5,6] → [[1,2],[3,4],[5,6]].
       Ungerade Anzahl: das letzte Element wird IGNORIERT.
       Bei [] → [].
-  - kosten: 10
+  - kosten: 5
     text: |
       [list(liste[i:i+2]) for i in range(0, len(liste) // 2 * 2, 2)].
       Oder zip(liste[::2], liste[1::2]).

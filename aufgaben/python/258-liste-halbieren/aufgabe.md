@@ -27,7 +27,7 @@ hints:
       Bei UNGERADER Anzahl: das mittlere Element gehört zur ZWEITEN Haelfte.
       [1,2,3,4,5] → [[1,2], [3,4,5]].
       Bei [] → [[], []].
-  - kosten: 10
+  - kosten: 4
     text: |
       mid = len(liste) // 2.
       [list(liste[:mid]), list(liste[mid:])].

@@ -26,7 +26,7 @@ hints:
       Prüfe ob ein String eine deutsche Postleitzahl ist:
       genau 5 Ziffern, nichts sonst. Whitespace zählt nicht.
       "12345" → True. " 12345" → False. "1234" → False.
-  - kosten: 10
+  - kosten: 5
     text: |
       re.fullmatch(r"\d{5}", s) ist True wenn der GANZE String
       genau 5 Ziffern enthält.

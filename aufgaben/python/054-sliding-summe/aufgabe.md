@@ -25,7 +25,7 @@ hints:
     text: |
       Naive Lösung: alle Fenster der Größe k prüfen, jeweils
       summieren. O(n*k).
-  - kosten: 15
+  - kosten: 11
     text: |
       Schneller: berechne die Summe des ersten Fensters einmal. Dann
       "rolle" das Fenster: addiere das neue Element rechts, ziehe

@@ -25,7 +25,7 @@ hints:
     text: |
       Liste rückwärts durchgehen, ersten Treffer zurückgeben.
       Nicht gefunden → -1.
-  - kosten: 10
+  - kosten: 5
     text: |
       `for i in range(len(liste) - 1, -1, -1)` geht von hinten.
       Pythonic mit reversed + enumerate ist auch okay.

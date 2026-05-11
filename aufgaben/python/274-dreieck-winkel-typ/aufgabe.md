@@ -27,7 +27,7 @@ hints:
       "spitz" (alle < 90°), "recht" (genau 90°),
       "stumpf" (einer > 90°), "ungültig".
       Pythagoras umgekehrt: c² < a² + b² → spitz, == → recht, > → stumpf.
-  - kosten: 15
+  - kosten: 12
     text: |
       Sortiere Seiten -> c ist die laengste.
       c² vs a² + b² mit math.isclose() bei "recht".

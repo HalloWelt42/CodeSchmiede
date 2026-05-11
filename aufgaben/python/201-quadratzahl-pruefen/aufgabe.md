@@ -26,7 +26,7 @@ hints:
       Prüfe, ob n eine Quadratzahl ist (1, 4, 9, 16, 25, 36, ...).
       n < 0 → False. 0 → True (= 0^2).
       Achtung: math.sqrt liefert Floats und ist bei großen n ungenau.
-  - kosten: 15
+  - kosten: 8
     text: |
       math.isqrt(n) liefert die ganzzahlige Wurzel (immer exakt).
       Prüfe: w = isqrt(n); return w * w == n.

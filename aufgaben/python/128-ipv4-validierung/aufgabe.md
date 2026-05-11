@@ -25,7 +25,7 @@ hints:
     text: |
       4 Zahlen, durch Punkte getrennt, jede zwischen 0 und 255.
       Keine fuehrenden Nullen ("01" ist invalid). Kein Whitespace.
-  - kosten: 15
+  - kosten: 8
     text: |
       `text.split('.')` muss exakt 4 Teile geben. Pro Teil:
       isdigit, > "0" → keine fuehrende Null (außer bei 1 Stelle),

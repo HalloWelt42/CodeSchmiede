@@ -25,7 +25,7 @@ hints:
     text: |
       Letzte Ziffer von a^b ist (a^b) % 10. Aber a^b kann riesig werden!
       Trick: Modular-Exponentiation -- pow(a, b, 10).
-  - kosten: 15
+  - kosten: 8
     text: |
       Sonderfall b=0: Ergebnis ist 1, also letzte Ziffer 1.
       Pythons `pow(a, b, mod)` macht das in O(log b).

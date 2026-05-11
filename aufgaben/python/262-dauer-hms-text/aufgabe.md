@@ -27,7 +27,7 @@ hints:
       0 → "0s", 60 → "1m", 3600 → "1h", 3661 → "1h 1m 1s".
       Nullen WEGLASSEN.
       Sekunden < 0 → "0s".
-  - kosten: 15
+  - kosten: 12
     text: |
       h, m, s extrahieren. teile = []; jeweils anhängen wenn > 0.
       Bei alle == 0 → "0s".

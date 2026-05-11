@@ -25,7 +25,7 @@ hints:
     text: |
       Eingabe: Liste `[{"name": ..., "klasse": ...}]`. Ausgabe: Dict
       `{klasse: [namen sortiert]}`. Klassen-Schlüssel als Strings.
-  - kosten: 10
+  - kosten: 8
     text: |
       `defaultdict(list)`, einsortieren, am Ende jede Liste sortieren.
       Conversion zu plain dict mit gleichen sortierten Werten.

@@ -26,7 +26,7 @@ hints:
       Berechne den größten gemeinsamen Teiler zweier nicht-negativer
       ganzer Zahlen -- OHNE math.gcd.
       ggt(a, 0) = a. Sonst: ggt(a, b) = ggt(b, a % b).
-  - kosten: 15
+  - kosten: 10
     text: |
       Iterativ: while b: a, b = b, a % b. Return a.
       Negative Eingaben: Beträge nehmen.

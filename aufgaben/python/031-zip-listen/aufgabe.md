@@ -26,7 +26,7 @@ hints:
       Element 0 aus a, Element 0 aus b, Element 1 aus a, Element 1 aus b ...
       Wenn eine Liste laenger ist, haenge ihre restlichen Elemente am
       Ende an.
-  - kosten: 15
+  - kosten: 9
     text: |
       Schleife `for i in range(min(len(a), len(b)))` baut den
       verzahnten Teil. Danach `a[i+1:]` oder `b[i+1:]` als Rest

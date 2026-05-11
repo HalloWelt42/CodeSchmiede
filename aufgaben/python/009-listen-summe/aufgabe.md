@@ -23,11 +23,11 @@ funktion: summe
 hints:
   - kosten: 0
     text: Eine Schleife mit `for` durchläuft alle Elemente.
-  - kosten: 15
+  - kosten: 2
     text: |
       Initialisiere eine Variable mit `0`, addiere in der Schleife jedes
       Element dazu.
-  - kosten: 30
+  - kosten: 3
     text: |
       Idiomatisch:
 

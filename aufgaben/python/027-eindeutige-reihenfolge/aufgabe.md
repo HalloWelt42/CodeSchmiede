@@ -25,11 +25,11 @@ hints:
     text: |
       `list(set(a))` entfernt Doppelte, vermurkst aber die Reihenfolge.
       Du brauchst einen anderen Weg, der die Reihenfolge erhält.
-  - kosten: 15
+  - kosten: 3
     text: |
       Ein "gesehen"-Set für den schnellen Lookup, dann pro Element
       prüfen und ggf. anhängen.
-  - kosten: 25
+  - kosten: 4
     text: |
       Seit Python 3.7 garantiert `dict` Insertion-Order. Damit ist
       `list(dict.fromkeys(a))` ein eleganter One-Liner.

@@ -26,7 +26,7 @@ hints:
       0-19 sind eigene Wörter. 20, 30, ..., 90 auch. Sonst:
       Einer + "und" + Zehner -- z.B. 23 = "dreiundzwanzig".
       Bei n < 0 oder n > 99 → "" zurück.
-  - kosten: 20
+  - kosten: 9
     text: |
       Lookup-Tabellen `EINER` (0-19) und `ZEHNER` (20, 30, ...).
       Sonderfall 1 in der Einer-Stelle wird "ein" (nicht "eins"):

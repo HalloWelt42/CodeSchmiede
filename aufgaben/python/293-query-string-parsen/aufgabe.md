@@ -27,7 +27,7 @@ hints:
       Werte BLEIBEN STRINGS (kein int-cast).
       Optionales fuehrendes "?" abstrippen.
       Leerer/None String → {}. Bei "k=" → {"k": ""}. Bei "k" ohne "=" → {"k": ""}.
-  - kosten: 15
+  - kosten: 8
     text: |
       Vorab "?" entfernen, dann split("&"), pro Paar split("=", 1).
       Bei nur Key (kein =) → wert = "".

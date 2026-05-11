@@ -25,7 +25,7 @@ hints:
     text: |
       Nur runde Klammern () zählen. Andere Zeichen ignorieren.
       Maximale Verschachtelungstiefe.
-  - kosten: 10
+  - kosten: 7
     text: |
       Tiefe-Counter, max-Tracker. ( -> tiefe += 1, max ggf. updaten.
       ) -> tiefe -= 1.

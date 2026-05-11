@@ -26,7 +26,7 @@ hints:
       Wandle Text in Morse-Code: jeder Buchstabe wird zu Punkten/Strichen,
       Buchstaben getrennt durch ein Leerzeichen, Wörter durch " / ".
       Eingabe Groß/Klein egal. Unbekannte Zeichen ignorieren.
-  - kosten: 15
+  - kosten: 12
     text: |
       Dict {"A": ".-", "B": "-...", ...}.
       text.upper().split() → pro Wort jeden Buchstaben mappen,

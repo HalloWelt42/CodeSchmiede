@@ -29,7 +29,7 @@ hints:
       ["zurück", titel] → fuegt zum Bestand hinzu falls nicht da
       ["prüfen", titel] → kein State-Change, gibt aktuellen Bestand zurück
       Liefere den finalen Bestand als sortierte Liste.
-  - kosten: 20
+  - kosten: 19
     text: |
       Klasse Bibliothek mit set intern.
       Prüfen ist no-op für State, taucht in tests aber als reine Aktion auf.

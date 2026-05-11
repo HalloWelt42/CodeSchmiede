@@ -27,7 +27,7 @@ hints:
       und Unterstriche zu Bindestrich. Mehrfache Trenner zu einem.
       Fuehrende/nachfolgende Bindestriche entfernen.
       Sonderzeichen (außer a-z, 0-9) entfernen.
-  - kosten: 15
+  - kosten: 10
     text: |
       lower, alle Nicht-(a-z0-9) zu '-', mehrfache - kollabieren,
       strip('-'). Regex hilft: re.sub(r'[^a-z0-9]+', '-', text.lower()).

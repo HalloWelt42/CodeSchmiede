@@ -26,7 +26,7 @@ hints:
       Grid mit 0=frei, 1=Wand. Start oben links (0,0), Ziel unten
       rechts (n-1,m-1). Bewegung 4-fach (oben/unten/links/rechts).
       Liefere Anzahl Schritte oder -1.
-  - kosten: 25
+  - kosten: 16
     text: |
       BFS mit deque. Zustand = (r, c). Visited-Set vermeidet Schleifen.
       Pro Schritt: 4 Nachbarn prüfen (Grenzen + Wand + nicht visited).

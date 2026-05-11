@@ -25,7 +25,7 @@ hints:
     text: |
       Die Schnittmenge enthält nur Elemente, die in beiden Listen
       vorkommen. Reihenfolge: nach Position in `a`. Doppelte vermeiden.
-  - kosten: 15
+  - kosten: 7
     text: |
       Mit Sets:
 

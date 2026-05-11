@@ -25,11 +25,11 @@ hints:
     text: |
       `text.split()` zerlegt den Satz an Whitespace -- und liefert eine
       Liste der Wörter.
-  - kosten: 10
+  - kosten: 2
     text: |
       Schleife über die Wörter, jedes Wort als Schlüssel ins Dict
       eintragen und dabei `dict.get(wort, 0) + 1` als Wert setzen.
-  - kosten: 25
+  - kosten: 6
     text: |
       `collections.Counter` macht das in einer Zeile -- aber zum
       Lernen lieber per Hand.

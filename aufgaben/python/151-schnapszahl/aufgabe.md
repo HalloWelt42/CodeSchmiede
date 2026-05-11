@@ -26,7 +26,7 @@ hints:
       Eine Schnapszahl besteht aus mindestens 2 gleichen Ziffern --
       11, 22, 333, 7777. Nicht 1, nicht 12, nicht 122.
       Negative Zahlen verhalten sich wie ihr Betrag.
-  - kosten: 10
+  - kosten: 5
     text: |
       str(abs(n)) liefert die Ziffern. set(...) → wenn nur ein
       Element drin ist UND die Zahl >= 2 Stellen hat, ist es Schnapszahl.

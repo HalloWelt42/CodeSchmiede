@@ -26,7 +26,7 @@ hints:
       Liefere alle Zahlen aus der Liste, die im inklusiven Bereich
       [a, b] liegen -- in der ursprünglichen Reihenfolge.
       a > b → [].
-  - kosten: 5
+  - kosten: 4
     text: |
       [x for x in zahlen if a <= x <= b].
 tests_sichtbar:

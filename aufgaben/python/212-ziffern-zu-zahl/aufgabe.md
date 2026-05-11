@@ -27,7 +27,7 @@ hints:
       zusammen. [1,2,3] → 123. [0] → 0. [] → 0.
       Ungültige Eingaben (z.B. Wert > 9) werden wie ihre Modulo-Zahl
       behandelt.
-  - kosten: 10
+  - kosten: 7
     text: |
       Horner-Schema: ergebnis = 0; pro Ziffer ergebnis = 10 * ergebnis + d.
 tests_sichtbar:

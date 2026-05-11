@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere die nächste Permutation in lexikographischer Reihenfolge.
       Wenn aktuell die letzte ist, sortiert zurückgeben.
-  - kosten: 30
+  - kosten: 15
     text: |
       Algorithmus:
       1. Suche größtes i mit a[i] < a[i+1] (Pivot von rechts).

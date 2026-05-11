@@ -25,7 +25,7 @@ hints:
     text: |
       Sliding-Window: schau dir alle Fenster der Laenge `n` an,
       multipliziere die Ziffern, behalte das größte Produkt.
-  - kosten: 15
+  - kosten: 11
     text: |
       `text[i:i+n]` ist das Fenster. `prod = 1`, dann pro Zeichen
       `prod *= int(c)`. Mit `max(...)` über alle Fenster.

@@ -25,7 +25,7 @@ hints:
     text: |
       Eingabe: Liste von Records `{"id": X, "parent": Y}`. Ausgabe:
       Dict-Baum `{"id": X, "kinder": [...]}`. Wurzel hat id == parent.
-  - kosten: 20
+  - kosten: 12
     text: |
       Validieren: IDs müssen 0..n-1 sein. Wurzel id=0 muss parent=0
       haben. Bei Fehler -> {}. Erst Knoten anlegen, dann Kinder

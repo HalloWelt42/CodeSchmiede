@@ -27,7 +27,7 @@ hints:
       Breite b und Höhe h. Diagonale via Pythagoras.
       Alle drei Werte auf 2 Nachkommastellen.
       b oder h <= 0 -> [0, 0, 0].
-  - kosten: 10
+  - kosten: 5
     text: |
       flaeche = b * h
       umfang = 2 * (b + h)

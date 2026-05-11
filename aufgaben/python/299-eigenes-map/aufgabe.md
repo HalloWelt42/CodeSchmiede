@@ -28,7 +28,7 @@ hints:
       "increment" (+1), "absolute" (abs).
       Bei UNBEKANNTER Op → Original-Liste zurückgeben.
       Bei [] → [].
-  - kosten: 10
+  - kosten: 8
     text: |
       Dict {op_name: lambda x: ...} und [tabelle[op](x) for x in liste].
       Bei unbekannter op → list(liste) zurück.

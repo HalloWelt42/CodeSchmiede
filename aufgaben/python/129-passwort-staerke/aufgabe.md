@@ -29,7 +29,7 @@ hints:
       +1 wenn mind. ein Großbuchstabe
       +1 wenn mind. eine Ziffer
       +1 wenn mind. ein Sonderzeichen (alles außer alphanumerisch)
-  - kosten: 10
+  - kosten: 8
     text: |
       `any(c.islower() for c in pw)`, analog für isupper/isdigit/non-alnum.
 tests_sichtbar:

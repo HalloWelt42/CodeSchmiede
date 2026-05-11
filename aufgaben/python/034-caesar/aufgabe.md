@@ -25,12 +25,12 @@ hints:
     text: |
       `ord('A')` liefert den ASCII-Wert. Verschiebe um `k`, dann
       `chr()` zurück. Modulo `26` halt den Buchstaben im Alphabet.
-  - kosten: 15
+  - kosten: 4
     text: |
       Pro Zeichen: prüfen ob Buchstabe (`isalpha`), bei Großbuchstabe
       `'A'`-Basis verwenden, bei Kleinbuchstabe `'a'`-Basis.
       Nicht-Buchstaben unverändert lassen.
-  - kosten: 30
+  - kosten: 8
     text: |
       ```
       basis = ord('A') if c.isupper() else ord('a')

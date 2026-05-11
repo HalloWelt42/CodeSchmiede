@@ -25,7 +25,7 @@ hints:
     text: |
       Schleife von rechts: jede 1 traegt $2^i$ bei. Ungültige Zeichen
       (alles außer 0/1) → -1.
-  - kosten: 15
+  - kosten: 7
     text: |
       Ohne `int(text, 2)` zu nutzen: Schleife mit `enumerate(reversed(text))`,
       summieren wenn Zeichen `'1'` ist.

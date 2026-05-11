@@ -25,7 +25,7 @@ hints:
     text: |
       Iteriere von 1 bis n-1. Wenn die Zahl Vielfaches von **mindestens einem**
       der Teiler ist, addiere sie. Vorsicht vor Doppelzählung!
-  - kosten: 10
+  - kosten: 7
     text: |
       Set-Trick: `set()` aller Vielfachen, dann `sum`. Kein
       Doppelzählung-Problem mehr.

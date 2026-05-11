@@ -26,12 +26,12 @@ hints:
       Die Liste ist sortiert. Halbiere immer den Suchbereich:
       wenn das Element in der Mitte zu klein ist, suche rechts weiter,
       sonst links.
-  - kosten: 15
+  - kosten: 4
     text: |
       Variablen `links = 0` und `rechts = len(liste) - 1`. Schleife:
       `mitte = (links + rechts) // 2`. Vergleichen, dann `links` oder
       `rechts` anpassen.
-  - kosten: 30
+  - kosten: 8
     text: |
       ```
       links, rechts = 0, len(liste) - 1

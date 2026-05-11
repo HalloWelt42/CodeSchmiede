@@ -26,7 +26,7 @@ hints:
       Liefere [xmin, ymin, xmax, ymax] -- die kleinste achsen-
       parallele Box, die alle Punkte enthält.
       Punkte sind [[x1, y1], [x2, y2], ...]. Bei [] → [0, 0, 0, 0].
-  - kosten: 10
+  - kosten: 8
     text: |
       xs = [p[0] for p in punkte]; ys = [p[1] for p in punkte].
       [min(xs), min(ys), max(xs), max(ys)].

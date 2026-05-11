@@ -25,7 +25,7 @@ hints:
     text: |
       n! direkt berechnen, dann len(str(n!)). Bei n < 0 → 0.
       0! = 1 → 1 Stelle.
-  - kosten: 10
+  - kosten: 7
     text: |
       Pythons `math.factorial` macht es. Oder eigene Schleife.
       `len(str(...))` zählt die Stellen.

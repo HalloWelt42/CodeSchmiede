@@ -23,9 +23,9 @@ funktion: vokale_zaehlen
 hints:
   - kosten: 0
     text: Eine Schleife `for buchstabe in text` durchläuft jeden einzelnen Buchstaben.
-  - kosten: 10
+  - kosten: 2
     text: Vokale sind a, e, i, o, u. Auch in Großschrift.
-  - kosten: 25
+  - kosten: 5
     text: |
       Idiomatisch:
 

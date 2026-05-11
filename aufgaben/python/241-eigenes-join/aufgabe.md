@@ -26,7 +26,7 @@ hints:
       Verbinde Strings einer Liste mit einem Trenner zu einem String.
       OHNE str.join() -- selber bauen.
       Bei [] → "". Bei einem Element → das Element.
-  - kosten: 15
+  - kosten: 8
     text: |
       result = ""; for i, s in enumerate(strings):
         if i > 0: result += trenner

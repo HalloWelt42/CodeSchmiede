@@ -26,7 +26,7 @@ hints:
       Genau 4 erlaubte Buchstaben: A, C, G, T. Andere → ValueError als
       Wert (also `None` als Wert wenn ungültig). Hier: gib leeres
       Dict zurück, wenn ungültige Zeichen vorkommen.
-  - kosten: 10
+  - kosten: 7
     text: |
       `set(dna) <= set("ACGT")` prüft Validität. Dann pro Buchstabe
       `dna.count(x)`.

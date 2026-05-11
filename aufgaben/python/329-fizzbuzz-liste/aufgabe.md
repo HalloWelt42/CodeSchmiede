@@ -30,7 +30,7 @@ hints:
       - nur durch 5: "Buzz"
       - sonst: Zahl als String
       n <= 0 -> [].
-  - kosten: 10
+  - kosten: 7
     text: |
       Listen-Comprehension. Pro i pruefen, am elegantesten ist
       "Fizz" * (i%3==0) + "Buzz" * (i%5==0) or str(i).

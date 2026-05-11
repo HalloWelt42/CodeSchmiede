@@ -26,7 +26,7 @@ hints:
       Ersetze einzelne Buchstaben durch Leetspeak-Ziffern:
       a→4, e→3, i→1, o→0, s→5, t→7. Sonst unverändert.
       Eingabe ist case-insensitive bei der Suche, Ausgabe ist klein.
-  - kosten: 10
+  - kosten: 5
     text: |
       Dict mit Mapping. Iteriere Zeichen für Zeichen,
       nimm c.lower() um zu mappen.

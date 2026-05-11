@@ -25,7 +25,7 @@ hints:
     text: |
       Suche das Minimum im unsortierten Teil und tausche es mit dem
       ersten Element des unsortierten Teils.
-  - kosten: 15
+  - kosten: 9
     text: |
       Aussere Schleife `i in range(n)`. Innen: Index des Minimums in
       `liste[i:]` finden, dann mit `liste[i]` tauschen.

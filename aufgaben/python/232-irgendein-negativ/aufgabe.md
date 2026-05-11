@@ -25,7 +25,7 @@ hints:
     text: |
       Prüfe ob mindestens eine Zahl negativ (< 0) ist.
       Null zählt nicht. Leere Liste → False.
-  - kosten: 5
+  - kosten: 4
     text: |
       any(x < 0 for x in zahlen).
 tests_sichtbar:

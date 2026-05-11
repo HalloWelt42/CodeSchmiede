@@ -26,7 +26,7 @@ hints:
       Wie oft kommt "wert" in der Liste vor?
       [1,2,3,2,1] mit wert=2 → 2.
       Bei leerer Liste -> 0.
-  - kosten: 5
+  - kosten: 4
     text: |
       list.count(wert) macht es in einem Aufruf.
 tests_sichtbar:

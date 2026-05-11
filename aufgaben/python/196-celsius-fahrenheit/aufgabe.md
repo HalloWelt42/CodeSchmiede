@@ -25,7 +25,7 @@ hints:
     text: |
       F = C * 9/5 + 32. Auf 1 Nachkommastelle gerundet.
       Negative Werte müssen funktionieren (z.B. -40 → -40.0).
-  - kosten: 10
+  - kosten: 4
     text: |
       round(c * 9 / 5 + 32, 1).
 tests_sichtbar:

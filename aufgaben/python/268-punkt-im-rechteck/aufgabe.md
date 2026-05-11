@@ -26,7 +26,7 @@ hints:
       Prüfe ob Punkt [x, y] im achsen-parallelen Rechteck liegt,
       definiert durch [xmin, ymin, xmax, ymax].
       Inklusiv: Punkte AUF dem Rand zählen als drinnen.
-  - kosten: 5
+  - kosten: 4
     text: |
       xmin <= x <= xmax und ymin <= y <= ymax.
 tests_sichtbar:

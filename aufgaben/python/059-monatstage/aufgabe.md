@@ -25,7 +25,7 @@ hints:
     text: |
       Lookup-Tabelle: Index = Monat (1-12), Wert = Tage. Februar
       separat behandeln, abhängig vom Schaltjahr.
-  - kosten: 15
+  - kosten: 8
     text: |
       Wenn Monat außerhalb 1-12, gib 0 zurück (kein Crash).
 tests_sichtbar:

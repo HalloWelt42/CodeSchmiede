@@ -25,7 +25,7 @@ hints:
     text: |
       Wiederhole: Rest bei Division durch 2 ist die nächste Bit-Ziffer
       von rechts. Dann ganzzahlig durch 2 teilen. Stoppe bei 0.
-  - kosten: 15
+  - kosten: 7
     text: |
       Verboten: `bin(n)`. Eigene Schleife. Für n=0 → "0" als Sonderfall.
 tests_sichtbar:

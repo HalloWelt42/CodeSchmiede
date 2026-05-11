@@ -25,7 +25,7 @@ hints:
     text: |
       Format: zwei Großbuchstaben + drei Ziffern. Z.B. "RX837".
       Eingabe ist ein `seed` (int). Gleicher Seed → gleicher Name.
-  - kosten: 15
+  - kosten: 7
     text: |
       `random.Random(seed)` gibt dir einen lokalen Generator. Damit
       `choice('A...Z')` zweimal + `randint(0, 9)` dreimal.

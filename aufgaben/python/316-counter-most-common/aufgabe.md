@@ -26,7 +26,7 @@ hints:
       Liefere die N häufigsten Werte als Liste von [wert, anzahl]-Paaren,
       absteigend nach Anzahl. Bei Gleichstand: kleinerer Wert zuerst.
       n <= 0 → []. n > Anzahl unique → alle.
-  - kosten: 15
+  - kosten: 12
     text: |
       Counter zählt. sorted(c.items(), key=(-anzahl, wert))[:n] sortiert
       nach Anzahl absteigend, bei Gleichstand wert aufsteigend.

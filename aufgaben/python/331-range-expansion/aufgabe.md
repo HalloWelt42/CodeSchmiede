@@ -27,7 +27,7 @@ hints:
       von Zahlen [1, 2, 3, 5, 7, 8, 9]. Negative Untergrenzen sind
       erlaubt: "-3--1,2,4-6" -> [-3, -2, -1, 2, 4, 5, 6].
       Bei leerem String -> [].
-  - kosten: 20
+  - kosten: 17
     text: |
       Splitte an "," -- pro Stueck pruefen ob Bindestrich (Trenner)
       drin steckt. Bei negativen Untergrenzen ist der Trenner ein

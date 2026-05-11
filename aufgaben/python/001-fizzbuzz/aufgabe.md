@@ -23,9 +23,9 @@ funktion: fizzbuzz
 hints:
   - kosten: 0
     text: Der Modulo-Operator `%` liefert den Rest einer ganzzahligen Division. `15 % 3` ergibt `0`.
-  - kosten: 10
+  - kosten: 2
     text: Pruefe zuerst die Bedingung fuer "FizzBuzz" (teilbar durch 15), danach die einzelnen Bedingungen fuer 3 und 5.
-  - kosten: 25
+  - kosten: 6
     text: |
       Geruest:
 

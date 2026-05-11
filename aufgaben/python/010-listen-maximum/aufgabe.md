@@ -23,11 +23,11 @@ funktion: maximum
 hints:
   - kosten: 0
     text: Vergleich mit `>`. Merke dir das bisher größte Element.
-  - kosten: 15
+  - kosten: 3
     text: |
       Initialisiere mit dem ersten Element der Liste, vergleiche jedes
       weitere damit. Aber: Vorsicht bei leerer Liste!
-  - kosten: 30
+  - kosten: 5
     text: |
       ```
       return max(zahlen) if zahlen else None

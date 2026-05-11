@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere alle UNGERADEN Zahlen aus der Liste -- Reihenfolge
       wie im Original.
-  - kosten: 5
+  - kosten: 2
     text: |
       [x for x in liste if x % 2 != 0].
       Achtung: -3 % 2 ist 1 in Python (nicht -1) -- die Filter-Variante

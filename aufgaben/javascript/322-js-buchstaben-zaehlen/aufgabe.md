@@ -28,7 +28,7 @@ hints:
       und Sonderzeichen IGNORIEREN (nur a-z). Keys ALPHABETISCH
       sortiert (sonst schlaegt der JSON-Vergleich fehl).
       Bei "" → {}.
-  - kosten: 15
+  - kosten: 12
     text: |
       [...text.toLowerCase()].reduce((akk, c) => {
         if (c >= 'a' && c <= 'z') akk[c] = (akk[c] || 0) + 1;

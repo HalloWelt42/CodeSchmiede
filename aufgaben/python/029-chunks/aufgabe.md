@@ -25,7 +25,7 @@ hints:
     text: |
       Schleife `for i in range(0, len(liste), n)` und nimm jeweils
       `liste[i:i+n]` als nächstes Stück.
-  - kosten: 15
+  - kosten: 11
     text: |
       Eine Zeile mit Comprehension:
 

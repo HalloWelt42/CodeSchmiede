@@ -23,11 +23,11 @@ funktion: ist_anagramm
 hints:
   - kosten: 0
     text: Zwei Wörter sind Anagramme, wenn sie aus genau denselben Buchstaben bestehen.
-  - kosten: 15
+  - kosten: 8
     text: |
       Wenn man beide Wörter sortiert, müssen sie gleich aussehen.
       Strings kann man mit `sorted()` zu Listen sortieren.
-  - kosten: 25
+  - kosten: 13
     text: |
       ```
       return sorted(a) == sorted(b)

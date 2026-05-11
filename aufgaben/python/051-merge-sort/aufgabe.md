@@ -25,12 +25,12 @@ hints:
     text: |
       Teile die Liste in zwei Haelften. Sortiere beide rekursiv.
       Verschmilz die zwei sortierten Haelften.
-  - kosten: 20
+  - kosten: 6
     text: |
       Hilfsfunktion `merge(a, b)` -- nimmt zwei sortierte Listen,
       vergleicht jeweils Spitze von a vs. Spitze von b, fuegt das
       kleinere Element ans Ergebnis.
-  - kosten: 30
+  - kosten: 9
     text: |
       Basisfall: Listen mit 0 oder 1 Element sind bereits sortiert.
 tests_sichtbar:

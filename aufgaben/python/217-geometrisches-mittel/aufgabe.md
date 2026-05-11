@@ -27,7 +27,7 @@ hints:
       Auf 4 Nachkommastellen gerundet.
       Bei leerer Liste → 0.0. Bei einer Null in der Liste → 0.0.
       Bei negativen Zahlen → 0.0 (nicht definiert in der reellen Welt).
-  - kosten: 15
+  - kosten: 8
     text: |
       Prüfe vorher: alle > 0. Dann Produkt mit math.prod und ^ (1/n).
 tests_sichtbar:

@@ -26,7 +26,7 @@ hints:
       Liefere [index_min, index_max] der Liste.
       Bei mehreren gleichen Min/Max-Werten: ERSTER Treffer.
       Bei leerer Liste → [-1, -1].
-  - kosten: 10
+  - kosten: 7
     text: |
       liste.index(min(liste)) und liste.index(max(liste)).
 tests_sichtbar:

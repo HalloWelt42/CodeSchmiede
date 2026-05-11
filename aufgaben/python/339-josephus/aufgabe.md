@@ -28,10 +28,10 @@ hints:
       Ueberlebenden.
       Beispiel: n=5, k=2 → Eliminations-Folge 1, 3, 0, 4 → Sieger ist 2.
       n <= 0 oder k <= 0 → -1.
-  - kosten: 20
+  - kosten: 8
     text: |
       Iterativ in O(n): J(1) = 0; J(n) = (J(n-1) + k) % n.
-  - kosten: 35
+  - kosten: 13
     text: |
       def josephus(n, k):
           if n <= 0 or k <= 0: return -1

@@ -26,7 +26,7 @@ hints:
       Prüfe ob Punkt [x, y] im Kreis liegt -- Mittelpunkt [cx, cy],
       Radius r. Inklusiv: Punkt AUF dem Kreis zählt als drinnen.
       Distanz zum Mittelpunkt <= r.
-  - kosten: 10
+  - kosten: 5
     text: |
       (x - cx)^2 + (y - cy)^2 <= r^2 -- ohne sqrt schneller!
 tests_sichtbar:

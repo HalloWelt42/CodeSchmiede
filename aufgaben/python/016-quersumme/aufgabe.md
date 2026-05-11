@@ -23,9 +23,9 @@ funktion: quersumme
 hints:
   - kosten: 0
     text: Mit `% 10` bekommst du die letzte Ziffer einer Zahl.
-  - kosten: 10
+  - kosten: 2
     text: Mit `// 10` schneidest du die letzte Ziffer ab.
-  - kosten: 20
+  - kosten: 5
     text: |
       Schleife:
 

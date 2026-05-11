@@ -27,7 +27,7 @@ hints:
       UND **minimal in seiner Spalte** ist.
       Liefere die Liste der Koordinaten (zeile, spalte), 0-basiert,
       sortiert nach Zeile dann Spalte.
-  - kosten: 15
+  - kosten: 12
     text: |
       Vorab pro Zeile das Maximum, pro Spalte das Minimum berechnen.
       Dann doppelte Schleife: wenn Element == zeilen_max[i] UND

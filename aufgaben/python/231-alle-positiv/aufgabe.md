@@ -26,7 +26,7 @@ hints:
       Prüfe ob alle Zahlen STRIKT positiv (> 0) sind.
       Null zählt nicht als positiv.
       Leere Liste → True (vacuous truth).
-  - kosten: 5
+  - kosten: 4
     text: |
       all(x > 0 for x in zahlen).
 tests_sichtbar:

@@ -27,7 +27,7 @@ hints:
       zu einer Matrix C (m x p).
       Wenn die Spalten von A nicht zur Zeilen-Anzahl von B passen
       → []. Wenn A oder B leer → [].
-  - kosten: 25
+  - kosten: 24
     text: |
       C[i][j] = sum(A[i][k] * B[k][j] for k in range(n)).
       Drei verschachtelte Schleifen oder Comprehensions.

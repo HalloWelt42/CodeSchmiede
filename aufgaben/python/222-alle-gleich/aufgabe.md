@@ -26,7 +26,7 @@ hints:
       Liefere True, wenn ALLE Elemente in der Liste gleich sind.
       Leere Liste → True (vacuous truth).
       Ein Element → True.
-  - kosten: 10
+  - kosten: 4
     text: |
       len(set(liste)) <= 1.
       Oder: all(x == liste[0] for x in liste).

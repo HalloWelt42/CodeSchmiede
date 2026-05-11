@@ -26,7 +26,7 @@ hints:
       Berechne die euklidische Norm: sqrt(sum(x**2)).
       Auf 4 Nachkommastellen runden.
       Bei [] -> 0.0.
-  - kosten: 10
+  - kosten: 7
     text: |
       math.sqrt(sum(x * x for x in v)) und round(..., 4).
 tests_sichtbar:

@@ -26,7 +26,7 @@ hints:
       Liefere die Elemente, die in beiden Listen vorkommen --
       eindeutig und aufsteigend sortiert.
       Bei [] und/oder Disjunktion → [].
-  - kosten: 10
+  - kosten: 8
     text: |
       sorted(set(a) & set(b)) erledigt alles in einem Ausdruck.
 tests_sichtbar:

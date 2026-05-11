@@ -26,7 +26,7 @@ hints:
       Summe der euklidischen Distanzen zwischen aufeinander folgenden
       Punkten. Bei < 2 Punkten → 0.0.
       Auf 4 Nachkommastellen.
-  - kosten: 15
+  - kosten: 12
     text: |
       sum(math.hypot(p2[0]-p1[0], p2[1]-p1[1])
           for p1, p2 in zip(punkte, punkte[1:]))

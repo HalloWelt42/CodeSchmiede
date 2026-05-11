@@ -27,7 +27,7 @@ hints:
       Hashtag = #wort, wort = Buchstaben/Ziffern/Unterstrich, mind. 1.
       "Tolles #python und #regex hier!" → ["python", "regex"].
       Bei keinem Treffer → [].
-  - kosten: 10
+  - kosten: 7
     text: |
       re.findall(r"#(\w+)", text). Die Capture-Group greift den
       Inhalt OHNE das #-Zeichen.

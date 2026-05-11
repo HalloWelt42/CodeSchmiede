@@ -25,7 +25,7 @@ hints:
     text: |
       ISBN-10 hat 10 Stellen. Letzte Stelle darf "X" sein -- als 10
       gewertet. Bindestriche werden ignoriert.
-  - kosten: 15
+  - kosten: 9
     text: |
       Formel: $\sum_{i=1}^{10} d_i \cdot (11 - i) \equiv 0 \pmod{11}$
       mit $d_1$ als erster Ziffer.

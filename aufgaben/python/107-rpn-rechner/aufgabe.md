@@ -26,7 +26,7 @@ hints:
       RPN: Operanden auf Stack pushen. Bei Operator: zwei oberste
       Werte poppen, Operator anwenden, Ergebnis pushen.
       Operatoren: +, -, *, /. Division: Ganzzahl-Division (//).
-  - kosten: 20
+  - kosten: 12
     text: |
       Eingabe als Whitespace-getrennter String. `tokens = ausdruck.split()`.
       Bei ungültigem Ausdruck (Stack leer beim Operator, oder am Ende

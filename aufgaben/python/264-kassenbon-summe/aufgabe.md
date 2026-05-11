@@ -27,7 +27,7 @@ hints:
       Summe = sum(anzahl * einzelpreis).
       Auf 2 Nachkommastellen gerundet.
       Leere Liste → 0.0.
-  - kosten: 10
+  - kosten: 8
     text: |
       sum(z[1] * z[2] for z in posten) und round(..., 2).
 tests_sichtbar:

@@ -26,7 +26,7 @@ hints:
       Nimm Elemente vom Anfang der Liste, SOLANGE sie POSITIV (>0) sind.
       Sobald ein <= 0 kommt: STOP, alles danach ignorieren.
       Intern Generator mit yield + break.
-  - kosten: 15
+  - kosten: 12
     text: |
       def gen(): for x in liste: if x>0: yield x; else: break
 tests_sichtbar:

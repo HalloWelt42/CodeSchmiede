@@ -27,7 +27,7 @@ hints:
       - durch 4 teilbar: ja, außer
       - durch 100 teilbar: nein, außer
       - durch 400 teilbar: ja
-  - kosten: 10
+  - kosten: 7
     text: |
       Kompakt: `(jahr % 4 == 0 and jahr % 100 != 0) or jahr % 400 == 0`.
 tests_sichtbar:

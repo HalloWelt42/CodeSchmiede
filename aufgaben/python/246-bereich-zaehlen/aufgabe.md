@@ -26,7 +26,7 @@ hints:
       Wie viele Zahlen liegen im INKLUSIVEN Bereich [a, b]?
       sum(1 for x in zahlen if a <= x <= b).
       a > b liefert 0.
-  - kosten: 5
+  - kosten: 4
     text: |
       sum(a <= x <= b for x in zahlen) -- Pythons booleans sind 0/1.
 tests_sichtbar:

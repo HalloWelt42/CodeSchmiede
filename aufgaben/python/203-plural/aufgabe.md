@@ -29,7 +29,7 @@ hints:
       0 zählt als plural: "0 Aepfel".
       Negative Zahlen wie der Betrag, Vorzeichen bleibt:
       plural(-1, ...) -> "-1 singular".
-  - kosten: 10
+  - kosten: 5
     text: |
       Prüfe abs(n) == 1, dann singular, sonst plural.
       Format-String f"{n} {wort}".

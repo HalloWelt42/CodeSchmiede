@@ -26,7 +26,7 @@ hints:
       Anzahl positiver Teiler von n. n < 1 -> 0.
       Schleife i = 1..sqrt(n), pro Treffer +2 (Partner i und n/i),
       bei i*i == n nur +1.
-  - kosten: 15
+  - kosten: 8
     text: |
       let z = 0; for (let i = 1; i*i <= n; i++) { if (n % i === 0) z += i*i === n ? 1 : 2; }
 tests_sichtbar:

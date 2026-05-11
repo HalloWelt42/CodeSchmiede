@@ -25,7 +25,7 @@ hints:
     text: |
       Alle möglichen zusammenhängenden Teilstrings sammeln, in einem
       Set deduplizieren, Länge zurückgeben. Leerer String → 0.
-  - kosten: 10
+  - kosten: 8
     text: |
       Doppelte Schleife: i von 0 bis n, j von i+1 bis n+1. Slicing
       `text[i:j]` ist der Teilstring.

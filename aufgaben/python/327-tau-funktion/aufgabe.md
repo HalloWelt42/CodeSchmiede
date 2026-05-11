@@ -26,7 +26,7 @@ hints:
       Liefere die Anzahl der Teiler von n (positiv, inkl. 1 und n).
       n < 1 -> 0. tau(12) = 6 (1, 2, 3, 4, 6, 12).
       Effizient: nur bis sqrt(n) iterieren, Quadrat-Sonderfall.
-  - kosten: 15
+  - kosten: 8
     text: |
       Schleife i = 1..sqrt(n). Pro Treffer +2, bei i*i == n nur +1.
 tests_sichtbar:

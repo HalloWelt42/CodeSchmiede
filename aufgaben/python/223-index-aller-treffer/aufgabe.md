@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere ALLE Indizes, an denen "wert" in der Liste vorkommt --
       aufsteigend. Bei keinem Treffer → [].
-  - kosten: 10
+  - kosten: 5
     text: |
       [i for i, x in enumerate(liste) if x == wert].
 tests_sichtbar:

@@ -25,7 +25,7 @@ hints:
     text: |
       Suche a, b, c mit `a < b < c` und `a^2 + b^2 = c^2` und
       `a + b + c == n`.
-  - kosten: 15
+  - kosten: 11
     text: |
       Doppelte Schleife: `for a in range(1, n//3)`, dann
       `for b in range(a+1, (n-a)//2 + 1)`. `c = n - a - b`. Prüfe

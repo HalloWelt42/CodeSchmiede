@@ -26,7 +26,7 @@ hints:
       Wandle [r, g, b] mit Werten 0-255 in einen Hex-Farbcode "#rrggbb".
       Werte außerhalb 0-255 werden auf den nächsten gültigen Wert
       geclampt. Ausgabe IMMER kleinbuchstabig und mit fuehrendem #.
-  - kosten: 10
+  - kosten: 8
     text: |
       f"#{r:02x}{g:02x}{b:02x}". max(0, min(255, x)) zum Clampen.
 tests_sichtbar:

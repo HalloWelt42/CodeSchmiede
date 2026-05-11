@@ -26,7 +26,7 @@ hints:
       Berechne die Laenge einer Liste OHNE len() oder __len__.
       Klassische Rekursion: leere Liste → 0,
       sonst → 1 + laenge(rest).
-  - kosten: 15
+  - kosten: 12
     text: |
       def laenge(liste):
           if not liste:

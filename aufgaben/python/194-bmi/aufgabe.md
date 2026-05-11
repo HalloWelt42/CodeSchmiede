@@ -29,7 +29,7 @@ hints:
       25.0-29.9 → "übergewicht"
       >=30 → "adipositas"
       Bei größe <= 0 oder gewicht <= 0 → "ungültig".
-  - kosten: 10
+  - kosten: 8
     text: |
       Schwellen sauber prüfen. round(bmi, 1) erst danach.
       Reihenfolge der Vergleiche so, dass sie schluessig ist.

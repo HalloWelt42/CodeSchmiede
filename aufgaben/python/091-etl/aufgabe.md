@@ -25,7 +25,7 @@ hints:
     text: |
       Die Eingabe ist `{punkte: [buchstaben]}`. Ziel: `{buchstabe: punkte}`,
       wobei die Buchstaben kleingeschrieben sind.
-  - kosten: 10
+  - kosten: 7
     text: |
       Mit Dict-Comprehension und doppeltem `for`:
 

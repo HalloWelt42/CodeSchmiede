@@ -26,7 +26,7 @@ hints:
       Berechne die euklidische Distanz zwischen zwei 2D-Punkten.
       Punkte sind Listen [x, y]. Auf 4 Nachkommastellen runden.
       Pythagoras: sqrt((x2-x1)^2 + (y2-y1)^2).
-  - kosten: 10
+  - kosten: 5
     text: |
       math.hypot(x2 - x1, y2 - y1) ist die kürzeste Form.
 tests_sichtbar:

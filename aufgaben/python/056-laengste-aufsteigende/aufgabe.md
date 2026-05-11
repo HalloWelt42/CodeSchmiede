@@ -26,7 +26,7 @@ hints:
       "Aufsteigend" hier: streng monoton wachsend (jedes Element strikt
       größer als das vorherige). Zusammenhängend, also direkte
       Nachbarn in der Liste.
-  - kosten: 15
+  - kosten: 11
     text: |
       Schleife mit "aktuelle Laenge" und "beste Laenge". Wenn
       `liste[i] > liste[i-1]`: aktuell + 1, sonst zurück auf 1.

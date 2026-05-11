@@ -26,7 +26,7 @@ hints:
       Bei einer quadratischen Matrix gibt es zwei Diagonalen: von
       links-oben nach rechts-unten ("Haupt") und von rechts-oben nach
       links-unten ("Neben").
-  - kosten: 15
+  - kosten: 7
     text: |
       Hauptdiagonale: `matrix[i][i]`. Nebendiagonale: `matrix[i][n-1-i]`.
 tests_sichtbar:

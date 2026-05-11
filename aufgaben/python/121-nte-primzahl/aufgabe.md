@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       n-te Primzahl: 1 → 2, 2 → 3, 3 → 5, ... Bei n < 1 → -1.
-  - kosten: 15
+  - kosten: 8
     text: |
       Schleife: gefunden = 0, kandidat = 1.
       Solange gefunden < n: kandidat += 1; wenn prim, gefunden += 1.

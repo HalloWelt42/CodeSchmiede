@@ -27,7 +27,7 @@ hints:
       Sektionen: [name]. Eintraege: key=value (mit/ohne Whitespace).
       Leere Zeilen und Zeilen die mit ; oder # anfangen IGNORIEREN.
       Keys/Values werden gestrippt. Eintraege ohne aktive Sektion → ignorieren.
-  - kosten: 25
+  - kosten: 21
     text: |
       Zeile für Zeile durchgehen, Sektion merken,
       Key/Value bei "=" splitten und strippen.

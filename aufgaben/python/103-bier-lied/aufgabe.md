@@ -25,7 +25,7 @@ hints:
     text: |
       Eine Strophe besteht aus 2 Zeilen, getrennt durch \n. Beispiel
       für n=99: "99 Flaschen Bier auf der Wand, 99 Flaschen Bier.\nNimm eine runter, gib sie rum, 98 Flaschen Bier auf der Wand."
-  - kosten: 15
+  - kosten: 8
     text: |
       Sonderfaelle:
       - n = 1: "1 Flasche..." (Singular), nächste = 0 → "keine mehr Flaschen"

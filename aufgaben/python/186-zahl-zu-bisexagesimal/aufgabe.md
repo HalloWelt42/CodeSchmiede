@@ -26,7 +26,7 @@ hints:
       Konvertiere eine Anzahl Sekunden in das Format "HH:MM:SS"
       (Stunden zweistellig, kann auch > 24 sein).
       Bei n < 0 → "00:00:00".
-  - kosten: 10
+  - kosten: 8
     text: |
       h = n // 3600, m = (n // 60) % 60, s = n % 60.
       f"{h:02}:{m:02}:{s:02}".

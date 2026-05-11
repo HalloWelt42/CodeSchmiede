@@ -30,7 +30,7 @@ hints:
       "double" → mal 2
       Liefere den Zähler nach JEDER Operation als Liste.
       Bei [] → [].
-  - kosten: 15
+  - kosten: 8
     text: |
       Klasse Zähler mit Methoden inc/dec/reset/double.
       Pro Op aufrufen, Wert appenden.

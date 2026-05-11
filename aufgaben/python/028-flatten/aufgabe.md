@@ -25,7 +25,7 @@ hints:
     text: |
       Eine doppelte Schleife: über die aeussere Liste, dann über jede
       innere Liste -- alle Elemente in eine flache Ergebnisliste schieben.
-  - kosten: 15
+  - kosten: 9
     text: |
       Eine Zeile mit Comprehension:
 

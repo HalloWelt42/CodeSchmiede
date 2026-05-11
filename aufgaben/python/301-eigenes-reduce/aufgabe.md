@@ -27,7 +27,7 @@ hints:
       "add" (+), "mul" (*), "max", "min".
       start ist der Startwert (neutrales Element für leere Liste).
       Unbekannte Op → start zurück.
-  - kosten: 10
+  - kosten: 8
     text: |
       from functools import reduce.
       reduce(op, liste, start) macht es. Op via Dispatch-Dict.

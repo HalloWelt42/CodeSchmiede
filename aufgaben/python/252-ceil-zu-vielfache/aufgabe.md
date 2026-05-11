@@ -27,7 +27,7 @@ hints:
       n = 13, k = 5 → 15. n = 10, k = 5 → 10 (schon Vielfaches).
       k <= 0 → n unverändert.
       Negative n: -13 mit k=5 → -10 (auf Richtung 0/positiv).
-  - kosten: 15
+  - kosten: 8
     text: |
       math.ceil(n / k) * k -- aber Achtung bei Floats und negativen.
       Robuster: ((n + k - 1) // k) * k, aber nur für positive n/k.

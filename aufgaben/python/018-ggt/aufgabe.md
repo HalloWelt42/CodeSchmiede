@@ -25,7 +25,7 @@ hints:
     text: |
       Euklidischer Algorithmus: solange `b != 0` ist, ersetze `(a, b)` durch
       `(b, a % b)`. Am Ende ist `a` der ggT.
-  - kosten: 15
+  - kosten: 11
     text: |
       Eleganter mit Tuple-Unpacking:
 

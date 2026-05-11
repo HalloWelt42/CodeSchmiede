@@ -27,7 +27,7 @@ hints:
       - unreserviert (RFC 3986): A-Z a-z 0-9 - _ . ~ unveraendert
       - alles andere als %XX (zwei Hex-Stellen, gross)
       Hinweis: in UTF-8 codieren, dann Byte-fuer-Byte mit %.
-  - kosten: 20
+  - kosten: 17
     text: |
       Bytes via s.encode("utf-8"), pro Byte if-else fuer unreserviert
       ODER f"%{b:02X}".

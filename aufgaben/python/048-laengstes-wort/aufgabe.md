@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       `text.split()` zerlegt nach Whitespace. Dann `max(wörter, key=len)`.
-  - kosten: 10
+  - kosten: 5
     text: |
       Bei mehreren gleich langen Wörtern soll das **erste** zurück.
       `max()` mit `key=len` wählt automatisch das erste.

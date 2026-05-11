@@ -26,7 +26,7 @@ hints:
       Wandle eine Liste von [key, value]-Paaren in ein Dict.
       Bei doppelten Keys: der LETZTE Wert gewinnt.
       Leere Liste → {}.
-  - kosten: 10
+  - kosten: 5
     text: |
       dict() akzeptiert Iterable von Paaren direkt:
       dict([("a", 1), ("b", 2)]).

@@ -28,7 +28,7 @@ hints:
       Bei UNGUELTIGEM Format → [].
       Diese Aufgabe pruft NUR die Form, NICHT ob das Datum existiert
       (also "32.13.2026" wird als Form-OK akzeptiert).
-  - kosten: 20
+  - kosten: 17
     text: |
       re.fullmatch(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", s).
       Wenn Match: groups() liefert Tupel der Capture-Groups

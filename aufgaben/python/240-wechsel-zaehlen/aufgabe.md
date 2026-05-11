@@ -27,7 +27,7 @@ hints:
       unterscheidet.
       [1,1,2,2,3] → 2 (1->2 und 2->3).
       [] / [x] → 0.
-  - kosten: 10
+  - kosten: 5
     text: |
       sum(1 for a, b in zip(liste, liste[1:]) if a != b).
 tests_sichtbar:

@@ -27,7 +27,7 @@ hints:
       zusammenkommen, dann auf laenge slicen.
       "ab" mit laenge=5 → "ababa".
       Bei muster == "" oder laenge <= 0 → "".
-  - kosten: 10
+  - kosten: 8
     text: |
       anzahl = laenge // len(muster) + 1, dann (muster * anzahl)[:laenge].
 tests_sichtbar:

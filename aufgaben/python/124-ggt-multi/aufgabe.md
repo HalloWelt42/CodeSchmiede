@@ -25,7 +25,7 @@ hints:
     text: |
       ggT von n Zahlen: paarweise reduzieren --
       `ggt(a, b, c) = ggt(ggt(a, b), c)`. Leere Liste → 0.
-  - kosten: 10
+  - kosten: 8
     text: |
       `from math import gcd; from functools import reduce`.
       `reduce(gcd, zahlen, 0)` liefert die Antwort.

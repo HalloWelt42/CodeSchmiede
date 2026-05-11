@@ -23,11 +23,11 @@ funktion: primfaktoren
 hints:
   - kosten: 0
     text: Teile `n` so oft wie möglich durch 2, dann durch 3, dann durch 5, ...
-  - kosten: 15
+  - kosten: 4
     text: |
       Probiere alle Teiler ab 2 aufsteigend. Wenn `n % i == 0`, fuege `i`
       zur Liste hinzu und teile `n` durch `i`. Sonst erhöhe `i` um 1.
-  - kosten: 30
+  - kosten: 8
     text: |
       Schlüsselbeobachtung: Wenn `i * i > n`, ist `n` selbst die letzte
       Primzahl in der Zerlegung. Damit kann die Schleife für große `n`

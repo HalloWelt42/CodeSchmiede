@@ -26,7 +26,7 @@ hints:
       Berechne das Skalarprodukt: a . b = sum(a_i * b_i).
       Beide Vektoren müssen gleich lang sein -- sonst 0.
       Bei [] und [] -> 0.
-  - kosten: 10
+  - kosten: 7
     text: |
       sum(x * y for x, y in zip(a, b)).
       Wenn len(a) != len(b) -> 0 vorab.

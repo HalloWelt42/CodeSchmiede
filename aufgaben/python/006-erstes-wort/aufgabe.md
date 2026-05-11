@@ -23,11 +23,11 @@ funktion: erstes_wort
 hints:
   - kosten: 0
     text: Strings haben eine Methode `.split()`, die an Leerzeichen teilt.
-  - kosten: 15
+  - kosten: 3
     text: |
       `.split()` ohne Argument behandelt mehrere aufeinanderfolgende
       Leerzeichen als ein Trennzeichen.
-  - kosten: 25
+  - kosten: 5
     text: |
       ```
       return text.split()[0] if text.split() else ""

@@ -28,7 +28,7 @@ hints:
       - "sublist": a ist zusammenhängende Teilfolge von b
       - "superlist": b ist zusammenhängende Teilfolge von a
       - "ungleich": sonst
-  - kosten: 15
+  - kosten: 8
     text: |
       Hilfsfunktion: ist `klein` Sublist von `groß`?
       `any(groß[i:i+len(klein)] == klein for i in range(len(groß)-len(klein)+1))`.

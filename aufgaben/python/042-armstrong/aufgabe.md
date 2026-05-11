@@ -26,7 +26,7 @@ hints:
       Bei einer 3-stelligen Armstrong-Zahl ist die Summe der dritten
       Potenzen ihrer Ziffern gleich der Zahl selbst. Bei 4-stelligen
       die vierten Potenzen, usw.
-  - kosten: 15
+  - kosten: 8
     text: |
       `s = str(n)`, `k = len(s)`. Dann prüfe
       `sum(int(c)**k for c in s) == n`.

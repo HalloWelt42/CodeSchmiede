@@ -25,7 +25,7 @@ hints:
     text: |
       Aus Spalten werden Zeilen. Bei einer m x n Matrix wird das
       Ergebnis n x m.
-  - kosten: 15
+  - kosten: 8
     text: |
       Mit zip(*matrix) und List-Comprehension geht es in einer Zeile:
       `[list(zeile) for zeile in zip(*matrix)]`.

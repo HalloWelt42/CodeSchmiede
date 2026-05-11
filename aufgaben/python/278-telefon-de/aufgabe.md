@@ -31,7 +31,7 @@ hints:
         "030/12345678"    → True
         "0151 1234567"    → True
         "12345"           → False
-  - kosten: 20
+  - kosten: 17
     text: |
       Pattern wie r"^(?:\+49 |0)\d{2,5}[ /]\d{4,}$".
       re.fullmatch oder $-Anker verwenden.

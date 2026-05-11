@@ -27,7 +27,7 @@ hints:
       bleibt, der Rest wird %XX (Hex gross).
       Tipp: encodeURIComponent + Workaround fuer ! * ' ( ) -- die werden
       nicht codiert vom Builtin, RFC 3986 will sie aber codiert.
-  - kosten: 15
+  - kosten: 8
     text: |
       encodeURIComponent(s).replace(/[!*'()]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase())
 tests_sichtbar:

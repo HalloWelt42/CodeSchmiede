@@ -26,7 +26,7 @@ hints:
       Wandle eine Bruchzahl in einen Prozent-String:
       0.5 -> "50.00%". 1 -> "100.00%". 0 -> "0.00%".
       Genau 2 Nachkommastellen.
-  - kosten: 10
+  - kosten: 5
     text: |
       f"{anteil * 100:.2f}%".
       Format-Specifier .2f rundet auf 2 Nachkommastellen.

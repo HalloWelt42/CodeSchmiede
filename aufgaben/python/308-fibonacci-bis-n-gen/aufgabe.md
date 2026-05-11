@@ -27,7 +27,7 @@ hints:
       F(0)=0, F(1)=1, F(n)=F(n-1)+F(n-2).
       max < 0 → []. max == 0 → [0]. max == 1 → [0, 1, 1].
       Intern: while-Generator mit a, b = 0, 1.
-  - kosten: 15
+  - kosten: 12
     text: |
       def gen(): a, b = 0, 1; while a <= max: yield a; a, b = b, a+b
 tests_sichtbar:

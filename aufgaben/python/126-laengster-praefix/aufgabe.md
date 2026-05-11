@@ -25,7 +25,7 @@ hints:
     text: |
       Längster Anfang, der bei allen Strings identisch ist.
       Leere Liste oder mind. ein leerer String → "".
-  - kosten: 15
+  - kosten: 8
     text: |
       Schicker Trick mit zip(*strings): liefert pro Position alle
       Buchstaben dieser Position. Solange alle gleich sind,

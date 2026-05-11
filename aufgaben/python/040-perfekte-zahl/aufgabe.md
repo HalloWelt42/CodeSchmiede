@@ -25,11 +25,11 @@ hints:
     text: |
       Eine perfekte Zahl ist gleich der Summe ihrer echten Teiler --
       also aller Teiler ohne sich selbst.
-  - kosten: 15
+  - kosten: 3
     text: |
       Schleife `i in range(1, n)` und alle `i` summieren, bei denen
       `n % i == 0`. Prüfe `summe == n` am Ende.
-  - kosten: 25
+  - kosten: 6
     text: |
       Schneller: Teiler treten in Paaren auf. Bis `sqrt(n)` reicht.
 tests_sichtbar:

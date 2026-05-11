@@ -29,7 +29,7 @@ hints:
       6,7,8 -> "sommer"
       9,10,11 -> "herbst"
       Ungültige Monate (< 1 oder > 12) -> "ungültig".
-  - kosten: 10
+  - kosten: 4
     text: |
       Liste mit 12 Eintraegen oder eine if-elif-Kette nach Bereichen.
       Achtung Dezember (12) liegt im Winter wie Januar/Februar.

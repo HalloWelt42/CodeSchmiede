@@ -25,7 +25,7 @@ hints:
     text: |
       Zeller-Formel: ein direkter Weg zum Wochentag. Zählweise:
       0 = Sonntag, 1 = Montag, ..., 6 = Samstag.
-  - kosten: 25
+  - kosten: 15
     text: |
       Trick: Januar und Februar zählen als Monat 13 und 14 des
       **Vorjahres**.

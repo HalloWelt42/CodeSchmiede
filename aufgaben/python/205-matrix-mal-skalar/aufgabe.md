@@ -25,7 +25,7 @@ hints:
     text: |
       Multipliziere jedes Element einer Matrix mit einer Zahl.
       Bei [] -> [].
-  - kosten: 10
+  - kosten: 7
     text: |
       Doppelte Listen-Comprehension:
       [[c * x for x in zeile] for zeile in matrix].

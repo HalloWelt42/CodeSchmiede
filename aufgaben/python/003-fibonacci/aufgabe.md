@@ -23,9 +23,9 @@ funktion: fibonacci
 hints:
   - kosten: 0
     text: Die Fibonacci-Folge beginnt mit 0, 1, jede weitere Zahl ist die Summe der beiden vorigen.
-  - kosten: 15
+  - kosten: 8
     text: Eine rekursive Loesung ist kurz, wird aber fuer grosse n sehr langsam (exponentielle Laufzeit). Iterativ ist linear.
-  - kosten: 30
+  - kosten: 16
     text: |
       Iterative Variante:
 

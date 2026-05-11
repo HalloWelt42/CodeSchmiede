@@ -25,7 +25,7 @@ hints:
     text: |
       Ein neues Dict aufbauen, in dem für jedes (k, v) im Original
       ein Eintrag (v, k) landet.
-  - kosten: 10
+  - kosten: 7
     text: |
       Mit Dict-Comprehension:
 
