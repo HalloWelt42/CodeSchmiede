@@ -1,0 +1,10 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px;
+  width: 400px;
+}
+.zelle {
+  background-color: #2dd4bf;
+  height: 60px;
+}

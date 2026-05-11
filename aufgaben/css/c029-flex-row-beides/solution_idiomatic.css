@@ -1,0 +1,13 @@
+.rahmen {
+  width: 400px;
+  height: 120px;
+  background-color: #22262d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.kind {
+  width: 60px;
+  height: 60px;
+  background-color: #2dd4bf;
+}

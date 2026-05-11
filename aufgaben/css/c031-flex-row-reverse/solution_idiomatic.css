@@ -1,0 +1,13 @@
+.rahmen {
+  width: 400px;
+  background-color: #22262d;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 8px;
+  padding: 12px;
+}
+.kind {
+  width: 60px;
+  height: 60px;
+  background-color: #2dd4bf;
+}
