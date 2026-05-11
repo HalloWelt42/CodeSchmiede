@@ -63,14 +63,15 @@
         return;
       }
       detail = d;
-      // Letzte abgeschickte Lösung laden, falls vorhanden -- sonst
-      // Starter-Boilerplate. Damit der Editor da weitermacht, wo der
-      // Nutzer aufgehört hat.
+      // Default: Starter-Code. Eine vorherige Submission laden wir nur,
+      // wenn der Nutzer noch nicht bestanden hat -- sonst stuende die
+      // alte Loesung im Editor und Wiederholungen waeren trivialisiert.
+      code = d.starter_code;
       try {
         const letzte = await aufgabenApi.letzteSubmission(d.id);
-        code = letzte.code ?? d.starter_code;
+        if (letzte.code && !letzte.bestanden) code = letzte.code;
       } catch {
-        code = d.starter_code;
+        // keine vorherige Submission -- bleibt Starter.
       }
     } catch (e) {
       fehler = (e as Error).message;
@@ -293,18 +294,18 @@
       {/if}
     <DreiSpaltenLayout>
       {#snippet links()}
-        <div class="tab-leiste" role="tablist">
-          <button
-            class="tab"
-            class:aktiv={aktiver_tab === 'aufgabe'}
-            role="tab"
-            aria-selected={aktiver_tab === 'aufgabe'}
-            onclick={() => (aktiver_tab = 'aufgabe')}
-          >
-            <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
-            Aufgabe
-          </button>
-          {#if musterloesungen && musterloesungen.length > 0}
+        {#if musterloesungen && musterloesungen.length > 0}
+          <div class="tab-leiste" role="tablist">
+            <button
+              class="tab"
+              class:aktiv={aktiver_tab === 'aufgabe'}
+              role="tab"
+              aria-selected={aktiver_tab === 'aufgabe'}
+              onclick={() => (aktiver_tab = 'aufgabe')}
+            >
+              <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+              Aufgabe
+            </button>
             <button
               class="tab"
               class:aktiv={aktiver_tab === 'loesungen'}
@@ -315,8 +316,8 @@
               <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
               Musterlösungen ({musterloesungen.length})
             </button>
-          {/if}
-        </div>
+          </div>
+        {/if}
         <div class="tab-inhalt">
           {#if aktiver_tab === 'aufgabe'}
             <BeschreibungsBereich
