@@ -2,7 +2,7 @@
 schema_version: 1
 id: 162-haeufigster-wert
 revision: 1
-titel: Haeufigster Wert (Modus)
+titel: Häufigster Wert (Modus)
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,14 +23,14 @@ funktion: haeufigster
 hints:
   - kosten: 0
     text: |
-      Liefere den haeufigsten Wert (Modus) einer Liste. Bei
-      Gleichstand: den **kleinsten** der haeufigsten Werte.
+      Liefere den häufigsten Wert (Modus) einer Liste. Bei
+      Gleichstand: den **kleinsten** der häufigsten Werte.
       Bei leerer Liste -> None.
   - kosten: 15
     text: |
-      collections.Counter(...) liefert die Haeufigkeiten.
+      collections.Counter(...) liefert die Häufigkeiten.
       max-Anzahl bestimmen, dann unter allen mit dieser Anzahl
-      das Minimum waehlen.
+      das Minimum wählen.
 tests_sichtbar:
   - input: [[1, 2, 2, 3]]
     expected: 2
@@ -59,12 +59,12 @@ starter_code: |
       pass
 ---
 
-# Haeufigster Wert (Modus)
+# Häufigster Wert (Modus)
 
-Schreibe eine Funktion `haeufigster(zahlen)`, die den **haeufigsten
-Wert** einer Liste zurueckgibt.
+Schreibe eine Funktion `häufigster(zahlen)`, die den **häufigsten
+Wert** einer Liste zurückgibt.
 
-- Bei mehreren Werten mit gleicher Spitzenhaeufigkeit: **kleinster**
+- Bei mehreren Werten mit gleicher Spitzenhäufigkeit: **kleinster**
   davon.
 - Bei leerer Liste → `None`.
 
@@ -83,7 +83,7 @@ Wert** einer Liste zurueckgibt.
 ```python
 from collections import Counter
 
-def haeufigster(zahlen):
+def häufigster(zahlen):
     if not zahlen:
         return None
     c = Counter(zahlen)

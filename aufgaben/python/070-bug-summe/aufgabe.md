@@ -26,7 +26,7 @@ hints:
   - kosten: 10
     text: |
       `range(len(zahlen) - 1)` lässt das letzte Element aus. Korrekt
-      waere `range(len(zahlen))`.
+      wäre `range(len(zahlen))`.
 tests_sichtbar:
   - input: [[1, 2, 3]]
     expected: 6
@@ -53,7 +53,7 @@ starter_code: |
 
 # Bug -- Summe einer Liste
 
-Diese Funktion soll die Summe aller Zahlen in der Liste zurueckgeben.
+Diese Funktion soll die Summe aller Zahlen in der Liste zurückgeben.
 Sie laesst aber **immer das letzte Element weg**. Finde den Fehler!
 
 ## Was schief geht
@@ -71,5 +71,5 @@ Schau die Schleifen-Bedingung an. Wo wird das Problem entstehen?
 
 **Off-by-One-Fehler** sind in der Welt der Software-Bugs der Klassiker
 schlechthin. Falsch verwendete Range-Grenzen, vergessenes
-"+1"/"-1", `<` statt `<=`. Ganze Sicherheitsluecken sind genau so
+"+1"/"-1", `<` statt `<=`. Ganze Sicherheitslücken sind genau so
 entstanden.

@@ -23,7 +23,7 @@ funktion: flatten
 hints:
   - kosten: 0
     text: |
-      Eine doppelte Schleife: ueber die aeussere Liste, dann ueber jede
+      Eine doppelte Schleife: über die aeussere Liste, dann über jede
       innere Liste -- alle Elemente in eine flache Ergebnisliste schieben.
   - kosten: 15
     text: |
@@ -73,8 +73,8 @@ eine Liste von Listen, nicht beliebig tief verschachtelt.
 
 ## Wege
 
-- **Doppelte Schleife** -- aeussere ueber `liste`, innere ueber jede
-  Sub-Liste, anhaengen.
+- **Doppelte Schleife** -- aeussere über `liste`, innere über jede
+  Sub-Liste, anhängen.
 - **List-Comprehension** -- die idiomatische Variante: kompakt, schnell,
   aber gewoehnungsbeduerftig in der Lesart von links nach rechts.
 

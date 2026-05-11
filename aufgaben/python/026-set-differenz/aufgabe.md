@@ -25,7 +25,7 @@ hints:
     text: Behalte alle Elemente aus `a`, die nicht in `b` vorkommen. Reihenfolge wie in a, ohne Doppelte.
   - kosten: 10
     text: |
-      `set(b)` fuer schnellen Lookup, dann List-Comprehension mit
+      `set(b)` für schnellen Lookup, dann List-Comprehension mit
       Duplikat-Filter.
 tests_sichtbar:
   - input: [[1, 2, 3, 4], [3, 4]]
@@ -52,7 +52,7 @@ starter_code: |
 # A ohne B
 
 Schreibe eine Funktion `ohne(a, b)`, die alle Elemente von `a`
-zurueckgibt, **die nicht in `b`** vorkommen. Reihenfolge wie in `a`,
+zurückgibt, **die nicht in `b`** vorkommen. Reihenfolge wie in `a`,
 jedes Element nur einmal.
 
 ## Beispiele
@@ -66,9 +66,9 @@ jedes Element nur einmal.
 
 ## Idee
 
-`set(b)` macht den "ist drin?"-Test schnell. Dann eine Schleife ueber
-`a` mit Duplikat-Tracking -- entweder ueber ein zweites Set oder
-implizit ueber das Prüfen `x not in ergebnis`.
+`set(b)` macht den "ist drin?"-Test schnell. Dann eine Schleife über
+`a` mit Duplikat-Tracking -- entweder über ein zweites Set oder
+implizit über das Prüfen `x not in ergebnis`.
 
 ## Vergleich mit Set-Operationen
 

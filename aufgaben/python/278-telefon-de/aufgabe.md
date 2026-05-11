@@ -2,7 +2,7 @@
 schema_version: 1
 id: 278-telefon-de
 revision: 1
-titel: Deutsche Telefonnummer pruefen
+titel: Deutsche Telefonnummer prüfen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,7 +23,7 @@ funktion: ist_telefon_de
 hints:
   - kosten: 0
     text: |
-      Pruefe ob String eine deutsche Telefonnummer ist (vereinfacht):
+      Prüfe ob String eine deutsche Telefonnummer ist (vereinfacht):
       Beginnt mit "+49 " ODER "0", danach 2-5 Ziffern Vorwahl,
       dann Leerzeichen oder /, dann mind. 4 Ziffern.
       Beispiele:
@@ -69,9 +69,9 @@ starter_code: |
       pass
 ---
 
-# Deutsche Telefonnummer pruefen
+# Deutsche Telefonnummer prüfen
 
-Schreibe `ist_telefon_de(s)`, die `True` zurueckgibt, wenn der String
+Schreibe `ist_telefon_de(s)`, die `True` zurückgibt, wenn der String
 eine **deutsche Telefonnummer** im einem dieser **vereinfachten
 Formate** ist:
 
@@ -82,7 +82,7 @@ Formate** ist:
 
 ## Beispiele
 
-| Eingabe              | Gueltig? |
+| Eingabe              | Gültig? |
 |----------------------|----------|
 | `"+49 30 12345678"`  | `True`   |
 | `"030/12345678"`     | `True`   |
@@ -109,10 +109,10 @@ das Ergebnis zu sammeln. `\d{2,5}` heisst "2 bis 5 Ziffern".
 ## Warum so vereinfacht?
 
 Die echte E.164-Spec ist deutlich komplizierter (max. 15 Ziffern
-international, viele optionale Format-Varianten, Klammern fuer Vorwahl,
-Bindestriche, etc.). Hier reicht ein robustes Schul-Pattern fuer
+international, viele optionale Format-Varianten, Klammern für Vorwahl,
+Bindestriche, etc.). Hier reicht ein robustes Schul-Pattern für
 typische deutsche Formate.
 
-In der Praxis nutzt man fuer ernsthafte Anwendungen die
+In der Praxis nutzt man für ernsthafte Anwendungen die
 **libphonenumber**-Library von Google -- die kennt jedes Land und
 jede Eigenheit.

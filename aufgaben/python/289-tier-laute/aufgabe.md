@@ -31,7 +31,7 @@ hints:
   - kosten: 20
     text: |
       Basis-Klasse Tier mit Methode laut() (default "?").
-      Subklassen Hund/Katze/Kuh/Hahn ueberschreiben laut().
+      Subklassen Hund/Katze/Kuh/Hahn überschreiben laut().
       Dispatch via Dict {"Hund": Hund, ...}.
 tests_sichtbar:
   - input: [["Hund", "Katze", "Kuh"]]
@@ -120,11 +120,11 @@ def tier_konzert(tiere):
 
 1. **Vererbung**: Hund ist ein Tier. `class Hund(Tier)` bedeutet
    "Hund erbt alles von Tier".
-2. **Methoden ueberschreiben**: jede Subklasse hat eigenes `laut()`.
+2. **Methoden überschreiben**: jede Subklasse hat eigenes `laut()`.
 3. **Polymorphismus**: `tier.laut()` ruft die Methode der **realen
    Klasse**, egal welche Variable du hast.
 4. **Default-Verhalten**: `Tier.laut()` liefert "?" -- praktischer
-   Fallback fuer unbekannte Subklassen.
+   Fallback für unbekannte Subklassen.
 
 ## Vergleich -- Dict ohne Klassen
 
@@ -136,12 +136,12 @@ def tier_konzert(tiere):
 ```
 
 Funktioniert genauso. Der Punkt der OOP-Variante ist die
-**Erweiterbarkeit**: wenn ein Tier zusaetzlich `groesse()`,
-`alter()`, `frisst(was)` koennen soll, profitiert man von der
+**Erweiterbarkeit**: wenn ein Tier zusaetzlich `größe()`,
+`alter()`, `frisst(was)` können soll, profitiert man von der
 Hierarchie.
 
 ## Anwendung
 
-Klassen-Hierarchien tauchen ueberall auf, wo Dinge **gleichartig
+Klassen-Hierarchien tauchen überall auf, wo Dinge **gleichartig
 aber unterschiedlich** sind: UI-Widgets (Button/Input/Slider sind
 alle Widgets), Spielfiguren, Geometrie-Formen (siehe Aufgabe 290).

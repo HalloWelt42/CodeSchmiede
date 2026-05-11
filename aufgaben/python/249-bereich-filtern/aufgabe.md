@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Liefere alle Zahlen aus der Liste, die im inklusiven Bereich
-      [a, b] liegen -- in der urspruenglichen Reihenfolge.
+      [a, b] liegen -- in der ursprünglichen Reihenfolge.
       a > b → [].
   - kosten: 5
     text: |
@@ -61,7 +61,7 @@ starter_code: |
 
 Schreibe `im_bereich(zahlen, a, b)`, die alle Zahlen aus der Liste
 liefert, die im **inklusiven** Bereich `[a, b]` liegen --
-in der **urspruenglichen Reihenfolge**.
+in der **ursprünglichen Reihenfolge**.
 
 Bei `a > b` → `[]`.
 
@@ -87,7 +87,7 @@ Mathematik liest.
 
 ## Pendant -- Anzahl
 
-Aufgabe **246-bereich-zaehlen** liefert nur die Anzahl, nicht die
+Aufgabe **246-bereich-zählen** liefert nur die Anzahl, nicht die
 Werte. Beide haben **dieselbe Filter-Logik** -- nur das Aggregat
 unterscheidet.
 

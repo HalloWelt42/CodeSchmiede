@@ -14,7 +14,7 @@ pfade: [python_grundlagen]
 voraussetzungen: [001-fizzbuzz]
 quelle:
   url: https://de.wikipedia.org/wiki/Fibonacci-Folge
-  notiz: Klassiker fuer Performance-Vergleiche, eigene Reformulierung
+  notiz: Klassiker für Performance-Vergleiche, eigene Reformulierung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -64,11 +64,11 @@ starter_code: |
 # Fibonacci-Zahl
 
 Schreibe eine Funktion `fibonacci(n)`, die die `n`-te Zahl der
-**Fibonacci-Folge** zurueckgibt.
+**Fibonacci-Folge** zurückgibt.
 
 ## Definition
 
-$$F_0 = 0, \quad F_1 = 1, \quad F_n = F_{n-1} + F_{n-2} \text{ fuer } n \ge 2$$
+$$F_0 = 0, \quad F_1 = 1, \quad F_n = F_{n-1} + F_{n-2} \text{ für } n \ge 2$$
 
 ## Beispiele
 
@@ -83,14 +83,14 @@ $$F_0 = 0, \quad F_1 = 1, \quad F_n = F_{n-1} + F_{n-2} \text{ fuer } n \ge 2$$
 
 ## Worauf zu achten ist
 
-- Eine **rekursive** Loesung ist sehr kurz, hat aber **exponentielle Laufzeit**
-  -- bei `n = 30` werden bereits ueber 1,3 Mio. Funktionsaufrufe ausgefuehrt
-- Eine **iterative** Loesung laeuft in **linearer Zeit** $O(n)$ und
+- Eine **rekursive** Lösung ist sehr kurz, hat aber **exponentielle Laufzeit**
+  -- bei `n = 30` werden bereits über 1,3 Mio. Funktionsaufrufe ausgefuehrt
+- Eine **iterative** Lösung laeuft in **linearer Zeit** $O(n)$ und
   konstantem Speicher
 - Mit `functools.lru_cache` lassen sich rekursive Aufrufe **memoisieren**
-  und damit ebenfalls auf $O(n)$ druecken
+  und damit ebenfalls auf $O(n)$ drücken
 
-## Vergleich der Ansaetze
+## Vergleich der Ansätze
 
 ```mermaid
 flowchart TD

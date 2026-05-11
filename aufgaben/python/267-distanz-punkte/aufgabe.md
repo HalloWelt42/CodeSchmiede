@@ -28,7 +28,7 @@ hints:
       Pythagoras: sqrt((x2-x1)^2 + (y2-y1)^2).
   - kosten: 10
     text: |
-      math.hypot(x2 - x1, y2 - y1) ist die kuerzeste Form.
+      math.hypot(x2 - x1, y2 - y1) ist die kürzeste Form.
 tests_sichtbar:
   - input: [[0, 0], [3, 4]]
     expected: 5.0
@@ -96,19 +96,19 @@ durch Vor-Skalierung).
 
 ## Erweiterung -- N Dimensionen
 
-Fuer 3D oder beliebig:
+Für 3D oder beliebig:
 
 ```python
 def distanz(p1, p2):
     return math.sqrt(sum((a - b) ** 2 for a, b in zip(p1, p2)))
 ```
 
-Seit Python 3.8 kann `math.dist(p1, p2)` das direkt fuer beliebige
+Seit Python 3.8 kann `math.dist(p1, p2)` das direkt für beliebige
 Dimensionen.
 
 ## Anwendung
 
 - **Karten-Apps**: Luftlinie zwischen zwei Koordinaten (genauer:
-  Haversine fuer Erd-Krummung).
-- **Spiele**: Reichweiten-Pruefung, Kollisions-Erkennung.
+  Haversine für Erd-Krummung).
+- **Spiele**: Reichweiten-Prüfung, Kollisions-Erkennung.
 - **Maschinenlernen**: k-Nearest-Neighbors.

@@ -23,7 +23,7 @@ funktion: invertiere
 hints:
   - kosten: 0
     text: |
-      Ein neues Dict aufbauen, in dem fuer jedes (k, v) im Original
+      Ein neues Dict aufbauen, in dem für jedes (k, v) im Original
       ein Eintrag (v, k) landet.
   - kosten: 10
     text: |
@@ -54,9 +54,9 @@ starter_code: |
 # Dictionary invertieren
 
 Schreibe eine Funktion `invertiere(d)`, die ein Dictionary so
-umdreht, dass die **Werte zu Schluesseln** werden und umgekehrt.
+umdreht, dass die **Werte zu Schlüsseln** werden und umgekehrt.
 
-Damit Schluessel im Ergebnis garantiert hashbar und vergleichbar sind,
+Damit Schlüssel im Ergebnis garantiert hashbar und vergleichbar sind,
 werden die alten Werte mit `str(wert)` in Strings umgewandelt.
 
 ## Beispiele
@@ -70,11 +70,11 @@ werden die alten Werte mit `str(wert)` in Strings umgewandelt.
 ## Annahme
 
 Wir setzen voraus, dass die Werte im Eingabe-Dictionary **eindeutig**
-sind. Andernfalls wuerden mehrere Schluessel auf denselben neuen
-Schluessel abgebildet, und nur der letzte ueberlebt.
+sind. Andernfalls würden mehrere Schlüssel auf denselben neuen
+Schlüssel abgebildet, und nur der letzte überlebt.
 
 ## Hintergrund
 
-Das Invertieren von Dictionaries ist eine haeufige Operation, wenn
+Das Invertieren von Dictionaries ist eine häufige Operation, wenn
 man eine Lookup-Tabelle in beide Richtungen braucht -- etwa bei
 Sprachcodes, Indizes oder Mapping-Tabellen.

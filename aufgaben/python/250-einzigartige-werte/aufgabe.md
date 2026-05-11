@@ -83,7 +83,7 @@ def einzigartig(liste):
     return sorted(k for k, v in c.items() if v == 1)
 ```
 
-`Counter` zaehlt jedes Vorkommen. `c.items()` liefert
+`Counter` zählt jedes Vorkommen. `c.items()` liefert
 `(key, count)`-Paare -- wir filtern auf `count == 1` und sortieren.
 
 ## Verwandt
@@ -92,12 +92,12 @@ def einzigartig(liste):
 |--------------------------|--------------------------------|
 | **011-listen-duplikate** | Werte die >= 2x vorkommen     |
 | **027-eindeutige-reihenfolge** | Duplikate raus, Reihenfolge bewahrt |
-| **162-haeufigster-wert** | Modus (max-Anzahl)            |
+| **162-häufigster-wert** | Modus (max-Anzahl)            |
 | **250 hier**             | Werte mit Anzahl genau 1      |
 
 ## Anwendung
 
 - **Singletons** in Daten finden: Verkaeufe, die nur einmal stattfanden.
-- **Token-Filterung**: Hapax Legomena (Woerter die im Text einmal vorkommen)
+- **Token-Filterung**: Hapax Legomena (Wörter die im Text einmal vorkommen)
   in Linguistik und Stilometrie.
 - **Spurensuche**: in Logs ungewoehnliche IPs identifizieren.

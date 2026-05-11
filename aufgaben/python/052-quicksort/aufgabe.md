@@ -68,10 +68,10 @@ Schreibe eine Funktion `quicksort(liste)`, die die Liste mit
 ## Idee: Divide and Conquer
 
 1. Liste mit 0 oder 1 Element: schon sortiert
-2. Sonst: waehle ein **Pivot-Element**
+2. Sonst: wähle ein **Pivot-Element**
 3. Teile die Liste in `kleiner`, `gleich`, `größer`
 4. Sortiere `kleiner` und `größer` rekursiv
-5. Setze `kleiner_sortiert + gleich + groesser_sortiert` zusammen
+5. Setze `kleiner_sortiert + gleich + größer_sortiert` zusammen
 
 ## Komplexitaet
 
@@ -82,11 +82,11 @@ Cache-Effizienz gut ist.
 ## Geschichte
 
 Tony Hoare entwickelte Quicksort 1959 mit 25 Jahren in Moskau --
-urspruenglich, um russische Worte zu sortieren. Bis heute eines der
-am haeufigsten verwendeten Sortier-Verfahren der Welt.
+ursprünglich, um russische Worte zu sortieren. Bis heute eines der
+am häufigsten verwendeten Sortier-Verfahren der Welt.
 
 ## Tipp
 
 Diese Variante ist nicht in-place und braucht $O(n)$ Extra-Speicher
-fuer die Comprehensions. In-place-Quicksort mit Lomuto- oder
+für die Comprehensions. In-place-Quicksort mit Lomuto- oder
 Hoare-Partitionierung ist eine separate Aufgabe.

@@ -27,7 +27,7 @@ hints:
       von rechts. Dann ganzzahlig durch 2 teilen. Stoppe bei 0.
   - kosten: 15
     text: |
-      Verboten: `bin(n)`. Eigene Schleife. Fuer n=0 → "0" als Sonderfall.
+      Verboten: `bin(n)`. Eigene Schleife. Für n=0 → "0" als Sonderfall.
 tests_sichtbar:
   - input: [0]
     expected: "0"

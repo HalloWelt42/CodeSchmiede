@@ -73,11 +73,11 @@ Schreibe `datum_parse(s)`, die ein deutsches Datum im Format
 `"DD.MM.YYYY"` (mit oder ohne fuehrende Nullen) in eine Liste
 `[tag, monat, jahr]` umwandelt.
 
-Bei ungueltigem Format → `[]`.
+Bei ungültigem Format → `[]`.
 
-**Achtung**: Diese Aufgabe prueft nur die **Form**, nicht ob das
-Datum tatsaechlich existiert. `"32.13.2026"` wird als Form-OK
-akzeptiert -- die semantische Pruefung waere eine eigene Aufgabe.
+**Achtung**: Diese Aufgabe prüft nur die **Form**, nicht ob das
+Datum tatsächlich existiert. `"32.13.2026"` wird als Form-OK
+akzeptiert -- die semantische Prüfung wäre eine eigene Aufgabe.
 
 ## Beispiele
 
@@ -108,7 +108,7 @@ def datum_parse(s):
 Gruppe, `m.group(i)` (1-basiert) liefert den Inhalt.
 
 `\.` (mit Backslash) matcht den **literalen Punkt** -- ohne
-Backslash waere `.` "beliebiges Zeichen".
+Backslash wäre `.` "beliebiges Zeichen".
 
 ## Idiomatischer mit `groups()`
 
@@ -126,10 +126,10 @@ list-comprehensiv konvertieren.
 ## Anwendung
 
 Datums-Parsing ist Standard in Log-Analyse, CSV-Import, Web-Form-
-Validierung. Fuer **echte** Datums-Validierung mit Existenz-Pruefung
+Validierung. Für **echte** Datums-Validierung mit Existenz-Prüfung
 (siehe Aufgabe 254) nutzt man `datetime.strptime`:
 
 ```python
 from datetime import datetime
-datetime.strptime("11.05.2026", "%d.%m.%Y")  # wirft ValueError bei ungueltig
+datetime.strptime("11.05.2026", "%d.%m.%Y")  # wirft ValueError bei ungültig
 ```

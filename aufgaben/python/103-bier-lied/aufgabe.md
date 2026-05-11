@@ -24,11 +24,11 @@ hints:
   - kosten: 0
     text: |
       Eine Strophe besteht aus 2 Zeilen, getrennt durch \n. Beispiel
-      fuer n=99: "99 Flaschen Bier auf der Wand, 99 Flaschen Bier.\nNimm eine runter, gib sie rum, 98 Flaschen Bier auf der Wand."
+      für n=99: "99 Flaschen Bier auf der Wand, 99 Flaschen Bier.\nNimm eine runter, gib sie rum, 98 Flaschen Bier auf der Wand."
   - kosten: 15
     text: |
       Sonderfaelle:
-      - n = 1: "1 Flasche..." (Singular), naechste = 0 → "keine mehr Flaschen"
+      - n = 1: "1 Flasche..." (Singular), nächste = 0 → "keine mehr Flaschen"
       - n = 0: "Keine Flaschen Bier auf der Wand, keine Flaschen Bier.\nGeh in den Laden, kauf neues, 99 Flaschen Bier auf der Wand."
 tests_sichtbar:
   - input: [99]
@@ -60,25 +60,25 @@ des Bier-Lieds liefert. Strophe = zwei Zeilen, getrennt durch `\n`.
 
 ## Format
 
-Fuer n ≥ 2:
+Für n ≥ 2:
 ```
 N Flaschen Bier auf der Wand, N Flaschen Bier.
 Nimm eine runter, gib sie rum, N-1 Flaschen Bier auf der Wand.
 ```
 
-Fuer n = 2 (naechste = 1, Singular):
+Für n = 2 (nächste = 1, Singular):
 ```
 2 Flaschen Bier auf der Wand, 2 Flaschen Bier.
 Nimm eine runter, gib sie rum, 1 Flasche Bier auf der Wand.
 ```
 
-Fuer n = 1 (Singular + "sie" + "keine"):
+Für n = 1 (Singular + "sie" + "keine"):
 ```
 1 Flasche Bier auf der Wand, 1 Flasche Bier.
 Nimm sie runter, gib sie rum, keine Flaschen Bier auf der Wand.
 ```
 
-Fuer n = 0 (Reset):
+Für n = 0 (Reset):
 ```
 Keine Flaschen Bier auf der Wand, keine Flaschen Bier.
 Geh in den Laden, kauf neues, 99 Flaschen Bier auf der Wand.
@@ -86,6 +86,6 @@ Geh in den Laden, kauf neues, 99 Flaschen Bier auf der Wand.
 
 ## Hintergrund
 
-"99 Bottles of Beer" ist ein Standard-Test fuer Sprach-Vergleiche
+"99 Bottles of Beer" ist ein Standard-Test für Sprach-Vergleiche
 (siehe [99-bottles-of-beer.net](https://www.99-bottles-of-beer.net/))
--- ueber 1500 Sprach-Implementierungen sind dort gesammelt.
+-- über 1500 Sprach-Implementierungen sind dort gesammelt.

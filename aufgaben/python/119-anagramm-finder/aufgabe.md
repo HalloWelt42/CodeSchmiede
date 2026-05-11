@@ -25,10 +25,10 @@ hints:
     text: |
       Liefere die Worte aus `kandidaten`, die Anagramme von `wort`
       sind -- Groß-/Kleinschreibung egal. Aber: das Wort selbst
-      (gleiche Buchstaben gleich gross/klein) ist KEIN Anagramm.
+      (gleiche Buchstaben gleich groß/klein) ist KEIN Anagramm.
   - kosten: 15
     text: |
-      Sortier-Schluessel: `sorted(w.lower())`. Vergleiche pro
+      Sortier-Schlüssel: `sorted(w.lower())`. Vergleiche pro
       Kandidat. Filtere selbe Wort raus (case-insensitive).
 tests_sichtbar:
   - input: ["listen", ["enlists", "google", "inlets", "banana"]]
@@ -60,7 +60,7 @@ starter_code: |
 # Anagramme aus Liste finden
 
 Schreibe eine Funktion `finde_anagramme(wort, kandidaten)`, die alle
-Wörter aus `kandidaten` zurueckgibt, die **Anagramme** von `wort` sind.
+Wörter aus `kandidaten` zurückgibt, die **Anagramme** von `wort` sind.
 
 - Groß-/Kleinschreibung wird ignoriert beim Vergleich
 - Das Wort selbst (gleiche Buchstaben in gleicher Reihenfolge,

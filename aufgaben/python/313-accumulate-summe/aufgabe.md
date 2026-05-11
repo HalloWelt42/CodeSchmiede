@@ -61,7 +61,7 @@ starter_code: |
 # Laufende Summen (accumulate)
 
 Schreibe `laufende_summen(liste)`, die die **kumulierten Summen**
-einer Liste liefert -- jedes Element ist die Summe **bis einschliesslich
+einer Liste liefert -- jedes Element ist die Summe **bis einschließlich
 dieser Position**.
 
 `[1, 2, 3, 4]` → `[1, 1+2, 1+2+3, 1+2+3+4]` → `[1, 3, 6, 10]`.

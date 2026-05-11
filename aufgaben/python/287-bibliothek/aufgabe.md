@@ -23,16 +23,16 @@ funktion: ausleihen
 hints:
   - kosten: 0
     text: |
-      Eine Bibliothek hat einen Bestand (Liste von Buecher-Titeln,
+      Eine Bibliothek hat einen Bestand (Liste von Bücher-Titeln,
       jeder einmal). Operationen:
       ["leihen", titel] → entfernt aus Bestand falls da
-      ["zurueck", titel] → fuegt zum Bestand hinzu falls nicht da
-      ["pruefen", titel] → kein State-Change, gibt aktuellen Bestand zurueck
+      ["zurück", titel] → fuegt zum Bestand hinzu falls nicht da
+      ["prüfen", titel] → kein State-Change, gibt aktuellen Bestand zurück
       Liefere den finalen Bestand als sortierte Liste.
   - kosten: 20
     text: |
       Klasse Bibliothek mit set intern.
-      Pruefen ist no-op fuer State, taucht in tests aber als reine Aktion auf.
+      Prüfen ist no-op für State, taucht in tests aber als reine Aktion auf.
 tests_sichtbar:
   - input: [["A", "B", "C"], [["leihen", "B"]]]
     expected: ["A", "C"]
@@ -70,8 +70,8 @@ modifiziert ihn:
 | Operation              | Wirkung                                |
 |------------------------|----------------------------------------|
 | `["leihen", titel]`    | entfernt titel aus dem Bestand (falls vorhanden) |
-| `["zurueck", titel]`   | fuegt titel zum Bestand hinzu (falls nicht da)   |
-| `["pruefen", titel]`   | keine Aenderung -- nur Lese-Op       |
+| `["zurück", titel]`   | fuegt titel zum Bestand hinzu (falls nicht da)   |
+| `["prüfen", titel]`   | keine Änderung -- nur Lese-Op       |
 
 Liefere den **finalen Bestand** als **alphabetisch sortierte** Liste.
 
@@ -81,22 +81,22 @@ Liefere den **finalen Bestand** als **alphabetisch sortierte** Liste.
 |------------------|------------------------------------|--------------|
 | `["A","B","C"]`  | `[["leihen","B"]]`                 | `["A","C"]`  |
 | `["A","B","C"]`  | `[["leihen","Z"]]`                 | `["A","B","C"]` (Z war nicht da) |
-| `["A","B","C"]`  | `[["zurueck","A"]]`                | `["A","B","C"]` (A war schon da) |
-| `["A"]`          | `[["leihen","A"],["zurueck","A"]]` | `["A"]`      |
-| `[]`             | `[["zurueck","A"]]`                | `["A"]`      |
+| `["A","B","C"]`  | `[["zurück","A"]]`                | `["A","B","C"]` (A war schon da) |
+| `["A"]`          | `[["leihen","A"],["zurück","A"]]` | `["A"]`      |
+| `[]`             | `[["zurück","A"]]`                | `["A"]`      |
 
 ## Idee -- Set + Methoden
 
 ```python
 class Bibliothek:
     def __init__(self, bestand):
-        self.buecher = set(bestand)
+        self.bücher = set(bestand)
 
     def leihen(self, titel):
-        self.buecher.discard(titel)  # discard wirft KEIN KeyError
+        self.bücher.discard(titel)  # discard wirft KEIN KeyError
 
-    def zurueck(self, titel):
-        self.buecher.add(titel)
+    def zurück(self, titel):
+        self.bücher.add(titel)
 
 
 def ausleihen(bestand, operationen):
@@ -104,19 +104,19 @@ def ausleihen(bestand, operationen):
     for op in operationen:
         if op[0] == "leihen":
             bib.leihen(op[1])
-        elif op[0] == "zurueck":
-            bib.zurueck(op[1])
-        # "pruefen" ignorieren
-    return sorted(bib.buecher)
+        elif op[0] == "zurück":
+            bib.zurück(op[1])
+        # "prüfen" ignorieren
+    return sorted(bib.bücher)
 ```
 
 `set.discard(x)` ist wie `set.remove(x)`, wirft aber **keinen
-Fehler**, wenn das Element nicht da ist -- ideal fuer "loesche falls
+Fehler**, wenn das Element nicht da ist -- ideal für "lösche falls
 vorhanden". `set.add(x)` ist idempotent (fuegt nicht doppelt).
 
 ## Erweiterung -- Mehrfache Exemplare
 
-In einer echten Bibliothek gibt es Buecher in **mehreren Exemplaren**:
-"Der Herr der Ringe" 5x da, davon 3 ausgeliehen. Dafuer braucht man
+In einer echten Bibliothek gibt es Bücher in **mehreren Exemplaren**:
+"Der Herr der Ringe" 5x da, davon 3 ausgeliehen. Dafür braucht man
 ein `dict[titel, anzahl]` statt eines Sets -- der Sprung von Set zu
 Dict ist klein, das Konzept aber maechtig.

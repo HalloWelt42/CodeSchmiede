@@ -106,9 +106,9 @@ def html_escape(s):
 ## Sicherheitskontext -- XSS
 
 Diese Funktion ist die Grundlage zur Verhinderung von **XSS**
-(Cross-Site Scripting) -- der haeufigsten Webschwachstelle bis heute.
-Wer User-Eingaben unescaped ins HTML rendert, oeffnet Angreifern
-die Tuer fuer `<script>`-Injection.
+(Cross-Site Scripting) -- der häufigsten Webschwachstelle bis heute.
+Wer User-Eingaben unescaped ins HTML rendert, öffnet Angreifern
+die Tür für `<script>`-Injection.
 
 In Python gibt's `html.escape` aus der Standard-Library, das genau
 das tut. Aber es lohnt zu verstehen, **was** dahinter passiert.

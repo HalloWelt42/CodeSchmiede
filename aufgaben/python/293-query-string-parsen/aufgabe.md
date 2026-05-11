@@ -118,4 +118,4 @@ wir und erwarten unkodierte Strings.
 ## Anwendung
 
 Web-Server, REST-Clients, Browser-History-Parsing, Konfigurations-
-DSLs (z.B. ".env"-Dateien sind aehnlich aufgebaut).
+DSLs (z.B. ".env"-Dateien sind ähnlich aufgebaut).

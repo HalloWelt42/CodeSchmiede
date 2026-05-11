@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Simuliere eine teure Funktion (square: x → x²) mit Cache.
-      Liefere PRO Eingabe ein Tupel [wert, war_im_cache] zurueck.
+      Liefere PRO Eingabe ein Tupel [wert, war_im_cache] zurück.
       Reihenfolge wie in der Eingabe.
       Beispiel: [3, 5, 3] → [[9, false], [25, false], [9, true]].
   - kosten: 15
@@ -62,7 +62,7 @@ starter_code: |
 
 Schreibe `memoize_lauf(eingaben)`, die eine "teure" Funktion
 (`square: x → x²`) auf eine Liste von Eingaben anwendet -- mit
-**Cache** -- und pro Eingabe zurueckgibt:
+**Cache** -- und pro Eingabe zurückgibt:
 
 `[wert, war_im_cache]`
 
@@ -78,7 +78,7 @@ schon im Cache war (also wir nicht wirklich neu rechnen mussten).
 | `[5, 5, 5, 5]` | `[[25, False], [25, True], [25, True], [25, True]]`     |
 | `[1, 2, 3, 1, 2, 3]` | `[[1,F], [4,F], [9,F], [1,T], [4,T], [9,T]]`     |
 
-**Achtung**: `-3` und `3` sind verschiedene Schluessel -- der Cache
+**Achtung**: `-3` und `3` sind verschiedene Schlüssel -- der Cache
 unterscheidet das nicht aufgrund vom Quadrat, sondern vom rohen
 Eingabe-Wert.
 
@@ -117,13 +117,13 @@ Neuberechnung.
 
 ## Anwendung
 
-- **Rekursive DP-Loesungen** (Fibonacci, LCS, Coin-Change).
+- **Rekursive DP-Lösungen** (Fibonacci, LCS, Coin-Change).
 - **API-Caches** (HTTP-GET-Anfragen mit gleichen Argumenten).
 - **Datenbank-Query-Caches**.
-- **Render-Memoization** in React-aehnlichen Frameworks.
+- **Render-Memoization** in React-ähnlichen Frameworks.
 
 ## Stolperstein -- Mutable Args
 
 `@cache` braucht **hashbare** Argumente. Listen/Dicts gehen nicht
-direkt -- man muesste sie zu Tupeln konvertieren oder einen eigenen
-Hash-Schluessel berechnen.
+direkt -- man müsste sie zu Tupeln konvertieren oder einen eigenen
+Hash-Schlüssel berechnen.

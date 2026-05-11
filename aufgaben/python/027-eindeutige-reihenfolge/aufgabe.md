@@ -27,8 +27,8 @@ hints:
       Du brauchst einen anderen Weg, der die Reihenfolge erhält.
   - kosten: 15
     text: |
-      Ein "gesehen"-Set fuer den schnellen Lookup, dann pro Element
-      prüfen und ggf. anhaengen.
+      Ein "gesehen"-Set für den schnellen Lookup, dann pro Element
+      prüfen und ggf. anhängen.
   - kosten: 25
     text: |
       Seit Python 3.7 garantiert `dict` Insertion-Order. Damit ist
@@ -72,7 +72,7 @@ Auftretens**.
 
 ## Falle
 
-`list(set(a))` zerstoert die Reihenfolge -- Sets in Python sind nicht
+`list(set(a))` zerstört die Reihenfolge -- Sets in Python sind nicht
 ordnungserhaltend. Es gibt zwei saubere Wege:
 
 1. Schleife mit `gesehen`-Set
@@ -83,7 +83,7 @@ Beide sind gültig.
 
 ## Hintergrund
 
-Diese Aufgabe ist eines der typischen Beispiele dafuer, dass eine
-augenscheinlich passende Standardloesung (`set`) eine subtile
+Diese Aufgabe ist eines der typischen Beispiele dafür, dass eine
+augenscheinlich passende Standardlösung (`set`) eine subtile
 Schwaeche hat (Reihenfolge). Solche Faelle sind in echten Codebasen
 sehr häufig.

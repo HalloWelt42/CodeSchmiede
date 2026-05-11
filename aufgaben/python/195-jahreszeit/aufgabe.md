@@ -25,10 +25,10 @@ hints:
     text: |
       Liefere die meteorologische Jahreszeit aus einer Monatsnummer:
       12,1,2 -> "winter"
-      3,4,5 -> "fruehling"
+      3,4,5 -> "frühling"
       6,7,8 -> "sommer"
       9,10,11 -> "herbst"
-      Ungueltige Monate (< 1 oder > 12) -> "ungueltig".
+      Ungültige Monate (< 1 oder > 12) -> "ungültig".
   - kosten: 10
     text: |
       Liste mit 12 Eintraegen oder eine if-elif-Kette nach Bereichen.
@@ -69,38 +69,38 @@ starter_code: |
 
 # Jahreszeit aus Monatsnummer
 
-Schreibe `jahreszeit(monat)`, die fuer eine Monatsnummer die
+Schreibe `jahreszeit(monat)`, die für eine Monatsnummer die
 **meteorologische Jahreszeit** liefert (im Gegensatz zur
 astronomischen, die mit den Tag-und-Nacht-Gleichen wechselt).
 
 | Monate     | Jahreszeit    |
 |------------|---------------|
 | 12, 1, 2   | `"winter"`    |
-| 3, 4, 5    | `"fruehling"` |
+| 3, 4, 5    | `"frühling"` |
 | 6, 7, 8    | `"sommer"`    |
 | 9, 10, 11  | `"herbst"`    |
 
-Ungueltige Monate → `"ungueltig"`.
+Ungültige Monate → `"ungültig"`.
 
 ## Beispiele
 
 | Monat | Jahreszeit    |
 |-------|---------------|
 | `1`   | `"winter"`    |
-| `4`   | `"fruehling"` |
+| `4`   | `"frühling"` |
 | `7`   | `"sommer"`    |
 | `10`  | `"herbst"`    |
 | `12`  | `"winter"`    |
-| `0`   | `"ungueltig"` |
-| `13`  | `"ungueltig"` |
+| `0`   | `"ungültig"` |
+| `13`  | `"ungültig"` |
 
 ## Idee 1 -- Tabelle
 
 ```python
 JAHRESZEITEN = [
-    "ungueltig",  # Index 0 als Fueller
-    "winter", "winter", "fruehling",
-    "fruehling", "fruehling", "sommer",
+    "ungültig",  # Index 0 als Fueller
+    "winter", "winter", "frühling",
+    "frühling", "frühling", "sommer",
     "sommer", "sommer", "herbst",
     "herbst", "herbst", "winter",
 ]
@@ -108,7 +108,7 @@ JAHRESZEITEN = [
 def jahreszeit(monat):
     if 1 <= monat <= 12:
         return JAHRESZEITEN[monat]
-    return "ungueltig"
+    return "ungültig"
 ```
 
 ## Idee 2 -- if/elif
@@ -118,16 +118,16 @@ def jahreszeit(monat):
     if monat in (12, 1, 2):
         return "winter"
     if monat in (3, 4, 5):
-        return "fruehling"
+        return "frühling"
     if monat in (6, 7, 8):
         return "sommer"
     if monat in (9, 10, 11):
         return "herbst"
-    return "ungueltig"
+    return "ungültig"
 ```
 
 ## Hintergrund
 
-Auf der **Suedhalbkugel** sind Jahreszeiten umgekehrt -- in
+Auf der **Südhalbkugel** sind Jahreszeiten umgekehrt -- in
 Australien beginnt der Sommer im Dezember. Wer eine internationale
-App baut, sollte Suedhalbkugel-Logik einbauen.
+App baut, sollte Südhalbkugel-Logik einbauen.

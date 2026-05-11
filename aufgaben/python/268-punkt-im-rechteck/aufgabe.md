@@ -23,9 +23,9 @@ funktion: im_rechteck
 hints:
   - kosten: 0
     text: |
-      Pruefe ob Punkt [x, y] im achsen-parallelen Rechteck liegt,
+      Prüfe ob Punkt [x, y] im achsen-parallelen Rechteck liegt,
       definiert durch [xmin, ymin, xmax, ymax].
-      Inklusiv: Punkte AUF dem Rand zaehlen als drinnen.
+      Inklusiv: Punkte AUF dem Rand zählen als drinnen.
   - kosten: 5
     text: |
       xmin <= x <= xmax und ymin <= y <= ymax.
@@ -61,7 +61,7 @@ starter_code: |
 
 # Punkt im Rechteck?
 
-Schreibe `im_rechteck(punkt, rect)`, die `True` zurueckgibt, wenn
+Schreibe `im_rechteck(punkt, rect)`, die `True` zurückgibt, wenn
 der Punkt `[x, y]` innerhalb des achsen-parallelen Rechtecks liegt.
 Rechteck = `[xmin, ymin, xmax, ymax]`. **Inklusive Raender**.
 
@@ -88,7 +88,7 @@ Pythons **chained comparisons** machen das sehr lesbar.
 
 ## Variante -- exklusive Raender
 
-Wenn Punkte **auf** dem Rand nicht zaehlen sollen: `<` statt `<=`.
+Wenn Punkte **auf** dem Rand nicht zählen sollen: `<` statt `<=`.
 
 ```python
 return xmin < x < xmax and ymin < y < ymax

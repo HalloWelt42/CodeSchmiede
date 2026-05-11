@@ -77,9 +77,9 @@ In jedem Durchlauf:
 ## Komplexitaet
 
 $O(n^2)$ in **jedem** Fall -- auch wenn die Liste schon sortiert ist,
-muessen alle Vergleiche gemacht werden. Das ist anders als bei
+müssen alle Vergleiche gemacht werden. Das ist anders als bei
 Bubble-Sort, der mit Early-Exit auf $O(n)$ schrumpft.
 
 Die Anzahl der **Tauschoperationen** ist allerdings nur $O(n)$ -- genau
 ein Tausch pro Durchlauf. Das macht Selection-Sort attraktiv, wenn
-Tauschen teuer ist (z.B. bei sehr grossen Datensaetzen im RAM).
+Tauschen teuer ist (z.B. bei sehr großen Datensätzen im RAM).

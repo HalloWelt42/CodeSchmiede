@@ -28,7 +28,7 @@ hints:
   - kosten: 15
     text: |
       Schneller mit Dict: pro Element prüfen, ob "ziel - x" bereits
-      gesehen wurde. Falls ja, Indizes zurueckgeben.
+      gesehen wurde. Falls ja, Indizes zurückgeben.
   - kosten: 25
     text: |
       ```
@@ -71,7 +71,7 @@ starter_code: |
 
 Gegeben eine Liste von Zahlen und eine Zielsumme. Finde **zwei Indizes**
 `i < j`, sodass `zahlen[i] + zahlen[j] == ziel`. Gibt es mehrere
-gültige Paare, ist jedes davon ein gueltiges Ergebnis. Existiert
+gültige Paare, ist jedes davon ein gültiges Ergebnis. Existiert
 keines, gib `[]` zurück.
 
 ## Beispiele
@@ -98,5 +98,5 @@ hast du das Paar.
 ## Hintergrund
 
 "Two-Sum" ist die **Aufgabe Nr. 1 auf LeetCode** und seit Jahren das
-Stoffel-Beispiel fuer Hashing-Tricks in Interviews. Wer das Pattern
-kennt, sieht es ueberall wieder (Three-Sum, Pair-Differenz, ...).
+Stoffel-Beispiel für Hashing-Tricks in Interviews. Wer das Pattern
+kennt, sieht es überall wieder (Three-Sum, Pair-Differenz, ...).

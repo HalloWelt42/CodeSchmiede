@@ -2,7 +2,7 @@
 schema_version: 1
 id: 151-schnapszahl
 revision: 1
-titel: Schnapszahl-Pruefung
+titel: Schnapszahl-Prüfung
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -62,7 +62,7 @@ starter_code: |
       pass
 ---
 
-# Schnapszahl-Pruefung
+# Schnapszahl-Prüfung
 
 Eine **Schnapszahl** ist eine Zahl mit mindestens **zwei Stellen**, in
 der **alle Ziffern gleich** sind: 11, 22, 333, 7777, ...
@@ -88,7 +88,7 @@ Schnapszahl, weil `44` eine ist.
 
 ## Idee -- Set der Ziffern
 
-Wenn `set(str(abs(n)))` genau 1 Element enthaelt UND die Zahl mindestens
+Wenn `set(str(abs(n)))` genau 1 Element enthält UND die Zahl mindestens
 2 Stellen hat, ist es eine Schnapszahl.
 
 ```python
@@ -101,6 +101,6 @@ def ist_schnapszahl(n):
 
 Der Name kommt aus dem Kartenspiel **Schnapsen** -- dort schreibt man
 einen Punktestand wie 22, 33, 66 gerne als Schnapszahl auf, weil sie
-sich gut einpraegen. Im Deutschen werden auch Wiederholungen wie 121
+sich gut einprägen. Im Deutschen werden auch Wiederholungen wie 121
 oder 1221 (Palindrom-Zahlen) manchmal als Schnapszahl bezeichnet --
 hier nutzen wir die strenge Definition.

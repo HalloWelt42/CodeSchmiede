@@ -2,7 +2,7 @@
 schema_version: 1
 id: 322-js-buchstaben-zaehlen
 revision: 1
-titel: JavaScript -- Buchstaben im Text zaehlen
+titel: JavaScript -- Buchstaben im Text zählen
 sprache: javascript
 task_type: code_schreiben
 runner_type: webworker_js
@@ -23,7 +23,7 @@ funktion: zaehleBuchstaben
 hints:
   - kosten: 0
     text: |
-      Zaehle wie oft jeder Buchstabe im Text vorkommt -- als Object
+      Zähle wie oft jeder Buchstabe im Text vorkommt -- als Object
       {buchstabe: anzahl}. Case-insensitive (alle klein), Whitespace
       und Sonderzeichen IGNORIEREN (nur a-z). Keys ALPHABETISCH
       sortiert (sonst schlaegt der JSON-Vergleich fehl).
@@ -50,13 +50,13 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Buchstaben im Text zaehlen
+# JavaScript -- Buchstaben im Text zählen
 
-Schreibe `zaehleBuchstaben(text)`, die ein Object liefert, das jeden
-**Buchstaben (a-z, lowercased)** im Text zaehlt.
+Schreibe `zähleBuchstaben(text)`, die ein Object liefert, das jeden
+**Buchstaben (a-z, lowercased)** im Text zählt.
 
 - Whitespace, Ziffern, Sonderzeichen → ignorieren
-- Gross/Klein → zu klein konvertieren
+- Groß/Klein → zu klein konvertieren
 - Bei `""` → `{}`
 
 ## Beispiele
@@ -71,7 +71,7 @@ Schreibe `zaehleBuchstaben(text)`, die ein Object liefert, das jeden
 ## Idee -- modernes JS
 
 ```javascript
-function zaehleBuchstaben(text) {
+function zähleBuchstaben(text) {
     const z = [...text.toLowerCase()].reduce((akk, c) => {
         if (c >= 'a' && c <= 'z') {
             akk[c] = (akk[c] || 0) + 1;
@@ -84,9 +84,9 @@ function zaehleBuchstaben(text) {
 
 **Patterns**:
 - `[...text]` -- Spread macht aus String ein Array von Zeichen.
-  Sicher fuer Unicode (anders als `text.split('')` bei Surrogate-Pairs).
+  Sicher für Unicode (anders als `text.split('')` bei Surrogate-Pairs).
 - `text.toLowerCase()` -- Case-Folding.
-- `(akk[c] || 0) + 1` -- short-circuit fuer "key existiert nicht
+- `(akk[c] || 0) + 1` -- short-circuit für "key existiert nicht
   → 0".
 - Filter im if statt vorher: spart eine Schleife.
 
@@ -95,7 +95,7 @@ function zaehleBuchstaben(text) {
 Funktional auch elegant:
 
 ```javascript
-const zaehleBuchstaben = (text) =>
+const zähleBuchstaben = (text) =>
     Object.fromEntries(
         Object.entries(
             [...text.toLowerCase()].reduce((a, c) => {
@@ -110,6 +110,6 @@ Lesbarkeit leidet -- die direkte Variante ist hier besser.
 
 ## Hintergrund
 
-In Python wuerde man `collections.Counter` nehmen -- in JS gibt's
-das nicht direkt. Ein `Map` waere theoretisch besser (schneller,
-typensicher), aber Object ist idiomatischer fuer JSON-Output.
+In Python würde man `collections.Counter` nehmen -- in JS gibt's
+das nicht direkt. Ein `Map` wäre theoretisch besser (schneller,
+typensicher), aber Object ist idiomatischer für JSON-Output.

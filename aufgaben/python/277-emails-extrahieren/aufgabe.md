@@ -99,12 +99,12 @@ def emails(text):
 ## Warum kein "perfektes" Email-Regex?
 
 Die offizielle RFC-5322-Email-Spec ist mehrere hundert Zeichen lang
-und matcht z.B. auch Adressen mit Klammern oder Quoting. Fuer 99%
+und matcht z.B. auch Adressen mit Klammern oder Quoting. Für 99%
 aller Praxis-Anwendungen reicht ein simpleres Pattern.
 
 **Faustregel**: Email-Validierung "perfekt" gibt es nicht. Wer
 wirklich sichergehen will, schickt eine **Bestaetigungs-Email** --
-die ist die einzige verlaessliche Pruefung.
+die ist die einzige verlaessliche Prüfung.
 
 ## Stolperstein
 

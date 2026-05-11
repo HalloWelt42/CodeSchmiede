@@ -14,7 +14,7 @@ pfade: [python_listen3]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null
-  notiz: Bausteine fuer viele Range-Summen-Probleme
+  notiz: Bausteine für viele Range-Summen-Probleme
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -65,7 +65,7 @@ starter_code: |
 # Prefix-Summen-Liste
 
 Schreibe eine Funktion `prefix_summe(zahlen)`, die eine Liste der
-**Praefix-Summen** zurueckgibt. Das Element an Index `i` ist die
+**Praefix-Summen** zurückgibt. Das Element an Index `i` ist die
 Summe aller Elemente von Index 0 bis i.
 
 ## Beispiele

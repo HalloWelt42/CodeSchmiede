@@ -27,7 +27,7 @@ hints:
       Bei n < 1 → 0.
   - kosten: 10
     text: |
-      Verboten waere `sum(range(1, n+1))`. Ist nicht verboten,
+      Verboten wäre `sum(range(1, n+1))`. Ist nicht verboten,
       aber die Formel ist O(1) statt O(n) -- der ganze Witz.
 tests_sichtbar:
   - input: [1]

@@ -60,9 +60,9 @@ starter_code: |
 
 # Kreis-Flaeche und Umfang
 
-Schreibe `kreis(r)`, die fuer einen Kreis mit Radius `r` die
+Schreibe `kreis(r)`, die für einen Kreis mit Radius `r` die
 **Flaeche** und den **Umfang** als Liste `[flaeche, umfang]`
-zurueckgibt -- beide auf **2 Nachkommastellen** gerundet.
+zurückgibt -- beide auf **2 Nachkommastellen** gerundet.
 
 Bei `r < 0` (oder `r == 0`) → `[0.0, 0.0]`.
 
@@ -95,11 +95,11 @@ def kreis(r):
 ## Spezialfall r=2
 
 Bei `r = 2` sind Flaeche und Umfang gleich (`12.57`):
-$\pi \cdot 4 = 2\pi \cdot 2$. Das ist der einzige Radius, fuer den
+$\pi \cdot 4 = 2\pi \cdot 2$. Das ist der einzige Radius, für den
 das gilt.
 
 ## Hintergrund
 
-Pi war seit der Antike interessant -- Archimedes berechnete es ueber
+Pi war seit der Antike interessant -- Archimedes berechnete es über
 Polygone bis auf $3.14$. Heute kennen wir billionen Stellen, aber
-fuer praktische Geometrie reichen 6-15 Stellen vollkommen.
+für praktische Geometrie reichen 6-15 Stellen vollkommen.

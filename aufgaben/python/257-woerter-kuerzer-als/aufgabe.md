@@ -2,7 +2,7 @@
 schema_version: 1
 id: 257-woerter-kuerzer-als
 revision: 1
-titel: Woerter kuerzer als n
+titel: Wörter kürzer als n
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,7 +23,7 @@ funktion: kuerzer_als
 hints:
   - kosten: 0
     text: |
-      Liefere alle Woerter aus dem Text, die KUERZER als n Zeichen sind.
+      Liefere alle Wörter aus dem Text, die KUERZER als n Zeichen sind.
       Reihenfolge wie im Original.
   - kosten: 5
     text: |
@@ -56,10 +56,10 @@ starter_code: |
       pass
 ---
 
-# Woerter kuerzer als n
+# Wörter kürzer als n
 
-Schreibe `kuerzer_als(text, n)`, die alle Woerter aus dem Text
-zurueckgibt, die **kuerzer als n Zeichen** sind.
+Schreibe `kürzer_als(text, n)`, die alle Wörter aus dem Text
+zurückgibt, die **kürzer als n Zeichen** sind.
 
 ## Beispiele
 
@@ -74,24 +74,24 @@ zurueckgibt, die **kuerzer als n Zeichen** sind.
 ## Idee
 
 ```python
-def kuerzer_als(text, n):
+def kürzer_als(text, n):
     return [w for w in text.split() if len(w) < n]
 ```
 
-Spiegelbild zu **256-woerter-laenger-als**: nur das Vergleichs-
+Spiegelbild zu **256-wörter-laenger-als**: nur das Vergleichs-
 Operator dreht.
 
 ## Verallgemeinerung
 
-Mit Predicate-Funktion liesse sich beides in eine generische
+Mit Predicate-Funktion ließe sich beides in eine generische
 "filter"-Funktion verpacken:
 
 ```python
-def filter_woerter(text, predicate):
+def filter_wörter(text, predicate):
     return [w for w in text.split() if predicate(w)]
 
-filter_woerter("Hallo Welt", lambda w: len(w) > 4)
-filter_woerter("Hallo Welt", lambda w: len(w) < 5)
+filter_wörter("Hallo Welt", lambda w: len(w) > 4)
+filter_wörter("Hallo Welt", lambda w: len(w) < 5)
 ```
 
 In Tests aber schwer zu serialisieren -- darum die spezialisierten
@@ -100,5 +100,5 @@ Aufgaben.
 ## Anwendung
 
 - **Schreibtipp**: kurze Wuesterhilfe aussortieren ("Vermeide
-  Fuell-Woerter mit unter 4 Zeichen").
+  Fuell-Wörter mit unter 4 Zeichen").
 - **Linter-Regel**: Variablen mit unter 3 Zeichen als Warnung.

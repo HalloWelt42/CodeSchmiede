@@ -24,10 +24,10 @@ hints:
   - kosten: 0
     text: |
       Wie viele Primzahlen <= n? Sieb des Eratosthenes, Anzahl
-      True-Werte zaehlen.
+      True-Werte zählen.
   - kosten: 10
     text: |
-      Bei n < 2 → 0. Sonst Sieb bauen, `sum(ist_prim)` zaehlt
+      Bei n < 2 → 0. Sonst Sieb bauen, `sum(ist_prim)` zählt
       die True-Werte.
 tests_sichtbar:
   - input: [10]
@@ -80,5 +80,5 @@ jede Zahl einzeln zu testen.
 
 Nach dem **Primzahlsatz** (Hadamard, de la Vallée Poussin, 1896)
 verhalten sich die Primzahlen ungefaehr wie $n / \ln n$. Bei
-$n = 10\,000$ sagt die Naeherung 1086, tatsaechlich 1229 -- die
+$n = 10\,000$ sagt die Naeherung 1086, tatsächlich 1229 -- die
 Naeherung wird mit wachsendem n proportional besser.

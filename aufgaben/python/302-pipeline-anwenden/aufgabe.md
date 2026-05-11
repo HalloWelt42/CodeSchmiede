@@ -26,8 +26,8 @@ hints:
       Wende mehrere Operationen NACHEINANDER auf jedes Element an.
       Operations: "double", "square", "negate", "increment", "absolute"
       ["double", "increment"] auf 3 → ((3 * 2) + 1) = 7.
-      Bei leerer ops-Liste → liste unveraendert.
-      Bei UNBEKANNTER Op → Op ueberspringen.
+      Bei leerer ops-Liste → liste unverändert.
+      Bei UNBEKANNTER Op → Op überspringen.
   - kosten: 15
     text: |
       Pro Element: durch alle Ops durchlaufen.
@@ -66,7 +66,7 @@ Schreibe `pipeline(liste, ops)`, die eine **Folge von Operationen**
 auf jedes Element der Liste anwendet -- nacheinander, von links
 nach rechts.
 
-## Verfuegbare Operationen
+## Verfügbare Operationen
 
 | String        | Wirkung    |
 |---------------|------------|
@@ -76,8 +76,8 @@ nach rechts.
 | `"increment"` | x + 1      |
 | `"absolute"`  | abs(x)     |
 
-Unbekannte Operation wird **uebersprungen** (silently ignored).
-Leere Op-Liste → Original-Liste zurueck.
+Unbekannte Operation wird **übersprungen** (silently ignored).
+Leere Op-Liste → Original-Liste zurück.
 
 ## Beispiele
 
@@ -87,7 +87,7 @@ Leere Op-Liste → Original-Liste zurueck.
 | `[5]`       | `["increment", "square"]`    | `[36]`        | (5+1)²     |
 | `[10]`      | `["square", "negate"]`       | `[-100]`      | -(10²)     |
 | `[-3, 2]`   | `["absolute", "double"]`     | `[6, 4]`      | abs(x)*2   |
-| `[1, 2, 3]` | `[]`                         | `[1, 2, 3]`   | unveraendert|
+| `[1, 2, 3]` | `[]`                         | `[1, 2, 3]`   | unverändert|
 
 ## Idee
 
@@ -125,7 +125,7 @@ def reduce_einzeln(x, ops):
     return x
 ```
 
-Pro Element wird durch alle Ops gefaltet. Aequivalent fuer pure
+Pro Element wird durch alle Ops gefaltet. Aequivalent für pure
 Funktionen, anders bei seitlichen Effekten (z.B. Logging pro Op).
 
 ## Pattern

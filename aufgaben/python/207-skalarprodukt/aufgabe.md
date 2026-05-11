@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Berechne das Skalarprodukt: a . b = sum(a_i * b_i).
-      Beide Vektoren muessen gleich lang sein -- sonst 0.
+      Beide Vektoren müssen gleich lang sein -- sonst 0.
       Bei [] und [] -> 0.
   - kosten: 10
     text: |
@@ -62,7 +62,7 @@ starter_code: |
 
 Schreibe `skalarprodukt(a, b)`, die das **Skalarprodukt** (auch
 Punkt-Produkt, dot product) zweier gleichlanger Vektoren
-zurueckgibt.
+zurückgibt.
 
 $$\vec{a} \cdot \vec{b} = \sum_{i} a_i \cdot b_i$$
 
@@ -102,5 +102,5 @@ Klassiker in der **Physik** (Arbeit = Kraft x Weg) und in
 
 ## Erweiterung
 
-`numpy.dot(a, b)` macht das hocheffizient mit BLAS. Fuer kurze
+`numpy.dot(a, b)` macht das hocheffizient mit BLAS. Für kurze
 Listen ist Pythons `sum`-Comprehension absolut ausreichend.

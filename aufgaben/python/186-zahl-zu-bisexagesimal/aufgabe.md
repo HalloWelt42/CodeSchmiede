@@ -64,7 +64,7 @@ Schreibe `zeit_format(sekunden)`, die eine **Anzahl Sekunden** in
 das Format `"HH:MM:SS"` umwandelt -- jeder Teil **zweistellig** mit
 fuehrender Null.
 
-Stunden koennen **groesser als 24** sein (kein Tagesueberlauf).
+Stunden können **größer als 24** sein (kein Tagesüberlauf).
 Bei `sekunden < 0` → `"00:00:00"`.
 
 ## Beispiele
@@ -103,7 +103,7 @@ was Bruchrechnungen ohne Dezimalpunkt erleichtert.
 
 ## Erweiterung
 
-Mit `divmod` koennte man die Berechnung verdichten:
+Mit `divmod` könnte man die Berechnung verdichten:
 
 ```python
 m, s = divmod(sekunden, 60)

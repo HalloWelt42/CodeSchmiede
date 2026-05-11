@@ -73,4 +73,4 @@ Element `matrix[i][j]` landet im Ergebnis bei `result[j][i]`.
 
 `list(zip(*matrix))` macht das in einer Zeile -- `zip` mit Unpacking
 liefert Tupel der Spalten. `list(...)` und ggf. `list(zeile) for ...`
-fuer reine Listen.
+für reine Listen.

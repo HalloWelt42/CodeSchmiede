@@ -23,14 +23,14 @@ funktion: naechste_permutation
 hints:
   - kosten: 0
     text: |
-      Liefere die naechste Permutation in lexikographischer Reihenfolge.
-      Wenn aktuell die letzte ist, sortiert zurueckgeben.
+      Liefere die nächste Permutation in lexikographischer Reihenfolge.
+      Wenn aktuell die letzte ist, sortiert zurückgeben.
   - kosten: 30
     text: |
       Algorithmus:
-      1. Suche groesstes i mit a[i] < a[i+1] (Pivot von rechts).
+      1. Suche größtes i mit a[i] < a[i+1] (Pivot von rechts).
       2. Wenn keines existiert: alles aufsteigend sortiert (war letzte).
-      3. Suche groesstes j > i mit a[j] > a[i].
+      3. Suche größtes j > i mit a[j] > a[i].
       4. Tausche a[i] und a[j].
       5. Reverse a[i+1:].
 tests_sichtbar:
@@ -65,17 +65,17 @@ starter_code: |
 
 # Nächste Permutation
 
-Schreibe eine Funktion `naechste_permutation(a)`, die die naechste
-Permutation in **lexikographischer Reihenfolge** zurueckgibt.
+Schreibe eine Funktion `nächste_permutation(a)`, die die nächste
+Permutation in **lexikographischer Reihenfolge** zurückgibt.
 Wenn die Eingabe bereits die letzte (absteigend sortierte) ist,
 liefere sie aufsteigend sortiert.
 
 ## Algorithmus
 
-1. Suche das **groesste** $i$ mit $a[i] < a[i+1]$.
+1. Suche das **größte** $i$ mit $a[i] < a[i+1]$.
 2. Wenn keines existiert -- Liste ist absteigend sortiert -- liefere
    sie aufsteigend sortiert.
-3. Suche das **groesste** $j > i$ mit $a[j] > a[i]$.
+3. Suche das **größte** $j > i$ mit $a[j] > a[i]$.
 4. Tausche $a[i]$ und $a[j]$.
 5. Drehe $a[i+1:]$ um.
 

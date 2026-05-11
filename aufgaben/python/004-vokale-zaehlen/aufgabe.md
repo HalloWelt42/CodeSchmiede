@@ -60,7 +60,7 @@ starter_code: |
 
 # Vokale zählen
 
-Schreibe eine Funktion `vokale_zaehlen(text)`, die zählt, wie viele
+Schreibe eine Funktion `vokale_zählen(text)`, die zählt, wie viele
 Vokale (`a`, `e`, `i`, `o`, `u`) im übergebenen String vorkommen --
 unabhängig von Groß- oder Kleinschreibung.
 

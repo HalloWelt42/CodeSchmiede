@@ -60,12 +60,12 @@ starter_code: |
 # Sattel-Punkte einer Matrix
 
 Schreibe eine Funktion `sattel_punkte(matrix)`, die alle
-**Sattel-Punkte** zurueckgibt: Positionen, an denen ein Element
+**Sattel-Punkte** zurückgibt: Positionen, an denen ein Element
 
 - **maximal in seiner Zeile** und gleichzeitig
 - **minimal in seiner Spalte** ist.
 
-Rueckgabe: Liste von `[zeile, spalte]`-Paaren (0-basiert), sortiert
+Rückgabe: Liste von `[zeile, spalte]`-Paaren (0-basiert), sortiert
 nach Zeile dann Spalte.
 
 ## Beispiel
@@ -81,12 +81,12 @@ nach Zeile dann Spalte.
 
 ## Komplexitaet
 
-Naive Loesung: pro Element zwei Schleifen → $O(n \cdot m \cdot (n+m))$.
+Naive Lösung: pro Element zwei Schleifen → $O(n \cdot m \cdot (n+m))$.
 Smart: zuerst pro Zeile das Maximum, pro Spalte das Minimum berechnen,
 dann pro Element vergleichen → $O(n \cdot m)$.
 
 ## Hintergrund
 
 In der Spieltheorie ist ein Sattel-Punkt eine **gemischte Strategie**,
-die fuer beide Spieler optimal ist (Min-Max-Theorem). In diesem
+die für beide Spieler optimal ist (Min-Max-Theorem). In diesem
 Programmier-Sinne hier ist es nur eine geometrische Eigenschaft.

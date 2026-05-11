@@ -29,7 +29,7 @@ hints:
       Bei negativen Zahlen → 0.0 (nicht definiert in der reellen Welt).
   - kosten: 15
     text: |
-      Pruefe vorher: alle > 0. Dann Produkt mit math.prod und ^ (1/n).
+      Prüfe vorher: alle > 0. Dann Produkt mit math.prod und ^ (1/n).
 tests_sichtbar:
   - input: [[1, 2, 4]]
     expected: 2.0
@@ -103,9 +103,9 @@ Bei `[1, 100]`:
 - **Arithmetisch**: `50.5` (klassischer Durchschnitt).
 - **Geometrisch**: `10.0` ($\sqrt{100}$).
 
-Geometrisch eignet sich fuer **multiplikative Effekte** -- z.B.
+Geometrisch eignet sich für **multiplikative Effekte** -- z.B.
 **Wachstumsraten** (mittlere jaehrliche Verzinsung), **Aspect-Ratios**
-und **prozentuale Veraenderungen**.
+und **prozentuale Veränderungen**.
 
 ## Wachstums-Beispiel
 
@@ -115,5 +115,5 @@ Aktie verdoppelt sich Jahr 1 (×2), halbiert sich Jahr 2 (×0.5):
 
 ## Hintergrund
 
-Bei numerischer Stabilitaet: bei sehr vielen oder grossen Zahlen
-besser ueber `exp(mean(log(x)))` rechnen, um Overflow zu vermeiden.
+Bei numerischer Stabilitaet: bei sehr vielen oder großen Zahlen
+besser über `exp(mean(log(x)))` rechnen, um Overflow zu vermeiden.

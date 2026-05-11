@@ -2,7 +2,7 @@
 schema_version: 1
 id: 252-ceil-zu-vielfache
 revision: 1
-titel: Aufrunden zum naechsten Vielfachen von k
+titel: Aufrunden zum nächsten Vielfachen von k
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,14 +23,14 @@ funktion: ceil_vielfache
 hints:
   - kosten: 0
     text: |
-      Runde n AUFWAERTS zum naechsten Vielfachen von k.
+      Runde n AUFWAERTS zum nächsten Vielfachen von k.
       n = 13, k = 5 → 15. n = 10, k = 5 → 10 (schon Vielfaches).
-      k <= 0 → n unveraendert.
+      k <= 0 → n unverändert.
       Negative n: -13 mit k=5 → -10 (auf Richtung 0/positiv).
   - kosten: 15
     text: |
       math.ceil(n / k) * k -- aber Achtung bei Floats und negativen.
-      Robuster: ((n + k - 1) // k) * k, aber nur fuer positive n/k.
+      Robuster: ((n + k - 1) // k) * k, aber nur für positive n/k.
       Standard ist: -(-n // k) * k.
 tests_sichtbar:
   - input: [13, 5]
@@ -64,14 +64,14 @@ starter_code: |
       pass
 ---
 
-# Aufrunden zum naechsten Vielfachen von k
+# Aufrunden zum nächsten Vielfachen von k
 
-Schreibe `ceil_vielfache(n, k)`, die `n` **aufwaerts** zum naechsten
+Schreibe `ceil_vielfache(n, k)`, die `n` **aufwärts** zum nächsten
 Vielfachen von `k` rundet (Richtung +unendlich).
 
-- Bei `k <= 0` → `n` unveraendert.
+- Bei `k <= 0` → `n` unverändert.
 - Wenn `n` schon Vielfaches ist → `n` selbst.
-- Negative Werte: Richtung 0 (also "aufwaerts" im mathematischen Sinn).
+- Negative Werte: Richtung 0 (also "aufwärts" im mathematischen Sinn).
 
 ## Beispiele
 
@@ -81,8 +81,8 @@ Vielfachen von `k` rundet (Richtung +unendlich).
 | 10   | 5    | 10       | bereits Vielfaches      |
 | 1    | 10   | 10       | aufgerundet auf 10      |
 | 25   | 7    | 28       | 25 → 28                 |
-| 101  | 100  | 200      | nur knapp drueber       |
-| -13  | 5    | -10      | aufwaerts Richtung 0    |
+| 101  | 100  | 200      | nur knapp drüber       |
+| -13  | 5    | -10      | aufwärts Richtung 0    |
 | -1   | 5    | 0        | direkt zu 0             |
 
 ## Idee
@@ -110,8 +110,8 @@ def ceil_vielfache(n, k):
     return -(-n // k) * k
 ```
 
-`-(-n // k)` ist Pythons Idiom fuer "ceil division" -- weil
-`//` immer **abwaerts** rundet (auch bei negativen Zahlen), bringt
+`-(-n // k)` ist Pythons Idiom für "ceil division" -- weil
+`//` immer **abwärts** rundet (auch bei negativen Zahlen), bringt
 das doppelte Vorzeichen-Wechseln den Aufwaerts-Effekt.
 
 ## Verwandt

@@ -2,7 +2,7 @@
 schema_version: 1
 id: 240-wechsel-zaehlen
 revision: 1
-titel: Wechsel zum Vorgaenger zaehlen
+titel: Wechsel zum Vorgaenger zählen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,7 +23,7 @@ funktion: wechsel
 hints:
   - kosten: 0
     text: |
-      Zaehle, wie oft sich ein Element zum direkten Vorgaenger
+      Zähle, wie oft sich ein Element zum direkten Vorgaenger
       unterscheidet.
       [1,1,2,2,3] → 2 (1->2 und 2->3).
       [] / [x] → 0.
@@ -58,9 +58,9 @@ starter_code: |
       pass
 ---
 
-# Wechsel zum Vorgaenger zaehlen
+# Wechsel zum Vorgaenger zählen
 
-Schreibe `wechsel(liste)`, die zaehlt, wie oft sich ein Element zum
+Schreibe `wechsel(liste)`, die zählt, wie oft sich ein Element zum
 direkten **Vorgaenger** unterscheidet.
 
 Bei leerer oder einelementiger Liste → `0`.
@@ -94,7 +94,7 @@ Die Anzahl der Wechsel ist gleich (Anzahl Runs - 1):
  \__/ \__/ \_/  → 3 Runs → 2 Wechsel
 ```
 
-Wer Aufgabe **035-run-length** geloest hat, sieht das Pattern.
+Wer Aufgabe **035-run-length** gelöst hat, sieht das Pattern.
 
 ## Anwendung
 

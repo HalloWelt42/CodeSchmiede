@@ -23,7 +23,7 @@ funktion: max_fenster_summe
 hints:
   - kosten: 0
     text: |
-      Naive Lösung: alle Fenster der Groesse k prüfen, jeweils
+      Naive Lösung: alle Fenster der Größe k prüfen, jeweils
       summieren. O(n*k).
   - kosten: 15
     text: |
@@ -60,8 +60,8 @@ starter_code: |
 
 # Maximum-Summe in Sliding-Window
 
-Gegeben eine Liste von Zahlen und eine Fenstergroesse `k`. Finde die
-**groesste Summe** ueber `k` aufeinanderfolgenden Elementen.
+Gegeben eine Liste von Zahlen und eine Fenstergröße `k`. Finde die
+**größte Summe** über `k` aufeinanderfolgenden Elementen.
 
 ## Beispiele
 
@@ -85,6 +85,6 @@ So sparen wir uns Rechenzeit -- $O(n)$ statt $O(n \cdot k)$.
 
 ## Hintergrund
 
-Sliding-Window ist eines der wichtigsten Pattern fuer Listen-Probleme.
+Sliding-Window ist eines der wichtigsten Pattern für Listen-Probleme.
 Wer das einmal verstanden hat, sieht es bei vielen scheinbar
 unverwandten Aufgaben wieder.

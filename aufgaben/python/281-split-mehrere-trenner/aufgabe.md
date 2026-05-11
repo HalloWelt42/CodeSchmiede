@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Splitte einen Text an JEDER der Trennzeichen ',', ';', '|' oder
-      Whitespace -- in einem Aufruf. Leere Stuecke entfernen.
+      Whitespace -- in einem Aufruf. Leere Stücke entfernen.
       "a,b ;c|d  e" → ["a", "b", "c", "d", "e"].
   - kosten: 20
     text: |
@@ -72,8 +72,8 @@ Trennzeichen splittet:
 - Pipe `|`
 - beliebiges Whitespace (Leerzeichen, Tab, Newline)
 
-**Mehrfache Trenner** (auch gemischt) zaehlen als ein Trenner.
-**Leere Stuecke** werden entfernt.
+**Mehrfache Trenner** (auch gemischt) zählen als ein Trenner.
+**Leere Stücke** werden entfernt.
 
 ## Beispiele
 
@@ -112,7 +112,7 @@ Element. Daher das `if t`-Filter.
 ## Vergleich mit `str.split`
 
 `str.split` mit Argument splittet nur an **einem** Trennzeichen
-und behaelt leere Stuecke. Ohne Argument splittet es an Whitespace
+und behaelt leere Stücke. Ohne Argument splittet es an Whitespace
 und filtert. Wenn man mehrere Trennzeichen will, ist `re.split`
 das Mittel der Wahl.
 

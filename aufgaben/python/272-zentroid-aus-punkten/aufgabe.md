@@ -109,7 +109,7 @@ werden `(1, 3)` und `(2, 4)`.
 
 - **Cluster-Algorithmen** (k-Means).
 - **Statistik**: Mittelpunkt einer Verteilung.
-- **Computergrafik**: Mittelpunkt von Vertices fuer Pivot-Punkte.
+- **Computergrafik**: Mittelpunkt von Vertices für Pivot-Punkte.
 - **Geo**: Stadt-Mittelpunkt aus Adress-Liste.
 
 ## Hinweis -- Polygon-Schwerpunkt

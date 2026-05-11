@@ -87,7 +87,7 @@ Liste von Knoten-Records einen **verschachtelten Baum** aufbaut.
 
 - IDs müssen genau `0, 1, ..., n-1` sein (keine Lücken)
 - Wurzel ist die einzige Node mit `parent == id` (und das muss 0 sein)
-- Jeder Knoten ausser der Wurzel hat `parent < id`
+- Jeder Knoten außer der Wurzel hat `parent < id`
 - Bei einer Verletzung → `{}`
 
 ## Sortierung

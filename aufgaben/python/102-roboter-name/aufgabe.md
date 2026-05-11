@@ -82,12 +82,12 @@ def roboter_name(seed):
 ```
 
 `random.Random(seed)` ist ein **lokaler Generator** -- er beruehrt
-nicht das globale `random`-State. Gut fuer Tests und parallele
+nicht das globale `random`-State. Gut für Tests und parallele
 Verarbeitung.
 
 ## Hintergrund
 
-Die Original-Aufgabe auf Exercism baut die **Eindeutigkeit** ueber
-einen State: ein Roboter merkt sich seinen Namen, neue muessen
+Die Original-Aufgabe auf Exercism baut die **Eindeutigkeit** über
+einen State: ein Roboter merkt sich seinen Namen, neue müssen
 unique sein. Hier vereinfacht: gleicher Seed → gleicher Name,
 keine Zustands-Fragen.

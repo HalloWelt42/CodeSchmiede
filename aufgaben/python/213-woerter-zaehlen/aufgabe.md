@@ -2,7 +2,7 @@
 schema_version: 1
 id: 213-woerter-zaehlen
 revision: 1
-titel: Anzahl Woerter im Text
+titel: Anzahl Wörter im Text
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,8 +23,8 @@ funktion: woerter_zaehlen
 hints:
   - kosten: 0
     text: |
-      Zaehle die Anzahl der Woerter in einem Text. Mehrfache
-      Leerzeichen zaehlen als ein Trenner. Leerer/whitespace-only
+      Zähle die Anzahl der Wörter in einem Text. Mehrfache
+      Leerzeichen zählen als ein Trenner. Leerer/whitespace-only
       Text → 0.
   - kosten: 10
     text: |
@@ -60,10 +60,10 @@ starter_code: |
       pass
 ---
 
-# Anzahl Woerter im Text
+# Anzahl Wörter im Text
 
-Schreibe `woerter_zaehlen(text)`, die die **Anzahl der Woerter** in
-einem Text zurueckgibt. Mehrfache Whitespaces zaehlen als ein
+Schreibe `wörter_zählen(text)`, die die **Anzahl der Wörter** in
+einem Text zurückgibt. Mehrfache Whitespaces zählen als ein
 Trenner; fuehrende/nachfolgende Leerzeichen werden ignoriert.
 
 Bei leerem oder nur Whitespace-haltigem Text → `0`.
@@ -83,24 +83,24 @@ Bei leerem oder nur Whitespace-haltigem Text → `0`.
 ## Idee
 
 ```python
-def woerter_zaehlen(text):
+def wörter_zählen(text):
     return len(text.split())
 ```
 
 Eine Zeile -- Pythons `str.split()` ohne Argument macht alles
-Wuerdige: trennen an Whitespace, leere Stuecke filtern, fertig.
+Würdige: trennen an Whitespace, leere Stücke filtern, fertig.
 
 ## Verwandt
 
 | Aufgabe                | Was?                          |
 |------------------------|--------------------------------|
-| **022-wortzaehler**    | Haeufigkeit pro Wort (Dict)   |
+| **022-wortzähler**    | Häufigkeit pro Wort (Dict)   |
 | **048-laengstes-wort** | das laengste Wort             |
-| **148-woerter-umkehren** | Wort-Reihenfolge umdrehen   |
-| **213-woerter-zaehlen** | nur die Anzahl (diese)       |
+| **148-wörter-umkehren** | Wort-Reihenfolge umdrehen   |
+| **213-wörter-zählen** | nur die Anzahl (diese)       |
 
 ## Hintergrund
 
-Woerter zaehlen ist die Basis vieler Text-Statistiken: Lesezeit
-(Faustregel: 200-300 Woerter pro Minute), Lexikalische Dichte,
-Twitter-Tweetlaenge (frueher 140, jetzt 280 Zeichen oder ~50 Woerter).
+Wörter zählen ist die Basis vieler Text-Statistiken: Lesezeit
+(Faustregel: 200-300 Wörter pro Minute), Lexikalische Dichte,
+Twitter-Tweetlaenge (früher 140, jetzt 280 Zeichen oder ~50 Wörter).

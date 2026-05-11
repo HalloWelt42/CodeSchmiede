@@ -26,11 +26,11 @@ hints:
       Bestimme den n-ten Tag des Jahres aus (jahr, monat, tag).
       1. Januar → 1. 31. Dezember (kein Schaltjahr) → 365.
       Schaltjahre bei Februar beachten!
-      Ungueltige Eingaben → 0.
+      Ungültige Eingaben → 0.
   - kosten: 15
     text: |
       datetime.date(jahr, monat, tag).timetuple().tm_yday liefert es direkt.
-      Manuell: Tage-pro-Monat-Liste, Schaltjahr fuer Februar +1.
+      Manuell: Tage-pro-Monat-Liste, Schaltjahr für Februar +1.
 tests_sichtbar:
   - input: [2026, 1, 1]
     expected: 1
@@ -67,11 +67,11 @@ starter_code: |
 
 # Tag-Nummer im Jahr aus Datum
 
-Schreibe `tag_im_jahr(jahr, monat, tag)`, die fuer ein Datum die
-**laufende Tag-Nummer im Jahr** zurueckgibt (1.-365., bei
+Schreibe `tag_im_jahr(jahr, monat, tag)`, die für ein Datum die
+**laufende Tag-Nummer im Jahr** zurückgibt (1.-365., bei
 Schaltjahr 1.-366.).
 
-Bei ungueltigen Eingaben → `0`.
+Bei ungültigen Eingaben → `0`.
 
 ## Beispiele
 
@@ -83,7 +83,7 @@ Bei ungueltigen Eingaben → `0`.
 | 2024-12-31 | `366`  | Schaltjahr          |
 | 2024-02-29 | `60`   | Schalttag           |
 | 2024-03-01 | `61`   | nach Schalttag      |
-| 2026-13-01 | `0`    | ungueltiger Monat   |
+| 2026-13-01 | `0`    | ungültiger Monat   |
 
 ## Idee mit `datetime`
 
@@ -118,7 +118,7 @@ def tag_im_jahr(jahr, monat, tag):
     return sum(TAGE[:monat - 1]) + (1 if monat > 2 and schalt else 0) + tag
 ```
 
-Komplizierter, aber lehrreich -- enthaelt die **Gregorianische
+Komplizierter, aber lehrreich -- enthält die **Gregorianische
 Schaltjahr-Regel** (Aufgabe 058).
 
 ## Anwendung

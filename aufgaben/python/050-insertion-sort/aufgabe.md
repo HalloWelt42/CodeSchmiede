@@ -28,7 +28,7 @@ hints:
       bis sie an der richtigen Stelle liegt.
   - kosten: 15
     text: |
-      Aussere Schleife `i` von 1 bis n. Innere `j` von i abwaerts.
+      Aussere Schleife `i` von 1 bis n. Innere `j` von i abwärts.
       Solange `liste[j-1] > liste[j]`: tauschen, j -= 1.
 tests_sichtbar:
   - input: [[3, 1, 2]]
@@ -72,10 +72,10 @@ sortiert sie in die schon geordneten ein.
 ## Komplexitaet
 
 $O(n^2)$ im Worst-Case, **aber $O(n)$ im Best-Case** (bereits
-sortierte Liste). Damit ist Insertion-Sort fuer **fast sortierte**
+sortierte Liste). Damit ist Insertion-Sort für **fast sortierte**
 Listen erstaunlich schnell -- besser als Selection-Sort, schneller
-als die meisten "schnellen" Algorithmen fuer kleine Listen.
+als die meisten "schnellen" Algorithmen für kleine Listen.
 
 In der Praxis verwenden viele "schnelle" Sortier-Bibliotheken
-Insertion-Sort fuer kleine Teilbereiche (z.B. unter 16 Elemente).
+Insertion-Sort für kleine Teilbereiche (z.B. unter 16 Elemente).
 Pythons Timsort macht genau das.

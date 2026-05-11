@@ -63,8 +63,8 @@ starter_code: |
 
 # FizzBuzz
 
-Schreibe eine Funktion `fizzbuzz(n)`, die fuer eine positive Ganzzahl `n`
-einen String zurueckgibt:
+Schreibe eine Funktion `fizzbuzz(n)`, die für eine positive Ganzzahl `n`
+einen String zurückgibt:
 
 - `"FizzBuzz"` -- wenn `n` durch **3 und 5** teilbar ist
 - `"Fizz"` -- wenn `n` nur durch **3** teilbar ist
@@ -93,6 +93,6 @@ sinnvoll kombinieren kannst.
 
 ## Worauf zu achten ist
 
-- Pruefe `n % 15 == 0` **vor** `n % 3 == 0` und `n % 5 == 0`, sonst greift
-  immer der `Fizz`-Fall fuer Vielfache von 15
-- Gib die Zahl im Else-Fall als **String** zurueck, nicht als `int`
+- Prüfe `n % 15 == 0` **vor** `n % 3 == 0` und `n % 5 == 0`, sonst greift
+  immer der `Fizz`-Fall für Vielfache von 15
+- Gib die Zahl im Else-Fall als **String** zurück, nicht als `int`

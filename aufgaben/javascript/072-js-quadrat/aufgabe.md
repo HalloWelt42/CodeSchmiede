@@ -42,7 +42,7 @@ starter_code: |
 # JavaScript -- Quadrat
 
 Schreibe eine Funktion `quadrat(n)`, die das Quadrat einer Zahl
-zurueckgibt.
+zurückgibt.
 
 ## Beispiele
 
@@ -52,11 +52,3 @@ zurueckgibt.
 | `0`     | `0`      |
 | `-4`    | `16`     |
 | `1.5`   | `2.25`   |
-
-## Hintergrund
-
-Diese Aufgabe laeuft **clientseitig im WebWorker** -- kein Docker, kein
-Backend-Sandbox-Run. Damit ist sie blitzschnell, hat aber eine
-eingebaute Einschraenkung: **versteckte Tests gibt es nicht**, weil
-der Client den Test-Code immer sehen kann. Anti-Hardcoding-Schutz wie
-bei Python-Aufgaben funktioniert hier nicht.

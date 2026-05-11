@@ -24,8 +24,8 @@ hints:
   - kosten: 0
     text: |
       Verzahne zwei Listen zu Paaren [a_i, b_i].
-      Wenn eine Liste kuerzer ist, werden die fehlenden Elemente
-      mit fuell aufgefuellt (statt abzuschneiden wie zip).
+      Wenn eine Liste kürzer ist, werden die fehlenden Elemente
+      mit fuell aufgefüllt (statt abzuschneiden wie zip).
       Bei zwei leeren Listen → [].
   - kosten: 10
     text: |
@@ -62,7 +62,7 @@ starter_code: |
 # Zip mit Fuellwert
 
 Schreibe `zip_fuell(a, b, fuell)`, die zwei Listen zu Paaren
-verzahnt -- aber **kuerzere Listen werden aufgefuellt** statt
+verzahnt -- aber **kürzere Listen werden aufgefüllt** statt
 abgeschnitten (wie das eingebaute `zip` es tut).
 
 ## Beispiele
@@ -90,7 +90,7 @@ Variante. Pro Element ein Tupel -- wir konvertieren zu Listen.
 
 | Funktion       | Ergebnis-Laenge       | Fuellung |
 |----------------|------------------------|----------|
-| `zip`          | Laenge der **kuerzeren**| keine    |
+| `zip`          | Laenge der **kürzeren**| keine    |
 | `zip_longest`  | Laenge der **laengeren**| ja       |
 
 `zip` ist wie `min(len_a, len_b)`, `zip_longest` wie `max(len_a, len_b)`.

@@ -29,7 +29,7 @@ hints:
   - kosten: 25
     text: |
       Pro Zelle (i, j) und vier Richtungen
-      (0,1), (1,0), (1,1), (1,-1) pruefen, ob die naechsten 3
+      (0,1), (1,0), (1,1), (1,-1) prüfen, ob die nächsten 3
       gleich sind. Vorsicht beim Rand.
 tests_sichtbar:
   - input: [[["X","X","X","X"," "," "," "],[" "," "," "," "," "," "," "],[" "," "," "," "," "," "," "],[" "," "," "," "," "," "," "],[" "," "," "," "," "," "," "],[" "," "," "," "," "," "," "]]]
@@ -57,12 +57,12 @@ starter_code: |
 
 # Vier-Gewinnt: gibt es einen Sieger?
 
-Schreibe `vier_gewinnt(brett)`, die fuer ein 6x7-Brett entscheidet,
+Schreibe `vier_gewinnt(brett)`, die für ein 6x7-Brett entscheidet,
 ob `"X"` oder `"O"` vier gleiche Zellen in einer Reihe hat.
 
 Vier in einer Reihe gibt es in **vier Richtungen**: horizontal,
-vertikal, und beide Diagonalen. Reihenfolge der Pruefung egal --
-sobald ein Sieger gefunden ist, kann man zurueckgeben.
+vertikal, und beide Diagonalen. Reihenfolge der Prüfung egal --
+sobald ein Sieger gefunden ist, kann man zurückgeben.
 
 Wenn keiner gewonnen hat → `None`.
 
@@ -105,12 +105,12 @@ def vier_gewinnt(brett):
 
 Die Symmetrie der vier Richtungen ist wichtig: `(0,1)` deckt sowohl
 "links nach rechts" als auch "rechts nach links" ab, weil wir
-ueber alle Startpositionen iterieren.
+über alle Startpositionen iterieren.
 
 ## Hintergrund
 
 Vier Gewinnt wurde 1995 vom belgischen Mathematiker Victor Allis
-**komplett geloest**: bei perfektem Spiel gewinnt **immer der
-erste Spieler** (mit Stein in Spalte 4 als Eroeffnung). Die
+**komplett gelöst**: bei perfektem Spiel gewinnt **immer der
+erste Spieler** (mit Stein in Spalte 4 als Eröffnung). Die
 Berechnung dauerte 1988 monatelang, heute schafft das ein
 Smartphone in Sekunden.

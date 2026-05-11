@@ -64,7 +64,7 @@ der Index-Paare** `(i, j)` mit `i < j` zählt, deren Werte sich zur
 | Liste              | Ziel | Ergebnis | Wegen                    |
 |--------------------|------|----------|--------------------------|
 | `[1,2,3,4,5]`      | `6`  | `2`      | `(1,5), (2,4)`           |
-| `[1,1,1,1]`        | `2`  | `6`      | alle 4 ueber 2 Paare = 6 |
+| `[1,1,1,1]`        | `2`  | `6`      | alle 4 über 2 Paare = 6 |
 | `[5]`              | `5`  | `0`      | nur ein Element          |
 | `[3,3,3,3]`        | `6`  | `6`      | $\binom{4}{2} = 6$       |
 | `[0,0,0]`          | `0`  | `3`      | $\binom{3}{2} = 3$       |
@@ -76,7 +76,7 @@ der Index-Paare** `(i, j)` mit `i < j` zählt, deren Werte sich zur
 | Doppelschleife| $O(n^2)$ |
 | Mit Counter   | $O(n)$   |
 
-Mit `collections.Counter` zaehlst du erst alle Vorkommen, dann
+Mit `collections.Counter` zählst du erst alle Vorkommen, dann
 iterierst du einmal durch. Pro Wert `x` ist die Anzahl Paare:
 `counter[x] * counter[ziel-x]`. Beim Sonderfall `ziel-x == x` musst
-du die Formel anpassen, sonst zaehlst du Paare doppelt.
+du die Formel anpassen, sonst zählst du Paare doppelt.

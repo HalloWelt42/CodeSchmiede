@@ -82,7 +82,7 @@ def alle_indizes(liste, wert):
 ```
 
 `enumerate` liefert `(index, element)`-Paare -- die elegante Art,
-in Python ueber Indizes UND Werte gleichzeitig zu iterieren.
+in Python über Indizes UND Werte gleichzeitig zu iterieren.
 
 ## Pattern -- Index-Sammlung
 
@@ -95,7 +95,7 @@ Diese Idee ist universell:
 | `x % 2 == 0`        | Indizes gerader Zahlen                      |
 | `len(x) > 5`        | Indizes langer Strings                      |
 
-Ein einzeiliges Comprehension-Muster fuer alles davon.
+Ein einzeiliges Comprehension-Muster für alles davon.
 
 ## Verwandt
 

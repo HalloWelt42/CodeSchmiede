@@ -2,7 +2,7 @@
 schema_version: 1
 id: 044-int-zu-roemisch
 revision: 1
-titel: Integer zu Roemisch
+titel: Integer zu Römisch
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,13 +23,13 @@ funktion: int_zu_roemisch
 hints:
   - kosten: 0
     text: |
-      Gehe alle Werte vom groessten zum kleinsten durch (inkl.
+      Gehe alle Werte vom größten zum kleinsten durch (inkl.
       Sonderfaelle 900, 400, 90, 40, 9, 4) und ziehe so viele wie
       möglich vom n ab, fuege das jeweilige Symbol hinzu.
   - kosten: 20
     text: |
       Liste von Tupeln `(wert, symbol)` absteigend, dann pro Tupel
-      `n // wert` mal Symbol anhaengen und `n %= wert`.
+      `n // wert` mal Symbol anhängen und `n %= wert`.
 tests_sichtbar:
   - input: [3]
     expected: "III"
@@ -60,10 +60,10 @@ starter_code: |
       pass
 ---
 
-# Integer zu Roemisch
+# Integer zu Römisch
 
-Schreibe eine Funktion `int_zu_roemisch(n)`, die eine Dezimalzahl
-zwischen `1` und `3999` als roemische Zahl zurueckgibt.
+Schreibe eine Funktion `int_zu_römisch(n)`, die eine Dezimalzahl
+zwischen `1` und `3999` als römische Zahl zurückgibt.
 
 ## Symbole + Sonderfaelle
 
@@ -85,12 +85,12 @@ zwischen `1` und `3999` als roemische Zahl zurueckgibt.
 
 ## Greedy
 
-Gehe vom groessten Wert nach unten. Solange `n >= wert`, haenge das
+Gehe vom größten Wert nach unten. Solange `n >= wert`, haenge das
 Symbol an und ziehe ab. So entsteht die kanonische Schreibweise.
 
 ## Beispiele
 
-| `n`    | Roemisch          |
+| `n`    | Römisch          |
 |--------|-------------------|
 | `3`    | `III`             |
 | `4`    | `IV`              |
@@ -102,6 +102,6 @@ Symbol an und ziehe ab. So entsteht die kanonische Schreibweise.
 
 ## Hintergrund
 
-Die Roemer selbst haben uebrigens keinen klaren Standard fuer
+Die Römer selbst haben übrigens keinen klaren Standard für
 Subtraktionsschreibweise gehabt -- `IIII` neben `IV` war lange
 üblich (Uhrenziffernblaetter zeigen das oft heute noch).

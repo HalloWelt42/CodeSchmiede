@@ -24,13 +24,13 @@ hints:
   - kosten: 0
     text: |
       Wandle Text in Morse-Code: jeder Buchstabe wird zu Punkten/Strichen,
-      Buchstaben getrennt durch ein Leerzeichen, Woerter durch " / ".
-      Eingabe Gross/Klein egal. Unbekannte Zeichen ignorieren.
+      Buchstaben getrennt durch ein Leerzeichen, Wörter durch " / ".
+      Eingabe Groß/Klein egal. Unbekannte Zeichen ignorieren.
   - kosten: 15
     text: |
       Dict {"A": ".-", "B": "-...", ...}.
       text.upper().split() → pro Wort jeden Buchstaben mappen,
-      mit Leerzeichen joinen → Woerter mit " / " joinen.
+      mit Leerzeichen joinen → Wörter mit " / " joinen.
 tests_sichtbar:
   - input: ["SOS"]
     expected: "... --- ..."
@@ -66,8 +66,8 @@ umwandelt:
 
 - Jeder Buchstabe wird zu einer Folge aus `.` und `-`.
 - Buchstaben werden mit **einem Leerzeichen** getrennt.
-- Woerter (durch Leerzeichen im Original) werden mit **" / "** getrennt.
-- Gross/Klein wird zu Gross.
+- Wörter (durch Leerzeichen im Original) werden mit **" / "** getrennt.
+- Groß/Klein wird zu Groß.
 - **Unbekannte Zeichen** (Satzzeichen, Umlaute) werden ignoriert.
 
 ## Code-Tabelle
@@ -107,18 +107,18 @@ TABELLE = {
 }
 
 def morse_encode(text):
-    woerter = []
+    wörter = []
     for wort in text.upper().split():
         teile = [TABELLE[c] for c in wort if c in TABELLE]
         if teile:
-            woerter.append(" ".join(teile))
-    return " / ".join(woerter)
+            wörter.append(" ".join(teile))
+    return " / ".join(wörter)
 ```
 
 ## Hintergrund
 
 Samuel Morse erfand den Code 1838 zusammen mit Alfred Vail. Die
-Buchstabenlaenge ist **anti-proportional zur Haeufigkeit** im
-Englischen -- **E** (`.`) und **T** (`-`) sind am kuerzesten,
-weil am haeufigsten. Damit ist Morse einer der ersten praktisch
+Buchstabenlaenge ist **anti-proportional zur Häufigkeit** im
+Englischen -- **E** (`.`) und **T** (`-`) sind am kürzesten,
+weil am häufigsten. Damit ist Morse einer der ersten praktisch
 genutzten **Variable-Length-Codes** -- ein Vorlaeufer von Huffman.

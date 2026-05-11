@@ -102,14 +102,14 @@ def jahres_endsaldi(start, zinssatz_prozent, jahre):
 ## Vergleich mit Aufgabe 160
 
 Aufgabe **160-zinseszins** liefert nur den **End-Wert** nach n Jahren.
-Hier liefern wir die **Verlaufs-Liste** -- gut fuer Charts und
+Hier liefern wir die **Verlaufs-Liste** -- gut für Charts und
 "Was-wenn"-Simulationen.
 
 ## Erweiterung -- Mit Bewegungen
 
 Eine echte Bankkonto-Klasse haette zusaetzlich `einzahlen(betrag)`
-und `abheben(betrag)`. Mit der Liste der Bewegungen koennte man
-realistische Zins-Verlaeufe simulieren -- ist aber Stoff fuer eine
+und `abheben(betrag)`. Mit der Liste der Bewegungen könnte man
+realistische Zins-Verlaeufe simulieren -- ist aber Stoff für eine
 eigene, komplexere Aufgabe.
 
 ## Hintergrund -- Banker's Rounding

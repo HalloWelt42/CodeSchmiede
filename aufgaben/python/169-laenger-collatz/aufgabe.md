@@ -26,7 +26,7 @@ hints:
       Finde unter allen Startwerten 1 <= s < n diejenige Zahl mit
       der laengsten Collatz-Folge (Anzahl Schritte bis 1).
       Bei Gleichstand: kleinste solche Zahl.
-      n <= 1 → 0 (keine gueltigen Startwerte).
+      n <= 1 → 0 (keine gültigen Startwerte).
   - kosten: 20
     text: |
       Memoization: Dict {1: 0}. Pro Zahl rekursiv Laenge berechnen
@@ -61,7 +61,7 @@ starter_code: |
 
 # Collatz-Rekord unter n
 
-Die **Collatz-Folge** (auch "3n+1") fuer einen Startwert `s`:
+Die **Collatz-Folge** (auch "3n+1") für einen Startwert `s`:
 
 - `s` gerade → `s // 2`
 - `s` ungerade → `3 * s + 1`
@@ -119,5 +119,5 @@ Die **Collatz-Vermutung** besagt, dass jeder Startwert irgendwann bei
 Beweis** bekannt -- Paul Erdoes meinte: "Mathematics may not be ready
 for such problems."
 
-Bei rekursiver Loesung Achtung: Pythons Stack-Limit erreicht man bei
+Bei rekursiver Lösung Achtung: Pythons Stack-Limit erreicht man bei
 hohen `n` schnell. Iterative Variante mit `while` ist robuster.

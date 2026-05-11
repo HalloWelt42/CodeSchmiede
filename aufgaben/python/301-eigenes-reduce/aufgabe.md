@@ -25,8 +25,8 @@ hints:
     text: |
       Falte eine Liste mit einer binaeren Operation:
       "add" (+), "mul" (*), "max", "min".
-      start ist der Startwert (neutrales Element fuer leere Liste).
-      Unbekannte Op → start zurueck.
+      start ist der Startwert (neutrales Element für leere Liste).
+      Unbekannte Op → start zurück.
   - kosten: 10
     text: |
       from functools import reduce.
@@ -65,7 +65,7 @@ Schreibe `reduce_op(liste, op, start)`, die eine Liste mit einer
 binaeren Operation **faltet** (auch "fold" genannt) -- ausgehend
 vom Startwert.
 
-## Verfuegbare Operationen
+## Verfügbare Operationen
 
 | String  | Wirkung           |
 |---------|-------------------|
@@ -74,7 +74,7 @@ vom Startwert.
 | `"max"` | max(Akku, x)      |
 | `"min"` | min(Akku, x)      |
 
-Unbekannte Op → `start` zurueckgeben (kein Fehler).
+Unbekannte Op → `start` zurückgeben (kein Fehler).
 
 ## Beispiele
 
@@ -84,7 +84,7 @@ Unbekannte Op → `start` zurueckgeben (kein Fehler).
 | `[1, 2, 3, 4]`   | `"mul"`  | `1`   | `24`     | Produkt = Fakultaet |
 | `[3, 1, 4, 1, 5]`| `"max"`  | `0`   | `5`      |                    |
 | `[3, 1, 4, 1, 5]`| `"min"`  | `100` | `1`      |                    |
-| `[]`             | `"add"`  | `0`   | `0`      | Start zurueck      |
+| `[]`             | `"add"`  | `0`   | `0`      | Start zurück      |
 
 ## Idee
 
@@ -106,11 +106,11 @@ def reduce_op(liste, op, start):
 ```
 
 `functools.reduce` mit Startwert **erlaubt leere Listen** (liefert
-dann den Start). Ohne Startwert wuerde es bei leerer Liste einen
+dann den Start). Ohne Startwert würde es bei leerer Liste einen
 Fehler werfen.
 
 `max` und `min` sind selbst schon **binaere Funktionen** (in dieser
-Form) -- kein Lambda noetig.
+Form) -- kein Lambda nötig.
 
 ## Pattern -- Fold
 
@@ -126,4 +126,4 @@ Es ist eines der maechtigsten funktionalen Patterns:
 ## Anwendung
 
 Aggregations-Funktionen in Datenbank-Engines, Stream-Processing
-(Kafka, Spark), und ueberall wo "alle Werte zu einem zusammenfassen".
+(Kafka, Spark), und überall wo "alle Werte zu einem zusammenfassen".

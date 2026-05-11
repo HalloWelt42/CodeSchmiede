@@ -29,8 +29,8 @@ hints:
   - kosten: 25
     text: |
       BFS mit deque. Zustand = (r, c). Visited-Set vermeidet Schleifen.
-      Pro Schritt: 4 Nachbarn pruefen (Grenzen + Wand + nicht visited).
-      Wenn Ziel erreicht: Schrittzahl zurueck. Wenn Queue leer: -1.
+      Pro Schritt: 4 Nachbarn prüfen (Grenzen + Wand + nicht visited).
+      Wenn Ziel erreicht: Schrittzahl zurück. Wenn Queue leer: -1.
 tests_sichtbar:
   - input: [[[0, 0, 0], [0, 0, 0], [0, 0, 0]]]
     expected: 4
@@ -60,7 +60,7 @@ starter_code: |
 
 # Kürzester Weg im Raster (BFS)
 
-Schreibe eine Funktion `kuerzester_weg(grid)`, die im 2D-Raster
+Schreibe eine Funktion `kürzester_weg(grid)`, die im 2D-Raster
 die **minimale Schrittzahl** vom oben-links nach unten-rechts findet.
 
 - `0` ist begehbar
@@ -82,7 +82,7 @@ die **minimale Schrittzahl** vom oben-links nach unten-rechts findet.
 
 ## Algorithmus
 
-**BFS** mit einer Queue. Pro Schritt alle 4 Nachbarn pruefen,
+**BFS** mit einer Queue. Pro Schritt alle 4 Nachbarn prüfen,
 besuchte Felder merken. Erste Erreichung des Ziels = kürzester Weg.
 
 ## Hintergrund
@@ -90,4 +90,4 @@ besuchte Felder merken. Erste Erreichung des Ziels = kürzester Weg.
 Grid-BFS ist die Eintrittskarte zu **Pfadfindung**, vom 8-Bit-Spiel
 bis hin zu Google Maps (allerdings dort gewichtet -- A*). Wer das
 Pattern beherrscht, kann viele scheinbar verschiedene Probleme
-loesen.
+lösen.

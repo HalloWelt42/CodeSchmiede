@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Liefere alle Teiler von n (inkl. 1 und n) in aufsteigender Reihenfolge.
-      Bei n < 1 → []. Negative Eingaben behandelt wie ungueltig.
+      Bei n < 1 → []. Negative Eingaben behandelt wie ungültig.
   - kosten: 15
     text: |
       Effizient: Schleife nur bis sqrt(n). Pro Treffer i auch n//i
@@ -60,7 +60,7 @@ starter_code: |
 # Alle Teiler einer Zahl
 
 Schreibe eine Funktion `alle_teiler(n)`, die alle natürlichen Teiler
-von `n` als **aufsteigend sortierte Liste** zurueckgibt -- inklusive
+von `n` als **aufsteigend sortierte Liste** zurückgibt -- inklusive
 `1` und `n` selbst.
 
 Bei `n < 1` → `[]`.
@@ -96,6 +96,6 @@ return sorted(teiler)
 
 ## Hintergrund
 
-Damit kann man pruefen, ob eine Zahl **vollkommen** ist (siehe 040-perfekte-zahl),
-**ueberfluessig** (sum > 2n) oder **defizient** (sum < 2n) -- ein
+Damit kann man prüfen, ob eine Zahl **vollkommen** ist (siehe 040-perfekte-zahl),
+**überfluessig** (sum > 2n) oder **defizient** (sum < 2n) -- ein
 Klassiker der Zahlentheorie.

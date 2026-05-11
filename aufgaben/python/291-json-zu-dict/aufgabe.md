@@ -64,7 +64,7 @@ starter_code: |
 # JSON-String zu Dict parsen
 
 Schreibe `json_parse(s)`, die einen JSON-String in das entsprechende
-Python-Objekt umwandelt. Bei ungueltigem JSON → `None`.
+Python-Objekt umwandelt. Bei ungültigem JSON → `None`.
 
 ## Beispiele
 
@@ -78,7 +78,7 @@ Python-Objekt umwandelt. Bei ungueltigem JSON → `None`.
 | `'"hallo"'`                  | `"hallo"`               |
 | `'{}'`                       | `{}`                    |
 | `'nicht-json'`               | `None`                  |
-| `'{ungueltig}'`              | `None`                  |
+| `'{ungültig}'`              | `None`                  |
 
 ## Idee
 
@@ -110,11 +110,11 @@ def json_parse(s):
 
 ## Pendant
 
-Aufgabe **292-dict-zu-json** macht den Weg zurueck.
+Aufgabe **292-dict-zu-json** macht den Weg zurück.
 
 ## Anwendung
 
-JSON-Parsing ist Standard fuer:
+JSON-Parsing ist Standard für:
 - **REST-APIs** (JSON-Bodies)
 - **Konfigurations-Dateien**
 - **Daten-Austausch** zwischen Programmen

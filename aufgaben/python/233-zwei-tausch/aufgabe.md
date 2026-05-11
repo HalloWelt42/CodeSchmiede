@@ -58,7 +58,7 @@ starter_code: |
 
 # Zwei Werte tauschen
 
-Schreibe `tauschen(a, b)`, die ein Liste `[b, a]` zurueckgibt --
+Schreibe `tauschen(a, b)`, die ein Liste `[b, a]` zurückgibt --
 die beiden Werte sind **vertauscht**.
 
 Trivial in Python, aber ein didaktischer Einstieg in
@@ -80,9 +80,9 @@ def tauschen(a, b):
     return [b, a]
 ```
 
-Geht nicht kuerzer.
+Geht nicht kürzer.
 
-## Idee 2 -- Tupel-Zuweisung (aequivalent, aber anschaulich)
+## Idee 2 -- Tupel-Zuweisung (äquivalent, aber anschaulich)
 
 ```python
 def tauschen(a, b):

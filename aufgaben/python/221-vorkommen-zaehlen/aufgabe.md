@@ -2,7 +2,7 @@
 schema_version: 1
 id: 221-vorkommen-zaehlen
 revision: 1
-titel: Vorkommen eines Werts in Liste zaehlen
+titel: Vorkommen eines Werts in Liste zählen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -57,9 +57,9 @@ starter_code: |
       pass
 ---
 
-# Vorkommen eines Werts in Liste zaehlen
+# Vorkommen eines Werts in Liste zählen
 
-Schreibe `vorkommen(liste, wert)`, die zaehlt, wie oft `wert` in
+Schreibe `vorkommen(liste, wert)`, die zählt, wie oft `wert` in
 `liste` vorkommt.
 
 Bei leerer Liste → `0`.
@@ -90,7 +90,7 @@ def vorkommen(liste, wert):
     return sum(1 for x in liste if x == wert)
 ```
 
-Lehrreich, weil es das Pattern "zaehle wie oft Bedingung wahr ist"
+Lehrreich, weil es das Pattern "zähle wie oft Bedingung wahr ist"
 zeigt -- mit `sum(1 for ... if ...)`.
 
 ## Vergleich -- `count` vs `Counter`
@@ -99,7 +99,7 @@ zeigt -- mit `sum(1 for ... if ...)`.
 |----------------------------------|-----------------------|
 | `liste.count(wert)`              | EINE Anzahl           |
 | `Counter(liste)`                 | ALLE Anzahlen         |
-| `Counter(liste).most_common(3)`  | Top 3 haeufigste      |
+| `Counter(liste).most_common(3)`  | Top 3 häufigste      |
 
-Wenn man **mehrere** Werte zaehlen will, ist `Counter` effizienter
+Wenn man **mehrere** Werte zählen will, ist `Counter` effizienter
 (eine Schleife), sonst ist `count` direkt.

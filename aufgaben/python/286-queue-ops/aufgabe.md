@@ -24,12 +24,12 @@ hints:
   - kosten: 0
     text: |
       Operationen auf einer Queue (FIFO, "First in, first out"):
-      ["enqueue", x] → x hinten anfuegen
+      ["enqueue", x] → x hinten anfügen
       ["dequeue"] → vorderstes entfernen, ignoriert wenn leer
       Liefere den FINALEN Queue-Inhalt als Liste (vorne zuerst).
   - kosten: 15
     text: |
-      collections.deque ist die effiziente Wahl: O(1) fuer beide Enden.
+      collections.deque ist die effiziente Wahl: O(1) für beide Enden.
       Eine Klasse mit deque intern, oder direkt Methoden.
 tests_sichtbar:
   - input: [[["enqueue", 1], ["enqueue", 2], ["enqueue", 3]]]
@@ -69,7 +69,7 @@ Liefere den finalen Queue-Inhalt als Liste, vorne zuerst.
 
 | Form                | Wirkung                       |
 |---------------------|-------------------------------|
-| `["enqueue", wert]` | wert hinten anfuegen          |
+| `["enqueue", wert]` | wert hinten anfügen          |
 | `["dequeue"]`       | vorderstes entfernen; ignoriert wenn leer |
 
 ## Beispiele
@@ -111,13 +111,13 @@ def queue_lauf(operationen):
 
 ## Warum `deque` und nicht `list`?
 
-`list.pop(0)` ist `O(n)` -- alle Elemente muessen nach links
+`list.pop(0)` ist `O(n)` -- alle Elemente müssen nach links
 verschoben werden. `deque.popleft()` ist `O(1)`. Bei vielen
 dequeue-Operationen macht das den Unterschied zwischen "schnell"
 und "unbenutzbar".
 
 `deque` aus `collections` ist eine **doppelt verkettete Liste**
-mit konstanter Zeit fuer beide Enden -- perfekt fuer Queues.
+mit konstanter Zeit für beide Enden -- perfekt für Queues.
 
 ## Anwendung
 

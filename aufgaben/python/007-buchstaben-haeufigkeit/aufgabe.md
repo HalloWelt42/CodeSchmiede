@@ -25,7 +25,7 @@ hints:
     text: Ein Dictionary mappt Buchstaben auf Anzahl.
   - kosten: 15
     text: |
-      `dict.get(schluessel, 0)` liefert den aktuellen Wert oder 0
+      `dict.get(schlüssel, 0)` liefert den aktuellen Wert oder 0
       wenn der Schlüssel noch nicht existiert.
   - kosten: 25
     text: |
@@ -59,7 +59,7 @@ starter_code: |
 
 # Buchstaben-Häufigkeit
 
-Schreibe eine Funktion `buchstaben_haeufigkeit(text)`, die ein
+Schreibe eine Funktion `buchstaben_häufigkeit(text)`, die ein
 Dictionary zurückgibt, in dem jedem im Text vorkommenden Zeichen seine
 Häufigkeit zugeordnet ist.
 

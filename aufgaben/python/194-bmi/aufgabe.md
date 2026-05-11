@@ -23,15 +23,15 @@ funktion: bmi_klasse
 hints:
   - kosten: 0
     text: |
-      Berechne BMI = gewicht_kg / groesse_m^2 und klassifiziere:
+      Berechne BMI = gewicht_kg / größe_m^2 und klassifiziere:
       <18.5 → "untergewicht"
       18.5-24.9 → "normal"
-      25.0-29.9 → "uebergewicht"
+      25.0-29.9 → "übergewicht"
       >=30 → "adipositas"
-      Bei groesse <= 0 oder gewicht <= 0 → "ungueltig".
+      Bei größe <= 0 oder gewicht <= 0 → "ungültig".
   - kosten: 10
     text: |
-      Schwellen sauber pruefen. round(bmi, 1) erst danach.
+      Schwellen sauber prüfen. round(bmi, 1) erst danach.
       Reihenfolge der Vergleiche so, dass sie schluessig ist.
 tests_sichtbar:
   - input: [70, 1.75]
@@ -67,12 +67,12 @@ starter_code: |
 
 # Body-Mass-Index (BMI) und Kategorie
 
-Schreibe `bmi_klasse(gewicht_kg, groesse_m)`, die den Body-Mass-Index
+Schreibe `bmi_klasse(gewicht_kg, größe_m)`, die den Body-Mass-Index
 berechnet und einer Kategorie zuordnet.
 
 ## Formel
 
-$$BMI = \frac{Gewicht_\text{kg}}{Groesse_\text{m}^2}$$
+$$BMI = \frac{Gewicht_\text{kg}}{Größe_\text{m}^2}$$
 
 ## Klassen (WHO-Schema)
 
@@ -80,34 +80,34 @@ $$BMI = \frac{Gewicht_\text{kg}}{Groesse_\text{m}^2}$$
 |----------------|-------------------|
 | < 18.5         | `"untergewicht"`  |
 | 18.5 – 24.99   | `"normal"`        |
-| 25.0 – 29.99   | `"uebergewicht"`  |
+| 25.0 – 29.99   | `"übergewicht"`  |
 | ≥ 30           | `"adipositas"`    |
 
-Bei ungueltigen Eingaben (`groesse_m <= 0` oder `gewicht_kg <= 0`)
-→ `"ungueltig"`.
+Bei ungültigen Eingaben (`größe_m <= 0` oder `gewicht_kg <= 0`)
+→ `"ungültig"`.
 
 ## Beispiele
 
-| Gewicht | Groesse | BMI   | Klasse           |
+| Gewicht | Größe | BMI   | Klasse           |
 |---------|---------|-------|------------------|
 | `70`    | `1.75`  | `22.9`| `"normal"`       |
 | `50`    | `1.75`  | `16.3`| `"untergewicht"` |
-| `85`    | `1.75`  | `27.8`| `"uebergewicht"` |
+| `85`    | `1.75`  | `27.8`| `"übergewicht"` |
 | `100`   | `1.75`  | `32.7`| `"adipositas"`   |
 
 ## Idee
 
 ```python
-def bmi_klasse(gewicht_kg, groesse_m):
-    if gewicht_kg <= 0 or groesse_m <= 0:
-        return "ungueltig"
-    bmi = gewicht_kg / (groesse_m ** 2)
+def bmi_klasse(gewicht_kg, größe_m):
+    if gewicht_kg <= 0 or größe_m <= 0:
+        return "ungültig"
+    bmi = gewicht_kg / (größe_m ** 2)
     if bmi < 18.5:
         return "untergewicht"
     if bmi < 25:
         return "normal"
     if bmi < 30:
-        return "uebergewicht"
+        return "übergewicht"
     return "adipositas"
 ```
 
@@ -117,4 +117,4 @@ Die BMI-Formel wurde **1832** vom belgischen Mathematiker Adolphe
 Quetelet als statistisches Mass entwickelt -- nicht als medizinische
 Diagnose. Sie ignoriert **Muskel-Anteil** (Bodybuilder kommen oft
 "adipoes" raus) und **Fettverteilung**. Trotzdem ist BMI als
-**Bevoelkerungs-Indikator** weiterhin nuetzlich.
+**Bevölkerungs-Indikator** weiterhin nützlich.

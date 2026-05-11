@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Erzeuge intern einen Punkt-NamedTuple mit Feldern x, y. Berechne
-      fuer zwei Punkte (4-Tupel: x1, y1, x2, y2) die Distanz und den
+      für zwei Punkte (4-Tupel: x1, y1, x2, y2) die Distanz und den
       Mittelpunkt.
       Liefere [distanz, mid_x, mid_y] auf 4 Nachkommastellen.
   - kosten: 15
@@ -66,9 +66,9 @@ starter_code: |
 
 # NamedTuple-Punkt: Distanz und Mittelpunkt
 
-Schreibe `punkt_paar_info(x1, y1, x2, y2)`, die fuer zwei Punkte die
+Schreibe `punkt_paar_info(x1, y1, x2, y2)`, die für zwei Punkte die
 **Distanz** und den **Mittelpunkt** als Liste `[distanz, mid_x, mid_y]`
-zurueckgibt -- alle auf **4 Nachkommastellen** gerundet.
+zurückgibt -- alle auf **4 Nachkommastellen** gerundet.
 
 Implementiere intern einen `namedtuple` `Punkt` mit Feldern `x, y`.
 
@@ -99,7 +99,7 @@ def punkt_paar_info(x1, y1, x2, y2):
 ```
 
 `namedtuple` ist eine **leichte Klasse** ohne Boilerplate -- perfekt
-fuer kleine Daten-Container mit benannten Feldern. Liest sich besser
+für kleine Daten-Container mit benannten Feldern. Liest sich besser
 als `(x, y)` Tupel oder `{"x": ..., "y": ...}` Dict.
 
 ## NamedTuple vs Klasse vs dataclass
@@ -112,5 +112,5 @@ als `(x, y)` Tupel oder `{"x": ..., "y": ...}` Dict.
 | `dataclass(frozen=True)` | nein | mittel | wenig      |
 | `NamedTuple` (typing)| nein  | sehr     | wenig + Typen|
 
-Fuer Punkte ist `NamedTuple` ideal -- klein, immutable, hashable
+Für Punkte ist `NamedTuple` ideal -- klein, immutable, hashable
 (kann als Dict-Key dienen).

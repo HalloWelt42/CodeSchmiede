@@ -14,7 +14,7 @@ pfade: []
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Klassisches NP-vollstaendiges Problem (DP-Loesung)
+  notiz: Klassisches NP-vollstaendiges Problem (DP-Lösung)
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -24,8 +24,8 @@ hints:
   - kosten: 0
     text: |
       Existiert eine Teilmenge der Liste, deren Summe genau "ziel" ist?
-      Gib True/False zurueck. Leere Teilmenge ist erlaubt
-      (ergibt 0). Negative Werte muessen nicht behandelt werden.
+      Gib True/False zurück. Leere Teilmenge ist erlaubt
+      (ergibt 0). Negative Werte müssen nicht behandelt werden.
   - kosten: 20
     text: |
       Set-Trick: erreichbare Summen aufbauen. start = {0}.
@@ -66,14 +66,14 @@ starter_code: |
 # Teilmengen-Summe (Subset-Sum)
 
 Gegeben sind eine Liste **nicht-negativer** ganzer Zahlen und ein
-Zielwert `ziel`. Schreibe `subset_sum(zahlen, ziel)`, die zurueckgibt,
+Zielwert `ziel`. Schreibe `subset_sum(zahlen, ziel)`, die zurückgibt,
 ob **eine Teilmenge** existiert, deren Summe genau `ziel` ist.
 
-Die leere Teilmenge zaehlt (Summe `0`).
+Die leere Teilmenge zählt (Summe `0`).
 
 ## Beispiele
 
-| Zahlen                   | Ziel | Loesung?                         |
+| Zahlen                   | Ziel | Lösung?                         |
 |--------------------------|------|----------------------------------|
 | `[3, 34, 4, 12, 5, 2]`   | `9`  | `True` (4 + 5)                   |
 | `[3, 34, 4, 12, 5, 2]`   | `30` | `False` (max 60 aber 30 nicht)   |
@@ -83,7 +83,7 @@ Die leere Teilmenge zaehlt (Summe `0`).
 
 ## Idee -- Erreichbare Summen als Set
 
-Pro neue Zahl `x` koennen wir entweder weglassen (Summen unveraendert)
+Pro neue Zahl `x` können wir entweder weglassen (Summen unverändert)
 oder dazunehmen (Summen + x). Das Set wird in jeder Runde erweitert.
 
 ```python
@@ -114,12 +114,12 @@ def subset_sum(zahlen, ziel):
     return dp[ziel]
 ```
 
-Rueckwaerts iterieren, damit eine Zahl nicht doppelt verbraucht wird.
+Rückwaerts iterieren, damit eine Zahl nicht doppelt verbraucht wird.
 
 ## Hintergrund
 
 Subset-Sum ist **NP-vollstaendig** -- der allgemeine Fall hat keinen
-bekannten Polynomial-Algorithmus. Die DP-Loesung ist
+bekannten Polynomial-Algorithmus. Die DP-Lösung ist
 **pseudo-polynomial**: `O(n*S)` ist nur polynomial in den
-**Werten**, nicht in der **Bit-Laenge** der Eingabe. Mit grossen
-Zielen wird die Loesung exponentiell.
+**Werten**, nicht in der **Bit-Laenge** der Eingabe. Mit großen
+Zielen wird die Lösung exponentiell.

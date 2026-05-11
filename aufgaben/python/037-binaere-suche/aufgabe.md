@@ -77,7 +77,7 @@ starter_code: |
 
 Schreibe eine Funktion `binaere_suche(liste, ziel)`, die in einer
 **aufsteigend sortierten** Liste das Ziel sucht und seinen **Index**
-zurueckgibt. Falls das Ziel nicht enthalten ist: `-1`.
+zurückgibt. Falls das Ziel nicht enthalten ist: `-1`.
 
 ## Beispiele
 
@@ -102,4 +102,4 @@ Suche $O(\log n)$. Bei $n = 1.000.000$ ist das der Unterschied
 zwischen einer Million und 20 Vergleichen.
 
 > Voraussetzung: die Liste muss sortiert sein. Bei unsortierten Daten
-> waere lineare Suche schneller (kein vorheriges Sortieren noetig).
+> wäre lineare Suche schneller (kein vorheriges Sortieren nötig).

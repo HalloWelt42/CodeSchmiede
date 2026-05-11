@@ -31,7 +31,7 @@ hints:
       Schichtweise abarbeiten: oberste Zeile von links nach rechts,
       rechte Spalte von oben nach unten, untere Zeile von rechts
       nach links, linke Spalte von unten nach oben. Dann eine Schicht
-      reinzoomen. Auf "noch was uebrig?" pruefen!
+      reinzoomen. Auf "noch was übrig?" prüfen!
 tests_sichtbar:
   - input: [[[1, 2, 3], [4, 5, 6], [7, 8, 9]]]
     expected: [1, 2, 3, 6, 9, 8, 7, 4, 5]
@@ -62,7 +62,7 @@ starter_code: |
 
 Schreibe eine Funktion `spirale_lesen(matrix)`, die eine MxN-Matrix
 **im Uhrzeigersinn als Spirale** abarbeitet -- start oben links --
-und alle Werte als **flache Liste** zurueckgibt.
+und alle Werte als **flache Liste** zurückgibt.
 
 ## Beispiel 3x3
 
@@ -92,8 +92,8 @@ Vier Grenzen `oben`, `unten`, `links`, `rechts`. In jedem Zyklus:
 
 1. Oberste Zeile von `links` bis `rechts` (dann `oben += 1`)
 2. Rechte Spalte von `oben` bis `unten` (dann `rechts -= 1`)
-3. Wenn noch Zeilen uebrig: untere Zeile von `rechts` bis `links` (dann `unten -= 1`)
-4. Wenn noch Spalten uebrig: linke Spalte von `unten` bis `oben` (dann `links += 1`)
+3. Wenn noch Zeilen übrig: untere Zeile von `rechts` bis `links` (dann `unten -= 1`)
+4. Wenn noch Spalten übrig: linke Spalte von `unten` bis `oben` (dann `links += 1`)
 
 Wiederholen, bis alle Werte eingesammelt.
 
@@ -125,6 +125,6 @@ def spirale_lesen(matrix):
 ## Stolpersteine
 
 - **Asymmetrische Matrizen** (z.B. 1xN oder Nx1) brauchen die
-  beiden `if`-Pruefungen, sonst werden Elemente doppelt gelesen.
-- Klassiker fuer Bewerbungsgespraeche -- viele Naive-Implementierungen
+  beiden `if`-Prüfungen, sonst werden Elemente doppelt gelesen.
+- Klassiker für Bewerbungsgespraeche -- viele Naive-Implementierungen
   stolpern an genau diesen Sonderfaellen.

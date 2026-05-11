@@ -59,7 +59,7 @@ starter_code: |
 # Symmetrische Differenz zweier Listen
 
 Schreibe `symdiff(a, b)`, die die **symmetrische Differenz** als
-sortierte, eindeutige Liste zurueckgibt: alle Elemente, die in
+sortierte, eindeutige Liste zurückgibt: alle Elemente, die in
 **genau einer** der beiden Listen vorkommen.
 
 $$A \triangle B = (A \cup B) \setminus (A \cap B)$$
@@ -86,7 +86,7 @@ Der `^`-Operator (XOR) auf Sets ist die symmetrische Differenz --
 
 ## Wann braucht man das?
 
-- **Diff-Tools**: was hat sich zwischen zwei Sammlungen veraendert?
+- **Diff-Tools**: was hat sich zwischen zwei Sammlungen verändert?
 - **Set-Updates**: in Spielen (Inventar A vs. B → was wurde gewechselt?).
 - **Symmetric-Difference-Index** in Versionskontrollen.
 

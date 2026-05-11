@@ -57,7 +57,7 @@ starter_code: |
 # Alle Rotationen einer Liste
 
 Schreibe `alle_rotationen(liste)`, die **alle n Rotationen** einer
-Liste der Laenge `n` zurueckgibt -- die **erste** ist das Original,
+Liste der Laenge `n` zurückgibt -- die **erste** ist das Original,
 jede weitere ist um 1 nach links rotiert.
 
 ## Beispiele
@@ -86,7 +86,7 @@ zusammengesetzt ergibt das die i-te Rotation.
   Halsketten gibt es bei k Perlen?).
 - **De-Bruijn-Sequenzen** und zyklische Codes.
 - **String-Matching**: ist `s2` eine Rotation von `s1`?
-  Trick: `s1 + s1` enthaelt alle Rotationen als Substrings.
+  Trick: `s1 + s1` enthält alle Rotationen als Substrings.
 
 ## Verwandt
 

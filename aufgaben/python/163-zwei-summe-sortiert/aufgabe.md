@@ -25,7 +25,7 @@ hints:
     text: |
       Gegeben: aufsteigend sortierte Liste, Zielwert ziel.
       Liefere [i, j] (i < j) mit zahlen[i] + zahlen[j] == ziel.
-      Wenn keine Loesung: [].
+      Wenn keine Lösung: [].
   - kosten: 15
     text: |
       Two Pointers: links=0, rechts=n-1. Bei summe < ziel: links += 1.
@@ -76,7 +76,7 @@ falls kein Paar existiert.
 
 ## Idee -- Two Pointers (O(n))
 
-Da die Liste sortiert ist, koennen wir mit zwei Zeigern von aussen
+Da die Liste sortiert ist, können wir mit zwei Zeigern von aussen
 nach innen wandern.
 
 ```python
@@ -95,8 +95,8 @@ def zwei_summe_sortiert(zahlen, ziel):
 
 ## Warum nicht Brute-Force?
 
-Bei `n = 10000` waeren das 50 Mio. Vergleiche. Mit Two Pointers nur
-10000. Ohne Sortierung muesste man Hash-Lookup nutzen (nachfolgende
+Bei `n = 10000` wären das 50 Mio. Vergleiche. Mit Two Pointers nur
+10000. Ohne Sortierung müsste man Hash-Lookup nutzen (nachfolgende
 Aufgabe 164).
 
 ## Vergleichbar
@@ -104,4 +104,4 @@ Aufgabe 164).
 - **3-Sum**: drei Indizes mit Summe = Ziel (klassische Erweiterung).
 - **K-Sum**: rekursive Verallgemeinerung.
 - In der **Trapping-Rain-Water**-Aufgabe sind Two Pointers ebenfalls
-  der Schluessel.
+  der Schlüssel.

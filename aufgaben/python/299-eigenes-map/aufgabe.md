@@ -26,12 +26,12 @@ hints:
       Wende eine Operation auf jedes Element der Liste an.
       Operations: "double" (*2), "square" (^2), "negate" (-x),
       "increment" (+1), "absolute" (abs).
-      Bei UNBEKANNTER Op → Original-Liste zurueckgeben.
+      Bei UNBEKANNTER Op → Original-Liste zurückgeben.
       Bei [] → [].
   - kosten: 10
     text: |
       Dict {op_name: lambda x: ...} und [tabelle[op](x) for x in liste].
-      Bei unbekannter op → list(liste) zurueck.
+      Bei unbekannter op → list(liste) zurück.
 tests_sichtbar:
   - input: [[1, 2, 3], "double"]
     expected: [2, 4, 6]
@@ -65,7 +65,7 @@ starter_code: |
 Schreibe `map_op(liste, op)`, die eine Operation auf **jedes Element**
 der Liste anwendet -- nach dem `map`-Pattern.
 
-## Verfuegbare Operationen
+## Verfügbare Operationen
 
 | String        | Wirkung    |
 |---------------|------------|
@@ -75,7 +75,7 @@ der Liste anwendet -- nach dem `map`-Pattern.
 | `"increment"` | x + 1      |
 | `"absolute"`  | abs(x)     |
 
-Unbekannte Operation → unveraenderte Liste zurueckgeben.
+Unbekannte Operation → unveränderte Liste zurückgeben.
 
 ## Beispiele
 
@@ -107,11 +107,11 @@ def map_op(liste, op):
     return [fn(x) for x in liste]
 ```
 
-`abs` ist schon eine Funktion, kein Lambda noetig.
+`abs` ist schon eine Funktion, kein Lambda nötig.
 
 ## Lehrziel
 
-In echtem Python wuerde man die Funktion **direkt** uebergeben:
+In echtem Python würde man die Funktion **direkt** übergeben:
 
 ```python
 def map_op(liste, fn):
@@ -120,11 +120,11 @@ def map_op(liste, fn):
 map_op([1, 2, 3], lambda x: x * 2)
 ```
 
-Aber JSON-Tests koennen keine Funktionen serialisieren -- daher
+Aber JSON-Tests können keine Funktionen serialisieren -- daher
 der **String-Workaround**. Das Pattern (Dispatch-Dict) ist auch
-in echten Code-Basen ueblich, z.B. fuer **Plugin-Registries**
+in echten Code-Basen üblich, z.B. für **Plugin-Registries**
 (siehe Aufgabe **165-tuerme-von-hanoi** wäre falsch -- besseres
-Beispiel: die Pruefer-Registry des Codeschmiede-Backends).
+Beispiel: die Prüfer-Registry des Codeschmiede-Backends).
 
 ## Pendant
 

@@ -29,7 +29,7 @@ hints:
       Liefere neuen Zustand als Dict.
   - kosten: 25
     text: |
-      Bewertung < 3: zurueck auf wiederholungen=0, intervall=1, ease bleibt.
+      Bewertung < 3: zurück auf wiederholungen=0, intervall=1, ease bleibt.
       Bewertung >= 3: 
         - wenn wiederholungen==0: intervall=1
         - wenn wiederholungen==1: intervall=6

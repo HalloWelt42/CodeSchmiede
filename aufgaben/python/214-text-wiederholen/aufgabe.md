@@ -23,7 +23,7 @@ funktion: wiederhole
 hints:
   - kosten: 0
     text: |
-      Wiederhole "muster" so oft wie noetig, bis "laenge" Zeichen
+      Wiederhole "muster" so oft wie nötig, bis "laenge" Zeichen
       zusammenkommen, dann auf laenge slicen.
       "ab" mit laenge=5 → "ababa".
       Bei muster == "" oder laenge <= 0 → "".
@@ -97,5 +97,5 @@ Das Slicing schneidet auf die genaue Laenge.
 ## Anwendung
 
 Padding-Strings, Banner-Trenner (`"-" * 80`), Mock-Daten generieren,
-und der **Cesar-Schluessel-Trick** in der Vigenere-Chiffre (Aufgabe
-105: Schluessel auf Klartext-Laenge bringen).
+und der **Cesar-Schlüssel-Trick** in der Vigenere-Chiffre (Aufgabe
+105: Schlüssel auf Klartext-Laenge bringen).

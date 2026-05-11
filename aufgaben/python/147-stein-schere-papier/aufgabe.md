@@ -14,7 +14,7 @@ pfade: []
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Klassisches Spiel-Beispiel fuer Vergleichs-Logik
+  notiz: Klassisches Spiel-Beispiel für Vergleichs-Logik
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -25,11 +25,11 @@ hints:
     text: |
       Bestimme den Gewinner zwischen zwei Zuegen:
       "stein", "schere", "papier". Liefere "spieler1", "spieler2"
-      oder "unentschieden". Bei ungueltiger Eingabe → "ungueltig".
+      oder "unentschieden". Bei ungültiger Eingabe → "ungültig".
   - kosten: 10
     text: |
       Dictionary "schlaegt" abbilden: stein→schere, schere→papier,
-      papier→stein. Pruefen ob z2 == schlaegt[z1] → spieler1 gewinnt.
+      papier→stein. Prüfen ob z2 == schlaegt[z1] → spieler1 gewinnt.
 tests_sichtbar:
   - input: ["stein", "schere"]
     expected: "spieler1"
@@ -74,7 +74,7 @@ papier schlaegt stein
 ```
 
 Gleiche Zuege → `"unentschieden"`.
-Unbekannte Zuege → `"ungueltig"`.
+Unbekannte Zuege → `"ungültig"`.
 
 ## Beispiele
 
@@ -84,7 +84,7 @@ Unbekannte Zuege → `"ungueltig"`.
 | `schere`  | `stein`   | `"spieler2"`      |
 | `stein`   | `stein`   | `"unentschieden"` |
 | `papier`  | `stein`   | `"spieler1"`      |
-| `stein`   | `feuer`   | `"ungueltig"`     |
+| `stein`   | `feuer`   | `"ungültig"`     |
 
 ## Idee -- Schlag-Tabelle als Dict
 
@@ -93,7 +93,7 @@ SCHLAEGT = {"stein": "schere", "schere": "papier", "papier": "stein"}
 
 def gewinner(zug1, zug2):
     if zug1 not in SCHLAEGT or zug2 not in SCHLAEGT:
-        return "ungueltig"
+        return "ungültig"
     if zug1 == zug2:
         return "unentschieden"
     return "spieler1" if SCHLAEGT[zug1] == zug2 else "spieler2"
@@ -102,4 +102,4 @@ def gewinner(zug1, zug2):
 ## Erweiterung -- Stein-Schere-Papier-Echse-Spock
 
 Sheldon Coopers Lieblings-Variante hat 5 Zuege und 10 Schlag-Beziehungen.
-Mit dem gleichen Dict-Pattern bleibt der Code trotzdem ueberschaubar.
+Mit dem gleichen Dict-Pattern bleibt der Code trotzdem überschaubar.

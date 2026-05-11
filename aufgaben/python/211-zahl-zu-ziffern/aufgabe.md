@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Zerlege eine nicht-negative ganze Zahl in eine Liste ihrer Ziffern,
-      hoechstwertige zuerst.
+      höchstwertige zuerst.
       0 -> [0], 12345 -> [1,2,3,4,5]. Negative Zahlen wie ihr Betrag.
   - kosten: 10
     text: |
@@ -61,7 +61,7 @@ starter_code: |
 # Zahl in Ziffern-Liste zerlegen
 
 Schreibe `zu_ziffern(n)`, die eine nicht-negative ganze Zahl in eine
-Liste ihrer **Ziffern** zerlegt -- hoechstwertige Stelle zuerst.
+Liste ihrer **Ziffern** zerlegt -- höchstwertige Stelle zuerst.
 
 `0` → `[0]`. Negative Zahlen werden wie ihr Betrag behandelt.
 
@@ -83,7 +83,7 @@ def zu_ziffern(n):
     return [int(c) for c in str(abs(n))]
 ```
 
-Kuerzeste Variante -- nutzt aus, dass `str` die Ziffern in
+Kürzeste Variante -- nutzt aus, dass `str` die Ziffern in
 **richtiger Reihenfolge** liefert.
 
 ## Idee 2 -- per Modulo
@@ -105,11 +105,11 @@ weil wir die niedrigste Stelle zuerst sammeln.
 
 ## Pendant -- Ziffern zur Zahl
 
-Aufgabe **212** macht den Weg zurueck. Zusammen ist es ein
+Aufgabe **212** macht den Weg zurück. Zusammen ist es ein
 Round-Trip: `zu_ziffern(212-funktion(zifferliste))`.
 
 ## Anwendung
 
-Ziffer-Zerlegung ist die Basis fuer **Quersumme** (016),
-**Armstrong-Zahlen** (042), **Glueckliche Zahlen** (141) und viele
+Ziffer-Zerlegung ist die Basis für **Quersumme** (016),
+**Armstrong-Zahlen** (042), **Glückliche Zahlen** (141) und viele
 weitere zahlentheoretische Aufgaben.

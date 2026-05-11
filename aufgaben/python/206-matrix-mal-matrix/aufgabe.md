@@ -94,7 +94,7 @@ def matmul(a, b):
 ```
 
 Drei Schleifen → `O(m * n * p)`. Effizientere Algorithmen
-(Strassen, Coppersmith-Winograd) kommen erst bei sehr grossen
+(Straßen, Coppersmith-Winograd) kommen erst bei sehr großen
 Matrizen ins Spiel.
 
 ## Identitaets-Matrix

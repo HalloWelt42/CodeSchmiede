@@ -14,7 +14,7 @@ pfade: [python_algorithmen2]
 voraussetzungen: [115-klammer-balance]
 quelle:
   url: null
-  notiz: Variation des Klammer-Pruefers
+  notiz: Variation des Klammer-Prüfers
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -23,7 +23,7 @@ funktion: max_tiefe
 hints:
   - kosten: 0
     text: |
-      Nur runde Klammern () zaehlen. Andere Zeichen ignorieren.
+      Nur runde Klammern () zählen. Andere Zeichen ignorieren.
       Maximale Verschachtelungstiefe.
   - kosten: 10
     text: |
@@ -58,7 +58,7 @@ starter_code: |
 # Maximale Klammer-Tiefe
 
 Schreibe eine Funktion `max_tiefe(text)`, die die **maximale
-Verschachtelungstiefe** runder Klammern im Text zurueckgibt.
+Verschachtelungstiefe** runder Klammern im Text zurückgibt.
 
 Andere Zeichen werden ignoriert. Wir nehmen an, dass die Klammern
 korrekt verschachtelt sind.
@@ -84,6 +84,6 @@ Counter pro Zeichen:
 
 ## Anwendung
 
-In Editoren wird die maximale Tiefe oft als Indikator fuer **Code-
+In Editoren wird die maximale Tiefe oft als Indikator für **Code-
 Komplexitaet** genommen -- tief verschachtelter Code ist schwerer
 zu lesen.

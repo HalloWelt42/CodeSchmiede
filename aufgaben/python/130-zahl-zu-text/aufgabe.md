@@ -79,7 +79,7 @@ Bei `n < 0` oder `n > 99` → `""`.
 ## Sonderfälle
 
 - **0**: `"null"`
-- **11, 12**: `"elf"`, `"zwoelf"` (ohne Umlaut für ASCII-Tests)
+- **11, 12**: `"elf"`, `"zwölf"` (ohne Umlaut für ASCII-Tests)
 - **30, 60, 70**: `"dreissig"`, `"sechzig"`, `"siebzig"` (ASCII-Schreibweisen)
 - **Einer-Stelle 1** in zusammengesetzten Zahlen: `"ein"` (nicht `"eins"`):
   `"einundzwanzig"`, `"einundvierzig"`
@@ -91,7 +91,7 @@ Bei `n < 0` oder `n > 99` → `""`.
 | `0`  | `"null"`            |
 | `7`  | `"sieben"`          |
 | `11` | `"elf"`             |
-| `12` | `"zwoelf"`          |
+| `12` | `"zwölf"`          |
 | `13` | `"dreizehn"`        |
 | `20` | `"zwanzig"`         |
 | `21` | `"einundzwanzig"`   |
@@ -100,6 +100,6 @@ Bei `n < 0` oder `n > 99` → `""`.
 
 ## Hinweis zur Schreibweise
 
-Wir nutzen ASCII-Schreibweisen (`zwoelf`, `dreissig`), damit die
+Wir nutzen ASCII-Schreibweisen (`zwölf`, `dreissig`), damit die
 Tests einfach bleiben und Identifier-Vergleiche zuverlaessig sind.
-Echte Lokalisierung wuerde "zwölf", "dreißig" verwenden.
+Echte Lokalisierung würde "zwölf", "dreißig" verwenden.

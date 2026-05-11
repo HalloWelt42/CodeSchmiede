@@ -2,7 +2,7 @@
 schema_version: 1
 id: 253-floor-zu-vielfache
 revision: 1
-titel: Abrunden zum naechsten Vielfachen von k
+titel: Abrunden zum nächsten Vielfachen von k
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,13 +23,13 @@ funktion: floor_vielfache
 hints:
   - kosten: 0
     text: |
-      Runde n ABWAERTS zum naechsten Vielfachen von k.
+      Runde n ABWAERTS zum nächsten Vielfachen von k.
       n = 13, k = 5 → 10. n = 10, k = 5 → 10.
-      k <= 0 → n unveraendert.
+      k <= 0 → n unverändert.
       Negative n: -13 mit k=5 → -15.
   - kosten: 10
     text: |
-      n // k * k -- Pythons // ist Floor-Division (rundet abwaerts).
+      n // k * k -- Pythons // ist Floor-Division (rundet abwärts).
 tests_sichtbar:
   - input: [13, 5]
     expected: 10
@@ -60,14 +60,14 @@ starter_code: |
       pass
 ---
 
-# Abrunden zum naechsten Vielfachen von k
+# Abrunden zum nächsten Vielfachen von k
 
-Schreibe `floor_vielfache(n, k)`, die `n` **abwaerts** zum naechsten
+Schreibe `floor_vielfache(n, k)`, die `n` **abwärts** zum nächsten
 Vielfachen von `k` rundet (Richtung -unendlich).
 
-- Bei `k <= 0` → `n` unveraendert.
+- Bei `k <= 0` → `n` unverändert.
 - Wenn `n` bereits Vielfaches ist → `n` selbst.
-- Negative Werte: weiter weg von 0 ("abwaerts" mathematisch).
+- Negative Werte: weiter weg von 0 ("abwärts" mathematisch).
 
 ## Beispiele
 
@@ -78,7 +78,7 @@ Vielfachen von `k` rundet (Richtung -unendlich).
 | 9    | 10   | 0        | abgerundet auf 0        |
 | 25   | 7    | 21       | 25 → 21                 |
 | 199  | 100  | 100      | knapp unter 200         |
-| -13  | 5    | -15      | abwaerts (negativer)    |
+| -13  | 5    | -15      | abwärts (negativer)    |
 | -1   | 5    | -5       | direkt nach -5          |
 
 ## Idee
@@ -90,9 +90,9 @@ def floor_vielfache(n, k):
     return n // k * k
 ```
 
-Pythons `//` rundet immer **abwaerts** (Richtung -unendlich), auch
+Pythons `//` rundet immer **abwärts** (Richtung -unendlich), auch
 bei negativen Zahlen. Das macht es zur perfekten Floor-Division
-fuer diese Aufgabe.
+für diese Aufgabe.
 
 ## Vergleich C-Modulo vs Python
 
@@ -107,7 +107,7 @@ In **Python**:
 ```
 
 Daher liefert Python `-13 // 5 * 5 = -15`, was wir wollen.
-C wuerde `-10` liefern.
+C würde `-10` liefern.
 
 ## Verwandt
 

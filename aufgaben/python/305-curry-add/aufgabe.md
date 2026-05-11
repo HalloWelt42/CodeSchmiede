@@ -83,7 +83,7 @@ def addiere_zu_allen(c, liste):
 ```
 
 Das Lambda **fängt** den aktuellen Wert von `c` aus dem
-umschliessenden Scope ein -- das ist eine **Closure**.
+umschließenden Scope ein -- das ist eine **Closure**.
 
 ## Idee 2 -- functools.partial
 
@@ -97,7 +97,7 @@ def addiere_zu_allen(c, liste):
 ```
 
 `partial(add, c)` erzeugt eine neue Funktion, die `add(c, x)`
-ausfuehrt -- das ist **partielle Anwendung**: aus einer 2-stelligen
+ausführt -- das ist **partielle Anwendung**: aus einer 2-stelligen
 Funktion machen wir eine 1-stellige.
 
 ## Curry vs. Partial

@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Schleife durch den String. Aktuelles Zeichen + Zähler merken.
-      Wenn das nächste Zeichen anders ist: ans Ergebnis anhaengen,
+      Wenn das nächste Zeichen anders ist: ans Ergebnis anhängen,
       Zähler reset.
   - kosten: 15
     text: |
@@ -57,7 +57,7 @@ starter_code: |
 # Run-Length-Encoding
 
 Schreibe eine Funktion `rle(text)`, die einen String in seine
-**Lauflaengen-Codierung** ueberfuehrt: gleiche aufeinanderfolgende
+**Lauflaengen-Codierung** überfuehrt: gleiche aufeinanderfolgende
 Zeichen werden durch das Zeichen + Anzahl ersetzt. Ein einzelnes
 Vorkommen wird **ohne Zahl** geschrieben (also `"abc"` -> `"abc"`,
 nicht `"a1b1c1"`).
@@ -74,10 +74,10 @@ nicht `"a1b1c1"`).
 
 ## Idee
 
-Zwei "Zustaende" mitlaufen lassen: das **aktuelle Zeichen** und sein
+Zwei "Zustände" mitlaufen lassen: das **aktuelle Zeichen** und sein
 **Zähler**. Bei jedem neuen Zeichen prüfen, ob es das gleiche ist.
-Falls nicht: aktuelles Zeichen ans Ergebnis anhaengen (mit Zahl, falls
-> 1) und Zustaende neu setzen.
+Falls nicht: aktuelles Zeichen ans Ergebnis anhängen (mit Zahl, falls
+> 1) und Zustände neu setzen.
 
 ## Hintergrund
 

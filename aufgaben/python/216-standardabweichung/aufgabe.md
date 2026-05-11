@@ -66,7 +66,7 @@ starter_code: |
 # Standardabweichung (Population)
 
 Schreibe `stdabw(zahlen)`, die die **Standardabweichung** berechnet
--- als Mass fuer die Streuung um den Mittelwert. Wir nehmen die
+-- als Mass für die Streuung um den Mittelwert. Wir nehmen die
 **Populations**-Variante (Division durch `n`), nicht die
 **Stichproben**-Variante (durch `n-1`).
 
@@ -85,7 +85,7 @@ mit $\bar{x}$ = Mittelwert.
 |------------------------------|-----------|----------------------|
 | `[2, 4, 4, 4, 5, 5, 7, 9]`   | `2.0`     | Lehrbuch-Klassiker   |
 | `[10, 10, 10, 10, 10]`       | `0.0`     | keine Streuung       |
-| `[1, 5, 9]`                  | `3.266`   | grosse Streuung      |
+| `[1, 5, 9]`                  | `3.266`   | große Streuung      |
 | `[100, 200, 300]`            | `81.6497` | linear verteilt      |
 | `[-2, 0, 2]`                 | `1.633`   | symmetrisch um 0     |
 
@@ -108,7 +108,7 @@ def stdabw(zahlen):
 | Variante      | Divisor | Wann?                           |
 |---------------|---------|----------------------------------|
 | Population    | `n`     | Komplette Grundgesamtheit       |
-| Stichprobe    | `n-1`   | Schaetzung aus Sample (Bessel)  |
+| Stichprobe    | `n-1`   | Schätzung aus Sample (Bessel)  |
 
 Pythons `statistics.stdev` ist die Stichproben-Variante,
 `statistics.pstdev` die Populations-Variante.

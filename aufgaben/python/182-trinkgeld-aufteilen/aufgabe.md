@@ -89,7 +89,7 @@ def pro_person(rechnung, tip_prozent, personen):
 
 ## Hintergrund -- Trinkgeld-Konvention
 
-In Deutschland sind 5-10% ueblich, in den USA werden 15-20% erwartet,
-in Japan ist Trinkgeld eher unueblich oder sogar unhoeflich. Beim
+In Deutschland sind 5-10% üblich, in den USA werden 15-20% erwartet,
+in Japan ist Trinkgeld eher unüblich oder sogar unhöflich. Beim
 Programmieren von Kassen-Apps (z.B. Lightspeed, Paymo) ist die
 Aufteilung mit Trinkgeld eine der ersten Funktionen, die man baut.

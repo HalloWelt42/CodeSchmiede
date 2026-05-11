@@ -2,7 +2,7 @@
 schema_version: 1
 id: 183-bingo-karte
 revision: 1
-titel: Bingo-Karte pruefen
+titel: Bingo-Karte prüfen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -26,7 +26,7 @@ hints:
       Eine 5x5-Karte mit Zahlen, plus eine Liste gezogener Zahlen.
       "Bingo" liegt vor, wenn EINE Zeile, EINE Spalte oder
       EINE Hauptdiagonale komplett gezogen wurde.
-      Gib True/False zurueck.
+      Gib True/False zurück.
   - kosten: 15
     text: |
       gezogen = set(zahlen). Pro Zeile: alle in gezogen → True.
@@ -59,14 +59,14 @@ starter_code: |
       pass
 ---
 
-# Bingo-Karte pruefen
+# Bingo-Karte prüfen
 
 Beim Bingo erhaelt jeder Spieler eine **5x5-Karte** mit Zahlen.
 Es werden Zahlen gezogen, und der erste, der eine **vollstaendige
 Reihe** (Zeile, Spalte oder eine der zwei Diagonalen) hat, ruft
 "Bingo!".
 
-Schreibe `hat_bingo(karte, gezogen)`, die `True` zurueckgibt, wenn
+Schreibe `hat_bingo(karte, gezogen)`, die `True` zurückgibt, wenn
 mindestens eine Reihe komplett aus gezogenen Zahlen besteht.
 
 ## Beispiele
@@ -109,8 +109,8 @@ def hat_bingo(karte, gezogen):
     return False
 ```
 
-## Variante -- Zaehlen, nach wievielen Zuegen "Bingo" eintritt
+## Variante -- Zählen, nach wievielen Zuegen "Bingo" eintritt
 
 Iteriere durch `gezogen`, fuelle laufend `g`, und liefere den Index
-zurueck, bei dem zum ersten Mal `hat_bingo` `True` wird. Klassische
-Erweiterung fuer **Advent of Code 2021, Tag 4**.
+zurück, bei dem zum ersten Mal `hat_bingo` `True` wird. Klassische
+Erweiterung für **Advent of Code 2021, Tag 4**.

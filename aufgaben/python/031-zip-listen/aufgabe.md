@@ -30,7 +30,7 @@ hints:
     text: |
       Schleife `for i in range(min(len(a), len(b)))` baut den
       verzahnten Teil. Danach `a[i+1:]` oder `b[i+1:]` als Rest
-      anhaengen, je nachdem welche laenger ist.
+      anhängen, je nachdem welche laenger ist.
 tests_sichtbar:
   - input: [[1, 2, 3], ["a", "b", "c"]]
     expected: [1, "a", 2, "b", 3, "c"]
@@ -62,7 +62,7 @@ aus `a` und `b` in eine neue Liste schreibt -- erst `a[0]`, dann `b[0]`,
 dann `a[1]`, dann `b[1]`, und so weiter.
 
 Wenn eine der Listen laenger ist, werden die **restlichen Elemente
-einfach hinten angehaengt**.
+einfach hinten angehängt**.
 
 ## Beispiele
 
@@ -76,12 +76,12 @@ einfach hinten angehaengt**.
 
 ## Idee
 
-Schleife bis zum kuerzeren Ende mit Indizes, dann den Rest des
-laengeren mit Slicing anhaengen.
+Schleife bis zum kürzeren Ende mit Indizes, dann den Rest des
+laengeren mit Slicing anhängen.
 
 ## Verwandt
 
 Pythons eingebautes `zip()` liefert Tupel-Paare und stoppt am
-kuerzeren Ende -- es macht also etwas anderes. Mit `itertools.chain`
-und `zip_longest` koennte man das hier ebenfalls bauen, aber zum
+kürzeren Ende -- es macht also etwas anderes. Mit `itertools.chain`
+und `zip_longest` könnte man das hier ebenfalls bauen, aber zum
 Lernen ist die Schleifen-Variante lehrreicher.

@@ -23,9 +23,9 @@ funktion: runde_zu_vielfache
 hints:
   - kosten: 0
     text: |
-      Runde n auf das naechste Vielfache von k.
+      Runde n auf das nächste Vielfache von k.
       Bei Gleichstand: Standard-Python-Rundung (banker's rounding).
-      k <= 0 → n unveraendert.
+      k <= 0 → n unverändert.
       Negative n und k werden korrekt behandelt.
   - kosten: 10
     text: |
@@ -62,10 +62,10 @@ starter_code: |
 
 # Auf Vielfaches von k runden
 
-Schreibe `runde_zu_vielfache(n, k)`, die `n` auf das **naechste
+Schreibe `runde_zu_vielfache(n, k)`, die `n` auf das **nächste
 Vielfache von k** rundet.
 
-- Bei `k <= 0` → `n` unveraendert.
+- Bei `k <= 0` → `n` unverändert.
 - Bei Gleichstand: Pythons Standard-Rundung ("banker's rounding"
   zur **geraden** Zahl).
 - Funktioniert mit positiven und negativen Werten.
@@ -79,7 +79,7 @@ Vielfache von k** rundet.
 | 7    | 3    | 6        | naeher an 6 als an 9      |
 | 25   | 10   | 20       | banker's: gerade Zahl     |
 | 100  | 10   | 100      | schon Vielfaches          |
-| 99   | 100  | 100      | naechstes Vielfaches      |
+| 99   | 100  | 100      | nächstes Vielfaches      |
 | -13  | 5    | -15      | symmetrisch               |
 
 ## Idee
@@ -112,4 +112,4 @@ beibringt.
 
 - Preise auf 5-ct runden (Supermarkt-Kassen-Logik).
 - Pixel-Snap auf Raster (UI-Layout).
-- Zeit-Slots: 14:23 Uhr → naechstes 15-Min-Slot.
+- Zeit-Slots: 14:23 Uhr → nächstes 15-Min-Slot.

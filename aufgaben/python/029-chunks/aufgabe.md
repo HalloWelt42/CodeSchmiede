@@ -2,7 +2,7 @@
 schema_version: 1
 id: 029-chunks
 revision: 1
-titel: Liste in n-grosse Stücke teilen
+titel: Liste in n-große Stücke teilen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -56,10 +56,10 @@ starter_code: |
       pass
 ---
 
-# Liste in n-grosse Stücke teilen
+# Liste in n-große Stücke teilen
 
 Schreibe eine Funktion `chunks(liste, n)`, die die Liste in
-**zusammenhaengende Bloecke** der Groesse `n` zerlegt. Der letzte
+**zusammenhängende Bloecke** der Größe `n` zerlegt. Der letzte
 Block darf kürzer sein, falls die Laenge nicht aufgeht.
 
 ## Beispiele
@@ -75,10 +75,10 @@ Block darf kürzer sein, falls die Laenge nicht aufgeht.
 ## Idee
 
 Schleife mit Schrittweite: `for i in range(0, len(liste), n)`. In jedem
-Schritt liefert `liste[i:i+n]` den naechsten Block.
+Schritt liefert `liste[i:i+n]` den nächsten Block.
 
-## Wo das nuetzlich ist
+## Wo das nützlich ist
 
 Pagination, Batch-Processing, Tabellen mit fester Zeilenzahl --
-"chunked" Iteration ist eines der haeufigsten Pattern in
+"chunked" Iteration ist eines der häufigsten Pattern in
 Daten-Pipelines.

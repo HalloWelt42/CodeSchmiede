@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Serialisiere ein Python-Objekt (Dict, Liste, etc.) zu JSON-String.
-      Schluessel ALPHABETISCH sortiert.
+      Schlüssel ALPHABETISCH sortiert.
       Keine Leerzeichen nach , und : (compact mode).
   - kosten: 10
     text: |
@@ -66,7 +66,7 @@ starter_code: |
 Schreibe `json_dump(obj)`, die ein Python-Objekt in einen JSON-String
 serialisiert -- mit zwei Konventionen:
 
-1. **Schluessel alphabetisch sortiert** (deterministische Ausgabe)
+1. **Schlüssel alphabetisch sortiert** (deterministische Ausgabe)
 2. **Kompakt** (keine Leerzeichen nach `,` oder `:`)
 
 ## Beispiele
@@ -91,13 +91,13 @@ def json_dump(obj):
     return json.dumps(obj, sort_keys=True, separators=(",", ":"))
 ```
 
-`sort_keys=True` sortiert die Dict-Schluessel.
+`sort_keys=True` sortiert die Dict-Schlüssel.
 `separators=(",", ":")` ist der **kompakte** Modus -- Default ist
 `(", ", ": ")` mit Leerzeichen.
 
 ## Pendant
 
-Aufgabe **291-json-zu-dict** macht den Weg zurueck. Zusammen sind
+Aufgabe **291-json-zu-dict** macht den Weg zurück. Zusammen sind
 es ein **Round-Trip**:
 
 ```python

@@ -14,7 +14,7 @@ pfade: [python_mathe]
 voraussetzungen: [017-fakultät]
 quelle:
   url: null
-  notiz: Klassische Reimplementierung von ** als Lernuebung
+  notiz: Klassische Reimplementierung von ** als Lernübung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -27,7 +27,7 @@ hints:
       dann `n` mal mit `basis` multiplizieren.
   - kosten: 15
     text: |
-      Schoener mit `range(n)`:
+      Schöner mit `range(n)`:
 
       ```
       ergebnis = 1
@@ -63,7 +63,7 @@ starter_code: |
 # Eigene Potenzfunktion
 
 Schreibe eine Funktion `potenz(basis, exponent)`, die `basis` hoch
-`exponent` zurueckgibt -- ohne `**` und ohne `pow()` zu verwenden.
+`exponent` zurückgibt -- ohne `**` und ohne `pow()` zu verwenden.
 Der Exponent ist immer eine nicht-negative ganze Zahl.
 
 ## Beispiele
@@ -77,14 +77,14 @@ Der Exponent ist immer eine nicht-negative ganze Zahl.
 
 ## Idee
 
-Per Definition ist $b^0 = 1$. Fuer $n > 0$ gilt $b^n = b \cdot b^{n-1}$.
+Per Definition ist $b^0 = 1$. Für $n > 0$ gilt $b^n = b \cdot b^{n-1}$.
 Daraus laesst sich sowohl eine **Schleife** als auch eine **rekursive**
 Lösung bauen.
 
-## Wofuer ist das gut?
+## Wofür ist das gut?
 
-Reimplementierungen von Standardfunktionen sind eine schoene
-Lernuebung -- man lernt, was die Sprache eigentlich fuer einen
+Reimplementierungen von Standardfunktionen sind eine schöne
+Lernübung -- man lernt, was die Sprache eigentlich für einen
 erledigt. Später (in einer separaten Aufgabe) kann man das gleiche
 Problem mit **schneller Exponentiation** in $O(\log n)$ statt $O(n)$
-loesen.
+lösen.

@@ -14,7 +14,7 @@ pfade: []
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Generator-Pattern fuer Fibonacci
+  notiz: Generator-Pattern für Fibonacci
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -61,7 +61,7 @@ starter_code: |
 # Fibonacci-Generator bis Maximum
 
 Schreibe `fibs_bis(max_wert)`, die alle **Fibonacci-Zahlen** bis
-einschliesslich `max_wert` als Liste liefert.
+einschließlich `max_wert` als Liste liefert.
 
 Fibonacci: $F_0 = 0, F_1 = 1, F_n = F_{n-1} + F_{n-2}$.
 
@@ -91,19 +91,19 @@ def fibs_bis(max_wert):
     return list(gen())
 ```
 
-Der Generator endet, wenn `a` zu gross wird. Die Tupel-Zuweisung
-`a, b = b, a + b` ist Pythons elegante Form fuer den Fibonacci-
+Der Generator endet, wenn `a` zu groß wird. Die Tupel-Zuweisung
+`a, b = b, a + b` ist Pythons elegante Form für den Fibonacci-
 Schritt -- in C/Java braucht man eine Hilfsvariable.
 
 ## Warum Generator?
 
-Bei sehr grossen `max_wert` (oder unbekanntem Limit) kann man den
+Bei sehr großen `max_wert` (oder unbekanntem Limit) kann man den
 Generator iterieren, bis man genug hat -- ohne die ganze Liste im
 Speicher zu halten.
 
 ```python
 gen = fibs_bis_gen(10**100)
-naechste_drei = [next(gen) for _ in range(3)]
+nächste_drei = [next(gen) for _ in range(3)]
 ```
 
 Das ist mit einer Liste nicht so elegant moeglich.

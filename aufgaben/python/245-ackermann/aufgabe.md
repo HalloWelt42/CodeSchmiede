@@ -29,7 +29,7 @@ hints:
       Achtung: waechst extrem schnell -- nur kleine m, n testen!
   - kosten: 15
     text: |
-      Direkte Umsetzung der drei Faelle. Pruefe nicht-negative Werte.
+      Direkte Umsetzung der drei Faelle. Prüfe nicht-negative Werte.
       Bei m == 4 wird der Wert riesig (A(4,2) = 2^65536 - 3).
       Wir testen nur m <= 3.
 tests_sichtbar:
@@ -67,7 +67,7 @@ starter_code: |
 # Ackermann-Funktion
 
 Schreibe `ackermann(m, n)`, die klassische **Ackermann-Funktion**
-fuer nicht-negative ganze Zahlen.
+für nicht-negative ganze Zahlen.
 
 $$A(m, n) = \begin{cases}
 n + 1 & \text{wenn } m = 0 \\
@@ -111,10 +111,10 @@ rekursiv**. Sie waechst extrem schnell:
 | `(3, 3)` | 61                     |
 | `(4, 0)` | 13                     |
 | `(4, 1)` | 65533                  |
-| `(4, 2)` | $2^{65536} - 3$ (so gross!) |
+| `(4, 2)` | $2^{65536} - 3$ (so groß!) |
 | `(5, 0)` | 65533                  |
 
-Sie war historisch (Wilhelm Ackermann, 1928) **das** Beispiel dafuer,
+Sie war historisch (Wilhelm Ackermann, 1928) **das** Beispiel dafür,
 dass berechenbar > primitiv rekursiv.
 
 ## Stolperstein -- Rekursionstiefe

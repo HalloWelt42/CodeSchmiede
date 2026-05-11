@@ -64,7 +64,7 @@ von $a^b$ zurückgibt -- ohne $a^b$ selbst zu berechnen.
 
 ## Warum nicht einfach `(a**b) % 10`?
 
-Bei `a = 999, b = 999` waere $a^b$ eine Zahl mit ueber 2997 Stellen.
+Bei `a = 999, b = 999` wäre $a^b$ eine Zahl mit über 2997 Stellen.
 Mit `pow(a, b, 10)` rechnet Python das **modular** -- also nur die
 Reste behaltend. $O(\log b)$ statt $O(b)$.
 
@@ -83,5 +83,5 @@ Reste behaltend. $O(\log b)$ statt $O(b)$.
 
 Modulare Exponentiation ist das **Herzstück** von RSA und vielen
 Krypto-Verfahren. Der Trick: bei jedem Quadrieren / Multiplizieren
-gleich modulo nehmen, dann werden die Zwischenwerte nie groesser
+gleich modulo nehmen, dann werden die Zwischenwerte nie größer
 als der Modul.

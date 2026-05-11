@@ -57,7 +57,7 @@ starter_code: |
 
 # Wörter nach Anagramm gruppieren
 
-Schreibe eine Funktion `gruppiere(woerter)`, die eine Liste von
+Schreibe eine Funktion `gruppiere(wörter)`, die eine Liste von
 Wörtern nach **Anagramm-Klassen** gruppiert.
 
 Zwei Wörter sind Anagramme, wenn sie die gleichen Buchstaben in
@@ -81,5 +81,5 @@ ignoriert.
 ## Hintergrund
 
 Klassisches Bewerbungsgespraechs-Problem. Der Kniff: ein **stabiler
-Schluessel** pro Wort -- typisch sind sortierte Buchstaben oder ein
+Schlüssel** pro Wort -- typisch sind sortierte Buchstaben oder ein
 Counter. Beides klassifiziert Anagramme zuverlaessig.

@@ -75,10 +75,10 @@ Leerer Substring zählt nicht mit.
 ## Idee
 
 Doppelte Schleife mit Slicing erzeugt **alle** Teilstrings (mit
-Doppelten). `set(...)` macht sie eindeutig, `len(...)` zaehlt.
+Doppelten). `set(...)` macht sie eindeutig, `len(...)` zählt.
 
 ## Komplexitaet
 
 $O(n^3)$ wegen $O(n^2)$ Substrings × $O(n)$ Hash-Berechnung pro
-Substring. Fuer kleine Strings okay; bei großen würde man auf
+Substring. Für kleine Strings okay; bei großen würde man auf
 **Suffix-Bäume** ausweichen.

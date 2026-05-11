@@ -24,11 +24,11 @@ hints:
   - kosten: 0
     text: |
       Ersetze einzelne Buchstaben durch Leetspeak-Ziffern:
-      a→4, e→3, i→1, o→0, s→5, t→7. Sonst unveraendert.
+      a→4, e→3, i→1, o→0, s→5, t→7. Sonst unverändert.
       Eingabe ist case-insensitive bei der Suche, Ausgabe ist klein.
   - kosten: 10
     text: |
-      Dict mit Mapping. Iteriere Zeichen fuer Zeichen,
+      Dict mit Mapping. Iteriere Zeichen für Zeichen,
       nimm c.lower() um zu mappen.
 tests_sichtbar:
   - input: ["tea"]
@@ -61,7 +61,7 @@ starter_code: |
 # Leetspeak-Konvertierung
 
 In **Leetspeak** ("1337-speak") werden Buchstaben durch optisch
-aehnliche Ziffern ersetzt. Schreibe `leetspeak(text)`, das ein
+ähnliche Ziffern ersetzt. Schreibe `leetspeak(text)`, das ein
 einfaches Subset umsetzt:
 
 | Buchstabe | Ziffer |
@@ -73,8 +73,8 @@ einfaches Subset umsetzt:
 | `s`       | `5`    |
 | `t`       | `7`    |
 
-Andere Zeichen bleiben unveraendert. Die Eingabe darf gemischte
-Gross/Kleinschreibung haben -- die Ausgabe ist **immer klein**.
+Andere Zeichen bleiben unverändert. Die Eingabe darf gemischte
+Groß/Kleinschreibung haben -- die Ausgabe ist **immer klein**.
 
 ## Beispiele
 
@@ -101,7 +101,7 @@ Original-Zeichen.
 
 ## Mit `str.translate`
 
-Effizienter ueber Python-Translate-Tabelle:
+Effizienter über Python-Translate-Tabelle:
 
 ```python
 TRANS = str.maketrans({"a":"4","e":"3","i":"1","o":"0","s":"5","t":"7"})
@@ -113,6 +113,6 @@ def leetspeak(text):
 ## Hintergrund
 
 Leetspeak entstand in den 80ern in BBS-Foren als Code, um
-Filter-Wortlisten (z.B. fuer "elite") auszuhebeln. Aus "elite"
+Filter-Wortlisten (z.B. für "elite") auszuhebeln. Aus "elite"
 wurde "1337" -- daher der Name. Heute eher Internet-Folklore als
 Kommunikations-Geheimcode.

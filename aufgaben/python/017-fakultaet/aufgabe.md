@@ -60,7 +60,7 @@ starter_code: |
 # Fakultät $n!$
 
 Schreibe eine Funktion `fakultaet(n)`, die die **Fakultät** einer
-nicht-negativen ganzen Zahl `n` zurueckgibt.
+nicht-negativen ganzen Zahl `n` zurückgibt.
 
 Per Definition gilt:
 
@@ -83,11 +83,11 @@ $$
 ## Wege
 
 Du kannst die Aufgabe **iterativ** (Schleife) oder **rekursiv**
-(Funktion ruft sich selbst auf) loesen. Beide Wege sind valide --
-fuer grosse `n` ist die Iteration in Python aber bequemer.
+(Funktion ruft sich selbst auf) lösen. Beide Wege sind valide --
+für große `n` ist die Iteration in Python aber bequemer.
 
 ## Hintergrund
 
 Die Fakultät zählt die Anzahl möglicher Anordnungen von $n$ Objekten.
-$5! = 120$ heisst: 5 Buecher kannst du auf 120 verschiedene Arten in
+$5! = 120$ heisst: 5 Bücher kannst du auf 120 verschiedene Arten in
 ein Regal sortieren.

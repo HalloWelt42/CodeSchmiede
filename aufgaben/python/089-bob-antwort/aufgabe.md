@@ -25,14 +25,14 @@ hints:
     text: |
       Bob ist ein Teenager mit klaren Regeln:
       - Nichts gesagt → "Manno, sag was."
-      - Geschrien (alle Buchstaben gross) UND Frage → "Schrei mich nicht an, was willst du?!"
+      - Geschrien (alle Buchstaben groß) UND Frage → "Schrei mich nicht an, was willst du?!"
       - Nur geschrien → "Schrei mich nicht an!"
       - Nur Frage → "Klar."
       - Sonst → "Naja."
   - kosten: 15
     text: |
       Test fürs Schreien: Text muss mindestens einen Buchstaben haben
-      UND alle Buchstaben sind Grossbuchstaben.
+      UND alle Buchstaben sind Großbuchstaben.
 tests_sichtbar:
   - input: ["Tom-ay-to, tom-aaaah-to."]
     expected: "Naja."

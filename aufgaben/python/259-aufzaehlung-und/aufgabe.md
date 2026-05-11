@@ -2,7 +2,7 @@
 schema_version: 1
 id: 259-aufzaehlung-und
 revision: 1
-titel: Aufzaehlung mit Komma und "und"
+titel: Aufzählung mit Komma und "und"
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,7 +23,7 @@ funktion: aufzaehlung
 hints:
   - kosten: 0
     text: |
-      Verbinde Strings einer Liste zu einer deutschen Aufzaehlung.
+      Verbinde Strings einer Liste zu einer deutschen Aufzählung.
       [] → ""
       ["a"] → "a"
       ["a", "b"] → "a und b"
@@ -32,7 +32,7 @@ hints:
   - kosten: 10
     text: |
       Sonderfaelle: 0, 1, 2 Elemente getrennt.
-      Sonst: ", ".join(woerter[:-1]) + " und " + woerter[-1].
+      Sonst: ", ".join(wörter[:-1]) + " und " + wörter[-1].
 tests_sichtbar:
   - input: [["a", "b", "c"]]
     expected: "a, b und c"
@@ -59,10 +59,10 @@ starter_code: |
       pass
 ---
 
-# Aufzaehlung mit Komma und "und"
+# Aufzählung mit Komma und "und"
 
-Schreibe `aufzaehlung(woerter)`, die eine Liste von Strings zu einer
-**deutschen Aufzaehlung** zusammenfuegt -- mit Kommas zwischen
+Schreibe `aufzählung(wörter)`, die eine Liste von Strings zu einer
+**deutschen Aufzählung** zusammenfuegt -- mit Kommas zwischen
 allen Elementen und " und " vor dem letzten.
 
 ## Beispiele
@@ -79,21 +79,21 @@ allen Elementen und " und " vor dem letzten.
 ## Idee
 
 ```python
-def aufzaehlung(woerter):
-    if not woerter:
+def aufzählung(wörter):
+    if not wörter:
         return ""
-    if len(woerter) == 1:
-        return woerter[0]
-    if len(woerter) == 2:
-        return f"{woerter[0]} und {woerter[1]}"
-    return ", ".join(woerter[:-1]) + " und " + woerter[-1]
+    if len(wörter) == 1:
+        return wörter[0]
+    if len(wörter) == 2:
+        return f"{wörter[0]} und {wörter[1]}"
+    return ", ".join(wörter[:-1]) + " und " + wörter[-1]
 ```
 
 Drei Sonderfaelle (0, 1, 2 Elemente), dann der allgemeine Fall.
 
 ## Englisch -- "Oxford Comma"
 
-Im Englischen gibt's die Diskussion ueber das **Oxford Comma**:
+Im Englischen gibt's die Diskussion über das **Oxford Comma**:
 
 - Mit: `"a, b, and c"` (Komma vor "and")
 - Ohne: `"a, b and c"`

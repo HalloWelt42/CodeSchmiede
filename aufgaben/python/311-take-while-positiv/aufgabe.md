@@ -91,7 +91,7 @@ def take_while_positiv(liste):
 ```
 
 `break` beendet den Generator -- alle Werte nach dem ersten
-nicht-positiven werden uebersprungen.
+nicht-positiven werden übersprungen.
 
 ## Mit itertools.takewhile
 
@@ -102,16 +102,16 @@ def take_while_positiv(liste):
     return list(takewhile(lambda x: x > 0, liste))
 ```
 
-`takewhile` ist exakt dafuer gemacht: nimmt Elemente, solange das
+`takewhile` ist exakt dafür gemacht: nimmt Elemente, solange das
 Predicate True liefert, bricht beim ersten False ab.
 
 ## Vergleich -- filter vs takewhile
 
 | Funktion    | Verhalten                                |
 |-------------|------------------------------------------|
-| `filter`    | nimmt **alle** Elemente, die das Predicate erfuellen |
+| `filter`    | nimmt **alle** Elemente, die das Predicate erfüllen |
 | `takewhile` | nimmt vom **Anfang**, bis Predicate False |
-| `dropwhile` | uebersprungt vom **Anfang**, bis Predicate False, dann **alles** |
+| `dropwhile` | übersprungt vom **Anfang**, bis Predicate False, dann **alles** |
 
 `filter` auf `[1, 2, -1, 3]` mit `>0` liefert `[1, 2, 3]`.
 `takewhile` liefert nur `[1, 2]`.

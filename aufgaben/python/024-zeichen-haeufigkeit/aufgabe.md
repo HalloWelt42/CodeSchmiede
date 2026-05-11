@@ -23,7 +23,7 @@ funktion: zeichen_haeufigkeit
 hints:
   - kosten: 0
     text: |
-      Schleife ueber `text`, jedes Zeichen ins Dict zählen.
+      Schleife über `text`, jedes Zeichen ins Dict zählen.
   - kosten: 10
     text: |
       `dict.get(c, 0) + 1` spart das if/else.
@@ -51,7 +51,7 @@ starter_code: |
 
 # Zeichen-Häufigkeit
 
-Schreibe eine Funktion `zeichen_haeufigkeit(text)`, die zählt, wie oft
+Schreibe eine Funktion `zeichen_häufigkeit(text)`, die zählt, wie oft
 jedes einzelne **Zeichen** im String vorkommt -- inklusive Leerzeichen
 und Sonderzeichen.
 
@@ -67,11 +67,11 @@ und Sonderzeichen.
 
 ## Idee
 
-Schleife ueber den String. Fuer jedes Zeichen: `zaehlung[c] = zaehlung.get(c, 0) + 1`.
-Reihenfolge der Schluessel im Ergebnis ist egal.
+Schleife über den String. Für jedes Zeichen: `zählung[c] = zählung.get(c, 0) + 1`.
+Reihenfolge der Schlüssel im Ergebnis ist egal.
 
 ## Verwandt
 
 Die Aufgabe ist die Buchstaben-Variante von [Wortzähler aus Satz](#).
-Wer beide gemacht hat, hat das Standard-Pattern fuer Zähl-Dicts in
+Wer beide gemacht hat, hat das Standard-Pattern für Zähl-Dicts in
 Python sicher drauf.

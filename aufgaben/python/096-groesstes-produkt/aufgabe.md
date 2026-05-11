@@ -24,11 +24,11 @@ hints:
   - kosten: 0
     text: |
       Sliding-Window: schau dir alle Fenster der Laenge `n` an,
-      multipliziere die Ziffern, behalte das groesste Produkt.
+      multipliziere die Ziffern, behalte das größte Produkt.
   - kosten: 15
     text: |
       `text[i:i+n]` ist das Fenster. `prod = 1`, dann pro Zeichen
-      `prod *= int(c)`. Mit `max(...)` ueber alle Fenster.
+      `prod *= int(c)`. Mit `max(...)` über alle Fenster.
 tests_sichtbar:
   - input: ["123", 1]
     expected: 3
@@ -60,7 +60,7 @@ starter_code: |
 
 # Größtes Produkt aufeinanderfolgender Ziffern
 
-Schreibe eine Funktion `groesstes_produkt(text, n)`, die in einem
+Schreibe eine Funktion `größtes_produkt(text, n)`, die in einem
 Ziffern-String das **größte Produkt** von $n$ aufeinanderfolgenden
 Ziffern findet.
 

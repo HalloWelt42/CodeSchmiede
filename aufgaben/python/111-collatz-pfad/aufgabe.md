@@ -53,7 +53,7 @@ starter_code: |
 # Collatz-Pfad als Liste
 
 Schreibe eine Funktion `collatz_pfad(n)`, die den **vollständigen
-Pfad** der Collatz-Folge ausgehend von `n` als Liste zurueckgibt --
+Pfad** der Collatz-Folge ausgehend von `n` als Liste zurückgibt --
 inklusive Startwert und finaler `1`.
 
 ## Regeln (wie bei 020-collatz)
@@ -70,7 +70,7 @@ inklusive Startwert und finaler `1`.
 | `2`   | `[2, 1]`                                     |
 | `6`   | `[6, 3, 10, 5, 16, 8, 4, 2, 1]`              |
 | `7`   | 17 Schritte, endet bei 1                     |
-| `27`  | 111 Schritte, hoechster Wert: 9232           |
+| `27`  | 111 Schritte, höchster Wert: 9232           |
 
 ## Hintergrund
 

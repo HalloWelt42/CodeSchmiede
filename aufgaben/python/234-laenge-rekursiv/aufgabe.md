@@ -63,9 +63,9 @@ starter_code: |
 # Listenlaenge rekursiv ohne `len`
 
 Schreibe `laenge(liste)`, die die Anzahl der Elemente einer Liste
-zurueckgibt -- **ohne** `len()` oder `__len__()` zu nutzen.
+zurückgibt -- **ohne** `len()` oder `__len__()` zu nutzen.
 
-**Rekursive Loesung erwartet** (gehoert zur didaktischen Idee).
+**Rekursive Lösung erwartet** (gehört zur didaktischen Idee).
 
 ## Beispiele
 
@@ -108,11 +108,11 @@ Listen den Stack sprengt (`RecursionError`).
 
 Pythons Default-Recursion-Limit ist 1000. Eine Liste mit > 1000
 Elementen sprengt die rekursive Variante. Mit `sys.setrecursionlimit`
-liesse sich das hochsetzen, aber elegant ist das nicht.
+ließe sich das hochsetzen, aber elegant ist das nicht.
 
 ## Hintergrund
 
 Rekursion ist ein wichtiger Lernschritt -- vielleicht **das**
-schwerste Konzept fuer Anfaenger. Listen-Laenge zu rekursiv zu
-implementieren ist die einfachste Form ueberhaupt -- jede Stufe
+schwerste Konzept für Anfänger. Listen-Laenge zu rekursiv zu
+implementieren ist die einfachste Form überhaupt -- jede Stufe
 schrumpft das Problem garantiert um eins.

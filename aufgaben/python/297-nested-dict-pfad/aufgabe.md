@@ -29,7 +29,7 @@ hints:
       Pfad "" oder None nicht vorgesehen, hier mit default_wert.
   - kosten: 20
     text: |
-      Loop ueber pfad.split("."), pro Schritt prüfen ob Key existiert
+      Loop über pfad.split("."), pro Schritt prüfen ob Key existiert
       und Wert ein dict ist (sonst Pfad bricht ab).
 tests_sichtbar:
   - input: [{"a": {"b": {"c": 42}}}, "a.b.c", null]
@@ -64,15 +64,15 @@ starter_code: |
 # Nested-Dict via dotted path lesen
 
 Schreibe `dict_pfad(d, pfad, default)`, die einen Wert aus einem
-verschachtelten Dict ueber einen **Punkt-getrennten Pfad** liest.
+verschachtelten Dict über einen **Punkt-getrennten Pfad** liest.
 
 `"a.b.c"` entspricht `d["a"]["b"]["c"]`.
 
-Bei fehlendem Schluessel oder wenn ein Zwischen-Wert kein Dict ist
-→ `default` zurueckgeben.
+Bei fehlendem Schlüssel oder wenn ein Zwischen-Wert kein Dict ist
+→ `default` zurückgeben.
 
 **Wichtig**: Wenn der Pfad existiert UND der Wert ist `False`/`0`/`None`,
-muss der **echte Wert** zurueckkommen -- nicht der `default`.
+muss der **echte Wert** zurückkommen -- nicht der `default`.
 
 ## Beispiele
 
@@ -98,7 +98,7 @@ def dict_pfad(d, pfad, default):
 ```
 
 Pro Schritt:
-1. Pruefen, ob aktueller `d` ein Dict ist UND der Schluessel drin.
+1. Prüfen, ob aktueller `d` ein Dict ist UND der Schlüssel drin.
 2. Falls nicht → default.
 3. Falls ja → eine Ebene tiefer.
 
@@ -107,12 +107,12 @@ Pro Schritt:
 Wer es so schreibt:
 
 ```python
-return d.get(pfad, default)  # falsch fuer dotted!
+return d.get(pfad, default)  # falsch für dotted!
 ```
 
-bekommt es bei einer Ebene noch hin, aber nicht fuer Pfade. Und
+bekommt es bei einer Ebene noch hin, aber nicht für Pfade. Und
 **`d.get` mit Default** unterscheidet nicht zwischen "Key da, Wert ist
-None" und "Key nicht da". Daher die explizite `in`-Pruefung.
+None" und "Key nicht da". Daher die explizite `in`-Prüfung.
 
 ## Anwendung
 

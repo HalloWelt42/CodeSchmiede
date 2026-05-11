@@ -23,8 +23,8 @@ funktion: max_summe
 hints:
   - kosten: 0
     text: |
-      Liefere die maximale Summe einer zusammenhaengenden Teil-Liste.
-      Bei nur negativen Werten: das groesste Element.
+      Liefere die maximale Summe einer zusammenhängenden Teil-Liste.
+      Bei nur negativen Werten: das größte Element.
       Bei leerer Liste -> 0.
   - kosten: 20
     text: |
@@ -64,11 +64,11 @@ starter_code: |
 
 # Maximale Teilfolgen-Summe (Kadane)
 
-Schreibe `max_summe(zahlen)`, die die **groesste Summe** einer
-zusammenhaengenden Teil-Liste liefert.
+Schreibe `max_summe(zahlen)`, die die **größte Summe** einer
+zusammenhängenden Teil-Liste liefert.
 
 - Leere Liste → `0`.
-- Liste nur mit negativen Werten → groesstes (am wenigsten negatives) Element.
+- Liste nur mit negativen Werten → größtes (am wenigsten negatives) Element.
 
 ## Beispiele
 
@@ -100,7 +100,7 @@ gesehene Summe wird laufend mitgefuehrt.
 
 ## Erweiterung
 
-Soll auch die **Teilfolge selbst** zurueckgegeben werden, brauchen wir
+Soll auch die **Teilfolge selbst** zurückgegeben werden, brauchen wir
 zwei extra Indizes (Start des aktuellen Laufs, Start/Ende des bisher
 besten Laufs). Komplexitaet bleibt `O(n)`.
 
@@ -108,5 +108,5 @@ besten Laufs). Komplexitaet bleibt `O(n)`.
 
 Joseph Born Kadane fand den Algorithmus 1984 in seiner Statistik-
 Vorlesung an der Carnegie Mellon University. Vorher waren nur
-`O(n^2)`- und `O(n^3)`-Loesungen bekannt. Heute Standard-Beispiel
-fuer **eindimensionale dynamische Programmierung**.
+`O(n^2)`- und `O(n^3)`-Lösungen bekannt. Heute Standard-Beispiel
+für **eindimensionale dynamische Programmierung**.

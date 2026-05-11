@@ -58,8 +58,8 @@ starter_code: |
 
 # TicTacToe-Gewinner
 
-Schreibe eine Funktion `gewinner(brett)`, die fuer ein 3x3-TicTacToe-
-Brett den Gewinner zurueckgibt -- `"X"` oder `"O"`. Wenn keiner
+Schreibe eine Funktion `gewinner(brett)`, die für ein 3x3-TicTacToe-
+Brett den Gewinner zurückgibt -- `"X"` oder `"O"`. Wenn keiner
 gewonnen hat, gib `"."` zurück.
 
 Felder enthalten `"X"`, `"O"` oder `"."` (leer).

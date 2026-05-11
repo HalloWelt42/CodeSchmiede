@@ -24,13 +24,13 @@ hints:
   - kosten: 0
     text: |
       Mische die Liste mit Fisher-Yates. Verwende random.Random(seed)
-      fuer determinstische Ergebnisse pro seed.
+      für determinstische Ergebnisse pro seed.
   - kosten: 15
     text: |
-      Von hinten nach vorn: fuer i in range(n-1, 0, -1):
+      Von hinten nach vorn: für i in range(n-1, 0, -1):
         j = rng.randint(0, i)   # 0..i inkl.
         tausche a[i] und a[j].
-      Original-Liste nicht veraendern (Kopie!).
+      Original-Liste nicht verändern (Kopie!).
 tests_sichtbar:
   - input: [[1, 2, 3, 4, 5], 42]
     expected: [4, 2, 3, 5, 1]
@@ -62,16 +62,16 @@ starter_code: |
 # Fisher-Yates-Shuffle (mit Seed)
 
 Schreibe eine Funktion `shuffle_seed(a, seed)`, die eine **gemischte
-Kopie** der Liste zurueckgibt -- deterministisch fuer einen gegebenen
+Kopie** der Liste zurückgibt -- deterministisch für einen gegebenen
 `seed`.
 
-Verwende `random.Random(seed).randint(0, i)` fuer die Index-Wahl, damit
+Verwende `random.Random(seed).randint(0, i)` für die Index-Wahl, damit
 das Ergebnis exakt reproduzierbar ist.
 
 ## Algorithmus (Fisher-Yates / Knuth-Shuffle)
 
 Iteriere von hinten nach vorn. Tausche jedes Element `a[i]` mit einem
-zufaellig gewaehlten Element aus `a[0..i]` (inklusive `i` selbst).
+zufaellig gewählten Element aus `a[0..i]` (inklusive `i` selbst).
 
 ```python
 import random
@@ -87,8 +87,8 @@ def shuffle_seed(a, seed):
 
 ## Wichtig
 
-- **Original nicht veraendern** → erst kopieren.
-- Bei leerer Liste oder einem Element: unveraendert zurueckgeben.
+- **Original nicht verändern** → erst kopieren.
+- Bei leerer Liste oder einem Element: unverändert zurückgeben.
 - `random.Random(seed)` liefert eine eigene Instanz, keine Beruehrung
   des globalen Generators.
 
@@ -97,4 +97,4 @@ def shuffle_seed(a, seed):
 Der Algorithmus ist seit 1938 bekannt und in praktisch jeder Standard-
 Bibliothek umgesetzt (Python: `random.shuffle`). Trotzdem lohnt sich
 das Selbst-Bauen: viele Naiv-Versionen sind subtil verzerrt
-(z.B. wenn `j` zufaellig aus `0..n-1` statt `0..i` gewaehlt wird).
+(z.B. wenn `j` zufaellig aus `0..n-1` statt `0..i` gewählt wird).

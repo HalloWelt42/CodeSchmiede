@@ -77,10 +77,10 @@ die gleich der Summe ihrer Ziffern hoch der Anzahl ihrer Ziffern ist.
 ## Hinweis
 
 Alle einstelligen Zahlen (`0` bis `9`) sind Armstrong-Zahlen --
-fuer `n = 1` ist die Bedingung `n^1 = n` trivial erfuellt.
+für `n = 1` ist die Bedingung `n^1 = n` trivial erfüllt.
 
 ## Hintergrund
 
-Es gibt nur **89** Armstrong-Zahlen im Dezimalsystem, die groesste
+Es gibt nur **89** Armstrong-Zahlen im Dezimalsystem, die größte
 hat 39 Stellen. Nach 5-stelligen Armstrongs gibt es eine ganze Weile
 keine, das macht das Suchen interessant.

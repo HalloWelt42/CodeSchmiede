@@ -28,7 +28,7 @@ hints:
   - kosten: 10
     text: |
       Iterativ in einer Schleife mit zwei Variablen `a, b`. Pro Schritt
-      `a, b = b, a+b` und `a` an die Liste anhaengen.
+      `a, b = b, a+b` und `a` an die Liste anhängen.
 tests_sichtbar:
   - input: [0]
     expected: []

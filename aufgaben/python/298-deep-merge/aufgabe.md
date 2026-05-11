@@ -26,7 +26,7 @@ hints:
       Verschmelze zwei Dicts rekursiv. Bei Konflikten gewinnt b (rechts).
       Wenn beide Werte Dicts sind, werden sie WEITER verschmolzen.
       Sonst überschreibt der b-Wert direkt.
-      Original-Dicts duerfen NICHT mutiert werden.
+      Original-Dicts dürfen NICHT mutiert werden.
   - kosten: 25
     text: |
       Neue Dict bauen mit allen Keys. Wenn key in beiden UND beide
@@ -63,10 +63,10 @@ starter_code: |
 
 Schreibe `deep_merge(a, b)`, die zwei Dicts **rekursiv** verschmelzt:
 
-- Bei Schluesseln nur in `a` oder nur in `b` → uebernehmen.
-- Bei Schluesseln in **beiden**:
+- Bei Schlüsseln nur in `a` oder nur in `b` → übernehmen.
+- Bei Schlüsseln in **beiden**:
   - Wenn beide Werte Dicts sind → rekursiv verschmelzen.
-  - Sonst → `b`-Wert ueberschreibt `a`-Wert.
+  - Sonst → `b`-Wert überschreibt `a`-Wert.
 
 Original-Dicts **nicht mutieren** -- neue Dicts bauen.
 
@@ -80,7 +80,7 @@ Original-Dicts **nicht mutieren** -- neue Dicts bauen.
 | `{"a": {"x": 1, "y": 2}}`   | `{"a": {"y": 99, "z": 3}}`     | `{"a": {"x": 1, "y": 99, "z": 3}}`  |
 | `{"a": [1, 2]}`             | `{"a": [3, 4]}`                | `{"a": [3, 4]}` (Listen NICHT mergen) |
 | `{"a": 1}`                  | `{"a": {"b": 2}}`              | `{"a": {"b": 2}}` (Typ-Wechsel)     |
-| `{"a": {"b": 1}}`           | `{"a": "ueberschrieben"}`      | `{"a": "ueberschrieben"}`           |
+| `{"a": {"b": 1}}`           | `{"a": "überschrieben"}`      | `{"a": "überschrieben"}`           |
 
 ## Idee -- Rekursion
 
@@ -95,14 +95,14 @@ def deep_merge(a, b):
     return out
 ```
 
-`dict(a)` macht eine **flache Kopie** -- aendert nicht die innere
+`dict(a)` macht eine **flache Kopie** -- ändert nicht die innere
 Dicts. Diese werden bei Bedarf rekursiv ersetzt.
 
 ## Stolperstein -- Listen mergen?
 
-Es gibt zwei Konventionen fuer Listen:
+Es gibt zwei Konventionen für Listen:
 
-1. **Komplett ueberschreiben** (b gewinnt) -- unsere Wahl.
+1. **Komplett überschreiben** (b gewinnt) -- unsere Wahl.
 2. **Konkatenieren** (a + b).
 
 Wir nehmen Variante 1, weil sie konsistent mit dem "b gewinnt"-

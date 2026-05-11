@@ -23,13 +23,13 @@ funktion: ist_zweierpotenz
 hints:
   - kosten: 0
     text: |
-      Pruefe ob n eine Zweierpotenz ist (1, 2, 4, 8, 16, ...).
+      Prüfe ob n eine Zweierpotenz ist (1, 2, 4, 8, 16, ...).
       n <= 0 → False. 1 → True (= 2^0).
       Hinweis: Bit-Trick mit n & (n - 1).
   - kosten: 15
     text: |
       Zweierpotenzen haben in Binaer GENAU EIN gesetztes Bit.
-      n & (n - 1) loescht das niedrigste Bit. Wenn 0 herauskommt,
+      n & (n - 1) löscht das niedrigste Bit. Wenn 0 herauskommt,
       war es das einzige.
 tests_sichtbar:
   - input: [1]
@@ -63,7 +63,7 @@ starter_code: |
 
 # Ist die Zahl eine Zweierpotenz?
 
-Schreibe `ist_zweierpotenz(n)`, die `True` zurueckgibt, wenn `n`
+Schreibe `ist_zweierpotenz(n)`, die `True` zurückgibt, wenn `n`
 eine **Zweierpotenz** ist -- `1, 2, 4, 8, 16, 32, ...`.
 
 `n <= 0` → `False`.
@@ -111,6 +111,6 @@ Eindeutig korrekt, aber `O(log n)` statt `O(1)`.
 ## Hintergrund
 
 Zweierpotenzen sind in der Informatik allgegenwaertig: Speicher-
-Groessen (1 KB = 1024 B), Bit-Felder, Hash-Tabellen-Groessen.
-Der Bit-Trick gehoert zum Bewerbungsgespraech-Standard wie der
+Größen (1 KB = 1024 B), Bit-Felder, Hash-Tabellen-Größen.
+Der Bit-Trick gehört zum Bewerbungsgespraech-Standard wie der
 **Brian-Kernighan**-Trick (Aufgabe 159).

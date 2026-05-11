@@ -14,7 +14,7 @@ pfade: [python_logik]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null
-  notiz: Klassische Matrix-Aufwaermuebung
+  notiz: Klassische Matrix-Aufwaermübung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Pro Spalte alle Einträge summieren. Liste der Spaltensummen
-      zurueckgeben.
+      zurückgeben.
   - kosten: 15
     text: |
       Mit zip + list comp:
@@ -56,8 +56,8 @@ starter_code: |
 
 # Spaltensumme einer Matrix
 
-Schreibe eine Funktion `spalten_summen(matrix)`, die fuer jede Spalte
-einer Matrix die Summe ihrer Einträge zurueckgibt.
+Schreibe eine Funktion `spalten_summen(matrix)`, die für jede Spalte
+einer Matrix die Summe ihrer Einträge zurückgibt.
 
 ## Beispiele
 

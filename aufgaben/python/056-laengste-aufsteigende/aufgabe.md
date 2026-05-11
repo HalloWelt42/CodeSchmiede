@@ -14,7 +14,7 @@ pfade: [python_listen3]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null
-  notiz: Variante des LIS-Klassikers, aber zusammenhaengend
+  notiz: Variante des LIS-Klassikers, aber zusammenhängend
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       "Aufsteigend" hier: streng monoton wachsend (jedes Element strikt
-      größer als das vorherige). Zusammenhaengend, also direkte
+      größer als das vorherige). Zusammenhängend, also direkte
       Nachbarn in der Liste.
   - kosten: 15
     text: |
@@ -57,12 +57,12 @@ starter_code: |
 # Laengste aufsteigende Teilfolge
 
 Schreibe eine Funktion `laengste_aufsteigend(liste)`, die die **Laenge
-der laengsten zusammenhaengenden, streng monoton aufsteigenden
-Teilfolge** zurueckgibt.
+der laengsten zusammenhängenden, streng monoton aufsteigenden
+Teilfolge** zurückgibt.
 
 "Streng monoton" heisst: jedes Element ist **größer** als das
-vorherige -- nicht gleich. "Zusammenhaengend" heisst: direkte Nachbarn,
-keine Luecken.
+vorherige -- nicht gleich. "Zusammenhängend" heisst: direkte Nachbarn,
+keine Lücken.
 
 ## Beispiele
 
@@ -77,13 +77,13 @@ keine Luecken.
 
 ## Idee
 
-Lineare Schleife, ein Zähler fuer die aktuelle und einer fuer die
+Lineare Schleife, ein Zähler für die aktuelle und einer für die
 beste Laenge. Bei jedem Schritt: ist das aktuelle Element größer als
 das vorherige, Zähler hoch; sonst zurück auf 1.
 
-## Variante (nicht zusammenhaengend)
+## Variante (nicht zusammenhängend)
 
-Die "klassische" LIS (Longest Increasing Subsequence, mit Luecken
+Die "klassische" LIS (Longest Increasing Subsequence, mit Lücken
 erlaubt) ist deutlich kniffliger -- $O(n \log n)$ ist optimal, aber
 nicht trivial. Diese Aufgabe hier ist die **einfachere Variante** mit
-zusammenhaengender Folge.
+zusammenhängender Folge.

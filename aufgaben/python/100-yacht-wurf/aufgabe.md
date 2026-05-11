@@ -75,9 +75,9 @@ starter_code: |
 
 # Yacht-Würfel-Wurf bewerten
 
-Yacht ist ein einfaches Wuerfelspiel mit fuenf Wuerfeln. Pro Runde
-waehlt der Spieler eine **Wertungs-Kategorie** -- die Punktzahl
-haengt von der Kategorie und dem Wurf ab.
+Yacht ist ein einfaches Würfelspiel mit fuenf Würfeln. Pro Runde
+wählt der Spieler eine **Wertungs-Kategorie** -- die Punktzahl
+hängt von der Kategorie und dem Wurf ab.
 
 Schreibe eine Funktion `yacht_punkte(wurf, kategorie)`, die die
 Punkte berechnet.
@@ -87,11 +87,11 @@ Punkte berechnet.
 | Kategorie         | Wertung                                              |
 |-------------------|------------------------------------------------------|
 | `ones`-`sixes`    | Anzahl der entsprechenden Augenzahl × Wert            |
-| `full_house`      | Paar + Drilling: Summe aller Wuerfel, sonst 0        |
+| `full_house`      | Paar + Drilling: Summe aller Würfel, sonst 0        |
 | `four_of_a_kind`  | mind. vier gleiche: 4 × diese Augenzahl, sonst 0     |
 | `little_straight` | genau {1,2,3,4,5}: 30, sonst 0                       |
 | `big_straight`    | genau {2,3,4,5,6}: 30, sonst 0                       |
-| `choice`          | Summe aller Wuerfel                                  |
+| `choice`          | Summe aller Würfel                                  |
 | `yacht`           | alle fuenf gleich: 50, sonst 0                       |
 
 ## Beispiele
@@ -111,4 +111,4 @@ Punkte berechnet.
 
 Yacht ist Vorgaenger von Yahtzee, das in den 1950ern die
 amerikanische Familienspielwelt eroberte. Die Punkte-Logik ist
-eine schoene Uebung in **Kategorisierung + Bedingungen**.
+eine schöne Übung in **Kategorisierung + Bedingungen**.

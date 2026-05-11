@@ -28,8 +28,8 @@ hints:
       nicht-numerisch, leer) → [].
   - kosten: 15
     text: |
-      teile = s.split("."); pruefen len == 4 und alle 0..255.
-      try/except ValueError fuer int().
+      teile = s.split("."); prüfen len == 4 und alle 0..255.
+      try/except ValueError für int().
 tests_sichtbar:
   - input: ["192.168.1.1"]
     expected: [192, 168, 1, 1]
@@ -66,12 +66,12 @@ Schreibe `ip_zerlegen(s)`, die einen IPv4-String (`"a.b.c.d"`) in
 eine Liste `[a, b, c, d]` mit vier Integern (jeweils 0..255)
 zerlegt.
 
-Bei ungueltiger Eingabe → `[]`.
+Bei ungültiger Eingabe → `[]`.
 
-Ungueltig sind:
+Ungültig sind:
 - nicht 4 Teile
 - nicht-numerische Werte
-- Werte ausserhalb 0..255
+- Werte außerhalb 0..255
 - leerer String, fuehrende Vorzeichen
 
 ## Beispiele
@@ -105,8 +105,8 @@ def ip_zerlegen(s):
     return out
 ```
 
-`isdigit` schliesst auch fuehrende Nullen wie `"007"` als gueltig ein.
-Wer das verbieten will, kann zusaetzlich pruefen:
+`isdigit` schließt auch fuehrende Nullen wie `"007"` als gültig ein.
+Wer das verbieten will, kann zusaetzlich prüfen:
 
 ```python
 if len(t) > 1 and t[0] == "0":
@@ -115,11 +115,11 @@ if len(t) > 1 and t[0] == "0":
 
 ## Pendant
 
-Aufgabe **261-zahlen-zu-ip** macht den Weg zurueck.
+Aufgabe **261-zahlen-zu-ip** macht den Weg zurück.
 Aufgabe **128-ipv4-validierung** liefert nur True/False.
 
 ## Hintergrund
 
 IPv4 hat **32 Bit** = 4 Bytes a 8 Bit = 4 Zahlen 0..255.
 Insgesamt $2^{32} \approx 4{,}3$ Milliarden Adressen -- bei 8 Mrd
-Menschen plus IoT-Geraeten klar zu wenig. Darum **IPv6** (128 Bit).
+Menschen plus IoT-Geräten klar zu wenig. Darum **IPv6** (128 Bit).

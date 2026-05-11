@@ -61,7 +61,7 @@ starter_code: |
 # Tausender-Trennzeichen (deutsch)
 
 Schreibe eine Funktion `mit_punkten(n)`, die eine ganze Zahl als
-String mit **deutschem Tausender-Trennzeichen** (Punkt) zurueckgibt.
+String mit **deutschem Tausender-Trennzeichen** (Punkt) zurückgibt.
 
 ## Beispiele
 
@@ -100,6 +100,6 @@ def mit_punkten(n):
 
 ## Locale-Hinweis
 
-Ueber `locale.format_string("%d", n, grouping=True)` ginge es auch,
-aber Locales sind haeufig nicht installiert (Container, CI). Der
-Format-String-Trick ist robust und braucht nichts ausser Python.
+Über `locale.format_string("%d", n, grouping=True)` ginge es auch,
+aber Locales sind häufig nicht installiert (Container, CI). Der
+Format-String-Trick ist robust und braucht nichts außer Python.

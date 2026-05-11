@@ -63,7 +63,7 @@ Zwei Zahlen `a` und `b` heissen **befreundet**, wenn:
 - die Summe der echten Teiler von `a` **gleich** `b` ist
 - die Summe der echten Teiler von `b` **gleich** `a` ist
 
-Schreibe eine Funktion `sind_befreundet(a, b)`, die das prueft.
+Schreibe eine Funktion `sind_befreundet(a, b)`, die das prüft.
 
 ## Beispiele
 
@@ -78,11 +78,11 @@ Schreibe eine Funktion `sind_befreundet(a, b)`, die das prueft.
 
 Das Paar `(220, 284)` war den Pythagoreern als Symbol der Freundschaft
 bekannt -- sie sahen darin etwas Mystisches. Bis ins 18. Jh. waren nur
-zwei oder drei Paare bekannt; heute sind es ueber **eine Milliarde**.
+zwei oder drei Paare bekannt; heute sind es über **eine Milliarde**.
 Niccolo Paganini (nicht der Geiger -- ein Sechzehnjaehriger) entdeckte
 1866 das Paar `(1184, 1210)`, das jahrhundertelang allen entgangen war.
 
 ## Tipp
 
-Eine Hilfsfunktion `teiler_summe(n)` fuer die Summe der echten Teiler
+Eine Hilfsfunktion `teiler_summe(n)` für die Summe der echten Teiler
 spart Tipparbeit -- ist aber kein Muss.

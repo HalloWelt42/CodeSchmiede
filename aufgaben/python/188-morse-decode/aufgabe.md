@@ -2,7 +2,7 @@
 schema_version: 1
 id: 188-morse-decode
 revision: 1
-titel: Morse-Code -- zurueck in Text
+titel: Morse-Code -- zurück in Text
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -24,12 +24,12 @@ hints:
   - kosten: 0
     text: |
       Wandle einen Morse-String in Text. Buchstaben mit Leerzeichen
-      getrennt, Woerter mit " / ". Ergebnis in GROSSBUCHSTABEN.
+      getrennt, Wörter mit " / ". Ergebnis in GROSSBUCHSTABEN.
       Leere Eingabe → "".
   - kosten: 10
     text: |
       Invertiertes Dict {".-": "A", ...}.
-      morse.split(" / ") → fuer jedes Wort split(" ") und mappen.
+      morse.split(" / ") → für jedes Wort split(" ") und mappen.
 tests_sichtbar:
   - input: ["... --- ..."]
     expected: "SOS"
@@ -58,14 +58,14 @@ starter_code: |
       pass
 ---
 
-# Morse-Code zurueck in Text
+# Morse-Code zurück in Text
 
 Schreibe `morse_decode(morse)`, die einen Morse-String wieder zu
-**Text** zurueckverwandelt.
+**Text** zurückverwandelt.
 
 - Buchstaben sind mit **einem Leerzeichen** getrennt.
-- Woerter mit **" / "**.
-- Ergebnis: **Grossbuchstaben** (Morse kennt kein Klein/Gross).
+- Wörter mit **" / "**.
+- Ergebnis: **Großbuchstaben** (Morse kennt kein Klein/Groß).
 - Leere Eingabe → `""`.
 - Unbekannte Sequenzen werden ignoriert.
 
@@ -80,7 +80,7 @@ Schreibe `morse_decode(morse)`, die einen Morse-String wieder zu
 
 ## Idee
 
-Invertiertes Dict, Wort-fuer-Wort dekodieren:
+Invertiertes Dict, Wort-für-Wort dekodieren:
 
 ```python
 TABELLE = {".-": "A", "-...": "B", ...}
@@ -88,12 +88,12 @@ TABELLE = {".-": "A", "-...": "B", ...}
 def morse_decode(morse):
     if not morse:
         return ""
-    woerter = []
+    wörter = []
     for wort in morse.split(" / "):
         zeichen = [TABELLE[t] for t in wort.split() if t in TABELLE]
         if zeichen:
-            woerter.append("".join(zeichen))
-    return " ".join(woerter)
+            wörter.append("".join(zeichen))
+    return " ".join(wörter)
 ```
 
 ## Stolperstein -- Trennung mit Spaces
@@ -101,9 +101,9 @@ def morse_decode(morse):
 Morse hat **drei** Trenner-Stufen:
 - **kein** Trenner: zwischen Punkten/Strichen eines Buchstabens.
 - **ein Leerzeichen**: zwischen Buchstaben.
-- **Drei Leerzeichen** (oder " / "): zwischen Woertern.
+- **Drei Leerzeichen** (oder " / "): zwischen Wörtern.
 
-Wenn man die Wort-Trenner falsch waehlt (z.B. nur 1 Leerzeichen),
+Wenn man die Wort-Trenner falsch wählt (z.B. nur 1 Leerzeichen),
 laesst sich der Code nicht mehr eindeutig zerlegen. Darum hier die
 explizite `" / "`-Konvention.
 
@@ -111,5 +111,5 @@ explizite `" / "`-Konvention.
 
 Morse ist ein **selbst-synchronisierender Code** -- ein einziger
 verlorener Punkt verschiebt nur einen Buchstaben, nicht den ganzen
-Rest. Das ist mit ein Grund, warum er ueber laute Funkverbindungen
+Rest. Das ist mit ein Grund, warum er über laute Funkverbindungen
 und schlechte Telegraphenleitungen funktionierte.

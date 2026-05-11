@@ -29,7 +29,7 @@ hints:
   - kosten: 10
     text: |
       arr.reduce((akk, x) => akk + x, 0).
-      Der Startwert 0 ist wichtig fuer den leeren Array-Fall.
+      Der Startwert 0 ist wichtig für den leeren Array-Fall.
 tests_sichtbar:
   - input: [[1, 2, 3, 4]]
     expected: 10
@@ -75,7 +75,7 @@ const arraySumme = (arr) => arr.reduce((a, x) => a + x, 0);
 
 `Array.reduce` ist das JavaScript-Aequivalent von Pythons
 `functools.reduce`. Der **Startwert** `0` ist wichtig: ohne ihn
-wuerde `reduce` bei leerem Array einen `TypeError` werfen.
+würde `reduce` bei leerem Array einen `TypeError` werfen.
 
 ## Vergleich mit Python
 
@@ -87,10 +87,3 @@ wuerde `reduce` bei leerem Array einen `TypeError` werfen.
 
 Pythons `sum` ist hochoptimiert in C, in JS gibt es kein direktes
 Pendant -- `reduce` ist der Standard-Weg.
-
-## Hintergrund -- Browser-Sandbox
-
-Diese Aufgabe laeuft im **Web Worker** im Browser (kein Docker, kein
-Backend). Damit ist sie blitzschnell, hat aber eingeschraenkte
-Test-Moeglichkeiten -- versteckte Tests gibt's hier nicht, weil der
-Client den Test-Code immer sehen kann.

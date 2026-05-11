@@ -56,9 +56,9 @@ starter_code: |
 
 # Größte Lücke in sortierter Liste
 
-Schreibe eine Funktion `groesste_luecke(zahlen)`, die die **größte
+Schreibe eine Funktion `größte_lücke(zahlen)`, die die **größte
 Lücke** zwischen zwei aufeinanderfolgenden Werten in der **sortierten**
-Liste zurueckgibt.
+Liste zurückgibt.
 
 ## Beispiele
 

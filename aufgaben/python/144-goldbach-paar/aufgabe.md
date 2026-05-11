@@ -23,7 +23,7 @@ funktion: goldbach_paar
 hints:
   - kosten: 0
     text: |
-      Liefere fuer eine gerade Zahl n > 2 das kleinste Paar
+      Liefere für eine gerade Zahl n > 2 das kleinste Paar
       (p, q) zweier Primzahlen mit p + q == n und p <= q.
       Bei ungerader Zahl oder n <= 2 → None.
   - kosten: 15
@@ -62,9 +62,9 @@ starter_code: |
 
 # Goldbach-Paar
 
-Schreibe eine Funktion `goldbach_paar(n)`, die fuer eine **gerade Zahl
+Schreibe eine Funktion `goldbach_paar(n)`, die für eine **gerade Zahl
 n > 2** das **kleinste Primzahl-Paar** `(p, q)` mit `p + q == n` und
-`p <= q` zurueckgibt.
+`p <= q` zurückgibt.
 
 Bei ungeraden Zahlen oder `n <= 2` → `None`.
 
@@ -83,12 +83,12 @@ Bei ungeraden Zahlen oder `n <= 2` → `None`.
 
 ## Goldbachs Vermutung (1742)
 
-> Jede gerade Zahl groesser 2 ist als Summe zweier Primzahlen
+> Jede gerade Zahl größer 2 ist als Summe zweier Primzahlen
 > darstellbar.
 
 Bis heute ist die Vermutung **unbewiesen**, aber bis $4 \cdot 10^{18}$
 empirisch verifiziert. Eulers Antwort an Goldbach war: "Ich halte sie
-fuer ein vollkommen sicheres Theorem, ungeachtet, dass ich sie nicht
+für ein vollkommen sicheres Theorem, ungeachtet, dass ich sie nicht
 beweisen kann."
 
 ## Idee

@@ -31,10 +31,10 @@ hints:
         der andere leer ist
       Finde die minimale Zugzahl, um genau `ziel` Liter in einem Eimer
       zu haben. Verbotener Zustand: Start-Eimer leer + anderer voll
-      (nicht erlaubt direkt zurueck zum Anfang).
+      (nicht erlaubt direkt zurück zum Anfang).
   - kosten: 30
     text: |
-      BFS! Zustaende: `(a_inhalt, b_inhalt)`. Start: je nach
+      BFS! Zustände: `(a_inhalt, b_inhalt)`. Start: je nach
       `start_eimer` entweder `(a, 0)` oder `(0, b)`. Verbotener
       Folgezustand: der gespiegelte Anfangszustand. Liefere die
       Zugzahl, in welchem Eimer das Ziel ist, und den Inhalt des
@@ -77,7 +77,7 @@ Erlaubte Zuege:
 - **Kippe** Wasser von einem in den anderen, bis entweder der
   Quell-Eimer leer oder der Ziel-Eimer voll ist
 
-Zaehle die **minimale Zugzahl**. Der erste Zug ist immer das
+Zähle die **minimale Zugzahl**. Der erste Zug ist immer das
 Fuellen des Start-Eimers (`'a'` oder `'b'`).
 
 **Verboten**: der **gespiegelte Anfangszustand** -- wenn du mit
@@ -101,7 +101,7 @@ unloesbar.
 
 ## Hintergrund
 
-Das Krug-Problem geht zurueck auf das **Mathematische Brettspiel**
-des 17. Jahrhunderts. In "Stirb langsam: Jetzt erst recht" loesen
+Das Krug-Problem geht zurück auf das **Mathematische Brettspiel**
+des 17. Jahrhunderts. In "Stirb langsam: Jetzt erst recht" lösen
 Bruce Willis und Samuel L. Jackson die 4-Liter-Aufgabe mit einem
 3- und einem 5-Liter-Eimer.

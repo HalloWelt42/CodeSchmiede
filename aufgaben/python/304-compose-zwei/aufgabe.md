@@ -26,7 +26,7 @@ hints:
       Wende ZWEI Operationen verschachtelt auf x an: (g . f)(x) = g(f(x)).
       Operationen: "double", "square", "negate", "increment", "absolute".
       compose_anwenden(3, "increment", "square") = (3+1)² = 16.
-      Bei UNBEKANNTER Op → x unveraendert.
+      Bei UNBEKANNTER Op → x unverändert.
   - kosten: 15
     text: |
       g(f(x)) -- erst f anwenden, dann g auf das Ergebnis.
@@ -69,9 +69,9 @@ $$(g \circ f)(x) = g(f(x))$$
 
 Das heisst: **erst f**, dann **g auf das Ergebnis**.
 
-Bei unbekannter Op wird sie als `identity` behandelt (gibt x zurueck).
+Bei unbekannter Op wird sie als `identity` behandelt (gibt x zurück).
 
-## Verfuegbare Operationen
+## Verfügbare Operationen
 
 | String        | Wirkung    |
 |---------------|------------|

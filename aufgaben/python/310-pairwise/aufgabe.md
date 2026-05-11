@@ -58,7 +58,7 @@ starter_code: |
 
 # Pairwise -- aufeinanderfolgende Paare
 
-Schreibe `pairwise(a)`, die alle **ueberlappenden Paare** aufeinander
+Schreibe `pairwise(a)`, die alle **überlappenden Paare** aufeinander
 folgender Elemente liefert.
 
 Bei Liste der Laenge < 2 → `[]`.
@@ -92,7 +92,7 @@ def pairwise(a):
 ```
 
 `zip(a, a[1:])` paart Element 0 mit 1, 1 mit 2, etc. -- super
-elegant und in der Praxis das uebliche Idiom.
+elegant und in der Praxis das übliche Idiom.
 
 ## Idee 3 -- itertools.pairwise (Python 3.10+)
 
@@ -108,6 +108,6 @@ Die `pairwise`-Funktion gibt es seit Python 3.10 in `itertools`.
 ## Anwendung
 
 - Differenzen aufeinander folgender Werte (Steigungen)
-- "Hat sich was geaendert?" Vergleich (Aufgabe 240)
+- "Hat sich was geändert?" Vergleich (Aufgabe 240)
 - Bigram-Analyse in Texten
 - Pfad-Segmente in Polylinien

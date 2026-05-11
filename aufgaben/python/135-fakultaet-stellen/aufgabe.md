@@ -28,7 +28,7 @@ hints:
   - kosten: 10
     text: |
       Pythons `math.factorial` macht es. Oder eigene Schleife.
-      `len(str(...))` zaehlt die Stellen.
+      `len(str(...))` zählt die Stellen.
 tests_sichtbar:
   - input: [0]
     expected: 1
@@ -59,7 +59,7 @@ starter_code: |
 
 # Anzahl Stellen von n!
 
-Schreibe eine Funktion `stellen_von_fakultaet(n)`, die zaehlt,
+Schreibe eine Funktion `stellen_von_fakultaet(n)`, die zählt,
 wie viele **Dezimalstellen** $n!$ hat.
 
 Bei `n < 0` → `0`. `0!` = `1` → `1` Stelle.
@@ -77,11 +77,11 @@ Bei `n < 0` → `0`. `0!` = `1` → `1` Stelle.
 
 ## Idee
 
-Pythons `math.factorial(n)` rechnet `n!`. `len(str(n_fak))` zaehlt
+Pythons `math.factorial(n)` rechnet `n!`. `len(str(n_fak))` zählt
 die Stellen.
 
 ## Hintergrund
 
-Es gibt eine schoene Formel von **Stirling**: $\log_{10}(n!) \approx n \log_{10}(n/e)$.
-Damit kann man die Stellenzahl in O(1) abschaetzen, ohne $n!$ zu berechnen.
+Es gibt eine schöne Formel von **Stirling**: $\log_{10}(n!) \approx n \log_{10}(n/e)$.
+Damit kann man die Stellenzahl in O(1) abschätzen, ohne $n!$ zu berechnen.
 Hier nehmen wir aber die ehrliche Variante.

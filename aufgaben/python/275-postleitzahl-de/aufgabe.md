@@ -23,13 +23,13 @@ funktion: ist_plz
 hints:
   - kosten: 0
     text: |
-      Pruefe ob ein String eine deutsche Postleitzahl ist:
-      genau 5 Ziffern, nichts sonst. Whitespace zaehlt nicht.
+      Prüfe ob ein String eine deutsche Postleitzahl ist:
+      genau 5 Ziffern, nichts sonst. Whitespace zählt nicht.
       "12345" → True. " 12345" → False. "1234" → False.
   - kosten: 10
     text: |
       re.fullmatch(r"\d{5}", s) ist True wenn der GANZE String
-      genau 5 Ziffern enthaelt.
+      genau 5 Ziffern enthält.
 tests_sichtbar:
   - input: ["12345"]
     expected: true
@@ -66,14 +66,14 @@ starter_code: |
 
 # Deutsche Postleitzahl validieren
 
-Schreibe `ist_plz(s)`, die `True` zurueckgibt, wenn der String eine
+Schreibe `ist_plz(s)`, die `True` zurückgibt, wenn der String eine
 **deutsche Postleitzahl** ist -- **genau 5 Ziffern**, sonst nichts.
 
 Whitespace, Buchstaben, andere Laengen → `False`.
 
 ## Beispiele
 
-| Eingabe    | Gueltig? |
+| Eingabe    | Gültig? |
 |------------|----------|
 | `"12345"`  | `True`   |
 | `"00000"`  | `True`   |
@@ -95,7 +95,7 @@ def ist_plz(s):
 ```
 
 `re.fullmatch` erwartet, dass das **gesamte String** dem Pattern
-entspricht (im Gegensatz zu `match`, das nur am Anfang prueft).
+entspricht (im Gegensatz zu `match`, das nur am Anfang prüft).
 `\d{5}` heisst "genau 5 Ziffern".
 
 ## Variante ohne Regex
@@ -105,12 +105,12 @@ def ist_plz(s):
     return len(s) == 5 and s.isdigit()
 ```
 
-Funktioniert auch -- `str.isdigit` schliesst `' '` und Buchstaben aus.
-`len(s) == 5` haengt mit dran.
+Funktioniert auch -- `str.isdigit` schließt `' '` und Buchstaben aus.
+`len(s) == 5` hängt mit dran.
 
 ## Hintergrund
 
 Deutsche PLZ haben **5 Ziffern** seit 1993 (vorher 4-stellig). Es
 gibt etwa 8200 PLZ in Deutschland. Manche Sonderfaelle (Postfaecher,
-Grossempfaenger) haben eigene PLZ -- die kann man mit der einfachen
+Großempfaenger) haben eigene PLZ -- die kann man mit der einfachen
 Regex aber nicht von normalen unterscheiden.

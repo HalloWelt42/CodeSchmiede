@@ -2,7 +2,7 @@
 schema_version: 1
 id: 307-zaehler-bis-n
 revision: 1
-titel: Eigener Zaehler-Generator (Liste)
+titel: Eigener Zähler-Generator (Liste)
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -29,7 +29,7 @@ hints:
   - kosten: 10
     text: |
       def gen(): for i in range(1, n+1): yield i
-      Funktion gibt list(gen()) zurueck.
+      Funktion gibt list(gen()) zurück.
 tests_sichtbar:
   - input: [3]
     expected: [1, 2, 3]
@@ -56,9 +56,9 @@ starter_code: |
       pass
 ---
 
-# Eigener Zaehler-Generator (Liste)
+# Eigener Zähler-Generator (Liste)
 
-Schreibe `zaehler_bis(n)`, die die Zahlen `1, 2, ..., n` als Liste
+Schreibe `zähler_bis(n)`, die die Zahlen `1, 2, ..., n` als Liste
 liefert. **Implementiere intern einen Generator** mit `yield` --
 auch wenn die finale Form eine Liste ist.
 
@@ -77,7 +77,7 @@ auch wenn die finale Form eine Liste ist.
 ## Idee -- Generator intern
 
 ```python
-def zaehler_bis(n):
+def zähler_bis(n):
     def gen():
         for i in range(1, n + 1):
             yield i
@@ -90,16 +90,16 @@ materialisiert ihn zur Liste.
 ## Warum nicht direkt `list(range(...))`?
 
 Weil das Lehrziel der **Generator-Mechanismus** ist. In echtem
-Code waere `list(range(1, n+1))` natuerlich kuerzer.
+Code wäre `list(range(1, n+1))` natuerlich kürzer.
 
 ## Generator-Vorteile (in echten Anwendungen)
 
-- **Speicherung**: kein doppelter Speicher fuer Zwischen-Liste.
+- **Speicherung**: kein doppelter Speicher für Zwischen-Liste.
 - **Lazy Evaluation**: Werte erst bei Bedarf.
-- **Unendliche Folgen**: Generatoren koennen ewig laufen
-  (`while True: yield ...`), Listen koennen das nicht.
+- **Unendliche Folgen**: Generatoren können ewig laufen
+  (`while True: yield ...`), Listen können das nicht.
 
 ## Pattern -- Generator-Funktion
 
-In den naechsten Aufgaben (308-314) kommen die wichtigen
+In den nächsten Aufgaben (308-314) kommen die wichtigen
 Generator-Patterns: Fibonacci, Pairwise, Take-While, Accumulate, etc.

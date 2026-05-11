@@ -14,7 +14,7 @@ pfade: []
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Klassische Pruefung
+  notiz: Klassische Prüfung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -23,8 +23,8 @@ funktion: alle_positiv
 hints:
   - kosten: 0
     text: |
-      Pruefe ob alle Zahlen STRIKT positiv (> 0) sind.
-      Null zaehlt nicht als positiv.
+      Prüfe ob alle Zahlen STRIKT positiv (> 0) sind.
+      Null zählt nicht als positiv.
       Leere Liste → True (vacuous truth).
   - kosten: 5
     text: |
@@ -61,8 +61,8 @@ starter_code: |
 
 # Alle Zahlen positiv?
 
-Schreibe `alle_positiv(zahlen)`, die `True` zurueckgibt, wenn alle
-Zahlen **strikt positiv** sind (`> 0`). Null zaehlt **nicht** als
+Schreibe `alle_positiv(zahlen)`, die `True` zurückgibt, wenn alle
+Zahlen **strikt positiv** sind (`> 0`). Null zählt **nicht** als
 positiv.
 
 Leere Liste → `True` (vacuous truth).
@@ -87,16 +87,16 @@ def alle_positiv(zahlen):
 
 Pythons `all` liefert `True` bei leerem Iterable -- vacuous truth.
 Bei nicht-leerem Iterable: `True` genau dann, wenn jedes Element
-**truthy** ist. Mit dem Generator-Ausdruck pruefen wir die
+**truthy** ist. Mit dem Generator-Ausdruck prüfen wir die
 Bedingung.
 
 ## Short-Circuit
 
 `all` bricht beim **ersten False** ab -- bei `[1, 2, -1, 3, 4, 5, 6]`
-wird nach `-1 > 0 → False` sofort zurueckgegeben. Effizient bei
-langen Listen mit fruehem Treffer.
+wird nach `-1 > 0 → False` sofort zurückgegeben. Effizient bei
+langen Listen mit frühem Treffer.
 
-## Verwandte Pruefungen
+## Verwandte Prüfungen
 
 | Funktion          | Beispiel-Code              | Bedeutung               |
 |-------------------|-----------------------------|------------------------|

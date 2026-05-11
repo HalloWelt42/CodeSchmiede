@@ -64,7 +64,7 @@ verwenden.
 
 Vergleiche **benachbarte Elemente** und vertausche sie, falls sie in
 falscher Reihenfolge sind. Wiederhole das, bis kein Tausch mehr
-noetig ist. Bei jedem Durchlauf "blubbert" das jeweils groesste
+nötig ist. Bei jedem Durchlauf "blubbert" das jeweils größte
 verbliebene Element ans Ende -- daher der Name.
 
 ## Beispiele

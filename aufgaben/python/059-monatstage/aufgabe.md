@@ -24,10 +24,10 @@ hints:
   - kosten: 0
     text: |
       Lookup-Tabelle: Index = Monat (1-12), Wert = Tage. Februar
-      separat behandeln, abhaengig vom Schaltjahr.
+      separat behandeln, abhängig vom Schaltjahr.
   - kosten: 15
     text: |
-      Wenn Monat ausserhalb 1-12, gib 0 zurück (kein Crash).
+      Wenn Monat außerhalb 1-12, gib 0 zurück (kein Crash).
 tests_sichtbar:
   - input: [2024, 2]
     expected: 29
@@ -59,16 +59,16 @@ starter_code: |
 # Tage im Monat
 
 Schreibe eine Funktion `tage_im_monat(jahr, monat)`, die die Anzahl
-der Tage im gegebenen Monat zurueckgibt.
+der Tage im gegebenen Monat zurückgibt.
 
 | Monat                   | Tage     |
 |-------------------------|----------|
-| Januar, Maerz, Mai, Juli, August, Oktober, Dezember | 31 |
+| Januar, März, Mai, Juli, August, Oktober, Dezember | 31 |
 | April, Juni, September, November                    | 30 |
 | Februar (Schaltjahr)                                | 29 |
 | Februar (sonst)                                     | 28 |
 
-Bei einem Monat ausserhalb von 1-12 gib `0` zurück.
+Bei einem Monat außerhalb von 1-12 gib `0` zurück.
 
 ## Beispiele
 

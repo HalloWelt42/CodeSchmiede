@@ -85,13 +85,13 @@ def nur_ungerade(zahlen):
 In **Python** gilt `-3 % 2 == 1` (nicht -1, wie in C/Java). Darum
 funktioniert `if x % 2 != 0` auch mit negativen Zahlen sauber.
 
-In Sprachen mit "C-Modulo" muesste man `if x % 2 != 0` schreiben
+In Sprachen mit "C-Modulo" müsste man `if x % 2 != 0` schreiben
 und sich klarmachen, dass `-3 % 2 == -1` -- der Filter funktioniert
 trotzdem, weil `-1 != 0`.
 
 ## Pendant
 
-Aufgabe **238-gerade-filter** ist das Gegenstueck. Beide zusammen
+Aufgabe **238-gerade-filter** ist das Gegenstück. Beide zusammen
 zerlegen die Liste -- ohne Verlust:
-`nur_gerade(xs) + nur_ungerade(xs)` enthaelt jede Zahl genau einmal,
+`nur_gerade(xs) + nur_ungerade(xs)` enthält jede Zahl genau einmal,
 nur in zwei Gruppen aufgeteilt.

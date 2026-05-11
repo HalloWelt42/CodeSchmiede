@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Wandle [r, g, b] mit Werten 0-255 in einen Hex-Farbcode "#rrggbb".
-      Werte ausserhalb 0-255 werden auf den naechsten gueltigen Wert
+      Werte außerhalb 0-255 werden auf den nächsten gültigen Wert
       geclampt. Ausgabe IMMER kleinbuchstabig und mit fuehrendem #.
   - kosten: 10
     text: |
@@ -64,7 +64,7 @@ starter_code: |
 Schreibe `rgb_zu_hex(rgb)`, die ein RGB-Tripel in einen Hex-Farbcode
 `"#rrggbb"` umwandelt -- klein und mit fuehrendem `#`.
 
-Werte ausserhalb `0..255` werden **geclampt** (auf 0 bzw. 255).
+Werte außerhalb `0..255` werden **geclampt** (auf 0 bzw. 255).
 
 ## Beispiele
 
@@ -90,11 +90,11 @@ def rgb_zu_hex(rgb):
 
 Der Format-Specifier `:02x` formatiert eine Zahl als Hex (klein),
 mit mindestens **zwei Stellen** -- bei Bedarf mit fuehrender Null.
-Fuer Grossbuchstaben: `:02X`.
+Für Großbuchstaben: `:02X`.
 
 ## Hintergrund -- Wieso Clampen statt Fehler?
 
 In Bildverarbeitung und CSS-Berechnungen entstehen oft kurzzeitig
-Werte ausserhalb `0..255` (z.B. nach Filter-Anwendung). Sie auf
-gueltige Werte zu **clampen** ist die ueblichste Reaktion -- ein
-Error-Throw waere meist nicht hilfreich.
+Werte außerhalb `0..255` (z.B. nach Filter-Anwendung). Sie auf
+gültige Werte zu **clampen** ist die üblichste Reaktion -- ein
+Error-Throw wäre meist nicht hilfreich.

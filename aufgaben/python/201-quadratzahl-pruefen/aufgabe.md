@@ -23,13 +23,13 @@ funktion: ist_quadratzahl
 hints:
   - kosten: 0
     text: |
-      Pruefe, ob n eine Quadratzahl ist (1, 4, 9, 16, 25, 36, ...).
+      Prüfe, ob n eine Quadratzahl ist (1, 4, 9, 16, 25, 36, ...).
       n < 0 → False. 0 → True (= 0^2).
-      Achtung: math.sqrt liefert Floats und ist bei grossen n ungenau.
+      Achtung: math.sqrt liefert Floats und ist bei großen n ungenau.
   - kosten: 15
     text: |
       math.isqrt(n) liefert die ganzzahlige Wurzel (immer exakt).
-      Pruefe: w = isqrt(n); return w * w == n.
+      Prüfe: w = isqrt(n); return w * w == n.
 tests_sichtbar:
   - input: [0]
     expected: true
@@ -66,11 +66,11 @@ starter_code: |
 
 # Ist die Zahl ein Quadrat?
 
-Schreibe `ist_quadratzahl(n)`, die `True` zurueckgibt, wenn `n` eine
-**Quadratzahl** ist -- also $n = k^2$ fuer ein nicht-negatives ganzes
+Schreibe `ist_quadratzahl(n)`, die `True` zurückgibt, wenn `n` eine
+**Quadratzahl** ist -- also $n = k^2$ für ein nicht-negatives ganzes
 $k$.
 
-Bei `n < 0` → `False`. `0` zaehlt als Quadrat (`0 = 0^2`).
+Bei `n < 0` → `False`. `0` zählt als Quadrat (`0 = 0^2`).
 
 ## Beispiele
 
@@ -98,11 +98,11 @@ def ist_quadratzahl(n):
 ```
 
 `math.isqrt(n)` liefert die **ganzzahlige Wurzel** ohne Float-Rundung.
-Damit ist die Pruefung auch fuer riesige Zahlen exakt.
+Damit ist die Prüfung auch für riesige Zahlen exakt.
 
 ## Warum nicht `math.sqrt`?
 
-`math.sqrt` arbeitet mit Floats (`float64`). Bei sehr grossen Zahlen
+`math.sqrt` arbeitet mit Floats (`float64`). Bei sehr großen Zahlen
 (> $2^{52}$) verliert `float` Genauigkeit:
 
 ```python
@@ -110,7 +110,7 @@ math.sqrt(99980001) == 9999.0   # OK
 math.sqrt(10**20)              # 1e10, aber 10**20 hat 11 Ziffern
 ```
 
-Fuer "kleine" `n` reicht `int(math.sqrt(n) + 0.5)` plus Vergleich --
+Für "kleine" `n` reicht `int(math.sqrt(n) + 0.5)` plus Vergleich --
 aber `isqrt` ist sauberer.
 
 ## Hintergrund
@@ -118,4 +118,4 @@ aber `isqrt` ist sauberer.
 Quadratzahlen erscheinen in der **Pythagoras-Aufgabe** (084),
 in der **Project-Euler-Reihe** (z.B. **Quadrat-Summen-Differenz**, 086),
 und sind die Basis vieler **zahlentheoretischer Vermutungen**
-(Lagrange: jede natuerliche Zahl ist Summe von hoechstens vier Quadraten).
+(Lagrange: jede natuerliche Zahl ist Summe von höchstens vier Quadraten).

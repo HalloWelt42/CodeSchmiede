@@ -25,10 +25,10 @@ hints:
     text: |
       Liefere den DEUTSCHEN Monatsnamen aus der Monatsnummer 1-12.
       1 → "Januar", ..., 12 → "Dezember".
-      Ungueltige Eingaben → "".
+      Ungültige Eingaben → "".
   - kosten: 5
     text: |
-      Liste mit 13 Eintraegen (Index 0 = Fueller). Pruefe Bereich.
+      Liste mit 13 Eintraegen (Index 0 = Fueller). Prüfe Bereich.
 tests_sichtbar:
   - input: [1]
     expected: "Januar"
@@ -70,13 +70,13 @@ starter_code: |
 # Deutscher Monatsname aus Nummer
 
 Schreibe `monatsname(monat)`, die zur Monatsnummer den deutschen
-Namen liefert. Ungueltige Eingaben → `""`.
+Namen liefert. Ungültige Eingaben → `""`.
 
 | Nr | Name        |
 |----|-------------|
 | 1  | `"Januar"`  |
 | 2  | `"Februar"` |
-| 3  | `"Maerz"`   |
+| 3  | `"März"`   |
 | 4  | `"April"`   |
 | 5  | `"Mai"`     |
 | 6  | `"Juni"`    |
@@ -92,7 +92,7 @@ Namen liefert. Ungueltige Eingaben → `""`.
 ```python
 NAMEN = [
     "",
-    "Januar", "Februar", "Maerz", "April",
+    "Januar", "Februar", "März", "April",
     "Mai", "Juni", "Juli", "August",
     "September", "Oktober", "November", "Dezember",
 ]
@@ -106,11 +106,11 @@ def monatsname(monat):
 Liste-Lookup mit Index 0 als Fueller -- damit `monat == 1`
 direkt `NAMEN[1]` ist.
 
-## Hinweis -- Maerz ohne Umlaut
+## Hinweis -- März ohne Umlaut
 
-In den Tests verwenden wir `"Maerz"` statt `"März"` -- der Test-
-String wird durch JSON serialisiert und Umlaute koennen in manchen
-Test-Engines Aerger machen. In echten UIs natuerlich `März`
+In den Tests verwenden wir `"März"` statt `"März"` -- der Test-
+String wird durch JSON serialisiert und Umlaute können in manchen
+Test-Engines Ärger machen. In echten UIs natuerlich `März`
 schreiben.
 
 ## Verwandt

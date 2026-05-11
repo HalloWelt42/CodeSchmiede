@@ -56,7 +56,7 @@ starter_code: |
 
 # Nukleotide zählen
 
-Schreibe eine Funktion `nukleotide_zaehlen(dna)`, die zählt, wie oft
+Schreibe eine Funktion `nukleotide_zählen(dna)`, die zählt, wie oft
 die vier DNA-Nukleotide **A, C, G, T** in einem String vorkommen.
 
 Bei **ungültigen Zeichen** (alles außer A, C, G, T) gib ein **leeres

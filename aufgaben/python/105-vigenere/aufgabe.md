@@ -29,7 +29,7 @@ hints:
       die Schlüsselposition NICHT.
   - kosten: 25
     text: |
-      Pro Buchstabe: shift = ord(schluessel[i % len(schluessel)]) - ord('a').
+      Pro Buchstabe: shift = ord(schlüssel[i % len(schlüssel)]) - ord('a').
       Verschiebung wie bei ROT, Groß/Klein bleibt erhalten.
 tests_sichtbar:
   - input: ["abc", "a"]
@@ -57,7 +57,7 @@ starter_code: |
 
 # Vigenère-Verschlüsselung
 
-Schreibe eine Funktion `vigenere(text, schluessel)`, die einen Text
+Schreibe eine Funktion `vigenere(text, schlüssel)`, die einen Text
 mit der **Vigenère-Chiffre** verschlüsselt.
 
 Im Unterschied zu Caesar/ROT-N variiert die Verschiebung pro Position --

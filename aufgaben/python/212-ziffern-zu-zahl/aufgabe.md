@@ -23,9 +23,9 @@ funktion: aus_ziffern
 hints:
   - kosten: 0
     text: |
-      Setze eine Ziffern-Liste (hoechstwertige zuerst) zu einer Zahl
+      Setze eine Ziffern-Liste (höchstwertige zuerst) zu einer Zahl
       zusammen. [1,2,3] → 123. [0] → 0. [] → 0.
-      Ungueltige Eingaben (z.B. Wert > 9) werden wie ihre Modulo-Zahl
+      Ungültige Eingaben (z.B. Wert > 9) werden wie ihre Modulo-Zahl
       behandelt.
   - kosten: 10
     text: |
@@ -61,7 +61,7 @@ starter_code: |
 # Ziffern-Liste zur Zahl zusammensetzen
 
 Schreibe `aus_ziffern(ziffern)`, die eine Liste von Ziffern (jeweils
-0-9) zu einer Zahl zusammensetzt -- hoechstwertige Stelle zuerst.
+0-9) zu einer Zahl zusammensetzt -- höchstwertige Stelle zuerst.
 
 Bei leerer Liste → `0`. Fuehrende Nullen entfallen automatisch.
 
@@ -106,10 +106,10 @@ def aus_ziffern(ziffern):
     return int("".join(str(d) for d in ziffern))
 ```
 
-Liest sich kompakt, macht aber den Umweg ueber String -- bei sehr
-grossen Listen langsamer als Horner.
+Liest sich kompakt, macht aber den Umweg über String -- bei sehr
+großen Listen langsamer als Horner.
 
 ## Anwendung
 
-Pendant zur Aufgabe **211**. Horner ist auch die Grundlage fuer
+Pendant zur Aufgabe **211**. Horner ist auch die Grundlage für
 **Basiskonvertierungen** (Aufgabe 158-binary-zu-dezimal).

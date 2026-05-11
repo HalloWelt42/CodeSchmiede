@@ -30,8 +30,8 @@ hints:
       - "ungleich": sonst
   - kosten: 15
     text: |
-      Hilfsfunktion: ist `klein` Sublist von `gross`?
-      `any(gross[i:i+len(klein)] == klein for i in range(len(gross)-len(klein)+1))`.
+      Hilfsfunktion: ist `klein` Sublist von `groß`?
+      `any(groß[i:i+len(klein)] == klein for i in range(len(groß)-len(klein)+1))`.
       Leere Liste ist Sublist von allem.
 tests_sichtbar:
   - input: [[1, 2, 3], [1, 2, 3]]
@@ -87,5 +87,5 @@ Die **leere Liste** ist Sublist von allem (auch von sich selbst).
 ## Hintergrund
 
 Das Pattern ist Vorstufe zu **Substring-Suche** (KMP-Algorithmus).
-In O(n*m) ist die naive Variante okay, fuer große Listen waere
+In O(n*m) ist die naive Variante okay, für große Listen wäre
 KMP die Wahl.

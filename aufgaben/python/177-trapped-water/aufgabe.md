@@ -23,14 +23,14 @@ funktion: regenwasser
 hints:
   - kosten: 0
     text: |
-      Gegeben ist ein Hoehenprofil. Berechne die Regenwasser-Menge,
+      Gegeben ist ein Höhenprofil. Berechne die Regenwasser-Menge,
       die zwischen den Saeulen gefangen wird (1 Einheit Breite).
       Beispiel [0,1,0,2,1,0,1,3,2,1,2,1] -> 6.
   - kosten: 25
     text: |
       Two-Pointers-Trick: links/rechts wandern.
       Pro Schritt die kleinere Seite verarbeiten:
-      hoehe < bisheriges_max -> Wasser dazwischen,
+      höhe < bisheriges_max -> Wasser dazwischen,
       sonst max aktualisieren. O(n), O(1) Speicher.
 tests_sichtbar:
   - input: [[0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]]
@@ -64,7 +64,7 @@ starter_code: |
 
 # Regenwasser im Histogramm
 
-Stell dir ein Hoehenprofil vor, in dem jede Saeule 1 Einheit breit
+Stell dir ein Höhenprofil vor, in dem jede Saeule 1 Einheit breit
 ist. Wenn es regnet, sammeln sich Wasser-Einheiten **zwischen** den
 Saeulen. Wieviel Wasser bleibt insgesamt liegen?
 
@@ -82,7 +82,7 @@ Antwort: **6** Einheiten.
 
 ## Beispiele
 
-| Hoehen                              | Regenwasser |
+| Höhen                              | Regenwasser |
 |-------------------------------------|-------------|
 | `[0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]` | `6`      |
 | `[4, 2, 0, 3, 2, 5]`                | `9`         |
@@ -92,29 +92,29 @@ Antwort: **6** Einheiten.
 
 ## Idee -- Two Pointers (O(n) Zeit, O(1) Speicher)
 
-Pro Position wuerde sich Wasser auf **min(max-links, max-rechts) -
-hoehe** sammeln. Naive Loesung: zwei Praefix-Arrays mit den jeweiligen
-Maxima -- `O(n)` Zeit, `O(n)` Speicher. Kuerzer per Two-Pointers:
+Pro Position würde sich Wasser auf **min(max-links, max-rechts) -
+höhe** sammeln. Naive Lösung: zwei Praefix-Arrays mit den jeweiligen
+Maxima -- `O(n)` Zeit, `O(n)` Speicher. Kürzer per Two-Pointers:
 
 ```python
-def regenwasser(hoehen):
-    if not hoehen:
+def regenwasser(höhen):
+    if not höhen:
         return 0
-    links, rechts = 0, len(hoehen) - 1
+    links, rechts = 0, len(höhen) - 1
     max_l = max_r = 0
     wasser = 0
     while links <= rechts:
-        if hoehen[links] < hoehen[rechts]:
-            if hoehen[links] >= max_l:
-                max_l = hoehen[links]
+        if höhen[links] < höhen[rechts]:
+            if höhen[links] >= max_l:
+                max_l = höhen[links]
             else:
-                wasser += max_l - hoehen[links]
+                wasser += max_l - höhen[links]
             links += 1
         else:
-            if hoehen[rechts] >= max_r:
-                max_r = hoehen[rechts]
+            if höhen[rechts] >= max_r:
+                max_r = höhen[rechts]
             else:
-                wasser += max_r - hoehen[rechts]
+                wasser += max_r - höhen[rechts]
             rechts -= 1
     return wasser
 ```

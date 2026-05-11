@@ -2,7 +2,7 @@
 schema_version: 1
 id: 047-substring-anzahl
 revision: 1
-titel: Substring zählen (mit Ueberlappung)
+titel: Substring zählen (mit Überlappung)
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -14,7 +14,7 @@ pfade: [python_strings3]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Variation des Klassikers, mit Ueberlappung
+  notiz: Variation des Klassikers, mit Überlappung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -23,8 +23,8 @@ funktion: zaehle_vorkommen
 hints:
   - kosten: 0
     text: |
-      `text.count(sub)` ohne Ueberlappung. Hier soll Ueberlappung
-      mitgezaehlt werden -- "aaa" enthaelt "aa" zweimal!
+      `text.count(sub)` ohne Überlappung. Hier soll Überlappung
+      mitgezählt werden -- "aaa" enthält "aa" zweimal!
   - kosten: 15
     text: |
       Schleife mit Index: `for i in range(len(text) - len(sub) + 1)`,
@@ -55,12 +55,12 @@ starter_code: |
       pass
 ---
 
-# Substring zählen (mit Ueberlappung)
+# Substring zählen (mit Überlappung)
 
-Schreibe eine Funktion `zaehle_vorkommen(text, sub)`, die zählt, wie
-oft `sub` in `text` vorkommt -- inklusive **ueberlappender** Treffer.
+Schreibe eine Funktion `zähle_vorkommen(text, sub)`, die zählt, wie
+oft `sub` in `text` vorkommt -- inklusive **überlappender** Treffer.
 
-`"aaaa"` enthaelt den Substring `"aa"` an Position 0, 1 und 2 --
+`"aaaa"` enthält den Substring `"aa"` an Position 0, 1 und 2 --
 also dreimal.
 
 ## Beispiele
@@ -76,9 +76,9 @@ also dreimal.
 
 ## Falle
 
-Pythons eingebautes `str.count()` zählt **ohne** Ueberlappung --
-fuer `"aaaa".count("aa")` bekommst du `2`. Hier brauchen wir die
-Ueberlappung.
+Pythons eingebautes `str.count()` zählt **ohne** Überlappung --
+für `"aaaa".count("aa")` bekommst du `2`. Hier brauchen wir die
+Überlappung.
 
 ## Idee
 

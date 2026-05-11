@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere die ersten n Elemente einer Liste.
       n <= 0 → []. n > Listenlaenge → ganze Liste.
-      Original-Liste nicht veraendern.
+      Original-Liste nicht verändern.
   - kosten: 5
     text: |
       list(liste[:n]) -- Slicing erledigt alle Sonderfaelle.
@@ -60,11 +60,11 @@ starter_code: |
 # Erste n Elemente einer Liste
 
 Schreibe `erste_n(liste, n)`, die die **ersten n Elemente** einer
-Liste zurueckgibt.
+Liste zurückgibt.
 
 - `n <= 0` → `[]`
 - `n > len(liste)` → ganze Liste
-- Original-Liste **nicht** veraendern
+- Original-Liste **nicht** verändern
 
 ## Beispiele
 
@@ -86,13 +86,13 @@ def erste_n(liste, n):
 ```
 
 `liste[:n]` verhaelt sich elegant: bei `n > len(liste)` gibt es einfach
-die ganze Liste zurueck -- kein Out-of-Bounds-Error. `list(...)`
-sorgt dafuer, dass wir eine **Kopie** liefern (statt einer Slice-Sicht).
+die ganze Liste zurück -- kein Out-of-Bounds-Error. `list(...)`
+sorgt dafür, dass wir eine **Kopie** liefern (statt einer Slice-Sicht).
 
 ## Stolperstein -- Negatives n
 
-`liste[:-1]` waere "alle ausser dem letzten" -- nicht das, was wir
-wollen. Darum die explizite Pruefung `n <= 0 → []`.
+`liste[:-1]` wäre "alle außer dem letzten" -- nicht das, was wir
+wollen. Darum die explizite Prüfung `n <= 0 → []`.
 
 ## Pendant -- Letzte n Elemente
 

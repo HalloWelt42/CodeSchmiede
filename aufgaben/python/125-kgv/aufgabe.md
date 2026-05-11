@@ -23,8 +23,8 @@ funktion: kgv_liste
 hints:
   - kosten: 0
     text: |
-      kgV von zwei Zahlen: a*b // ggt(a,b). Auch fuer Listen
-      assoziativ -- reduce ueber Paare.
+      kgV von zwei Zahlen: a*b // ggt(a,b). Auch für Listen
+      assoziativ -- reduce über Paare.
   - kosten: 10
     text: |
       `from math import lcm; from functools import reduce`.

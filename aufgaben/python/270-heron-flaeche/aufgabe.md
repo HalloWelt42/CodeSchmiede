@@ -31,7 +31,7 @@ hints:
       ungleichung verletzt) → 0.0.
   - kosten: 15
     text: |
-      Pruefe alle Seiten > 0 UND laengste < Summe der anderen.
+      Prüfe alle Seiten > 0 UND laengste < Summe der anderen.
       Dann Heron.
 tests_sichtbar:
   - input: [3, 4, 5]
@@ -70,7 +70,7 @@ starter_code: |
 Schreibe `dreieck_flaeche(a, b, c)`, die die Flaeche eines Dreiecks
 aus drei Seitenlaengen berechnet -- via **Heron-Formel**.
 
-Bei ungueltigen Eingaben (Seite ≤ 0 oder Dreiecks-Ungleichung
+Bei ungültigen Eingaben (Seite ≤ 0 oder Dreiecks-Ungleichung
 verletzt) → `0.0`. Auf **4 Nachkommastellen** gerundet.
 
 ## Heron-Formel
@@ -86,7 +86,7 @@ $$s = \frac{a + b + c}{2} \qquad A = \sqrt{s(s-a)(s-b)(s-c)}$$
 | 5 | 12| 13 | `30.0`   | rechtwinklig 5-12-13|
 | 5 | 5 | 5  | `10.8253`| gleichseitig        |
 | 1 | 1 | 1  | `0.4330` | Einheits-Dreieck    |
-| 1 | 2 | 5  | `0.0`    | Ungueltig (1+2 < 5) |
+| 1 | 2 | 5  | `0.0`    | Ungültig (1+2 < 5) |
 
 ## Idee
 
@@ -116,5 +116,5 @@ Brauchst Du den Winkel γ. Heron braucht **nur die Seitenlaengen**
 
 Heron von Alexandria (ca. 60 n.Chr.) bewies die Formel. Sie ist eine
 der wenigen geometrischen Formeln, die ohne Winkelfunktionen
-auskommen -- und damit fuer **Vermessungen** vor der Trigonometrie
+auskommen -- und damit für **Vermessungen** vor der Trigonometrie
 unbezahlbar war.

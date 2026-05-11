@@ -24,8 +24,8 @@ hints:
   - kosten: 0
     text: |
       Parse eine CSV-Zeile (Komma-getrennt) zu Liste von Strings.
-      Felder in DOPPELTEN ANFUEHRUNGSZEICHEN duerfen Kommas enthalten.
-      Quotes selbst werden NICHT in Felder uebernommen.
+      Felder in DOPPELTEN ANFUEHRUNGSZEICHEN dürfen Kommas enthalten.
+      Quotes selbst werden NICHT in Felder übernommen.
       Bsp: '1,"Hallo, Welt",3' → ["1", "Hallo, Welt", "3"].
   - kosten: 25
     text: |
@@ -69,8 +69,8 @@ Schreibe `csv_zeile(s)`, die eine CSV-Zeile (Komma-getrennt) in eine
 Liste von Strings umwandelt.
 
 Quoting-Regel:
-- Felder in **doppelten Anfuehrungszeichen** duerfen Kommas enthalten.
-- Die Quotes selbst werden **nicht** in die Felder uebernommen.
+- Felder in **doppelten Anführungszeichen** dürfen Kommas enthalten.
+- Die Quotes selbst werden **nicht** in die Felder übernommen.
 - Leere Felder (zwischen zwei Kommas) → `""`.
 - Leerer Eingabe-String → `[]`.
 
@@ -126,12 +126,12 @@ def csv_zeile(s):
     return out
 ```
 
-Klassischer **State-Machine**-Parser. Pruefe `in_quotes`-Flag bevor
+Klassischer **State-Machine**-Parser. Prüfe `in_quotes`-Flag bevor
 das Komma als Trenner gilt.
 
 ## Anwendung
 
 Echte CSV-Files haben mehrere Zeilen + Header + Encoding-
 Spielereien. Das `csv`-Modul kann all das. Manche Tools nutzen
-`;` statt `,` (Excel mit deutscher Locale), das geht ueber
+`;` statt `,` (Excel mit deutscher Locale), das geht über
 `csv.reader([s], delimiter=";")`.

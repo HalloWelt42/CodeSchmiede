@@ -23,7 +23,7 @@ funktion: filter_pred
 hints:
   - kosten: 0
     text: |
-      Behalte nur Elemente, die das Predikat erfuellen.
+      Behalte nur Elemente, die das Predikat erfüllen.
       Predicates: "positive" (>0), "negative" (<0), "even" (gerade),
       "odd" (ungerade), "nonzero" (!= 0).
       Bei UNBEKANNTEM Predicate → Original-Liste.
@@ -62,9 +62,9 @@ starter_code: |
 # Eigenes filter mit Predicate-String
 
 Schreibe `filter_pred(liste, pred)`, die nur Elemente behaelt, die
-das Predikat erfuellen.
+das Predikat erfüllen.
 
-## Verfuegbare Predicates
+## Verfügbare Predicates
 
 | String       | Bedeutung       |
 |--------------|------------------|
@@ -74,7 +74,7 @@ das Predikat erfuellen.
 | `"odd"`      | x % 2 != 0      |
 | `"nonzero"`  | x != 0          |
 
-Unbekanntes Predicate → unveraenderte Liste.
+Unbekanntes Predicate → unveränderte Liste.
 
 ## Beispiele
 
@@ -107,7 +107,7 @@ def filter_pred(liste, pred):
 
 ## Lehrziel -- Predicate-Pattern
 
-Predicates (Funktionen `(x) -> bool`) sind das Herzstueck von
+Predicates (Funktionen `(x) -> bool`) sind das Herzstück von
 **Filter-Operationen**. In Pythons Builtin:
 
 ```python
@@ -123,4 +123,4 @@ Mit Listen-Comprehension liest sich das aber in Python besser:
 ## Anwendung
 
 Predicates tauchen in **Validierung**, **Suche**, **SQL-WHERE-
-Aequivalenten** und **funktionalen Pipelines** ueberall auf.
+Aequivalenten** und **funktionalen Pipelines** überall auf.

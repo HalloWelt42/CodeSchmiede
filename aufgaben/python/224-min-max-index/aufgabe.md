@@ -60,7 +60,7 @@ starter_code: |
 # Index von Minimum und Maximum
 
 Schreibe `min_max_index(liste)`, die `[index_min, index_max]`
-zurueckgibt -- die Positionen des kleinsten und groessten Elements.
+zurückgibt -- die Positionen des kleinsten und größten Elements.
 
 Bei mehreren gleichen Werten: **erster** Treffer.
 Bei leerer Liste → `[-1, -1]`.
@@ -102,7 +102,7 @@ def min_max_index(liste):
     return [i_min, i_max]
 ```
 
-Eine Schleife, weniger Vergleiche -- bei sehr grossen Listen
+Eine Schleife, weniger Vergleiche -- bei sehr großen Listen
 relevant. Pythons Builtins sind aber so optimiert, dass die
 Drei-Pass-Variante meist trotzdem schneller laeuft.
 
@@ -110,4 +110,4 @@ Drei-Pass-Variante meist trotzdem schneller laeuft.
 
 - `min(liste)` / `max(liste)` → nur die **Werte**.
 - `liste.index(x)` → nur **erster** Treffer eines Wertes.
-- Aufgabe **161-median**, **162-haeufigster-wert**.
+- Aufgabe **161-median**, **162-häufigster-wert**.

@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Bilde wiederholt die Quersumme einer nicht-negativen Zahl,
-      bis nur noch eine Ziffer (0-9) uebrig ist.
+      bis nur noch eine Ziffer (0-9) übrig ist.
       9875 → 9+8+7+5 = 29 → 2+9 = 11 → 1+1 = 2.
   - kosten: 10
     text: |
@@ -64,7 +64,7 @@ starter_code: |
 
 Die **digitale Wurzel** einer nicht-negativen Zahl ist das Ergebnis,
 das man erhaelt, wenn man die Quersumme so lange wiederholt, bis nur
-noch eine **einzelne Ziffer** (0-9) uebrig bleibt.
+noch eine **einzelne Ziffer** (0-9) übrig bleibt.
 
 ## Beispiele
 
@@ -76,7 +76,7 @@ noch eine **einzelne Ziffer** (0-9) uebrig bleibt.
 | `9875`  | `29 → 11 → 2`            | `2`    |
 | `12345` | `15 → 6`                 | `6`    |
 
-## Loesung 1 -- naive Schleife
+## Lösung 1 -- naive Schleife
 
 ```python
 def digitale_wurzel(n):
@@ -85,7 +85,7 @@ def digitale_wurzel(n):
     return n
 ```
 
-## Loesung 2 -- Modulo-Trick
+## Lösung 2 -- Modulo-Trick
 
 Eine Zahl ist genau dann durch 9 teilbar, wenn ihre Quersumme es ist.
 Daraus folgt:
@@ -99,11 +99,11 @@ def digitale_wurzel(n):
     return 1 + (n - 1) % 9
 ```
 
-Eine einzige Operation -- unabhaengig von der Anzahl der Stellen.
+Eine einzige Operation -- unabhängig von der Anzahl der Stellen.
 
 ## Hintergrund
 
 Die digitale Wurzel ist die Grundlage der **Neuner-Probe** -- einem
-historischen Verfahren zur Pruefung von Rechnungen. Wenn `a + b = c`
+historischen Verfahren zur Prüfung von Rechnungen. Wenn `a + b = c`
 gilt, dann muss auch `dr(a) + dr(b) ≡ dr(c) (mod 9)` gelten.
-Schueler haben das jahrzehntelang als Plausibilitaets-Check benutzt.
+Schüler haben das jahrzehntelang als Plausibilitaets-Check benutzt.

@@ -26,11 +26,11 @@ hints:
       Parse einen Prozent-String wie "50%" zu 0.5.
       Akzeptiere mit/ohne %, mit Komma oder Punkt.
       "50%" → 0.5, "12,5%" → 0.125, "100" → 1.0.
-      Bei ungueltiger Eingabe → 0.0.
+      Bei ungültiger Eingabe → 0.0.
   - kosten: 15
     text: |
       strip("%"), Komma zu Punkt, float(), durch 100.
-      In try/except wegen ungueltiger Eingaben.
+      In try/except wegen ungültiger Eingaben.
 tests_sichtbar:
   - input: ["50%"]
     expected: 0.5
@@ -72,7 +72,7 @@ Akzeptiere:
 - mit fuehrenden/nachfolgenden Leerzeichen
 - mit Vorzeichen
 
-Bei ungueltiger Eingabe → `0.0`.
+Bei ungültiger Eingabe → `0.0`.
 
 ## Beispiele
 

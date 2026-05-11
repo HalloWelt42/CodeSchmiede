@@ -68,7 +68,7 @@ starter_code: |
 
 # Passwort-Stärke bewerten
 
-Schreibe eine Funktion `passwort_staerke(passwort)`, die ein Passwort
+Schreibe eine Funktion `passwort_stärke(passwort)`, die ein Passwort
 mit **0 bis 5 Punkten** bewertet.
 
 ## Punkte-Regeln (jede +1)

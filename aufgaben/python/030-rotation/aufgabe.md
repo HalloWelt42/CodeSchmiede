@@ -27,7 +27,7 @@ hints:
       sie ans Ende. Aber pass auf: `k` kann größer sein als die Liste.
   - kosten: 15
     text: |
-      Mit Modulo gegen Ueberlauf:
+      Mit Modulo gegen Überlauf:
 
       ```
       k = k % len(liste)

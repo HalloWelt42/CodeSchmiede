@@ -99,11 +99,11 @@ liefert nur den Inhalt der Gruppe, also den Wort-Teil **ohne** das `#`.
 
 - **Mit Umlauten**: `r"#(\w+)"` matcht in Python standardmaessig
   Unicode-Wort-Zeichen, also auch `#München` -- in den Tests aber
-  nicht beruecksichtigt.
+  nicht berücksichtigt.
 - **Nur am Wort-Anfang** (Twitter-Stil): `r"(?:^|\s)#(\w+)"` --
   `#` mitten im Wort wird nicht gematcht.
 
 ## Anwendung
 
-Hashtags scannen ist Standard fuer Social-Media-Tools, Tag-Clouds,
+Hashtags scannen ist Standard für Social-Media-Tools, Tag-Clouds,
 Trend-Analysen oder Content-Moderation.

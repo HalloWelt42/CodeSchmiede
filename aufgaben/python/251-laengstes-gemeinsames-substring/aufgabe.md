@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere den LAENGSTEN ZUSAMMENHAENGENDEN Substring, der in
       BEIDEN Strings vorkommt. Bei mehreren gleich-langen Treffern:
-      den, der in a als ERSTES anfaengt.
+      den, der in a als ERSTES anfängt.
       Bei keinem gemeinsamen Zeichen → "".
   - kosten: 25
     text: |
@@ -63,16 +63,16 @@ starter_code: |
 
 # Laengster gemeinsamer Substring (LCS)
 
-Schreibe `lcs(a, b)`, die den **laengsten zusammenhaengenden
+Schreibe `lcs(a, b)`, die den **laengsten zusammenhängenden
 Substring** liefert, der in **beiden** Strings vorkommt.
 
-Bei mehreren gleich-langen Treffern: den, der in `a` zuerst anfaengt.
+Bei mehreren gleich-langen Treffern: den, der in `a` zuerst anfängt.
 Bei keinem Treffer → `""`.
 
 ## Achtung -- Substring vs Subsequence
 
-- **Substring**: zusammenhaengende Zeichen ("abc" → "ab", "bc", aber nicht "ac")
-- **Subsequence**: Reihenfolge bewahrt, aber Luecken erlaubt
+- **Substring**: zusammenhängende Zeichen ("abc" → "ab", "bc", aber nicht "ac")
+- **Subsequence**: Reihenfolge bewahrt, aber Lücken erlaubt
 
 Wir suchen den **Substring** -- die schwerere Aufgabe ist die
 Subsequence (LCS-Algorithmus klassisch in DNA-Vergleich).
@@ -115,7 +115,7 @@ auch -- nur die letzte Zeile merken.
 
 ## Anwendung
 
-- **Diff-Tools** zum Identifizieren gemeinsamer Code-Stuecke.
+- **Diff-Tools** zum Identifizieren gemeinsamer Code-Stücke.
 - **Plagiats-Erkennung** in Texten.
 - **Bioinformatik** beim Vergleich von DNA/RNA-Sequenzen.
 - **Versions-Merge** in Versionskontroll-Systemen (rcs, git).

@@ -58,7 +58,7 @@ starter_code: |
 # snake_case zu camelCase
 
 Schreibe eine Funktion `snake_zu_camel(text)`, die einen
-**snake_case**-String in **camelCase** ueberfuehrt.
+**snake_case**-String in **camelCase** überfuehrt.
 
 ## Beispiele
 
@@ -73,12 +73,12 @@ Schreibe eine Funktion `snake_zu_camel(text)`, die einen
 ## Idee
 
 `split('_')` ergibt eine Liste von Bestandteilen. Das **erste** Wort
-bleibt klein, **alle weiteren** bekommen einen Grossbuchstaben am
+bleibt klein, **alle weiteren** bekommen einen Großbuchstaben am
 Anfang. `''.join(...)` setzt sie wieder zusammen.
 
 ## Falle
 
-`"__leer__doppelt__"` enthaelt leere Bestandteile. `"".capitalize()`
+`"__leer__doppelt__"` enthält leere Bestandteile. `"".capitalize()`
 liefert `""`, also kein Crash -- aber das fuehrende `_` macht das
 erste Element leer und damit beginnt das Ergebnis mit einem
-Grossbuchstaben.
+Großbuchstaben.

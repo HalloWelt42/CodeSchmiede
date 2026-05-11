@@ -2,7 +2,7 @@
 schema_version: 1
 id: 256-woerter-laenger-als
 revision: 1
-titel: Woerter laenger als n
+titel: Wörter laenger als n
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,9 +23,9 @@ funktion: laenger_als
 hints:
   - kosten: 0
     text: |
-      Liefere alle Woerter aus dem Text, die LAENGER als n Zeichen sind.
+      Liefere alle Wörter aus dem Text, die LAENGER als n Zeichen sind.
       Reihenfolge wie im Original.
-      Mehrfache Whitespaces zaehlen als ein Trenner.
+      Mehrfache Whitespaces zählen als ein Trenner.
       Bei text == "" oder n < 0 → [].
   - kosten: 10
     text: |
@@ -58,10 +58,10 @@ starter_code: |
       pass
 ---
 
-# Woerter laenger als n
+# Wörter laenger als n
 
-Schreibe `laenger_als(text, n)`, die alle Woerter aus dem Text
-zurueckgibt, die **laenger als n Zeichen** sind. Reihenfolge wie
+Schreibe `laenger_als(text, n)`, die alle Wörter aus dem Text
+zurückgibt, die **laenger als n Zeichen** sind. Reihenfolge wie
 im Original.
 
 `str.split()` ohne Argument trennt an Whitespace und ignoriert
@@ -85,16 +85,16 @@ def laenger_als(text, n):
     return [w for w in text.split() if len(w) > n]
 ```
 
-Die wohl haeufigste Form: split + Filter mit Comprehension.
+Die wohl häufigste Form: split + Filter mit Comprehension.
 
 ## Pendant
 
-Aufgabe **257-woerter-kuerzer-als** macht das Gegenstueck mit `<`
+Aufgabe **257-wörter-kürzer-als** macht das Gegenstück mit `<`
 statt `>`.
 
 ## Anwendung
 
-- **Stop-Word**-Listen erstellen ("nur Woerter > 3 Zeichen filtern").
-- **Lesbarkeits-Analyse**: Anteil langer Woerter im Text
+- **Stop-Word**-Listen erstellen ("nur Wörter > 3 Zeichen filtern").
+- **Lesbarkeits-Analyse**: Anteil langer Wörter im Text
   (Flesch-Reading-Ease basiert teils darauf).
-- **Tag-Cloud-Vorbereitung**: kurze Fuell-Woerter raus.
+- **Tag-Cloud-Vorbereitung**: kurze Fuell-Wörter raus.

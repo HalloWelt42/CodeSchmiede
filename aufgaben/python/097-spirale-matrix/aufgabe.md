@@ -30,7 +30,7 @@ hints:
   - kosten: 25
     text: |
       Richtungs-Vektoren `[(0,1), (1,0), (0,-1), (-1,0)]`. Pro Schritt
-      pruefen ob naechste Position frei und im Raster ist. Falls nicht:
+      prüfen ob nächste Position frei und im Raster ist. Falls nicht:
       Richtung wechseln.
 tests_sichtbar:
   - input: [1]
@@ -81,10 +81,10 @@ und im Uhrzeigersinn nach innen.
 
 Vier Richtungs-Vektoren: rechts (0, 1), unten (1, 0), links (0, -1),
 oben (-1, 0). Sobald du an einen Rand oder eine bereits gesetzte
-Zahl stossen wuerdest, wechsle zur naechsten Richtung.
+Zahl stoßen würdest, wechsle zur nächsten Richtung.
 
 ## Hintergrund
 
 Spiralen sind ein Klassiker bei Coding-Interviews. Sie schulen das
-Denken in **Richtungswechseln** und **Grenzen-Pruefungen** -- Sachen,
-die man fuer alle moeglichen Grid-Algorithmen braucht.
+Denken in **Richtungswechseln** und **Grenzen-Prüfungen** -- Sachen,
+die man für alle moeglichen Grid-Algorithmen braucht.

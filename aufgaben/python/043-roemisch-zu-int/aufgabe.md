@@ -2,7 +2,7 @@
 schema_version: 1
 id: 043-roemisch-zu-int
 revision: 1
-titel: Roemisch zu Integer
+titel: Römisch zu Integer
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -60,9 +60,9 @@ starter_code: |
       pass
 ---
 
-# Roemisch zu Integer
+# Römisch zu Integer
 
-Schreibe eine Funktion `roemisch_zu_int(s)`, die eine roemische Zahl
+Schreibe eine Funktion `römisch_zu_int(s)`, die eine römische Zahl
 in eine Dezimalzahl umwandelt.
 
 | Zeichen | Wert |

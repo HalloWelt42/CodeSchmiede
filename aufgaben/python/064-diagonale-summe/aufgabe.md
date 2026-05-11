@@ -51,8 +51,8 @@ starter_code: |
 
 # Diagonal-Summe einer Matrix
 
-Schreibe eine Funktion `diagonal_summen(matrix)`, die fuer eine
-**quadratische** Matrix die Summen beider Diagonalen zurueckgibt --
+Schreibe eine Funktion `diagonal_summen(matrix)`, die für eine
+**quadratische** Matrix die Summen beider Diagonalen zurückgibt --
 als Liste `[haupt, neben]`.
 
 ## Beispiele
@@ -66,8 +66,8 @@ als Liste `[haupt, neben]`.
 
 ## Idee
 
-- **Hauptdiagonale**: `matrix[i][i]` fuer `i = 0..n-1`
+- **Hauptdiagonale**: `matrix[i][i]` für `i = 0..n-1`
 - **Nebendiagonale**: `matrix[i][n-1-i]`
 
 Bei einer 1x1-Matrix sind beide Diagonalen das einzige Element --
-Wert wird also doppelt zurueckgegeben.
+Wert wird also doppelt zurückgegeben.

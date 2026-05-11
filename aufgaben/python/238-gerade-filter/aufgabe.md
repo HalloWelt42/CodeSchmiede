@@ -25,7 +25,7 @@ hints:
     text: |
       Liefere alle GERADEN Zahlen aus der Liste.
       Reihenfolge wie im Original.
-      Null zaehlt als gerade.
+      Null zählt als gerade.
   - kosten: 5
     text: |
       [x for x in liste if x % 2 == 0].
@@ -60,9 +60,9 @@ starter_code: |
 # Nur gerade Zahlen behalten
 
 Schreibe `nur_gerade(zahlen)`, die alle **geraden Zahlen** (`x % 2 == 0`)
-aus der Liste liefert -- in der **urspruenglichen Reihenfolge**.
+aus der Liste liefert -- in der **ursprünglichen Reihenfolge**.
 
-Null zaehlt als gerade. Negative gerade Zahlen ebenso.
+Null zählt als gerade. Negative gerade Zahlen ebenso.
 
 ## Beispiele
 
@@ -81,7 +81,7 @@ def nur_gerade(zahlen):
     return [x for x in zahlen if x % 2 == 0]
 ```
 
-Die wohl haeufigste Form einer Listen-Comprehension: filtern.
+Die wohl häufigste Form einer Listen-Comprehension: filtern.
 
 ## Mit Builtin filter
 
@@ -90,11 +90,11 @@ def nur_gerade(zahlen):
     return list(filter(lambda x: x % 2 == 0, zahlen))
 ```
 
-Funktional aequivalent, aber Lambda + `filter` liest sich oft
+Funktional äquivalent, aber Lambda + `filter` liest sich oft
 schwerer als die Comprehension. In Python wird die Comprehension
 bevorzugt.
 
 ## Pendant
 
-Aufgabe **239-ungerade-filter** macht das Gegenstueck. Beide zusammen
-sind ein Beispiel fuer **Partition** (Aufgabe 228) auf der Modulo-Achse.
+Aufgabe **239-ungerade-filter** macht das Gegenstück. Beide zusammen
+sind ein Beispiel für **Partition** (Aufgabe 228) auf der Modulo-Achse.

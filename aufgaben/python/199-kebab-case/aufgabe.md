@@ -26,7 +26,7 @@ hints:
       Wandle einen Text in kebab-case: alle Buchstaben klein, Leerzeichen
       und Unterstriche zu Bindestrich. Mehrfache Trenner zu einem.
       Fuehrende/nachfolgende Bindestriche entfernen.
-      Sonderzeichen (ausser a-z, 0-9) entfernen.
+      Sonderzeichen (außer a-z, 0-9) entfernen.
   - kosten: 15
     text: |
       lower, alle Nicht-(a-z0-9) zu '-', mehrfache - kollabieren,
@@ -69,7 +69,7 @@ umwandelt -- ein gaengiges URL-Slug-Format.
 Regeln:
 
 1. Alles in **Kleinbuchstaben**.
-2. Alle Zeichen ausser `a-z` und `0-9` werden zu **Bindestrich**.
+2. Alle Zeichen außer `a-z` und `0-9` werden zu **Bindestrich**.
 3. **Mehrfache Bindestriche** werden zu einem.
 4. **Fuehrende/Nachfolgende** Bindestriche werden entfernt.
 

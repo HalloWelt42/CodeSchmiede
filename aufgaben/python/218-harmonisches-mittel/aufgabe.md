@@ -29,7 +29,7 @@ hints:
       Bei einer Null oder negativen Zahl → 0.0.
   - kosten: 10
     text: |
-      Pruefe alle > 0. Dann n / sum(1/x for x in zahlen).
+      Prüfe alle > 0. Dann n / sum(1/x for x in zahlen).
 tests_sichtbar:
   - input: [[1, 2, 4]]
     expected: 1.7143
@@ -102,7 +102,7 @@ Beweis: 60 km bei 60 km/h = 1h, 60 km bei 30 km/h = 2h, total
 
 ## Mittelwert-Hierarchie
 
-Fuer positive Zahlen gilt **immer**:
+Für positive Zahlen gilt **immer**:
 
 $$H \le G \le A$$
 
@@ -111,7 +111,7 @@ alle Zahlen gleich sind.
 
 ## Anwendung
 
-- Geschwindigkeiten ueber gleiche Strecke (s.o.).
+- Geschwindigkeiten über gleiche Strecke (s.o.).
 - F1-Score in Machine Learning (harmonisches Mittel von Precision
   und Recall).
 - Parallel-Widerstaende: $1/R_{ges} = 1/R_1 + ... + 1/R_n$.

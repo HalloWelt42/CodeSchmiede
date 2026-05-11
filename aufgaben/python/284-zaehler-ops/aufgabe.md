@@ -2,7 +2,7 @@
 schema_version: 1
 id: 284-zaehler-ops
 revision: 1
-titel: Zaehler mit Operations-Liste
+titel: Zähler mit Operations-Liste
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,16 +23,16 @@ funktion: zaehler_lauf
 hints:
   - kosten: 0
     text: |
-      Operationen auf einem Zaehler (Start 0):
+      Operationen auf einem Zähler (Start 0):
       "inc" → +1
       "dec" → -1
       "reset" → 0
       "double" → mal 2
-      Liefere den Zaehler nach JEDER Operation als Liste.
+      Liefere den Zähler nach JEDER Operation als Liste.
       Bei [] → [].
   - kosten: 15
     text: |
-      Klasse Zaehler mit Methoden inc/dec/reset/double.
+      Klasse Zähler mit Methoden inc/dec/reset/double.
       Pro Op aufrufen, Wert appenden.
 tests_sichtbar:
   - input: [["inc", "inc", "inc"]]
@@ -62,9 +62,9 @@ starter_code: |
       pass
 ---
 
-# Zaehler mit Operations-Liste
+# Zähler mit Operations-Liste
 
-Implementiere `zaehler_lauf(operationen)` -- ein Zaehler startet bei
+Implementiere `zähler_lauf(operationen)` -- ein Zähler startet bei
 **0**, eine Liste von Operationen wird nacheinander angewendet, und
 nach **jeder** Operation wird der aktuelle Wert in die Ausgabe-Liste
 geschrieben.
@@ -91,7 +91,7 @@ Bei leerer Liste → `[]`.
 ## Idee -- Klasse mit Dispatch
 
 ```python
-class Zaehler:
+class Zähler:
     def __init__(self):
         self.wert = 0
 
@@ -107,14 +107,14 @@ class Zaehler:
         return self.wert
 
 
-def zaehler_lauf(operationen):
-    z = Zaehler()
+def zähler_lauf(operationen):
+    z = Zähler()
     return [z.anwenden(op) for op in operationen]
 ```
 
 ## Stilfrage -- Dispatch per Methode
 
-Statt `if/elif`-Kette koennte man jede Op als eigene Methode
+Statt `if/elif`-Kette könnte man jede Op als eigene Methode
 implementieren und per `getattr(z, op)()` aufrufen. Das ist
 elegant -- aber **gefaehrlich**, wenn die Op-Strings von Nutzern
 kommen (Method-Injection).
@@ -122,7 +122,7 @@ kommen (Method-Injection).
 Sicher und kurz: explizites Dispatch-Dict:
 
 ```python
-class Zaehler:
+class Zähler:
     def __init__(self):
         self.wert = 0
 
@@ -132,8 +132,8 @@ class Zaehler:
     def double(self): self.wert *= 2
 
 
-def zaehler_lauf(operationen):
-    z = Zaehler()
+def zähler_lauf(operationen):
+    z = Zähler()
     OPS = {"inc": z.inc, "dec": z.dec, "reset": z.reset, "double": z.double}
     out = []
     for op in operationen:
@@ -144,5 +144,5 @@ def zaehler_lauf(operationen):
 
 ## Anwendung
 
-Operations-Listen sind die Basis fuer **Event-Sourcing**, **Undo-
+Operations-Listen sind die Basis für **Event-Sourcing**, **Undo-
 Stacks** und **State-Machines**.

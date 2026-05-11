@@ -2,7 +2,7 @@
 schema_version: 1
 id: 034-caesar
 revision: 1
-titel: Caesar-Verschluesselung
+titel: Caesar-Verschlüsselung
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -27,7 +27,7 @@ hints:
       `chr()` zurück. Modulo `26` halt den Buchstaben im Alphabet.
   - kosten: 15
     text: |
-      Pro Zeichen: prüfen ob Buchstabe (`isalpha`), bei Grossbuchstabe
+      Pro Zeichen: prüfen ob Buchstabe (`isalpha`), bei Großbuchstabe
       `'A'`-Basis verwenden, bei Kleinbuchstabe `'a'`-Basis.
       Nicht-Buchstaben unverändert lassen.
   - kosten: 30
@@ -63,10 +63,10 @@ starter_code: |
       pass
 ---
 
-# Caesar-Verschluesselung
+# Caesar-Verschlüsselung
 
 Schreibe eine Funktion `caesar(text, k)`, die jeden **Buchstaben** im
-String um `k` Positionen im Alphabet verschiebt. Gross-/Kleinschreibung
+String um `k` Positionen im Alphabet verschiebt. Groß-/Kleinschreibung
 bleibt erhalten. Nicht-Buchstaben (Leerzeichen, Ziffern,
 Satzzeichen, ...) bleiben unverändert.
 
@@ -89,10 +89,10 @@ Pro Zeichen:
 
 ## Hintergrund
 
-Die Caesar-Chiffre ist eine der **aeltesten Verschluesselungen**, von
-Julius Caesar fuer militaerische Korrespondenz benutzt (mit `k = 3`).
+Die Caesar-Chiffre ist eine der **ältesten Verschlüsselungen**, von
+Julius Caesar für militaerische Korrespondenz benutzt (mit `k = 3`).
 Sie ist heute trivial zu brechen -- es gibt nur 25 sinnvolle
-Schluessel -- aber didaktisch hervorragend, weil sie modulares
+Schlüssel -- aber didaktisch hervorragend, weil sie modulares
 Rechnen anschaulich macht.
 
 `k = 13` ist als **ROT13** bekannt: zwei Anwendungen heben sich auf.

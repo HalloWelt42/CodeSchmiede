@@ -26,11 +26,11 @@ hints:
   - kosten: 15
     text: |
       Probiere alle Teiler ab 2 aufsteigend. Wenn `n % i == 0`, fuege `i`
-      zur Liste hinzu und teile `n` durch `i`. Sonst erhoehe `i` um 1.
+      zur Liste hinzu und teile `n` durch `i`. Sonst erhöhe `i` um 1.
   - kosten: 30
     text: |
-      Schluesselbeobachtung: Wenn `i * i > n`, ist `n` selbst die letzte
-      Primzahl in der Zerlegung. Damit kann die Schleife fuer grosse `n`
+      Schlüsselbeobachtung: Wenn `i * i > n`, ist `n` selbst die letzte
+      Primzahl in der Zerlegung. Damit kann die Schleife für große `n`
       vorzeitig abbrechen.
 tests_sichtbar:
   - input: [12]
@@ -61,7 +61,7 @@ starter_code: |
 # Primfaktorzerlegung
 
 Schreibe eine Funktion `primfaktoren(n)`, die eine Liste der
-**Primfaktoren** von `n` in aufsteigender Reihenfolge zurueckgibt.
+**Primfaktoren** von `n` in aufsteigender Reihenfolge zurückgibt.
 Mehrfach vorkommende Faktoren werden mehrfach aufgelistet.
 
 ## Beispiele
@@ -78,12 +78,12 @@ Mehrfach vorkommende Faktoren werden mehrfach aufgelistet.
 
 Probiere Teiler $i$ ab 2 aufsteigend. Wenn $n$ durch $i$ teilbar ist,
 schreibe $i$ in die Ergebnisliste und teile $n$ durch $i$. Sonst geh
-zum naechsten $i$. Wiederhole, bis $n = 1$.
+zum nächsten $i$. Wiederhole, bis $n = 1$.
 
 ## Hintergrund
 
 Der **Fundamentalsatz der Arithmetik** garantiert, dass jede natuerliche
 Zahl größer 1 eine eindeutige Primfaktorzerlegung hat. Diese
 Zerlegung ist die Grundlage vieler kryptographischer Verfahren -- die
-Sicherheit von RSA beruht darauf, dass die Zerlegung sehr grosser
+Sicherheit von RSA beruht darauf, dass die Zerlegung sehr großer
 Zahlen praktisch nicht in vertretbarer Zeit möglich ist.

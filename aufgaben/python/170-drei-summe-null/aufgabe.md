@@ -25,12 +25,12 @@ hints:
     text: |
       Liefere alle eindeutigen Tripel [a, b, c] (a <= b <= c) aus der
       Liste, deren Summe 0 ist. Aussere Liste sortiert.
-      Doppelte Werte ueberspringen.
+      Doppelte Werte überspringen.
   - kosten: 25
     text: |
       Liste sortieren. Iteriere a = zahlen[i] (0..n-3).
       Pro a: Two-Pointers (j=i+1, k=n-1). Bei a+b+c==0 sammeln,
-      dann j und k weiter und Duplikate ueberspringen.
+      dann j und k weiter und Duplikate überspringen.
 tests_sichtbar:
   - input: [[-1, 0, 1, 2, -1, -4]]
     expected: [[-1, -1, 2], [-1, 0, 1]]
@@ -78,8 +78,8 @@ Aussere Liste **lexikographisch sortiert**.
 
 ## Idee -- Sortieren + Two Pointers
 
-Ohne Sortierung ist Brute-Force `O(n^3)` -- zu langsam fuer grosse `n`.
-Mit Sortierung kann man fuer jedes festgesetzte `a` die uebrigen zwei
+Ohne Sortierung ist Brute-Force `O(n^3)` -- zu langsam für große `n`.
+Mit Sortierung kann man für jedes festgesetzte `a` die übrigen zwei
 Werte mit Two-Pointers in `O(n)` finden → insgesamt `O(n^2)`.
 
 ```python
@@ -110,7 +110,7 @@ def drei_summe(zahlen):
 
 ## Stolpersteine
 
-- **Duplikate ueberspringen** ist Pflicht, sonst kommen `[-1, 0, 1]`
+- **Duplikate überspringen** ist Pflicht, sonst kommen `[-1, 0, 1]`
   doppelt vor.
 - Sortier-Reihenfolge im Tripel entsteht **automatisch**, weil die
   Liste sortiert ist und `j > i, k > j`.
@@ -118,5 +118,5 @@ def drei_summe(zahlen):
 ## Hintergrund
 
 3-Sum ist die Aufwaerm-Form des allgemeinen **k-Sum**-Problems.
-Erwartete Komplexitaet `O(n^{k-1})`. Fuer 4-Sum nimmt man zwei
-Schleifen + Two-Pointers, fuer hoehere `k` rekursive Reduktion.
+Erwartete Komplexitaet `O(n^{k-1})`. Für 4-Sum nimmt man zwei
+Schleifen + Two-Pointers, für höhere `k` rekursive Reduktion.

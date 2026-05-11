@@ -92,5 +92,5 @@ Die symmetrische Differenz ist die Vereinigung von `a - b` und `b - a`
 ## Anwendung
 
 In Versionierungs-Tools (Git diff, dbt audit) ist Set-Differenz ein
-Standard-Schritt: "Welche Schluessel sind im neuen Dump dazugekommen?"
+Standard-Schritt: "Welche Schlüssel sind im neuen Dump dazugekommen?"
 → `set(neu) - set(alt)`.

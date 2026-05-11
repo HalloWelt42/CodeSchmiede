@@ -50,7 +50,7 @@ sondern **einen der beiden Operanden**:
 Falsy-Werte in Python: `False`, `0`, `0.0`, `""`, `[]`, `{}`,
 `None`.
 
-## Schritt fuer Schritt
+## Schritt für Schritt
 
 | Ausdruck       | Ergebnis  | Wegen                         |
 |----------------|-----------|-------------------------------|

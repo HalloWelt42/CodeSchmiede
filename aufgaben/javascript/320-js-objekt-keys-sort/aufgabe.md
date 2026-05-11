@@ -47,7 +47,7 @@ starter_code: |
 # JavaScript -- Objekt-Keys alphabetisch sortiert
 
 Schreibe `keysSortiert(obj)`, die die Keys eines Objekts als Array
-zurueckgibt -- **alphabetisch sortiert**.
+zurückgibt -- **alphabetisch sortiert**.
 
 Bei leerem Objekt → `[]`.
 
@@ -67,9 +67,9 @@ const keysSortiert = (obj) => Object.keys(obj).sort();
 ```
 
 `Object.keys(obj)` liefert ein Array aller eigenen, enumerable
-Keys -- immer als **Strings** (auch wenn die Keys Zahlen waeren).
+Keys -- immer als **Strings** (auch wenn die Keys Zahlen wären).
 `Array.sort()` sortiert in-place und liefert das sortierte Array
-zurueck.
+zurück.
 
 ## Stolperstein -- numerische Keys
 
@@ -94,4 +94,4 @@ das ist hier OK.
 | `Object.entries(o)` | `[["a",1], ["b",2]]`|
 
 `Object.entries` plus `Object.fromEntries` ist das **moderne JS-
-Idiom** fuer Objekt-Transformationen.
+Idiom** für Objekt-Transformationen.

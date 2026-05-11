@@ -2,7 +2,7 @@
 schema_version: 1
 id: 180-string-add
 revision: 1
-titel: Grosse Zahlen als Strings addieren
+titel: Große Zahlen als Strings addieren
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -26,12 +26,12 @@ hints:
       Addiere zwei nicht-negative ganze Zahlen, die als Strings
       vorliegen. Liefere das Ergebnis als String.
       VERBOTEN: int(...) oder ähnliche Builtins.
-      Selbst Stelle fuer Stelle rechnen wie in der Schule.
+      Selbst Stelle für Stelle rechnen wie in der Schule.
   - kosten: 20
     text: |
-      Von rechts nach links addieren. Ueber-Trag merken.
+      Von rechts nach links addieren. Über-Trag merken.
       ord(c) - ord('0') liefert die Ziffer als int.
-      Am Ende: Ergebnis-Liste umdrehen + zusammenfuegen.
+      Am Ende: Ergebnis-Liste umdrehen + zusammenfügen.
 tests_sichtbar:
   - input: ["0", "0"]
     expected: "0"
@@ -60,13 +60,13 @@ starter_code: |
       pass
 ---
 
-# Grosse Zahlen als Strings addieren
+# Große Zahlen als Strings addieren
 
 Schreibe `zahl_addieren(a, b)`, die zwei nicht-negative ganze Zahlen
 addiert -- aber **die Eingaben und Ausgabe sind Strings**.
 
 **Verboten**: `int(a) + int(b)` oder vergleichbare Tricks. Du sollst
-**Stelle fuer Stelle** addieren wie auf dem Block.
+**Stelle für Stelle** addieren wie auf dem Block.
 
 ## Beispiele
 
@@ -80,20 +80,20 @@ addiert -- aber **die Eingaben und Ausgabe sind Strings**.
 
 ## Idee -- Schule-Algorithmus
 
-Von **rechts nach links** Stelle fuer Stelle addieren, Ueber-Trag
+Von **rechts nach links** Stelle für Stelle addieren, Über-Trag
 merken.
 
 ```python
 def zahl_addieren(a, b):
     i, j = len(a) - 1, len(b) - 1
-    uebertrag = 0
+    übertrag = 0
     teile = []
-    while i >= 0 or j >= 0 or uebertrag:
+    while i >= 0 or j >= 0 or übertrag:
         za = ord(a[i]) - ord("0") if i >= 0 else 0
         zb = ord(b[j]) - ord("0") if j >= 0 else 0
-        s = za + zb + uebertrag
+        s = za + zb + übertrag
         teile.append(str(s % 10))
-        uebertrag = s // 10
+        übertrag = s // 10
         i -= 1
         j -= 1
     return "".join(reversed(teile))
@@ -102,8 +102,8 @@ def zahl_addieren(a, b):
 ## Warum nicht `int()`?
 
 In Sprachen wie C oder Java gibt es keinen unbegrenzten Integer-Typ.
-Wer dort eine `200`-stellige Zahl addieren will, **muss** Stelle fuer
-Stelle rechnen. Pythons `int` koennte das zwar -- aber genau dieses
+Wer dort eine `200`-stellige Zahl addieren will, **muss** Stelle für
+Stelle rechnen. Pythons `int` könnte das zwar -- aber genau dieses
 Pattern (Big-Number, GMP, RSA-Math) baut auf der Schul-Methode auf.
 
 ## Verwandt

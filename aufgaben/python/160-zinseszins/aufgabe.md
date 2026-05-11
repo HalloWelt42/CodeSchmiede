@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Berechne den Endwert eines Kapitals nach n Jahren bei jaehrlicher
-      Verzinsung. zinssatz_prozent ist eine Zahl wie 5 fuer 5%.
+      Verzinsung. zinssatz_prozent ist eine Zahl wie 5 für 5%.
       Liefere auf 2 Nachkommastellen gerundet.
   - kosten: 10
     text: |
@@ -97,5 +97,5 @@ Bei einem Zinssatz `p` verdoppelt sich Kapital nach etwa `72/p` Jahren
 
 Zinseszins war historisch eine **moralisch umstrittene** Erfindung --
 der Glaube verbot Zinseszins (Wucher). Heute ist er die Grundlage
-nahezu aller langfristigen Geldanlagen, von Sparbuechern bis zu
+nahezu aller langfristigen Geldanlagen, von Sparbüchern bis zu
 Investmentfonds.

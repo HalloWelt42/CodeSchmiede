@@ -57,7 +57,7 @@ starter_code: |
 
 # Jede Zeile zeichenweise umdrehen
 
-Schreibe `zeilen_umkehren(zeilen)`, die fuer jede Zeile in der Liste
+Schreibe `zeilen_umkehren(zeilen)`, die für jede Zeile in der Liste
 die **Zeichenreihenfolge umdreht**. Die **Reihenfolge der Zeilen**
 selbst bleibt erhalten.
 
@@ -78,13 +78,13 @@ def zeilen_umkehren(zeilen):
     return [z[::-1] for z in zeilen]
 ```
 
-`s[::-1]` ist Pythons Slicing-Trick fuer **String/Liste umkehren**:
-Start, Stop weglassen, Step `-1` -- liest die Sequenz rueckwaerts.
+`s[::-1]` ist Pythons Slicing-Trick für **String/Liste umkehren**:
+Start, Stop weglassen, Step `-1` -- liest die Sequenz rückwärts.
 
 ## Anwendung
 
-- Spiegelschrift-Effekt fuer Texte/Banner.
-- Test-Pattern fuer Palindrom-Detektoren.
+- Spiegelschrift-Effekt für Texte/Banner.
+- Test-Pattern für Palindrom-Detektoren.
 - Praxis bei rechts-nach-links-Sprachen wie Hebraeisch oder Arabisch
   (in echt sind die aber "logisch" links nach rechts gespeichert,
   die Anzeige dreht).

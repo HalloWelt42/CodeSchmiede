@@ -2,7 +2,7 @@
 schema_version: 1
 id: 159-bit-zaehlen
 revision: 1
-titel: Gesetzte Bits zaehlen (Hamming-Gewicht)
+titel: Gesetzte Bits zählen (Hamming-Gewicht)
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,7 +23,7 @@ funktion: bit_anzahl
 hints:
   - kosten: 0
     text: |
-      Zaehle die Anzahl gesetzter Bits (1en) in der Binaer-Darstellung
+      Zähle die Anzahl gesetzter Bits (1en) in der Binaer-Darstellung
       einer nicht-negativen Zahl. 0 -> 0, 7 -> 3, 255 -> 8.
       bin().count("1") und int.bit_count() sind verboten.
   - kosten: 15
@@ -60,13 +60,13 @@ starter_code: |
       pass
 ---
 
-# Gesetzte Bits zaehlen (Hamming-Gewicht)
+# Gesetzte Bits zählen (Hamming-Gewicht)
 
 Schreibe eine Funktion `bit_anzahl(n)`, die die **Anzahl der gesetzten
 Bits** (1-en in der Binaer-Darstellung) einer nicht-negativen ganzen
-Zahl zurueckgibt.
+Zahl zurückgibt.
 
-`bin().count("1")` und `int.bit_count()` zaehlen nicht -- du sollst
+`bin().count("1")` und `int.bit_count()` zählen nicht -- du sollst
 selber rechnen.
 
 ## Beispiele
@@ -105,13 +105,13 @@ def bit_anzahl(n):
     return z
 ```
 
-`n & (n-1)` loescht **immer das niedrigste gesetzte Bit** -- darum
+`n & (n-1)` löscht **immer das niedrigste gesetzte Bit** -- darum
 laeuft die Schleife nur so oft wie 1-en da sind. Bei sparsam besetzten
 Zahlen (z.B. `2**31`) ist das deutlich schneller als die Modulo-Schleife.
 
 ## Hintergrund
 
-Das Hamming-Gewicht zaehlt z.B. **Fehler-Bits** in Codierungen,
+Das Hamming-Gewicht zählt z.B. **Fehler-Bits** in Codierungen,
 Differenzen zwischen Bit-Strings (Hamming-Distanz = popcount(a ^ b))
 oder die Anzahl gesetzter Pixel in Bitmap-Schichten. Moderne CPUs
-haben dafuer einen eigenen Befehl `popcnt`.
+haben dafür einen eigenen Befehl `popcnt`.

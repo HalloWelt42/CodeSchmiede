@@ -23,11 +23,11 @@ funktion: ist_magisch
 hints:
   - kosten: 0
     text: |
-      Alle Zeilen-, Spalten- und Diagonalsummen muessen gleich sein.
+      Alle Zeilen-, Spalten- und Diagonalsummen müssen gleich sein.
   - kosten: 15
     text: |
       Berechne alle Summen, sammle sie in einem Set. Wenn das Set
-      genau ein Element enthaelt, ist die Matrix magisch.
+      genau ein Element enthält, ist die Matrix magisch.
 tests_sichtbar:
   - input: [[[2, 7, 6], [9, 5, 1], [4, 3, 8]]]
     expected: true
@@ -53,7 +53,7 @@ starter_code: |
 
 # Magisches Quadrat prüfen
 
-Schreibe eine Funktion `ist_magisch(matrix)`, die prueft, ob eine
+Schreibe eine Funktion `ist_magisch(matrix)`, die prüft, ob eine
 quadratische Matrix ein **magisches Quadrat** ist -- also die Summen
 aller Zeilen, aller Spalten und beider Diagonalen identisch sind.
 
@@ -85,8 +85,8 @@ magisch.
 
 ## Hintergrund
 
-Magische Quadrate sind seit ca. 2000 v. Chr. bekannt -- das aelteste
-Lo-Shu-Quadrat geht zurück auf eine chinesische Legende ueber eine
+Magische Quadrate sind seit ca. 2000 v. Chr. bekannt -- das älteste
+Lo-Shu-Quadrat geht zurück auf eine chinesische Legende über eine
 Schildkroete am Lo-Fluss. Albrecht Duerer baute eines in seinen
 Kupferstich "Melancolia I" ein, mit `1514` (dem Jahr der Entstehung)
 in der unteren Zeile.

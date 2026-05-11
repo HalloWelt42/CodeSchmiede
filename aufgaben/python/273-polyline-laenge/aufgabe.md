@@ -96,7 +96,7 @@ def polyline(punkte):
 
 `zip(punkte, punkte[1:])` paart **aufeinanderfolgende** Punkte --
 ein Pattern, das wir auch in **230-ist-aufsteigend** und
-**240-wechsel-zaehlen** nutzen.
+**240-wechsel-zählen** nutzen.
 
 ## Geschlossene Polygone
 
@@ -108,5 +108,5 @@ Laenge ist dann der **Umfang**.
 
 - **Karten-Apps**: Routenlaenge zwischen Stationen.
 - **Geometrie**: Polygon-Umfang.
-- **Spiele**: Patrol-Path-Laenge fuer NPCs.
+- **Spiele**: Patrol-Path-Laenge für NPCs.
 - **3D-Grafik**: Spline-Approximation, Kanten-Laengen-Berechnung.

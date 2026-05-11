@@ -60,7 +60,7 @@ starter_code: |
 
 # Kassenbon-Summe berechnen
 
-Schreibe `bon_summe(posten)`, die fuer eine Liste von Kassenbon-
+Schreibe `bon_summe(posten)`, die für eine Liste von Kassenbon-
 Posten die **Gesamtsumme** berechnet. Jeder Posten ist
 `[name, anzahl, einzelpreis]`. Liefere auf **2 Nachkommastellen**
 gerundet.
@@ -94,7 +94,7 @@ Mit Floats kann **Rundungs-Drift** entstehen:
 0.1 + 0.2 == 0.30000000000000004
 ```
 
-Fuer **echte Geld-Anwendungen** sollte man `decimal.Decimal` nutzen
+Für **echte Geld-Anwendungen** sollte man `decimal.Decimal` nutzen
 oder in **Cent-Ints** rechnen (`299` statt `2.99`). Pythons `round`
 hilft, gibt aber keine Garantie auf perfekte Praezision.
 

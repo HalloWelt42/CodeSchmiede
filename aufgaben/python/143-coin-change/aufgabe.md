@@ -60,13 +60,13 @@ starter_code: |
 
 # Muenz-Wechsel (Coin Change)
 
-Gegeben sind eine Liste verfuegbarer **Muenz-Werte** (jede Sorte
+Gegeben sind eine Liste verfügbarer **Muenz-Werte** (jede Sorte
 unbegrenzt oft) und ein Ziel-`betrag`. Schreibe eine Funktion
 `muenz_wechsel(muenzen, betrag)`, die die **minimale Anzahl Muenzen**
-zurueckgibt, mit der sich der Betrag genau zusammensetzen laesst.
+zurückgibt, mit der sich der Betrag genau zusammensetzen laesst.
 
 Wenn keine Kombination existiert → `-1`.
-Bei `betrag == 0` → `0` (keine Muenzen noetig).
+Bei `betrag == 0` → `0` (keine Muenzen nötig).
 
 ## Beispiele
 
@@ -79,7 +79,7 @@ Bei `betrag == 0` → `0` (keine Muenzen noetig).
 
 ## Idee -- Bottom-Up-DP
 
-`dp[k]` = minimale Anzahl Muenzen fuer Betrag `k`.
+`dp[k]` = minimale Anzahl Muenzen für Betrag `k`.
 
 ```python
 def muenz_wechsel(muenzen, betrag):
@@ -94,12 +94,12 @@ def muenz_wechsel(muenzen, betrag):
 
 ## Vorsicht: Greedy reicht nicht!
 
-Bei `[1, 3, 4]` und Betrag 6 gibt Greedy (immer groesste Muenze
+Bei `[1, 3, 4]` und Betrag 6 gibt Greedy (immer größte Muenze
 zuerst) `4 + 1 + 1 = 3`, aber optimal ist `3 + 3 = 2`. Deswegen DP.
 
 ## Hintergrund
 
 Coin-Change ist eine der kanonischen DP-Aufgaben. Verwandte Probleme:
 **Anzahl der Wege** (statt Minimum), **Rucksack-Problem**, **Partition**.
-Viele real existierende Muenz-Systeme (Cent-Stueckelung) sind so
-gewaehlt, dass Greedy zufaellig optimal ist.
+Viele real existierende Muenz-Systeme (Cent-Stückelung) sind so
+gewählt, dass Greedy zufaellig optimal ist.

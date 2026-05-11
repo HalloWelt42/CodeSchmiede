@@ -110,7 +110,7 @@ Kompakte Variante: `True - True == 0`, `True - False == 1`,
 ## In `math` und `numpy`
 
 - `math.copysign(1, x)` liefert `1.0` oder `-1.0`, **nie** `0` --
-  unbrauchbar fuer unsere Zwecke.
+  unbrauchbar für unsere Zwecke.
 - `numpy.sign(x)` macht genau das, was wir brauchen.
 
 ## Anwendung

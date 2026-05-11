@@ -23,7 +23,7 @@ funktion: drop_while_null
 hints:
   - kosten: 0
     text: |
-      Ueberspringe Elemente vom Anfang, SOLANGE sie 0 sind.
+      Überspringe Elemente vom Anfang, SOLANGE sie 0 sind.
       Beim ersten ungleich-0: STOP Skipping, alles ab da behalten
       (auch wenn weitere 0en kommen).
       [0, 0, 0, 1, 0, 2] → [1, 0, 2].
@@ -64,9 +64,9 @@ starter_code: |
 # Drop-While null
 
 Schreibe `drop_while_null(liste)`, die Elemente am Anfang
-**uebersprungen**, solange sie `0` sind. Beim ersten Element
+**übersprungen**, solange sie `0` sind. Beim ersten Element
 **ungleich** `0` wird der Skip-Modus beendet -- ab da werden
-alle weiteren Elemente uebernommen, auch wenn `0` darunter sind.
+alle weiteren Elemente übernommen, auch wenn `0` darunter sind.
 
 ## Beispiele
 
@@ -104,7 +104,7 @@ def drop_while_null(liste):
     return list(dropwhile(lambda x: x == 0, liste))
 ```
 
-`dropwhile` ist das Standard-Tool fuer dieses Pattern -- spiegelbildlich
+`dropwhile` ist das Standard-Tool für dieses Pattern -- spiegelbildlich
 zu `takewhile`.
 
 ## Vergleich -- takewhile vs dropwhile
@@ -112,12 +112,12 @@ zu `takewhile`.
 Bei `[0, 0, 1, 0, 2]` mit Predicate `x == 0`:
 
 - `takewhile` liefert `[0, 0]` (vorne, solange wahr)
-- `dropwhile` liefert `[1, 0, 2]` (uebrig nach Skip vorne)
+- `dropwhile` liefert `[1, 0, 2]` (übrig nach Skip vorne)
 
 Zusammen ergeben beide die ganze Liste.
 
 ## Anwendung
 
-- Header-Zeilen ueberspringen (Komma getrennt: `# comments` skippen)
+- Header-Zeilen überspringen (Komma getrennt: `# comments` skippen)
 - Whitespace-Padding am Anfang entfernen
 - "Erst ab erstem echten Wert anfangen"-Logik

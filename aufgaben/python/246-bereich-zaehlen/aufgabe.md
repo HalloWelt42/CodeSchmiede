@@ -2,7 +2,7 @@
 schema_version: 1
 id: 246-bereich-zaehlen
 revision: 1
-titel: Zahlen im Bereich [a, b] zaehlen
+titel: Zahlen im Bereich [a, b] zählen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -14,7 +14,7 @@ pfade: []
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Klassische Filter-und-Zaehl-Aufgabe
+  notiz: Klassische Filter-und-Zähl-Aufgabe
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -57,9 +57,9 @@ starter_code: |
       pass
 ---
 
-# Zahlen im Bereich [a, b] zaehlen
+# Zahlen im Bereich [a, b] zählen
 
-Schreibe `im_bereich_zaehlen(zahlen, a, b)`, die zaehlt, wie viele
+Schreibe `im_bereich_zählen(zahlen, a, b)`, die zählt, wie viele
 Zahlen aus der Liste im **inklusiven** Bereich `[a, b]` liegen.
 
 Bei `a > b` → `0`.
@@ -77,28 +77,28 @@ Bei `a > b` → `0`.
 ## Idee
 
 ```python
-def im_bereich_zaehlen(zahlen, a, b):
+def im_bereich_zählen(zahlen, a, b):
     return sum(1 for x in zahlen if a <= x <= b)
 ```
 
 `a <= x <= b` ist Pythons **chained comparison** -- liest sich wie
-in Mathematik. In den meisten anderen Sprachen muesste man
+in Mathematik. In den meisten anderen Sprachen müsste man
 `x >= a and x <= b` schreiben.
 
 ## Idee -- Boolean-Trick
 
 ```python
-def im_bereich_zaehlen(zahlen, a, b):
+def im_bereich_zählen(zahlen, a, b):
     return sum(a <= x <= b for x in zahlen)
 ```
 
-Da `True == 1` und `False == 0` in Python, ist `sum` ueber Booleans
-das Gleiche wie eine Zaehl-Funktion. Sehr kurz, sehr Pythonisch.
+Da `True == 1` und `False == 0` in Python, ist `sum` über Booleans
+das Gleiche wie eine Zähl-Funktion. Sehr kurz, sehr Pythonisch.
 
 ## Stolperstein -- Inklusiv vs Exklusiv
 
-`a <= x <= b` schliesst **beide** Grenzen ein. Fuer halb-offene
-Bereiche `[a, b)` waere es `a <= x < b`. Fuer offene `(a, b)`:
+`a <= x <= b` schließt **beide** Grenzen ein. Für halb-offene
+Bereiche `[a, b)` wäre es `a <= x < b`. Für offene `(a, b)`:
 `a < x < b`.
 
 ## Verwandt

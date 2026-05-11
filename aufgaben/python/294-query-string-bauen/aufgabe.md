@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Wandle ein Dict in einen Query-String "a=1&b=2".
-      Schluessel ALPHABETISCH sortiert (deterministisch).
+      Schlüssel ALPHABETISCH sortiert (deterministisch).
       Werte werden mit str() konvertiert.
       Bei {} → "".
   - kosten: 15
@@ -61,7 +61,7 @@ starter_code: |
 # URL-Query-String aus Dict bauen
 
 Schreibe `query_build(d)`, die ein Dict in einen Query-String
-`"a=1&b=2"` umwandelt -- mit Schluesseln **alphabetisch sortiert**
+`"a=1&b=2"` umwandelt -- mit Schlüsseln **alphabetisch sortiert**
 (deterministisch).
 
 Werte werden mit `str()` zu String konvertiert.
@@ -85,7 +85,7 @@ def query_build(d):
     return "&".join(f"{k}={v}" for k, v in sorted(d.items()))
 ```
 
-`sorted(d.items())` sortiert nach Schluessel (alphabetisch).
+`sorted(d.items())` sortiert nach Schlüssel (alphabetisch).
 `f"{k}={v}"` formatiert pro Eintrag, `"&".join(...)` verkettet.
 
 ## Pendant -- Round-Trip

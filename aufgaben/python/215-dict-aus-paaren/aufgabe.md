@@ -2,7 +2,7 @@
 schema_version: 1
 id: 215-dict-aus-paaren
 revision: 1
-titel: Dict aus Schluessel-Wert-Paaren bauen
+titel: Dict aus Schlüssel-Wert-Paaren bauen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -56,7 +56,7 @@ starter_code: |
       pass
 ---
 
-# Dict aus Schluessel-Wert-Paaren bauen
+# Dict aus Schlüssel-Wert-Paaren bauen
 
 Schreibe `paare_zu_dict(paare)`, die eine Liste von `[key, value]`-
 Paaren in ein Dict umwandelt.
@@ -83,7 +83,7 @@ def paare_zu_dict(paare):
 
 `dict()` akzeptiert ein Iterable von 2-Element-Iterables direkt.
 Bei doppelten Keys gewinnt automatisch das **letzte** Paar -- weil
-es spaeter eingesetzt wird und das fruehere ueberschreibt.
+es spaeter eingesetzt wird und das frühere überschreibt.
 
 ## Pendant -- Dict zu Paaren
 

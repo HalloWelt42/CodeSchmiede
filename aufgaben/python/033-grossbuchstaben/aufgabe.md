@@ -2,7 +2,7 @@
 schema_version: 1
 id: 033-grossbuchstaben
 revision: 1
-titel: Grossbuchstaben zählen
+titel: Großbuchstaben zählen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -14,7 +14,7 @@ pfade: [python_strings]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Aufwaermer fuer String-Methoden
+  notiz: Aufwaermer für String-Methoden
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -54,10 +54,10 @@ starter_code: |
       pass
 ---
 
-# Grossbuchstaben zählen
+# Großbuchstaben zählen
 
-Schreibe eine Funktion `zaehle_gross(text)`, die zählt, wie viele
-**Grossbuchstaben** im String vorkommen.
+Schreibe eine Funktion `zähle_groß(text)`, die zählt, wie viele
+**Großbuchstaben** im String vorkommen.
 
 ## Beispiele
 
@@ -71,10 +71,10 @@ Schreibe eine Funktion `zaehle_gross(text)`, die zählt, wie viele
 
 ## Idee
 
-Schleife ueber jedes Zeichen, Test mit `c.isupper()`, Zähler hoch.
+Schleife über jedes Zeichen, Test mit `c.isupper()`, Zähler hoch.
 
 ## Verwandt
 
-Pythons String-Methoden sind ueberraschend reichhaltig: `isupper`,
+Pythons String-Methoden sind überraschend reichhaltig: `isupper`,
 `islower`, `isdigit`, `isalpha`, `isspace`, `isalnum` -- alle sehr
-nuetzlich, um schnell Strings zu klassifizieren.
+nützlich, um schnell Strings zu klassifizieren.

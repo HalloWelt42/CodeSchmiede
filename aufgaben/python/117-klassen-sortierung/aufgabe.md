@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Eingabe: Liste `[{"name": ..., "klasse": ...}]`. Ausgabe: Dict
-      `{klasse: [namen sortiert]}`. Klassen-Schluessel als Strings.
+      `{klasse: [namen sortiert]}`. Klassen-Schlüssel als Strings.
   - kosten: 10
     text: |
       `defaultdict(list)`, einsortieren, am Ende jede Liste sortieren.
@@ -53,8 +53,8 @@ starter_code: |
 
 # Schüler in Klassen sortieren
 
-Schreibe eine Funktion `sortiere_schueler(eintraege)`, die eine
-Liste von Schueler-Records nach Klasse gruppiert und die Namen pro
+Schreibe eine Funktion `sortiere_schüler(eintraege)`, die eine
+Liste von Schüler-Records nach Klasse gruppiert und die Namen pro
 Klasse alphabetisch sortiert.
 
 ## Eingabe
@@ -76,10 +76,10 @@ Klasse alphabetisch sortiert.
 }
 ```
 
-Klassen-Schlüssel werden als Strings zurueckgegeben (JSON-kompatibel).
+Klassen-Schlüssel werden als Strings zurückgegeben (JSON-kompatibel).
 
 ## Hintergrund
 
 Klassisches **Group-By**-Pattern, wie es in jeder Daten-Pipeline,
 SQL oder Pandas-Aggregation vorkommt. In Python gibt es keinen
-eingebauten group-by, aber `defaultdict(list)` ist die Standard-Loesung.
+eingebauten group-by, aber `defaultdict(list)` ist die Standard-Lösung.

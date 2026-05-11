@@ -23,10 +23,10 @@ funktion: diamant
 hints:
   - kosten: 0
     text: |
-      Fuer Eingabe `'C'`: Diamant geht von `A` nach `C` und zurueck.
-      Jede Zeile hat genau zwei gleiche Buchstaben (ausser die
-      `A`-Zeile, die hat nur eines). Innen Leerzeichen, ausserhalb
-      Padding zur Symmetrie. Rueckgabe als Liste von Zeilen.
+      Für Eingabe `'C'`: Diamant geht von `A` nach `C` und zurück.
+      Jede Zeile hat genau zwei gleiche Buchstaben (außer die
+      `A`-Zeile, die hat nur eines). Innen Leerzeichen, außerhalb
+      Padding zur Symmetrie. Rückgabe als Liste von Zeilen.
   - kosten: 25
     text: |
       Buchstaben-Index: `i = ord(c) - ord('A')`. Outer Padding pro
@@ -56,12 +56,12 @@ starter_code: |
 # Diamant aus Buchstaben
 
 Schreibe eine Funktion `diamant(buchstabe)`, die einen Diamant-
-Buchstaben-Muster als **Liste von Zeilen** zurueckgibt.
+Buchstaben-Muster als **Liste von Zeilen** zurückgibt.
 
 ## Regeln
 
 - Die Spitze ist immer `A`.
-- Die Mitte enthaelt den eingegebenen Buchstaben (z.B. `C`), zweimal
+- Die Mitte enthält den eingegebenen Buchstaben (z.B. `C`), zweimal
   mit Leerzeichen dazwischen.
 - Jede Zeile hat **gleiche Breite** (mit Whitespace gepolstert),
   sodass das Muster ein echter Diamant wird.
@@ -90,6 +90,6 @@ D     D
 
 ## Hintergrund
 
-Diamond ist ein Exercism-Klassiker -- toll fuer das Verstaendnis
+Diamond ist ein Exercism-Klassiker -- toll für das Verstaendnis
 von **Padding**, **Symmetrie** und **String-Multiplikation** in
 Python.

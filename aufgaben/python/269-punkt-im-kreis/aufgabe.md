@@ -23,8 +23,8 @@ funktion: im_kreis
 hints:
   - kosten: 0
     text: |
-      Pruefe ob Punkt [x, y] im Kreis liegt -- Mittelpunkt [cx, cy],
-      Radius r. Inklusiv: Punkt AUF dem Kreis zaehlt als drinnen.
+      Prüfe ob Punkt [x, y] im Kreis liegt -- Mittelpunkt [cx, cy],
+      Radius r. Inklusiv: Punkt AUF dem Kreis zählt als drinnen.
       Distanz zum Mittelpunkt <= r.
   - kosten: 10
     text: |
@@ -61,7 +61,7 @@ starter_code: |
 
 # Punkt im Kreis?
 
-Schreibe `im_kreis(punkt, mittelpunkt, r)`, die `True` zurueckgibt,
+Schreibe `im_kreis(punkt, mittelpunkt, r)`, die `True` zurückgibt,
 wenn `punkt` innerhalb (oder auf dem Rand) eines Kreises liegt.
 
 Punkt = `[x, y]`, Mittelpunkt = `[cx, cy]`, Radius = `r`.

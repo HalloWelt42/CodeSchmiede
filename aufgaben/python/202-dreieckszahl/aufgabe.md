@@ -104,7 +104,7 @@ def dreieckszahl(n):
     return n * (n + 1) // 2
 ```
 
-`O(1)` und exakt -- kein Float-Trick noetig.
+`O(1)` und exakt -- kein Float-Trick nötig.
 
 ## Anekdote -- Der kleine Gauss
 

@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Teile die Liste in zwei Haelften: [erste_haelfte, zweite_haelfte].
-      Bei UNGERADER Anzahl: das mittlere Element gehoert zur ZWEITEN Haelfte.
+      Bei UNGERADER Anzahl: das mittlere Element gehört zur ZWEITEN Haelfte.
       [1,2,3,4,5] → [[1,2], [3,4,5]].
       Bei [] → [[], []].
   - kosten: 10
@@ -62,7 +62,7 @@ starter_code: |
 Schreibe `halbieren(liste)`, die eine Liste in **zwei Haelften**
 teilt: `[erste_haelfte, zweite_haelfte]`.
 
-Bei **ungerader Anzahl**: das mittlere Element gehoert zur **zweiten**
+Bei **ungerader Anzahl**: das mittlere Element gehört zur **zweiten**
 Haelfte.
 
 ## Beispiele

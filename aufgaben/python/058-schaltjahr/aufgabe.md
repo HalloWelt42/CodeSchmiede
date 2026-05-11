@@ -14,7 +14,7 @@ pfade: [python_datum]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Schaltjahr
-  notiz: Klassischer Test fuer if/else-Verschachtelung
+  notiz: Klassischer Test für if/else-Verschachtelung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -60,7 +60,7 @@ starter_code: |
 
 # Schaltjahr prüfen
 
-Schreibe eine Funktion `ist_schaltjahr(jahr)`, die prueft, ob ein Jahr
+Schreibe eine Funktion `ist_schaltjahr(jahr)`, die prüft, ob ein Jahr
 ein **Schaltjahr** im Gregorianischen Kalender ist.
 
 ## Regel
@@ -92,8 +92,8 @@ In Code:
 
 Diese Regel kompensiert, dass ein Sonnenjahr ungefaehr 365.2422 Tage
 hat -- nicht ganz 365.25. Die 400-Jahr-Ausnahme korrigiert den
-Ueberschuss, der entstehen wuerde, wenn man jedes durch 4 teilbare
-Jahr als Schaltjahr nehmen wuerde.
+Überschuss, der entstehen würde, wenn man jedes durch 4 teilbare
+Jahr als Schaltjahr nehmen würde.
 
 Die Regel wurde 1582 von **Papst Gregor XIII.** eingefuehrt, als der
-julianische Kalender ueber die Jahrhunderte aus dem Tritt geraten war.
+julianische Kalender über die Jahrhunderte aus dem Tritt geraten war.

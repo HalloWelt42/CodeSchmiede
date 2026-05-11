@@ -112,5 +112,5 @@ Diese Idee ist universell:
 next((x for x in liste if irgendeine_bedingung(x)), default)
 ```
 
-Damit lassen sich alle "find first"-Aufgaben in einer Zeile loesen --
+Damit lassen sich alle "find first"-Aufgaben in einer Zeile lösen --
 ein wichtiger Pythonismus.

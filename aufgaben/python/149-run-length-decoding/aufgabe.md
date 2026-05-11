@@ -29,8 +29,8 @@ hints:
   - kosten: 15
     text: |
       Einmal durchlaufen: solange aktuelles Zeichen Ziffer, an Zahl
-      anhaengen. Sonst: Zahl ist abgeschlossen, Zeichen liegt vor uns,
-      n*c an Output anhaengen, Zustand reset.
+      anhängen. Sonst: Zahl ist abgeschlossen, Zeichen liegt vor uns,
+      n*c an Output anhängen, Zustand reset.
 tests_sichtbar:
   - input: ["3a2b1c"]
     expected: "aaabbc"
@@ -95,7 +95,7 @@ def rle_decode(s):
 ## Pendant: Encoding (Aufgabe 035)
 
 Encoding macht das Umgekehrte -- aus `"aaabbc"` wird `"3a2b1c"`. Wenn
-beide Funktionen korrekt sind, gilt fuer alle Strings ohne Ziffern:
+beide Funktionen korrekt sind, gilt für alle Strings ohne Ziffern:
 `rle_decode(rle_encode(s)) == s`.
 
 ## Praxis
@@ -103,4 +103,4 @@ beide Funktionen korrekt sind, gilt fuer alle Strings ohne Ziffern:
 Dieses einfache Format steckt z.B. in **PCX-Bildern**, **BMP-Run-Length-
 Codierung** und alten **Fax-Standards** (Modified Huffman). Effizient
 nur bei Daten mit langen gleichen Laeufen -- bei zufaelligen Daten
-oft groesser als das Original.
+oft größer als das Original.

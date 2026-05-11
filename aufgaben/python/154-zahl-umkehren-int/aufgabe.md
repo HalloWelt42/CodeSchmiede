@@ -102,10 +102,10 @@ def zahl_umdrehen(n):
     return vorzeichen * ergebnis
 ```
 
-Klassische Schul-Variante -- gleichzeitig die Vorlage fuer
+Klassische Schul-Variante -- gleichzeitig die Vorlage für
 Konvertierungen in andere Zahlensysteme (Basis statt 10).
 
 ## Hinweis
 
-In LeetCode 7 muss zusaetzlich auf 32-Bit-Overflow geprueft werden.
+In LeetCode 7 muss zusaetzlich auf 32-Bit-Overflow geprüft werden.
 Hier nutzen wir Pythons unbegrenzte Integer und sparen den Sonderfall.

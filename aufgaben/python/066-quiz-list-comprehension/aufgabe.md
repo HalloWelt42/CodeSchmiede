@@ -34,7 +34,7 @@ quiz:
 
 # Was gibt die Comprehension aus?
 
-Lies den Code genau und waehle die richtige Ausgabe.
+Lies den Code genau und wähle die richtige Ausgabe.
 
 ## Hintergrund
 

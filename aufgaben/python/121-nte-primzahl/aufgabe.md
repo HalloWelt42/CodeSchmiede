@@ -85,6 +85,6 @@ Naive Variante: Zahlen aufzählen, jede auf Primalität prüfen,
 zählen bis n. $O(\sqrt{p})$ pro Test, daher insgesamt $O(p \sqrt{p})$
 mit $p$ = n-te Primzahl.
 
-Schneller waere ein **Sieb des Eratosthenes** -- aber dafür braucht
-man eine Obergrenze. Praktisch fuer große n nimmt man eine grobe
-Schaetzung wie $n \cdot (\ln n + \ln \ln n)$.
+Schneller wäre ein **Sieb des Eratosthenes** -- aber dafür braucht
+man eine Obergrenze. Praktisch für große n nimmt man eine grobe
+Schätzung wie $n \cdot (\ln n + \ln \ln n)$.

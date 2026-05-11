@@ -2,7 +2,7 @@
 schema_version: 1
 id: 316-counter-most-common
 revision: 1
-titel: Top-N haeufigste Werte
+titel: Top-N häufigste Werte
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,12 +23,12 @@ funktion: top_n
 hints:
   - kosten: 0
     text: |
-      Liefere die N haeufigsten Werte als Liste von [wert, anzahl]-Paaren,
+      Liefere die N häufigsten Werte als Liste von [wert, anzahl]-Paaren,
       absteigend nach Anzahl. Bei Gleichstand: kleinerer Wert zuerst.
       n <= 0 → []. n > Anzahl unique → alle.
   - kosten: 15
     text: |
-      Counter zaehlt. sorted(c.items(), key=(-anzahl, wert))[:n] sortiert
+      Counter zählt. sorted(c.items(), key=(-anzahl, wert))[:n] sortiert
       nach Anzahl absteigend, bei Gleichstand wert aufsteigend.
 tests_sichtbar:
   - input: [[1, 2, 2, 3, 3, 3], 2]
@@ -60,13 +60,13 @@ starter_code: |
       pass
 ---
 
-# Top-N haeufigste Werte
+# Top-N häufigste Werte
 
-Schreibe `top_n(liste, n)`, die die **N haeufigsten Werte** als Liste
+Schreibe `top_n(liste, n)`, die die **N häufigsten Werte** als Liste
 von `[wert, anzahl]`-Paaren liefert -- absteigend nach Anzahl. Bei
 Gleichstand: **kleinerer Wert zuerst**.
 
-`n <= 0` → `[]`. `n` groesser als Anzahl unique → alle.
+`n <= 0` → `[]`. `n` größer als Anzahl unique → alle.
 
 ## Beispiele
 
@@ -104,5 +104,5 @@ des Werts. Daher hier eigene Sortierung.
 ## Anwendung
 
 - **Tag-Cloud**: Top 20 Tags zeigen.
-- **Log-Analyse**: haeufigste Fehler-Codes.
-- **Spam-Filter**: haeufigste Woerter in markierter Mail.
+- **Log-Analyse**: häufigste Fehler-Codes.
+- **Spam-Filter**: häufigste Wörter in markierter Mail.

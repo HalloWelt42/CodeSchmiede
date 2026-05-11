@@ -105,7 +105,7 @@ def partition_vorzeichen(zahlen):
     return [neg, null, pos]
 ```
 
-Effizient -- bei sehr grossen Listen merkbar schneller.
+Effizient -- bei sehr großen Listen merkbar schneller.
 
 ## Pattern -- Allgemeine Partition
 
@@ -114,9 +114,9 @@ Die Idee laesst sich mit einem **Predicate** verallgemeinern:
 ```python
 from itertools import groupby
 
-def partition_nach(liste, schluessel):
-    sortiert = sorted(liste, key=schluessel)
-    return {k: list(g) for k, g in groupby(sortiert, key=schluessel)}
+def partition_nach(liste, schlüssel):
+    sortiert = sorted(liste, key=schlüssel)
+    return {k: list(g) for k, g in groupby(sortiert, key=schlüssel)}
 ```
 
 Geht in einer Zeile, wenn die Sortier-Reihenfolge egal ist.

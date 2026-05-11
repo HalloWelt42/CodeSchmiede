@@ -23,7 +23,7 @@ funktion: wochentag
 hints:
   - kosten: 0
     text: |
-      Zeller-Formel: ein direkter Weg zum Wochentag. Zaehlweise:
+      Zeller-Formel: ein direkter Weg zum Wochentag. Zählweise:
       0 = Sonntag, 1 = Montag, ..., 6 = Samstag.
   - kosten: 25
     text: |
@@ -68,7 +68,7 @@ starter_code: |
 # Wochentag mit Zeller-Formel
 
 Schreibe eine Funktion `wochentag(jahr, monat, tag)`, die den Wochentag
-fuer ein Datum im Gregorianischen Kalender zurueckgibt.
+für ein Datum im Gregorianischen Kalender zurückgibt.
 
 Konvention: **`0 = Sonntag, 1 = Montag, ..., 6 = Samstag`**.
 

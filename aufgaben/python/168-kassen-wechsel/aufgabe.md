@@ -2,7 +2,7 @@
 schema_version: 1
 id: 168-kassen-wechsel
 revision: 1
-titel: Wechselgeld in EUR-Stueckelung
+titel: Wechselgeld in EUR-Stückelung
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,14 +23,14 @@ funktion: wechselgeld
 hints:
   - kosten: 0
     text: |
-      Gegeben ein Betrag in CENT. Liefere die Anzahl jeder Stueckelung
+      Gegeben ein Betrag in CENT. Liefere die Anzahl jeder Stückelung
       von oben nach unten als Liste:
       [200, 100, 50, 20, 10, 5, 2, 1] (in Cent).
-      Greedy: immer die groesste passende Muenze nehmen.
+      Greedy: immer die größte passende Muenze nehmen.
   - kosten: 10
     text: |
-      Pro Stueckelung: anzahl = betrag // stueck, betrag %= stueck.
-      Loesung als Liste in der Reihenfolge der Stueckelungen sammeln.
+      Pro Stückelung: anzahl = betrag // stück, betrag %= stück.
+      Lösung als Liste in der Reihenfolge der Stückelungen sammeln.
 tests_sichtbar:
   - input: [0]
     expected: [0, 0, 0, 0, 0, 0, 0, 0]
@@ -59,17 +59,17 @@ starter_code: |
       pass
 ---
 
-# Wechselgeld in EUR-Stueckelung
+# Wechselgeld in EUR-Stückelung
 
-Schreibe eine Funktion `wechselgeld(cent)`, die fuer einen Betrag
-in **Cent** die Anzahl jeder EUR-Muenz-/-Schein-Stueckelung
-(in dieser Reihenfolge) zurueckgibt:
+Schreibe eine Funktion `wechselgeld(cent)`, die für einen Betrag
+in **Cent** die Anzahl jeder EUR-Muenz-/-Schein-Stückelung
+(in dieser Reihenfolge) zurückgibt:
 
 ```
 [200, 100, 50, 20, 10, 5, 2, 1]   (alle in Cent)
 ```
 
-Die Strategie ist **greedy**: immer die groesste Muenze nehmen, die
+Die Strategie ist **greedy**: immer die größte Muenze nehmen, die
 noch passt.
 
 ## Beispiele
@@ -98,6 +98,6 @@ def wechselgeld(cent):
 
 ## Greedy ist hier garantiert optimal
 
-Die Euro-Stueckelung ist ein **kanonisches Muenz-System** -- Greedy
-liefert garantiert die minimale Stueck-Anzahl. Bei kuenstlichen
-Stueckelungen wie `[1, 3, 4]` versagt Greedy (siehe Aufgabe 143).
+Die Euro-Stückelung ist ein **kanonisches Muenz-System** -- Greedy
+liefert garantiert die minimale Stück-Anzahl. Bei kuenstlichen
+Stückelungen wie `[1, 3, 4]` versagt Greedy (siehe Aufgabe 143).

@@ -25,7 +25,7 @@ hints:
     text: |
       Sortiere eine Liste von Strings AUFSTEIGEND nach LAENGE.
       Bei gleicher Laenge: alphabetisch.
-      Original-Liste nicht veraendern.
+      Original-Liste nicht verändern.
   - kosten: 10
     text: |
       sorted mit key=lambda s: (len(s), s).
@@ -62,7 +62,7 @@ Schreibe `nach_laenge(strings)`, die eine Liste von Strings
 **aufsteigend nach Laenge** sortiert. Bei gleicher Laenge:
 **alphabetisch** (das ist die Standard-Tie-Breaking-Regel).
 
-Original-Liste **nicht** veraendern.
+Original-Liste **nicht** verändern.
 
 ## Beispiele
 
@@ -80,12 +80,12 @@ def nach_laenge(strings):
     return sorted(strings, key=lambda s: (len(s), s))
 ```
 
-Pythons `sorted` mit Tupel-Key sortiert **lexikographisch** ueber
+Pythons `sorted` mit Tupel-Key sortiert **lexikographisch** über
 das Tupel: zuerst nach `len(s)`, bei Gleichstand nach `s` selbst.
 
 ## Warum nicht zwei separate Sortierungen?
 
-Wegen Pythons **stabiler Sortierung** koennte man auch:
+Wegen Pythons **stabiler Sortierung** könnte man auch:
 
 ```python
 return sorted(sorted(strings), key=len)
@@ -97,6 +97,6 @@ liest sich verwirrender.
 
 ## Anwendung
 
-- Auto-Vervollstaendigung: zuerst kuerzere Vorschlaege.
+- Auto-Vervollstaendigung: zuerst kürzere Vorschlaege.
 - Tabellen-Spalten dynamisch dimensionieren.
 - Sortier-Visualisierungen / Lehre.

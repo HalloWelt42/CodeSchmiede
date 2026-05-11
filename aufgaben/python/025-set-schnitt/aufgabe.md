@@ -23,7 +23,7 @@ funktion: schnittmenge
 hints:
   - kosten: 0
     text: |
-      Die Schnittmenge enthaelt nur Elemente, die in beiden Listen
+      Die Schnittmenge enthält nur Elemente, die in beiden Listen
       vorkommen. Reihenfolge: nach Position in `a`. Doppelte vermeiden.
   - kosten: 15
     text: |
@@ -61,7 +61,7 @@ starter_code: |
 # Schnittmenge zweier Listen
 
 Schreibe eine Funktion `schnittmenge(a, b)`, die alle Elemente
-zurueckgibt, die in **beiden Listen** vorkommen.
+zurückgibt, die in **beiden Listen** vorkommen.
 
 Reihenfolge: nach erstem Auftreten in `a`. Jedes Element kommt im
 Ergebnis nur **einmal** vor.
@@ -78,11 +78,11 @@ Ergebnis nur **einmal** vor.
 ## Idee
 
 Sets sind hier dein Freund: `set(b)` macht den `in`-Test sehr schnell.
-Ueber `a` iterieren, jedes Element prüfen, ob es in `set(b)` ist und
+Über `a` iterieren, jedes Element prüfen, ob es in `set(b)` ist und
 noch nicht im Ergebnis steht.
 
 ## Hintergrund
 
-In Python ist `x in set` ein O(1)-Test (Hash-Lookup), waehrend `x in
-list` linear in der Listenlaenge ist. Bei grossen Datenmengen macht
+In Python ist `x in set` ein O(1)-Test (Hash-Lookup), während `x in
+list` linear in der Listenlaenge ist. Bei großen Datenmengen macht
 diese Wahl einen riesigen Unterschied.

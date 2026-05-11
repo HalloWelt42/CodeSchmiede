@@ -23,7 +23,7 @@ funktion: primzahlen_bis
 hints:
   - kosten: 0
     text: |
-      Lege eine Liste an, die fuer jede Zahl markiert "ist Primzahl?".
+      Lege eine Liste an, die für jede Zahl markiert "ist Primzahl?".
       Streiche alle Vielfachen jeder gefundenen Primzahl ab i*i.
   - kosten: 20
     text: |
@@ -63,7 +63,7 @@ starter_code: |
 # Sieb des Eratosthenes
 
 Schreibe eine Funktion `primzahlen_bis(n)`, die alle **Primzahlen
-bis einschliesslich n** in aufsteigender Reihenfolge zurueckgibt.
+bis einschließlich n** in aufsteigender Reihenfolge zurückgibt.
 
 ## Beispiele
 
@@ -78,7 +78,7 @@ bis einschliesslich n** in aufsteigender Reihenfolge zurueckgibt.
 
 1. Lege eine Liste `ist_prim` der Laenge `n+1` an, initial alle `True`
 2. Setze `ist_prim[0] = ist_prim[1] = False`
-3. Fuer jede `i` von 2 bis `sqrt(n)`: wenn `ist_prim[i]`, streiche alle
+3. Für jede `i` von 2 bis `sqrt(n)`: wenn `ist_prim[i]`, streiche alle
    Vielfachen ab `i*i` (kleinere Vielfache wurden schon gestrichen)
 4. Sammle alle Indizes mit `ist_prim[i] == True`
 
@@ -92,5 +92,5 @@ $n = 1.000.000$ ist der Unterschied praktisch riesig.
 
 Der Algorithmus stammt von **Eratosthenes von Kyrene** (ca. 276-194
 v. Chr.), Bibliothekar der Bibliothek von Alexandria. Er ist eines
-der schoensten Beispiele dafuer, dass ein guter Algorithmus zwei
-Jahrtausende ueberdauern kann.
+der schönsten Beispiele dafür, dass ein guter Algorithmus zwei
+Jahrtausende überdauern kann.

@@ -72,7 +72,7 @@ Die **Look-and-Say-Folge** entsteht, indem man jeden Term **laut vorliest**:
 ```
 
 Schreibe eine Funktion `look_and_say(n)`, die das **n-te Glied** der
-Folge zurueckgibt (`n = 1` → `"1"`).
+Folge zurückgibt (`n = 1` → `"1"`).
 
 ## Beispiele
 
@@ -107,6 +107,6 @@ def look_and_say(n):
 ## Hintergrund
 
 John Conway hat 1986 das **kosmologische Theorem** bewiesen: jeder
-Term der Folge zerfaellt schliesslich in 92 "Atome" (kleine wiederkehrende
+Term der Folge zerfaellt schließlich in 92 "Atome" (kleine wiederkehrende
 Bausteine, benannt nach chemischen Elementen). Das Wachstum jedes Terms
 strebt gegen Conways Konstante $\lambda \approx 1{,}3036$.

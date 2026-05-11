@@ -28,7 +28,7 @@ hints:
       Operations: "double", "square", "negate", "increment", "absolute"
       pipe_mit_zwischen(3, ["double", "increment", "square"]) →
       [6, 7, 49] (Schritte).
-      Bei [] → []. Unbekannte Op → Wert unveraendert mitlesen.
+      Bei [] → []. Unbekannte Op → Wert unverändert mitlesen.
   - kosten: 15
     text: |
       Akkumulator + Liste der Snapshots.
@@ -70,7 +70,7 @@ Operation** den aktuellen Wert in eine Liste schreibt.
 Bei unbekannter Op wird sie als `identity` behandelt (Wert bleibt,
 wird aber als Snapshot eingetragen).
 
-## Verfuegbare Operationen
+## Verfügbare Operationen
 
 | String        | Wirkung    |
 |---------------|------------|
@@ -112,7 +112,7 @@ def pipe_mit_zwischen(start, ops):
     return out
 ```
 
-Pro Op: anwenden (oder bei unbekannt: ueberspringen) und Snapshot
+Pro Op: anwenden (oder bei unbekannt: überspringen) und Snapshot
 einsammeln.
 
 ## Vergleich mit Pipeline (302)
@@ -122,11 +122,11 @@ einsammeln.
 | **302-pipeline** | Wendet Ops auf **Liste** an, gibt Endergebnis |
 | **306 hier**     | Wendet Ops auf **Skalar** an, gibt **alle Zwischen-Werte** |
 
-Die Snapshot-Variante ist nuetzlich fuer **Debugging**, **Trace-
+Die Snapshot-Variante ist nützlich für **Debugging**, **Trace-
 Logs**, **Animationen** und **Visualisierungen**.
 
 ## Anwendung
 
 - **Animations-Frames** generieren ("zeige mir alle Zwischen-Stufen").
 - **Trace-Logs** in Pipelines (welcher Schritt hat den Bug?).
-- **Time-Travel-Debugger** (jeder Snapshot = ein Schritt zurueck).
+- **Time-Travel-Debugger** (jeder Snapshot = ein Schritt zurück).

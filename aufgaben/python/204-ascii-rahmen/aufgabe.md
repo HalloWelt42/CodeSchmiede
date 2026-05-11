@@ -98,8 +98,8 @@ def rahmen(zeilen):
 
 ## Stolperstein -- alle Zeilen gleich lang
 
-Damit der rechte Rand sauber bleibt, muessen kuerzere Zeilen mit
-Leerzeichen aufgefuellt werden. `str.ljust(breite)` macht das in
+Damit der rechte Rand sauber bleibt, müssen kürzere Zeilen mit
+Leerzeichen aufgefüllt werden. `str.ljust(breite)` macht das in
 einer Zeile.
 
 ## Hintergrund

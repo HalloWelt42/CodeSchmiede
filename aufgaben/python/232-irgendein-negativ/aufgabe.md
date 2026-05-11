@@ -14,7 +14,7 @@ pfade: []
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Klassische Pruefung
+  notiz: Klassische Prüfung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -23,8 +23,8 @@ funktion: irgendein_negativ
 hints:
   - kosten: 0
     text: |
-      Pruefe ob mindestens eine Zahl negativ (< 0) ist.
-      Null zaehlt nicht. Leere Liste → False.
+      Prüfe ob mindestens eine Zahl negativ (< 0) ist.
+      Null zählt nicht. Leere Liste → False.
   - kosten: 5
     text: |
       any(x < 0 for x in zahlen).
@@ -60,10 +60,10 @@ starter_code: |
 
 # Gibt es eine negative Zahl?
 
-Schreibe `irgendein_negativ(zahlen)`, die `True` zurueckgibt, wenn
+Schreibe `irgendein_negativ(zahlen)`, die `True` zurückgibt, wenn
 **mindestens eine** Zahl in der Liste **negativ** (`< 0`) ist.
 
-Null zaehlt nicht. Leere Liste → `False`.
+Null zählt nicht. Leere Liste → `False`.
 
 ## Beispiele
 
@@ -89,14 +89,14 @@ sobald **eine** Bedingung wahr ist.
 ## Short-Circuit
 
 `any` bricht beim **ersten True** ab -- bei `[1, 2, -3, ...]` wird
-sofort `True` zurueckgegeben, ohne den Rest zu pruefen.
+sofort `True` zurückgegeben, ohne den Rest zu prüfen.
 
 ## DeMorgan-Tipp
 
-Die folgenden Aussagen sind aequivalent:
+Die folgenden Aussagen sind äquivalent:
 
 - `any(x < 0 for x in xs)` (hier)
 - `not all(x >= 0 for x in xs)`
 - `min(xs, default=0) < 0` (etwas teurer, weil immer alles durch)
 
-Aufgabe **231-alle-positiv** ist das Gegenstueck.
+Aufgabe **231-alle-positiv** ist das Gegenstück.

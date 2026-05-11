@@ -30,7 +30,7 @@ hints:
   - kosten: 15
     text: |
       Klasse Konto mit __init__(saldo) und buchen(betrag).
-      Funktion erzeugt Konto, ruft fuer jede Buchung buchen() auf,
+      Funktion erzeugt Konto, ruft für jede Buchung buchen() auf,
       sammelt saldo nach jeder Buchung.
 tests_sichtbar:
   - input: [100, [10, -30, 50]]
@@ -62,7 +62,7 @@ starter_code: |
 
 # Konto-Saldi nach jeder Buchung
 
-Schreibe `konto_saldi(start, buchungen)`, die fuer einen Anfangs-
+Schreibe `konto_saldi(start, buchungen)`, die für einen Anfangs-
 Saldo und eine Liste von Buchungen (positiv = Einzahlung, negativ =
 Auszahlung) den **Saldo nach jeder einzelnen Buchung** liefert.
 
@@ -109,12 +109,12 @@ def konto_saldi(start, buchungen):
     return out
 ```
 
-Genauso korrekt, kuerzer. Die OOP-Variante zeigt aber, wie man
+Genauso korrekt, kürzer. Die OOP-Variante zeigt aber, wie man
 **Zustand kapseln** kann -- was bei mehreren Konten oder zusaetzlichen
 Methoden (Zinsen, Sperre, Limit) sehr schnell hilfreich wird.
 
 ## Pattern -- Akkumulator als Klasse
 
-Wenn du in den naechsten Aufgaben **mehrere Operationen** auf dem
+Wenn du in den nächsten Aufgaben **mehrere Operationen** auf dem
 gleichen Zustand brauchst, ist eine Klasse fast immer der bessere
 Container als lose Variablen.

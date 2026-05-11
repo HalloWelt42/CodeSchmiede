@@ -2,7 +2,7 @@
 schema_version: 1
 id: 002-palindrom
 revision: 1
-titel: Palindrom-Pruefung
+titel: Palindrom-Prüfung
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -27,7 +27,7 @@ hints:
     text: In Python kannst du einen String mit `text[::-1]` umkehren.
   - kosten: 25
     text: |
-      Eleganteste Loesung:
+      Eleganteste Lösung:
 
       ```
       return text == text[::-1]
@@ -60,11 +60,11 @@ starter_code: |
       pass
 ---
 
-# Palindrom-Pruefung
+# Palindrom-Prüfung
 
-Schreibe eine Funktion `ist_palindrom(text)`, die `True` zurueckgibt, wenn
-der eingegebene String ein **Palindrom** ist -- also vorwaerts und
-rueckwaerts identisch -- und sonst `False`.
+Schreibe eine Funktion `ist_palindrom(text)`, die `True` zurückgibt, wenn
+der eingegebene String ein **Palindrom** ist -- also vorwärts und
+rückwärts identisch -- und sonst `False`.
 
 ## Beispiele
 
@@ -78,17 +78,17 @@ rueckwaerts identisch -- und sonst `False`.
 
 ## Worauf zu achten ist
 
-- **Gross-/Kleinschreibung zaehlt** -- `"Anna"` ist kein Palindrom in
+- **Groß-/Kleinschreibung zählt** -- `"Anna"` ist kein Palindrom in
   dieser Aufgabe
-- **Leerzeichen werden mitgezaehlt** -- vereinfache, indem du davon
+- **Leerzeichen werden mitgezählt** -- vereinfache, indem du davon
   ausgehst, dass keine Leerzeichen vorkommen
 - Der **leere String** gilt per Konvention als Palindrom
 
 ## Hintergrund
 
-Palindrome sind eine schoene Spielwiese fuer **String-Slicing**. Python
+Palindrome sind eine schöne Spielwiese für **String-Slicing**. Python
 bietet hier eine besonders kompakte Notation: `text[::-1]` liefert den
-String rueckwaerts.
+String rückwärts.
 
 > Mathematisch: ein Wort $w = w_0 w_1 \dots w_{n-1}$ ist ein Palindrom,
-> wenn fuer alle $i$ gilt $w_i = w_{n-1-i}$.
+> wenn für alle $i$ gilt $w_i = w_{n-1-i}$.

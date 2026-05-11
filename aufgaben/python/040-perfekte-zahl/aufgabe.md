@@ -62,7 +62,7 @@ starter_code: |
 
 # Perfekte Zahl prüfen
 
-Schreibe eine Funktion `ist_perfekt(n)`, die `True` zurueckgibt, wenn
+Schreibe eine Funktion `ist_perfekt(n)`, die `True` zurückgibt, wenn
 `n` eine **vollkommene Zahl** (perfekte Zahl) ist -- also gleich der
 Summe aller ihrer **echten Teiler** (Teiler ohne `n` selbst).
 
@@ -83,6 +83,6 @@ Wenn $2^p - 1$ eine Primzahl ist (eine "Mersenne-Primzahl"), dann
 ist $2^{p-1} \cdot (2^p - 1)$ eine perfekte Zahl.
 
 Bis heute (2026) sind nur **51 perfekte Zahlen** bekannt. Ob es
-unendlich viele gibt: ungeloest. Ob es ungerade perfekte Zahlen gibt:
-ebenfalls ungeloest. Eine erstaunlich rege Front in einer Frage, die
-auf "summier mal die Teiler" zurueckgeht.
+unendlich viele gibt: ungelöst. Ob es ungerade perfekte Zahlen gibt:
+ebenfalls ungelöst. Eine erstaunlich rege Front in einer Frage, die
+auf "summier mal die Teiler" zurückgeht.

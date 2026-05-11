@@ -114,7 +114,7 @@ def stack_lauf(operationen):
 Pythons `list` mit `append`/`pop()` IST schon ein Stack. Aber:
 
 1. **Klare API**: nur `push`/`pop`/`top`, kein `insert(0, ...)` versehentlich.
-2. **Kapselung**: spaeter koennte man Limits, Logging, Thread-Safety hinzufuegen.
+2. **Kapselung**: spaeter könnte man Limits, Logging, Thread-Safety hinzufuegen.
 3. **Lehrwert**: Stacks sind die Datenstruktur Nr. 1 in Compilerbau,
    Function-Calls, Backtracking.
 

@@ -25,9 +25,9 @@ hints:
     text: |
       Liste von Shape-Beschreibungen → Gesamt-Flaeche (auf 2 Nachkomma).
       Shape-Form: ["kreis", radius]
-                  ["rechteck", breite, hoehe]
+                  ["rechteck", breite, höhe]
                   ["dreieck", a, b, c]   (Heron)
-      Negative oder ungueltige Shapes → 0 (ueberspringen).
+      Negative oder ungültige Shapes → 0 (überspringen).
   - kosten: 25
     text: |
       Basis-Klasse Shape mit Methode flaeche().
@@ -75,11 +75,11 @@ Beschreibungen wird zur **Gesamt-Flaeche** addiert.
 | Form                      | Bedeutung                          |
 |---------------------------|------------------------------------|
 | `["kreis", r]`            | Kreis mit Radius r                 |
-| `["rechteck", b, h]`      | Rechteck Breite x Hoehe            |
+| `["rechteck", b, h]`      | Rechteck Breite x Höhe            |
 | `["dreieck", a, b, c]`    | Dreieck mit Seitenlaengen a, b, c (Heron) |
 
-Ungueltige Shapes (negative Werte, unbekannter Typ, Dreiecks-
-Ungleichung verletzt) zaehlen mit Flaeche **0**.
+Ungültige Shapes (negative Werte, unbekannter Typ, Dreiecks-
+Ungleichung verletzt) zählen mit Flaeche **0**.
 
 Auf **2 Nachkommastellen** gerundet.
 
@@ -159,10 +159,10 @@ def gesamt_flaeche(shapes):
 - **Vererbung**: alle Shapes erben von der Basis.
 - **Polymorphismus**: `shape.flaeche()` macht das Richtige, egal
   welche konkrete Klasse.
-- **Factory-Pattern**: `baue(spec)` waehlt die richtige Klasse.
+- **Factory-Pattern**: `baue(spec)` wählt die richtige Klasse.
 
 ## Anwendung
 
 Diese Idee steckt in **CAD-Tools** (jede Form weiss ihre Flaeche),
 **Spielen** (jede Figur weiss ihre Hitbox), **Layout-Engines**
-(jedes Widget seine Groesse).
+(jedes Widget seine Größe).

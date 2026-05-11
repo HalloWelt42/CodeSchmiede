@@ -96,7 +96,7 @@ def median(zahlen):
 
 ## Median vs. Mittelwert
 
-Der **Mittelwert** (Durchschnitt) ist anfaellig fuer Ausreisser
+Der **Mittelwert** (Durchschnitt) ist anfaellig für Ausreisser
 -- ein Millionaer im Raum hebt das Durchschnittsgehalt drastisch.
 Der **Median** dagegen bleibt gleich. Darum gibt die Statistik bei
 Vermoegens- und Lohnverteilungen meist den Median an, nicht den
@@ -106,5 +106,5 @@ Durchschnitt.
 
 Mit Sortieren: `O(n log n)`.
 Es gibt einen `O(n)`-Algorithmus (**Quickselect** / Median-of-Medians),
-aber die Sortier-Variante ist klar und schnell genug fuer alle
+aber die Sortier-Variante ist klar und schnell genug für alle
 realistischen Listen.

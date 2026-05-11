@@ -30,9 +30,9 @@ hints:
   - kosten: 20
     text: |
       Mit `re.split(r"[\s_-]+", text)` zerlegen, leere Bestandteile
-      filtern. Pro Wort: erster Buchstabe gross. Fuer camelCase einfach:
-      wenn ein Buchstabe direkt am Wortanfang gross ist, einfach
-      übernehmen; ansonsten zusätzlich gross machen.
+      filtern. Pro Wort: erster Buchstabe groß. Für camelCase einfach:
+      wenn ein Buchstabe direkt am Wortanfang groß ist, einfach
+      übernehmen; ansonsten zusätzlich groß machen.
 tests_sichtbar:
   - input: ["Portable Network Graphics"]
     expected: "PNG"

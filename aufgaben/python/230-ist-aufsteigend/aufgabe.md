@@ -14,7 +14,7 @@ pfade: []
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Klassische Listen-Pruefung
+  notiz: Klassische Listen-Prüfung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -23,7 +23,7 @@ funktion: ist_aufsteigend
 hints:
   - kosten: 0
     text: |
-      Pruefe ob die Liste NICHT-FALLEND sortiert ist (also a[i] <= a[i+1]).
+      Prüfe ob die Liste NICHT-FALLEND sortiert ist (also a[i] <= a[i+1]).
       Leere Liste / 1-elementig → True.
       Gleiche Werte sind erlaubt.
   - kosten: 10
@@ -61,8 +61,8 @@ starter_code: |
 
 # Ist die Liste aufsteigend sortiert?
 
-Schreibe `ist_aufsteigend(liste)`, die `True` zurueckgibt, wenn die
-Liste **nicht-fallend** sortiert ist -- also `a[i] <= a[i+1]` fuer
+Schreibe `ist_aufsteigend(liste)`, die `True` zurückgibt, wenn die
+Liste **nicht-fallend** sortiert ist -- also `a[i] <= a[i+1]` für
 alle Indizes. Gleiche Werte hintereinander sind erlaubt.
 
 Leere oder 1-elementige Liste → `True`.
@@ -87,7 +87,7 @@ def ist_aufsteigend(liste):
 
 `zip(liste, liste[1:])` paart **aufeinanderfolgende** Elemente:
 `zip([1,2,3], [2,3]) → (1,2), (2,3)`. `all` liefert `True`, sobald
-alle Paare die Bedingung erfuellen -- bei leerer Liste auch (vacuous
+alle Paare die Bedingung erfüllen -- bei leerer Liste auch (vacuous
 truth).
 
 ## Strikt aufsteigend

@@ -62,7 +62,7 @@ starter_code: |
 # Quersumme einer Zahl
 
 Schreibe eine Funktion `quersumme(n)`, die die **Quersumme** einer
-nicht-negativen ganzen Zahl `n` zurueckgibt -- also die Summe aller
+nicht-negativen ganzen Zahl `n` zurückgibt -- also die Summe aller
 Ziffern.
 
 ## Beispiele

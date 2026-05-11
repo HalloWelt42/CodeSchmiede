@@ -23,7 +23,7 @@ funktion: letztes_vorkommen
 hints:
   - kosten: 0
     text: |
-      Liste rueckwaerts durchgehen, ersten Treffer zurueckgeben.
+      Liste rückwärts durchgehen, ersten Treffer zurückgeben.
       Nicht gefunden → -1.
   - kosten: 10
     text: |
@@ -58,7 +58,7 @@ starter_code: |
 # Letztes Vorkommen finden
 
 Schreibe eine Funktion `letztes_vorkommen(liste, ziel)`, die den
-Index des **letzten Vorkommens** von `ziel` in der Liste zurueckgibt.
+Index des **letzten Vorkommens** von `ziel` in der Liste zurückgibt.
 
 Nicht gefunden → `-1`.
 
@@ -74,7 +74,7 @@ Nicht gefunden → `-1`.
 
 ## Idee
 
-Schleife von hinten nach vorn, ersten Treffer zurueckgeben:
+Schleife von hinten nach vorn, ersten Treffer zurückgeben:
 
 ```
 for i in range(len(liste) - 1, -1, -1):
@@ -86,5 +86,5 @@ return -1
 ## Vergleich mit Standard-Library
 
 Strings haben `str.rfind(sub)` -- liefert `-1` bei nicht gefunden.
-Listen haben `list.index(x)` (vorwaerts) aber kein `rindex` direkt.
+Listen haben `list.index(x)` (vorwärts) aber kein `rindex` direkt.
 Hier baust du die fehlende Funktion.

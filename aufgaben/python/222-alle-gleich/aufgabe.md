@@ -14,7 +14,7 @@ pfade: []
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Klassische Listen-Pruefung
+  notiz: Klassische Listen-Prüfung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -62,7 +62,7 @@ starter_code: |
 
 # Alle Elemente gleich?
 
-Schreibe `alle_gleich(liste)`, die `True` zurueckgibt, wenn alle
+Schreibe `alle_gleich(liste)`, die `True` zurückgibt, wenn alle
 Elemente in der Liste **gleich** sind. Leere Liste → `True`.
 
 ## Beispiele
@@ -84,7 +84,7 @@ def alle_gleich(liste):
     return len(set(liste)) <= 1
 ```
 
-Wenn das Set hoechstens **ein Element** hat, sind alle gleich (oder
+Wenn das Set höchstens **ein Element** hat, sind alle gleich (oder
 es gibt keine).
 
 ## Idee 2 -- All mit Vergleich
@@ -97,7 +97,7 @@ def alle_gleich(liste):
     return all(x == erstes for x in liste)
 ```
 
-Spart die Set-Konstruktion -- bei sehr grossen Listen mit vielen
+Spart die Set-Konstruktion -- bei sehr großen Listen mit vielen
 unterschiedlichen Werten ein **Short-Circuit**: bricht beim ersten
 Mismatch ab.
 
@@ -109,5 +109,5 @@ diese Einschraenkung nicht.
 
 ## Mathematische Subtilitaet -- Vacuous Truth
 
-Aussage "Fuer alle x in der leeren Menge gilt P(x)" ist immer wahr,
+Aussage "Für alle x in der leeren Menge gilt P(x)" ist immer wahr,
 weil es kein Gegenbeispiel gibt. Darum `[]` → `True`.

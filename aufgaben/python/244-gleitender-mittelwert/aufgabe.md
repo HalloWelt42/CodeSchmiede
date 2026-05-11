@@ -23,13 +23,13 @@ funktion: gleitend
 hints:
   - kosten: 0
     text: |
-      Berechne den gleitenden Mittelwert ueber Fenstergroesse k.
+      Berechne den gleitenden Mittelwert über Fenstergröße k.
       Liste hat n Elemente -> Ergebnis hat (n - k + 1) Elemente.
       Werte auf 4 Nachkommastellen.
       Wenn k > n oder k <= 0 -> [].
   - kosten: 15
     text: |
-      Pro Fenster: sum(liste[i:i+k]) / k. Komprehension ueber
+      Pro Fenster: sum(liste[i:i+k]) / k. Komprehension über
       i in range(n - k + 1).
 tests_sichtbar:
   - input: [[1, 2, 3, 4, 5], 3]
@@ -62,7 +62,7 @@ starter_code: |
 # Gleitender Mittelwert (Sliding Mean)
 
 Schreibe `gleitend(zahlen, k)`, die einen **gleitenden Mittelwert**
-ueber die Liste mit Fenstergroesse `k` berechnet. Liste der Laenge
+über die Liste mit Fenstergröße `k` berechnet. Liste der Laenge
 `n` → Ergebnis der Laenge `n - k + 1`. Werte auf **4 Nachkomma**.
 
 Bei `k > n` oder `k <= 0` → `[]`.
@@ -106,10 +106,10 @@ def gleitend(zahlen, k):
     return out
 ```
 
-Bei sehr grossen Listen oder grossem `k` macht das einen Unterschied.
+Bei sehr großen Listen oder großem `k` macht das einen Unterschied.
 
 ## Anwendung
 
 - Zeitreihen-Glaettung (Finanzdaten, Sensor-Messungen).
-- Bewegungsdaten (Schritte pro Tag, gleitend ueber 7 Tage).
+- Bewegungsdaten (Schritte pro Tag, gleitend über 7 Tage).
 - Bildverarbeitung: 1D-Box-Filter ist genau das.

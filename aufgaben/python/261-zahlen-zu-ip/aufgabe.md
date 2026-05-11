@@ -27,7 +27,7 @@ hints:
       Bei UNGUELTIGEN Werten (nicht 4 Teile, nicht 0..255) → "".
   - kosten: 10
     text: |
-      Pruefe len == 4 und alle Werte 0..255.
+      Prüfe len == 4 und alle Werte 0..255.
       ".".join(str(x) for x in zahlen).
 tests_sichtbar:
   - input: [[192, 168, 1, 1]]
@@ -64,7 +64,7 @@ starter_code: |
 Schreibe `ip_zusammen(zahlen)`, die `[a, b, c, d]` mit vier Zahlen
 (jeweils 0..255) zu einem IPv4-String `"a.b.c.d"` zusammensetzt.
 
-Bei ungueltiger Eingabe → `""`.
+Bei ungültiger Eingabe → `""`.
 
 ## Beispiele
 
@@ -89,7 +89,7 @@ def ip_zusammen(zahlen):
     return ".".join(str(x) for x in zahlen)
 ```
 
-Drei Schritte: Laenge pruefen, Werte pruefen, joinen.
+Drei Schritte: Laenge prüfen, Werte prüfen, joinen.
 
 ## Pendant
 
@@ -104,5 +104,5 @@ ip_zusammen(ip_zerlegen("8.8.8.8")) == "8.8.8.8"
 
 - `127.0.0.1` ist die **Loopback-IP** -- der eigene Rechner.
 - `0.0.0.0` ist "alle Interfaces" beim Listen-Server,
-  aber "ungueltig" als Quell-Adresse.
+  aber "ungültig" als Quell-Adresse.
 - `255.255.255.255` ist die **Broadcast-Adresse**.

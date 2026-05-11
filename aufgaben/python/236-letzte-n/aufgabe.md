@@ -28,7 +28,7 @@ hints:
   - kosten: 10
     text: |
       list(liste[-n:]) hat einen Sonderfall: bei n == 0 ist [-0:]
-      die ganze Liste, nicht []. Darum vorab pruefen.
+      die ganze Liste, nicht []. Darum vorab prüfen.
 tests_sichtbar:
   - input: [[1, 2, 3, 4, 5], 3]
     expected: [3, 4, 5]
@@ -60,7 +60,7 @@ starter_code: |
 # Letzte n Elemente einer Liste
 
 Schreibe `letzte_n(liste, n)`, die die **letzten n Elemente** einer
-Liste zurueckgibt.
+Liste zurückgibt.
 
 - `n <= 0` → `[]`
 - `n > len(liste)` → ganze Liste

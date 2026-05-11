@@ -59,7 +59,7 @@ starter_code: |
 
 Schreibe eine Funktion `schnitt(a, b)`, die die **gemeinsamen Elemente**
 zweier Listen als **aufsteigend sortierte, eindeutige** Liste
-zurueckgibt.
+zurückgibt.
 
 ## Beispiele
 
@@ -91,5 +91,5 @@ Effizient (`O(n + m)` Hash-Vergleiche) und **lesbar**.
 | `^`      | Symmetrische Diff.  |
 
 Alle vier sind in der Mengenlehre Standard und in Python direkt
-verfuegbar -- siehe Aufgaben **172-differenz-zweier-listen** und
+verfügbar -- siehe Aufgaben **172-differenz-zweier-listen** und
 spaeter **vereinigung** / **symmetrische Differenz**.

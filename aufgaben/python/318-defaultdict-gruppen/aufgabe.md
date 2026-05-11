@@ -26,11 +26,11 @@ hints:
       Gruppiere Strings nach ihrem ersten Buchstaben (kleinbuch).
       Liefere ein Dict {letter: [strings]} -- innen alphabetisch sortiert,
       aussen nach key sortiert.
-      Leere Strings → ueberspringen.
+      Leere Strings → überspringen.
   - kosten: 10
     text: |
-      defaultdict(list) erlaubt direktes append ohne if-pruefung.
-      dict(sortierte items) gibt Python-3.7+ insertion-order zurueck.
+      defaultdict(list) erlaubt direktes append ohne if-prüfung.
+      dict(sortierte items) gibt Python-3.7+ insertion-order zurück.
 tests_sichtbar:
   - input: [["Anna", "Bob", "Alice"]]
     expected: {"a": ["Alice", "Anna"], "b": ["Bob"]}
@@ -68,7 +68,7 @@ Liefere ein Dict `{letter: [strings]}`:
 - aussen: nach Letter alphabetisch sortiert
 - innen: alphabetisch sortiert
 
-Leere Strings werden uebersprungen.
+Leere Strings werden übersprungen.
 
 ## Beispiele
 
@@ -96,7 +96,7 @@ def gruppiere_anfang(strings):
 
 `defaultdict(list)` legt automatisch eine leere Liste an, wenn ein
 Key zum ersten Mal angefasst wird -- spart die `if key in dict`-
-Pruefung.
+Prüfung.
 
 ## Vergleich mit `dict.setdefault`
 
@@ -113,5 +113,5 @@ idiomatischer.
 ## Anwendung
 
 - **Telefonbuch** nach Anfangsbuchstabe sortiert.
-- **Histogramme** nach beliebigem Schluessel.
+- **Histogramme** nach beliebigem Schlüssel.
 - **GroupBy** in Datenanalyse (vor pandas).

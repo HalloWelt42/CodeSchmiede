@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Liefere [xmin, ymin, xmax, ymax] -- die kleinste achsen-
-      parallele Box, die alle Punkte enthaelt.
+      parallele Box, die alle Punkte enthält.
       Punkte sind [[x1, y1], [x2, y2], ...]. Bei [] → [0, 0, 0, 0].
   - kosten: 10
     text: |
@@ -59,7 +59,7 @@ starter_code: |
 # Bounding-Box um Punkte
 
 Schreibe `bbox(punkte)`, die die **kleinste achsen-parallele Box**
-liefert, die alle Punkte enthaelt -- als `[xmin, ymin, xmax, ymax]`.
+liefert, die alle Punkte enthält -- als `[xmin, ymin, xmax, ymax]`.
 
 Bei leerer Liste → `[0, 0, 0, 0]`.
 
@@ -103,11 +103,11 @@ def bbox(punkte):
     return [xmin, ymin, xmax, ymax]
 ```
 
-Fuer extrem grosse Listen schneller -- vier Builtins durch eine
+Für extrem große Listen schneller -- vier Builtins durch eine
 Schleife ersetzt.
 
 ## Anwendung
 
-- **Karten-Apps**: "Welcher Bereich enthaelt alle Pins?"
+- **Karten-Apps**: "Welcher Bereich enthält alle Pins?"
 - **Bildverarbeitung**: kleinster Rahmen um detektierte Objekte.
 - **Spatial Indexing**: R-Tree, Quadtree benutzen BBoxes als Filter.

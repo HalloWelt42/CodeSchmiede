@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       `text.split()` zerlegt nach Whitespace. Aus jedem Wort den
-      ersten Buchstaben holen, alles in Grossbuchstaben.
+      ersten Buchstaben holen, alles in Großbuchstaben.
   - kosten: 10
     text: |
       Eine Zeile:
@@ -59,11 +59,11 @@ starter_code: |
 # Akronym aus Satz
 
 Schreibe eine Funktion `akronym(text)`, die aus jedem Wort des Textes
-den **ersten Buchstaben** nimmt und sie zu einem grossgeschriebenen
+den **ersten Buchstaben** nimmt und sie zu einem großgeschriebenen
 Akronym zusammensetzt.
 
 Worte werden an Whitespace getrennt; mehrfache Leerzeichen oder
-fuehrende/abschliessende Whitespaces werden korrekt ignoriert.
+fuehrende/abschließende Whitespaces werden korrekt ignoriert.
 
 ## Beispiele
 
@@ -82,6 +82,6 @@ und ignoriert leere Bestandteile. Genau, was hier gebraucht wird.
 
 ## Hintergrund
 
-Akronyme sind ueberall in der Tech-Welt: API, HTTP, JIT, AST, SQL.
+Akronyme sind überall in der Tech-Welt: API, HTTP, JIT, AST, SQL.
 Die meisten lassen sich mit dieser kleinen Funktion automatisch aus
 einem Satz erzeugen.

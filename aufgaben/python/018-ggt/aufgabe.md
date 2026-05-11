@@ -2,7 +2,7 @@
 schema_version: 1
 id: 018-ggt
 revision: 1
-titel: Groesster gemeinsamer Teiler
+titel: Größter gemeinsamer Teiler
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -60,11 +60,11 @@ starter_code: |
       pass
 ---
 
-# Groesster gemeinsamer Teiler
+# Größter gemeinsamer Teiler
 
-Schreibe eine Funktion `ggt(a, b)`, die den **groessten gemeinsamen
-Teiler** zweier nicht-negativer ganzer Zahlen zurueckgibt -- die
-groesste Zahl, durch die sowohl `a` als auch `b` ohne Rest teilbar sind.
+Schreibe eine Funktion `ggt(a, b)`, die den **größten gemeinsamen
+Teiler** zweier nicht-negativer ganzer Zahlen zurückgibt -- die
+größte Zahl, durch die sowohl `a` als auch `b` ohne Rest teilbar sind.
 
 ## Beispiele
 
@@ -88,6 +88,6 @@ Wiederhole das, bis `b` null wird -- dann ist `a` der ggT.
 
 ## Hintergrund
 
-Der euklidische Algorithmus ist einer der aeltesten bekannten
-Algorithmen ueberhaupt. Er steht in Buch VII der Elemente von Euklid
-(ca. 300 v. Chr.) und ist auch heute noch Standard fuer ggT-Berechnungen.
+Der euklidische Algorithmus ist einer der ältesten bekannten
+Algorithmen überhaupt. Er steht in Buch VII der Elemente von Euklid
+(ca. 300 v. Chr.) und ist auch heute noch Standard für ggT-Berechnungen.

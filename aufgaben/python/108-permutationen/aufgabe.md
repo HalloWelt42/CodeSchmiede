@@ -28,7 +28,7 @@ hints:
       Liste eindeutiger Permutationen.
   - kosten: 20
     text: |
-      `itertools.permutations` zaehlt alle (mit Doppelten bei doppelten
+      `itertools.permutations` zählt alle (mit Doppelten bei doppelten
       Buchstaben). `set(...)` für Eindeutigkeit, `sorted(...)` für
       stabile Reihenfolge.
 tests_sichtbar:
@@ -58,7 +58,7 @@ starter_code: |
 # Alle Permutationen
 
 Schreibe eine Funktion `permutationen(text)`, die **alle eindeutigen
-Permutationen** der Buchstaben als Liste zurueckgibt -- sortiert.
+Permutationen** der Buchstaben als Liste zurückgibt -- sortiert.
 
 ## Beispiele
 

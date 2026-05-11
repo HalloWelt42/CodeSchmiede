@@ -2,7 +2,7 @@
 schema_version: 1
 id: 237-paare-aus-liste
 revision: 1
-titel: Liste in nicht-ueberlappende Paare
+titel: Liste in nicht-überlappende Paare
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,7 +23,7 @@ funktion: paare
 hints:
   - kosten: 0
     text: |
-      Teile die Liste in nicht-ueberlappende 2-er-Paare.
+      Teile die Liste in nicht-überlappende 2-er-Paare.
       [1,2,3,4,5,6] → [[1,2],[3,4],[5,6]].
       Ungerade Anzahl: das letzte Element wird IGNORIERT.
       Bei [] → [].
@@ -57,7 +57,7 @@ starter_code: |
       pass
 ---
 
-# Liste in nicht-ueberlappende Paare
+# Liste in nicht-überlappende Paare
 
 Schreibe `paare(liste)`, die eine Liste in **2-er-Paare** zerlegt.
 Bei ungerader Anzahl wird das **letzte Element ignoriert**.
@@ -102,5 +102,5 @@ Idee 1 durch das `// 2 * 2`, bei Idee 2 durch `zip`'s Verhalten.
 |---------------------|----------------------------|
 | **029-chunks**      | k-er-Bloecke (allgemein)   |
 | **031-zip-listen**  | zwei Listen verzahnen      |
-| **174 alt**         | (geloescht, war Duplikat)  |
+| **174 alt**         | (gelöscht, war Duplikat)  |
 | **237-paare**       | hier, immer 2-er-Paare     |

@@ -24,12 +24,12 @@ hints:
   - kosten: 0
     text: |
       Richte "text" auf "breite" Zeichen aus -- mit Modus
-      "links", "rechts" oder "zentriert". Mit Leerzeichen aufgefuellt.
-      Wenn text laenger als breite -> text unveraendert zurueckgeben.
+      "links", "rechts" oder "zentriert". Mit Leerzeichen aufgefüllt.
+      Wenn text laenger als breite -> text unverändert zurückgeben.
   - kosten: 10
     text: |
       str.ljust/rjust/center machen das fertig. Aber Achtung:
-      bei text laenger als breite muessen alle drei das Original liefern.
+      bei text laenger als breite müssen alle drei das Original liefern.
 tests_sichtbar:
   - input: ["Hi", 5, "links"]
     expected: "Hi   "
@@ -67,7 +67,7 @@ Leerzeichen auf eine feste Breite **bringt**:
 - `"rechts"`: Leerzeichen links, Text rechts.
 - `"zentriert"`: Leerzeichen je halb links und rechts.
 
-Wenn `text` laenger als `breite` ist → unveraendert zurueckgeben.
+Wenn `text` laenger als `breite` ist → unverändert zurückgeben.
 
 ## Beispiele
 
@@ -95,8 +95,8 @@ def ausrichten(text, breite, modus):
     return text
 ```
 
-`ljust`/`rjust`/`center` liefern den Originaltext unveraendert
-zurueck, wenn er bereits `>= breite` ist -- genau wie gewuenscht.
+`ljust`/`rjust`/`center` liefern den Originaltext unverändert
+zurück, wenn er bereits `>= breite` ist -- genau wie gewuenscht.
 
 ## Anwendung
 

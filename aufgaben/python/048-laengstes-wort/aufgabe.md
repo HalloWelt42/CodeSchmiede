@@ -23,11 +23,11 @@ funktion: laengstes_wort
 hints:
   - kosten: 0
     text: |
-      `text.split()` zerlegt nach Whitespace. Dann `max(woerter, key=len)`.
+      `text.split()` zerlegt nach Whitespace. Dann `max(wörter, key=len)`.
   - kosten: 10
     text: |
-      Bei mehreren gleich langen Woertern soll das **erste** zurück.
-      `max()` mit `key=len` waehlt automatisch das erste.
+      Bei mehreren gleich langen Wörtern soll das **erste** zurück.
+      `max()` mit `key=len` wählt automatisch das erste.
 tests_sichtbar:
   - input: ["Hallo Welt"]
     expected: "Hallo"
@@ -55,9 +55,9 @@ starter_code: |
 # Laengstes Wort eines Satzes
 
 Schreibe eine Funktion `laengstes_wort(text)`, die das **laengste
-Wort** im String zurueckgibt. Bei mehreren gleich langen das **erste**.
+Wort** im String zurückgibt. Bei mehreren gleich langen das **erste**.
 
-Bei leerem String oder String ohne Woerter liefere einen leeren String.
+Bei leerem String oder String ohne Wörter liefere einen leeren String.
 
 ## Beispiele
 

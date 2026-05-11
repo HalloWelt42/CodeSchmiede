@@ -93,7 +93,7 @@ def markdown_links(text):
 
 Pattern aufgedroeselt:
 
-| Stueck       | Bedeutung                                |
+| Stück       | Bedeutung                                |
 |--------------|-------------------------------------------|
 | `\[`         | literale eckige Klammer auf              |
 | `([^\]]+)`   | Capture: 1+ Zeichen, die NICHT `]` sind  |
@@ -108,8 +108,8 @@ gibt. Wir konvertieren Tupel zu Listen.
 
 ## Stolperstein -- Negierende Char-Klasse
 
-`[^\]]+` ist die Standardform fuer "alles ausser `]`". Damit greift
-das Pattern nicht ueber das schliessende `]` hinaus -- selbst wenn
+`[^\]]+` ist die Standardform für "alles außer `]`". Damit greift
+das Pattern nicht über das schließende `]` hinaus -- selbst wenn
 in der URL Klammern stehen.
 
 ## Erweiterungen (nicht hier)
@@ -117,8 +117,8 @@ in der URL Klammern stehen.
 - **Optionaler Titel**: `[text](url "title")` -- Markdown erlaubt das.
 - **Reference-Links**: `[text][ref]` und separate `[ref]: url`.
 - **Bilder**: `![alt](url)` -- unsere Regex matcht das auch (das `!` ist
-  ausserhalb der Match-Klammern).
+  außerhalb der Match-Klammern).
 
-Fuer einen voll-spec-konformen Markdown-Parser nimmt man eher
-`mistune`, `markdown-it-py` oder `python-markdown` -- aber fuer
+Für einen voll-spec-konformen Markdown-Parser nimmt man eher
+`mistune`, `markdown-it-py` oder `python-markdown` -- aber für
 "alle Links extrahieren" ist die Regex perfekt.

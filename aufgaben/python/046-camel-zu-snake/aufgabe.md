@@ -23,12 +23,12 @@ funktion: camel_zu_snake
 hints:
   - kosten: 0
     text: |
-      Vor jedem Grossbuchstaben einen Unterstrich einfügen, dann
+      Vor jedem Großbuchstaben einen Unterstrich einfügen, dann
       alles in Kleinbuchstaben.
   - kosten: 15
     text: |
       Achtung: Vor dem ersten Zeichen kein Unterstrich, auch wenn
-      es gross ist.
+      es groß ist.
 tests_sichtbar:
   - input: ["helloWorld"]
     expected: "hello_world"
@@ -73,8 +73,8 @@ Schreibe eine Funktion `camel_zu_snake(text)`, die einen
 
 ## Idee
 
-Schleife durch jedes Zeichen: ist es **gross** und **nicht das erste**,
-fuege vorher `_` ein. Dann den Buchstaben kleingeschrieben anhaengen.
+Schleife durch jedes Zeichen: ist es **groß** und **nicht das erste**,
+fuege vorher `_` ein. Dann den Buchstaben kleingeschrieben anhängen.
 
 ## Tipp
 

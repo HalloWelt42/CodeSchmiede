@@ -24,10 +24,10 @@ hints:
   - kosten: 0
     text: |
       `text.split()` zerlegt den Satz an Whitespace -- und liefert eine
-      Liste der Woerter.
+      Liste der Wörter.
   - kosten: 10
     text: |
-      Schleife ueber die Woerter, jedes Wort als Schluessel ins Dict
+      Schleife über die Wörter, jedes Wort als Schlüssel ins Dict
       eintragen und dabei `dict.get(wort, 0) + 1` als Wert setzen.
   - kosten: 25
     text: |
@@ -57,10 +57,10 @@ starter_code: |
 
 # Wortzähler aus Satz
 
-Schreibe eine Funktion `wortzaehler(text)`, die zählt, wie oft jedes
-Wort im Text vorkommt, und das Ergebnis als **Dictionary** zurueckgibt.
+Schreibe eine Funktion `wortzähler(text)`, die zählt, wie oft jedes
+Wort im Text vorkommt, und das Ergebnis als **Dictionary** zurückgibt.
 
-Die Worte werden an Whitespace getrennt; Gross-/Kleinschreibung wird
+Die Worte werden an Whitespace getrennt; Groß-/Kleinschreibung wird
 **unterschieden** (`"der"` und `"Der"` sind unterschiedlich). Bei einem
 leeren String liefere ein leeres Dictionary.
 
@@ -75,14 +75,14 @@ leeren String liefere ein leeres Dictionary.
 
 ## Idee
 
-Mit `text.split()` bekommst du die Liste der Woerter. Dann durchlaeufst
-du sie und zaehlst per Dict mit. Die Reihenfolge der Schluessel im
+Mit `text.split()` bekommst du die Liste der Wörter. Dann durchlaeufst
+du sie und zählst per Dict mit. Die Reihenfolge der Schlüssel im
 Ergebnis spielt keine Rolle -- Python-Dicts garantieren seit 3.7
-zwar Insertion-Order, der Test prueft aber gegen einen Dict-Vergleich.
+zwar Insertion-Order, der Test prüft aber gegen einen Dict-Vergleich.
 
 ## Hintergrund
 
 Wortzähler sind die Eintrittskarte zu **Text-Statistik** und einem
-grossen Teil von NLP -- vom simplen Such-Index bis zur
+großen Teil von NLP -- vom simplen Such-Index bis zur
 TF-IDF-Berechnung. Wer Python und Dict-Operationen kann, kann genau
 solche Sachen bauen.

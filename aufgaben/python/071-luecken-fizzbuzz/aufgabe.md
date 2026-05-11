@@ -14,7 +14,7 @@ pfade: []
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Erste Lueckentext-Aufgabe
+  notiz: Erste Lückentext-Aufgabe
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10

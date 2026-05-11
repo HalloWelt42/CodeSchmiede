@@ -58,7 +58,7 @@ starter_code: |
 # Mittelwert einer Liste
 
 Schreibe eine Funktion `mittelwert(zahlen)`, die den **arithmetischen
-Mittelwert** der Liste zurueckgibt. Bei leerer Liste liefere `0.0`.
+Mittelwert** der Liste zurückgibt. Bei leerer Liste liefere `0.0`.
 
 ## Beispiele
 
@@ -72,7 +72,7 @@ Mittelwert** der Liste zurueckgibt. Bei leerer Liste liefere `0.0`.
 ## Idee
 
 `sum(zahlen) / len(zahlen)`. Der einzige Fallstrick ist die leere
-Liste -- dann waere `len == 0` und du wuerdest durch null teilen.
+Liste -- dann wäre `len == 0` und du würdest durch null teilen.
 
 ## Hintergrund
 

@@ -59,7 +59,7 @@ starter_code: |
 
 # ISBN-10 prüfen
 
-Schreibe eine Funktion `ist_isbn_gueltig(isbn)`, die prüft, ob ein
+Schreibe eine Funktion `ist_isbn_gültig(isbn)`, die prüft, ob ein
 String eine **gültige ISBN-10** ist.
 
 ## Format

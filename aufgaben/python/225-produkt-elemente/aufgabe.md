@@ -99,7 +99,7 @@ def produkt(liste):
 ```
 
 Allgemeineres Pattern -- `reduce` faltet jede binaere Operation
-ueber eine Liste.
+über eine Liste.
 
 ## Idee 3 -- Schleife
 
@@ -115,8 +115,8 @@ Klar lesbar, jede Sprache versteht das.
 
 ## Anwendung
 
-`math.prod` braucht man fuer:
+`math.prod` braucht man für:
 - Fakultaet: `math.prod(range(1, n+1))`
-- Volumen einer Box: `math.prod([breite, hoehe, tiefe])`
-- Wahrscheinlichkeit unabhaengiger Ereignisse: $P(A \cap B) = P(A) \cdot P(B)$
+- Volumen einer Box: `math.prod([breite, höhe, tiefe])`
+- Wahrscheinlichkeit unabhängiger Ereignisse: $P(A \cap B) = P(A) \cdot P(B)$
 - Geometrisches Mittel (Aufgabe 217).

@@ -57,7 +57,7 @@ starter_code: |
 
 # Luhn-Prüfziffer
 
-Schreibe eine Funktion `ist_luhn_gueltig(kandidat)`, die prüft, ob ein
+Schreibe eine Funktion `ist_luhn_gültig(kandidat)`, die prüft, ob ein
 String die **Luhn-Prüfziffer-Regel** erfüllt -- der Klassiker für
 Kreditkartennummern, IMEI und viele andere Identifikatoren.
 

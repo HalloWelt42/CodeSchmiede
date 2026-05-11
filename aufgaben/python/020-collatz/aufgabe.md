@@ -14,7 +14,7 @@ pfade: [python_mathe]
 voraussetzungen: [017-fakultät]
 quelle:
   url: https://de.wikipedia.org/wiki/Collatz-Problem
-  notiz: Beruehmtes ungeloestes Problem, eigene Reformulierung
+  notiz: Beruehmtes ungelöstes Problem, eigene Reformulierung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -24,11 +24,11 @@ hints:
   - kosten: 0
     text: |
       Wenn die Zahl gerade ist, halbiere sie. Wenn ungerade, mal 3 plus 1.
-      Zaehle die Schritte bis du bei 1 ankommst.
+      Zähle die Schritte bis du bei 1 ankommst.
   - kosten: 10
     text: |
-      Schleife `while n != 1`, mit Schrittzaehler. Achtung: bei `n == 1`
-      sofort 0 Schritte zurueckgeben.
+      Schleife `while n != 1`, mit Schrittzähler. Achtung: bei `n == 1`
+      sofort 0 Schritte zurückgeben.
 tests_sichtbar:
   - input: [1]
     expected: 0
@@ -62,7 +62,7 @@ Die **Collatz-Folge** ist nach folgender Regel definiert:
 - die Folge endet, sobald $n = 1$ erreicht wird
 
 Schreibe eine Funktion `collatz_laenge(n)`, die die **Anzahl Schritte**
-zurueckgibt, bis die Folge ausgehend von `n` die 1 erreicht. Wer schon
+zurückgibt, bis die Folge ausgehend von `n` die 1 erreicht. Wer schon
 bei 1 startet, braucht 0 Schritte.
 
 ## Beispiele
@@ -76,8 +76,8 @@ bei 1 startet, braucht 0 Schritte.
 
 ## Hintergrund
 
-Die **Collatz-Vermutung** behauptet, dass diese Folge fuer **jede**
+Die **Collatz-Vermutung** behauptet, dass diese Folge für **jede**
 positive Startzahl irgendwann bei 1 endet. Stand 2026: bewiesen ist
 das immer noch nicht -- aber bis weit jenseits von $2^{68}$ stimmt es
-empirisch. Ein beruehmtes ungeloestes Problem der Mathematik, mit
+empirisch. Ein beruehmtes ungelöstes Problem der Mathematik, mit
 einer fast albern einfachen Formulierung.

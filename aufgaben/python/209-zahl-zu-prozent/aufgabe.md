@@ -87,9 +87,9 @@ def zu_prozent(anteil):
 `:.2f` rundet auf zwei Nachkommastellen -- mathematisches Runden
 ("banker's rounding" in CPython, abweichend bei `.5`-Werten).
 
-## Pendant -- Prozent zurueck zur Zahl
+## Pendant -- Prozent zurück zur Zahl
 
-Aufgabe **210** macht den Weg zurueck: `"50%"` → `0.5`. Damit hat
+Aufgabe **210** macht den Weg zurück: `"50%"` → `0.5`. Damit hat
 man ein **Round-Trip-Paar**.
 
 ## Format-String-Specifier (Mini-Cheat)
@@ -102,5 +102,5 @@ man ein **Round-Trip-Paar**.
 | `:_`      | Tausender-Trenner als Unterstrich    |
 | `:%`      | wie `:.6f` plus `%` und `*100`       |
 
-`f"{0.5:%}"` waere `"50.000000%"` -- `:.2%` waere kuerzer als unsere
-Loesung, aber nicht so explizit.
+`f"{0.5:%}"` wäre `"50.000000%"` -- `:.2%` wäre kürzer als unsere
+Lösung, aber nicht so explizit.

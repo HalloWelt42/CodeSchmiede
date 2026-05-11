@@ -64,7 +64,7 @@ starter_code: |
 
 # Klammern balanciert?
 
-Schreibe eine Funktion `balanciert(text)`, die prueft, ob die
+Schreibe eine Funktion `balanciert(text)`, die prüft, ob die
 Klammern `()`, `[]`, `{}` im Text **korrekt verschachtelt** sind.
 Andere Zeichen werden ignoriert.
 
@@ -85,7 +85,7 @@ Andere Zeichen werden ignoriert.
 
 Stack:
 - Öffnende Klammer → auf Stack
-- Schliessende Klammer → mit Top-of-Stack vergleichen, bei Match poppen,
+- Schließende Klammer → mit Top-of-Stack vergleichen, bei Match poppen,
   bei Mismatch `False`
 - Am Ende muss der Stack leer sein
 

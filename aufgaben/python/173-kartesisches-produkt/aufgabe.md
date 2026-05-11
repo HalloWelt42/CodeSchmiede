@@ -61,7 +61,7 @@ starter_code: |
 Schreibe eine Funktion `kartesisch(a, b)`, die alle Paare `[a_i, b_j]`
 liefert -- die **Mengentheoretische Produktmenge** $A \times B$.
 
-Reihenfolge: erst Element aus `a` fest waehlen, dann alle `b`
+Reihenfolge: erst Element aus `a` fest wählen, dann alle `b`
 durchgehen.
 
 ## Beispiele
@@ -86,7 +86,7 @@ Die zwei Schleifen werden in einer Comprehension verschachtelt -- die
 ## Pythons `itertools.product`
 
 `itertools.product(a, b)` liefert dasselbe als Tupel-Generator und ist
-fuer mehr als zwei Argumente sehr handlich:
+für mehr als zwei Argumente sehr handlich:
 
 ```python
 from itertools import product
@@ -96,7 +96,7 @@ list(product([1, 2], [3, 4], [5, 6]))
 
 ## Hintergrund
 
-Das kartesische Produkt ist die Grundlage fuer **SQL-Joins**
+Das kartesische Produkt ist die Grundlage für **SQL-Joins**
 (Cross Join), **Konfigurations-Matrix-Tests** ("alle Kombinationen
 Browser × OS × Sprache") und **Dimensions-Aufbau** in
 Data-Warehouse-Modellen.

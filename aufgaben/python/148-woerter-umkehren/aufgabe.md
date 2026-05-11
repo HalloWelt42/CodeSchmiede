@@ -2,7 +2,7 @@
 schema_version: 1
 id: 148-woerter-umkehren
 revision: 1
-titel: Reihenfolge der Woerter umkehren
+titel: Reihenfolge der Wörter umkehren
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,7 +23,7 @@ funktion: woerter_umkehren
 hints:
   - kosten: 0
     text: |
-      Drehe die Reihenfolge der Woerter um. Mehrfache Leerzeichen
+      Drehe die Reihenfolge der Wörter um. Mehrfache Leerzeichen
       werden zu einem Einzel-Leerzeichen reduziert.
       "Hallo  Welt" → "Welt Hallo".
   - kosten: 10
@@ -56,10 +56,10 @@ starter_code: |
       pass
 ---
 
-# Reihenfolge der Woerter umkehren
+# Reihenfolge der Wörter umkehren
 
-Schreibe eine Funktion `woerter_umkehren(text)`, die die Reihenfolge
-der Woerter im String **umdreht**. Mehrfache Leerzeichen werden
+Schreibe eine Funktion `wörter_umkehren(text)`, die die Reihenfolge
+der Wörter im String **umdreht**. Mehrfache Leerzeichen werden
 dabei zu einem einzelnen Leerzeichen reduziert; fuehrende und
 nachfolgende Leerzeichen entfallen.
 
@@ -76,10 +76,10 @@ nachfolgende Leerzeichen entfallen.
 ## Idee
 
 Pythons `str.split()` ohne Argument macht beide Dinge gleichzeitig:
-es teilt an **beliebigem Whitespace** und filtert leere Stuecke heraus.
+es teilt an **beliebigem Whitespace** und filtert leere Stücke heraus.
 
 ```python
-def woerter_umkehren(text):
+def wörter_umkehren(text):
     return " ".join(reversed(text.split()))
 ```
 

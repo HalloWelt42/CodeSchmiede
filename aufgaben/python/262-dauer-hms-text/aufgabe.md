@@ -29,7 +29,7 @@ hints:
       Sekunden < 0 → "0s".
   - kosten: 15
     text: |
-      h, m, s extrahieren. teile = []; jeweils anhaengen wenn > 0.
+      h, m, s extrahieren. teile = []; jeweils anhängen wenn > 0.
       Bei alle == 0 → "0s".
 tests_sichtbar:
   - input: [0]
@@ -110,8 +110,8 @@ def dauer_text(sekunden):
 
 Aufgabe **186-zahl-zu-bisexagesimal** liefert immer
 `"HH:MM:SS"` (mit fuehrenden Nullen). Hier ist die Form **kompakt**
-und ueberspringt Nullen -- besser fuer CLI-Tool-Output, schlechter
-fuer feste Tabellen-Spalten.
+und überspringt Nullen -- besser für CLI-Tool-Output, schlechter
+für feste Tabellen-Spalten.
 
 ## Anwendung
 

@@ -29,7 +29,7 @@ hints:
       Keys/Values werden gestrippt. Eintraege ohne aktive Sektion → ignorieren.
   - kosten: 25
     text: |
-      Zeile fuer Zeile durchgehen, Sektion merken,
+      Zeile für Zeile durchgehen, Sektion merken,
       Key/Value bei "=" splitten und strippen.
 tests_sichtbar:
   - input: ["[a]\nx=1\ny=2"]
@@ -65,10 +65,10 @@ Schreibe `ini_parse(s)`, die einen INI-String in ein verschachteltes
 Dict `{sektion: {key: value}}` umwandelt.
 
 INI-Format:
-- **Sektionen**: `[name]` -- alle folgenden Eintraege gehoeren zur Sektion
+- **Sektionen**: `[name]` -- alle folgenden Eintraege gehören zur Sektion
 - **Eintraege**: `key=value` -- Whitespace um `=` wird ignoriert
-- **Kommentare**: Zeilen die mit `;` oder `#` anfangen werden uebersprungen
-- **Leere Zeilen** werden uebersprungen
+- **Kommentare**: Zeilen die mit `;` oder `#` anfangen werden übersprungen
+- **Leere Zeilen** werden übersprungen
 - **Eintraege vor der ersten Sektion** werden ignoriert
 
 ## Beispiele
@@ -124,10 +124,10 @@ def ini_parse(s):
 ```
 
 Pythons eingebauter Parser ist robuster (multi-line values,
-Interpolation, etc.) -- aber komplexer in der Pruefung. Hier
+Interpolation, etc.) -- aber komplexer in der Prüfung. Hier
 implementieren wir es selbst.
 
 ## Anwendung
 
-INI-Files sind klassisch fuer Konfiguration: Wine, Git-Config,
+INI-Files sind klassisch für Konfiguration: Wine, Git-Config,
 Setuptools `setup.cfg`, viele Datenbank-Tools.

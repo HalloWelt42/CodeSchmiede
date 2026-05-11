@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Liefere [flaeche, umfang, diagonale] eines Rechtecks mit
-      Breite b und Hoehe h. Diagonale via Pythagoras.
+      Breite b und Höhe h. Diagonale via Pythagoras.
       Alle drei Werte auf 2 Nachkommastellen.
       b oder h <= 0 -> [0, 0, 0].
   - kosten: 10
@@ -64,12 +64,12 @@ starter_code: |
 
 # Rechteck-Eigenschaften
 
-Schreibe `rechteck(b, h)`, die fuer ein Rechteck der Breite `b`
-und Hoehe `h` drei Werte zurueckgibt:
+Schreibe `rechteck(b, h)`, die für ein Rechteck der Breite `b`
+und Höhe `h` drei Werte zurückgibt:
 
 `[flaeche, umfang, diagonale]` -- alle auf **2 Nachkommastellen**.
 
-Bei ungueltigen Eingaben (`b <= 0` oder `h <= 0`) → `[0, 0, 0]`.
+Bei ungültigen Eingaben (`b <= 0` oder `h <= 0`) → `[0, 0, 0]`.
 
 ## Formeln
 

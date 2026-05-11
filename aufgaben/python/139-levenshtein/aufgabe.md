@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Liefere die minimale Anzahl Einzeloperationen
-      (Einfuegen, Loeschen, Ersetzen), um a in b zu verwandeln.
+      (Einfuegen, Löschen, Ersetzen), um a in b zu verwandeln.
   - kosten: 20
     text: |
       Dynamische Programmierung mit (n+1)x(m+1)-Matrix.
@@ -62,13 +62,13 @@ starter_code: |
 # Levenshtein-Distanz
 
 Schreibe eine Funktion `levenshtein(a, b)`, die die **minimale Anzahl
-Einzeloperationen** zurueckgibt, um den String `a` in den String `b`
+Einzeloperationen** zurückgibt, um den String `a` in den String `b`
 umzuwandeln.
 
-Erlaubte Operationen (jede zaehlt als 1):
+Erlaubte Operationen (jede zählt als 1):
 
 - **Einfuegen** eines Zeichens
-- **Loeschen** eines Zeichens
+- **Löschen** eines Zeichens
 - **Ersetzen** eines Zeichens
 
 ## Beispiele
@@ -77,7 +77,7 @@ Erlaubte Operationen (jede zaehlt als 1):
 |-------------|-------------|---------|-------------------------------|
 | `"kitten"`  | `"sitting"` | 3       | k→s, e→i, +g                  |
 | `"haus"`    | `"maus"`    | 1       | h→m                           |
-| `"abc"`     | `""`        | 3       | drei Loeschungen              |
+| `"abc"`     | `""`        | 3       | drei Löschungen              |
 | `"sonntag"` | `"samstag"` | 3       | onn→ams                       |
 
 ## Idee -- Dynamische Programmierung
@@ -87,9 +87,9 @@ und den ersten `j` Zeichen von `b`.
 
 ```
 dp[0][j] = j        (j Einfuegungen)
-dp[i][0] = i        (i Loeschungen)
+dp[i][0] = i        (i Löschungen)
 dp[i][j] = dp[i-1][j-1]                          falls a[i-1] == b[j-1]
-         = 1 + min(dp[i-1][j],     # Loeschen
+         = 1 + min(dp[i-1][j],     # Löschen
                    dp[i][j-1],     # Einfuegen
                    dp[i-1][j-1])   # Ersetzen     sonst
 ```

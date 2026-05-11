@@ -57,7 +57,7 @@ starter_code: |
 # Vereinigung zweier Listen
 
 Schreibe `vereinigung(a, b)`, die alle Elemente aus `a` oder `b` als
-**aufsteigend sortierte, eindeutige** Liste zurueckgibt.
+**aufsteigend sortierte, eindeutige** Liste zurückgibt.
 
 ## Beispiele
 

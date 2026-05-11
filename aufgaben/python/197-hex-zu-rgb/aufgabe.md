@@ -24,12 +24,12 @@ hints:
   - kosten: 0
     text: |
       Wandle einen Hex-Farbcode wie "#ff0000" in [r, g, b] um.
-      Akzeptiere mit oder ohne #. Ungueltige Eingaben -> [0, 0, 0].
+      Akzeptiere mit oder ohne #. Ungültige Eingaben -> [0, 0, 0].
       Ausgabe: 3 Ints im Bereich 0-255.
   - kosten: 10
     text: |
       lstrip("#") entfernt das #. Pro Komponente int(s, 16).
-      Pruefe: Laenge 6 und alle Zeichen Hex.
+      Prüfe: Laenge 6 und alle Zeichen Hex.
 tests_sichtbar:
   - input: ["#ff0000"]
     expected: [255, 0, 0]
@@ -66,8 +66,8 @@ Schreibe `hex_zu_rgb(s)`, die einen Hex-Farbcode wie `"#ff0000"` in
 ein RGB-Tripel `[255, 0, 0]` umwandelt.
 
 - Mit oder ohne fuehrendes `#`.
-- Gross-/Kleinschreibung egal.
-- Ungueltige Eingabe (falsche Laenge, Nicht-Hex) → `[0, 0, 0]`.
+- Groß-/Kleinschreibung egal.
+- Ungültige Eingabe (falsche Laenge, Nicht-Hex) → `[0, 0, 0]`.
 
 ## Beispiele
 
@@ -96,11 +96,11 @@ def hex_zu_rgb(s):
 
 In CSS gibt's auch die **Kurzform** `#abc` = `#aabbcc`
 (jede Stelle verdoppelt). Die ist hier explizit nicht erlaubt --
-sie waere als Erweiterung leicht einbaubar.
+sie wäre als Erweiterung leicht einbaubar.
 
 ## Hintergrund
 
-Hex-Farben sind seit den fruehen 90ern Web-Standard. Vor CSS gab's
+Hex-Farben sind seit den frühen 90ern Web-Standard. Vor CSS gab's
 sie schon in HTML 1.0 als `<font color="#ff0000">`. Heute sind
-sie zusammen mit `rgb()` und `hsl()` die haeufigste Farb-Notation
+sie zusammen mit `rgb()` und `hsl()` die häufigste Farb-Notation
 im Web.

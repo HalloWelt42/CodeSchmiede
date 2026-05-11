@@ -25,7 +25,7 @@ hints:
     text: |
       Klassifiziere ein Dreieck mit Seiten a, b, c nach WINKELN:
       "spitz" (alle < 90°), "recht" (genau 90°),
-      "stumpf" (einer > 90°), "ungueltig".
+      "stumpf" (einer > 90°), "ungültig".
       Pythagoras umgekehrt: c² < a² + b² → spitz, == → recht, > → stumpf.
   - kosten: 15
     text: |
@@ -75,7 +75,7 @@ Schreibe `dreieck_winkel(a, b, c)`, die ein Dreieck nach den
 | `"spitz"`    | alle Winkel < 90°                         |
 | `"recht"`    | ein Winkel = 90° (rechtwinkliges Dreieck) |
 | `"stumpf"`   | ein Winkel > 90°                          |
-| `"ungueltig"`| keine Seite > 0 oder Dreiecks-Ungleichung |
+| `"ungültig"`| keine Seite > 0 oder Dreiecks-Ungleichung |
 
 ## Pythagoras umgedreht
 
@@ -96,7 +96,7 @@ Sei `c` die laengste Seite:
 | 4 | 5 | 6  | `"spitz"`      |
 | 3 | 3 | 5  | `"stumpf"`     |
 | 3 | 4 | 6  | `"stumpf"`     |
-| 1 | 2 | 5  | `"ungueltig"`  |
+| 1 | 2 | 5  | `"ungültig"`  |
 
 ## Idee
 
@@ -105,11 +105,11 @@ import math
 
 def dreieck_winkel(a, b, c):
     if min(a, b, c) <= 0:
-        return "ungueltig"
+        return "ungültig"
     seiten = sorted([a, b, c])
     aa, bb, cc = seiten
     if aa + bb <= cc:
-        return "ungueltig"
+        return "ungültig"
     summe = aa * aa + bb * bb
     quadrat = cc * cc
     if math.isclose(summe, quadrat):
@@ -119,7 +119,7 @@ def dreieck_winkel(a, b, c):
     return "stumpf"
 ```
 
-`math.isclose` fuer Float-Vergleich -- vermeidet Rundungs-Fehler bei
+`math.isclose` für Float-Vergleich -- vermeidet Rundungs-Fehler bei
 Werten wie `5.0000000001`.
 
 ## Verwandt

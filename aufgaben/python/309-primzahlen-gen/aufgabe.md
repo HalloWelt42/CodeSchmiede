@@ -28,7 +28,7 @@ hints:
       n < 2 → [].
   - kosten: 25
     text: |
-      Sieb: bool-Liste der Groesse n+1, false markieren.
+      Sieb: bool-Liste der Größe n+1, false markieren.
       Generator: yield i wenn sieb[i] True.
 tests_sichtbar:
   - input: [10]

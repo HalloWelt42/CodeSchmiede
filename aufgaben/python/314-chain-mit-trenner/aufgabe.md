@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       Verkette mehrere Listen zu EINER. ZWISCHEN den Listen wird
-      ein "trenner"-Element eingefuegt. Vor der ersten und nach der
+      ein "trenner"-Element eingefügt. Vor der ersten und nach der
       letzten Liste KEIN Trenner.
       [[1,2], [3,4], [5,6]] mit trenner=0 → [1,2,0,3,4,0,5,6].
       Leere Listen werden geskippt (kein Trenner davor/danach).
@@ -72,7 +72,7 @@ benachbarten Listen.
 Regeln:
 - Vor der ersten Liste **kein** Trenner.
 - Nach der letzten Liste **kein** Trenner.
-- **Leere** Listen werden uebersprungen (kein Trenner davor/danach).
+- **Leere** Listen werden übersprungen (kein Trenner davor/danach).
 
 ## Beispiele
 
@@ -103,7 +103,7 @@ def verketten_mit_trenner(listen, trenner):
 ```
 
 `yield from` ist eine **delegierende** Yield: liefert alle Werte
-des inneren Iterables -- elegant fuer "leere alle Werte aus dieser
+des inneren Iterables -- elegant für "leere alle Werte aus dieser
 Liste".
 
 `zuerst`-Flag stellt sicher, dass vor der allerersten nicht-leeren

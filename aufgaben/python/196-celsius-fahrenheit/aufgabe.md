@@ -24,7 +24,7 @@ hints:
   - kosten: 0
     text: |
       F = C * 9/5 + 32. Auf 1 Nachkommastelle gerundet.
-      Negative Werte muessen funktionieren (z.B. -40 → -40.0).
+      Negative Werte müssen funktionieren (z.B. -40 → -40.0).
   - kosten: 10
     text: |
       round(c * 9 / 5 + 32, 1).
@@ -86,12 +86,12 @@ def celsius_zu_fahrenheit(c):
 ## Spezialfall -40
 
 `-40 °C = -40 °F` -- der einzige Wert, bei dem beide Skalen
-identisch sind. Loesung der Gleichung
+identisch sind. Lösung der Gleichung
 $x = x \cdot \frac{9}{5} + 32$ ergibt $x = -40$.
 
 ## Hintergrund
 
 Daniel Gabriel Fahrenheit definierte 1724 seine Skala mit `0 °F`
-als kaeltester von ihm reproduzierbarer Temperatur (Eis-Salz-Mischung)
+als kältester von ihm reproduzierbarer Temperatur (Eis-Salz-Mischung)
 und `96 °F` als Koerpertemperatur. Heute gilt sie nur noch in den
 USA, Liberia und Myanmar offiziell.

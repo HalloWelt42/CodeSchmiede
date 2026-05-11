@@ -63,9 +63,9 @@ starter_code: |
 
 Schreibe eine Funktion `uhrzeit_plus(stunde, minute, zusatz_minuten)`,
 die zur Eingabe-Zeit eine Anzahl Minuten (positiv oder negativ)
-addiert und das Ergebnis als `"HH:MM"` zurueckgibt.
+addiert und das Ergebnis als `"HH:MM"` zurückgibt.
 
-24-Stunden-Format. Tagesueberlauf wird gewickelt -- nur die
+24-Stunden-Format. Tagesüberlauf wird gewickelt -- nur die
 Tageszeit interessiert.
 
 ## Beispiele

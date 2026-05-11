@@ -23,7 +23,7 @@ funktion: ggt
 hints:
   - kosten: 0
     text: |
-      Berechne den groessten gemeinsamen Teiler zweier nicht-negativer
+      Berechne den größten gemeinsamen Teiler zweier nicht-negativer
       ganzer Zahlen -- OHNE math.gcd.
       ggt(a, 0) = a. Sonst: ggt(a, b) = ggt(b, a % b).
   - kosten: 15
@@ -64,7 +64,7 @@ starter_code: |
 
 # GgT mit Euklid (eigene Implementierung)
 
-Schreibe `ggt(a, b)`, die den **groessten gemeinsamen Teiler** zweier
+Schreibe `ggt(a, b)`, die den **größten gemeinsamen Teiler** zweier
 ganzer Zahlen liefert -- ohne `math.gcd`.
 
 Negative Eingaben: Betrag nehmen. `ggt(0, 0) = 0`.
@@ -73,7 +73,7 @@ Negative Eingaben: Betrag nehmen. `ggt(0, 0) = 0`.
 
 ```
 ggt(a, 0) = a
-ggt(a, b) = ggt(b, a % b)   fuer b > 0
+ggt(a, b) = ggt(b, a % b)   für b > 0
 ```
 
 Die Folge `a, b, a%b, b%(a%b), ...` schrumpft sehr schnell -- bei
@@ -111,10 +111,10 @@ def ggt(a, b):
     return a if b == 0 else ggt(b, a % b)
 ```
 
-Eleganter, aber bei sehr grossen Zahlen Stack-Limit beachten.
+Eleganter, aber bei sehr großen Zahlen Stack-Limit beachten.
 
 ## Anwendung
 
-GgT taucht ueberall auf, wo man **Brueche kuerzen** will:
+GgT taucht überall auf, wo man **Brueche kürzen** will:
 `12/18 → 12/ggt(12,18) / 18/ggt(12,18) = 2/3`. In der Kryptographie
-ist Euklids Algorithmus die Basis fuer **modulare Inverse** (RSA).
+ist Euklids Algorithmus die Basis für **modulare Inverse** (RSA).

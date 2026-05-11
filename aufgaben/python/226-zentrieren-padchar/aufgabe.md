@@ -24,13 +24,13 @@ hints:
   - kosten: 0
     text: |
       Zentriere den Text in einem Feld der gegebenen Breite mit dem
-      gegebenen Padding-Zeichen. text laenger als breite → unveraendert.
-      Bei pad mit Laenge != 1 → text unveraendert.
+      gegebenen Padding-Zeichen. text laenger als breite → unverändert.
+      Bei pad mit Laenge != 1 → text unverändert.
       Pythons str.center erlaubt das pad-Zeichen direkt.
   - kosten: 10
     text: |
       text.center(breite, pad). Aber pad muss genau ein Zeichen sein,
-      sonst Error oder eigene Pruefung.
+      sonst Error oder eigene Prüfung.
 tests_sichtbar:
   - input: ["Hi", 6, "*"]
     expected: "**Hi**"
@@ -57,7 +57,7 @@ tests_versteckt:
     expected: "abc"
 starter_code: |
   def zentrieren(text: str, breite: int, pad: str) -> str:
-      # Deine Lösung hier -- pad MUSS ein Zeichen sein, sonst text unveraendert
+      # Deine Lösung hier -- pad MUSS ein Zeichen sein, sonst text unverändert
       pass
 ---
 
@@ -67,8 +67,8 @@ Schreibe `zentrieren(text, breite, pad)`, die einen Text in einem
 Feld der gegebenen Breite **zentriert** und mit dem **angegebenen
 Zeichen** auffuellt.
 
-- Wenn `text` schon laenger als `breite` ist → unveraendert zurueckgeben.
-- Wenn `pad` nicht **genau ein Zeichen** lang ist → unveraendert.
+- Wenn `text` schon laenger als `breite` ist → unverändert zurückgeben.
+- Wenn `pad` nicht **genau ein Zeichen** lang ist → unverändert.
 - Bei ungerader Padding-Anzahl: links eines weniger als rechts
   (Python-`str.center`-Konvention).
 
