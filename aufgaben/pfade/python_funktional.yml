@@ -6,3 +6,11 @@ beschreibung: |
   passiert. Eintauchen in funktionales Denken.
 reihenfolge:
   - 090-strain-filter
+  - 299-eigenes-map
+  - 300-eigenes-filter
+  - 301-eigenes-reduce
+  - 302-pipeline-anwenden
+  - 303-memoization
+  - 304-compose-zwei
+  - 305-curry-add
+  - 306-pipe-mit-zwischen

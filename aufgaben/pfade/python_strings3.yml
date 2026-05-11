@@ -28,3 +28,7 @@ reihenfolge:
   - 149-run-length-decoding
   - 281-split-mehrere-trenner
   - 282-markdown-links
+  - 293-query-string-parsen
+  - 294-query-string-bauen
+  - 295-csv-zeile
+  - 296-ini-parsen
