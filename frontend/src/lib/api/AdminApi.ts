@@ -57,6 +57,16 @@ export class AdminApi extends HttpBase {
     return this.get<VerwaltungsEintrag[]>('/aufgaben');
   }
 
+  /**
+   * Slim-Variante fuer die Verwaltungs-Liste: tests/beschreibung/starter
+   * werden als leere Strings/Listen geliefert, nur die Anzahlen stimmen.
+   * Pro Eintrag deutlich kleiner -- gut bei 300+ Aufgaben. Detail dann
+   * via aufgabe(id) on-demand nachladen.
+   */
+  aufgabenSlim(): Promise<VerwaltungsEintrag[]> {
+    return this.get<VerwaltungsEintrag[]>('/aufgaben?slim=true');
+  }
+
   aufgabe(id: string): Promise<VerwaltungsEintrag> {
     return this.get<VerwaltungsEintrag>(`/aufgaben/${id}`);
   }

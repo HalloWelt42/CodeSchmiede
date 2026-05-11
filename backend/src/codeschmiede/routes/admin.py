@@ -10,7 +10,7 @@ Auth -- das Endpoint ist genauso geschützt wie die App selbst.
 
 from typing import Any
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Response
 from pydantic import BaseModel, Field
 
 from ..aufgaben.schreiber import AufgabenSchreiberFehler
@@ -168,7 +168,27 @@ def baue_admin_router(state: AppState) -> APIRouter:
         }
 
     @router.get("/aufgaben", response_model=list[VerwaltungsEintrag])
-    def aufgaben() -> list[VerwaltungsEintrag]:
+    def aufgaben(
+        response: Response,
+        slim: bool = False,
+        sprache: str | None = None,
+        suche: str | None = None,
+        limit: int | None = None,
+        offset: int = 0,
+    ) -> list[VerwaltungsEintrag]:
+        """Verwaltungs-Liste aller Aufgaben.
+
+        Mit `slim=true` werden grosse Felder (beschreibung_md, tests,
+        starter_code, hints-Texte) als leere Strings/Listen geliefert --
+        spart bei vielen Aufgaben massiv Bandbreite. Detail dann via
+        `/api/admin/aufgaben/{id}` einzeln nachladen.
+
+        Filter:
+        - sprache: exakter Match
+        - suche: Substring in id/titel (case-insensitive)
+        - limit/offset: Pagination, X-Total-Count im Header
+        """
+        such_lower = (suche or "").lower().strip()
         eintraege: list[VerwaltungsEintrag] = []
 
         # Statistik vorab in einem Query holen, dann pro Aufgabe zuordnen
@@ -189,10 +209,21 @@ def baue_admin_router(state: AppState) -> APIRouter:
             progress_rows = conn.execute("SELECT * FROM progress").fetchall()
             progress_by_id = {r["aufgabe_id"]: r for r in progress_rows}
 
-        for a in sorted(
-            state.aufgaben.alle_aufgaben(),
-            key=lambda x: (x.sprache, x.schwierigkeit_score, x.id),
-        ):
+        gefiltert = []
+        for a in state.aufgaben.alle_aufgaben():
+            if sprache and a.sprache != sprache:
+                continue
+            if such_lower and such_lower not in a.id.lower() and such_lower not in a.titel.lower():
+                continue
+            gefiltert.append(a)
+        gefiltert.sort(key=lambda x: (x.sprache, x.schwierigkeit_score, x.id))
+        response.headers["X-Total-Count"] = str(len(gefiltert))
+
+        if limit is not None and limit > 0:
+            start = max(0, offset)
+            gefiltert = gefiltert[start:start + min(500, limit)]
+
+        for a in gefiltert:
             sub_gesamt, sub_bestanden = sub_stats.get(a.id, (0, 0))
             p = progress_by_id.get(a.id)
             statistik = AufgabenStatistik(
@@ -203,7 +234,26 @@ def baue_admin_router(state: AppState) -> APIRouter:
                 punkte_erreicht=p["punkte_erreicht"] if p else 0,
                 status=p["status"] if p else "neu",
             )
-            ml = state.loader.lade_musterloesungen(a.id)
+            # Musterloesungen-Anzahl ist immer relevant (Tabelle), aber im
+            # Slim-Modus sparen wir uns das Dateisystem-Listing.
+            ml_anzahl = 0 if slim else len(state.loader.lade_musterloesungen(a.id))
+            # Slim-Modus: grosse Felder leeren, Anzahlen aus Original
+            # behalten (das Frontend rendert "Hints (4)" auch ohne Text).
+            hints_payload = (
+                [{"kosten": 0, "text": ""} for _ in a.hints]
+                if slim
+                else [h.model_dump() for h in a.hints]
+            )
+            tests_sichtbar_payload = (
+                [{"input": [], "expected": None} for _ in a.tests_sichtbar]
+                if slim
+                else [t.model_dump() for t in a.tests_sichtbar]
+            )
+            tests_versteckt_payload = (
+                [{"input": [], "expected": None} for _ in a.tests_versteckt]
+                if slim
+                else [t.model_dump() for t in a.tests_versteckt]
+            )
             eintraege.append(
                 VerwaltungsEintrag(
                     schema_version=a.schema_version,
@@ -225,12 +275,12 @@ def baue_admin_router(state: AppState) -> APIRouter:
                     erstellt_am=a.erstellt_am.isoformat() if a.erstellt_am else None,
                     zeitlimit_sekunden=a.zeitlimit_sekunden,
                     funktion=a.funktion,
-                    hints=[h.model_dump() for h in a.hints],
-                    tests_sichtbar=[t.model_dump() for t in a.tests_sichtbar],
-                    tests_versteckt=[t.model_dump() for t in a.tests_versteckt],
-                    starter_code=a.starter_code,
-                    beschreibung_md=a.beschreibung_md,
-                    musterloesungen_anzahl=len(ml),
+                    hints=hints_payload,
+                    tests_sichtbar=tests_sichtbar_payload,
+                    tests_versteckt=tests_versteckt_payload,
+                    starter_code="" if slim else a.starter_code,
+                    beschreibung_md="" if slim else a.beschreibung_md,
+                    musterloesungen_anzahl=ml_anzahl,
                     dateipfad=str(a.dateipfad),
                     hash=a.hash,
                     statistik=statistik,

@@ -1,6 +1,6 @@
 """HTTP-Routen für Aufgaben."""
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Response
 
 from ..models.aufgabe import Aufgabe, AufgabeDetail, AufgabeKurz
 from ..models.progress import Progress
@@ -46,11 +46,35 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
 
     @router.get("", response_model=list[AufgabeKurz])
     def liste(
+        response: Response,
         sprache: str | None = None,
         pfad: str | None = None,
         schwierigkeit: str | None = None,
+        tag: str | None = None,
+        status: str | None = None,
+        suche: str | None = None,
+        limit: int | None = None,
+        offset: int = 0,
     ) -> list[AufgabeKurz]:
+        """Aufgaben-Liste mit Filtern + optionaler Pagination.
+
+        Ohne `limit` → alle Treffer (kompatibel zum alten Verhalten).
+        Mit `limit` → Slice von `offset` bis `offset+limit`. In jedem Fall
+        wird `X-Total-Count` als Header gesetzt.
+
+        Filter:
+        - sprache, pfad, schwierigkeit, tag: exakte Filter
+        - status: "geloest" / "in_arbeit" / "neu"
+        - suche: Substring in id ODER titel (case-insensitive)
+        """
         geloest = hole_geloeste_ids()
+        in_arbeit = {
+            p.aufgabe_id
+            for p in state.progress.hole_alle_progress()
+            if p.status == "in_arbeit"
+        }
+        such_lower = (suche or "").lower().strip()
+
         ergebnis: list[AufgabeKurz] = []
         for a in state.aufgaben.alle_aufgaben():
             if sprache and a.sprache != sprache:
@@ -58,6 +82,17 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
             if pfad and pfad not in a.pfade:
                 continue
             if schwierigkeit and a.schwierigkeit != schwierigkeit:
+                continue
+            if tag and tag not in a.tags:
+                continue
+            if status:
+                if status == "geloest" and a.id not in geloest:
+                    continue
+                if status == "in_arbeit" and a.id not in in_arbeit:
+                    continue
+                if status == "neu" and (a.id in geloest or a.id in in_arbeit):
+                    continue
+            if such_lower and such_lower not in a.id.lower() and such_lower not in a.titel.lower():
                 continue
             offen = _voraussetzungen_offen(a, geloest)
             ergebnis.append(
@@ -77,6 +112,10 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
                 )
             )
         ergebnis.sort(key=lambda x: x.schwierigkeit_score)
+        response.headers["X-Total-Count"] = str(len(ergebnis))
+        if limit is not None and limit > 0:
+            start = max(0, offset)
+            ergebnis = ergebnis[start:start + min(500, limit)]
         return ergebnis
 
     @router.get("/{aufgabe_id}", response_model=AufgabeDetail)

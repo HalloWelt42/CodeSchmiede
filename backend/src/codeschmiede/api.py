@@ -59,6 +59,7 @@ def app_bauen(settings: Settings | None = None) -> FastAPI:
         allow_credentials=False,
         allow_methods=["*"],
         allow_headers=["*"],
+        expose_headers=["X-Total-Count"],
     )
 
     app.include_router(baue_aufgaben_router(state))

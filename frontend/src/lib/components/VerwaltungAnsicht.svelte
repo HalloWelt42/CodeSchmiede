@@ -136,16 +136,39 @@
     await Promise.all([neuLaden(), ladePfade()]);
   });
 
+  // Slim-Liste initial -- pro Eintrag deutlich kleiner. Detail-Sektionen
+  // (beschreibung, tests, hints) werden beim Aufklappen on-demand
+  // nachgeladen. Spart bei 300+ Aufgaben mehrere hundert KB beim Start.
+  const details_geladen = new Set<string>();
+
   async function neuLaden(): Promise<void> {
     laden = true;
     fehler = null;
+    details_geladen.clear();
     try {
-      eintraege = await adminApi.aufgaben();
+      eintraege = await adminApi.aufgabenSlim();
     } catch (e) {
       fehler = (e as Error).message;
     } finally {
       laden = false;
     }
+  }
+
+  async function detail_nachladen(eintrag: VerwaltungsEintrag): Promise<void> {
+    if (details_geladen.has(eintrag.id)) return;
+    details_geladen.add(eintrag.id);
+    try {
+      const voll = await adminApi.aufgabe(eintrag.id);
+      eintraege = eintraege.map((e) => (e.id === voll.id ? voll : e));
+    } catch (e) {
+      details_geladen.delete(eintrag.id); // bei Fehler nochmal versuchen
+      fehler = (e as Error).message;
+    }
+  }
+
+  function on_section_toggle(eintrag: VerwaltungsEintrag, ev: Event): void {
+    const el = ev.currentTarget as HTMLDetailsElement;
+    if (el.open) detail_nachladen(eintrag);
   }
 
   function formatiere(wert: unknown): string {
@@ -299,12 +322,12 @@
             <span><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> <span class="num">{e.musterloesungen_anzahl}</span> Musterlösungen</span>
           </div>
 
-          <details class="sektion">
+          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
             <summary>Beschreibung &middot; {e.beschreibung_md.length} Zeichen</summary>
             <pre class="markdown-quelle">{e.beschreibung_md}</pre>
           </details>
 
-          <details class="sektion">
+          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
             <summary>Sichtbare Tests &middot; {e.tests_sichtbar.length}</summary>
             <ul class="test-liste">
               {#each e.tests_sichtbar as t, i (i)}
@@ -317,7 +340,7 @@
             </ul>
           </details>
 
-          <details class="sektion">
+          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
             <summary>
               Versteckte Tests &middot; {e.tests_versteckt.length}
               <span class="warn">
@@ -336,7 +359,7 @@
             </ul>
           </details>
 
-          <details class="sektion">
+          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
             <summary>Hints &middot; {e.hints.length}</summary>
             <ol class="hint-liste">
               {#each e.hints as h, i (i)}
@@ -348,7 +371,7 @@
             </ol>
           </details>
 
-          <details class="sektion">
+          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
             <summary>Frontmatter &middot; technische Daten</summary>
             <dl class="metadata">
               <dt>schema_version</dt><dd>{e.schema_version}</dd>
@@ -366,7 +389,7 @@
             </dl>
           </details>
 
-          <details class="sektion">
+          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
             <summary>Starter-Code &middot; {e.starter_code.length} Zeichen</summary>
             <pre class="code">{e.starter_code}</pre>
           </details>
