@@ -25,6 +25,18 @@
     });
   });
 
+  // Synchronisiere CodeMirror, wenn der Parent code von aussen aendert
+  // (z.B. Reset auf starter_code, oder Detail-Wechsel). Schleifen-Schutz:
+  // nur dispatchen, wenn der Doc-Inhalt wirklich abweicht -- sonst zaehlt
+  // jedes beiAenderung-Update nochmal hier rein und triggert sich selbst.
+  $effect(() => {
+    if (view && code !== view.state.doc.toString()) {
+      view.dispatch({
+        changes: { from: 0, to: view.state.doc.length, insert: code },
+      });
+    }
+  });
+
   onDestroy(() => {
     view?.destroy();
   });
