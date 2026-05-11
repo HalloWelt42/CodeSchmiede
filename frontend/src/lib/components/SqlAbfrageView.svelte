@@ -45,6 +45,16 @@
   let musterloesungen = $state<Musterloesung[] | null>(null);
   let aktiver_tab = $state<'aufgabe' | 'loesungen'>('aufgabe');
 
+  interface SchemaTabelle {
+    name: string;
+    spalten: string[];
+    zeilen: unknown[][];
+    gesamt_zeilen: number;
+  }
+  let schema_daten = $state<SchemaTabelle[] | null>(null);
+  let schema_panel_offen = $state(false);
+  let schema_position = $state({ x: 80, y: 80 });
+
   onMount(async () => {
     try {
       const letzte = await aufgabenApi.letzteSubmission(detail.id);
@@ -53,6 +63,41 @@
       code = detail.starter_code;
     }
   });
+
+  async function oeffneSchema(): Promise<void> {
+    schema_panel_offen = true;
+    if (schema_daten) return;
+    try {
+      const r = await fetch(`/api/sql/datasets/${dataset}/vorschau?limit=5`);
+      if (r.ok) {
+        const j = await r.json();
+        schema_daten = j.tabellen;
+      }
+    } catch (e) {
+      fehler = (e as Error).message;
+    }
+  }
+
+  function startDrag(event: PointerEvent): void {
+    const start_x = event.clientX;
+    const start_y = event.clientY;
+    const start_pos = { ...schema_position };
+    const target = event.currentTarget as HTMLElement;
+    target.setPointerCapture(event.pointerId);
+    function bewegen(e: PointerEvent): void {
+      schema_position = {
+        x: Math.max(0, start_pos.x + (e.clientX - start_x)),
+        y: Math.max(0, start_pos.y + (e.clientY - start_y)),
+      };
+    }
+    function beenden(): void {
+      target.releasePointerCapture(event.pointerId);
+      window.removeEventListener('pointermove', bewegen);
+      window.removeEventListener('pointerup', beenden);
+    }
+    window.addEventListener('pointermove', bewegen);
+    window.addEventListener('pointerup', beenden);
+  }
 
   async function pruefen(): Promise<void> {
     pruefen_laeuft = true;
@@ -144,7 +189,12 @@
   <section class="spalte mitte">
     <div class="editor-kopf">
       <span class="label">SQL-Editor · Datensatz {dataset}</span>
-      <button class="pruefen" disabled={pruefen_laeuft || !code.trim()} onclick={pruefen}>
+      <div class="kopf-aktionen">
+        <button class="schema-btn" onclick={oeffneSchema} title="Tabellen-Vorschau einblenden">
+          <i class="fa-solid fa-table" aria-hidden="true"></i>
+          Tabellen
+        </button>
+        <button class="pruefen" disabled={pruefen_laeuft || !code.trim()} onclick={pruefen}>
         {#if pruefen_laeuft}
           <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
           läuft ...
@@ -152,7 +202,8 @@
           <i class="fa-solid fa-play" aria-hidden="true"></i>
           Prüfen
         {/if}
-      </button>
+        </button>
+      </div>
     </div>
     <div class="editor-host">
       <EditorBereich sprache="sql" bind:code />
@@ -223,6 +274,50 @@
     </div>
   </section>
 </div>
+
+{#if schema_panel_offen}
+  <div
+    class="schema-panel"
+    style:left="{schema_position.x}px"
+    style:top="{schema_position.y}px"
+  >
+    <div class="panel-kopf" role="toolbar" aria-label="Schema-Panel verschieben" onpointerdown={startDrag}>
+      <span class="panel-titel">
+        <i class="fa-solid fa-table" aria-hidden="true"></i>
+        Datensatz · {dataset}
+      </span>
+      <button
+        class="panel-schliessen"
+        onclick={() => (schema_panel_offen = false)}
+        aria-label="Schließen"
+      ><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <div class="panel-inhalt">
+      {#if !schema_daten}
+        <div class="laedt">Lädt ...</div>
+      {:else}
+        {#each schema_daten as t (t.name)}
+          <details class="tab-block" open>
+            <summary>
+              <strong>{t.name}</strong>
+              <span class="meta">({t.gesamt_zeilen} Zeilen)</span>
+            </summary>
+            <table class="vor-tab">
+              <thead>
+                <tr>{#each t.spalten as s}<th>{s}</th>{/each}</tr>
+              </thead>
+              <tbody>
+                {#each t.zeilen as zeile}
+                  <tr>{#each zeile as v}<td>{v ?? 'NULL'}</td>{/each}</tr>
+                {/each}
+              </tbody>
+            </table>
+          </details>
+        {/each}
+      {/if}
+    </div>
+  </div>
+{/if}
 
 <style>
   .sql {
@@ -332,6 +427,122 @@
     background: color-mix(in srgb, var(--accent) 22%, transparent);
   }
   .pruefen:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .kopf-aktionen {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+  .schema-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--fg-dim);
+    padding: 6px 12px;
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+  }
+  .schema-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .schema-panel {
+    position: fixed;
+    width: 420px;
+    max-height: 70vh;
+    background: var(--bg-card);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .panel-kopf {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: color-mix(in srgb, var(--accent) 18%, var(--bg-card));
+    border-bottom: 1px solid var(--border);
+    cursor: move;
+    user-select: none;
+  }
+  .panel-titel {
+    color: var(--accent);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    letter-spacing: 0.04em;
+  }
+  .panel-schliessen {
+    background: transparent;
+    border: none;
+    color: var(--fg-dim);
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .panel-schliessen:hover {
+    color: var(--red);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .panel-inhalt {
+    padding: var(--sp-3);
+    overflow-y: auto;
+    flex: 1 1 auto;
+  }
+  .laedt { color: var(--fg-dim); font-style: italic; }
+  .tab-block {
+    margin-bottom: var(--sp-3);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--sp-2);
+  }
+  .tab-block summary {
+    cursor: pointer;
+    color: var(--fg);
+    font-size: var(--fs-sm);
+    padding: 4px 0;
+  }
+  .tab-block summary .meta {
+    color: var(--fg-mute);
+    font-size: var(--fs-xs);
+    margin-left: var(--sp-1);
+  }
+  .vor-tab {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: var(--fs-xs);
+    margin-top: var(--sp-2);
+  }
+  .vor-tab th, .vor-tab td {
+    border: 1px solid var(--border);
+    padding: 3px 6px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .vor-tab th {
+    background: var(--bg-card-2);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .vor-tab td { color: var(--fg); }
   .editor-host { flex: 1 1 auto; min-height: 0; overflow: hidden; }
 
   .weiter {

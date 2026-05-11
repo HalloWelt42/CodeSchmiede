@@ -14,6 +14,7 @@ from .routes.admin import baue_admin_router
 from .routes.aufgaben import baue_aufgaben_router
 from .routes.pfade import baue_pfade_router
 from .routes.progress import baue_progress_router
+from .routes.sql_dataset import baue_sql_dataset_router
 from .routes.submissions import baue_submissions_router
 from .state import AppState
 
@@ -65,6 +66,7 @@ def app_bauen(settings: Settings | None = None) -> FastAPI:
     app.include_router(baue_aufgaben_router(state))
     app.include_router(baue_pfade_router(state))
     app.include_router(baue_submissions_router(state))
+    app.include_router(baue_sql_dataset_router(state))
     app.include_router(baue_progress_router(state))
     app.include_router(baue_admin_router(state))
 
