@@ -1,0 +1,128 @@
+---
+schema_version: 1
+id: 254-tag-im-jahr
+revision: 1
+titel: Tag-Nummer im Jahr aus Datum
+sprache: python
+task_type: code_schreiben
+runner_type: docker_python
+schwierigkeit: anfaenger
+schwierigkeit_score: 18
+schaetz_minuten: 8
+tags: [datum, mathematik, schaltjahr]
+pfade: []
+voraussetzungen: []
+quelle:
+  url: null
+  notiz: Klassische Datums-Berechnung
+lizenz: eigen
+autor: HalloWelt42
+erstellt_am: 2026-05-11
+zeitlimit_sekunden: 5
+funktion: tag_im_jahr
+hints:
+  - kosten: 0
+    text: |
+      Bestimme den n-ten Tag des Jahres aus (jahr, monat, tag).
+      1. Januar → 1. 31. Dezember (kein Schaltjahr) → 365.
+      Schaltjahre bei Februar beachten!
+      Ungueltige Eingaben → 0.
+  - kosten: 15
+    text: |
+      datetime.date(jahr, monat, tag).timetuple().tm_yday liefert es direkt.
+      Manuell: Tage-pro-Monat-Liste, Schaltjahr fuer Februar +1.
+tests_sichtbar:
+  - input: [2026, 1, 1]
+    expected: 1
+  - input: [2026, 12, 31]
+    expected: 365
+  - input: [2024, 12, 31]
+    expected: 366
+  - input: [2026, 5, 11]
+    expected: 131
+tests_versteckt:
+  - input: [2026, 2, 28]
+    expected: 59
+  - input: [2026, 3, 1]
+    expected: 60
+  - input: [2024, 2, 29]
+    expected: 60
+  - input: [2024, 3, 1]
+    expected: 61
+  - input: [2026, 7, 4]
+    expected: 185
+  - input: [2026, 11, 30]
+    expected: 334
+  - input: [2026, 13, 1]
+    expected: 0
+  - input: [2026, 0, 5]
+    expected: 0
+starter_code: |
+  from datetime import date
+
+  def tag_im_jahr(jahr: int, monat: int, tag: int) -> int:
+      # Deine Lösung hier -- ungueltig → 0
+      pass
+---
+
+# Tag-Nummer im Jahr aus Datum
+
+Schreibe `tag_im_jahr(jahr, monat, tag)`, die fuer ein Datum die
+**laufende Tag-Nummer im Jahr** zurueckgibt (1.-365., bei
+Schaltjahr 1.-366.).
+
+Bei ungueltigen Eingaben → `0`.
+
+## Beispiele
+
+| Datum      | Tag-Nr | Bemerkung           |
+|------------|--------|---------------------|
+| 2026-01-01 | `1`    | Neujahr             |
+| 2026-05-11 | `131`  | heute               |
+| 2026-12-31 | `365`  | Silvester (kein SJ) |
+| 2024-12-31 | `366`  | Schaltjahr          |
+| 2024-02-29 | `60`   | Schalttag           |
+| 2024-03-01 | `61`   | nach Schalttag      |
+| 2026-13-01 | `0`    | ungueltiger Monat   |
+
+## Idee mit `datetime`
+
+```python
+from datetime import date
+
+def tag_im_jahr(jahr, monat, tag):
+    try:
+        return date(jahr, monat, tag).timetuple().tm_yday
+    except ValueError:
+        return 0
+```
+
+`date(...)` validiert automatisch (z.B. `date(2026, 13, 1)` wirft
+einen `ValueError`). `tm_yday` ist genau der "day of year".
+
+## Idee ohne `datetime`
+
+```python
+TAGE = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+def ist_schaltjahr(j):
+    return j % 4 == 0 and (j % 100 != 0 or j % 400 == 0)
+
+def tag_im_jahr(jahr, monat, tag):
+    if not (1 <= monat <= 12):
+        return 0
+    schalt = ist_schaltjahr(jahr)
+    tage_im_monat = TAGE[monat - 1] + (1 if monat == 2 and schalt else 0)
+    if not (1 <= tag <= tage_im_monat):
+        return 0
+    return sum(TAGE[:monat - 1]) + (1 if monat > 2 and schalt else 0) + tag
+```
+
+Komplizierter, aber lehrreich -- enthaelt die **Gregorianische
+Schaltjahr-Regel** (Aufgabe 058).
+
+## Anwendung
+
+- Tag-genaue Daten-Indexierung in Zeitreihen.
+- Astronomie: Julianisches Datum.
+- Kalender-Apps: "Heute ist der x. Tag des Jahres".
