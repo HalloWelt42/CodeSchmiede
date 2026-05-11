@@ -1,0 +1,8 @@
+.rahmen {
+  width: 200px;
+  padding: 16px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  border: 2px solid #2dd4bf;
+  border-radius: 8px;
+}

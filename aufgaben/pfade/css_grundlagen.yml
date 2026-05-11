@@ -1,0 +1,30 @@
+id: css_grundlagen
+titel: CSS-Grundlagen Lernpfad
+beschreibung: |
+  15 Aufgaben zu den Fundamenten von CSS -- Selektoren, Cascade,
+  Box-Modell. Wer Layouts mit Flexbox oder Grid bauen will, muss
+  zuerst diese Bausteine sicher kennen.
+
+  Reihenfolge:
+    01-08  Selektoren: Element, Klasse, ID, Descendant, Child (>),
+            Adjacent (+), :first-child, :nth-child
+    09-10  Cascade: Specificity (was gewinnt), Inheritance (was wird
+            vererbt)
+    11-15  Box-Modell: Padding, Margin, box-sizing (das Aha-Erlebnis),
+            Border + Radius, width 100%
+reihenfolge:
+  - s001-element-selektor
+  - s002-klassen-selektor
+  - s003-id-selektor
+  - s004-descendant-selektor
+  - s005-child-selektor
+  - s006-adjacent-selektor
+  - s007-first-child
+  - s008-nth-child
+  - s009-specificity
+  - s010-inheritance
+  - s011-padding-innenabstand
+  - s012-margin-aussenabstand
+  - s013-box-sizing-border-box
+  - s014-border-radius
+  - s015-width-100-prozent

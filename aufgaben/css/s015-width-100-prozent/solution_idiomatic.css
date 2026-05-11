@@ -1,0 +1,13 @@
+.container {
+  width: 300px;
+  padding: 12px;
+  background-color: #22262d;
+}
+.feld {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  background-color: #1a1d23;
+  color: #e7ecf1;
+  border: 1px solid #3a4049;
+}
