@@ -1,0 +1,17 @@
+.bc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.link {
+  color: #2dd4bf;
+  text-decoration: none;
+}
+.sep {
+  color: #9ca3af;
+}
+.aktuell {
+  color: #e7ecf1;
+  font-weight: 600;
+}

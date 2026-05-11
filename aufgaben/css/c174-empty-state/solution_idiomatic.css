@@ -1,0 +1,16 @@
+.leer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+  color: #9ca3af;
+  text-align: center;
+  gap: 12px;
+}
+.symbol {
+  font-size: 48px;
+  color: #3a4049;
+}
+.text {
+  font-size: 14px;
+}

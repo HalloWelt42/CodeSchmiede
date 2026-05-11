@@ -1,0 +1,22 @@
+.suche {
+  display: flex;
+  width: 320px;
+}
+.feld {
+  flex: 1;
+  padding: 8px 12px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  border: 1px solid #3a4049;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+.kn {
+  padding: 8px 16px;
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-weight: 600;
+}

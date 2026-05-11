@@ -1,0 +1,9 @@
+.tip {
+  display: inline-block;
+  padding: 6px 10px;
+  background-color: #1a1d23;
+  color: #e7ecf1;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid #2dd4bf;
+}

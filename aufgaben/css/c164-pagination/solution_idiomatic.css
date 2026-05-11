@@ -1,0 +1,19 @@
+.pg {
+  display: flex;
+  gap: 4px;
+}
+.seite {
+  width: 32px;
+  height: 32px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  border: 1px solid #3a4049;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.aktiv {
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  border-color: #2dd4bf;
+  font-weight: 700;
+}

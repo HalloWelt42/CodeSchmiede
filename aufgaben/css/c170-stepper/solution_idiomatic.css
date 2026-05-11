@@ -1,0 +1,28 @@
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.punkt {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #22262d;
+  color: #9ca3af;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  border: 2px solid #3a4049;
+}
+.aktiv {
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  border-color: #2dd4bf;
+}
+.linie {
+  flex: 1;
+  height: 2px;
+  background-color: #3a4049;
+  min-width: 40px;
+}

@@ -1,0 +1,9 @@
+.code {
+  margin: 0;
+  padding: 16px;
+  background-color: #1a1d23;
+  color: #2dd4bf;
+  font-family: monospace;
+  border-radius: 6px;
+  overflow-x: auto;
+}

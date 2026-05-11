@@ -1,0 +1,23 @@
+.seite {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 300px;
+}
+.kopf {
+  background-color: #22262d;
+  color: #e7ecf1;
+  padding: 12px;
+}
+.haupt {
+  flex: 1;
+  background-color: #1a1d23;
+  color: #e7ecf1;
+  padding: 12px;
+}
+.fuss {
+  background-color: #22262d;
+  color: #9ca3af;
+  padding: 12px;
+  font-size: 12px;
+}

@@ -1,0 +1,12 @@
+.drop {
+  width: 320px;
+  height: 160px;
+  border: 2px dashed #2dd4bf;
+  border-radius: 8px;
+  background-color: #22262d;
+  color: #9ca3af;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
