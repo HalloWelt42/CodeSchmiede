@@ -1,0 +1,14 @@
+.rahmen {
+  display: flex;
+  width: 300px;
+  background-color: #22262d;
+  padding: 8px;
+}
+.kind {
+  height: 40px;
+  background-color: #2dd4bf;
+  margin: 4px;
+}
+.markiert {
+  order: 2;
+}

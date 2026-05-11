@@ -1,0 +1,6 @@
+.bild {
+  width: 120px;
+  height: 120px;
+  background-color: #2dd4bf;
+  filter: sepia(1);
+}

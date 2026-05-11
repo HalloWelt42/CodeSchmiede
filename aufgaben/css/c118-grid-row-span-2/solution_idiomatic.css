@@ -1,0 +1,13 @@
+.grid {
+  display: grid;
+  grid-template-columns: 80px 80px 80px;
+  grid-template-rows: 60px 60px;
+  gap: 8px;
+}
+.gross {
+  background-color: #2dd4bf;
+  grid-row: span 2;
+}
+.klein {
+  background-color: #22262d;
+}
