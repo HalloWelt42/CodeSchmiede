@@ -84,6 +84,10 @@
   }
 
   function startDrag(event: PointerEvent): void {
+    // Klicks auf den Schliessen-Button NICHT als Drag interpretieren --
+    // sonst nimmt setPointerCapture das Click-Event weg und das Panel
+    // laesst sich nicht mehr zu machen.
+    if ((event.target as HTMLElement).closest('.panel-schliessen')) return;
     const start_x = event.clientX;
     const start_y = event.clientY;
     const start_pos = { ...schema_position };
