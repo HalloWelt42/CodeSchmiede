@@ -16,3 +16,9 @@ reihenfolge:
   - 093-binary-zu-decimal
   - 094-decimal-zu-binary
   - 159-bit-zaehlen
+  - 275-postleitzahl-de
+  - 276-hashtags-extrahieren
+  - 277-emails-extrahieren
+  - 278-telefon-de
+  - 279-passwort-regex
+  - 280-datum-de-parse
