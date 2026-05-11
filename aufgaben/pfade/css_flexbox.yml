@@ -1,0 +1,33 @@
+id: css_flexbox
+titel: CSS-Flexbox Lernpfad
+beschreibung: |
+  15 didaktisch aufgebaute Flexbox-Aufgaben mit klarer Progression
+  -- vom Aktivieren von display:flex bis zu align-self-Ausnahmen.
+  Jede Aufgabe fuehrt GENAU EINE neue Property ein, mit Aha-Notiz und
+  Praxis-Bezug. Inspiriert von Flexbox-Froggy, aber mit echten Lernzielen
+  statt Frosch-Lebensraum.
+
+  Reihenfolge:
+    01-05  justify-content (Haupt-Achse)
+    06-07  align-items (Quer-Achse)
+    08-09  flex-direction (Achsen-Drehung)
+    10     flex-wrap (mehrzeilig)
+    11-13  Item-Eigenschaften: grow / shrink / basis
+    14     order (Reihenfolge ohne DOM-Aenderung)
+    15     align-self (Container-Ausrichtung ueberschreiben)
+reihenfolge:
+  - f001-flex-aktivieren
+  - f002-flex-justify-end
+  - f003-flex-justify-center
+  - f004-flex-justify-between
+  - f005-flex-justify-around
+  - f006-flex-align-center
+  - f007-flex-align-stretch
+  - f008-flex-direction-column
+  - f009-flex-direction-row-reverse
+  - f010-flex-wrap
+  - f011-flex-grow
+  - f012-flex-shrink-0
+  - f013-flex-basis
+  - f014-flex-order
+  - f015-flex-align-self

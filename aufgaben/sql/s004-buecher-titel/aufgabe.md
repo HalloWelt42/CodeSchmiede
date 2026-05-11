@@ -50,7 +50,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `SELECT titel FROM buecher;`
+      `SELECT titel FROM bücher;`
 starter_code: |
   SELECT ___
   FROM ___

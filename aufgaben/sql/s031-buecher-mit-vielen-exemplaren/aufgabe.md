@@ -40,7 +40,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      Subquery in WHERE: `> (SELECT AVG(exemplare) FROM buecher)`.
+      Subquery in WHERE: `> (SELECT AVG(exemplare) FROM bücher)`.
 starter_code: |
   SELECT ___
   FROM ___

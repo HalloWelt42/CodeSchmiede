@@ -54,7 +54,7 @@ hints:
       es alle Zeilen, in der Reihenfolge wie sie eingefügt wurden.
   - kosten: 2
     text: |
-      `SELECT titel, jahr FROM buecher;`
+      `SELECT titel, jahr FROM bücher;`
 starter_code: |
   SELECT ___ FROM buecher;
 ---

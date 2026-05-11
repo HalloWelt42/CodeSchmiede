@@ -40,7 +40,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      JOIN buecher, LEFT JOIN ausleihen, COUNT DISTINCT.
+      JOIN bücher, LEFT JOIN ausleihen, COUNT DISTINCT.
 starter_code: |
   SELECT ___
   FROM ___

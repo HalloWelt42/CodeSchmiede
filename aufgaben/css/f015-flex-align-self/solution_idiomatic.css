@@ -1,0 +1,23 @@
+.teich {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  height: 120px;
+  background-color: #22262d;
+  padding: 8px;
+  gap: 8px;
+}
+.frosch {
+  width: 80px;
+  height: 60px;
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+.oben {
+  align-self: flex-start;
+  background-color: #fb923c;
+}
