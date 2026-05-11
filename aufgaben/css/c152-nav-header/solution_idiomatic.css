@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  padding: 0 24px;
+  background-color: #22262d;
+  border-bottom: 1px solid #3a4049;
+}
+.logo {
+  color: #2dd4bf;
+  font-weight: 700;
+  font-size: 18px;
+}
+.menu {
+  display: flex;
+  gap: 24px;
+}
+.link {
+  color: #e7ecf1;
+  text-decoration: none;
+  font-weight: 500;
+}

@@ -1,0 +1,17 @@
+.layout {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  gap: 16px;
+  width: 600px;
+  height: 200px;
+}
+.seite {
+  background-color: #22262d;
+  color: #e7ecf1;
+  padding: 16px;
+}
+.haupt {
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  padding: 16px;
+}

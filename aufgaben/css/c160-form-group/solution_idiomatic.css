@@ -1,0 +1,19 @@
+.gruppe {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 280px;
+}
+.lab {
+  color: #9ca3af;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.inp {
+  padding: 8px 12px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  border: 1px solid #3a4049;
+  border-radius: 4px;
+}

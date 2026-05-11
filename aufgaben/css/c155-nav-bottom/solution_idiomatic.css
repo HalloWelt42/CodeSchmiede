@@ -1,0 +1,15 @@
+.bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 320px;
+  height: 60px;
+  background-color: #22262d;
+  border-top: 1px solid #3a4049;
+}
+.kn {
+  background-color: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.card {
+  display: flex;
+  width: 320px;
+  background-color: #22262d;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.bild {
+  width: 100px;
+  height: 100px;
+  background-color: #2dd4bf;
+  flex-shrink: 0;
+}
+.inhalt {
+  flex: 1;
+  padding: 16px;
+  color: #e7ecf1;
+}

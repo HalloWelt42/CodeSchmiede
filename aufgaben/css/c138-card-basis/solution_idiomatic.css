@@ -1,0 +1,16 @@
+.card {
+  width: 280px;
+  padding: 16px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  border-radius: 8px;
+  border: 1px solid #3a4049;
+}
+.titel {
+  margin: 0 0 8px;
+  color: #2dd4bf;
+}
+.text {
+  margin: 0;
+  color: #9ca3af;
+}

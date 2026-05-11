@@ -1,0 +1,10 @@
+.eingabe {
+  width: 280px;
+  height: 120px;
+  padding: 12px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  border: 1px solid #3a4049;
+  border-radius: 4px;
+  resize: vertical;
+}

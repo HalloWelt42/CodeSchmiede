@@ -1,0 +1,20 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: 16px;
+  background-color: #22262d;
+  gap: 4px;
+  height: 300px;
+}
+.eintrag {
+  padding: 8px 12px;
+  color: #9ca3af;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.aktiv {
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  font-weight: 600;
+}

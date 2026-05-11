@@ -1,0 +1,9 @@
+.eingabe {
+  width: 240px;
+  padding: 8px 12px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  border: 1px solid #3a4049;
+  border-radius: 4px;
+  font-size: 14px;
+}

@@ -1,0 +1,19 @@
+.kachel {
+  width: 200px;
+  padding: 24px;
+  background-color: #22262d;
+  border-radius: 6px;
+  text-align: center;
+}
+.zahl {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2dd4bf;
+}
+.label {
+  margin-top: 8px;
+  color: #9ca3af;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
