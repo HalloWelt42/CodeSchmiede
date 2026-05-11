@@ -1,0 +1,168 @@
+---
+schema_version: 1
+id: 290-shapes-flaeche
+revision: 1
+titel: Shapes mit Flaechen-Polymorphismus
+sprache: python
+task_type: code_schreiben
+runner_type: docker_python
+schwierigkeit: fortgeschritten
+schwierigkeit_score: 40
+schaetz_minuten: 15
+tags: [oop, vererbung, polymorphismus, geometrie]
+pfade: []
+voraussetzungen: []
+quelle:
+  url: null
+  notiz: Klassisches Polymorphismus-Beispiel
+lizenz: eigen
+autor: HalloWelt42
+erstellt_am: 2026-05-11
+zeitlimit_sekunden: 5
+funktion: gesamt_flaeche
+hints:
+  - kosten: 0
+    text: |
+      Liste von Shape-Beschreibungen → Gesamt-Flaeche (auf 2 Nachkomma).
+      Shape-Form: ["kreis", radius]
+                  ["rechteck", breite, hoehe]
+                  ["dreieck", a, b, c]   (Heron)
+      Negative oder ungueltige Shapes → 0 (ueberspringen).
+  - kosten: 25
+    text: |
+      Basis-Klasse Shape mit Methode flaeche().
+      Subklassen Kreis/Rechteck/Dreieck implementieren flaeche().
+      Funktion baut die Shapes und summiert flaeche().
+tests_sichtbar:
+  - input: [[["kreis", 1]]]
+    expected: 3.14
+  - input: [[]]
+    expected: 0.0
+  - input: [[["rechteck", 3, 4]]]
+    expected: 12.0
+  - input: [[["dreieck", 3, 4, 5]]]
+    expected: 6.0
+tests_versteckt:
+  - input: [[["kreis", 2], ["rechteck", 2, 2]]]
+    expected: 16.57
+  - input: [[["kreis", 1], ["kreis", 1], ["kreis", 1]]]
+    expected: 9.42
+  - input: [[["dreieck", 5, 12, 13], ["rechteck", 10, 5]]]
+    expected: 80.0
+  - input: [[["kreis", -5]]]
+    expected: 0.0
+  - input: [[["rechteck", 0, 5]]]
+    expected: 0.0
+  - input: [[["dreieck", 1, 2, 5]]]
+    expected: 0.0
+  - input: [[["kreis", 10], ["unbekannt", 1, 2]]]
+    expected: 314.16
+starter_code: |
+  import math
+
+  def gesamt_flaeche(shapes: list) -> float:
+      # Tipp: Basis-Klasse Shape, Subklassen Kreis/Rechteck/Dreieck
+      pass
+---
+
+# Shapes mit Flaechen-Polymorphismus
+
+Implementiere `gesamt_flaeche(shapes)` -- eine Liste von Shape-
+Beschreibungen wird zur **Gesamt-Flaeche** addiert.
+
+## Shape-Formate
+
+| Form                      | Bedeutung                          |
+|---------------------------|------------------------------------|
+| `["kreis", r]`            | Kreis mit Radius r                 |
+| `["rechteck", b, h]`      | Rechteck Breite x Hoehe            |
+| `["dreieck", a, b, c]`    | Dreieck mit Seitenlaengen a, b, c (Heron) |
+
+Ungueltige Shapes (negative Werte, unbekannter Typ, Dreiecks-
+Ungleichung verletzt) zaehlen mit Flaeche **0**.
+
+Auf **2 Nachkommastellen** gerundet.
+
+## Beispiele
+
+| Shapes                                  | Flaeche  |
+|-----------------------------------------|----------|
+| `[["kreis", 1]]`                        | `3.14`   |
+| `[["rechteck", 3, 4]]`                  | `12.0`   |
+| `[["dreieck", 3, 4, 5]]`                | `6.0`    |
+| `[["kreis", 2], ["rechteck", 2, 2]]`    | `16.57`  |
+| `[["dreieck", 5, 12, 13], ["rechteck", 10, 5]]` | `80.0` |
+| `[["kreis", -5]]`                       | `0.0`    |
+| `[["unbekannt", 1, 2]]`                 | `0.0`    |
+| `[]`                                    | `0.0`    |
+
+## Idee -- Klassen-Hierarchie mit Polymorphismus
+
+```python
+import math
+
+
+class Shape:
+    def flaeche(self):
+        return 0.0
+
+
+class Kreis(Shape):
+    def __init__(self, r):
+        self.r = r
+
+    def flaeche(self):
+        return math.pi * self.r ** 2 if self.r > 0 else 0.0
+
+
+class Rechteck(Shape):
+    def __init__(self, b, h):
+        self.b, self.h = b, h
+
+    def flaeche(self):
+        if self.b <= 0 or self.h <= 0:
+            return 0.0
+        return self.b * self.h
+
+
+class Dreieck(Shape):
+    def __init__(self, a, b, c):
+        self.a, self.b, self.c = a, b, c
+
+    def flaeche(self):
+        if min(self.a, self.b, self.c) <= 0:
+            return 0.0
+        seiten = sorted([self.a, self.b, self.c])
+        if seiten[0] + seiten[1] <= seiten[2]:
+            return 0.0
+        s = (self.a + self.b + self.c) / 2
+        return math.sqrt(s * (s - self.a) * (s - self.b) * (s - self.c))
+
+
+def baue(spec):
+    typ = spec[0]
+    if typ == "kreis":
+        return Kreis(spec[1])
+    if typ == "rechteck":
+        return Rechteck(spec[1], spec[2])
+    if typ == "dreieck":
+        return Dreieck(spec[1], spec[2], spec[3])
+    return Shape()
+
+
+def gesamt_flaeche(shapes):
+    return round(sum(baue(s).flaeche() for s in shapes), 2)
+```
+
+## Konzepte
+
+- **Vererbung**: alle Shapes erben von der Basis.
+- **Polymorphismus**: `shape.flaeche()` macht das Richtige, egal
+  welche konkrete Klasse.
+- **Factory-Pattern**: `baue(spec)` waehlt die richtige Klasse.
+
+## Anwendung
+
+Diese Idee steckt in **CAD-Tools** (jede Form weiss ihre Flaeche),
+**Spielen** (jede Figur weiss ihre Hitbox), **Layout-Engines**
+(jedes Widget seine Groesse).

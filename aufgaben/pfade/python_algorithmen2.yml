@@ -21,3 +21,5 @@ reihenfolge:
   - 165-tuerme-von-hanoi
   - 143-coin-change
   - 166-subset-sum
+  - 285-stack-ops
+  - 286-queue-ops
