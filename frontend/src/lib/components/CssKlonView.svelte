@@ -23,6 +23,7 @@
   import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
   import type { SubmissionAntwort } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
+  import DreiSpaltenLayout from './DreiSpaltenLayout.svelte';
   import EditorBereich from './EditorBereich.svelte';
 
   let { detail }: { detail: AufgabeDetail } = $props();
@@ -110,8 +111,8 @@ ${css}
   }
 </script>
 
-<div class="css-klon">
-  <section class="spalte links">
+<DreiSpaltenLayout>
+{#snippet links()}
     <div class="tab-leiste" role="tablist">
       <button
         class="tab"
@@ -160,9 +161,9 @@ ${css}
         </div>
       {/if}
     </div>
-  </section>
+{/snippet}
 
-  <section class="spalte mitte">
+{#snippet mitte()}
     <div class="editor-kopf">
       <span class="label">CSS-Editor</span>
       <button class="pruefen" disabled={pruefen_laeuft || !code.trim()} onclick={pruefen}>
@@ -178,9 +179,9 @@ ${css}
     <div class="editor-host">
       <EditorBereich sprache="css" bind:code />
     </div>
-  </section>
+{/snippet}
 
-  <section class="spalte rechts">
+{#snippet rechts()}
     <div class="vorschau-kopf">
       <span class="label">Deine Lösung</span>
     </div>
@@ -217,30 +218,10 @@ ${css}
         <div class="hinweis">Schreibe CSS und drück <strong>Prüfen</strong>.</div>
       {/if}
     </div>
-  </section>
-</div>
+{/snippet}
+</DreiSpaltenLayout>
 
 <style>
-  .css-klon {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow: hidden;
-    height: 100%;
-  }
-  .spalte {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    min-height: 0;
-    background: var(--bg-card);
-    overflow: hidden;
-    border-right: 1px solid var(--border);
-  }
-  .spalte.rechts { border-right: none; }
-  .spalte.mitte { background: var(--bg); }
-
   .tab-leiste {
     display: flex;
     border-bottom: 1px solid var(--border);

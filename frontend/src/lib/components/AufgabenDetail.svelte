@@ -10,7 +10,6 @@
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { konfig } from '../stores/KonfigStore.svelte';
-  import { layout } from '../stores/LayoutStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
   import { aufgabenApi } from '../api/AufgabenApi';
   import { progressApi } from '../api/ProgressApi';
@@ -22,6 +21,7 @@
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
   import CssKlonView from './CssKlonView.svelte';
+  import DreiSpaltenLayout from './DreiSpaltenLayout.svelte';
   import EditorBereich from './EditorBereich.svelte';
   import LueckentextView from './LueckentextView.svelte';
   import OutputBereich from './OutputBereich.svelte';
@@ -223,50 +223,6 @@
     detail ? farbeZuCss(konfig.schwierigkeitFarbe(detail.schwierigkeit)) : 'var(--accent)',
   );
 
-  let spaltenContainer: HTMLDivElement | undefined = $state();
-  const HANDLE_PX = 6;
-
-  let spaltenStil = $derived(
-    `grid-template-columns: ${layout.detailSpalten[0]}fr ${HANDLE_PX}px ${layout.detailSpalten[1]}fr ${HANDLE_PX}px ${layout.detailSpalten[2]}fr;`,
-  );
-
-  function startDrag(event: PointerEvent, position: 0 | 1): void {
-    if (!spaltenContainer) return;
-    event.preventDefault();
-    const containerBreite = spaltenContainer.clientWidth - HANDLE_PX * 2;
-    if (containerBreite <= 0) return;
-    const startX = event.clientX;
-    const startAnteile: [number, number, number] = [
-      layout.detailSpalten[0],
-      layout.detailSpalten[1],
-      layout.detailSpalten[2],
-    ];
-    const target = event.currentTarget as HTMLElement;
-    target.setPointerCapture(event.pointerId);
-
-    function bewegen(e: PointerEvent): void {
-      const deltaPx = e.clientX - startX;
-      const deltaAnteil = deltaPx / containerBreite;
-      const neu: [number, number, number] = [...startAnteile] as [number, number, number];
-      if (position === 0) {
-        neu[0] = startAnteile[0] + deltaAnteil;
-        neu[1] = startAnteile[1] - deltaAnteil;
-      } else {
-        neu[1] = startAnteile[1] + deltaAnteil;
-        neu[2] = startAnteile[2] - deltaAnteil;
-      }
-      layout.setzeSpalten(neu);
-    }
-    function beenden(): void {
-      target.releasePointerCapture(event.pointerId);
-      window.removeEventListener('pointermove', bewegen);
-      window.removeEventListener('pointerup', beenden);
-      window.removeEventListener('pointercancel', beenden);
-    }
-    window.addEventListener('pointermove', bewegen);
-    window.addEventListener('pointerup', beenden);
-    window.addEventListener('pointercancel', beenden);
-  }
 </script>
 
 <div class="detail">
@@ -335,8 +291,8 @@
           <span><strong>Bug finden!</strong> Im Editor steht Code mit einem Fehler. Finde ihn, fixe ihn, drück Prüfen.</span>
         </div>
       {/if}
-    <div class="spalten" bind:this={spaltenContainer} style={spaltenStil}>
-      <section class="spalte links">
+    <DreiSpaltenLayout>
+      {#snippet links()}
         <div class="tab-leiste" role="tablist">
           <button
             class="tab"
@@ -383,19 +339,9 @@
             </div>
           {/if}
         </div>
-      </section>
+      {/snippet}
 
-      <div
-        class="resizer"
-        role="separator"
-        aria-orientation="vertical"
-        aria-label="Linke Spalte verschieben"
-        onpointerdown={(e) => startDrag(e, 0)}
-        ondblclick={() => layout.resetSpalten()}
-        title="Ziehen zum Anpassen, Doppelklick setzt zurück"
-      ></div>
-
-      <section class="spalte mitte">
+      {#snippet mitte()}
         <div class="editor-kopf">
           <span class="label">Editor &middot; {detail.sprache}</span>
           <button class="pruefen" disabled={pruefen_laeuft || !code.trim()} onclick={pruefe}>
@@ -412,19 +358,9 @@
           <EditorBereich sprache={detail.sprache} bind:code />
         </div>
         <ProbelaufBereich aufgabeId={detail.id} {code} funktion={detail.funktion} />
-      </section>
+      {/snippet}
 
-      <div
-        class="resizer"
-        role="separator"
-        aria-orientation="vertical"
-        aria-label="Rechte Spalte verschieben"
-        onpointerdown={(e) => startDrag(e, 1)}
-        ondblclick={() => layout.resetSpalten()}
-        title="Ziehen zum Anpassen, Doppelklick setzt zurück"
-      ></div>
-
-      <section class="spalte rechts">
+      {#snippet rechts()}
         <OutputBereich
           ergebnis={ergebnis}
           fehler={pruef_fehler}
@@ -467,8 +403,8 @@
             {/if}
           {/if}
         </div>
-      </section>
-    </div>
+      {/snippet}
+    </DreiSpaltenLayout>
     {/if}
   {/if}
 </div>
@@ -588,37 +524,6 @@
     gap: 4px;
   }
 
-  .spalten {
-    display: grid;
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow: hidden;
-  }
-  .spalte {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    min-height: 0;
-    background: var(--bg-card);
-    overflow: hidden;
-    border-right: 1px solid var(--border);
-  }
-  .spalte.rechts { border-right: none; }
-  .resizer {
-    background: var(--border);
-    cursor: col-resize;
-    position: relative;
-    transition: background 0.15s;
-  }
-  .resizer::before {
-    content: '';
-    position: absolute;
-    inset: 0 -3px;
-  }
-  .resizer:hover {
-    background: var(--accent);
-  }
-  .spalte.links { overflow: hidden; }
   .tab-leiste {
     display: flex;
     gap: 0;
@@ -656,9 +561,6 @@
   .tab-inhalt > .muster-liste {
     padding: var(--sp-3);
   }
-  .spalte.mitte { background: var(--bg); }
-  .spalte.rechts { overflow-y: auto; }
-
   .editor-kopf {
     display: flex;
     align-items: center;

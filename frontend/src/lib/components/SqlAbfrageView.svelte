@@ -25,6 +25,7 @@
   import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
   import type { SubmissionAntwort } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
+  import DreiSpaltenLayout from './DreiSpaltenLayout.svelte';
   import EditorBereich from './EditorBereich.svelte';
 
   let { detail }: { detail: AufgabeDetail } = $props();
@@ -132,8 +133,8 @@
   );
 </script>
 
-<div class="sql">
-  <section class="spalte links">
+<DreiSpaltenLayout>
+{#snippet links()}
     <div class="tab-leiste" role="tablist">
       <button
         class="tab"
@@ -184,9 +185,9 @@
         </div>
       {/if}
     </div>
-  </section>
+{/snippet}
 
-  <section class="spalte mitte">
+{#snippet mitte()}
     <div class="editor-kopf">
       <span class="label">SQL-Editor · Datensatz {dataset}</span>
       <div class="kopf-aktionen">
@@ -208,9 +209,9 @@
     <div class="editor-host">
       <EditorBereich sprache="sql" bind:code />
     </div>
-  </section>
+{/snippet}
 
-  <section class="spalte rechts">
+{#snippet rechts()}
     <div class="ergebnis-kopf">
       <span class="label">Ergebnis</span>
       {#if ergebnis?.bestanden}
@@ -272,8 +273,8 @@
         <div class="hinweis">Schreibe SELECT-SQL und drück <strong>Prüfen</strong>.</div>
       {/if}
     </div>
-  </section>
-</div>
+{/snippet}
+</DreiSpaltenLayout>
 
 {#if schema_panel_offen}
   <div
@@ -324,26 +325,6 @@
 {/if}
 
 <style>
-  .sql {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow: hidden;
-    height: 100%;
-  }
-  .spalte {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    min-height: 0;
-    background: var(--bg-card);
-    overflow: hidden;
-    border-right: 1px solid var(--border);
-  }
-  .spalte.rechts { border-right: none; }
-  .spalte.mitte { background: var(--bg); }
-
   .tab-leiste {
     display: flex;
     border-bottom: 1px solid var(--border);
