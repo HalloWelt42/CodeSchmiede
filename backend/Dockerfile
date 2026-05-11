@@ -11,12 +11,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Erst Sourcen + pyproject zusammen kopieren -- pyproject.toml verweist
+# auf packages.find: src, daher MUSS src/ existieren bevor pip install
+# gestartet wird (sonst 'src does not exist' im egg_info-Schritt).
 COPY backend/pyproject.toml ./
-RUN pip install --no-cache-dir uv \
-    && uv pip install --system .
-
 COPY backend/src ./src
 COPY VERSION ./VERSION
+
+RUN pip install --no-cache-dir uv \
+    && uv pip install --system .
 
 ENV PYTHONPATH=/app/src
 ENV PYTHONUNBUFFERED=1
