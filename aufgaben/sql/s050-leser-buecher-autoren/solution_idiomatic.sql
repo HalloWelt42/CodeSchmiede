@@ -1,0 +1,1 @@
+SELECT l.name AS leser, b.titel, a.name AS autor FROM ausleihen au JOIN leser l ON au.leser_id = l.id JOIN buecher b ON au.buch_id = b.id JOIN autoren a ON b.autor_id = a.id WHERE au.zurueck_am IS NULL ORDER BY l.name, b.titel;

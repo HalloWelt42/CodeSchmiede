@@ -1,0 +1,1 @@
+SELECT b.id, k.name, pr.name AS produkt, p.menge FROM bestellpositionen p JOIN bestellungen b ON p.bestellung_id = b.id JOIN kunden k ON b.kunde_id = k.id JOIN produkte pr ON p.produkt_id = pr.id WHERE b.id = 1 ORDER BY pr.name;

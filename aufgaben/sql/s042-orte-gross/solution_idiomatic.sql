@@ -1,0 +1,1 @@
+SELECT DISTINCT UPPER(ort) AS ort FROM leser ORDER BY ort;
