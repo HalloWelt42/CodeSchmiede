@@ -1,0 +1,1 @@
+SELECT DISTINCT ort FROM leser ORDER BY ort;
