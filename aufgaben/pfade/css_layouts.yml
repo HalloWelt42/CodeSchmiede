@@ -1,0 +1,29 @@
+id: css_layouts
+titel: Praxis-Layouts
+beschreibung: |
+  10 echte App-Strukturen -- die naechste Stufe nach Flexbox + Grid +
+  Grundlagen. Jede Aufgabe kombiniert mehrere Konzepte zu einem Layout,
+  das du in jeder echten Web-App wiederfindest.
+
+  Reihenfolge:
+    01  App-Shell (Header + Sidebar + Main + Footer) per Grid-Areas
+    02  Hero-Sektion mit Headline und CTA, flex-column zentriert
+    03  Pricing-Trio mit hervorgehobener Mitte (transform: scale)
+    04  Split-Screen-Layout (Bild | Form) mit overflow-Trick
+    05  Galerie ohne Media-Query (auto-fit + minmax)
+    06  Form-Grid 1fr 2fr mit Label-Spalte
+    07  Artikel + sticky Inhaltsverzeichnis
+    08  Footer mit 4 Link-Spalten
+    09  Topbar Logo + Menue + Avatar (space-between)
+    10  Modal-Dialog ueber halbtransparentem Backdrop
+reihenfolge:
+  - l001-app-shell-grid
+  - l002-hero-mit-cta
+  - l003-pricing-trio
+  - l004-split-login
+  - l005-galerie-auto-fit
+  - l006-form-grid
+  - l007-artikel-mit-toc
+  - l008-footer-spalten
+  - l009-topbar-drei-zonen
+  - l010-modal-dialog

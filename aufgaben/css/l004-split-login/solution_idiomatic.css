@@ -1,0 +1,26 @@
+.split {
+  display: flex;
+  width: 480px;
+  height: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.visual {
+  flex: 1;
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 20px;
+}
+.form {
+  flex: 1;
+  background-color: #22262d;
+  color: #e7ecf1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}

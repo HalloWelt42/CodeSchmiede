@@ -1,0 +1,21 @@
+.app {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  grid-template-rows: 60px 1fr 40px;
+  grid-template-areas:
+    "kopf kopf"
+    "seite haupt"
+    "fuss fuss";
+  width: 480px;
+  height: 320px;
+  gap: 4px;
+  background-color: #1a1d23;
+}
+.kopf { grid-area: kopf; background-color: #2dd4bf; color: #1a1d23; }
+.seite { grid-area: seite; background-color: #22262d; color: #e7ecf1; }
+.haupt { grid-area: haupt; background-color: #2a2f37; color: #e7ecf1; }
+.fuss { grid-area: fuss; background-color: #22262d; color: #9ca3af; }
+.kopf, .seite, .haupt, .fuss {
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600;
+}

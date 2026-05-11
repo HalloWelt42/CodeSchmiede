@@ -1,0 +1,32 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 60px;
+  background-color: #22262d;
+  border-bottom: 1px solid #3a4049;
+  width: 600px;
+}
+.logo {
+  color: #2dd4bf;
+  font-weight: 700;
+  font-size: 18px;
+}
+.menu {
+  display: flex;
+  gap: 24px;
+}
+.link {
+  color: #e7ecf1;
+  font-weight: 500;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  font-weight: 700;
+  display: flex; justify-content: center; align-items: center;
+}

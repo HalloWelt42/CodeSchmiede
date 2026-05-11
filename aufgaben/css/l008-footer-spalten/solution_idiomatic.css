@@ -1,0 +1,15 @@
+.fuss {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 24px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  width: 480px;
+  border-top: 1px solid #3a4049;
+}
+.block {
+  font-size: 14px;
+  font-weight: 600;
+  color: #9ca3af;
+}

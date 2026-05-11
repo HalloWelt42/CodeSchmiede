@@ -1,0 +1,24 @@
+.seite {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 24px;
+  width: 480px;
+  padding: 16px;
+  background-color: #1a1d23;
+}
+.toc {
+  background-color: #22262d;
+  color: #9ca3af;
+  padding: 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  position: sticky; top: 16px;
+  align-self: start;
+}
+.text {
+  background-color: #22262d;
+  color: #e7ecf1;
+  padding: 16px;
+  border-radius: 4px;
+  min-height: 240px;
+}

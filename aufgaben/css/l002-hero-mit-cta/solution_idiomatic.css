@@ -1,0 +1,23 @@
+.hero {
+  width: 480px;
+  height: 280px;
+  background-color: #22262d;
+  color: #e7ecf1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+}
+.ueberschrift { margin: 0; font-size: 32px; color: #2dd4bf; }
+.lead { margin: 0; color: #9ca3af; font-size: 16px; }
+.cta {
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}

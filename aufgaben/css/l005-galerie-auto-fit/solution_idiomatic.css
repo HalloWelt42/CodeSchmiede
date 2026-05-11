@@ -1,0 +1,18 @@
+.galerie {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
+  width: 480px;
+  padding: 8px;
+  background-color: #1a1d23;
+}
+.bild {
+  aspect-ratio: 1 / 1;
+  background-color: #2dd4bf;
+  color: #1a1d23;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  border-radius: 6px;
+}
