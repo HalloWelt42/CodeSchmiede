@@ -10,11 +10,52 @@
   import AufgabenFilter from './AufgabenFilter.svelte';
   import EmptyState from './EmptyState.svelte';
 
-  let suche = $state('');
-  let sprache = $state('');
-  let schwierigkeit = $state('');
-  let status = $state<ProgressStatus | ''>('');
-  let pfad = $state('');
+  // Filter-Zustand: persistiert in localStorage. Damit bleibt die
+  // Auswahl ueber Page-Reloads und Tabs-Wechsel hinweg erhalten -- man
+  // muss nicht jedes Mal 'Python + Anfaenger + In Arbeit' neu klicken.
+  const FILTER_KEY = 'codeschmiede.aufgaben_filter';
+  interface FilterState {
+    suche: string;
+    sprache: string;
+    schwierigkeit: string;
+    status: ProgressStatus | '';
+    pfad: string;
+  }
+  function ladeFilter(): FilterState {
+    try {
+      const r = localStorage.getItem(FILTER_KEY);
+      if (r) {
+        const o = JSON.parse(r);
+        return {
+          suche: typeof o.suche === 'string' ? o.suche : '',
+          sprache: typeof o.sprache === 'string' ? o.sprache : '',
+          schwierigkeit: typeof o.schwierigkeit === 'string' ? o.schwierigkeit : '',
+          status: ['', 'neu', 'in_arbeit', 'geloest'].includes(o.status) ? o.status : '',
+          pfad: typeof o.pfad === 'string' ? o.pfad : '',
+        };
+      }
+    } catch {
+      /* ungueltig -> Default */
+    }
+    return { suche: '', sprache: '', schwierigkeit: '', status: '', pfad: '' };
+  }
+  const init = ladeFilter();
+  let suche = $state(init.suche);
+  let sprache = $state(init.sprache);
+  let schwierigkeit = $state(init.schwierigkeit);
+  let status = $state<ProgressStatus | ''>(init.status);
+  let pfad = $state(init.pfad);
+
+  $effect(() => {
+    try {
+      localStorage.setItem(
+        FILTER_KEY,
+        JSON.stringify({ suche, sprache, schwierigkeit, status, pfad }),
+      );
+    } catch {
+      /* z.B. private mode -- still */
+    }
+  });
 
   onMount(async () => {
     if (aufgabenStore.liste.length === 0) await aufgabenStore.ladeListe();
