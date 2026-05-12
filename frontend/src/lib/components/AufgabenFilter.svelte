@@ -83,13 +83,20 @@
     {/each}
   </select>
 
-  <span class="treffer num">
-    {treffer} / {gesamt}
+  <span class="treffer" class:gefiltert={aktiv}>
+    {#if aktiv}
+      <i class="fa-solid fa-filter" aria-hidden="true"></i>
+      <span class="num">{treffer}</span>
+      von <span class="num">{gesamt}</span> Aufgaben sichtbar
+    {:else}
+      <span class="num">{gesamt}</span> Aufgaben
+    {/if}
   </span>
 
   {#if aktiv}
-    <button class="reset" onclick={zuruecksetzen} title="Filter zurücksetzen">
+    <button class="reset" onclick={zuruecksetzen}>
       <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      Filter zurücksetzen
     </button>
   {/if}
 </div>
@@ -151,16 +158,33 @@
     font-size: var(--fs-sm);
     margin-left: auto;
     padding: 0 var(--sp-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .treffer.gefiltert {
+    color: var(--accent);
+  }
+  .treffer .num {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .treffer.gefiltert .num {
+    color: var(--accent);
   }
   .reset {
     background: transparent;
-    border: 1px solid var(--border);
-    color: var(--fg-dim);
-    width: 36px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
     height: 36px;
-    padding: 0;
+    padding: 0 12px;
     border-radius: var(--radius-sm);
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--fs-sm);
+    font-weight: 500;
   }
   .reset:hover {
     color: var(--red);
