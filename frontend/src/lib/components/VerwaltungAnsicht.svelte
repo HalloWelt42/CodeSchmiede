@@ -22,7 +22,45 @@
   let eintraege = $state<VerwaltungsEintrag[]>([]);
   let laden = $state(false);
   let fehler = $state<string | null>(null);
-  let suche = $state('');
+
+  // Filter-Zustand: persistent in localStorage. Hunderte Aufgaben werden
+  // sonst muehsam zu durchsuchen; mit gespeicherten Filtern bleibt der
+  // Workspace zwischen Sessions konsistent.
+  const FILTER_KEY = 'codeschmiede.verwaltung_filter';
+  interface VFilter {
+    suche: string;
+    sprache: string;
+    schwierigkeit: string;
+    pfad: string;
+  }
+  function ladeFilter(): VFilter {
+    try {
+      const r = localStorage.getItem(FILTER_KEY);
+      if (r) {
+        const o = JSON.parse(r);
+        return {
+          suche: typeof o.suche === 'string' ? o.suche : '',
+          sprache: typeof o.sprache === 'string' ? o.sprache : '',
+          schwierigkeit: typeof o.schwierigkeit === 'string' ? o.schwierigkeit : '',
+          pfad: typeof o.pfad === 'string' ? o.pfad : '',
+        };
+      }
+    } catch { /* ungueltig -> Default */ }
+    return { suche: '', sprache: '', schwierigkeit: '', pfad: '' };
+  }
+  const initF = ladeFilter();
+  let suche = $state(initF.suche);
+  let sprache = $state(initF.sprache);
+  let schwierigkeit = $state(initF.schwierigkeit);
+  let pfad = $state(initF.pfad);
+  $effect(() => {
+    try {
+      localStorage.setItem(
+        FILTER_KEY,
+        JSON.stringify({ suche, sprache, schwierigkeit, pfad }),
+      );
+    } catch { /* z.B. private mode */ }
+  });
 
   let editor_offen = $state(false);
   let editor_eintrag = $state<VerwaltungsEintrag | null>(null);
@@ -178,20 +216,41 @@
 
   let gefiltert = $derived(
     eintraege.filter((e) => {
-      if (!suche.trim()) return true;
+      if (sprache && e.sprache !== sprache) return false;
+      if (schwierigkeit && e.schwierigkeit !== schwierigkeit) return false;
+      if (pfad === '__ohne__' && e.pfade.length > 0) return false;
+      if (pfad && pfad !== '__ohne__' && !e.pfade.includes(pfad)) return false;
       const q = suche.trim().toLowerCase();
-      const text = [
-        e.id,
-        e.titel,
-        e.sprache,
-        e.schwierigkeit,
-        ...e.tags,
-        ...e.pfade,
-      ]
-        .join(' ')
-        .toLowerCase();
-      return text.includes(q);
+      if (q) {
+        const text = [
+          e.id,
+          e.titel,
+          e.sprache,
+          e.schwierigkeit,
+          ...e.tags,
+          ...e.pfade,
+        ]
+          .join(' ')
+          .toLowerCase();
+        if (!text.includes(q)) return false;
+      }
+      return true;
     }),
+  );
+
+  let filter_aktiv = $derived(
+    suche.length > 0 || sprache !== '' || schwierigkeit !== '' || pfad !== '',
+  );
+
+  function filterZuruecksetzen(): void {
+    suche = '';
+    sprache = '';
+    schwierigkeit = '';
+    pfad = '';
+  }
+
+  let pfade_sortiert = $derived(
+    [...new Set(eintraege.flatMap((e) => e.pfade))].sort(),
   );
 
   let aggregat = $derived({
@@ -267,14 +326,54 @@
       <div class="kennzahl"><span class="num">{aggregat.submissions}</span><small>Submissions</small></div>
     </section>
 
-    <div class="suche-zeile">
-      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-      <input
-        type="text"
-        bind:value={suche}
-        placeholder="Filter (ID, Titel, Sprache, Tag, Pfad)"
-      />
-      <span class="treffer num">{gefiltert.length} / {eintraege.length}</span>
+    <div class="filterleiste">
+      <div class="suche-zeile">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input
+          type="text"
+          bind:value={suche}
+          placeholder="Suchen (ID, Titel, Tag, Pfad)"
+        />
+      </div>
+
+      <select bind:value={sprache} aria-label="Sprache">
+        <option value="">Alle Sprachen</option>
+        {#each konfig.daten.sprachen as s (s.id)}
+          <option value={s.id}>{s.titel}</option>
+        {/each}
+      </select>
+
+      <select bind:value={schwierigkeit} aria-label="Schwierigkeit">
+        <option value="">Alle Stufen</option>
+        {#each konfig.daten.schwierigkeiten as st (st.id)}
+          <option value={st.id}>{st.titel}</option>
+        {/each}
+      </select>
+
+      <select bind:value={pfad} aria-label="Pfad">
+        <option value="">Alle Pfade</option>
+        <option value="__ohne__">Ohne Pfad</option>
+        {#each pfade_sortiert as p (p)}
+          <option value={p}>{p}</option>
+        {/each}
+      </select>
+
+      <span class="treffer" class:gefiltert={filter_aktiv}>
+        {#if filter_aktiv}
+          <i class="fa-solid fa-filter" aria-hidden="true"></i>
+          <span class="num">{gefiltert.length}</span>
+          von <span class="num">{eintraege.length}</span> sichtbar
+        {:else}
+          <span class="num">{eintraege.length}</span> Aufgaben
+        {/if}
+      </span>
+
+      {#if filter_aktiv}
+        <button class="reset" onclick={filterZuruecksetzen}>
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          Filter zurücksetzen
+        </button>
+      {/if}
     </div>
 
     <div class="tabelle">
@@ -621,6 +720,13 @@
     letter-spacing: 0.05em;
   }
 
+  .filterleiste {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-3);
+    flex-wrap: wrap;
+  }
   .suche-zeile {
     display: flex;
     align-items: center;
@@ -628,8 +734,10 @@
     background: var(--bg-card);
     border: 1px solid var(--border);
     padding: 6px var(--sp-3);
-    margin-bottom: var(--sp-3);
     border-radius: var(--radius-sm);
+    flex: 1;
+    min-width: 220px;
+    height: 36px;
   }
   .suche-zeile i {
     color: var(--fg-mute);
@@ -647,9 +755,57 @@
   .suche-zeile input:focus {
     outline: none;
   }
+  .filterleiste select {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: var(--fs-sm);
+    padding: 0 var(--sp-3);
+    height: 36px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+  .filterleiste select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
   .treffer {
     color: var(--fg-dim);
     font-size: var(--fs-sm);
+    margin-left: auto;
+    padding: 0 var(--sp-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .treffer.gefiltert {
+    color: var(--accent);
+  }
+  .treffer .num {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .treffer.gefiltert .num {
+    color: var(--accent);
+  }
+  .filterleiste .reset {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    height: 36px;
+    padding: 0 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+  }
+  .filterleiste .reset:hover {
+    color: var(--red);
+    border-color: var(--red);
   }
 
   .tabelle {
