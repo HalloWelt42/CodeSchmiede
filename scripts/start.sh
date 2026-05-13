@@ -25,11 +25,29 @@ if [ ! -d "$FRONTEND_DIR/node_modules" ]; then
   exit 1
 fi
 
-# Ports freiraeumen falls Reste vorhandener Prozesse
-echo "Raeume Ports $BACKEND_PORT und $FRONTEND_PORT frei ..."
-lsof -ti:$BACKEND_PORT 2>/dev/null | xargs kill -9 2>/dev/null || true
-lsof -ti:$FRONTEND_PORT 2>/dev/null | xargs kill -9 2>/dev/null || true
-sleep 1
+# Ports pruefen -- nicht blind killen! Eine versehentliche
+# Doppel-Ausfuehrung des Skripts wuerde sonst den gerade benutzten
+# Server abschiessen. Nur wenn der Nutzer es explizit will:
+pruefe_port() {
+  local port=$1
+  local name=$2
+  local pids
+  pids=$(lsof -ti:"$port" 2>/dev/null || true)
+  if [ -z "$pids" ]; then
+    return 0
+  fi
+  echo "Port $port ($name) ist belegt von PID $pids."
+  if [ "${KILL_PORTS:-0}" = "1" ]; then
+    echo "  KILL_PORTS=1 gesetzt -- beende PID $pids"
+    echo "$pids" | xargs kill -9 2>/dev/null || true
+    sleep 1
+  else
+    echo "  Erst stoppen oder mit KILL_PORTS=1 $0 neu starten."
+    exit 1
+  fi
+}
+pruefe_port "$BACKEND_PORT" "Backend"
+pruefe_port "$FRONTEND_PORT" "Frontend"
 
 # Tempo-Logs an feste Stellen
 LOG_DIR="$ROOT_DIR/data"
