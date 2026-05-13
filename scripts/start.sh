@@ -32,25 +32,41 @@ if [ ! -d "$FRONTEND_DIR/node_modules" ]; then
   exit 1
 fi
 
-# Wenn PID-Datei existiert: pruefen ob die Prozesse noch laufen
-if [ -f "$PID_FILE" ]; then
-  while IFS=' ' read -r name pid; do
-    if [ -n "${pid:-}" ] && kill -0 "$pid" 2>/dev/null; then
-      echo "$name laeuft bereits (PID $pid). Mit scripts/stop.sh zuerst beenden."
-      exit 1
-    fi
-  done < "$PID_FILE"
+# Idempotent: wenn schon laeuft, nur Status zeigen und sauber raus.
+# Mit "restart" als Argument zuerst stoppen.
+if [ "${1:-}" = "restart" ]; then
+  "$SCRIPT_DIR/stop.sh"
+  sleep 1
 fi
 
-# Pruefen ob ein Server bereits den Port haelt. Nur LISTEN-Sockets
-# zaehlen -- ESTABLISHED-Connections (z.B. alte Browser-Sessions zu
-# anderen Hosts auf demselben Port) sind irrelevant.
+laeuft_schon() {
+  local laufen=()
+  if [ -f "$PID_FILE" ]; then
+    while IFS=' ' read -r name pid; do
+      if [ -n "${pid:-}" ] && kill -0 "$pid" 2>/dev/null; then
+        laufen+=("$name:$pid")
+      fi
+    done < "$PID_FILE"
+  fi
+  if [ ${#laufen[@]} -gt 0 ]; then
+    echo "Codeschmiede laeuft schon: ${laufen[*]}"
+    echo "  Browser:     http://localhost:$FRONTEND_PORT"
+    echo "  Backend-API: http://localhost:$BACKEND_PORT/api/healthz"
+    echo "  Neustarten:  $SCRIPT_DIR/start.sh restart"
+    echo "  Stoppen:     $SCRIPT_DIR/stop.sh"
+    exit 0
+  fi
+}
+laeuft_schon
+
+# Pruefen ob ein anderer Server bereits den Port haelt (z.B. Docker
+# Compose oder ein Vergessener von vorher). Nur LISTEN-Sockets zaehlen.
 pruefe_server_port() {
   local port=$1
   local pid
   pid=$(lsof -nP -iTCP:"$port" -sTCP:LISTEN -t 2>/dev/null | head -n1 || true)
   if [ -n "$pid" ]; then
-    echo "Port $port haengt schon an einem Server-Prozess (PID $pid) -- erst beenden, dann neu starten."
+    echo "Port $port haengt schon an einem fremden Prozess (PID $pid). Erst beenden, dann neu starten."
     exit 1
   fi
 }
