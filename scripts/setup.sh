@@ -48,12 +48,11 @@ echo "  OK"
 echo
 echo "=== Fertig ==="
 echo
-echo "Schnellster Start (beide Server in einem Schritt):"
+echo "Starten (beide Server im Hintergrund, Terminal-unabhaengig):"
 echo "  $SCRIPT_DIR/start.sh"
 echo
-echo "Oder einzeln:"
-echo "  cd $ROOT_DIR/backend && .venv/bin/python -m codeschmiede.main"
-echo "  cd $ROOT_DIR/frontend && npm run dev -- --port 5184"
+echo "Stoppen:"
+echo "  $SCRIPT_DIR/stop.sh"
 echo
 echo "Oder vollstaendig dockerisiert:"
 echo "  cd $ROOT_DIR && docker compose up -d  # Browser dann auf http://localhost:8201"

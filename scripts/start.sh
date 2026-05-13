@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Startet Backend + Frontend in einem Schritt fuer die lokale
-# Entwicklung. Beide Prozesse laufen parallel; Strg+C beendet beide.
+# Startet Backend + Frontend im Hintergrund. Beide Prozesse werden
+# vom Terminal abgehaengt (nohup + disown), die PIDs landen in
+# data/codeschmiede.pids -- so kann scripts/stop.sh sie gezielt
+# beenden, ohne dass sie an die Session gebunden sind.
 #
-# Voraussetzung: ./scripts/setup.sh wurde einmal ausgefuehrt
-# (Sandbox-Image gebaut, Backend-venv und Frontend-Pakete installiert).
+# Voraussetzung: ./scripts/setup.sh wurde einmal ausgefuehrt.
 
 set -euo pipefail
 
@@ -15,7 +16,13 @@ FRONTEND_DIR="$ROOT_DIR/frontend"
 BACKEND_PORT=8200
 FRONTEND_PORT=5184
 
-# Smoke-Test: ist das Setup ueberhaupt gelaufen?
+LOG_DIR="$ROOT_DIR/data"
+mkdir -p "$LOG_DIR"
+BACKEND_LOG="$LOG_DIR/backend.log"
+FRONTEND_LOG="$LOG_DIR/frontend.log"
+PID_FILE="$LOG_DIR/codeschmiede.pids"
+
+# Smoke-Test
 if [ ! -x "$BACKEND_DIR/.venv/bin/python" ]; then
   echo "Backend-venv fehlt. Bitte zuerst $SCRIPT_DIR/setup.sh ausfuehren."
   exit 1
@@ -25,96 +32,86 @@ if [ ! -d "$FRONTEND_DIR/node_modules" ]; then
   exit 1
 fi
 
-# Ports pruefen -- nicht blind killen! Eine versehentliche
-# Doppel-Ausfuehrung des Skripts wuerde sonst den gerade benutzten
-# Server abschiessen. Nur wenn der Nutzer es explizit will:
-pruefe_port() {
+# Wenn PID-Datei existiert: pruefen ob die Prozesse noch laufen
+if [ -f "$PID_FILE" ]; then
+  while IFS=' ' read -r name pid; do
+    if [ -n "${pid:-}" ] && kill -0 "$pid" 2>/dev/null; then
+      echo "$name laeuft bereits (PID $pid). Mit scripts/stop.sh zuerst beenden."
+      exit 1
+    fi
+  done < "$PID_FILE"
+fi
+
+# Pruefen ob ein Server bereits den Port haelt. Nur LISTEN-Sockets
+# zaehlen -- ESTABLISHED-Connections (z.B. alte Browser-Sessions zu
+# anderen Hosts auf demselben Port) sind irrelevant.
+pruefe_server_port() {
   local port=$1
-  local name=$2
-  local pids
-  pids=$(lsof -ti:"$port" 2>/dev/null || true)
-  if [ -z "$pids" ]; then
-    return 0
-  fi
-  echo "Port $port ($name) ist belegt von PID $pids."
-  if [ "${KILL_PORTS:-0}" = "1" ]; then
-    echo "  KILL_PORTS=1 gesetzt -- beende PID $pids"
-    echo "$pids" | xargs kill -9 2>/dev/null || true
-    sleep 1
-  else
-    echo "  Erst stoppen oder mit KILL_PORTS=1 $0 neu starten."
+  local pid
+  pid=$(lsof -nP -iTCP:"$port" -sTCP:LISTEN -t 2>/dev/null | head -n1 || true)
+  if [ -n "$pid" ]; then
+    echo "Port $port haengt schon an einem Server-Prozess (PID $pid) -- erst beenden, dann neu starten."
     exit 1
   fi
 }
-pruefe_port "$BACKEND_PORT" "Backend"
-pruefe_port "$FRONTEND_PORT" "Frontend"
+pruefe_server_port "$BACKEND_PORT"
+pruefe_server_port "$FRONTEND_PORT"
 
-# Tempo-Logs an feste Stellen
-LOG_DIR="$ROOT_DIR/data"
-mkdir -p "$LOG_DIR"
-BACKEND_LOG="$LOG_DIR/backend.log"
-FRONTEND_LOG="$LOG_DIR/frontend.log"
-
-echo
 echo "Starte Backend (Port $BACKEND_PORT) ..."
 cd "$BACKEND_DIR"
-.venv/bin/python -m codeschmiede.main > "$BACKEND_LOG" 2>&1 &
+nohup .venv/bin/python -m codeschmiede.main > "$BACKEND_LOG" 2>&1 &
 BACKEND_PID=$!
+disown "$BACKEND_PID" 2>/dev/null || true
 echo "  PID $BACKEND_PID, Log: $BACKEND_LOG"
 
-echo
 echo "Starte Frontend (Port $FRONTEND_PORT) ..."
 cd "$FRONTEND_DIR"
-npm run dev -- --port "$FRONTEND_PORT" --strictPort > "$FRONTEND_LOG" 2>&1 &
+nohup npm run dev -- --port "$FRONTEND_PORT" --strictPort > "$FRONTEND_LOG" 2>&1 &
 FRONTEND_PID=$!
+disown "$FRONTEND_PID" 2>/dev/null || true
 echo "  PID $FRONTEND_PID, Log: $FRONTEND_LOG"
 
-# Aufraeumen bei Strg+C oder Skript-Ende
-beenden() {
-  echo
-  echo "Beende Backend (PID $BACKEND_PID) und Frontend (PID $FRONTEND_PID) ..."
-  kill "$BACKEND_PID" 2>/dev/null || true
-  kill "$FRONTEND_PID" 2>/dev/null || true
-  exit 0
-}
-trap beenden INT TERM
+# PIDs persistieren
+{
+  echo "backend $BACKEND_PID"
+  echo "frontend $FRONTEND_PID"
+} > "$PID_FILE"
 
 # Health-Check abwarten
 echo
-echo "Warte auf Backend-Health ..."
-for i in {1..15}; do
-  if curl -sf "http://localhost:$BACKEND_PORT/api/healthz" > /dev/null; then
+echo "Warte auf Backend ..."
+for i in {1..20}; do
+  if curl -sf "http://localhost:$BACKEND_PORT/api/healthz" > /dev/null 2>&1; then
+    echo "  Backend antwortet."
     break
+  fi
+  if ! kill -0 "$BACKEND_PID" 2>/dev/null; then
+    echo "  Backend-Prozess (PID $BACKEND_PID) ist gestorben -- siehe $BACKEND_LOG"
+    exit 1
   fi
   sleep 1
 done
-if curl -sf "http://localhost:$BACKEND_PORT/api/healthz" > /dev/null; then
-  echo "  Backend antwortet."
-else
-  echo "  Backend antwortet NICHT -- siehe $BACKEND_LOG"
-fi
 
 echo "Warte auf Frontend ..."
-for i in {1..15}; do
-  if curl -sf "http://localhost:$FRONTEND_PORT/" > /dev/null; then
+for i in {1..20}; do
+  if curl -sf "http://localhost:$FRONTEND_PORT/" > /dev/null 2>&1; then
+    echo "  Frontend antwortet."
     break
+  fi
+  if ! kill -0 "$FRONTEND_PID" 2>/dev/null; then
+    echo "  Frontend-Prozess (PID $FRONTEND_PID) ist gestorben -- siehe $FRONTEND_LOG"
+    exit 1
   fi
   sleep 1
 done
-if curl -sf "http://localhost:$FRONTEND_PORT/" > /dev/null; then
-  echo "  Frontend antwortet."
-else
-  echo "  Frontend antwortet NICHT -- siehe $FRONTEND_LOG"
-fi
 
 echo
 echo "=== Codeschmiede laeuft ==="
-echo "  Browser:    http://localhost:$FRONTEND_PORT"
+echo "  Browser:     http://localhost:$FRONTEND_PORT"
 echo "  Backend-API: http://localhost:$BACKEND_PORT/api/healthz"
-echo "  Backend-Log: tail -f $BACKEND_LOG"
-echo "  Frontend-Log: tail -f $FRONTEND_LOG"
+echo "  PIDs:        $PID_FILE"
+echo "  Beenden:     $SCRIPT_DIR/stop.sh"
 echo
-echo "Strg+C beendet beide Server."
-
-# Im Vordergrund warten -- dadurch greift der trap bei Strg+C
-wait
+echo "Beide Server laufen jetzt im Hintergrund. Du kannst dieses Terminal"
+echo "schliessen oder den Mac in den Ruhezustand schicken -- die App"
+echo "laeuft weiter, bis du sie aktiv ueber stop.sh beendest."
