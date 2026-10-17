@@ -18,6 +18,7 @@
   import { aufgabenApi } from '../api/AufgabenApi';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
+  import { fassung } from '../stores/FassungStore.svelte';
   import { iframeCssRunner } from '../sandbox/IframeCssRunner';
   import type { CssAssert, CssAssertErgebnis } from '../sandbox/IframeCssRunner';
   import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
@@ -42,6 +43,14 @@
   let musterloesungen = $state<Musterloesung[] | null>(null);
   let aktiver_tab = $state<'aufgabe' | 'loesungen'>('aufgabe');
 
+  // Code, den der Server schon kennt (Starter, letzte Einreichung oder
+  // zuletzt geprüft). Weicht der Editor davon ab oder läuft eine Prüfung,
+  // wartet eine neue Fassung mit dem Neuladen.
+  let gesicherter_code = $state('');
+  $effect(() => {
+    if (pruefen_laeuft || code !== gesicherter_code) return fassung.halten();
+  });
+
   onMount(async () => {
     // Default Starter. Vorherige Submission nur laden, wenn der Nutzer
     // noch dran ist (nicht bestanden) -- sonst stuende die alte Loesung
@@ -53,11 +62,13 @@
     } catch {
       // keine vorherige Submission -- bleibt Starter.
     }
+    gesicherter_code = code;
   });
 
   async function pruefen(): Promise<void> {
     pruefen_laeuft = true;
     fehler = null;
+    const eingereicht = code;
     try {
       const lauf = await iframeCssRunner.run(ziel_html, code, asserts);
       assert_ergebnisse = lauf.sichtbar;
@@ -79,6 +90,7 @@
         timeout: false,
       };
       ergebnis = await submissionsApi.submitLokal(detail.id, code, pruefung);
+      gesicherter_code = eingereicht;
       if (ergebnis.bestanden && !musterloesungen) {
         musterloesungen = await aufgabenStore.ladeMusterloesungen(detail.id);
       }

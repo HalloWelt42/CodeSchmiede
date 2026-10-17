@@ -14,6 +14,7 @@
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
+  import { fassung } from '../stores/FassungStore.svelte';
   import { submissionsApi } from '../api/SubmissionsApi';
   import type { AufgabeDetail } from '../types/Aufgabe';
   import type { SubmissionAntwort } from '../types/Submission';
@@ -54,6 +55,16 @@
   let ergebnis = $state<SubmissionAntwort | null>(null);
   let fehler = $state<string | null>(null);
 
+  // Zuletzt geprüfte Antworten. Sind Lücken ausgefüllt und noch nicht
+  // geprüft oder läuft eine Prüfung, wartet eine neue Fassung mit dem
+  // Neuladen.
+  let gesicherte_werte = $state(JSON.stringify({}));
+  $effect(() => {
+    const ausgefuellt = Object.values(werte).some((w) => w.trim() !== '');
+    const ungeprueft = ausgefuellt && JSON.stringify(werte) !== gesicherte_werte;
+    if (pruefen_laeuft || ungeprueft) return fassung.halten();
+  });
+
   async function pruefen(): Promise<void> {
     pruefen_laeuft = true;
     fehler = null;
@@ -61,6 +72,7 @@
       // Code = JSON-Map. Backend entpackt + ersetzt im Template.
       const json = JSON.stringify(werte);
       ergebnis = await submissionsApi.submit(detail.id, json);
+      gesicherte_werte = json;
       await progressStore.ladeAlles();
     } catch (e) {
       fehler = (e as Error).message;

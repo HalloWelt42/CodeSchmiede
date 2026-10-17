@@ -15,6 +15,7 @@
     ValidierungsErgebnis,
   } from '../api/AdminApi';
   import { konfig } from '../stores/KonfigStore.svelte';
+  import { fassung } from '../stores/FassungStore.svelte';
   import { markdownRenderer } from '../markdown/MarkdownRenderer';
   import type { VerwaltungsEintrag } from '../types/Admin';
   import EditorBereich from './EditorBereich.svelte';
@@ -92,6 +93,11 @@
     if (offen) {
       void initialisieren();
     }
+  });
+
+  // Solange der Editor offen ist, wartet eine neue Fassung mit dem Neuladen.
+  $effect(() => {
+    if (offen) return fassung.halten();
   });
 
   async function initialisieren(): Promise<void> {

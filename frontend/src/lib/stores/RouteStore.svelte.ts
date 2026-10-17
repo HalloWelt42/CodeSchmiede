@@ -8,6 +8,8 @@
  *   #aufgabe/<id>        -> Detail-Ansicht einer Aufgabe
  */
 
+import { fassung } from './FassungStore.svelte';
+
 export type Route = 'dashboard' | 'aufgaben' | 'pfade' | 'verwaltung' | 'aufgabe';
 
 class RouteStore {
@@ -16,7 +18,10 @@ class RouteStore {
 
   init(): void {
     this.lese();
-    window.addEventListener('hashchange', () => this.lese());
+    window.addEventListener('hashchange', () => {
+      this.lese();
+      fassung.nachOrtswechsel();
+    });
   }
 
   setze(ziel: Route, aufgabeId?: string): void {

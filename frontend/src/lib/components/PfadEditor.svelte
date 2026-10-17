@@ -6,6 +6,7 @@
    * der bestehenden Aufgaben-IDs.
    */
   import { adminApi } from '../api/AdminApi';
+  import { fassung } from '../stores/FassungStore.svelte';
   import type { PfadEintrag } from '../api/AdminApi';
   import type { VerwaltungsEintrag } from '../types/Admin';
 
@@ -28,6 +29,11 @@
   let fehler = $state<string | null>(null);
 
   let ist_neu = $derived(bearbeiten === null);
+
+  // Solange der Editor offen ist, wartet eine neue Fassung mit dem Neuladen.
+  $effect(() => {
+    if (offen) return fassung.halten();
+  });
 
   $effect(() => {
     if (offen) {

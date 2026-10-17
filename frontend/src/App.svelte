@@ -8,9 +8,11 @@
   import { route } from './lib/stores/RouteStore.svelte';
   import { layout } from './lib/stores/LayoutStore.svelte';
   import { konfig } from './lib/stores/KonfigStore.svelte';
+  import { fassung } from './lib/stores/FassungStore.svelte';
   import Topbar from './lib/components/Topbar.svelte';
   import Sidebar from './lib/components/Sidebar.svelte';
   import Footer from './lib/components/Footer.svelte';
+  import FassungsBand from './lib/components/FassungsBand.svelte';
   import Dashboard from './lib/components/Dashboard.svelte';
   import AufgabenListe from './lib/components/AufgabenListe.svelte';
   import PfadListe from './lib/components/PfadListe.svelte';
@@ -22,11 +24,13 @@
     route.init();
     layout.init();
     konfig.init();
+    return fassung.verfolgen();
   });
 </script>
 
 <div class="layout">
   <Topbar />
+  <FassungsBand />
   <main class="body">
     {#if layout.sidebarOffen}
       <div class="sidebar-wrap"><Sidebar /></div>

@@ -11,6 +11,7 @@
    */
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
+  import { fassung } from '../stores/FassungStore.svelte';
   import { progressApi } from '../api/ProgressApi';
   import { submissionsApi } from '../api/SubmissionsApi';
   import type { AufgabeDetail } from '../types/Aufgabe';
@@ -31,6 +32,10 @@
 
   let gewaehlt = $state<number | null>(null);
   let pruefen_laeuft = $state(false);
+  // Während der Prüfung wartet eine neue Fassung mit dem Neuladen.
+  $effect(() => {
+    if (pruefen_laeuft) return fassung.halten();
+  });
   let bestanden = $state<boolean | null>(null);
   let stderr = $state<string>('');
   let punkte = $state<number>(0);

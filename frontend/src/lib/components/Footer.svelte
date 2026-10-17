@@ -1,24 +1,12 @@
 <script lang="ts">
   /*
-   * Footer mit Live-Version aus /api/healthz. Vite cached die VERSION
-   * nur beim Build/Start, das Backend-Modul liest sie bei jedem Request
-   * frisch -- also kommt der Footer immer aktuell.
+   * Footer mit der Fassung des Servers. Der FassungStore fragt
+   * /api/healthz beim Start, jede Minute und beim Zurückkehren ab; das
+   * Backend liest VERSION bei jedem Aufruf frisch.
    */
-  import { onMount } from 'svelte';
+  import { fassung } from '../stores/FassungStore.svelte';
 
-  let version = $state<string | null>(null);
-
-  onMount(async () => {
-    try {
-      const r = await fetch('/api/healthz');
-      if (r.ok) {
-        const j = await r.json();
-        version = j.version;
-      }
-    } catch {
-      // Backend nicht erreichbar -- bleibt bei "..."
-    }
-  });
+  let version = $derived(fassung.server);
 </script>
 
 <footer>

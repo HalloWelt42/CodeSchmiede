@@ -11,6 +11,7 @@
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { konfig } from '../stores/KonfigStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
+  import { fassung } from '../stores/FassungStore.svelte';
   import { aufgabenApi } from '../api/AufgabenApi';
   import { progressApi } from '../api/ProgressApi';
   import { submissionsApi } from '../api/SubmissionsApi';
@@ -39,6 +40,14 @@
   let ergebnis = $state<SubmissionAntwort | null>(null);
   let pruefen_laeuft = $state(false);
   let pruef_fehler = $state<string | null>(null);
+
+  // Code, den der Server schon kennt (Starter, letzte Einreichung oder
+  // zuletzt geprüft). Weicht der Editor davon ab oder läuft eine Prüfung,
+  // wartet eine neue Fassung mit dem Neuladen.
+  let gesicherter_code = $state('');
+  $effect(() => {
+    if (pruefen_laeuft || code !== gesicherter_code) return fassung.halten();
+  });
 
   let musterloesungen = $state<Musterloesung[] | null>(null);
   let aktiver_tab = $state<'aufgabe' | 'loesungen'>('aufgabe');
@@ -73,6 +82,7 @@
       } catch {
         // keine vorherige Submission -- bleibt Starter.
       }
+      gesicherter_code = code;
     } catch (e) {
       fehler = (e as Error).message;
     } finally {
@@ -84,12 +94,14 @@
     if (!detail) return;
     pruefen_laeuft = true;
     pruef_fehler = null;
+    const eingereicht = code;
     try {
       if (detail.sprache === 'javascript') {
         ergebnis = await pruefe_lokal();
       } else {
         ergebnis = await submissionsApi.submit(detail.id, code);
       }
+      gesicherter_code = eingereicht;
       if (ergebnis.bestanden && !musterloesungen) {
         musterloesungen = await aufgabenStore.ladeMusterloesungen(detail.id);
       }
@@ -210,6 +222,7 @@
       // Beim Reset zurück auf Starter-Boilerplate, nicht auf letzte
       // Submission -- der Nutzer will von vorn anfangen.
       code = detail.starter_code;
+      gesicherter_code = code;
       await progressStore.ladeAlles();
     } catch (e) {
       pruef_fehler = (e as Error).message;

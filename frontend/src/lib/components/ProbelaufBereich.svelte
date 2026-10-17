@@ -4,6 +4,7 @@
    * aufrufen, Rückgabe + stdout anzeigen. Kein Test-Vergleich.
    */
   import { submissionsApi } from '../api/SubmissionsApi';
+  import { fassung } from '../stores/FassungStore.svelte';
   import type { ProbelaufAntwort } from '../types/Submission';
 
   interface Props {
@@ -17,6 +18,10 @@
   let eingabe_text = $state('');
   let antwort = $state<ProbelaufAntwort | null>(null);
   let laeuft = $state(false);
+  // Während des Probelaufs wartet eine neue Fassung mit dem Neuladen.
+  $effect(() => {
+    if (laeuft) return fassung.halten();
+  });
   let fehler = $state<string | null>(null);
 
   function parseEingabe(): unknown[] | null {
