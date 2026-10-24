@@ -26,6 +26,7 @@ Geklärt am 24.10.2026 (Analyse plus Frage-für-Frage-Klärung). Entwürfe der O
 | Gamifizierung | Alles gamifizieren, in bester Qualität (Nutzer 24.10.2026); Ausgestaltung mit Entwürfen vor dem Bau, zusammen mit den Spielen |
 | Lokale KI | Nur als Hilfe im Lernhelfer (Nachschlagewerk mit Wissenspool), gerechnet auf dem Mac über die Leitstelle; Wissenspool und Einzelheiten vor dem Bau klären |
 | Lernhelfer | Die lokale KI ist nur Hilfe: Assistent und Nachschlagewerk, das man nach Befehlen und Anweisungen fragt und das dafür in einem Wissenspool sucht (Nutzer 24.10.2026). Schwebendes, verschiebbares Hilfefenster mit diesem Lernhelfer (über die Leitstelle, Anwendung "Codeschmiede" ist angemeldet): löst nie die Aufgabe, gibt Rückfragen, kleine korrekte Bausteine (einzelne Befehle mit neutralem Mini-Beispiel), erklärt Fehler, schlägt den nächsten kleinen Schritt vor; minimalistisch. Der Server gibt ihm nur Aufgabentext, eigenen Code und letztes Ergebnis, nie Musterlösung oder versteckte Tests (Nutzer 24.10.2026). Einzelheiten vor dem Bau klären |
+| Aufbaukurs | Ein idiotensicherer Aufbaukurs von null an, in kleinsten Schritten mit einer neuen Sache je Aufgabe, als eigener zweiter Lauf in Schritt 7 (Nutzer 25.10.2026). Bisher gibt es nur Themenpfade (Python-Grundlagen hat 3 Aufgaben). Ideen und Reihenfolge der Themen kommen von einer großen bekannten Lernseite für Webtechnik und Programmierung; übernommen wird nur, was sinnvoll ist, und alles wird neu geschrieben: eigene Erklärungen, eigene Beispiele, eigene Werte und Namen, kein Text und kein Beispielcode im Wortlaut. Kursform und Umfang vor dem Bau klären |
 | Literaturhinweise | Passende Stellen aus den eigenen Büchern als Literaturhinweise (zur Aufgabe und im Lernhelfer), gefunden über den Wissenspool. Nur für die eigene Installation: öffentlich hat kaum jemand diese Bücher (Nutzer 25.10.2026). Darum abschaltbar und ab Werk aus; Titel, Fundstellen und Zugang liegen nicht im öffentlichen Repo, sondern kommen zur Laufzeit aus dem privaten Wissenspool. Einzelheiten vor dem Bau klären |
 | CSS-Bewertung | Nach dem Bild, nicht nach Eigenschaften: Deckung mit dem Ziel in Prozent und Kürze des Codes entscheiden; die Deckung wird grafisch gezeigt (Überblenden, eingefärbte Abweichung), das ist spannender als eine Liste (Nutzer 24.10.2026) |
 | CSS-Ansicht | Beim Lösen stehen Ziel und eigenes Ergebnis untereinander in der rechten Spalte, Zoom mit dem Mausrad auf beiden zugleich, gedämpft für Trackpad und Mac-Maus (Stärke nach Scrollweite, ein Schritt je Bildschirmbild, höchstens 8 %); Ergebnis und Verlauf wandern aus der rechten Spalte in die Reiter links (Entwurf `mockups/rechner-css.html`) |
@@ -59,6 +60,7 @@ Jeder Schritt einzeln committet und gepusht.
    - Sicherung, Handbuchseite, Einrichtungsskript
 6. **Spiele und Gamifizierung**: erst Entwürfe (Spiele, Spielmechanik über die ganze App, neue CSS-Bewertung nach Deckung und Kürze), nach Freigabe Bau.
 7. **Neue Aufgaben** in den vier Bereichen und viele neue CSS-Nachbauten, mit automatischer Prüfung.
+   - zweiter, eigener Lauf: Aufbaukurs von null an (siehe Entscheidung "Aufbaukurs")
 
 ## Ergebnis Schritt 1
 
@@ -103,4 +105,5 @@ Jeder Schritt einzeln committet und gepusht.
 - Startreserve der Sandbox auf dem Pi messen (am Mac braucht Docker Desktop gerade 6 bis 13 s je Container).
 - Bis zur Anmeldung (Schritt 5) ist die Verwaltung samt Musterlösungen ohne Schutz erreichbar.
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
+- Aufbaukurs: Kursform (Pfad mit Lerneinheiten oder eigener Bereich), Sprachen und Umfang vor dem Bau klären (Schritt 7).
 - Literaturhinweise aus den eigenen Büchern: Schalter, Quelle im Wissenspool und Anzeige vor dem Bau klären.

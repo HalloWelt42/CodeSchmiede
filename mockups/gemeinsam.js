@@ -27,7 +27,7 @@
         </header>
         <div class="koerper">
           <aside class="nav">
-            ${BEREICHE.map((b) => `<a class="nav-btn ${b.id === bereich ? 'aktiv' : ''}" href="${ziel(b.id)}"><i class="fa-solid ${b.icon}"></i>${b.titel}</a>`).join('')}
+            ${BEREICHE.map((b) => `<a class="nav-btn ${b.id === bereich ? 'aktiv' : ''}" href="${ziel(b.id)}" title="${b.titel}"><i class="fa-solid ${b.icon}"></i><span>${b.titel}</span></a>`).join('')}
             <div class="nav-fuss">Lokal und abgeschottet</div>
           </aside>
           <main class="haupt">${inhalt}</main>

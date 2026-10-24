@@ -1,4 +1,4 @@
-// Echte Daten aus der laufenden Codeschmiede (Stand 24.10.2026), Auswahl für die Entwürfe.
+// Echte Daten aus der laufenden Codeschmiede (Stand 25.10.2026), Auswahl für die Entwürfe.
 window.DATEN = {
  "aufgaben": [
   {
@@ -87,7 +87,7 @@ window.DATEN = {
   },
   {
    "id": "070-bug-summe",
-   "titel": "Bug -- Summe einer Liste",
+   "titel": "Bug - Summe einer Liste",
    "sprache": "python",
    "schwierigkeit": "anfaenger",
    "schwierigkeit_score": 6,
@@ -101,7 +101,7 @@ window.DATEN = {
   },
   {
    "id": "191-kreis-flaeche",
-   "titel": "Kreis-Flaeche und Umfang",
+   "titel": "Kreis-Fläche und Umfang",
    "sprache": "python",
    "schwierigkeit": "anfaenger",
    "schwierigkeit_score": 6,
@@ -468,7 +468,7 @@ window.DATEN = {
   },
   {
    "id": "072-js-quadrat",
-   "titel": "JavaScript -- Quadrat",
+   "titel": "JavaScript - Quadrat",
    "sprache": "javascript",
    "schwierigkeit": "anfaenger",
    "schwierigkeit_score": 5,
@@ -482,7 +482,7 @@ window.DATEN = {
   },
   {
    "id": "319-js-array-summe",
-   "titel": "JavaScript -- Array-Summe mit reduce",
+   "titel": "JavaScript - Array-Summe mit reduce",
    "sprache": "javascript",
    "schwierigkeit": "anfaenger",
    "schwierigkeit_score": 8,
@@ -497,7 +497,7 @@ window.DATEN = {
   },
   {
    "id": "326-js-summe-quadrate",
-   "titel": "JavaScript -- Summe der Quadrate",
+   "titel": "JavaScript - Summe der Quadrate",
    "sprache": "javascript",
    "schwierigkeit": "anfaenger",
    "schwierigkeit_score": 8,
@@ -512,7 +512,7 @@ window.DATEN = {
   },
   {
    "id": "320-js-objekt-keys-sort",
-   "titel": "JavaScript -- Objekt-Keys alphabetisch sortiert",
+   "titel": "JavaScript - Objekt-Keys alphabetisch sortiert",
    "sprache": "javascript",
    "schwierigkeit": "anfaenger",
    "schwierigkeit_score": 10,
@@ -528,7 +528,7 @@ window.DATEN = {
   },
   {
    "id": "321-js-array-deduplikat",
-   "titel": "JavaScript -- Array dedupen mit Set",
+   "titel": "JavaScript - Array dedupen mit Set",
    "sprache": "javascript",
    "schwierigkeit": "anfaenger",
    "schwierigkeit_score": 10,
@@ -544,7 +544,7 @@ window.DATEN = {
   },
   {
    "id": "330-js-fizzbuzz-liste",
-   "titel": "JavaScript -- FizzBuzz als Liste",
+   "titel": "JavaScript - FizzBuzz als Liste",
    "sprache": "javascript",
    "schwierigkeit": "anfaenger",
    "schwierigkeit_score": 10,
@@ -563,7 +563,7 @@ window.DATEN = {
   {
    "id": "css_challenges",
    "titel": "CSS-Herausforderungen",
-   "beschreibung": "6 Mini-Aufgaben im CSSBattle-Stil: ein simples visuelles Ziel mit\nmoeglichst wenig Mitteln. Lehrziel: kreatives Property-Repertoire,\nPseudo-Elemente, Gradients,",
+   "beschreibung": "6 Mini-Aufgaben als kurze CSS-Rätsel: ein simples visuelles Ziel mit\nmöglichst wenig Mitteln. Lehrziel: kreatives Property-Repertoire,\nPseudo-Elemente, Gradient",
    "schritte": [
     [
      "h001-halbkreis",
@@ -595,7 +595,7 @@ window.DATEN = {
   {
    "id": "css_flexbox",
    "titel": "CSS-Flexbox Lernpfad",
-   "beschreibung": "15 didaktisch aufgebaute Flexbox-Aufgaben mit klarer Progression\n-- vom Aktivieren von display:flex bis zu align-self-Ausnahmen.\nJede Aufgabe fuehrt GENAU EINE ",
+   "beschreibung": "15 didaktisch aufgebaute Flexbox-Aufgaben mit klarer Progression\n- vom Aktivieren von display:flex bis zu align-self-Ausnahmen.\nJede Aufgabe führt GENAU EINE ne",
    "schritte": [
     [
      "f001-flex-aktivieren",
@@ -611,51 +611,51 @@ window.DATEN = {
     ],
     [
      "f004-flex-justify-between",
-     "Flexbox 04: Gleichmaessige Lücken mit space-between"
+     "Flexbox 04: Gleichmäßige Lücken mit space-between"
     ],
     [
      "f005-flex-justify-around",
-     "Flexbox 05: Mit Aussenrand -- space-around"
+     "Flexbox 05: Mit Außenrand - space-around"
     ],
     [
      "f006-flex-align-center",
-     "Flexbox 06: Vertikal mittig -- align-items: center"
+     "Flexbox 06: Vertikal mittig - align-items: center"
     ],
     [
      "f007-flex-align-stretch",
-     "Flexbox 07: Auf volle Höhe ziehen -- align-items: stretch"
+     "Flexbox 07: Auf volle Höhe ziehen - align-items: stretch"
     ],
     [
      "f008-flex-direction-column",
-     "Flexbox 08: Vertikale Spalte -- flex-direction: column"
+     "Flexbox 08: Vertikale Spalte - flex-direction: column"
     ],
     [
      "f009-flex-direction-row-reverse",
-     "Flexbox 09: Umgekehrte Reihenfolge -- row-reverse"
+     "Flexbox 09: Umgekehrte Reihenfolge - row-reverse"
     ],
     [
      "f010-flex-wrap",
-     "Flexbox 10: Umbruch in neue Zeile -- flex-wrap: wrap"
+     "Flexbox 10: Umbruch in neue Zeile - flex-wrap: wrap"
     ],
     [
      "f011-flex-grow",
-     "Flexbox 11: Ein Item waechst -- flex-grow: 1"
+     "Flexbox 11: Ein Item wächst - flex-grow: 1"
     ],
     [
      "f012-flex-shrink-0",
-     "Flexbox 12: Schrumpfen verhindern -- flex-shrink: 0"
+     "Flexbox 12: Schrumpfen verhindern - flex-shrink: 0"
     ],
     [
      "f013-flex-basis",
-     "Flexbox 13: Start-Breite -- flex-basis"
+     "Flexbox 13: Start-Breite - flex-basis"
     ],
     [
      "f014-flex-order",
-     "Flexbox 14: Reihenfolge ändern -- order"
+     "Flexbox 14: Reihenfolge ändern - order"
     ],
     [
      "f015-flex-align-self",
-     "Flexbox 15: Ein Item anders ausrichten -- align-self"
+     "Flexbox 15: Ein Item anders ausrichten - align-self"
     ]
    ],
    "sprache": "css"
@@ -679,39 +679,39 @@ window.DATEN = {
     ],
     [
      "g004-grid-luecken",
-     "Grid 04: Lücken zwischen Kacheln -- gap"
+     "Grid 04: Lücken zwischen Kacheln - gap"
     ],
     [
      "g005-grid-repeat",
-     "Grid 05: Mit repeat() -- vier gleichbreite Spalten"
+     "Grid 05: Mit repeat() - vier gleichbreite Spalten"
     ],
     [
      "g006-grid-span-zwei",
-     "Grid 06: Eine Kachel über zwei Spalten -- span 2"
+     "Grid 06: Eine Kachel über zwei Spalten - span 2"
     ],
     [
      "g007-grid-spalten-bereich",
-     "Grid 07: Spalten 1 bis 4 explizit -- grid-column: 1 / 4"
+     "Grid 07: Spalten 1 bis 4 explizit - grid-column: 1 / 4"
     ],
     [
      "g008-grid-rows",
-     "Grid 08: Zeilenhöhen festlegen -- grid-template-rows"
+     "Grid 08: Zeilenhöhen festlegen - grid-template-rows"
     ],
     [
      "g009-grid-zwei-dimensionen",
-     "Grid 09: 2D-Positionierung -- grid-row + grid-column"
+     "Grid 09: 2D-Positionierung - grid-row + grid-column"
     ],
     [
      "g010-grid-areas",
-     "Grid 10: Benannte Bereiche -- grid-template-areas"
+     "Grid 10: Benannte Bereiche - grid-template-areas"
     ],
     [
      "g011-grid-minmax",
-     "Grid 11: Spalte mit Mindest-/Maximalbreite -- minmax()"
+     "Grid 11: Spalte mit Mindest-/Maximalbreite - minmax()"
     ],
     [
      "g012-grid-auto-fit",
-     "Grid 12: Galerie ohne Media-Query -- auto-fit + minmax"
+     "Grid 12: Galerie ohne Media-Query - auto-fit + minmax"
     ]
    ],
    "sprache": "css"
@@ -719,15 +719,15 @@ window.DATEN = {
   {
    "id": "css_grundlagen",
    "titel": "CSS-Grundlagen Lernpfad",
-   "beschreibung": "15 Aufgaben zu den Fundamenten von CSS -- Selektoren, Cascade,\nBox-Modell. Wer Layouts mit Flexbox oder Grid bauen will, muss\nzuerst diese Bausteine sicher kenn",
+   "beschreibung": "15 Aufgaben zu den Fundamenten von CSS - Selektoren, Cascade,\nBox-Modell. Wer Layouts mit Flexbox oder Grid bauen will, muss\nzuerst diese Bausteine sicher kenne",
    "schritte": [
     [
      "s001-element-selektor",
-     "Grundlagen 01: Alle Notizen mit Element-Selektor faerben"
+     "Grundlagen 01: Alle Notizen mit Element-Selektor färben"
     ],
     [
      "s002-klassen-selektor",
-     "Grundlagen 02: Nur die markierten Notizen faerben (Klasse)"
+     "Grundlagen 02: Nur die markierten Notizen färben (Klasse)"
     ],
     [
      "s003-id-selektor",
@@ -755,31 +755,31 @@ window.DATEN = {
     ],
     [
      "s009-specificity",
-     "Grundlagen 09: Specificity-Konflikt -- Klasse schlaegt Element"
+     "Grundlagen 09: Specificity-Konflikt - Klasse schlägt Element"
     ],
     [
      "s010-inheritance",
-     "Grundlagen 10: Vererbung -- color erbt sich auf Kinder"
+     "Grundlagen 10: Vererbung - color erbt sich auf Kinder"
     ],
     [
      "s011-padding-innenabstand",
-     "Grundlagen 11: Padding -- Innenabstand zur Grenze"
+     "Grundlagen 11: Padding - Innenabstand zur Grenze"
     ],
     [
      "s012-margin-aussenabstand",
-     "Grundlagen 12: Margin -- Aussenabstand zwischen Boxen"
+     "Grundlagen 12: Margin - Außenabstand zwischen Boxen"
     ],
     [
      "s013-box-sizing-border-box",
-     "Grundlagen 13: box-sizing -- Padding INNERHALB der Breite"
+     "Grundlagen 13: box-sizing - Padding INNERHALB der Breite"
     ],
     [
      "s014-border-radius",
-     "Grundlagen 14: Border-Radius -- abgerundete Ecken"
+     "Grundlagen 14: Border-Radius - abgerundete Ecken"
     ],
     [
      "s015-width-100-prozent",
-     "Grundlagen 15: width 100% -- Container voll ausnuetzen"
+     "Grundlagen 15: width 100% - Container voll ausnützen"
     ]
    ],
    "sprache": "css"
@@ -787,7 +787,7 @@ window.DATEN = {
   {
    "id": "css_komponenten",
    "titel": "CSS-Komponenten",
-   "beschreibung": "47 fertige UI-Bauteile zum Nachbauen. Anders als die Atom-Pfade\n(Flexbox/Grid/Grundlagen) kombiniert jede Aufgabe hier mehrere\nKonzepte zu einem realen Stueck U",
+   "beschreibung": "47 fertige UI-Bauteile zum Nachbauen. Anders als die Atom-Pfade\n(Flexbox/Grid/Grundlagen) kombiniert jede Aufgabe hier mehrere\nKonzepte zu einem realen Stück UI",
    "schritte": [
     [
      "c001-button-pill",
@@ -983,7 +983,7 @@ window.DATEN = {
   {
    "id": "css_layouts",
    "titel": "Praxis-Layouts",
-   "beschreibung": "10 echte App-Strukturen -- die nächste Stufe nach Flexbox + Grid +\nGrundlagen. Jede Aufgabe kombiniert mehrere Konzepte zu einem Layout,\ndas du in jeder echten ",
+   "beschreibung": "10 echte App-Strukturen - die nächste Stufe nach Flexbox + Grid +\nGrundlagen. Jede Aufgabe kombiniert mehrere Konzepte zu einem Layout,\ndas du in jeder echten W",
    "schritte": [
     [
      "l001-app-shell-grid",
@@ -1031,7 +1031,7 @@ window.DATEN = {
   {
    "id": "css_reproduktionen",
    "titel": "Bekannte UI-Patterns nachbauen",
-   "beschreibung": "6 Reproduktions-Aufgaben: typische UI-Komponenten aus echten Apps\nnachbauen. Eigene Versionen (keine Marken-Logos), aber visuell wieder-\nerkennbar -- damit du d",
+   "beschreibung": "6 Reproduktions-Aufgaben: typische UI-Komponenten aus echten Apps\nnachbauen. Eigene Versionen (keine Marken-Logos), aber visuell wieder-\nerkennbar - damit du da",
    "schritte": [
     [
      "r001-repo-karte",
@@ -1063,75 +1063,75 @@ window.DATEN = {
   {
    "id": "javascript_grundlagen",
    "titel": "JavaScript-Grundlagen",
-   "beschreibung": "17 JavaScript-Aufgaben, die modernes Vokabular ueben: Array-Methoden\n(reduce, filter, map, Set), Object-Operationen, Template-Strings,\nSpread/Rest, Recursion. D",
+   "beschreibung": "17 JavaScript-Aufgaben, die modernes Vokabular üben: Array-Methoden\n(reduce, filter, map, Set), Object-Operationen, Template-Strings,\nSpread/Rest, Recursion. Di",
    "schritte": [
     [
      "072-js-quadrat",
-     "JavaScript -- Quadrat"
+     "JavaScript - Quadrat"
     ],
     [
      "319-js-array-summe",
-     "JavaScript -- Array-Summe mit reduce"
+     "JavaScript - Array-Summe mit reduce"
     ],
     [
      "320-js-objekt-keys-sort",
-     "JavaScript -- Objekt-Keys alphabetisch sortiert"
+     "JavaScript - Objekt-Keys alphabetisch sortiert"
     ],
     [
      "321-js-array-deduplikat",
-     "JavaScript -- Array dedupen mit Set"
+     "JavaScript - Array dedupen mit Set"
     ],
     [
      "322-js-buchstaben-zaehlen",
-     "JavaScript -- Buchstaben im Text zählen"
+     "JavaScript - Buchstaben im Text zählen"
     ],
     [
      "324-js-power-set",
-     "JavaScript -- Potenzmenge"
+     "JavaScript - Potenzmenge"
     ],
     [
      "326-js-summe-quadrate",
-     "JavaScript -- Summe der Quadrate"
+     "JavaScript - Summe der Quadrate"
     ],
     [
      "328-js-tau-funktion",
-     "JavaScript -- Tau-Funktion"
+     "JavaScript - Tau-Funktion"
     ],
     [
      "330-js-fizzbuzz-liste",
-     "JavaScript -- FizzBuzz als Liste"
+     "JavaScript - FizzBuzz als Liste"
     ],
     [
      "332-js-range-expansion",
-     "JavaScript -- Bereichs-Notation entpacken"
+     "JavaScript - Bereichs-Notation entpacken"
     ],
     [
      "334-js-string-zahl-inkrement",
-     "JavaScript -- Numerischen String inkrementieren"
+     "JavaScript - Numerischen String inkrementieren"
     ],
     [
      "336-js-general-fizzbuzz",
-     "JavaScript -- Verallgemeinertes FizzBuzz"
+     "JavaScript - Verallgemeinertes FizzBuzz"
     ],
     [
      "338-js-map-range",
-     "JavaScript -- Wert in anderen Bereich übersetzen"
+     "JavaScript - Wert in anderen Bereich übersetzen"
     ],
     [
      "340-js-josephus",
-     "JavaScript -- Josephus-Problem"
+     "JavaScript - Josephus-Problem"
     ],
     [
      "342-js-equilibrium-index",
-     "JavaScript -- Gleichgewichts-Index"
+     "JavaScript - Gleichgewichts-Index"
     ],
     [
      "344-js-padovan-folge",
-     "JavaScript -- Padovan-Folge"
+     "JavaScript - Padovan-Folge"
     ],
     [
      "346-js-url-encode",
-     "JavaScript -- URL-Prozent-Codierung"
+     "JavaScript - URL-Prozent-Codierung"
     ]
    ],
    "sprache": "javascript"
@@ -1139,11 +1139,11 @@ window.DATEN = {
   {
    "id": "python_algorithmen",
    "titel": "Python-Algorithmen",
-   "beschreibung": "Klassische Algorithmen zum Selbst-Implementieren: binaere Suche,\nBubble-Sort und das Sieb des Eratosthenes. Trainiert das saubere\nDenken in Schleifen, Bedingung",
+   "beschreibung": "Klassische Algorithmen zum Selbst-Implementieren: binäre Suche,\nBubble-Sort und das Sieb des Eratosthenes. Trainiert das saubere\nDenken in Schleifen, Bedingunge",
    "schritte": [
     [
      "037-binaere-suche",
-     "Binaere Suche"
+     "Binäre Suche"
     ],
     [
      "038-bubble-sort",
@@ -1215,7 +1215,7 @@ window.DATEN = {
     ],
     [
      "143-coin-change",
-     "Muenz-Wechsel (Coin Change)"
+     "Münz-Wechsel (Coin Change)"
     ],
     [
      "166-subset-sum",
@@ -1235,7 +1235,7 @@ window.DATEN = {
   {
    "id": "python_bio",
    "titel": "Python-Bioinformatik",
-   "beschreibung": "Sequenzanalyse-Aufgaben aus der Bioinformatik. DNA in RNA\nübersetzen, Nukleotide zaehlen, Hamming-Distanz fuer\nSequenzvergleich. Klein, aber realer Anwendungsbe",
+   "beschreibung": "Sequenzanalyse-Aufgaben aus der Bioinformatik. DNA in RNA\nübersetzen, Nukleotide zählen, Hamming-Distanz für\nSequenzvergleich. Klein, aber realer Anwendungsbezu",
    "schritte": [
     [
      "082-rna-transkription",
@@ -1359,7 +1359,7 @@ window.DATEN = {
     ],
     [
      "024-zeichen-haeufigkeit",
-     "024-zeichen-haeufigkeit"
+     "Zeichen-Häufigkeit als Dict"
     ],
     [
      "162-haeufigster-wert",
@@ -1371,7 +1371,7 @@ window.DATEN = {
     ],
     [
      "091-etl",
-     "ETL -- Punkte-Tabelle umbauen"
+     "ETL - Punkte-Tabelle umbauen"
     ],
     [
      "109-anagramm-gruppen",
@@ -1403,11 +1403,11 @@ window.DATEN = {
   {
    "id": "python_diverses",
    "titel": "Python-Diverses",
-   "beschreibung": "Aufgaben aus Themen, die noch nicht genug eigene Aufgaben haben, um einen ganzen Pfad zu fuellen: Datum/Zeit, Matrix-Operationen, Klassen-Einsatz, Bit-Operation",
+   "beschreibung": "Aufgaben aus Themen, die noch nicht genug eigene Aufgaben haben, um einen ganzen Pfad zu füllen: Datum/Zeit, Matrix-Operationen, Klassen-Einsatz, Bit-Operatione",
    "schritte": [
     [
      "071-luecken-fizzbuzz",
-     "Lückentext -- Mini-FizzBuzz"
+     "Lückentext - Mini-FizzBuzz"
     ],
     [
      "183-bingo-karte",
@@ -1415,7 +1415,7 @@ window.DATEN = {
     ],
     [
      "184-vier-gewinnt",
-     "Vier-Gewinnt -- gibt es einen Sieger?"
+     "Vier-Gewinnt - gibt es einen Sieger?"
     ],
     [
      "186-zahl-zu-bisexagesimal",
@@ -1447,7 +1447,7 @@ window.DATEN = {
     ],
     [
      "317-namedtuple-punkt",
-     "NamedTuple-Punkt -- Distanz und Mittelpunkt"
+     "NamedTuple-Punkt - Distanz und Mittelpunkt"
     ]
    ],
    "sprache": "python"
@@ -1507,7 +1507,7 @@ window.DATEN = {
     ],
     [
      "310-pairwise",
-     "Pairwise -- aufeinanderfolgende Paare"
+     "Pairwise - aufeinanderfolgende Paare"
     ],
     [
      "311-take-while-positiv",
@@ -1531,11 +1531,11 @@ window.DATEN = {
   {
    "id": "python_geometrie",
    "titel": "Python-Geometrie",
-   "beschreibung": "Geometrische Berechnungen in der Ebene: Distanz, Bounding-Boxes, Zentroid, Polylinien-Länge, Dreiecks-Typ, Punkt-in-Form-Tests.\n",
+   "beschreibung": "Geometrische Berechnungen in der Ebene: Distanz, Bounding-Boxes, Zentroid, Polylinien-Länge, Dreiecks-Typ, Punkt-in-Form-Tests.",
    "schritte": [
     [
      "191-kreis-flaeche",
-     "Kreis-Flaeche und Umfang"
+     "Kreis-Fläche und Umfang"
     ],
     [
      "192-rechteck",
@@ -1559,7 +1559,7 @@ window.DATEN = {
     ],
     [
      "270-heron-flaeche",
-     "Dreiecks-Flaeche nach Heron"
+     "Dreiecks-Fläche nach Heron"
     ],
     [
      "271-bbox-aus-punkten",
@@ -1571,7 +1571,7 @@ window.DATEN = {
     ],
     [
      "273-polyline-laenge",
-     "Gesamtlaenge eines Polygonzugs"
+     "Gesamtlänge eines Polygonzugs"
     ],
     [
      "274-dreieck-winkel-typ",
@@ -1583,7 +1583,7 @@ window.DATEN = {
   {
    "id": "python_grundlagen",
    "titel": "Python-Grundlagen",
-   "beschreibung": "Klassische Einsteiger-Aufgaben für Python. Drei beruehmte Klassiker,\ndie zentrale Konzepte testen: Verzweigungen mit `if`/`elif`, den\nModulo-Operator, String-Sl",
+   "beschreibung": "Klassische Einsteiger-Aufgaben für Python. Drei berühmte Klassiker,\ndie zentrale Konzepte testen: Verzweigungen mit `if`/`elif`, den\nModulo-Operator, String-Sli",
    "schritte": [
     [
      "001-fizzbuzz",
@@ -1603,7 +1603,7 @@ window.DATEN = {
   {
    "id": "python_listen",
    "titel": "Python-Listen",
-   "beschreibung": "Listen-Operationen vom Einsteiger bis Fortgeschritten: Summen,\nMaxima, Duplikate, Sortieren, Mittelwerte, Verschachtelung\nflachklopfen, in Bloecke teilen, rotie",
+   "beschreibung": "Listen-Operationen vom Einsteiger bis Fortgeschritten: Summen,\nMaxima, Duplikate, Sortieren, Mittelwerte, Verschachtelung\nflachklopfen, in Blöcke teilen, rotier",
    "schritte": [
     [
      "009-listen-summe",
@@ -1655,11 +1655,11 @@ window.DATEN = {
   {
    "id": "python_listen2",
    "titel": "Python-Listen erweitert",
-   "beschreibung": "Weitere 37 Listen-Aufgaben aus den jüngeren Chargen -- Indizes, Slicing, Partitionierung, Filterung, Sortierung nach Eigenschaft, Rotation, Range-Expansion, Per",
+   "beschreibung": "Weitere 37 Listen-Aufgaben aus den jüngeren Chargen - Indizes, Slicing, Partitionierung, Filterung, Sortierung nach Eigenschaft, Rotation, Range-Expansion, Perm",
    "schritte": [
     [
      "070-bug-summe",
-     "Bug -- Summe einer Liste"
+     "Bug - Summe einer Liste"
     ],
     [
      "181-sudoku-zeile",
@@ -1695,7 +1695,7 @@ window.DATEN = {
     ],
     [
      "227-zip-mit-fuellwert",
-     "Zip mit Fuellwert"
+     "Zip mit Füllwert"
     ],
     [
      "228-partition-vorzeichen",
@@ -1719,7 +1719,7 @@ window.DATEN = {
     ],
     [
      "234-laenge-rekursiv",
-     "Listenlaenge rekursiv ohne len"
+     "Listenlänge rekursiv ohne len"
     ],
     [
      "235-erste-n",
@@ -1743,7 +1743,7 @@ window.DATEN = {
     ],
     [
      "240-wechsel-zaehlen",
-     "Wechsel zum Vorgaenger zählen"
+     "Wechsel zum Vorgänger zählen"
     ],
     [
      "242-erstes-positives",
@@ -1771,7 +1771,7 @@ window.DATEN = {
     ],
     [
      "258-liste-halbieren",
-     "Liste in zwei Haelften aufteilen"
+     "Liste in zwei Hälften aufteilen"
     ],
     [
      "264-kassenbon-summe",
@@ -1787,7 +1787,7 @@ window.DATEN = {
     ],
     [
      "323-power-set",
-     "Potenzmenge -- alle Teilmengen"
+     "Potenzmenge - alle Teilmengen"
     ],
     [
      "329-fizzbuzz-liste",
@@ -1799,7 +1799,7 @@ window.DATEN = {
     ],
     [
      "339-josephus",
-     "Josephus-Problem -- letzter Überlebender"
+     "Josephus-Problem - letzter Überlebender"
     ],
     [
      "341-equilibrium-index",
@@ -1811,7 +1811,7 @@ window.DATEN = {
   {
    "id": "python_listen3",
    "titel": "Python-Listen 3",
-   "beschreibung": "Listen-Aufgaben aus der Interview-Welt: Two-Sum (LeetCode Nr. 1),\nSliding-Window-Summe, Prefix-Summen, längste aufsteigende Subsequenz,\nPaare mit Zielsumme, grö",
+   "beschreibung": "Listen-Aufgaben aus der Interview-Welt: Two-Sum,\nSliding-Window-Summe, Prefix-Summen, längste aufsteigende Subsequenz,\nPaare mit Zielsumme, größte Lücke, Listen",
    "schritte": [
     [
      "053-two-sum",
@@ -1835,7 +1835,7 @@ window.DATEN = {
     ],
     [
      "056-laengste-aufsteigende",
-     "Laengste aufsteigende Teilfolge"
+     "Längste aufsteigende Teilfolge"
     ],
     [
      "057-paare-mit-summe",
@@ -1971,7 +1971,7 @@ window.DATEN = {
     ],
     [
      "290-shapes-flaeche",
-     "Shapes mit Flaechen-Polymorphismus"
+     "Shapes mit Flächen-Polymorphismus"
     ]
    ],
    "sprache": "python"
@@ -2019,7 +2019,7 @@ window.DATEN = {
     ],
     [
      "020-collatz",
-     "Collatz-Folge Laenge"
+     "Collatz-Folge Länge"
     ],
     [
      "111-collatz-pfad",
@@ -2035,7 +2035,7 @@ window.DATEN = {
     ],
     [
      "131-gauss-summe",
-     "Gauss-Summe"
+     "Gauß-Summe"
     ],
     [
      "167-digital-root",
@@ -2055,7 +2055,7 @@ window.DATEN = {
   {
    "id": "python_mathe2",
    "titel": "Python-Mathematik 2",
-   "beschreibung": "Aufbau-Pfad nach \"Python-Mathematik\": perfekte/befreundete/Armstrong-\nZahlen, römische Zahlen in beide Richtungen, Pythagoras-Tripel und\nProject-Euler-Klassiker",
+   "beschreibung": "Aufbau-Pfad nach \"Python-Mathematik\": perfekte/befreundete/Armstrong-\nZahlen, römische Zahlen in beide Richtungen, Pythagoras-Tripel und\nbekannte Zahlenrätsel (",
    "schritte": [
     [
      "040-perfekte-zahl",
@@ -2219,7 +2219,7 @@ window.DATEN = {
     ],
     [
      "327-tau-funktion",
-     "Tau-Funktion -- Anzahl der Teiler"
+     "Tau-Funktion - Anzahl der Teiler"
     ],
     [
      "337-map-range",
@@ -2235,7 +2235,7 @@ window.DATEN = {
   {
    "id": "python_quiz",
    "titel": "Python-Output-Quiz",
-   "beschreibung": "Code lesen statt schreiben. Quiz-Aufgaben, bei denen man die\nAusgabe vorhersagen muss -- mit gemeinen Stolperfallen wie\nMutable-Default-Args, Late-Binding-Closu",
+   "beschreibung": "Code lesen statt schreiben. Quiz-Aufgaben, bei denen man die\nAusgabe vorhersagen muss - mit gemeinen Stolperfallen wie\nMutable-Default-Args, Late-Binding-Closur",
    "schritte": [
     [
      "014-quiz-modulo",
@@ -2251,7 +2251,7 @@ window.DATEN = {
     ],
     [
      "067-quiz-mutable-default",
-     "Mutable Default -- was passiert?"
+     "Mutable Default - was passiert?"
     ],
     [
      "068-quiz-late-binding",
@@ -2259,7 +2259,7 @@ window.DATEN = {
     ],
     [
      "069-quiz-or-and",
-     "or und and -- was kommt zurück?"
+     "or und and - was kommt zurück?"
     ]
    ],
    "sprache": "python"
@@ -2267,7 +2267,7 @@ window.DATEN = {
   {
    "id": "python_sets",
    "titel": "Python-Sets",
-   "beschreibung": "Mengenoperationen in Python: Schnitt, Differenz und doppelte\nEintraege herausfiltern. Sets sind für \"kommt das vor\"-Tests\nrasend schnell und machen viele Listen",
+   "beschreibung": "Mengenoperationen in Python: Schnitt, Differenz und doppelte\nEinträge herausfiltern. Sets sind für \"kommt das vor\"-Tests\nrasend schnell und machen viele Listenp",
    "schritte": [
     [
      "025-set-schnitt",
@@ -2299,7 +2299,7 @@ window.DATEN = {
   {
    "id": "python_strings",
    "titel": "Python-Strings",
-   "beschreibung": "Aufgaben rund um Strings: Slicing, Methoden, Counter, Sortieren,\nAkronyme, Verschluesselung und Lauflaengen-Codierung. Vom\nVokal-Zaehlen bis zur Caesar-Chiffre ",
+   "beschreibung": "Aufgaben rund um Strings: Slicing, Methoden, Counter, Sortieren,\nAkronyme, Verschlüsselung und Lauflängen-Codierung. Vom\nVokal-Zählen bis zur Caesar-Chiffre - e",
    "schritte": [
     [
      "004-vokale-zaehlen",
@@ -2359,11 +2359,11 @@ window.DATEN = {
     ],
     [
      "187-morse-encode",
-     "Morse-Code -- Text codieren"
+     "Morse-Code - Text codieren"
     ],
     [
      "188-morse-decode",
-     "Morse-Code -- zurück in Text"
+     "Morse-Code - zurück in Text"
     ],
     [
      "189-html-escape",
@@ -2411,7 +2411,7 @@ window.DATEN = {
     ],
     [
      "214-text-wiederholen",
-     "Text wiederholen bis Ziel-Laenge"
+     "Text wiederholen bis Ziel-Länge"
     ],
     [
      "226-zentrieren-padchar",
@@ -2419,7 +2419,7 @@ window.DATEN = {
     ],
     [
      "229-sortieren-nach-laenge",
-     "Strings nach Laenge sortieren"
+     "Strings nach Länge sortieren"
     ],
     [
      "241-eigenes-join",
@@ -2431,11 +2431,11 @@ window.DATEN = {
     ],
     [
      "251-laengstes-gemeinsames-substring",
-     "Laengster gemeinsamer Substring (LCS)"
+     "Längster gemeinsamer Substring (LCS)"
     ],
     [
      "256-woerter-laenger-als",
-     "Wörter laenger als n"
+     "Wörter länger als n"
     ],
     [
      "257-woerter-kuerzer-als",
@@ -2491,7 +2491,7 @@ window.DATEN = {
     ],
     [
      "048-laengstes-wort",
-     "Laengstes Wort eines Satzes"
+     "Längstes Wort eines Satzes"
     ],
     [
      "148-woerter-umkehren",
@@ -2703,7 +2703,7 @@ window.DATEN = {
   {
    "id": "sql_aggregate",
    "titel": "SQL-Aggregate und GROUP BY",
-   "beschreibung": "Sobald du mehr als einzelne Zeilen brauchst -- Summen, Durchschnitte, Zählungen, Gruppierungen: dieser Pfad. COUNT/SUM/AVG/MIN/MAX einzeln und in Kombination mi",
+   "beschreibung": "Sobald du mehr als einzelne Zeilen brauchst - Summen, Durchschnitte, Zählungen, Gruppierungen: dieser Pfad. COUNT/SUM/AVG/MIN/MAX einzeln und in Kombination mit",
    "schritte": [
     [
      "s019-buecher-anzahl",
@@ -2719,7 +2719,7 @@ window.DATEN = {
     ],
     [
      "s022-min-max-jahr",
-     "Aelteste und neueste Veröffentlichung"
+     "Älteste und neueste Veröffentlichung"
     ],
     [
      "s023-anzahl-pro-kategorie",
@@ -2939,7 +2939,7 @@ window.DATEN = {
     ],
     [
      "s018-altester-autor",
-     "Aeltester Autor"
+     "Ältester Autor"
     ],
     [
      "s033-mitglieder-vor-2020",
@@ -2967,7 +2967,7 @@ window.DATEN = {
     ],
     [
      "s041-titel-laenge",
-     "Buchtitel mit Laenge"
+     "Buchtitel mit Länge"
     ],
     [
      "s042-orte-gross",
@@ -3023,7 +3023,7 @@ window.DATEN = {
     ],
     [
      "s109-ueberfaellig",
-     "Überfaellige Bücher (> 30 Tage offen)"
+     "Überfällige Bücher (> 30 Tage offen)"
     ],
     [
      "s111-shop-rabatt-simuliert",
@@ -3039,7 +3039,7 @@ window.DATEN = {
     ],
     [
      "s131-buecher-mittel-roman",
-     "Romane mittlerer Laenge"
+     "Romane mittlerer Länge"
     ],
     [
      "s133-shop-or-bedingung",
@@ -3107,11 +3107,11 @@ window.DATEN = {
   {
    "id": "sql_joins",
    "titel": "SQL-JOINs und Subqueries",
-   "beschreibung": "Tabellen verknuepfen ist das Herz relationaler Datenbanken. INNER JOIN (passende Zeilen), LEFT JOIN (alle der linken Tabelle), Anti-Joins, CROSS JOIN, Self-JOIN",
+   "beschreibung": "Tabellen verknüpfen ist das Herz relationaler Datenbanken. INNER JOIN (passende Zeilen), LEFT JOIN (alle der linken Tabelle), Anti-Joins, CROSS JOIN, Self-JOIN.",
    "schritte": [
     [
      "s003-shop-getraenke",
-     "Shop: Getraenke unter 2 Euro"
+     "Shop: Getränke unter 2 Euro"
     ],
     [
      "s025-leser-mit-buchnamen",
@@ -3167,7 +3167,7 @@ window.DATEN = {
     ],
     [
      "s052-aelteste-buecher-autor",
-     "Aeltestes Buch jedes Autors"
+     "Ältestes Buch jedes Autors"
     ],
     [
      "s053-buecher-anzahl-autoren-mehr-als-1",
@@ -3279,7 +3279,7 @@ window.DATEN = {
     ],
     [
      "s132-shop-not-equal",
-     "Shop: alles außer Suesswaren"
+     "Shop: alles außer Süßwaren"
     ],
     [
      "s135-leser-aktiv-jahr",
@@ -3327,7 +3327,7 @@ window.DATEN = {
     ],
     [
      "s162-leser-aus-grossstadt",
-     "Leser aus den Top-Drei-Staedten"
+     "Leser aus den Top-Drei-Städten"
     ],
     [
      "s163-shop-rabatt-staffelung",
@@ -3490,7 +3490,7 @@ window.DATEN = {
  "detail": {
   "id": "238-gerade-filter",
   "titel": "Nur gerade Zahlen behalten",
-  "beschreibung_md": "# Nur gerade Zahlen behalten\n\nSchreibe `nur_gerade(zahlen)`, die alle **geraden Zahlen** (`x % 2 == 0`)\naus der Liste liefert -- in der **ursprünglichen Reihenfolge**.\n\nNull zählt als gerade. Negative gerade Zahlen ebenso.\n\n## Beispiele\n\n| Liste              | Ergebnis        |\n|--------------------|-----------------|\n| `[1, 2, 3, 4, 5]`  | `[2, 4]`        |\n| `[2, 4, 6]`        | `[2, 4, 6]`     |\n| `[1, 3, 5]`        | `[]`            |\n| `[0]`              | `[0]`           |\n| `[-2, -1, 0, 1, 2]`| `[-2, 0, 2]`    |\n\n## Idee\n\nDie wohl häufigste Form einer Listen-Comprehension: filtern.\n\n## Mit Builtin filter\n\nFunktional äquivalent, aber Lambda + `filter` liest sich oft\nschwerer als die Comprehension. In Python wird die Comprehension\nbevorzugt.\n\n## Pendant\n\nAufgabe **239-ungerade-filter** macht das Gegenstück. Beide zusammen\nsind ein Beispiel für **Partition** (Aufgabe 228) auf der Modulo-Achse.",
+  "beschreibung_md": "# Nur gerade Zahlen behalten\n\nSchreibe `nur_gerade(zahlen)`, die alle **geraden Zahlen** (`x % 2 == 0`)\naus der Liste liefert - in der **ursprünglichen Reihenfolge**.\n\nNull zählt als gerade. Negative gerade Zahlen ebenso.\n\n## Beispiele\n\n| Liste              | Ergebnis        |\n|--------------------|-----------------|\n| `[1, 2, 3, 4, 5]`  | `[2, 4]`        |\n| `[2, 4, 6]`        | `[2, 4, 6]`     |\n| `[1, 3, 5]`        | `[]`            |\n| `[0]`              | `[0]`           |\n| `[-2, -1, 0, 1, 2]`| `[-2, 0, 2]`    |\n\n## Idee\n\nDie wohl häufigste Form einer Listen-Comprehension: filtern.\n\n## Mit Builtin filter\n\nFunktional äquivalent, aber Lambda + `filter` liest sich oft\nschwerer als die Comprehension. In Python wird die Comprehension\nbevorzugt.\n\n## Pendant\n\nAufgabe **239-ungerade-filter** macht das Gegenstück. Beide zusammen\nsind ein Beispiel für **Partition** (Aufgabe 228) auf der Modulo-Achse.",
   "tests_sichtbar": [
    {
     "input": [
