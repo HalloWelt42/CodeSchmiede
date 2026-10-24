@@ -16,17 +16,19 @@
   import { progressApi } from '../api/ProgressApi';
   import { submissionsApi } from '../api/SubmissionsApi';
   import { farbeZuCss } from '../types/Konfig';
-  import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
-  import type { SubmissionAntwort, VerlaufEintrag } from '../types/Submission';
+  import type { AufgabeDetail } from '../types/Aufgabe';
+  import type { SubmissionAntwort } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
   import CssKlonView from './CssKlonView.svelte';
   import DreiSpaltenLayout from './DreiSpaltenLayout.svelte';
+  import MusterloesungenBereich from './MusterloesungenBereich.svelte';
   import EditorBereich from './EditorBereich.svelte';
   import LueckentextView from './LueckentextView.svelte';
   import OutputBereich from './OutputBereich.svelte';
   import OutputQuizView from './OutputQuizView.svelte';
   import ProbelaufBereich from './ProbelaufBereich.svelte';
+  import VerlaufBereich from './VerlaufBereich.svelte';
   import SqlAbfrageView from './SqlAbfrageView.svelte';
 
   let { aufgabeId }: { aufgabeId: string } = $props();
@@ -48,15 +50,13 @@
     if (pruefen_laeuft || code !== gesicherter_code) return fassung.halten();
   });
 
-  let musterloesungen = $state<Musterloesung[] | null>(null);
+  let musterloesungen_frei = $state(false);
   let aktiver_tab = $state<'aufgabe' | 'loesungen'>('aufgabe');
 
-  let verlauf = $state<VerlaufEintrag[]>([]);
-  let zeige_verlauf = $state(false);
-  let verlauf_geladen = $state(false);
+  // zählt Abgaben dieser Ansicht; der Verlauf lädt danach neu
+  let abgaben = $state(0);
 
   let reset_modal_offen = $state(false);
-  let aufgeben_modal_offen = $state(false);
 
   onMount(async () => {
     await lade();
@@ -72,9 +72,7 @@
         return;
       }
       detail = d;
-      if (d.musterloesungen_frei) {
-        musterloesungen = await aufgabenStore.ladeMusterloesungen(d.id);
-      }
+      musterloesungen_frei = d.musterloesungen_frei;
       // Default: Starter-Code. Eine vorherige Submission laden wir nur,
       // wenn der Nutzer noch nicht bestanden hat -- sonst stuende die
       // alte Loesung im Editor und Wiederholungen waeren trivialisiert.
@@ -101,13 +99,9 @@
     try {
       ergebnis = await submissionsApi.submit(detail.id, code);
       gesicherter_code = eingereicht;
-      if (ergebnis.bestanden && !musterloesungen) {
-        musterloesungen = await aufgabenStore.ladeMusterloesungen(detail.id);
-      }
+      if (ergebnis.bestanden) musterloesungen_frei = true;
       await progressStore.ladeAlles();
-      if (verlauf_geladen) {
-        await ladeVerlauf();
-      }
+      abgaben += 1;
     } catch (e) {
       pruef_fehler = (e as Error).message;
     } finally {
@@ -129,57 +123,12 @@
     }
   }
 
-  async function aufgebenBestaetigt(): Promise<void> {
-    aufgeben_modal_offen = false;
-    if (!detail) return;
-    try {
-      await aufgabenApi.aufgeben(detail.id);
-      musterloesungen = await aufgabenStore.ladeMusterloesungen(detail.id);
-      await progressStore.ladeAlles();
-    } catch (e) {
-      pruef_fehler = (e as Error).message;
-    }
-  }
-
   function zurueck(): void {
     route.setze('aufgaben');
   }
 
   function resetAnfragen(): void {
     reset_modal_offen = true;
-  }
-
-  async function ladeVerlauf(): Promise<void> {
-    if (!detail) return;
-    try {
-      verlauf = await aufgabenApi.submissionsVerlauf(detail.id, 20);
-      verlauf_geladen = true;
-    } catch (e) {
-      pruef_fehler = (e as Error).message;
-    }
-  }
-
-  async function umschalteVerlauf(): Promise<void> {
-    zeige_verlauf = !zeige_verlauf;
-    if (zeige_verlauf && !verlauf_geladen) {
-      await ladeVerlauf();
-    }
-  }
-
-  function uebernehmeAusVerlauf(eintrag: VerlaufEintrag): void {
-    code = eintrag.code;
-    zeige_verlauf = false;
-  }
-
-  function formatiereDatum(iso: string): string {
-    const d = new Date(iso);
-    return d.toLocaleString('de-DE', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
   }
 
   async function resetBestaetigt(): Promise<void> {
@@ -190,7 +139,7 @@
     try {
       await progressApi.reset(detail.id);
       ergebnis = null;
-      musterloesungen = null;
+      musterloesungen_frei = false;
       aktiver_tab = 'aufgabe';
       // Beim Reset zurück auf Starter-Boilerplate, nicht auf letzte
       // Submission -- der Nutzer will von vorn anfangen.
@@ -316,24 +265,8 @@
               quelle={aktuell.quelle}
               schwierigkeit_score={aktuell.schwierigkeit_score}
             />
-          {:else if aktiver_tab === 'loesungen' && !musterloesungen}
-            <div class="aufgeben">
-              <i class="fa-solid fa-lock" aria-hidden="true"></i>
-              <p>Die Musterlösungen gibt es nach dem Bestehen. Wer sie vorher ansieht, gibt die Aufgabe auf: ein späteres Bestehen bringt dann keine Punkte mehr.</p>
-              <button class="aufgeben-btn" onclick={() => (aufgeben_modal_offen = true)}>
-                <i class="fa-solid fa-flag" aria-hidden="true"></i>
-                Aufgeben und Lösungen ansehen
-              </button>
-            </div>
-          {:else if aktiver_tab === 'loesungen' && musterloesungen}
-            <div class="muster-liste">
-              {#each musterloesungen as ml (ml.variante)}
-                <details class="muster-eintrag" open>
-                  <summary>{ml.variante}</summary>
-                  <pre><code>{ml.code}</code></pre>
-                </details>
-              {/each}
-            </div>
+          {:else}
+            <MusterloesungenBereich aufgabeId={aktuell.id} bind:freigegeben={musterloesungen_frei} />
           {/if}
         </div>
       {/snippet}
@@ -367,55 +300,12 @@
           onWeiter={geheZuNaechster}
         />
 
-        <div class="muster verlauf">
-          <button class="muster-toggle" onclick={umschalteVerlauf}>
-            <i class="fa-solid {zeige_verlauf ? 'fa-chevron-down' : 'fa-chevron-right'}" aria-hidden="true"></i>
-            Verlauf{verlauf_geladen ? ` (${verlauf.length})` : ''}
-          </button>
-          {#if zeige_verlauf}
-            {#if !verlauf_geladen}
-              <div class="verlauf-info">Lade Verlauf ...</div>
-            {:else if verlauf.length === 0}
-              <div class="verlauf-info leer">Noch keine Submissions vorhanden.</div>
-            {:else}
-              <ul class="verlauf-liste">
-                {#each verlauf as v (v.id)}
-                  <li class:bestanden={v.bestanden}>
-                    <button
-                      type="button"
-                      class="verlauf-eintrag"
-                      onclick={() => uebernehmeAusVerlauf(v)}
-                      title="Diesen Code in den Editor übernehmen"
-                    >
-                      <span class="verlauf-status">
-                        <i class="fa-solid {v.bestanden ? 'fa-check' : 'fa-xmark'}" aria-hidden="true"></i>
-                      </span>
-                      <span class="verlauf-zeit">{formatiereDatum(v.zeitstempel)}</span>
-                      <span class="verlauf-metrik num">{v.laufzeit_ms.toFixed(0)} ms</span>
-                      <span class="verlauf-metrik num">{v.codelaenge_zeichen} Z.</span>
-                    </button>
-                  </li>
-                {/each}
-              </ul>
-            {/if}
-          {/if}
-        </div>
+        <VerlaufBereich aufgabeId={aktuell.id} stand={abgaben} onUebernehmen={(c) => (code = c)} />
       {/snippet}
     </DreiSpaltenLayout>
     {/if}
   {/if}
 </div>
-
-<ConfirmModal
-  offen={aufgeben_modal_offen}
-  titel="Aufgabe aufgeben?"
-  nachricht="Du siehst die Musterlösungen sofort. Bestehst du die Aufgabe danach, gibt es dafür keine Punkte mehr. Bereits erreichte Punkte bleiben."
-  bestaetigen_text="Aufgeben"
-  abbrechen_text="Weiter üben"
-  danger={true}
-  onBestaetigen={aufgebenBestaetigt}
-  onAbbrechen={() => (aufgeben_modal_offen = false)}
-/>
 
 <ConfirmModal
   offen={reset_modal_offen}
@@ -566,26 +456,6 @@
     display: flex;
     flex-direction: column;
   }
-  .aufgeben {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--sp-3);
-    padding: var(--sp-4);
-    color: var(--fg-dim);
-  }
-  .aufgeben > i { color: var(--fg-mute); font-size: var(--fs-lg); }
-  .aufgeben p { margin: 0; font-family: var(--quick); }
-  .aufgeben-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-2);
-    border-color: var(--orange);
-    color: var(--orange);
-  }
-  .tab-inhalt > .muster-liste {
-    padding: var(--sp-3);
-  }
   .editor-kopf {
     display: flex;
     align-items: center;
@@ -629,113 +499,5 @@
     overflow: hidden;
   }
 
-  .muster {
-    border-top: 1px solid var(--border);
-    padding: var(--sp-3);
-  }
-  .muster-toggle {
-    background: transparent;
-    border: none;
-    color: var(--accent);
-    font-size: var(--fs-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-2);
-  }
-  .muster-liste {
-    margin-top: var(--sp-3);
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-  }
-  .muster-eintrag {
-    background: var(--bg-card-2);
-    border: 1px solid var(--border);
-    padding: var(--sp-2) var(--sp-3);
-  }
-  .muster-eintrag summary {
-    cursor: pointer;
-    color: var(--accent);
-    text-transform: uppercase;
-    font-size: var(--fs-xs);
-    letter-spacing: 0.05em;
-    padding: var(--sp-1) 0;
-  }
-  .muster-eintrag pre {
-    margin: var(--sp-2) 0 0;
-    font-family: var(--mono);
-    font-size: var(--fs-xs);
-    line-height: 1.5;
-    color: var(--fg);
-    background: var(--bg);
-    padding: var(--sp-2);
-    border: 1px solid var(--border);
-    overflow-x: auto;
-    white-space: pre;
-    border-radius: var(--radius-sm);
-    max-height: 280px;
-    overflow-y: auto;
-  }
-  .muster-eintrag pre code {
-    background: transparent;
-    border: none;
-    padding: 0;
-    color: inherit;
-    font-size: inherit;
-  }
 
-  .verlauf {
-    border-top: 1px dashed var(--border);
-  }
-  .verlauf-info {
-    margin-top: var(--sp-2);
-    color: var(--fg-dim);
-    font-family: var(--quick);
-    font-size: var(--fs-sm);
-  }
-  .verlauf-info.leer {
-    color: var(--fg-mute);
-  }
-  .verlauf-liste {
-    list-style: none;
-    padding: 0;
-    margin: var(--sp-3) 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .verlauf-eintrag {
-    width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--fg);
-    padding: 6px var(--sp-2);
-    cursor: pointer;
-    display: grid;
-    grid-template-columns: 24px 1fr 70px 70px;
-    align-items: center;
-    gap: var(--sp-2);
-    font-size: var(--fs-xs);
-    text-align: left;
-  }
-  .verlauf-eintrag:hover {
-    border-color: var(--accent);
-  }
-  .verlauf-status {
-    color: var(--red);
-    text-align: center;
-  }
-  .verlauf-liste li.bestanden .verlauf-status { color: var(--green); }
-  .verlauf-zeit {
-    font-family: var(--mono);
-    color: var(--fg-dim);
-  }
-  .verlauf-metrik {
-    color: var(--fg);
-    text-align: right;
-  }
 </style>

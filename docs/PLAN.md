@@ -24,6 +24,9 @@ Geklärt am 24.10.2026 (Analyse plus Frage-für-Frage-Klärung). Entwürfe der O
 | PHP-Lücke (CVE-2026-109618/-109619, -115560) | Betrifft die Codeschmiede nicht (kein PHP) |
 | Gamifizierung | Alles gamifizieren, in bester Qualität (Nutzer 24.10.2026); Ausgestaltung mit Entwürfen vor dem Bau, zusammen mit den Spielen |
 | Lokale KI | Wo sinnvoll einbauen (Nutzer 24.10.2026), gerechnet auf dem Mac über die Leitstelle; Stellen vor dem Bau klären |
+| CSS-Bewertung | Nach dem Bild, nicht nach Eigenschaften: Deckung mit dem Ziel in Prozent und Kürze des Codes entscheiden; die Deckung wird grafisch gezeigt (Überblenden, eingefärbte Abweichung), das ist spannender als eine Liste (Nutzer 24.10.2026) |
+| CSS-Ansicht | Beim Lösen stehen Ziel und eigenes Ergebnis untereinander in der rechten Spalte, Zoom mit dem Mausrad auf beiden zugleich; Ergebnis und Verlauf wandern aus der rechten Spalte in die Reiter links (Entwurf `mockups/rechner-css.html`) |
+| CSS-Vielfalt | Sehr große Vielfalt an CSS-Aufgaben; Ideen aus einer Recherche, in eigenen Worten, ohne fremde Aufgaben zu übernehmen |
 
 ## Reihenfolge des Baus
 
@@ -38,7 +41,7 @@ Jeder Schritt einzeln committet und gepusht.
    - Probelauf-Rückgabe, Typfehler, toter Code
    - doppelte Logik zusammenführen, Migrationen atomar
    - Backend-Tests aufbauen
-2. **Abhängigkeiten** auf den neuesten Stand, Image nach Sperrdatei.
+2. **Abhängigkeiten** auf den neuesten Stand, Image nach Sperrdatei. (erledigt mit 0.73.0)
 3. **Aufgabenbestand**
    - Pfad-Datei als einzige Wahrheit
    - neue versteckte Tests für die 134 verratenen Aufgaben
@@ -50,8 +53,8 @@ Jeder Schritt einzeln committet und gepusht.
    - Daten unter `/mnt/data`
    - Verwaltung nur lesend
    - Sicherung, Handbuchseite, Einrichtungsskript
-6. **Spiele und Gamifizierung**: erst Entwürfe (Spiele, Spielmechanik über die ganze App), nach Freigabe Bau.
-7. **Neue Aufgaben** in den vier Bereichen mit automatischer Prüfung.
+6. **Spiele und Gamifizierung**: erst Entwürfe (Spiele, Spielmechanik über die ganze App, neue CSS-Bewertung nach Deckung und Kürze), nach Freigabe Bau.
+7. **Neue Aufgaben** in den vier Bereichen und viele neue CSS-Nachbauten, mit automatischer Prüfung.
 
 ## Ergebnis Schritt 1
 
@@ -66,6 +69,16 @@ Jeder Schritt einzeln committet und gepusht.
 - Fehler im Bestand behoben: Umlaut-ID 024, drei tote Voraussetzungen, zwei falsche versteckte Tests (033, 036)
 - Frontend: 18 Typfehler behoben, Probelauf zeigt die Rückgabe, echte Fehlertexte statt "nicht gefunden"
 - Backend-Tests: 51, dazu die Prüfung des ganzen Bestands (590 Musterlösungen)
+
+## Ergebnis Schritt 2
+
+- Backend auf Python 3.14 (3.15 hat für `uvicorn[standard]` noch keine fertigen Pakete), alle Pakete neu gesperrt, `httpx2` statt `httpx`; `pip-audit`: keine Lücken
+- Docker-Images installieren genau nach `uv.lock`; Sandbox-Dienst mit `docker-cli` (Debian 13 trennt Kommandozeile und Daemon)
+- Sandbox-Images: Python 3.15, Node 26
+- Frontend: Vite 8, Svelte-Plugin 7, Svelte 5.57, Mermaid 12, KaTeX 0.19, DOMPurify 3.4.17 und alle übrigen auf neu; TypeScript 6.0 (7 wird von der Svelte-Typprüfung noch nicht unterstützt); `npm audit`: 0 Lücken
+- Mermaid wird erst geladen, wenn ein Diagramm vorkommt
+- Musterlösungen und Verlauf als gemeinsame Bausteine in allen Aufgabenansichten (CSS und SQL hatten keinen Verlauf und kein Aufgeben)
+- Dateibeobachter abschaltbar, im Compose aus (das Einrichten blockierte im Container das Backend minutenlang)
 
 ## Offen
 

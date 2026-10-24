@@ -3,22 +3,23 @@
 #   sandbox  -- Sandbox-Dienst, einziger Teil mit Docker-CLI und Socket
 # Bauen: docker compose build (die Ziele stehen in docker-compose.yml).
 
-FROM python:3.11-slim AS basis
+FROM python:3.14-slim AS basis
 
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends curl \
     && rm -rf /var/lib/apt/lists/*
 
-# pyproject verweist auf packages.find: src, darum src vor der Installation kopieren.
-COPY backend/pyproject.toml ./
+# Installiert wird genau nach der Sperrdatei (uv.lock), ohne Entwicklerpakete:
+# erst die Abhängigkeiten (eigene Schicht), dann das Projekt.
+COPY --from=ghcr.io/astral-sh/uv:0.11.7 /uv /usr/local/bin/uv
+ENV UV_PROJECT_ENVIRONMENT=/usr/local UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
+COPY backend/pyproject.toml backend/uv.lock ./
+RUN uv sync --frozen --no-dev --no-install-project
 COPY backend/src ./src
 COPY VERSION ./VERSION
+RUN uv sync --frozen --no-dev --no-editable
 
-RUN pip install --no-cache-dir uv \
-    && uv pip install --system .
-
-ENV PYTHONPATH=/app/src
 ENV PYTHONUNBUFFERED=1
 
 
@@ -33,7 +34,8 @@ CMD ["python", "-m", "uvicorn", "codeschmiede.api:app_bauen", \
 
 FROM basis AS sandbox
 
-RUN apt-get update && apt-get install -y --no-install-recommends docker.io \
+# Nur die Kommandozeile; der Daemon ist der des Hosts (Socket im Compose)
+RUN apt-get update && apt-get install -y --no-install-recommends docker-cli \
     && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8203

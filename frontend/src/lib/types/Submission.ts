@@ -65,7 +65,7 @@ export interface VerlaufEintrag {
   id: number;
   zeitstempel: string;
   bestanden: boolean;
-  laufzeit_ms: number;
-  codelaenge_zeichen: number;
+  laufzeit_ms: number | null;
+  codelaenge_zeichen: number | null;
   code: string;
 }

@@ -34,7 +34,7 @@ Backend (FastAPI :8200)                       kein Docker-Zugang
 |-------------------|----------------|
 | `main.py`         | uvicorn-Entry, lädt Settings |
 | `api.py`          | FastAPI-App, Lifespan (Watcher), Router, Herkunftsprüfung, CORS nur für erlaubte Herkünfte, healthz |
-| `config.py`       | Pydantic-Settings (Pfade, Sandbox-URL und Schlüssel, Schreibrecht, erlaubte Herkünfte) |
+| `config.py`       | Pydantic-Settings (Pfade, Sandbox-URL und Schlüssel, Schreibrecht, Dateibeobachter, erlaubte Herkünfte) |
 | `state.py`        | AppState bündelt Datenbank, Repositories, Runner; `neu_einlesen()` |
 | `db/connection.py`        | SQLite-Verbindung + Migrationen (jede in einer Transaktion) |
 | `db/migrations/*.sql`     | Nummerierte Schema-Migrationen |
@@ -93,7 +93,7 @@ Backend (FastAPI :8200)                       kein Docker-Zugang
 | Verzeichnis              | Inhalt |
 |--------------------------|--------|
 | `App.svelte`             | Root-Layout, Routing-Switch |
-| `lib/components/`        | Eine Komponente pro Datei |
+| `lib/components/`        | Eine Komponente pro Datei; Musterlösungen (`MusterloesungenBereich`) und Verlauf (`VerlaufBereich`) gemeinsam für alle Aufgabentypen |
 | `lib/api/`               | HTTP-Wrapper + eine Klasse pro Domäne; Fehlertext kommt aus `detail` des Servers |
 | `lib/stores/`            | Svelte 5 Runes (`*.svelte.ts`) |
 | `lib/markdown/`          | MarkdownRenderer (marked + KaTeX + Mermaid strikt + DOMPurify) |

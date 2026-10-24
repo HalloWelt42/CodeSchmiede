@@ -13,7 +13,7 @@ Sandbox, CSS-Nachbauten rendert der Browser. Der weitere Ausbau steht in
 
 ## Stack
 
-- Backend: Python 3.11+, FastAPI, Pydantic, SQLite
+- Backend: Python 3.14, FastAPI, Pydantic, SQLite, Pakete fest nach `backend/uv.lock`
 - Sandbox-Dienst: eigener Prozess, einziger Teil mit Docker-Zugang
 - Frontend: Svelte 5 (Runes), TypeScript strict, Vite, CodeMirror 6
 - Aufgaben: Markdown mit YAML-Frontmatter, eine Datei pro Aufgabe
@@ -27,7 +27,7 @@ Sandbox, CSS-Nachbauten rendert der Browser. Der weitere Ausbau steht in
 ./scripts/start.sh
 ```
 
-`setup.sh` prüft Docker, Python 3.11 und npm, baut die Sandbox-Images,
+`setup.sh` prüft Docker, uv und npm, baut die Sandbox-Images,
 legt das Backend-venv an und installiert die Frontend-Pakete. `start.sh`
 startet Sandbox-Dienst (8203), Backend (8200) und Frontend (5184) im
 Hintergrund, `stop.sh` beendet sie.

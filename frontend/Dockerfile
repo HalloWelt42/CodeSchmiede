@@ -1,6 +1,6 @@
 # Codeschmiede-Frontend: multi-stage build (Vite -> nginx)
 
-FROM node:22-slim AS build
+FROM node:26-slim AS build
 WORKDIR /app
 
 COPY frontend/package.json frontend/package-lock.json ./

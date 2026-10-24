@@ -832,7 +832,7 @@
     font-family: var(--quick);
     resize: vertical;
   }
-  textarea.mono, input.mono {
+  input.mono {
     font-family: var(--mono);
     font-size: var(--fs-xs);
   }
@@ -992,13 +992,6 @@
   }
   .m-titel { letter-spacing: 0.05em; }
   .muster-eintrag textarea { margin-top: var(--sp-2); }
-  .muster-eintrag .hint {
-    color: var(--fg-mute);
-    font-family: var(--quick);
-    font-size: var(--fs-xs);
-    display: block;
-    margin-top: 4px;
-  }
 
   .neu-loesung {
     display: flex;

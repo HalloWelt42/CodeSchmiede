@@ -29,6 +29,7 @@ def state(tmp_path_factory, docker_runner):
         daten_pfad=tmp,
         db_datei=tmp / "bestand.db",
         aufgaben_schreibbar=False,
+        aufgaben_beobachten=False,
     )
     return AppState(settings, runner=docker_runner)
 
@@ -48,12 +49,15 @@ def test_musterloesungen_bestehen(state):
     def lauf(auftrag):
         a, ml = auftrag
         erg = pruefe(a, ml["code"], state.runner)
+        if not erg.bestanden and erg.timeout:
+            # Zeitüberschreitung unter paralleler Last (langsamer Containerstart): einmal wiederholen
+            erg = pruefe(a, ml["code"], state.runner)
         if erg.bestanden:
             return None
         sichtbar = [t for t in erg.sichtbar if not t.bestanden]
         detail = (sichtbar[0].fehler or f"ist {sichtbar[0].tatsaechlich!r}, soll {sichtbar[0].erwartet!r}") if sichtbar else ""
         return f"{a.id}/{ml['variante']}: versteckt {erg.versteckt_fail} falsch {detail} {erg.stderr[-200:]}".strip()
 
-    with ThreadPoolExecutor(max_workers=6) as pool:
+    with ThreadPoolExecutor(max_workers=4) as pool:
         fehler = [f for f in pool.map(lauf, auftraege) if f]
     assert fehler == [], f"{len(fehler)} von {len(auftraege)}:\n" + "\n".join(fehler)

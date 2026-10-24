@@ -17,16 +17,17 @@
    */
   import { onMount } from 'svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
-  import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
   import { fassung } from '../stores/FassungStore.svelte';
   import { aufgabenApi } from '../api/AufgabenApi';
   import { progressApi } from '../api/ProgressApi';
   import { submissionsApi } from '../api/SubmissionsApi';
-  import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
+  import type { AufgabeDetail } from '../types/Aufgabe';
   import type { SubmissionAntwort } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
   import DreiSpaltenLayout from './DreiSpaltenLayout.svelte';
+  import MusterloesungenBereich from './MusterloesungenBereich.svelte';
+  import VerlaufBereich from './VerlaufBereich.svelte';
   import EditorBereich from './EditorBereich.svelte';
 
   let { detail }: { detail: AufgabeDetail } = $props();
@@ -41,10 +42,14 @@
   );
 
   let code = $state('');
+  // zählt Abgaben dieser Ansicht; der Verlauf lädt danach neu
+  let abgaben = $state(0);
   let pruefen_laeuft = $state(false);
   let ergebnis = $state<SubmissionAntwort | null>(null);
   let fehler = $state<string | null>(null);
-  let musterloesungen = $state<Musterloesung[] | null>(null);
+  // Startwert genügt: die Ansicht entsteht je Aufgabe neu ({#key} in der Schale).
+  // svelte-ignore state_referenced_locally
+  let musterloesungen_frei = $state(detail.musterloesungen_frei);
   let aktiver_tab = $state<'aufgabe' | 'loesungen'>('aufgabe');
 
   // Code, den der Server schon kennt (Starter, letzte Einreichung oder
@@ -125,9 +130,8 @@
     try {
       ergebnis = await submissionsApi.submit(detail.id, code);
       gesicherter_code = eingereicht;
-      if (ergebnis.bestanden && !musterloesungen) {
-        musterloesungen = await aufgabenStore.ladeMusterloesungen(detail.id);
-      }
+      abgaben += 1;
+      if (ergebnis.bestanden) musterloesungen_frei = true;
       await progressStore.ladeAlles();
     } catch (e) {
       fehler = (e as Error).message;
@@ -155,7 +159,7 @@
 
 <DreiSpaltenLayout>
 {#snippet links()}
-    {#if musterloesungen && musterloesungen.length > 0}
+    {#if detail.musterloesungen_anzahl > 0}
       <div class="tab-leiste" role="tablist">
         <button
           class="tab"
@@ -173,7 +177,7 @@
           onclick={() => (aktiver_tab = 'loesungen')}
         >
           <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
-          Musterlösungen ({musterloesungen.length})
+          Musterlösungen ({detail.musterloesungen_anzahl})
         </button>
       </div>
     {/if}
@@ -194,15 +198,8 @@
             <pre>{schema_hinweis}</pre>
           </div>
         {/if}
-      {:else if musterloesungen}
-        <div class="muster-liste">
-          {#each musterloesungen as ml (ml.variante)}
-            <details class="muster-eintrag" open>
-              <summary>{ml.variante}</summary>
-              <pre><code>{ml.code}</code></pre>
-            </details>
-          {/each}
-        </div>
+      {:else}
+        <MusterloesungenBereich aufgabeId={detail.id} bind:freigegeben={musterloesungen_frei} />
       {/if}
     </div>
 {/snippet}
@@ -293,6 +290,7 @@
         <div class="hinweis">Schreibe SELECT-SQL und drück <strong>Prüfen</strong>.</div>
       {/if}
     </div>
+    <VerlaufBereich aufgabeId={detail.id} stand={abgaben} onUebernehmen={(c) => (code = c)} />
 {/snippet}
 </DreiSpaltenLayout>
 
@@ -648,34 +646,4 @@
     padding: var(--sp-1) 0;
   }
 
-  .muster-liste {
-    padding: var(--sp-3);
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-  }
-  .muster-eintrag {
-    background: var(--bg-card-2);
-    border: 1px solid var(--border);
-    padding: var(--sp-2) var(--sp-3);
-  }
-  .muster-eintrag summary {
-    cursor: pointer;
-    color: var(--accent);
-    text-transform: uppercase;
-    font-size: var(--fs-xs);
-    letter-spacing: 0.05em;
-  }
-  .muster-eintrag pre {
-    margin: var(--sp-2) 0 0;
-    font-family: var(--mono);
-    font-size: var(--fs-xs);
-    background: var(--bg);
-    padding: var(--sp-2);
-    border: 1px solid var(--border);
-    overflow-x: auto;
-    border-radius: var(--radius-sm);
-    max-height: 280px;
-    overflow-y: auto;
-  }
 </style>

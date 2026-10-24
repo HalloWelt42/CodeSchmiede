@@ -10,35 +10,38 @@
  *   5. DOMPurify saeubert das Ergebnis. SVG-Tags werden zugelassen,
  *      damit Mermaid-Output (der spaeter eingefuegt wird) durchlaeuft.
  *   6. Mermaid laeuft mit securityLevel "strict": Beschriftungen werden
- *      gesaeubert, Klick-Skripte in Diagrammen sind aus.
+ *      gesaeubert, Klick-Skripte in Diagrammen sind aus. Mermaid ist gross
+ *      und wird erst geladen, wenn eine Beschreibung ein Diagramm enthaelt.
  */
 
 import DOMPurify from 'dompurify';
 import katex from 'katex';
 import { marked } from 'marked';
-import mermaid from 'mermaid';
+import type { Mermaid } from 'mermaid';
 
-let mermaidInitialisiert = false;
+let mermaidLaden: Promise<Mermaid> | null = null;
 
-function initMermaid(): void {
-  if (mermaidInitialisiert) return;
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: 'dark',
-    securityLevel: 'strict',
-    themeVariables: {
-      primaryColor: '#22262d',
-      primaryBorderColor: '#2dd4bf',
-      primaryTextColor: '#e7ecf1',
-      lineColor: '#8a93a0',
-      textColor: '#e7ecf1',
-      mainBkg: '#22262d',
-      nodeBorder: '#2dd4bf',
-      clusterBkg: '#2a2f37',
-      edgeLabelBackground: '#1a1d23',
-    },
+function ladeMermaid(): Promise<Mermaid> {
+  mermaidLaden ??= import('mermaid').then(({ default: mermaid }) => {
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'dark',
+      securityLevel: 'strict',
+      themeVariables: {
+        primaryColor: '#22262d',
+        primaryBorderColor: '#2dd4bf',
+        primaryTextColor: '#e7ecf1',
+        lineColor: '#8a93a0',
+        textColor: '#e7ecf1',
+        mainBkg: '#22262d',
+        nodeBorder: '#2dd4bf',
+        clusterBkg: '#2a2f37',
+        edgeLabelBackground: '#1a1d23',
+      },
+    });
+    return mermaid;
   });
-  mermaidInitialisiert = true;
+  return mermaidLaden;
 }
 
 function escapeHtml(s: string): string {
@@ -55,10 +58,6 @@ function escapeHtml(s: string): string {
 }
 
 export class MarkdownRenderer {
-  constructor() {
-    initMermaid();
-  }
-
   rendere(text: string): string {
     let zwischen = text;
 
@@ -102,6 +101,7 @@ export class MarkdownRenderer {
     const blocks = container.querySelectorAll<HTMLElement>('.mermaid:not([data-processed="true"])');
     if (blocks.length === 0) return;
     try {
+      const mermaid = await ladeMermaid();
       await mermaid.run({ nodes: Array.from(blocks) });
     } catch (e) {
       console.warn('Mermaid-Render-Fehler:', e);

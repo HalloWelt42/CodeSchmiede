@@ -1,7 +1,7 @@
 """DienstRunner -- der Runner des Backends: reicht Läufe an den
 Sandbox-Dienst weiter (HTTP mit gemeinsamem Schlüssel)."""
 
-import httpx
+import httpx2
 
 from .dienst import SCHLUESSEL_HEADER
 from .result import RunLimits, RunResult
@@ -14,10 +14,10 @@ ZUSCHLAG_SEKUNDEN = 60
 
 
 class DienstRunner:
-    def __init__(self, url: str, schluessel: str, client: httpx.Client | None = None):
+    def __init__(self, url: str, schluessel: str, client: httpx2.Client | None = None):
         self.url = url.rstrip("/")
         self.schluessel = schluessel
-        self.client = client or httpx.Client()
+        self.client = client or httpx2.Client()
 
     def run_code(
         self, code: str, sprache: str, limits: RunLimits | None = None
@@ -30,7 +30,7 @@ class DienstRunner:
                 headers={SCHLUESSEL_HEADER: self.schluessel},
                 timeout=limits.timeout_sekunden + ZUSCHLAG_SEKUNDEN,
             )
-        except httpx.HTTPError as fehler:
+        except httpx2.HTTPError as fehler:
             raise SandboxFehler(f"Sandbox-Dienst nicht erreichbar ({self.url})") from fehler
         if antwort.status_code != 200:
             try:

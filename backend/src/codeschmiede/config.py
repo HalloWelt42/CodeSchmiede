@@ -24,6 +24,10 @@ class Settings(BaseSettings):
     # Dürfen Verwaltung und Editor Aufgabendateien schreiben? Auf dem Pi
     # nein: dort kommen die Aufgaben aus dem Repo (Bearbeiten am Mac).
     aufgaben_schreibbar: bool = True
+    # Aufgabenordner beobachten und Änderungen sofort einlesen (Entwicklung).
+    # Ohne Nutzen, wenn die Aufgaben mit dem Ausrollen kommen; das Einrichten
+    # dauert auf eingehängten Ordnern lange.
+    aufgaben_beobachten: bool = True
 
     # Sandbox-Dienst (einziger Teil mit Docker-Zugang). Ohne gesetzten
     # Schlüssel teilen sich Backend und Dienst eine Schlüsseldatei

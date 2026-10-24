@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Plattform-Setup: prueft Voraussetzungen, baut das Sandbox-Image,
+# Plattform-Setup: prueft Voraussetzungen, baut die Sandbox-Images,
 # legt das Backend-venv an und installiert Frontend-Pakete.
 # Ausfuehren einmalig nach dem Klonen oder bei groesseren Updates.
 
@@ -13,7 +13,7 @@ echo
 
 echo "Pruefe Voraussetzungen ..."
 fehlt=0
-for tool in docker python3.11 npm; do
+for tool in docker uv npm; do
   if command -v "$tool" >/dev/null 2>&1; then
     echo "  OK: $tool ($(command -v "$tool"))"
   else
@@ -28,15 +28,14 @@ if [ "$fehlt" -ne 0 ]; then
 fi
 
 echo
-echo "Baue Sandbox-Image ..."
+echo "Baue Sandbox-Images ..."
 "$SCRIPT_DIR/build-sandbox.sh"
 
 echo
 echo "Backend-venv anlegen + Pakete installieren ..."
 cd "$ROOT_DIR/backend"
-python3.11 -m venv .venv
-.venv/bin/pip install --quiet --upgrade pip
-.venv/bin/pip install --quiet -e ".[dev]"
+# genau nach der Sperrdatei (uv.lock); uv holt die passende Python-Fassung
+uv sync --frozen --extra dev --quiet
 echo "  OK"
 
 echo
@@ -48,7 +47,7 @@ echo "  OK"
 echo
 echo "=== Fertig ==="
 echo
-echo "Starten (beide Server im Hintergrund, Terminal-unabhaengig):"
+echo "Starten (Sandbox-Dienst, Backend und Frontend im Hintergrund):"
 echo "  $SCRIPT_DIR/start.sh"
 echo
 echo "Stoppen:"

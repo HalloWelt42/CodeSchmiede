@@ -11,6 +11,9 @@ from codeschmiede.sandbox.runner import SandboxFehler
 
 from .conftest import braucht_sandbox
 
+# Der DienstRunner gibt jedem Aufruf eine Zeitgrenze mit; der TestClient ignoriert sie.
+pytestmark = pytest.mark.filterwarnings("ignore:You should not use the .timeout. argument")
+
 
 @pytest.fixture
 def dienst(tmp_path, docker_runner):
@@ -58,4 +61,12 @@ def test_schluesseldatei_wird_geteilt(tmp_path, docker_runner):
 def test_dienst_nicht_erreichbar():
     runner = DienstRunner("http://127.0.0.1:9", "x")
     with pytest.raises(SandboxFehler):
+        runner.run_code("print(1)", "python")
+
+
+def test_fehlendes_docker_ist_sandboxfehler():
+    from codeschmiede.sandbox.docker_runner import DockerRunner
+
+    runner = DockerRunner({"python": "x"}, docker="/gibt/es/nicht/docker")
+    with pytest.raises(SandboxFehler, match="Docker lässt sich nicht starten"):
         runner.run_code("print(1)", "python")

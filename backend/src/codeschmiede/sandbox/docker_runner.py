@@ -107,12 +107,15 @@ class DockerRunner:
 
         name = f"cs-lauf-{uuid.uuid4().hex[:16]}"
         start = time.perf_counter()
-        proc = subprocess.Popen(
-            self._befehl_bauen(name, bild, limits),
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-        )
+        try:
+            proc = subprocess.Popen(
+                self._befehl_bauen(name, bild, limits),
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+        except OSError as fehler:
+            raise SandboxFehler(f"Docker lässt sich nicht starten ({self.docker}): {fehler}") from fehler
         assert proc.stdin and proc.stdout and proc.stderr
         aus = _BegrenzterLeser(proc.stdout, self.max_ausgabe_bytes)
         err = _BegrenzterLeser(proc.stderr, self.max_ausgabe_bytes)

@@ -32,6 +32,7 @@ services:
       CODESCHMIEDE_DATEN_PFAD: /app/data
       CODESCHMIEDE_DB_DATEI: /app/data/codeschmiede.db
       CODESCHMIEDE_AUFGABEN_SCHREIBBAR: "false"
+      CODESCHMIEDE_AUFGABEN_BEOBACHTEN: "false"
       CODESCHMIEDE_SANDBOX_URL: http://sandbox:8203
       CODESCHMIEDE_SANDBOX_SCHLUESSEL_DATEI: /schluessel/sandbox-schluessel
     depends_on:

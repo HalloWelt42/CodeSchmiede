@@ -63,6 +63,9 @@ def app_bauen(settings: Settings | None = None, runner: Runner | None = None) ->
 
     @asynccontextmanager
     async def lifespan(_app: FastAPI):
+        if not aktive_settings.aufgaben_beobachten:
+            yield
+            return
         task = asyncio.create_task(watcher.laufe())
         try:
             yield

@@ -1,7 +1,7 @@
 # Sandbox-Image für Python-Aufgaben. Der Sandbox-Dienst startet es mit
 # fremdem Nutzer (nobody), ohne Netz, nur lesend, und reicht das
 # Programm über stdin hinein (`python -`).
-FROM python:3.11-slim
+FROM python:3.15-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
