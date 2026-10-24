@@ -26,7 +26,7 @@ Geklärt am 24.10.2026 (Analyse plus Frage-für-Frage-Klärung). Entwürfe der O
 | Lokale KI | Wo sinnvoll einbauen (Nutzer 24.10.2026), gerechnet auf dem Mac über die Leitstelle; Stellen vor dem Bau klären |
 | CSS-Bewertung | Nach dem Bild, nicht nach Eigenschaften: Deckung mit dem Ziel in Prozent und Kürze des Codes entscheiden; die Deckung wird grafisch gezeigt (Überblenden, eingefärbte Abweichung), das ist spannender als eine Liste (Nutzer 24.10.2026) |
 | CSS-Ansicht | Beim Lösen stehen Ziel und eigenes Ergebnis untereinander in der rechten Spalte, Zoom mit dem Mausrad auf beiden zugleich; Ergebnis und Verlauf wandern aus der rechten Spalte in die Reiter links (Entwurf `mockups/rechner-css.html`) |
-| CSS-Vielfalt | Sehr große Vielfalt an CSS-Aufgaben; Ideen aus einer Recherche, in eigenen Worten, ohne fremde Aufgaben zu übernehmen |
+| CSS-Vielfalt | Sehr große Vielfalt an CSS-Aufgaben; Ideensammlung aus einer Recherche in `docs/CSS-IDEEN.md` (229 Ideen in 28 Kategorien, eigene Worte, keine fremden Aufgaben übernommen) |
 
 ## Reihenfolge des Baus
 
