@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="aufgaben">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: CSS-Aufgabe</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<script src="daten.js"></script>
+<script src="hilfen.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="a-kopf">
+      <button class="ikon"><i class="fa-solid fa-arrow-left"></i></button>
+      <span class="zelle-titel"><b>Kreis trifft Raute</b><span>c120-kreis-raute</span></span>
+      <div class="meta">
+        <span class="badge st-mittel">Mittel</span><span class="badge sprache">CSS</span>
+        <span><i class="fa-regular fa-clock"></i> 8 min</span>
+        <span class="num" style="color:var(--accent)"><i class="fa-solid fa-coins"></i> 0 / 15</span>
+        <button class="knopf voll"><i class="fa-solid fa-play"></i>Prüfen</button>
+      </div>
+    </header>
+    <div class="css-seite">
+      <section class="spalte">
+        <nav class="reiter-klein">
+          <button class="aktiv" data-gruppe="links" data-ziel="l-aufgabe">Aufgabe</button>
+          <button data-gruppe="links" data-ziel="l-hinweise">Hinweise</button>
+          <button data-gruppe="links" data-ziel="l-verlauf">Verlauf</button>
+          <button data-gruppe="links" data-ziel="l-loesung">Lösung</button>
+        </nav>
+        <div class="t-pane aktiv" data-pane="links" id="l-aufgabe">
+          <div class="rollfeld md">
+            <p>Baue das Zielbild nach: ein türkiser Kreis und eine gedrehte orange Raute auf dunklem Grund.</p>
+            <p>Gewertet wird, wie deckungsgleich dein Bild ist und wie wenig Code du brauchst.</p>
+            <h2>Bühne</h2>
+            <p style="font-family:var(--sans);font-size:var(--fs-sm)">400 × 300 Pixel, Farben <code>#0f2a3a</code> <code>#2dd4bf</code> <code>#f59e0b</code></p>
+            <h2>Bestehen</h2>
+            <p style="font-family:var(--sans);font-size:var(--fs-sm)">ab 99 % Deckung; volle Punkte mit höchstens 80 Zeichen</p>
+          </div>
+        </div>
+        <div class="t-pane" data-pane="links" id="l-hinweise">
+          <div class="rollfeld md"><p style="font-family:var(--sans)"><button class="knopf"><i class="fa-solid fa-lock-open"></i>Hinweis 1 kostenlos</button></p><p style="font-family:var(--sans)"><button class="knopf"><i class="fa-solid fa-lock"></i>Hinweis 2 (3 Punkte)</button></p></div>
+        </div>
+        <div class="t-pane" data-pane="links" id="l-verlauf">
+          <div class="rollfeld">
+            <div class="test-zeile"><i class="fa-solid fa-circle-half-stroke" style="color:var(--orange)"></i>24.10. 21:14 <span class="num" style="margin-left:auto">96,4 %</span> <span class="dim">64 Z.</span></div>
+            <div class="test-zeile"><i class="fa-solid fa-circle-half-stroke" style="color:var(--orange)"></i>24.10. 21:09 <span class="num" style="margin-left:auto">81,2 %</span> <span class="dim">58 Z.</span></div>
+          </div>
+        </div>
+        <div class="t-pane" data-pane="links" id="l-loesung">
+          <div class="rollfeld md"><p>Die Musterlösung gibt es nach dem Bestehen. Wer sie vorher ansieht, gibt die Aufgabe auf.</p><button class="knopf"><i class="fa-solid fa-flag"></i>Aufgeben und Lösung ansehen</button></div>
+        </div>
+      </section>
+
+      <section class="spalte mitte">
+        <div class="spalten-kopf"><span>CSS-Editor</span><span class="num" style="margin-left:auto;color:var(--fg)">64 Zeichen</span></div>
+        <div class="rollfeld" style="padding:0">
+          <div class="editor">
+            <div><span class="ln">1</span><span>body { <span class="kw">margin</span>: 0; <span class="kw">background</span>: <span class="str">#0f2a3a</span> }</span></div>
+            <div><span class="ln">2</span><span>b { <span class="kw">position</span>: fixed; <span class="kw">inset</span>: 75px 0 0 108px; <span class="kw">width</span>: 150px; <span class="kw">height</span>: 150px;</span></div>
+            <div><span class="ln">3</span><span>    <span class="kw">border-radius</span>: 50%; <span class="kw">background</span>: <span class="str">#2dd4bf</span> }</span></div>
+            <div><span class="ln">4</span><span>i { <span class="kw">position</span>: fixed; ... <span class="kw">rotate</span>: 40deg }</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte vergleich">
+        <div class="wertung-leiste">
+          <div class="ring" style="--wert: 96.4"><span>96,4</span></div>
+          <div class="wertung-text"><b>Fast deckungsgleich</b><span>noch 3,6 % Abweichung</span></div>
+          <div class="wert-kachel"><span class="num">64</span><small>Zeichen</small></div>
+          <div class="wert-kachel"><span class="num" style="color:var(--fg-dim)">52</span><small>Bestwert</small></div>
+        </div>
+        <div class="vergleich-kopf">
+          <button class="knopf-klein aktiv" data-modus="getrennt">Getrennt</button>
+          <button class="knopf-klein" data-modus="blenden">Überblenden</button>
+          <button class="knopf-klein" data-modus="abweichung">Abweichung</button>
+          <span class="zoom"><i class="fa-solid fa-magnifying-glass"></i><span class="num" id="zoomwert">100 %</span><button class="knopf-klein" id="zoom-zurueck">1:1</button></span>
+        </div>
+        <div class="buehne-rahmen">
+          <div class="buehne-titel"><span>Ziel</span><span>400 × 300</span></div>
+          <div class="buehne"><div class="flaeche"><div class="motiv"></div></div></div>
+        </div>
+        <div class="buehne-rahmen">
+          <div class="buehne-titel"><span id="unten-titel">Deine Lösung</span><span>Mausrad zoomt beide</span></div>
+          <div class="buehne" id="unten">
+            <div class="flaeche">
+              <div class="ebene" id="e-ziel" hidden><div class="motiv"></div></div>
+              <div class="ebene" id="e-eigen"><div class="motiv eigen"></div></div>
+            </div>
+            <div class="schnittlinie" id="schnitt" hidden></div>
+          </div>
+          <input class="regler" id="regler" type="range" min="0" max="100" value="50" hidden>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  // Vergleichsmodi und gemeinsamer Zoom (nur Entwurf)
+  const vergleich = document.querySelector('.vergleich');
+  const unten = document.getElementById('unten');
+  const eZiel = document.getElementById('e-ziel');
+  const eEigen = document.getElementById('e-eigen');
+  const schnitt = document.getElementById('schnitt');
+  const regler = document.getElementById('regler');
+  const titel = document.getElementById('unten-titel');
+  function modus(m) {
+    document.querySelectorAll('[data-modus]').forEach((b) => b.classList.toggle('aktiv', b.dataset.modus === m));
+    eZiel.hidden = m === 'getrennt';
+    eEigen.classList.toggle('oben', m === 'blenden');
+    eEigen.classList.toggle('diff', m === 'abweichung');
+    schnitt.hidden = regler.hidden = m !== 'blenden';
+    titel.textContent = { getrennt: 'Deine Lösung', blenden: 'Ziel | Deine Lösung', abweichung: 'Abweichung (hell = verschieden)' }[m];
+  }
+  document.querySelectorAll('[data-modus]').forEach((b) => b.addEventListener('click', () => modus(b.dataset.modus)));
+  regler.addEventListener('input', () => unten.style.setProperty('--schnitt', regler.value + '%'));
+  let zoom = 1;
+  function setzeZoom(z, ox, oy) {
+    zoom = Math.min(8, Math.max(1, z));
+    vergleich.style.setProperty('--zoom', zoom);
+    if (ox !== undefined) { vergleich.style.setProperty('--ox', ox + '%'); vergleich.style.setProperty('--oy', oy + '%'); }
+    document.getElementById('zoomwert').textContent = Math.round(zoom * 100) + ' %';
+  }
+  document.querySelectorAll('.buehne').forEach((b) => b.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const r = b.getBoundingClientRect();
+    setzeZoom(zoom * (e.deltaY < 0 ? 1.2 : 1 / 1.2), ((e.clientX - r.left) / r.width) * 100, ((e.clientY - r.top) / r.height) * 100);
+  }, { passive: false }));
+  document.getElementById('zoom-zurueck').addEventListener('click', () => setzeZoom(1, 50, 50));
+</script>
+</body>
+</html>

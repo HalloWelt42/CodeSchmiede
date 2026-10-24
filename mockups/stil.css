@@ -249,3 +249,43 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .mock-leiste { position: fixed; right: 10px; bottom: 34px; z-index: 50; display: flex; gap: 6px; padding: 6px; background: var(--bg-elev); border: 1px solid var(--border-strong); font-size: 12px; }
 .mock-leiste a, .mock-leiste button { border: 1px solid var(--border); background: transparent; color: var(--fg-dim); padding: 3px 8px; cursor: pointer; text-decoration: none; }
 .telefon ~ .mock-leiste { bottom: 64px; }
+
+/* ----- CSS-Aufgabe: links Aufgabe, Mitte Editor, rechts Ziel über eigenem Ergebnis ----- */
+.css-seite { flex: 1; min-height: 0; display: grid; grid-template-columns: 290px minmax(0, 1fr) 400px; }
+.css-seite > .spalte + .spalte { border-left: 1px solid var(--border); }
+.vergleich { display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-2) var(--sp-3) var(--sp-3); background: var(--bg); min-height: 0; overflow-y: auto; overflow-x: clip; }
+.vergleich-kopf { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.vergleich-kopf .zoom { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: var(--fs-xs); color: var(--fg-dim); }
+.vergleich-kopf .zoom .num { color: var(--fg); min-width: 44px; text-align: right; font-weight: 600; }
+.buehne-rahmen { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.buehne-rahmen .regler { margin-top: 2px; }
+.buehne-titel { display: flex; justify-content: space-between; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .06em; color: var(--fg-dim); }
+.buehne { position: relative; height: calc((100vh - 340px) / 2); max-width: 100%; aspect-ratio: 4 / 3; align-self: center; overflow: hidden; border: 1px solid var(--border); background: repeating-conic-gradient(#20242b 0 25%, #1c2026 0 50%) 0 0 / 16px 16px; cursor: zoom-in; }
+.buehne .flaeche { position: absolute; inset: 0; transform-origin: var(--ox, 50%) var(--oy, 50%); transform: scale(var(--zoom, 1)); }
+.buehne .ebene { position: absolute; inset: 0; }
+.buehne .ebene.oben { clip-path: inset(0 0 0 var(--schnitt, 50%)); }
+.buehne .ebene.diff { mix-blend-mode: difference; }
+.buehne .schnittlinie { position: absolute; top: 0; bottom: 0; left: var(--schnitt, 50%); width: 2px; background: var(--accent); }
+.knopf-klein { height: 26px; padding: 0 var(--sp-2); border: 1px solid var(--border); border-radius: var(--radius-sm); background: transparent; color: var(--fg-dim); font-size: var(--fs-xs); cursor: pointer; white-space: nowrap; }
+.knopf-klein.aktiv { color: var(--accent); border-color: var(--accent); }
+.regler { width: 100%; accent-color: var(--accent); }
+.wertung-leiste { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: var(--sp-3); padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border); background: var(--bg-card); }
+.ring { position: relative; width: 64px; height: 64px; border-radius: 50%; background: conic-gradient(var(--accent) calc(var(--wert) * 1%), var(--bg-card-2) 0); display: grid; place-items: center; }
+.ring::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: var(--bg-card); }
+.ring span { position: relative; font-family: var(--num); font-weight: 700; font-size: 15px; }
+.wertung-text { min-width: 0; font-size: var(--fs-sm); line-height: 1.3; }
+.wertung-text b { display: block; font-size: var(--fs-md); }
+.wertung-text span { color: var(--fg-dim); }
+.wert-kachel { text-align: right; }
+.wert-kachel .num { display: block; font-size: var(--fs-lg); }
+.wert-kachel small { font-size: var(--fs-xs); color: var(--fg-dim); text-transform: uppercase; letter-spacing: .05em; }
+.reiter-klein { display: flex; border-bottom: 1px solid var(--border); flex: none; }
+.reiter-klein button { flex: 1; height: 34px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--fg-dim); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .05em; cursor: pointer; }
+.reiter-klein button.aktiv { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Zielbild der Beispielaufgabe (zwei Formen auf dunklem Grund) */
+.motiv { position: absolute; inset: 0; background: #0f2a3a; }
+.motiv::before { content: ""; position: absolute; left: 25%; top: 25%; width: 37.5%; height: 50%; border-radius: 50%; background: #2dd4bf; }
+.motiv::after { content: ""; position: absolute; left: 50%; top: 36%; width: 27.5%; height: 36.7%; background: #f59e0b; transform: rotate(45deg); }
+.motiv.eigen::before { left: 27%; }
+.motiv.eigen::after { transform: rotate(40deg); top: 37%; }
