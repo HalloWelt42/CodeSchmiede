@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 183-bingo-karte
-revision: 1
+revision: 2
 titel: Bingo-Karte prüfen
 sprache: python
 task_type: code_schreiben
@@ -60,8 +60,8 @@ starter_code: |
 
 # Bingo-Karte prüfen
 
-Beim Bingo erhaelt jeder Spieler eine **5x5-Karte** mit Zahlen.
-Es werden Zahlen gezogen, und der erste, der eine **vollstaendige
+Beim Bingo erhält jeder Spieler eine **5x5-Karte** mit Zahlen.
+Es werden Zahlen gezogen, und der erste, der eine **vollständige
 Reihe** (Zeile, Spalte oder eine der zwei Diagonalen) hat, ruft
 "Bingo!".
 
@@ -87,8 +87,8 @@ Karte:
 | `[5,9,13,17,21]`       | `True` (Nebendiag.) |
 | `[1,3,5,7,11]`         | `False`             |
 
-## Variante -- Zählen, nach wievielen Zuegen "Bingo" eintritt
+## Variante - Zählen, nach wievielen Zügen "Bingo" eintritt
 
-Iteriere durch `gezogen`, fuelle laufend `g`, und liefere den Index
+Iteriere durch `gezogen`, fülle laufend `g`, und liefere den Index
 zurück, bei dem zum ersten Mal `hat_bingo` `True` wird. Klassische
 Erweiterung für **Advent of Code 2021, Tag 4**.

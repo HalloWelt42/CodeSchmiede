@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 014-quiz-modulo
-revision: 1
+revision: 2
 titel: Was gibt der Modulo-Code aus?
 sprache: python
 task_type: output_quiz
@@ -36,7 +36,7 @@ quiz:
 
 Lies den Code aufmerksam und wähle die korrekte Ausgabe.
 
-Diese Aufgabe trainiert deinen **Blick fürs Code-Lesen** -- ohne Editor,
+Diese Aufgabe trainiert deinen **Blick fürs Code-Lesen** - ohne Editor,
 ohne Tipp-Arbeit. Schaffst du es, die Schleife im Kopf laufen zu lassen?
 
 ## Hinweise

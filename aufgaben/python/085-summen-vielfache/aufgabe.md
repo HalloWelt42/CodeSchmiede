@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 085-summen-vielfache
-revision: 1
+revision: 2
 titel: Summe der Vielfachen
 sprache: python
 task_type: code_schreiben
@@ -9,11 +9,11 @@ runner_type: docker_python
 schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
-tags: [zahlen, schleifen, sets, project-euler]
+tags: [zahlen, schleifen, sets, zahlenrätsel]
 voraussetzungen: []
 quelle:
   url: https://projecteuler.net/problem=1
-  notiz: Variante von Project Euler 1, eigene Formulierung
+  notiz: Variante eines bekannten Zahlenrätsels, eigene Formulierung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -69,13 +69,13 @@ Vielfaches **mindestens eines** der Teiler sind.
 |-------|----------|----------|-----------------------------|
 | `10`  | `[3, 5]` | `23`     | 3+5+6+9 = 23                |
 | `100` | `[3, 5]` | `2318`   |                             |
-| `1000`| `[3, 5]` | `233168` | (Project-Euler-Antwort)     |
+| `1000`| `[3, 5]` | `233168` | (bekannte Rätselantwort)     |
 | `4`   | `[3]`    | `3`      | nur die 3                   |
 | `1`   | `[3, 5]` | `0`      | keine Zahl < 1              |
 
 ## Hintergrund
 
-Project Euler Problem 1 fragt nach der Summe aller Vielfachen von 3
+Ein bekanntes Zahlenrätsel fragt nach der Summe aller Vielfachen von 3
 oder 5 unter 1000. Diese Aufgabe verallgemeinert das auf beliebige
 Teiler-Listen.
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 284-zaehler-ops
-revision: 1
+revision: 2
 titel: Zähler mit Operations-Liste
 sprache: python
 task_type: code_schreiben
@@ -63,7 +63,7 @@ starter_code: |
 
 # Zähler mit Operations-Liste
 
-Implementiere `zähler_lauf(operationen)` -- ein Zähler startet bei
+Implementiere `zähler_lauf(operationen)` - ein Zähler startet bei
 **0**, eine Liste von Operationen wird nacheinander angewendet, und
 nach **jeder** Operation wird der aktuelle Wert in die Ausgabe-Liste
 geschrieben.
@@ -87,11 +87,11 @@ Bei leerer Liste → `[]`.
 | `["inc","double","double","double","double"]` | `[1,2,4,8,16]` |
 | `["double"]`                             | `[0]` (0×2 = 0) |
 
-## Stilfrage -- Dispatch per Methode
+## Stilfrage - Dispatch per Methode
 
 Statt `if/elif`-Kette könnte man jede Op als eigene Methode
 implementieren und per `getattr(z, op)()` aufrufen. Das ist
-elegant -- aber **gefaehrlich**, wenn die Op-Strings von Nutzern
+elegant - aber **gefährlich**, wenn die Op-Strings von Nutzern
 kommen (Method-Injection).
 
 Sicher und kurz: explizites Dispatch-Dict:

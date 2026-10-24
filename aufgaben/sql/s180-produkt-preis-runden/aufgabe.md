@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s180-produkt-preis-runden
-revision: 1
+revision: 2
 titel: "Shop: Preise auf 0.10 abrunden"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [math, round]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

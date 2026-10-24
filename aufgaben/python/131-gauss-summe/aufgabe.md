@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 131-gauss-summe
-revision: 1
-titel: Gauss-Summe
+revision: 2
+titel: Gauß-Summe
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -22,12 +22,12 @@ funktion: gauss_summe
 hints:
   - kosten: 0
     text: |
-      Summe 1+2+...+n. Mit Gauss-Formel: n*(n+1)/2.
+      Summe 1+2+...+n. Mit Gauß-Formel: n*(n+1)/2.
       Bei n < 1 → 0.
   - kosten: 5
     text: |
       Verboten wäre `sum(range(1, n+1))`. Ist nicht verboten,
-      aber die Formel ist O(1) statt O(n) -- der ganze Witz.
+      aber die Formel ist O(1) statt O(n) - der ganze Witz.
 tests_sichtbar:
   - input: [1]
     expected: 1
@@ -54,7 +54,7 @@ starter_code: |
       pass
 ---
 
-# Gauss-Summe
+# Gauß-Summe
 
 Schreibe eine Funktion `gauss_summe(n)`, die die Summe der ersten
 `n` natürlichen Zahlen zurückgibt.
@@ -80,10 +80,10 @@ $$
 
 ## Hintergrund
 
-Die Anekdote: der 9-jährige Carl Friedrich Gauss soll in der
+Die Anekdote: der 9-jährige Carl Friedrich Gauß soll in der
 Volksschule die Aufgabe bekommen haben, alle Zahlen von 1 bis 100 zu
 summieren. Wo seine Mitschüler stundenlang rechneten, lieferte
-Gauss in Sekunden 5050 ab -- mit der Formel.
+Gauß in Sekunden 5050 ab - mit der Formel.
 
 Ob die Geschichte stimmt, ist umstritten. Die Formel selbst ist
 klar: $1 + 2 + \ldots + n = n(n+1)/2$.

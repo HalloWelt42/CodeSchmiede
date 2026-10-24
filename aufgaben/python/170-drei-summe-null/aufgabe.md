@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 170-drei-summe-null
-revision: 1
+revision: 2
 titel: Drei-Summe gleich Null
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [listen, two-pointers, sortieren, algorithmen]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: LeetCode 15 -- 3Sum
+  notiz: 3Sum, klassische Übungsaufgabe
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Liefere alle eindeutigen Tripel [a, b, c] (a <= b <= c) aus der
-      Liste, deren Summe 0 ist. Aussere Liste sortiert.
+      Liste, deren Summe 0 ist. Äußere Liste sortiert.
       Doppelte Werte überspringen.
   - kosten: 25
     text: |
@@ -62,9 +62,9 @@ starter_code: |
 
 Schreibe eine Funktion `drei_summe(zahlen)`, die **alle eindeutigen
 Tripel** `[a, b, c]` mit `a <= b <= c` aus der Liste liefert, deren
-Summe `0` ist. Doppelte Tripel werden nur einmal aufgefuehrt.
+Summe `0` ist. Doppelte Tripel werden nur einmal aufgeführt.
 
-Aussere Liste **lexikographisch sortiert**.
+Äußere Liste **lexikographisch sortiert**.
 
 ## Beispiele
 
@@ -72,12 +72,12 @@ Aussere Liste **lexikographisch sortiert**.
 |-------------------------------|----------------------------------------|
 | `[-1, 0, 1, 2, -1, -4]`       | `[[-1, -1, 2], [-1, 0, 1]]`            |
 | `[0, 0, 0, 0]`                | `[[0, 0, 0]]`                          |
-| `[1, 2, 3]`                   | `[]` (keins moeglich)                  |
+| `[1, 2, 3]`                   | `[]` (keins möglich)                  |
 | `[-1, -1, -1]`                | `[]`                                   |
 
-## Idee -- Sortieren + Two Pointers
+## Idee - Sortieren + Two Pointers
 
-Ohne Sortierung ist Brute-Force `O(n^3)` -- zu langsam für große `n`.
+Ohne Sortierung ist Brute-Force `O(n^3)` - zu langsam für große `n`.
 Mit Sortierung kann man für jedes festgesetzte `a` die übrigen zwei
 Werte mit Two-Pointers in `O(n)` finden → insgesamt `O(n^2)`.
 
@@ -90,6 +90,6 @@ Werte mit Two-Pointers in `O(n)` finden → insgesamt `O(n^2)`.
 
 ## Hintergrund
 
-3-Sum ist die Aufwaerm-Form des allgemeinen **k-Sum**-Problems.
-Erwartete Komplexitaet `O(n^{k-1})`. Für 4-Sum nimmt man zwei
+3-Sum ist die Aufwärm-Form des allgemeinen **k-Sum**-Problems.
+Erwartete Komplexität `O(n^{k-1})`. Für 4-Sum nimmt man zwei
 Schleifen + Two-Pointers, für höhere `k` rekursive Reduktion.

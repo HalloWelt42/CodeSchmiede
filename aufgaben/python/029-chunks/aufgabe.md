@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 029-chunks
-revision: 1
+revision: 2
 titel: Liste in n-große Stücke teilen
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [listen, slicing, schleifen]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null
-  notiz: Klassische Aufgabe -- Slicing mit Schrittweite.
+  notiz: Klassische Aufgabe - Slicing mit Schrittweite.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -32,7 +32,7 @@ hints:
       return [liste[i:i+n] for i in range(0, len(liste), n)]
       ```
 
-      Kein Padding -- der letzte Block kann kürzer sein.
+      Kein Padding - der letzte Block kann kürzer sein.
 tests_sichtbar:
   - input: [[1, 2, 3, 4, 5], 2]
     expected: [[1, 2], [3, 4], [5]]
@@ -58,8 +58,8 @@ starter_code: |
 # Liste in n-große Stücke teilen
 
 Schreibe eine Funktion `chunks(liste, n)`, die die Liste in
-**zusammenhängende Bloecke** der Größe `n` zerlegt. Der letzte
-Block darf kürzer sein, falls die Laenge nicht aufgeht.
+**zusammenhängende Blöcke** der Größe `n` zerlegt. Der letzte
+Block darf kürzer sein, falls die Länge nicht aufgeht.
 
 ## Beispiele
 
@@ -78,6 +78,6 @@ Schritt liefert `liste[i:i+n]` den nächsten Block.
 
 ## Wo das nützlich ist
 
-Pagination, Batch-Processing, Tabellen mit fester Zeilenzahl --
+Pagination, Batch-Processing, Tabellen mit fester Zeilenzahl -
 "chunked" Iteration ist eines der häufigsten Pattern in
 Daten-Pipelines.

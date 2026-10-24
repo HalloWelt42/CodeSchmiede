@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 070-bug-summe
-revision: 1
-titel: Bug -- Summe einer Liste
+revision: 2
+titel: Bug - Summe einer Liste
 sprache: python
 task_type: bug_finden
 runner_type: docker_python
@@ -50,10 +50,10 @@ starter_code: |
       return ergebnis
 ---
 
-# Bug -- Summe einer Liste
+# Bug - Summe einer Liste
 
 Diese Funktion soll die Summe aller Zahlen in der Liste zurückgeben.
-Sie laesst aber **immer das letzte Element weg**. Finde den Fehler!
+Sie lässt aber **immer das letzte Element weg**. Finde den Fehler!
 
 ## Was schief geht
 

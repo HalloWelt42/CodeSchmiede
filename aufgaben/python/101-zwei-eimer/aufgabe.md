@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 101-zwei-eimer
-revision: 1
+revision: 2
 titel: Zwei-Eimer-Problem
 sprache: python
 task_type: code_schreiben
@@ -22,10 +22,10 @@ funktion: zwei_eimer
 hints:
   - kosten: 0
     text: |
-      Zwei Eimer mit Faessungen `a` und `b`. Du startest mit dem
-      Eimer (`'a'` oder `'b'`), der voll gefuellt wird. Danach erlaubt:
+      Zwei Eimer mit Fassungsvermögen `a` und `b`. Du startest mit dem
+      Eimer (`'a'` oder `'b'`), der voll gefüllt wird. Danach erlaubt:
       - leere einen Eimer
-      - fuelle einen Eimer
+      - fülle einen Eimer
       - kippe Wasser von einem in den anderen, bis der eine voll oder
         der andere leer ist
       Finde die minimale Zugzahl, um genau `ziel` Liter in einem Eimer
@@ -66,27 +66,27 @@ starter_code: |
 
 # Zwei-Eimer-Problem
 
-Klassisches Logik-Raetsel: Du hast zwei Eimer mit den Fassungen `a`
+Klassisches Logik-Rätsel: Du hast zwei Eimer mit den Fassungen `a`
 und `b` Liter. Du sollst genau `ziel` Liter in einem der Eimer
 haben.
 
-Erlaubte Zuege:
-- **Fuelle** einen Eimer komplett
+Erlaubte Züge:
+- **Fülle** einen Eimer komplett
 - **Leere** einen Eimer komplett
 - **Kippe** Wasser von einem in den anderen, bis entweder der
   Quell-Eimer leer oder der Ziel-Eimer voll ist
 
 Zähle die **minimale Zugzahl**. Der erste Zug ist immer das
-Fuellen des Start-Eimers (`'a'` oder `'b'`).
+Füllen des Start-Eimers (`'a'` oder `'b'`).
 
-**Verboten**: der **gespiegelte Anfangszustand** -- wenn du mit
+**Verboten**: der **gespiegelte Anfangszustand** - wenn du mit
 `'a'` startest und damit `(a, 0)` hast, darfst du niemals den
 Zustand `(0, b)` direkt erreichen.
 
 ## Antwortformat
 
 Liste `[zugzahl, gewinner_eimer, inhalt_anderer]` oder `[]` wenn
-unloesbar.
+unlösbar.
 
 ## Beispiele
 
@@ -95,7 +95,7 @@ unloesbar.
 | 3 | 5 | 1    | `'a'` | `[4, 'a', 5]`       |
 | 3 | 5 | 1    | `'b'` | `[8, 'b', 3]`       |
 | 7 | 11| 2    | `'a'` | `[14, 'a', 11]`     |
-| 2 | 3 | 4    | `'a'` | `[]` (unloesbar)    |
+| 2 | 3 | 4    | `'a'` | `[]` (unlösbar)    |
 | 1 | 3 | 3    | `'b'` | `[1, 'b', 0]`       |
 
 ## Hintergrund

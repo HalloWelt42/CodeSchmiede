@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s178-autoren-mehr-als-100-seiten
-revision: 1
+revision: 2
 titel: "Autoren mit Durchschnitt > 200 Seiten"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [join, group-by, having, avg]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

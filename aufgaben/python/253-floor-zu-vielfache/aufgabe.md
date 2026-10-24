@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 253-floor-zu-vielfache
-revision: 1
+revision: 2
 titel: Abrunden zum nächsten Vielfachen von k
 sprache: python
 task_type: code_schreiben
@@ -28,7 +28,7 @@ hints:
       Negative n: -13 mit k=5 → -15.
   - kosten: 8
     text: |
-      n // k * k -- Pythons // ist Floor-Division (rundet abwärts).
+      n // k * k - Pythons // ist Floor-Division (rundet abwärts).
 tests_sichtbar:
   - input: [13, 5]
     expected: 10
@@ -101,7 +101,7 @@ C würde `-10` liefern.
 
 | Aufgabe                  | Was?                          |
 |--------------------------|-------------------------------|
-| **247-runden-zu-vielfache** | Naechstes Vielfache (round)|
+| **247-runden-zu-vielfache** | Nächstes Vielfache (round)|
 | **252-ceil-zu-vielfache**| Aufrunden (ceil)              |
 | **253 hier**             | Abrunden (floor)              |
 

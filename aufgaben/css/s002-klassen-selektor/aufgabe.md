@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s002-klassen-selektor
-revision: 1
-titel: "Grundlagen 02: Nur die markierten Notizen faerben (Klasse)"
+revision: 2
+titel: "Grundlagen 02: Nur die markierten Notizen färben (Klasse)"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [grundlagen, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -37,7 +37,7 @@ hints:
   - kosten: 0
     text: |
       CSS wählt Elemente per **Selektor** und gibt ihnen Eigenschaften.
-      Welcher Selektor zählt, regeln Spezifizitaet und Quellreihenfolge.
+      Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
       `.wichtig { color: rgb(251, 146, 60); }`
@@ -54,7 +54,7 @@ Nur die `<p>`-Elemente mit Klasse 'wichtig' sollen orange werden
 ## Aha
 
 Der **Klassen-Selektor** beginnt mit einem Punkt: `.wichtig`.
-Eine Klasse kann an beliebig vielen Elementen hängen -- so kannst du
+Eine Klasse kann an beliebig vielen Elementen hängen - so kannst du
 Stile gezielt nur dort anwenden, wo du sie brauchst.
 
 ## Wozu in der Praxis?

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: g004-grid-luecken
-revision: 1
-titel: "Grid 04: Lücken zwischen Kacheln -- gap"
+revision: 2
+titel: "Grid 04: Lücken zwischen Kacheln - gap"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [grid, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -45,7 +45,7 @@ hints:
     text: |
       CSS-Grid ist 2-dimensional (Zeilen UND Spalten gleichzeitig).
       Im Gegensatz zu Flexbox musst du dem Container das Raster-Muster
-      vorgeben -- erst dann wissen die Zellen, wohin sie gehören.
+      vorgeben - erst dann wissen die Zellen, wohin sie gehören.
   - kosten: 3
     text: |
       `gap: 12px;`
@@ -81,11 +81,11 @@ Schreibe die fehlende(n) Grid-Anweisung(en) in `.setzkasten`.
 
 `gap` setzt sowohl horizontale als auch vertikale Lücken in einem.
 Mit zwei Werten (`gap: 8px 12px`) trennst du vertikal/horizontal.
-Wichtig: gap wirkt NUR zwischen Zellen -- nicht am Rand. Aussenrand
+Wichtig: gap wirkt NUR zwischen Zellen - nicht am Rand. Außenrand
 übernimmt weiterhin `padding` am Container.
 
 ## Wozu in der Praxis?
 
-Galerien, Card-Grids, Dashboard-Kacheln -- überall wo gleichmaessige
-Abstaende ohne mathematische Magie gewuenscht sind. Vor `gap` musste
-man mit negativen Margins jonglieren -- jetzt ist es eine Zeile.
+Galerien, Card-Grids, Dashboard-Kacheln - überall wo gleichmäßige
+Abstände ohne mathematische Magie gewünscht sind. Vor `gap` musste
+man mit negativen Margins jonglieren - jetzt ist es eine Zeile.

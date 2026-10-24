@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s006-adjacent-selektor
-revision: 1
+revision: 2
 titel: "Grundlagen 06: Direkter Nachbar (+)"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [grundlagen, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -38,7 +38,7 @@ hints:
   - kosten: 0
     text: |
       CSS wählt Elemente per **Selektor** und gibt ihnen Eigenschaften.
-      Welcher Selektor zählt, regeln Spezifizitaet und Quellreihenfolge.
+      Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
       `h2 + p { font-size: 18px; font-style: italic; }`
@@ -56,7 +56,7 @@ Nur ein `<p>` direkt NACH einem `<h2>` soll Einleitungs-Stil bekommen (größer,
 
 Der **Adjacent-Sibling-Selektor** `+` wählt nur das **direkt folgende**
 Geschwister-Element vom selben Eltern. Hier: das `<p>`, das exakt nach
-einem `<h2>` kommt -- nicht das übernächste.
+einem `<h2>` kommt - nicht das übernächste.
 
 ## Wozu in der Praxis?
 

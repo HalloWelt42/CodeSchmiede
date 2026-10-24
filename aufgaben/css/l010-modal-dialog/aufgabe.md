@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l010-modal-dialog
-revision: 1
+revision: 2
 titel: "Layout 10: Modal-Dialog mit Backdrop"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [layout, lernpfad, modal, flexbox]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -119,9 +119,9 @@ starter_code: |
 
 ## Aufgabe
 
-Klassischer Bestaetigungs-Dialog: halbtransparenter Backdrop überlagert
+Klassischer Bestätigungs-Dialog: halbtransparenter Backdrop überlagert
 die Seite, der Dialog sitzt mittig mit Schatten. Action-Buttons stehen
-unten rechts -- die destruktive Action ist rot hervorgehoben.
+unten rechts - die destruktive Action ist rot hervorgehoben.
 
 ## Aha
 
@@ -131,10 +131,10 @@ flex mit justify-content: flex-end. Jedes Mal trifft Flex die jeweils
 passende Stelle.
 
 rgba mit Alpha unter 1 ergibt Transparenz. 0.6 ist
-der typische Wert für Modal-Backdrops -- hell genug um zu erkennen
+der typische Wert für Modal-Backdrops - hell genug um zu erkennen
 dass etwas dahinter liegt, dunkel genug damit der Dialog im Fokus steht.
 
 ## Wozu in der Praxis?
 
-Lösch-Bestaetigung, Login-Modal, Image-Lightbox,
-Konfigurations-Dialog -- ein universelles Pattern.
+Lösch-Bestätigung, Login-Modal, Image-Lightbox,
+Konfigurations-Dialog - ein universelles Pattern.

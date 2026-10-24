@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s117-shop-status-zaehler-zeile
-revision: 1
+revision: 2
 titel: "Shop: Anzahl Bestellungen + Anteil offen"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 7
 tags: [case, sum, prozent]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

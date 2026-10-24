@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 120-trennzeichen-akronym
-revision: 1
+revision: 2
 titel: Akronym mit gemischten Trennzeichen
 sprache: python
 task_type: code_schreiben
@@ -24,7 +24,7 @@ hints:
     text: |
       Wörter werden durch Whitespace, Bindestrich und Unterstrich
       getrennt. Pro Wort ersten Buchstaben in Großschreibung.
-      camelCase wird auch aufgespalten -- jedes Großbuchstaben-Vorkommen
+      camelCase wird auch aufgespalten - jedes Großbuchstaben-Vorkommen
       mitten im Wort startet ein neues Wort.
   - kosten: 8
     text: |
@@ -62,7 +62,7 @@ starter_code: |
 # Akronym mit gemischten Trennzeichen
 
 Schreibe eine Funktion `akronym_plus(text)`, die ein Akronym aus
-einem Text bildet -- erweitert um mehr Trennzeichen als
+einem Text bildet - erweitert um mehr Trennzeichen als
 [Aufgabe 036](036-acronym).
 
 ## Trennzeichen
@@ -87,5 +87,5 @@ einem Text bildet -- erweitert um mehr Trennzeichen als
 ## Hintergrund
 
 Variante des klassischen Akronym-Problems. Die camelCase-Erweiterung
-macht es zur typischen Tooling-Aufgabe -- Linter und Code-Generatoren
+macht es zur typischen Tooling-Aufgabe - Linter und Code-Generatoren
 brauchen genau diese Logik.

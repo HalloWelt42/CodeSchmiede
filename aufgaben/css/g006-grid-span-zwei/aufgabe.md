@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: g006-grid-span-zwei
-revision: 1
-titel: "Grid 06: Eine Kachel über zwei Spalten -- span 2"
+revision: 2
+titel: "Grid 06: Eine Kachel über zwei Spalten - span 2"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [grid, lernpfad, grid-column, span]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

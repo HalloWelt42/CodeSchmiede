@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 231-alle-positiv
-revision: 1
+revision: 2
 titel: Alle Zahlen positiv?
 sprache: python
 task_type: code_schreiben
@@ -79,14 +79,14 @@ Leere Liste → `True` (vacuous truth).
 
 ## Idee
 
-Pythons `all` liefert `True` bei leerem Iterable -- vacuous truth.
+Pythons `all` liefert `True` bei leerem Iterable - vacuous truth.
 Bei nicht-leerem Iterable: `True` genau dann, wenn jedes Element
 **truthy** ist. Mit dem Generator-Ausdruck prüfen wir die
 Bedingung.
 
 ## Short-Circuit
 
-`all` bricht beim **ersten False** ab -- bei `[1, 2, -1, 3, 4, 5, 6]`
+`all` bricht beim **ersten False** ab - bei `[1, 2, -1, 3, 4, 5, 6]`
 wird nach `-1 > 0 → False` sofort zurückgegeben. Effizient bei
 langen Listen mit frühem Treffer.
 

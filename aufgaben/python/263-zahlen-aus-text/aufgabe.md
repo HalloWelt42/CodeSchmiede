@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 263-zahlen-aus-text
-revision: 1
+revision: 2
 titel: Alle Ganzzahlen aus Text extrahieren
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: zahlen_extrahieren
 hints:
   - kosten: 0
     text: |
-      Extrahiere alle GANZZAHLEN aus dem Text -- inkl. negative.
+      Extrahiere alle GANZZAHLEN aus dem Text - inkl. negative.
       "abc 123 def -45" → [123, -45].
       Reihenfolge wie im Text.
       Bei keiner Zahl → [].
@@ -62,7 +62,7 @@ starter_code: |
 # Alle Ganzzahlen aus Text extrahieren
 
 Schreibe `zahlen_extrahieren(text)`, die alle **Ganzzahlen** aus
-einem Text extrahiert -- inklusive negativer.
+einem Text extrahiert - inklusive negativer.
 
 Reihenfolge wie im Text. Bei keiner Zahl → `[]`.
 
@@ -82,15 +82,15 @@ Vorzeichen einleitet.
 | `"Score: -10 vs +5"`       | `[-10, 5]`           |
 | `"keine Zahlen hier"`      | `[]`                 |
 
-## Idee -- Regex
+## Idee - Regex
 
 `-?\d+` matcht eine optionale `-` gefolgt von einer oder mehreren
 Ziffern. `re.findall` liefert alle Treffer als Liste von Strings,
 die wir mit `int(...)` konvertieren.
 
-## Stolperstein -- Vorzeichen
+## Stolperstein - Vorzeichen
 
-Im Test `"Score: -10 vs +5"` extrahieren wir `[-10, 5]` -- das `+`
+Im Test `"Score: -10 vs +5"` extrahieren wir `[-10, 5]` - das `+`
 wird **nicht** mitgenommen, weil `re.findall(r"-?\d+", ...)` nur
 das `-` als Teil der Zahl erkennt. Wer auch `+` mitnehmen will:
 

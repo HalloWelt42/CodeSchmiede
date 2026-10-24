@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 346-js-url-encode
-revision: 1
-titel: JavaScript -- URL-Prozent-Codierung
+revision: 2
+titel: JavaScript - URL-Prozent-Codierung
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, strings, codierung, url, web]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/URL_encoding
-  notiz: Rosetta Code -- URL encoding, JS
+  notiz: Rosetta Code - URL encoding, JS
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -24,7 +24,7 @@ hints:
     text: |
       URL-Encoding nach RFC 3986. Unreserviert (A-Z a-z 0-9 - _ . ~)
       bleibt, der Rest wird %XX (Hex groß).
-      Tipp: encodeURIComponent + Workaround für ! * ' ( ) -- die werden
+      Tipp: encodeURIComponent + Workaround für ! * ' ( ) - die werden
       nicht codiert vom Builtin, RFC 3986 will sie aber codiert.
   - kosten: 8
     text: |
@@ -44,7 +44,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- URL-Prozent-Codierung
+# JavaScript - URL-Prozent-Codierung
 
 Schreibe `urlEncode(s)`, die einen String nach **RFC 3986** URL-
 codiert.
@@ -62,25 +62,25 @@ Regel:
 | `"abc-_.~"`    | `"abc-_.~"`        |
 | `""`           | `""`               |
 
-## Idee -- encodeURIComponent + Korrektur
+## Idee - encodeURIComponent + Korrektur
 
-`encodeURIComponent` macht 95 % der Arbeit -- aber **lasst die
+`encodeURIComponent` macht 95 % der Arbeit - aber **lasst die
 Zeichen `! * ' ( )` unbehandelt**. RFC 3986 will sie aber codiert.
 Daher der `replace`-Nachsatz.
 
-## Stolperstein -- encodeURI vs encodeURIComponent
+## Stolperstein - encodeURI vs encodeURIComponent
 
 | Funktion             | Unbehandelt                  |
 |----------------------|------------------------------|
 | `encodeURI`          | `; / ? : @ & = + $ , #` (URI-Sonderzeichen) |
 | `encodeURIComponent` | nur `A-Z a-z 0-9 - _ . ! ~ * ' ( )` |
 
-`encodeURI` ist für GANZE URLs (laesst Sonderzeichen drin),
-`encodeURIComponent` für **Werte** in URLs (codiert mehr) -- 
+`encodeURI` ist für GANZE URLs (lässt Sonderzeichen drin),
+`encodeURIComponent` für **Werte** in URLs (codiert mehr) - 
 hier richtig.
 
 ## Vergleich mit Python
 
 Python: `urllib.parse.quote(s, safe='')`. Hier wie in JS muss man
-über den Builtin "drüberbessern" -- weil Standards leicht
+über den Builtin "drüberbessern" - weil Standards leicht
 abweichen vom RFC.

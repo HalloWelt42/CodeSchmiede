@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 282-markdown-links
-revision: 1
+revision: 2
 titel: Markdown-Links extrahieren
 sprache: python
 task_type: code_schreiben
@@ -66,7 +66,7 @@ starter_code: |
 # Markdown-Links extrahieren
 
 Schreibe `markdown_links(text)`, die alle Markdown-Links aus einem
-Text extrahiert -- als Liste von `[text, url]`-Paaren.
+Text extrahiert - als Liste von `[text, url]`-Paaren.
 
 Markdown-Link-Syntax: `[Anzeigetext](https://url.example)`.
 
@@ -81,9 +81,9 @@ Markdown-Link-Syntax: `[Anzeigetext](https://url.example)`.
 | `"nur text"`                                     | `[]`                                           |
 | `"nur [text] ohne URL"`                          | `[]`                                           |
 
-## Idee -- zwei Capture-Groups
+## Idee - zwei Capture-Groups
 
-Pattern aufgedroeselt:
+Pattern aufgedröselt:
 
 | Stück       | Bedeutung                                |
 |--------------|-------------------------------------------|
@@ -95,22 +95,22 @@ Pattern aufgedroeselt:
 | `\)`         | literale runde Klammer zu                |
 
 `re.findall` mit **mehreren Capture-Groups** liefert eine Liste
-von **Tupeln** -- jedes Tupel hat so viele Elemente wie es Groups
+von **Tupeln** - jedes Tupel hat so viele Elemente wie es Groups
 gibt. Wir konvertieren Tupel zu Listen.
 
-## Stolperstein -- Negierende Char-Klasse
+## Stolperstein - Negierende Char-Klasse
 
 `[^\]]+` ist die Standardform für "alles außer `]`". Damit greift
-das Pattern nicht über das schließende `]` hinaus -- selbst wenn
+das Pattern nicht über das schließende `]` hinaus - selbst wenn
 in der URL Klammern stehen.
 
 ## Erweiterungen (nicht hier)
 
-- **Optionaler Titel**: `[text](url "title")` -- Markdown erlaubt das.
+- **Optionaler Titel**: `[text](url "title")` - Markdown erlaubt das.
 - **Reference-Links**: `[text][ref]` und separate `[ref]: url`.
-- **Bilder**: `![alt](url)` -- unsere Regex matcht das auch (das `!` ist
+- **Bilder**: `![alt](url)` - unsere Regex matcht das auch (das `!` ist
   außerhalb der Match-Klammern).
 
 Für einen voll-spec-konformen Markdown-Parser nimmt man eher
-`mistune`, `markdown-it-py` oder `python-markdown` -- aber für
+`mistune`, `markdown-it-py` oder `python-markdown` - aber für
 "alle Links extrahieren" ist die Regex perfekt.

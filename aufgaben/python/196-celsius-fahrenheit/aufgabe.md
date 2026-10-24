@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 196-celsius-fahrenheit
-revision: 1
+revision: 2
 titel: Celsius nach Fahrenheit umrechnen
 sprache: python
 task_type: code_schreiben
@@ -58,7 +58,7 @@ starter_code: |
 # Celsius nach Fahrenheit umrechnen
 
 Schreibe `celsius_zu_fahrenheit(c)`, die einen Wert in **Grad Celsius**
-in **Grad Fahrenheit** umrechnet -- gerundet auf eine Nachkommastelle.
+in **Grad Fahrenheit** umrechnet - gerundet auf eine Nachkommastelle.
 
 ## Formel
 
@@ -77,7 +77,7 @@ $$F = C \cdot \frac{9}{5} + 32$$
 
 ## Spezialfall -40
 
-`-40 °C = -40 °F` -- der einzige Wert, bei dem beide Skalen
+`-40 °C = -40 °F` - der einzige Wert, bei dem beide Skalen
 identisch sind. Lösung der Gleichung
 $x = x \cdot \frac{9}{5} + 32$ ergibt $x = -40$.
 
@@ -85,5 +85,5 @@ $x = x \cdot \frac{9}{5} + 32$ ergibt $x = -40$.
 
 Daniel Gabriel Fahrenheit definierte 1724 seine Skala mit `0 °F`
 als kältester von ihm reproduzierbarer Temperatur (Eis-Salz-Mischung)
-und `96 °F` als Koerpertemperatur. Heute gilt sie nur noch in den
+und `96 °F` als Körpertemperatur. Heute gilt sie nur noch in den
 USA, Liberia und Myanmar offiziell.

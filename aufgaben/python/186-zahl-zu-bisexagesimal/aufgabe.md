@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 186-zahl-zu-bisexagesimal
-revision: 1
+revision: 2
 titel: Sekunden in Stunden:Minuten:Sekunden
 sprache: python
 task_type: code_schreiben
@@ -60,8 +60,8 @@ starter_code: |
 # Sekunden in Stunden:Minuten:Sekunden
 
 Schreibe `zeit_format(sekunden)`, die eine **Anzahl Sekunden** in
-das Format `"HH:MM:SS"` umwandelt -- jeder Teil **zweistellig** mit
-fuehrender Null.
+das Format `"HH:MM:SS"` umwandelt - jeder Teil **zweistellig** mit
+führender Null.
 
 Stunden können **größer als 24** sein (kein Tagesüberlauf).
 Bei `sekunden < 0` → `"00:00:00"`.
@@ -80,7 +80,7 @@ Bei `sekunden < 0` → `"00:00:00"`.
 
 ## Idee
 
-Der Format-Specifier `:02` fuellt mit fuehrenden Nullen auf zwei
+Der Format-Specifier `:02` füllt mit führenden Nullen auf zwei
 Stellen auf.
 
 ## Sexagesimal-Zahlsystem
@@ -94,4 +94,4 @@ was Bruchrechnungen ohne Dezimalpunkt erleichtert.
 
 Mit `divmod` könnte man die Berechnung verdichten:
 
-Geschmackssache -- liest sich kompakter, ist aber subtiler.
+Geschmackssache - liest sich kompakter, ist aber subtiler.

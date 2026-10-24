@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 207-skalarprodukt
-revision: 1
+revision: 2
 titel: Skalarprodukt zweier Vektoren
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Berechne das Skalarprodukt: a . b = sum(a_i * b_i).
-      Beide Vektoren müssen gleich lang sein -- sonst 0.
+      Beide Vektoren müssen gleich lang sein - sonst 0.
       Bei [] und [] -> 0.
   - kosten: 7
     text: |
@@ -65,7 +65,7 @@ zurückgibt.
 
 $$\vec{a} \cdot \vec{b} = \sum_{i} a_i \cdot b_i$$
 
-Bei verschiedener Laenge → `0`. Bei `[] [] → 0`.
+Bei verschiedener Länge → `0`. Bei `[] [] → 0`.
 
 ## Beispiele
 

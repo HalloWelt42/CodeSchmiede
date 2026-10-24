@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 086-quadrat-summen-differenz
-revision: 1
+revision: 2
 titel: Differenz Quadrat-Summen
 sprache: python
 task_type: code_schreiben
@@ -9,11 +9,11 @@ runner_type: docker_python
 schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
-tags: [zahlen, summen, formel, project-euler]
+tags: [zahlen, summen, formel, zahlenrätsel]
 voraussetzungen: []
 quelle:
   url: https://projecteuler.net/problem=6
-  notiz: Project Euler 6, eigene Formulierung
+  notiz: Bekanntes Zahlenrätsel, eigene Formulierung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -71,7 +71,7 @@ $$
 
 ## Hintergrund
 
-Project Euler Problem 6. Mit den geschlossenen Formeln
+Ein bekanntes Zahlenrätsel. Mit den geschlossenen Formeln
 
 $$
 \sum_{k=1}^n k = \frac{n(n+1)}{2}, \qquad

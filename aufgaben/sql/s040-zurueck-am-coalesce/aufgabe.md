@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s040-zurueck-am-coalesce
-revision: 1
+revision: 2
 titel: "Rückgabe-Datum oder 'offen'"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [coalesce, null-handling]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

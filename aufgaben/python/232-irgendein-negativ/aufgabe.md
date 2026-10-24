@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 232-irgendein-negativ
-revision: 1
+revision: 2
 titel: Gibt es eine negative Zahl?
 sprache: python
 task_type: code_schreiben
@@ -82,7 +82,7 @@ sobald **eine** Bedingung wahr ist.
 
 ## Short-Circuit
 
-`any` bricht beim **ersten True** ab -- bei `[1, 2, -3, ...]` wird
+`any` bricht beim **ersten True** ab - bei `[1, 2, -3, ...]` wird
 sofort `True` zurückgegeben, ohne den Rest zu prüfen.
 
 ## DeMorgan-Tipp

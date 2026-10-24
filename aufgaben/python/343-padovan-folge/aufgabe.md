@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 343-padovan-folge
-revision: 1
+revision: 2
 titel: Padovan-Folge bis n
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [zahlen, folgen, rekursion, mathematik]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Padovan_sequence
-  notiz: Rosetta Code -- Padovan sequence
+  notiz: Rosetta Code - Padovan sequence
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -28,7 +28,7 @@ hints:
       Erste Glieder: 1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, ...
   - kosten: 10
     text: |
-      Iterativ mit drei Variablen a, b, c -- jede Iteration:
+      Iterativ mit drei Variablen a, b, c - jede Iteration:
       neu = a + b; a, b, c = b, c, neu.
 tests_sichtbar:
   - input: [0]
@@ -79,24 +79,24 @@ Definition:
 | 10  | `[1, 1, 1, 2, 2, 3, 4, 5, 7, 9]`                        |
 | 15  | `[..., 12, 16, 21, 28, 37]`                             |
 
-## Idee -- iterativ mit drei Variablen
+## Idee - iterativ mit drei Variablen
 
-Triviale Indexierung -- `folge[-2]` und `folge[-3]` sind die
+Triviale Indexierung - `folge[-2]` und `folge[-3]` sind die
 beiden vorvorletzten und vorvorvorletzten Werte.
 
 ## Hintergrund
 
 Die Padovan-Folge ist nach dem britischen Architekten **Richard
 Padovan** benannt (1994). Wie die Fibonacci-Folge basiert sie auf
-einer linearen Rekurrenz, aber mit Verzoegerung um 2 statt 1.
+einer linearen Rekurrenz, aber mit Verzögerung um 2 statt 1.
 
-Das Verhaeltnis benachbarter Padovan-Zahlen konvergiert gegen die
-**plastische Zahl** $\rho \approx 1{,}3247$ -- die Lösung von
+Das Verhältnis benachbarter Padovan-Zahlen konvergiert gegen die
+**plastische Zahl** $\rho \approx 1{,}3247$ - die Lösung von
 $x^3 = x + 1$.
 
 ## Verwandte Folgen
 
-- **Fibonacci**: $F(n) = F(n-1) + F(n-2)$ -- Verhaeltnis -> goldener Schnitt
-- **Padovan**: $P(n) = P(n-2) + P(n-3)$ -- Verhaeltnis -> plastische Zahl
-- **Pell**: $P(n) = 2P(n-1) + P(n-2)$ -- Verhaeltnis -> Silberverhaeltnis
+- **Fibonacci**: $F(n) = F(n-1) + F(n-2)$ - Verhältnis -> goldener Schnitt
+- **Padovan**: $P(n) = P(n-2) + P(n-3)$ - Verhältnis -> plastische Zahl
+- **Pell**: $P(n) = 2P(n-1) + P(n-2)$ - Verhältnis -> Silberverhältnis
 - **Tribonacci**: $T(n) = T(n-1) + T(n-2) + T(n-3)$

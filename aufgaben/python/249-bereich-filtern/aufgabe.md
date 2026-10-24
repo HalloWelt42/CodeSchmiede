@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 249-bereich-filtern
-revision: 1
+revision: 2
 titel: Zahlen im Bereich [a, b] filtern
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Liefere alle Zahlen aus der Liste, die im inklusiven Bereich
-      [a, b] liegen -- in der ursprünglichen Reihenfolge.
+      [a, b] liegen - in der ursprünglichen Reihenfolge.
       a > b → [].
   - kosten: 4
     text: |
@@ -59,7 +59,7 @@ starter_code: |
 # Zahlen im Bereich [a, b] filtern
 
 Schreibe `im_bereich(zahlen, a, b)`, die alle Zahlen aus der Liste
-liefert, die im **inklusiven** Bereich `[a, b]` liegen --
+liefert, die im **inklusiven** Bereich `[a, b]` liegen -
 in der **ursprünglichen Reihenfolge**.
 
 Bei `a > b` → `[]`.
@@ -79,15 +79,15 @@ Bei `a > b` → `[]`.
 `a <= x <= b` ist Pythons **chained comparison**, das wie in der
 Mathematik liest.
 
-## Pendant -- Anzahl
+## Pendant - Anzahl
 
-Aufgabe **246-bereich-zählen** liefert nur die Anzahl, nicht die
-Werte. Beide haben **dieselbe Filter-Logik** -- nur das Aggregat
+Aufgabe **246-bereich-zaehlen** liefert nur die Anzahl, nicht die
+Werte. Beide haben **dieselbe Filter-Logik** - nur das Aggregat
 unterscheidet.
 
 ## Verallgemeinerung
 
 Mit einer **Predicate-Funktion**:
 
-Sehr universell -- aber in Tests schwer zu serialisieren (Funktionen
+Sehr universell - aber in Tests schwer zu serialisieren (Funktionen
 gehen schlecht durch JSON). Daher hier die spezialisierte Variante.

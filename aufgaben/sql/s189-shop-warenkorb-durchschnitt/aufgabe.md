@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s189-shop-warenkorb-durchschnitt
-revision: 1
+revision: 2
 titel: "Shop: Durchschnittlicher Bestellwert"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [cte, avg]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -31,7 +31,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      CTE pro Bestellung-Summe, AVG aussen.
+      CTE pro Bestellung-Summe, AVG außen.
 starter_code: |
   SELECT ___
   FROM ___

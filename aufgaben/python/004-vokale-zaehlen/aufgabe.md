@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 004-vokale-zaehlen
-revision: 1
+revision: 2
 titel: Vokale zählen
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
 # Vokale zählen
 
 Schreibe eine Funktion `vokale_zählen(text)`, die zählt, wie viele
-Vokale (`a`, `e`, `i`, `o`, `u`) im übergebenen String vorkommen --
+Vokale (`a`, `e`, `i`, `o`, `u`) im übergebenen String vorkommen -
 unabhängig von Groß- oder Kleinschreibung.
 
 ## Beispiele
@@ -75,6 +75,6 @@ unabhängig von Groß- oder Kleinschreibung.
 ## Hinweise
 
 - Die deutschen Umlaute `ä`, `ö`, `ü` zählen in dieser Aufgabe **nicht**
-  als Vokale -- nur die fünf ASCII-Vokale.
-- Großschreibung soll mitgezählt werden -- entweder über
+  als Vokale - nur die fünf ASCII-Vokale.
+- Großschreibung soll mitgezählt werden - entweder über
   `text.lower()` normalisieren oder beide Schreibweisen prüfen.

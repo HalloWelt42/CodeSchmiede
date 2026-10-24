@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 285-stack-ops
-revision: 1
+revision: 2
 titel: Stack mit Operations-Liste
 sprache: python
 task_type: code_schreiben
@@ -61,7 +61,7 @@ starter_code: |
 
 # Stack mit Operations-Liste
 
-Implementiere `stack_lauf(operationen)` -- ein **Stack** (LIFO,
+Implementiere `stack_lauf(operationen)` - ein **Stack** (LIFO,
 "Last in, first out") wird mit einer Liste von Operationen
 manipuliert. Liefere den **finalen Inhalt** des Stacks als Liste
 (Index 0 = unten).
@@ -88,7 +88,7 @@ manipuliert. Liefere den **finalen Inhalt** des Stacks als Liste
 Pythons `list` mit `append`/`pop()` IST schon ein Stack. Aber:
 
 1. **Klare API**: nur `push`/`pop`/`top`, kein `insert(0, ...)` versehentlich.
-2. **Kapselung**: spaeter könnte man Limits, Logging, Thread-Safety hinzufuegen.
+2. **Kapselung**: später könnte man Limits, Logging, Thread-Safety hinzufügen.
 3. **Lehrwert**: Stacks sind die Datenstruktur Nr. 1 in Compilerbau,
    Function-Calls, Backtracking.
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s119-shop-top-produkte-pro-kunde
-revision: 1
+revision: 2
 titel: "Shop: meistbestelltes Produkt pro Kunde"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 15
 tags: [cte, window-function, top-per-group]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -42,7 +42,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      CTE: pro Kunde+Produkt aggregierte Menge + ROW_NUMBER nach Menge. Aussen WHERE rn = 1.
+      CTE: pro Kunde+Produkt aggregierte Menge + ROW_NUMBER nach Menge. Außen WHERE rn = 1.
 starter_code: |
   SELECT ___
   FROM ___

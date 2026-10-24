@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 106-pascal-dreieck
-revision: 1
+revision: 2
 titel: Pascalsches Dreieck
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: pascal
 hints:
   - kosten: 0
     text: |
-      Zeile 0: [1]. Zeile 1: [1, 1]. Jede weitere Zeile: aussen 1,
+      Zeile 0: [1]. Zeile 1: [1, 1]. Jede weitere Zeile: außen 1,
       innen Summe der zwei Werte direkt darüber.
   - kosten: 9
     text: |
@@ -87,5 +87,5 @@ Werte direkt darüber**.
 
 Die Werte sind die **Binomialkoeffizienten** $\binom{n}{k}$. Blaise
 Pascal hat 1654 darüber geschrieben, aber die Anordnung war in
-China und Persien Jahrhunderte vorher bekannt -- bei Yang Hui und
+China und Persien Jahrhunderte vorher bekannt - bei Yang Hui und
 Omar Khayyám.

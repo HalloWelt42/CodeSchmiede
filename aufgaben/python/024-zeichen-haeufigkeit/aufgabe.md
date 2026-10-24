@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 024-zeichen-haeufigkeit
-revision: 1
+revision: 2
 titel: Zeichen-Häufigkeit als Dict
 sprache: python
 task_type: code_schreiben
@@ -51,7 +51,7 @@ starter_code: |
 # Zeichen-Häufigkeit
 
 Schreibe eine Funktion `zeichen_häufigkeit(text)`, die zählt, wie oft
-jedes einzelne **Zeichen** im String vorkommt -- inklusive Leerzeichen
+jedes einzelne **Zeichen** im String vorkommt - inklusive Leerzeichen
 und Sonderzeichen.
 
 ## Beispiele

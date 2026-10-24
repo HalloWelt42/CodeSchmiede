@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 194-bmi
-revision: 1
+revision: 2
 titel: Body-Mass-Index (BMI) und Kategorie
 sprache: python
 task_type: code_schreiben
@@ -31,7 +31,7 @@ hints:
   - kosten: 8
     text: |
       Schwellen sauber prüfen. round(bmi, 1) erst danach.
-      Reihenfolge der Vergleiche so, dass sie schluessig ist.
+      Reihenfolge der Vergleiche so, dass sie schlüssig ist.
 tests_sichtbar:
   - input: [70, 1.75]
     expected: "normal"
@@ -97,7 +97,7 @@ Bei ungültigen Eingaben (`größe_m <= 0` oder `gewicht_kg <= 0`)
 ## Hintergrund
 
 Die BMI-Formel wurde **1832** vom belgischen Mathematiker Adolphe
-Quetelet als statistisches Mass entwickelt -- nicht als medizinische
+Quetelet als statistisches Maß entwickelt - nicht als medizinische
 Diagnose. Sie ignoriert **Muskel-Anteil** (Bodybuilder kommen oft
-"adipoes" raus) und **Fettverteilung**. Trotzdem ist BMI als
+"adipös" raus) und **Fettverteilung**. Trotzdem ist BMI als
 **Bevölkerungs-Indikator** weiterhin nützlich.

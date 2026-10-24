@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 252-ceil-zu-vielfache
-revision: 1
+revision: 2
 titel: Aufrunden zum nächsten Vielfachen von k
 sprache: python
 task_type: code_schreiben
@@ -28,7 +28,7 @@ hints:
       Negative n: -13 mit k=5 → -10 (auf Richtung 0/positiv).
   - kosten: 8
     text: |
-      math.ceil(n / k) * k -- aber Achtung bei Floats und negativen.
+      math.ceil(n / k) * k - aber Achtung bei Floats und negativen.
       Robuster: ((n + k - 1) // k) * k, aber nur für positive n/k.
       Standard ist: -(-n // k) * k.
 tests_sichtbar:
@@ -89,13 +89,13 @@ Vielfachen von `k` rundet (Richtung +unendlich).
 `math.ceil` liefert die kleinste **ganzzahlige** Obergrenze.
 `math.ceil(13/5)` ist `math.ceil(2.6)` = `3`. Mal `5` ergibt `15`.
 
-## Idee -- ohne math
+## Idee - ohne math
 
 Eleganter Trick:
 
-`-(-n // k)` ist Pythons Idiom für "ceil division" -- weil
+`-(-n // k)` ist Pythons Idiom für "ceil division" - weil
 `//` immer **abwärts** rundet (auch bei negativen Zahlen), bringt
-das doppelte Vorzeichen-Wechseln den Aufwaerts-Effekt.
+das doppelte Vorzeichen-Wechseln den Aufwärts-Effekt.
 
 ## Verwandt
 

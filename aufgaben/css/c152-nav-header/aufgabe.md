@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c152-nav-header
-revision: 1
+revision: 2
 titel: "Navigation: Header-Leiste"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [nav, header, flexbox, komponente]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -86,4 +86,4 @@ starter_code: |
 
 # Navigation: Header-Leiste
 
-Logo links, Menu rechts -- typische Top-Navigation.
+Logo links, Menu rechts - typische Top-Navigation.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 294-query-string-bauen
-revision: 1
+revision: 2
 titel: URL-Query-String aus Dict bauen
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
 # URL-Query-String aus Dict bauen
 
 Schreibe `query_build(d)`, die ein Dict in einen Query-String
-`"a=1&b=2"` umwandelt -- mit Schlüsseln **alphabetisch sortiert**
+`"a=1&b=2"` umwandelt - mit Schlüsseln **alphabetisch sortiert**
 (deterministisch).
 
 Werte werden mit `str()` zu String konvertiert.
@@ -82,17 +82,17 @@ Bei leerem Dict → `""`.
 `sorted(d.items())` sortiert nach Schlüssel (alphabetisch).
 `f"{k}={v}"` formatiert pro Eintrag, `"&".join(...)` verkettet.
 
-## Pendant -- Round-Trip
+## Pendant - Round-Trip
 
 Achtung: Werte werden in `query_build` zu Strings, in `query_parse`
-bleiben sie Strings. Ein vollstaendiger Round-Trip braucht
+bleiben sie Strings. Ein vollständiger Round-Trip braucht
 **string-Werte** auf beiden Seiten.
 
-## Stolperstein -- URL-Encoding (wieder)
+## Stolperstein - URL-Encoding (wieder)
 
 Wenn Werte Leerzeichen, `&`, `=` oder Sonderzeichen enthalten,
 muss man **URL-encoden** (Leerzeichen → `%20`). `urllib.parse.urlencode`
-macht das automatisch -- wir vereinfachen hier.
+macht das automatisch - wir vereinfachen hier.
 
 ## Anwendung
 

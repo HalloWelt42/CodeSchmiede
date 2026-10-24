@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: h005-schachbrett
-revision: 1
+revision: 2
 titel: "Challenge 05: Schachbrett-Hintergrund (repeating-Gradient)"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 12
 tags: [challenge, lernpfad, gradient, muster]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -63,7 +63,7 @@ starter_code: |
 ## Ziel
 
 Ein 240x240-Quadrat mit hellem Hintergrund und dunklen Schachbrett-Feldern
-(jeweils 20x20 px), nur per CSS-Gradients -- kein Bild.
+(jeweils 20x20 px), nur per CSS-Gradients - kein Bild.
 
 ## Aha
 
@@ -76,5 +76,5 @@ Schachbrett-Muster.
 ## Wozu in der Praxis?
 
 Transparenz-Indikator (z.B. in Bildbearbeitungs-Tools), dekorative
-Muster, Editor-Hintergruende. Praktisch alle 'gemusterten' Hintergruende
+Muster, Editor-Hintergründe. Praktisch alle 'gemusterten' Hintergründe
 kommen via Gradient ohne ein Bild laden zu müssen.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 093-binary-zu-decimal
-revision: 1
+revision: 2
 titel: Binär zu Dezimal
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: binaer_zu_dezimal
 hints:
   - kosten: 0
     text: |
-      Schleife von rechts: jede 1 traegt $2^i$ bei. Ungültige Zeichen
+      Schleife von rechts: jede 1 trägt $2^i$ bei. Ungültige Zeichen
       (alles außer 0/1) → -1.
   - kosten: 7
     text: |
@@ -67,7 +67,7 @@ Binär-String in seine Dezimal-Zahl umwandelt.
 
 Bei ungültigen Zeichen oder leerer Eingabe → `-1`.
 
-**Verboten**: `int(text, 2)` -- das wäre Cheating. Schreib die
+**Verboten**: `int(text, 2)` - das wäre Cheating. Schreib die
 Konvertierung selbst.
 
 ## Beispiele

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s011-padding-innenabstand
-revision: 1
-titel: "Grundlagen 11: Padding -- Innenabstand zur Grenze"
+revision: 2
+titel: "Grundlagen 11: Padding - Innenabstand zur Grenze"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [grundlagen, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -43,7 +43,7 @@ hints:
   - kosten: 0
     text: |
       CSS wählt Elemente per **Selektor** und gibt ihnen Eigenschaften.
-      Welcher Selektor zählt, regeln Spezifizitaet und Quellreihenfolge.
+      Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
       `padding: 24px;`
@@ -56,21 +56,21 @@ starter_code: |
   }
 ---
 
-# Grundlagen 11: Die Box bekommt 24px Padding rundum -- Inhalt rückt vom Rand weg
+# Grundlagen 11: Die Box bekommt 24px Padding rundum - Inhalt rückt vom Rand weg
 
 ## Aufgabe
 
-Die Box bekommt 24px Padding rundum -- Inhalt rückt vom Rand weg
+Die Box bekommt 24px Padding rundum - Inhalt rückt vom Rand weg
 
 ## Aha
 
 **Padding** ist der Abstand zwischen Inhalt und Rahmen einer Box.
 Es vergrößert die sichtbare Box (es sei denn, du nutzt `box-sizing:
-border-box`). Padding ist **innerhalb** der Hintergrundfarbe -- wer
+border-box`). Padding ist **innerhalb** der Hintergrundfarbe - wer
 den Hintergrund der Box sieht, sieht auch das Padding.
 
 ## Wozu in der Praxis?
 
-Ohne Padding klebt der Text an den Rändern -- haesslich und schwer
+Ohne Padding klebt der Text an den Rändern - hässlich und schwer
 zu lesen. Buttons, Cards, Eingabefelder, Modals: alles braucht Padding.
 Faustregel: 8/12/16/24/32 px sind die häufigsten Werte.

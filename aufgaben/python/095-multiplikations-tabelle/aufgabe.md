@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 095-multiplikations-tabelle
-revision: 1
+revision: 2
 titel: Multiplikations-Tabelle
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: einmaleins
 hints:
   - kosten: 0
     text: |
-      Doppelte Liste -- `[[1*1, 1*2, ...], [2*1, 2*2, ...], ...]`.
+      Doppelte Liste - `[[1*1, 1*2, ...], [2*1, 2*2, ...], ...]`.
   - kosten: 5
     text: |
       Mit Comprehension:

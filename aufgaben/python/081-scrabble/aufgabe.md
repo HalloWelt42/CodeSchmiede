@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 081-scrabble
-revision: 1
+revision: 2
 titel: Scrabble-Punktzahl
 sprache: python
 task_type: code_schreiben
@@ -88,5 +88,5 @@ Groß-/Kleinschreibung egal. Leerer String → 0.
 
 Scrabble wurde 1938 vom amerikanischen Architekten Alfred Butts
 erfunden. Die Punkte spiegeln die **Häufigkeit** der Buchstaben im
-Englischen wider -- seltene Buchstaben (J, Q, X, Z) bringen viele
+Englischen wider - seltene Buchstaben (J, Q, X, Z) bringen viele
 Punkte.

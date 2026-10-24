@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 063-spalten-summe
-revision: 1
+revision: 2
 titel: Spaltensumme einer Matrix
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [matrix, listen, schleifen, sum]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null
-  notiz: Klassische Matrix-Aufwaermübung
+  notiz: Klassische Matrix-Aufwärmübung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10

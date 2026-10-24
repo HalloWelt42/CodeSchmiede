@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: g007-grid-spalten-bereich
-revision: 1
-titel: "Grid 07: Spalten 1 bis 4 explizit -- grid-column: 1 / 4"
+revision: 2
+titel: "Grid 07: Spalten 1 bis 4 explizit - grid-column: 1 / 4"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [grid, lernpfad, grid-column, linien]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -51,7 +51,7 @@ hints:
     text: |
       Spaltenlinien werden ab 1 nummeriert. Bei 3 Spalten gibt es **4 Linien**
       (links von Spalte 1, zwischen 1 und 2, zwischen 2 und 3, rechts von 3).
-      `grid-column: 1 / 4` heisst: starte an Linie 1, ende an Linie 4 -- also voll.
+      `grid-column: 1 / 4` heißt: starte an Linie 1, ende an Linie 4 - also voll.
   - kosten: 4
     text: |
       Setze auf `.banner`: `grid-column: 1 / 4;`
@@ -89,4 +89,4 @@ einnehmen, die drei Kacheln darunter normal in jeweils einer Spalte.
 Mit `grid-column: <start> / <end>` setzt du explizit, an welcher
 Grid-Linie ein Item beginnt und endet. Linien beginnen bei 1; bei N Spalten
 gibt es N+1 Linien. `grid-column: 1 / -1` ist ein Trick: -1 ist immer die
-letzte Linie -- damit funktioniert es egal wieviele Spalten der Container hat.
+letzte Linie - damit funktioniert es egal wieviele Spalten der Container hat.

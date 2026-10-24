@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 237-paare-aus-liste
-revision: 1
+revision: 2
 titel: Liste in nicht-überlappende Paare
 sprache: python
 task_type: code_schreiben
@@ -71,22 +71,22 @@ Bei ungerader Anzahl wird das **letzte Element ignoriert**.
 | `[]`                     | `[]`                              |
 | `[1]`                    | `[]`                              |
 
-## Idee 2 -- zip mit Schritt-Slicing
+## Idee 2 - zip mit Schritt-Slicing
 
 `liste[::2]` sind die Elemente an geraden Indizes (0, 2, 4...),
 `liste[1::2]` an ungeraden (1, 3, 5...). `zip` schneidet die
-laengere automatisch ab.
+längere automatisch ab.
 
-## Stolperstein -- Letztes Element bei ungerader Laenge
+## Stolperstein - Letztes Element bei ungerader Länge
 
-Beide Varianten ignorieren das letzte Element automatisch -- bei
+Beide Varianten ignorieren das letzte Element automatisch - bei
 Idee 1 durch das `// 2 * 2`, bei Idee 2 durch `zip`'s Verhalten.
 
 ## Verwandt
 
 | Aufgabe             | Was?                       |
 |---------------------|----------------------------|
-| **029-chunks**      | k-er-Bloecke (allgemein)   |
+| **029-chunks**      | k-er-Blöcke (allgemein)   |
 | **031-zip-listen**  | zwei Listen verzahnen      |
 | **174 alt**         | (gelöscht, war Duplikat)  |
 | **237-paare**       | hier, immer 2-er-Paare     |

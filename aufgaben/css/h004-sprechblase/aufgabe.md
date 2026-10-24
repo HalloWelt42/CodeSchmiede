@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: h004-sprechblase
-revision: 1
+revision: 2
 titel: "Challenge 04: Sprechblase mit ::after-Spitze"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 12
 tags: [challenge, lernpfad, pseudo-element, after]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -56,7 +56,7 @@ hints:
       Sprechblase = abgerundete Box + Dreieck unten dran. Das Dreieck baust du mit ::after-Pseudölement (content: ''!) und dem Border-Trick aus h002. Position: absolute relativ zur Blase, top: 100% setzt es genau unter die Box.
   - kosten: 8
     text: |
-      `.blase { position: relative; }` -- `.blase::after { content: ''; position: absolute; top: 100%; left: 20px; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 8px solid #2dd4bf; }`
+      `.blase { position: relative; }` - `.blase::after { content: ''; position: absolute; top: 100%; left: 20px; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 8px solid #2dd4bf; }`
 starter_code: |
   .blase {
     display: inline-block;
@@ -77,8 +77,8 @@ starter_code: |
 
 ## Ziel
 
-Eine petrolfarbene Sprechblase mit kleinem Dreieck am unteren Rand --
-ohne zusaetzliches HTML, nur per ::after-Pseudölement.
+Eine petrolfarbene Sprechblase mit kleinem Dreieck am unteren Rand -
+ohne zusätzliches HTML, nur per ::after-Pseudölement.
 
 ## Aha
 
@@ -88,7 +88,7 @@ String reicht), sonst rendern sie nicht. Mit position: absolute innerhalb
 eines position: relative-Containers landen sie genau wo man sie haben will.
 
 Kombiniert mit dem Border-Triangle-Trick aus der vorigen Challenge entsteht
-die Sprechblasen-Spitze -- ohne ein einziges zusaetzliches DOM-Element.
+die Sprechblasen-Spitze - ohne ein einziges zusätzliches DOM-Element.
 
 ## Wozu in der Praxis?
 

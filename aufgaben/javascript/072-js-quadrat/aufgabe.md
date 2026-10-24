@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 072-js-quadrat
-revision: 1
-titel: JavaScript -- Quadrat
+revision: 2
+titel: JavaScript - Quadrat
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -38,7 +38,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Quadrat
+# JavaScript - Quadrat
 
 Schreibe eine Funktion `quadrat(n)`, die das Quadrat einer Zahl
 zurückgibt.

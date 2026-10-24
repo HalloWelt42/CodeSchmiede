@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 245-ackermann
-revision: 1
+revision: 2
 titel: Ackermann-Funktion
 sprache: python
 task_type: code_schreiben
@@ -25,10 +25,10 @@ hints:
       A(0, n) = n + 1
       A(m, 0) = A(m-1, 1)        wenn m > 0
       A(m, n) = A(m-1, A(m, n-1))  wenn m > 0 und n > 0
-      Achtung: waechst extrem schnell -- nur kleine m, n testen!
+      Achtung: wächst extrem schnell - nur kleine m, n testen!
   - kosten: 15
     text: |
-      Direkte Umsetzung der drei Faelle. Prüfe nicht-negative Werte.
+      Direkte Umsetzung der drei Fälle. Prüfe nicht-negative Werte.
       Bei m == 4 wird der Wert riesig (A(4,2) = 2^65536 - 3).
       Wir testen nur m <= 3.
 tests_sichtbar:
@@ -87,14 +87,14 @@ A(m-1, A(m, n-1)) & \text{wenn } m > 0, n > 0
 | 3   | 4   | 125       |
 | 3   | 5   | 253       |
 
-## Idee -- direkte Rekursion
+## Idee - direkte Rekursion
 
-Drei Faelle, eine doppelt verschachtelte Rekursion -- der Klassiker.
+Drei Fälle, eine doppelt verschachtelte Rekursion - der Klassiker.
 
-## Warum so beruehmt?
+## Warum so berühmt?
 
 Die Ackermann-Funktion ist **berechenbar**, aber **nicht primitiv
-rekursiv**. Sie waechst extrem schnell:
+rekursiv**. Sie wächst extrem schnell:
 
 | `(m, n)` | `A(m, n)`              |
 |----------|------------------------|
@@ -107,7 +107,7 @@ rekursiv**. Sie waechst extrem schnell:
 Sie war historisch (Wilhelm Ackermann, 1928) **das** Beispiel dafür,
 dass berechenbar > primitiv rekursiv.
 
-## Stolperstein -- Rekursionstiefe
+## Stolperstein - Rekursionstiefe
 
 Schon bei `A(4, 2)` sprengt jede einfache Implementierung den
 Speicher. Wir testen nur bis `m = 3`, `n = 5`.

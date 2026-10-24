@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 181-sudoku-zeile
-revision: 1
+revision: 2
 titel: Sudoku-Zeile gültig?
 sprache: python
 task_type: code_schreiben
@@ -22,9 +22,9 @@ funktion: sudoku_zeile
 hints:
   - kosten: 0
     text: |
-      Eine Zeile (Liste der Laenge 9) ist gültig, wenn jede der
+      Eine Zeile (Liste der Länge 9) ist gültig, wenn jede der
       Ziffern 1-9 GENAU EINMAL vorkommt. 0/None/leere Plätze sind
-      hier NICHT erlaubt -- diese Aufgabe testet nur fertige Zeilen.
+      hier NICHT erlaubt - diese Aufgabe testet nur fertige Zeilen.
   - kosten: 10
     text: |
       sorted(zeile) == [1,2,3,4,5,6,7,8,9].
@@ -63,7 +63,7 @@ Eine **Sudoku-Zeile** besteht aus den Ziffern `1` bis `9`, jede
 **genau einmal**. Schreibe `sudoku_zeile(zeile)`, die `True`
 zurückgibt, wenn die übergebene Liste eine solche Zeile bildet.
 
-Diese Aufgabe testet **nur vollstaendige Zeilen** -- leere Plätze
+Diese Aufgabe testet **nur vollständige Zeilen** - leere Plätze
 oder `0` zählen nicht als gültig.
 
 ## Beispiele
@@ -82,12 +82,12 @@ oder `0` zählen nicht als gültig.
 oder mit Set:
 
 Beide Varianten erkennen Duplikate, fehlende Ziffern und falsche
-Laengen automatisch.
+Längen automatisch.
 
-## Erweiterungen (spaeter)
+## Erweiterungen (später)
 
 - **Sudoku-Spalte**: gleicher Test, andere Indexierung.
 - **Sudoku-Block**: 3x3-Block aus dem 9x9-Brett extrahieren.
-- **Sudoku-Brett**: alle 9 Zeilen + 9 Spalten + 9 Bloecke prüfen.
+- **Sudoku-Brett**: alle 9 Zeilen + 9 Spalten + 9 Blöcke prüfen.
 
-Aus diesen drei Bausteinen entsteht ein vollstaendiger Sudoku-Validator.
+Aus diesen drei Bausteinen entsteht ein vollständiger Sudoku-Validator.

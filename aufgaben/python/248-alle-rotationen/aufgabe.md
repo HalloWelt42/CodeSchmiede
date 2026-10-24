@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 248-alle-rotationen
-revision: 1
+revision: 2
 titel: Alle Rotationen einer Liste
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: alle_rotationen
 hints:
   - kosten: 0
     text: |
-      Liefere ALLE n Rotationen einer Liste der Laenge n als
+      Liefere ALLE n Rotationen einer Liste der Länge n als
       Liste-of-Lists. Erste ist die Originalliste.
       [1,2,3] → [[1,2,3], [2,3,1], [3,1,2]].
       Bei [] → [].
@@ -56,7 +56,7 @@ starter_code: |
 # Alle Rotationen einer Liste
 
 Schreibe `alle_rotationen(liste)`, die **alle n Rotationen** einer
-Liste der Laenge `n` zurückgibt -- die **erste** ist das Original,
+Liste der Länge `n` zurückgibt - die **erste** ist das Original,
 jede weitere ist um 1 nach links rotiert.
 
 ## Beispiele
@@ -69,9 +69,9 @@ jede weitere ist um 1 nach links rotiert.
 | `[]`      | `[]`                                             |
 | `[1,1,1]` | `[[1,1,1], [1,1,1], [1,1,1]]` (alle gleich)      |
 
-## Idee -- Slicing
+## Idee - Slicing
 
-Pro Index `i`: `liste[i:]` ist der Schwanz, `liste[:i]` der Kopf --
+Pro Index `i`: `liste[i:]` ist der Schwanz, `liste[:i]` der Kopf -
 zusammengesetzt ergibt das die i-te Rotation.
 
 ## Anwendung

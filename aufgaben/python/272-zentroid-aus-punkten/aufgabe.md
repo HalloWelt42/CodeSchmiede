@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 272-zentroid-aus-punkten
-revision: 1
+revision: 2
 titel: Zentroid (Schwerpunkt) aus Punktwolke
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
 # Zentroid (Schwerpunkt) aus Punktwolke
 
 Schreibe `zentroid(punkte)`, die den **Schwerpunkt** einer Punktwolke
-berechnet -- den arithmetischen Mittelpunkt aller Koordinaten.
+berechnet - den arithmetischen Mittelpunkt aller Koordinaten.
 
 `[Mittelwert(x), Mittelwert(y)]` auf 4 Nachkommastellen.
 
@@ -90,8 +90,8 @@ werden `(1, 3)` und `(2, 4)`.
 - **Computergrafik**: Mittelpunkt von Vertices für Pivot-Punkte.
 - **Geo**: Stadt-Mittelpunkt aus Adress-Liste.
 
-## Hinweis -- Polygon-Schwerpunkt
+## Hinweis - Polygon-Schwerpunkt
 
-Bei einem **gefuellten Polygon** ist der Schwerpunkt nicht einfach
+Bei einem **gefüllten Polygon** ist der Schwerpunkt nicht einfach
 der Mittelwert der Eck-Punkte! Dort braucht man eine
-**flaechen-gewichtete** Formel mit dem Polygon-Inhalt.
+**flächen-gewichtete** Formel mit dem Polygon-Inhalt.

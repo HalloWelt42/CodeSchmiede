@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 110-eindeutige-teilstrings
-revision: 1
+revision: 2
 titel: Eindeutige Teilstrings zählen
 sprache: python
 task_type: code_schreiben
@@ -76,7 +76,7 @@ Leerer Substring zählt nicht mit.
 Doppelte Schleife mit Slicing erzeugt **alle** Teilstrings (mit
 Doppelten). `set(...)` macht sie eindeutig, `len(...)` zählt.
 
-## Komplexitaet
+## Komplexität
 
 $O(n^3)$ wegen $O(n^2)$ Substrings × $O(n)$ Hash-Berechnung pro
 Substring. Für kleine Strings okay; bei großen würde man auf

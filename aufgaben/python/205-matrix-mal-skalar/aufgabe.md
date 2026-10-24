@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 205-matrix-mal-skalar
-revision: 1
+revision: 2
 titel: Matrix mal Skalar
 sprache: python
 task_type: code_schreiben
@@ -79,7 +79,7 @@ Bei leerer Matrix → `[]`.
 
 ## Idee
 
-Verschachtelte Listen-Comprehension -- aussere Schleife durch
+Verschachtelte Listen-Comprehension - äußere Schleife durch
 Zeilen, innere durch Elemente.
 
 ## Hintergrund

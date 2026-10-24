@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 149-run-length-decoding
-revision: 1
+revision: 2
 titel: Run-Length-Decoding
 sprache: python
 task_type: code_schreiben
@@ -58,10 +58,10 @@ starter_code: |
 
 # Run-Length-Decoding
 
-Schreibe eine Funktion `rle_decode(s)`, die einen **lauflaengen-
+Schreibe eine Funktion `rle_decode(s)`, die einen **lauflängen-
 kodierten String** wieder entpackt.
 
-Format: `<Zahl><Zeichen>` paarweise -- die Zahl kann mehrstellig sein.
+Format: `<Zahl><Zeichen>` paarweise - die Zahl kann mehrstellig sein.
 
 ## Beispiele
 
@@ -80,7 +80,7 @@ die Wiederholung erzeugen.
 
 ## Pendant: Encoding (Aufgabe 035)
 
-Encoding macht das Umgekehrte -- aus `"aaabbc"` wird `"3a2b1c"`. Wenn
+Encoding macht das Umgekehrte - aus `"aaabbc"` wird `"3a2b1c"`. Wenn
 beide Funktionen korrekt sind, gilt für alle Strings ohne Ziffern:
 `rle_decode(rle_encode(s)) == s`.
 
@@ -88,5 +88,5 @@ beide Funktionen korrekt sind, gilt für alle Strings ohne Ziffern:
 
 Dieses einfache Format steckt z.B. in **PCX-Bildern**, **BMP-Run-Length-
 Codierung** und alten **Fax-Standards** (Modified Huffman). Effizient
-nur bei Daten mit langen gleichen Laeufen -- bei zufaelligen Daten
+nur bei Daten mit langen gleichen Läufen - bei zufälligen Daten
 oft größer als das Original.

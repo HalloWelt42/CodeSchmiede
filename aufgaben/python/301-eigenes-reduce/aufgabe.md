@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 301-eigenes-reduce
-revision: 1
+revision: 2
 titel: Eigenes reduce mit Op-String
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: reduce_op
 hints:
   - kosten: 0
     text: |
-      Falte eine Liste mit einer binaeren Operation:
+      Falte eine Liste mit einer binären Operation:
       "add" (+), "mul" (*), "max", "min".
       start ist der Startwert (neutrales Element für leere Liste).
       Unbekannte Op → start zurück.
@@ -61,7 +61,7 @@ starter_code: |
 # Eigenes reduce mit Op-String
 
 Schreibe `reduce_op(liste, op, start)`, die eine Liste mit einer
-binaeren Operation **faltet** (auch "fold" genannt) -- ausgehend
+binären Operation **faltet** (auch "fold" genannt) - ausgehend
 vom Startwert.
 
 ## Verfügbare Operationen
@@ -80,7 +80,7 @@ Unbekannte Op → `start` zurückgeben (kein Fehler).
 | Liste            | Op       | Start | Ergebnis | Bemerkung           |
 |------------------|----------|-------|----------|---------------------|
 | `[1, 2, 3, 4]`   | `"add"`  | `0`   | `10`     | Summe               |
-| `[1, 2, 3, 4]`   | `"mul"`  | `1`   | `24`     | Produkt = Fakultaet |
+| `[1, 2, 3, 4]`   | `"mul"`  | `1`   | `24`     | Produkt = Fakultät |
 | `[3, 1, 4, 1, 5]`| `"max"`  | `0`   | `5`      |                    |
 | `[3, 1, 4, 1, 5]`| `"min"`  | `100` | `1`      |                    |
 | `[]`             | `"add"`  | `0`   | `0`      | Start zurück      |
@@ -91,13 +91,13 @@ Unbekannte Op → `start` zurückgeben (kein Fehler).
 dann den Start). Ohne Startwert würde es bei leerer Liste einen
 Fehler werfen.
 
-`max` und `min` sind selbst schon **binaere Funktionen** (in dieser
-Form) -- kein Lambda nötig.
+`max` und `min` sind selbst schon **binäre Funktionen** (in dieser
+Form) - kein Lambda nötig.
 
-## Pattern -- Fold
+## Pattern - Fold
 
-`reduce` heisst in anderen Sprachen `fold`, `foldLeft`, `accumulate`.
-Es ist eines der maechtigsten funktionalen Patterns:
+`reduce` heißt in anderen Sprachen `fold`, `foldLeft`, `accumulate`.
+Es ist eines der mächtigsten funktionalen Patterns:
 
 - `sum` ist `reduce(+, liste, 0)`.
 - `product` ist `reduce(*, liste, 1)`.

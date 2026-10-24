@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 109-anagramm-gruppen
-revision: 1
+revision: 2
 titel: Wörter nach Anagramm gruppieren
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Zwei Wörter sind Anagramme, wenn sie nach Sortieren der
-      Buchstaben identisch sind. Liefere Liste von Listen --
+      Buchstaben identisch sind. Liefere Liste von Listen -
       jede Innen-Liste ist eine Anagramm-Gruppe.
   - kosten: 8
     text: |
@@ -60,7 +60,7 @@ Schreibe eine Funktion `gruppiere(wörter)`, die eine Liste von
 Wörtern nach **Anagramm-Klassen** gruppiert.
 
 Zwei Wörter sind Anagramme, wenn sie die gleichen Buchstaben in
-beliebiger Reihenfolge enthalten -- Groß-/Kleinschreibung wird
+beliebiger Reihenfolge enthalten - Groß-/Kleinschreibung wird
 ignoriert.
 
 ## Beispiele
@@ -79,6 +79,6 @@ ignoriert.
 
 ## Hintergrund
 
-Klassisches Bewerbungsgespraechs-Problem. Der Kniff: ein **stabiler
-Schlüssel** pro Wort -- typisch sind sortierte Buchstaben oder ein
-Counter. Beides klassifiziert Anagramme zuverlaessig.
+Klassisches Bewerbungsgesprächs-Problem. Der Kniff: ein **stabiler
+Schlüssel** pro Wort - typisch sind sortierte Buchstaben oder ein
+Counter. Beides klassifiziert Anagramme zuverlässig.

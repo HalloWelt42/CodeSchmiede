@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 334-js-string-zahl-inkrement
-revision: 1
-titel: JavaScript -- Numerischen String inkrementieren
+revision: 2
+titel: JavaScript - Numerischen String inkrementieren
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, strings, zahlen, bigint, modern]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Increment_a_numerical_string
-  notiz: Rosetta Code -- Increment a numerical string, JS
+  notiz: Rosetta Code - Increment a numerical string, JS
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Erhöhe einen numerischen String um 1. Sehr lange Zahlen
-      müssen funktionieren -- nutze BigInt!
+      müssen funktionieren - nutze BigInt!
       "499" -> "500", "999999999999999999" -> "1000000000000000000".
       Ungültige Eingabe -> "".
   - kosten: 8
@@ -44,13 +44,13 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Numerischen String inkrementieren
+# JavaScript - Numerischen String inkrementieren
 
 Schreibe `inkrement(s)`, die einen numerischen String um `1`
-erhoeht.
+erhöht.
 
 **Wichtig**: Sehr lange Zahlen (jenseits Number.MAX_SAFE_INTEGER)
-müssen funktionieren -- daher **BigInt** nutzen.
+müssen funktionieren - daher **BigInt** nutzen.
 
 Ungültige Eingabe -> `""`.
 
@@ -74,10 +74,10 @@ BigInt-Literal-Konstante. `.toString()` macht wieder String draus
 
 ## Warum nicht parseInt + 1?
 
-Number in JavaScript ist `float64` -- praezise nur bis
+Number in JavaScript ist `float64` - präzise nur bis
 `2^53 - 1 = 9007199254740991`. Daruber gehen Werte verloren:
 
-BigInt löst das Problem -- erfordert aber explizite Konvertierung
+BigInt löst das Problem - erfordert aber explizite Konvertierung
 und das `n`-Suffix.
 
 ## Vergleich mit Python

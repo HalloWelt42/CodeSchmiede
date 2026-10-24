@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 299-eigenes-map
-revision: 1
+revision: 2
 titel: Eigenes map mit Operations-String
 sprache: python
 task_type: code_schreiben
@@ -62,7 +62,7 @@ starter_code: |
 # Eigenes map mit Operations-String
 
 Schreibe `map_op(liste, op)`, die eine Operation auf **jedes Element**
-der Liste anwendet -- nach dem `map`-Pattern.
+der Liste anwendet - nach dem `map`-Pattern.
 
 ## Verfügbare Operationen
 
@@ -87,7 +87,7 @@ Unbekannte Operation → unveränderte Liste zurückgeben.
 | `[-3, -2, 5]`    | `"absolute"`  | `[3, 2, 5]`        |
 | `[1, 2, 3]`      | `"unknown"`   | `[1, 2, 3]`        |
 
-## Idee -- Dispatch-Dict
+## Idee - Dispatch-Dict
 
 `abs` ist schon eine Funktion, kein Lambda nötig.
 
@@ -95,10 +95,10 @@ Unbekannte Operation → unveränderte Liste zurückgeben.
 
 In echtem Python würde man die Funktion **direkt** übergeben:
 
-Aber JSON-Tests können keine Funktionen serialisieren -- daher
+Aber JSON-Tests können keine Funktionen serialisieren - daher
 der **String-Workaround**. Das Pattern (Dispatch-Dict) ist auch
 in echten Code-Basen üblich, z.B. für **Plugin-Registries**
-(siehe Aufgabe **165-tuerme-von-hanoi** wäre falsch -- besseres
+(siehe Aufgabe **165-tuerme-von-hanoi** wäre falsch - besseres
 Beispiel: die Prüfer-Registry des Codeschmiede-Backends).
 
 ## Pendant

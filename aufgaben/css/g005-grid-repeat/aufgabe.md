@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: g005-grid-repeat
-revision: 1
-titel: "Grid 05: Mit repeat() -- vier gleichbreite Spalten"
+revision: 2
+titel: "Grid 05: Mit repeat() - vier gleichbreite Spalten"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [grid, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -45,7 +45,7 @@ hints:
     text: |
       CSS-Grid ist 2-dimensional (Zeilen UND Spalten gleichzeitig).
       Im Gegensatz zu Flexbox musst du dem Container das Raster-Muster
-      vorgeben -- erst dann wissen die Zellen, wohin sie gehören.
+      vorgeben - erst dann wissen die Zellen, wohin sie gehören.
   - kosten: 3
     text: |
       `grid-template-columns: repeat(4, 1fr);`

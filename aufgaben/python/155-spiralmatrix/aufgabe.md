@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 155-spiralmatrix
-revision: 1
+revision: 2
 titel: Matrix als Spirale lesen
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [matrix, listen, 2d, spirale, simulation]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: LeetCode-Klassiker 54
+  notiz: Klassiker aus Bewerbungsgesprächen
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -60,7 +60,7 @@ starter_code: |
 # Matrix als Spirale lesen
 
 Schreibe eine Funktion `spirale_lesen(matrix)`, die eine MxN-Matrix
-**im Uhrzeigersinn als Spirale** abarbeitet -- start oben links --
+**im Uhrzeigersinn als Spirale** abarbeitet - start oben links -
 und alle Werte als **flache Liste** zurückgibt.
 
 ## Beispiel 3x3
@@ -85,7 +85,7 @@ und alle Werte als **flache Liste** zurückgibt.
 
 → `[1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]`
 
-## Idee -- Grenzen einsperren
+## Idee - Grenzen einsperren
 
 Vier Grenzen `oben`, `unten`, `links`, `rechts`. In jedem Zyklus:
 
@@ -100,5 +100,5 @@ Wiederholen, bis alle Werte eingesammelt.
 
 - **Asymmetrische Matrizen** (z.B. 1xN oder Nx1) brauchen die
   beiden `if`-Prüfungen, sonst werden Elemente doppelt gelesen.
-- Klassiker für Bewerbungsgespraeche -- viele Naive-Implementierungen
-  stolpern an genau diesen Sonderfaellen.
+- Klassiker für Bewerbungsgespräche - viele Naive-Implementierungen
+  stolpern an genau diesen Sonderfällen.

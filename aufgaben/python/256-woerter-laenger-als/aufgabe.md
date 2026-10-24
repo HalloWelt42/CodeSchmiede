@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 256-woerter-laenger-als
-revision: 1
-titel: Wörter laenger als n
+revision: 2
+titel: Wörter länger als n
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -57,10 +57,10 @@ starter_code: |
       pass
 ---
 
-# Wörter laenger als n
+# Wörter länger als n
 
 Schreibe `laenger_als(text, n)`, die alle Wörter aus dem Text
-zurückgibt, die **laenger als n Zeichen** sind. Reihenfolge wie
+zurückgibt, die **länger als n Zeichen** sind. Reihenfolge wie
 im Original.
 
 `str.split()` ohne Argument trennt an Whitespace und ignoriert
@@ -83,7 +83,7 @@ Die wohl häufigste Form: split + Filter mit Comprehension.
 
 ## Pendant
 
-Aufgabe **257-wörter-kürzer-als** macht das Gegenstück mit `<`
+Aufgabe **257-woerter-kuerzer-als** macht das Gegenstück mit `<`
 statt `>`.
 
 ## Anwendung
@@ -91,4 +91,4 @@ statt `>`.
 - **Stop-Word**-Listen erstellen ("nur Wörter > 3 Zeichen filtern").
 - **Lesbarkeits-Analyse**: Anteil langer Wörter im Text
   (Flesch-Reading-Ease basiert teils darauf).
-- **Tag-Cloud-Vorbereitung**: kurze Fuell-Wörter raus.
+- **Tag-Cloud-Vorbereitung**: kurze Füll-Wörter raus.

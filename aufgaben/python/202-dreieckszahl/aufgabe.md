@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 202-dreieckszahl
-revision: 1
+revision: 2
 titel: n-te Dreieckszahl
 sprache: python
 task_type: code_schreiben
@@ -27,7 +27,7 @@ hints:
       T(1)=1, T(2)=3, T(3)=6, T(4)=10, T(5)=15, ...
   - kosten: 4
     text: |
-      Direkte Formel (Gauss): T(n) = n * (n + 1) // 2.
+      Direkte Formel (Gauß): T(n) = n * (n + 1) // 2.
 tests_sichtbar:
   - input: [0]
     expected: 0
@@ -60,7 +60,7 @@ starter_code: |
 
 # n-te Dreieckszahl
 
-Die **n-te Dreieckszahl** ist die Summe der ersten `n` natuerlichen
+Die **n-te Dreieckszahl** ist die Summe der ersten `n` natürlichen
 Zahlen:
 
 $$T(n) = 1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}$$
@@ -94,16 +94,16 @@ Schreibe `dreieckszahl(n)`. Bei `n <= 0` → `0`.
 | `100`  | `5050`   |
 | `1000` | `500500` |
 
-## Idee -- Gauss-Formel
+## Idee - Gauß-Formel
 
-`O(1)` und exakt -- kein Float-Trick nötig.
+`O(1)` und exakt - kein Float-Trick nötig.
 
-## Anekdote -- Der kleine Gauss
+## Anekdote - Der kleine Gauß
 
-Sein Lehrer wollte ihn beschaeftigen: "Addiere die Zahlen 1 bis 100."
-Der neunjaehrige Carl-Friedrich Gauss **paarte 1+100, 2+99, ...** und
+Sein Lehrer wollte ihn beschäftigen: "Addiere die Zahlen 1 bis 100."
+Der neunjährige Carl-Friedrich Gauß **paarte 1+100, 2+99, ...** und
 hatte sofort `50 * 101 = 5050`. So entstand die Formel zumindest
-in der Anekdote -- in Wirklichkeit kannte sie schon Pythagoras.
+in der Anekdote - in Wirklichkeit kannte sie schon Pythagoras.
 
 ## Verwandt
 

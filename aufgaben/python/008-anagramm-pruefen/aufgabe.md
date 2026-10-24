@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 008-anagramm-pruefen
-revision: 1
+revision: 2
 titel: Anagramm-Prüfung
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
 # Anagramm-Prüfung
 
 Schreibe eine Funktion `ist_anagramm(a, b)`, die `True` zurückgibt,
-wenn die beiden Strings **Anagramme** voneinander sind -- also aus
+wenn die beiden Strings **Anagramme** voneinander sind - also aus
 genau denselben Buchstaben in beliebiger Reihenfolge bestehen.
 
 ## Beispiele
@@ -74,7 +74,7 @@ genau denselben Buchstaben in beliebiger Reihenfolge bestehen.
 
 ## Hinweise
 
-- **Groß- und Kleinschreibung zählen** -- `"A"` und `"a"` sind
+- **Groß- und Kleinschreibung zählen** - `"A"` und `"a"` sind
   unterschiedliche Buchstaben.
 - Auch Leerzeichen werden mitgezählt.
 - Zwei leere Strings sind per Konvention Anagramme voneinander.

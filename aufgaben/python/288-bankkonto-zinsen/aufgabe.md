@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 288-bankkonto-zinsen
-revision: 1
+revision: 2
 titel: Bankkonto mit Zinsbuchung
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: jahres_endsaldi
 hints:
   - kosten: 0
     text: |
-      Klasse Bankkonto: start-Saldo, jaehrlicher Zinssatz (in Prozent).
+      Klasse Bankkonto: start-Saldo, jährlicher Zinssatz (in Prozent).
       Methoden: einzahlen(b), abheben(b), zinsen_buchen() (Zinsen auf
       aktuellen Saldo addieren).
       Funktion jahres_endsaldi(start, zins, jahre) → Liste der
@@ -62,8 +62,8 @@ starter_code: |
 
 # Bankkonto mit Zinsbuchung
 
-Implementiere `jahres_endsaldi(start, zinssatz_prozent, jahre)` --
-ein Bankkonto startet mit `start` Euro, wird **jaehrlich** mit
+Implementiere `jahres_endsaldi(start, zinssatz_prozent, jahre)` -
+ein Bankkonto startet mit `start` Euro, wird **jährlich** mit
 `zinssatz_prozent` verzinst. Liefere den **Endsaldo nach jedem Jahr**
 als Liste, **auf 2 Nachkommastellen** gerundet.
 
@@ -83,19 +83,19 @@ Bei `jahre <= 0` → `[]`. Negative Zinsen funktionieren (Strafzinsen).
 ## Vergleich mit Aufgabe 160
 
 Aufgabe **160-zinseszins** liefert nur den **End-Wert** nach n Jahren.
-Hier liefern wir die **Verlaufs-Liste** -- gut für Charts und
+Hier liefern wir die **Verlaufs-Liste** - gut für Charts und
 "Was-wenn"-Simulationen.
 
-## Erweiterung -- Mit Bewegungen
+## Erweiterung - Mit Bewegungen
 
-Eine echte Bankkonto-Klasse haette zusaetzlich `einzahlen(betrag)`
+Eine echte Bankkonto-Klasse hätte zusätzlich `einzahlen(betrag)`
 und `abheben(betrag)`. Mit der Liste der Bewegungen könnte man
-realistische Zins-Verlaeufe simulieren -- ist aber Stoff für eine
+realistische Zins-Verläufe simulieren - ist aber Stoff für eine
 eigene, komplexere Aufgabe.
 
-## Hintergrund -- Banker's Rounding
+## Hintergrund - Banker's Rounding
 
 `round(1102.5, 0)` ist in Python `1102` (zur **geraden** Zahl). Bei
-**.50**-Cent-Rundungen kann das zu Verwirrung fuehren. In der
+**.50**-Cent-Rundungen kann das zu Verwirrung führen. In der
 realen Bank-Mathematik nimmt man oft `decimal.Decimal` mit
 explizitem Rounding-Modus.

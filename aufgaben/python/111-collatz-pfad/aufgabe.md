@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 111-collatz-pfad
-revision: 1
+revision: 2
 titel: Collatz-Pfad als Liste
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: collatz_pfad
 hints:
   - kosten: 0
     text: |
-      Wie 020-collatz, aber liefere die ganze Folge als Liste --
+      Wie 020-collatz, aber liefere die ganze Folge als Liste -
       inkl. Startwert und finaler 1.
   - kosten: 7
     text: |
@@ -52,7 +52,7 @@ starter_code: |
 # Collatz-Pfad als Liste
 
 Schreibe eine Funktion `collatz_pfad(n)`, die den **vollständigen
-Pfad** der Collatz-Folge ausgehend von `n` als Liste zurückgibt --
+Pfad** der Collatz-Folge ausgehend von `n` als Liste zurückgibt -
 inklusive Startwert und finaler `1`.
 
 ## Regeln (wie bei 020-collatz)

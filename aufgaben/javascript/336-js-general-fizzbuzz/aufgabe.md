@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 336-js-general-fizzbuzz
-revision: 1
-titel: JavaScript -- Verallgemeinertes FizzBuzz
+revision: 2
+titel: JavaScript - Verallgemeinertes FizzBuzz
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, array, modulo, modern]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/General_FizzBuzz
-  notiz: Rosetta Code -- General FizzBuzz, JS
+  notiz: Rosetta Code - General FizzBuzz, JS
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -43,10 +43,10 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Verallgemeinertes FizzBuzz
+# JavaScript - Verallgemeinertes FizzBuzz
 
 Schreibe `generalFizzbuzz(n, regeln)`, die FizzBuzz konfigurierbar
-spielt -- mit beliebigen `[teiler, wort]`-Paaren.
+spielt - mit beliebigen `[teiler, wort]`-Paaren.
 
 Pro Zahl 1..n: alle passenden Wörter konkatenieren, sonst Zahl
 als String.
@@ -61,13 +61,13 @@ als String.
 | `6` | `[[2,"Hi"],[3,"Ho"]]`           | `["1","Hi","Ho","Hi","5","HiHo"]`|
 | `3` | `[]`                             | `["1","2","3"]`                  |
 
-## Idee -- modernes JS
+## Idee - modernes JS
 
 Schönheit: **Destructuring** `([t]) => ...` zieht das erste
 Element des Tupels raus, `[, w]` überspringt das erste und nimmt
 das zweite.
 
-## Vergleich -- direkter Loop
+## Vergleich - direkter Loop
 
 Genauso korrekt, weniger funktional aber besser bei Performance-
 kritischem Code (kein Closure pro Iteration).

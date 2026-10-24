@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 307-zaehler-bis-n
-revision: 1
+revision: 2
 titel: Eigener Zähler-Generator (Liste)
 sprache: python
 task_type: code_schreiben
@@ -58,7 +58,7 @@ starter_code: |
 # Eigener Zähler-Generator (Liste)
 
 Schreibe `zähler_bis(n)`, die die Zahlen `1, 2, ..., n` als Liste
-liefert. **Implementiere intern einen Generator** mit `yield` --
+liefert. **Implementiere intern einen Generator** mit `yield` -
 auch wenn die finale Form eine Liste ist.
 
 `n <= 0` → `[]`.
@@ -73,7 +73,7 @@ auch wenn die finale Form eine Liste ist.
 | `0` | `[]`                |
 | `-5`| `[]`                |
 
-## Idee -- Generator intern
+## Idee - Generator intern
 
 `yield` macht aus einer Funktion einen **Generator**. `list(gen())`
 materialisiert ihn zur Liste.
@@ -81,7 +81,7 @@ materialisiert ihn zur Liste.
 ## Warum nicht direkt `list(range(...))`?
 
 Weil das Lehrziel der **Generator-Mechanismus** ist. In echtem
-Code wäre `list(range(1, n+1))` natuerlich kürzer.
+Code wäre `list(range(1, n+1))` natürlich kürzer.
 
 ## Generator-Vorteile (in echten Anwendungen)
 
@@ -90,7 +90,7 @@ Code wäre `list(range(1, n+1))` natuerlich kürzer.
 - **Unendliche Folgen**: Generatoren können ewig laufen
   (`while True: yield ...`), Listen können das nicht.
 
-## Pattern -- Generator-Funktion
+## Pattern - Generator-Funktion
 
 In den nächsten Aufgaben (308-314) kommen die wichtigen
 Generator-Patterns: Fibonacci, Pairwise, Take-While, Accumulate, etc.

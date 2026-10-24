@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 325-summe-quadrate
-revision: 1
+revision: 2
 titel: Summe der Quadrate 1 bis n
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [zahlen, mathematik, summe, formel]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Sum_of_squares
-  notiz: Rosetta Code -- Sum of squares
+  notiz: Rosetta Code - Sum of squares
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -82,16 +82,16 @@ Der Beweis über Induktion ist Schul-Standard. Carl Friedrich Gauß
 hatte als Schüler die analoge Formel für die Summe ohne Quadrat
 gefunden ($\frac{n(n+1)}{2}$, siehe Aufgabe 131).
 
-## Idee 1 -- Formel (O(1))
+## Idee 1 - Formel (O(1))
 
-Konstante Zeit -- funktioniert auch bei `n = 10**18` instant.
+Konstante Zeit - funktioniert auch bei `n = 10**18` instant.
 
-## Idee 2 -- Schleife (O(n))
+## Idee 2 - Schleife (O(n))
 
 Klar lesbar, für kleine `n` völlig ausreichend.
 
 ## Anwendung
 
 Summen-Formeln tauchen in **Statistik** (Varianz-Berechnung),
-**Physik** (Traegheitsmomente) und **Algorithmik** (Komplexitaets-
+**Physik** (Trägheitsmomente) und **Algorithmik** (Komplexitäts-
 Analyse) auf.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 127-primzahlen-bis-n-zahl
-revision: 1
+revision: 2
 titel: Primzahlen bis n zählen
 sprache: python
 task_type: code_schreiben
@@ -72,12 +72,12 @@ Primzahlen** kleiner oder gleich `n` zurückgibt.
 
 ## Algorithmus
 
-Sieb des Eratosthenes. `O(n log log n)` -- deutlich schneller als
+Sieb des Eratosthenes. `O(n log log n)` - deutlich schneller als
 jede Zahl einzeln zu testen.
 
 ## Hintergrund
 
 Nach dem **Primzahlsatz** (Hadamard, de la Vallée Poussin, 1896)
-verhalten sich die Primzahlen ungefaehr wie $n / \ln n$. Bei
-$n = 10\,000$ sagt die Naeherung 1086, tatsächlich 1229 -- die
-Naeherung wird mit wachsendem n proportional besser.
+verhalten sich die Primzahlen ungefähr wie $n / \ln n$. Bei
+$n = 10\,000$ sagt die Näherung 1086, tatsächlich 1229 - die
+Näherung wird mit wachsendem n proportional besser.

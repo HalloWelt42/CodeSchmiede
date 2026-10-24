@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 208-vektor-betrag
-revision: 1
+revision: 2
 titel: Vektor-Betrag (euklidische Norm)
 sprache: python
 task_type: code_schreiben
@@ -60,8 +60,8 @@ starter_code: |
 
 # Vektor-Betrag (euklidische Norm)
 
-Schreibe `betrag(v)`, die die **Laenge** (euklidische Norm) eines
-Vektors berechnet -- gerundet auf 4 Nachkommastellen.
+Schreibe `betrag(v)`, die die **Länge** (euklidische Norm) eines
+Vektors berechnet - gerundet auf 4 Nachkommastellen.
 
 $$|\vec{v}| = \sqrt{\sum_i v_i^2}$$
 
@@ -81,7 +81,7 @@ Bei `[]` → `0.0`.
 ## Pythagoras-Tripel
 
 Bei Vektoren wie `[3, 4]`, `[5, 12]`, `[8, 15]` ergibt die Norm eine
-**ganze Zahl** -- das sind die altbekannten **pythagoraeischen
+**ganze Zahl** - das sind die altbekannten **pythagoräischen
 Tripel** (siehe Aufgabe 084).
 
 ## Andere Normen
@@ -93,7 +93,7 @@ Die euklidische Norm ist die `L2`-Norm. Es gibt mehr:
 | `L0`  | Anzahl Nicht-Null-Komponenten     | Sparsity                 |
 | `L1`  | Summe Absolutwerte                | "Manhattan"-Distanz      |
 | `L2`  | Wurzel der Quadrat-Summe          | Euklidisch (hier)        |
-| `L∞`  | Maximaler Absolutwert             | "Schach-Koenig"-Distanz  |
+| `L∞`  | Maximaler Absolutwert             | "Schach-König"-Distanz  |
 
-Im Maschinenlernen kommen alle vor -- L1/L2 z.B. als
+Im Maschinenlernen kommen alle vor - L1/L2 z.B. als
 **Regularisierungsterm** in linearen Modellen.

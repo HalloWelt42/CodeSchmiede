@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 337-map-range
-revision: 1
+revision: 2
 titel: Wert linear in anderen Bereich übersetzen
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [zahlen, mathematik, interpolation]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Map_range
-  notiz: Rosetta Code -- Map range
+  notiz: Rosetta Code - Map range
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Wert x liegt in [a1, a2]. Liefere den entsprechenden Wert
-      im Bereich [b1, b2] -- linear gemappt.
+      im Bereich [b1, b2] - linear gemappt.
       Beispiel: x=5 in [0, 10] -> in [0, 100] = 50.
       Auf 4 Nachkommastellen runden.
       Wenn a1 == a2 -> b1 (Division durch 0 vermeiden).
@@ -89,9 +89,9 @@ Die "Lineare Interpolation zwischen zwei Bereichen".
 - **Sensor-Werte**: Spannung 0-5V -> Temperatur -10..50°C
 - **UI-Slider**: Position 0-100px -> Lautstärke 0.0-1.0
 - **Animation**: Frame 0-60 -> Winkel 0-360°
-- **Farbverlaeufe**: Gradient-Position -> Farbwert
+- **Farbverläufe**: Gradient-Position -> Farbwert
 
-## Erweiterung -- Clamp
+## Erweiterung - Clamp
 
 Soll x **außerhalb** [a1, a2] auch korrekt arbeiten? Ohne Clamp
 liegt das Ergebnis dann außerhalb [b1, b2]. Mit Clamp:

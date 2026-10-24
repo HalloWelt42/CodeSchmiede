@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 296-ini-parsen
-revision: 1
+revision: 2
 titel: INI-Datei zu verschachteltem Dict
 sprache: python
 task_type: code_schreiben
@@ -23,9 +23,9 @@ hints:
   - kosten: 0
     text: |
       Parse einen INI-String zu Dict {sektion: {key: value}}.
-      Sektionen: [name]. Eintraege: key=value (mit/ohne Whitespace).
+      Sektionen: [name]. Einträge: key=value (mit/ohne Whitespace).
       Leere Zeilen und Zeilen die mit ; oder # anfangen IGNORIEREN.
-      Keys/Values werden gestrippt. Eintraege ohne aktive Sektion → ignorieren.
+      Keys/Values werden gestrippt. Einträge ohne aktive Sektion → ignorieren.
   - kosten: 21
     text: |
       Zeile für Zeile durchgehen, Sektion merken,
@@ -64,11 +64,11 @@ Schreibe `ini_parse(s)`, die einen INI-String in ein verschachteltes
 Dict `{sektion: {key: value}}` umwandelt.
 
 INI-Format:
-- **Sektionen**: `[name]` -- alle folgenden Eintraege gehören zur Sektion
-- **Eintraege**: `key=value` -- Whitespace um `=` wird ignoriert
+- **Sektionen**: `[name]` - alle folgenden Einträge gehören zur Sektion
+- **Einträge**: `key=value` - Whitespace um `=` wird ignoriert
 - **Kommentare**: Zeilen die mit `;` oder `#` anfangen werden übersprungen
 - **Leere Zeilen** werden übersprungen
-- **Eintraege vor der ersten Sektion** werden ignoriert
+- **Einträge vor der ersten Sektion** werden ignoriert
 
 ## Beispiele
 
@@ -91,10 +91,10 @@ user=admin
 | `"; comment\n[s]\n# auch comment\nk=v"` | `{"s": {"k": "v"}}`                       |
 | `"k=v"`                              | `{}` (kein Sektion vorher)                  |
 
-## Variante -- mit `configparser`
+## Variante - mit `configparser`
 
 Pythons eingebauter Parser ist robuster (multi-line values,
-Interpolation, etc.) -- aber komplexer in der Prüfung. Hier
+Interpolation, etc.) - aber komplexer in der Prüfung. Hier
 implementieren wir es selbst.
 
 ## Anwendung

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s179-shop-marge-fiktiv-2
-revision: 1
+revision: 2
 titel: "Shop: 5% Mehrwertsteuer hinzurechnen"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [math, round]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

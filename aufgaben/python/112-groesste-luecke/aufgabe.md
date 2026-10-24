@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 112-groesste-luecke
-revision: 1
+revision: 2
 titel: Größte Lücke in sortierter Liste
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [listen, schleifen, sortieren, max]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Klassische Aufwaerm-Aufgabe
+  notiz: Klassische Aufwärm-Aufgabe
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

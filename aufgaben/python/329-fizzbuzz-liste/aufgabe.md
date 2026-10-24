@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 329-fizzbuzz-liste
-revision: 1
+revision: 2
 titel: FizzBuzz als Liste 1 bis n
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [zahlen, listen, klassiker, modulo]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/FizzBuzz
-  notiz: Rosetta Code -- FizzBuzz, Sammelvariante
+  notiz: Rosetta Code - FizzBuzz, Sammelvariante
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -82,7 +82,7 @@ Regeln:
 | `1` | `["1"]`                                                 |
 | `0` | `[]`                                                    |
 
-## Idee 2 -- elegant mit String-Multiplikation
+## Idee 2 - elegant mit String-Multiplikation
 
 Pythonismus: `"Fizz" * True` ist `"Fizz"`, `"Fizz" * False` ist
 `""`. `"" or str(i)` liefert die Zahl, sobald keine Regel greift.
@@ -92,5 +92,5 @@ Pythonismus: `"Fizz" * True` ist `"Fizz"`, `"Fizz" * False` ist
 **001-fizzbuzz**: `fizzbuzz(n)` → einzelner String für eine Zahl.
 **329 hier**: `fizzbuzz_liste(n)` → Liste für 1..n.
 
-In der Praxis ist die Listen-Variante häufiger -- man will meist
+In der Praxis ist die Listen-Variante häufiger - man will meist
 den ganzen Lauf, nicht einzelne Werte.

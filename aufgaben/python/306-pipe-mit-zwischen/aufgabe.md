@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 306-pipe-mit-zwischen
-revision: 1
+revision: 2
 titel: Pipe mit Zwischen-Ergebnissen
 sprache: python
 task_type: code_schreiben
@@ -63,7 +63,7 @@ starter_code: |
 # Pipe mit Zwischen-Ergebnissen
 
 Schreibe `pipe_mit_zwischen(start, ops)`, die einen Startwert durch
-eine Folge von Operationen laufen laesst -- und **nach jeder
+eine Folge von Operationen laufen lässt - und **nach jeder
 Operation** den aktuellen Wert in eine Liste schreibt.
 
 Bei unbekannter Op wird sie als `identity` behandelt (Wert bleibt,

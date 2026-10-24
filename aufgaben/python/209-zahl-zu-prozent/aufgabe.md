@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 209-zahl-zu-prozent
-revision: 1
+revision: 2
 titel: Zahl in Prozent-String
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
 # Zahl in Prozent-String
 
 Schreibe `zu_prozent(anteil)`, die eine Bruchzahl (`0.5` = 50 %)
-in einen formatierten **Prozent-String** umwandelt -- mit genau
+in einen formatierten **Prozent-String** umwandelt - mit genau
 **zwei Nachkommastellen** und einem `%`-Zeichen am Ende.
 
 ## Beispiele
@@ -78,10 +78,10 @@ in einen formatierten **Prozent-String** umwandelt -- mit genau
 
 ## Idee
 
-`:.2f` rundet auf zwei Nachkommastellen -- mathematisches Runden
+`:.2f` rundet auf zwei Nachkommastellen - mathematisches Runden
 ("banker's rounding" in CPython, abweichend bei `.5`-Werten).
 
-## Pendant -- Prozent zurück zur Zahl
+## Pendant - Prozent zurück zur Zahl
 
 Aufgabe **210** macht den Weg zurück: `"50%"` → `0.5`. Damit hat
 man ein **Round-Trip-Paar**.
@@ -92,9 +92,9 @@ man ein **Round-Trip-Paar**.
 |-----------|---------------------------------------|
 | `:.2f`    | 2 Nachkommastellen, Float            |
 | `:5d`     | Integer, mind. 5 Stellen breit       |
-| `:>10`    | rechtsbuendig in 10 Stellen          |
+| `:>10`    | rechtsbündig in 10 Stellen          |
 | `:_`      | Tausender-Trenner als Unterstrich    |
 | `:%`      | wie `:.6f` plus `%` und `*100`       |
 
-`f"{0.5:%}"` wäre `"50.000000%"` -- `:.2%` wäre kürzer als unsere
+`f"{0.5:%}"` wäre `"50.000000%"` - `:.2%` wäre kürzer als unsere
 Lösung, aber nicht so explizit.

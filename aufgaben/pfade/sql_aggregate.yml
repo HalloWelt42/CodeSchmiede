@@ -1,7 +1,7 @@
 id: sql_aggregate
 titel: SQL-Aggregate und GROUP BY
 beschreibung: |
-  Sobald du mehr als einzelne Zeilen brauchst -- Summen, Durchschnitte, Zählungen, Gruppierungen: dieser Pfad. COUNT/SUM/AVG/MIN/MAX einzeln und in Kombination mit GROUP BY und HAVING. Inkl. CASE WHEN als Conditional Aggregate für Pivot-Tabellen.
+  Sobald du mehr als einzelne Zeilen brauchst - Summen, Durchschnitte, Zählungen, Gruppierungen: dieser Pfad. COUNT/SUM/AVG/MIN/MAX einzeln und in Kombination mit GROUP BY und HAVING. Inkl. CASE WHEN als Conditional Aggregate für Pivot-Tabellen.
 reihenfolge:
   - s019-buecher-anzahl
   - s020-summe-exemplare

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s018-altester-autor
-revision: 1
-titel: "Aeltester Autor"
+revision: 2
+titel: "Ältester Autor"
 sprache: sql
 task_type: sql_abfrage
 runner_type: docker_sqlite
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [order-by, limit]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -37,6 +37,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Aeltester Autor
+# Ältester Autor
 
 Name und Geburtsjahr des am früh geborenen Autors.

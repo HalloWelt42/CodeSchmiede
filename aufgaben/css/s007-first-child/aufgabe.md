@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s007-first-child
-revision: 1
+revision: 2
 titel: "Grundlagen 07: Pseudoklasse :first-child"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [grundlagen, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -34,7 +34,7 @@ hints:
   - kosten: 0
     text: |
       CSS wählt Elemente per **Selektor** und gibt ihnen Eigenschaften.
-      Welcher Selektor zählt, regeln Spezifizitaet und Quellreihenfolge.
+      Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
       `li:first-child { font-weight: 700; }`
@@ -42,11 +42,11 @@ starter_code: |
   /* :first-child trifft das erste Kind seines Eltern-Elements */
 ---
 
-# Grundlagen 07: Nur das ERSTE `<li>` in der Liste soll fett werden -- die anderen normal
+# Grundlagen 07: Nur das ERSTE `<li>` in der Liste soll fett werden - die anderen normal
 
 ## Aufgabe
 
-Nur das ERSTE `<li>` in der Liste soll fett werden -- die anderen normal
+Nur das ERSTE `<li>` in der Liste soll fett werden - die anderen normal
 
 ## Aha
 
@@ -57,5 +57,5 @@ Element das erste Kind seines Eltern-Elements ist.
 ## Wozu in der Praxis?
 
 Erstes Element in einer Tab-Bar markieren, Trennlinien zwischen
-Listen-Eintraegen mit `:not(:first-child) { border-top: 1px solid }`,
+Listen-Einträgen mit `:not(:first-child) { border-top: 1px solid }`,
 Inhaltsverzeichnis mit Sondersystem für den ersten Punkt.

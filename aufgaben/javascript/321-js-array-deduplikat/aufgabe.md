@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 321-js-array-deduplikat
-revision: 1
-titel: JavaScript -- Array dedupen mit Set
+revision: 2
+titel: JavaScript - Array dedupen mit Set
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -24,10 +24,10 @@ hints:
     text: |
       Entferne Duplikate aus einem Array, behalte ERSTES Vorkommen.
       Reihenfolge wie im Original.
-      Klassisch: [...new Set(arr)] -- elegant und schnell.
+      Klassisch: [...new Set(arr)] - elegant und schnell.
   - kosten: 5
     text: |
-      Set behaelt insertion-order. [...] ist Spread, macht Array draus.
+      Set behält insertion-order. [...] ist Spread, macht Array draus.
 tests_sichtbar:
   - input: [[1, 2, 2, 3, 3, 3]]
     expected: [1, 2, 3]
@@ -43,9 +43,9 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Array dedupen mit Set
+# JavaScript - Array dedupen mit Set
 
-Schreibe `dedup(arr)`, die Duplikate aus einem Array entfernt --
+Schreibe `dedup(arr)`, die Duplikate aus einem Array entfernt -
 **erstes Vorkommen** wird behalten, Reihenfolge bleibt.
 
 ## Beispiele
@@ -57,12 +57,12 @@ Schreibe `dedup(arr)`, die Duplikate aus einem Array entfernt --
 | `["a", "b", "a", "c"]`   | `["a", "b", "c"]`   |
 | `[]`                     | `[]`                |
 
-## Idee -- modernes JS
+## Idee - modernes JS
 
 Drei Schritte in einer Zeile:
-1. `new Set(arr)` -- erzeugt Set aus dem Array (Duplikate raus)
-2. `[...]` -- Spread macht aus dem Set wieder ein Array
-3. Reihenfolge bleibt erhalten -- JS-Sets sind **insertion-ordered**
+1. `new Set(arr)` - erzeugt Set aus dem Array (Duplikate raus)
+2. `[...]` - Spread macht aus dem Set wieder ein Array
+3. Reihenfolge bleibt erhalten - JS-Sets sind **insertion-ordered**
 
 ## Set-Eigenschaften in JS
 
@@ -73,16 +73,16 @@ Drei Schritte in einer Zeile:
 
 ## Vergleich mit klassischem Filter-Ansatz
 
-Funktioniert, aber `O(n²)` -- jedes Element ruft `indexOf` auf.
+Funktioniert, aber `O(n²)` - jedes Element ruft `indexOf` auf.
 Set-Variante ist `O(n)`.
 
-## Stolperstein -- Object-Eindeutigkeit
+## Stolperstein - Object-Eindeutigkeit
 
 Sets vergleichen Referenzen, nicht Inhalte. Bei Objekten muss man
 manuell deduplizieren (z.B. via JSON-Stringify als Key).
 
 ## Vergleich mit Python
 
-Python: `list(dict.fromkeys(arr))` -- nutzt insertion-order von
+Python: `list(dict.fromkeys(arr))` - nutzt insertion-order von
 dict (seit 3.7). JavaScript hat das selbe Pattern, aber mit Set
 direkt.

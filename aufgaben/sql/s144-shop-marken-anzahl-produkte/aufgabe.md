@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s144-shop-marken-anzahl-produkte
-revision: 1
+revision: 2
 titel: "Shop: Marken mit min. 3 Produkten"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [group-by, having]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

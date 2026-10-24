@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 291-json-zu-dict
-revision: 1
+revision: 2
 titel: JSON-String zu Dict parsen
 sprache: python
 task_type: code_schreiben
@@ -27,7 +27,7 @@ hints:
       json-Modul ist erlaubt.
   - kosten: 5
     text: |
-      json.loads(s) -- mit try/except json.JSONDecodeError.
+      json.loads(s) - mit try/except json.JSONDecodeError.
 tests_sichtbar:
   - input: ['{"a": 1, "b": 2}']
     expected: {"a": 1, "b": 2}
@@ -79,10 +79,10 @@ Python-Objekt umwandelt. Bei ungültigem JSON → `None`.
 | `'nicht-json'`               | `None`                  |
 | `'{ungültig}'`              | `None`                  |
 
-## Stolperstein -- `'null'` gibt `None`
+## Stolperstein - `'null'` gibt `None`
 
 JSON's `null` ist Pythons `None`. Daher kann man **nicht** unterscheiden
-zwischen "valider JSON-Wert null" und "Parse-Fehler" -- beide ergeben
+zwischen "valider JSON-Wert null" und "Parse-Fehler" - beide ergeben
 `None`. Wenn das wichtig ist, braucht man eine Sentinel-Variante:
 
 ## Pendant

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 226-zentrieren-padchar
-revision: 1
+revision: 2
 titel: Text zentrieren mit beliebigem Padding-Zeichen
 sprache: python
 task_type: code_schreiben
@@ -23,8 +23,8 @@ hints:
   - kosten: 0
     text: |
       Zentriere den Text in einem Feld der gegebenen Breite mit dem
-      gegebenen Padding-Zeichen. text laenger als breite → unverändert.
-      Bei pad mit Laenge != 1 → text unverändert.
+      gegebenen Padding-Zeichen. text länger als breite → unverändert.
+      Bei pad mit Länge != 1 → text unverändert.
       Pythons str.center erlaubt das pad-Zeichen direkt.
   - kosten: 8
     text: |
@@ -64,9 +64,9 @@ starter_code: |
 
 Schreibe `zentrieren(text, breite, pad)`, die einen Text in einem
 Feld der gegebenen Breite **zentriert** und mit dem **angegebenen
-Zeichen** auffuellt.
+Zeichen** auffüllt.
 
-- Wenn `text` schon laenger als `breite` ist → unverändert zurückgeben.
+- Wenn `text` schon länger als `breite` ist → unverändert zurückgeben.
 - Wenn `pad` nicht **genau ein Zeichen** lang ist → unverändert.
 - Bei ungerader Padding-Anzahl: links eines weniger als rechts
   (Python-`str.center`-Konvention).
@@ -84,7 +84,7 @@ Zeichen** auffuellt.
 
 ## Idee
 
-`str.center` macht alles -- aber nur, wenn `pad` genau **ein**
+`str.center` macht alles - aber nur, wenn `pad` genau **ein**
 Zeichen ist, sonst wirft Python einen `TypeError`. Wir fangen das
 explizit ab.
 
@@ -94,7 +94,7 @@ explizit ab.
 - Tabellen-Spalten zentrieren.
 - Test-Output formatieren: `zentrieren(" PASS ", 30, "-")`.
 
-## Verwandt -- ljust/rjust
+## Verwandt - ljust/rjust
 
 | Funktion | Wirkung               |
 |----------|------------------------|

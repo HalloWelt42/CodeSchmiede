@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 062-matrix-transponieren
-revision: 1
+revision: 2
 titel: Matrix transponieren
 sprache: python
 task_type: code_schreiben
@@ -51,7 +51,7 @@ starter_code: |
 # Matrix transponieren
 
 Schreibe eine Funktion `transponieren(matrix)`, die eine Matrix
-**transponiert** -- aus Zeilen werden Spalten und umgekehrt.
+**transponiert** - aus Zeilen werden Spalten und umgekehrt.
 
 Eine `m x n` Matrix wird zu `n x m`.
 
@@ -70,6 +70,6 @@ Element `matrix[i][j]` landet im Ergebnis bei `result[j][i]`.
 
 ## Idiomatic
 
-`list(zip(*matrix))` macht das in einer Zeile -- `zip` mit Unpacking
+`list(zip(*matrix))` macht das in einer Zeile - `zip` mit Unpacking
 liefert Tupel der Spalten. `list(...)` und ggf. `list(zeile) for ...`
 für reine Listen.

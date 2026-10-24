@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 250-einzigartige-werte
-revision: 1
+revision: 2
 titel: Werte die nur einmal vorkommen
 sprache: python
 task_type: code_schreiben
@@ -22,12 +22,12 @@ funktion: einzigartig
 hints:
   - kosten: 0
     text: |
-      Liefere alle Werte, die in der Liste GENAU EINMAL vorkommen --
+      Liefere alle Werte, die in der Liste GENAU EINMAL vorkommen -
       sortiert.
       [1,2,2,3,3,4] → [1,4].
   - kosten: 8
     text: |
-      collections.Counter -- dann Keys filtern, wo value == 1.
+      collections.Counter - dann Keys filtern, wo value == 1.
 tests_sichtbar:
   - input: [[1, 2, 2, 3, 3, 4]]
     expected: [1, 4]
@@ -59,7 +59,7 @@ starter_code: |
 # Werte die nur einmal vorkommen
 
 Schreibe `einzigartig(liste)`, die alle Werte liefert, die in der
-Liste **genau einmal** vorkommen -- als **sortierte** Liste.
+Liste **genau einmal** vorkommen - als **sortierte** Liste.
 
 ## Beispiele
 
@@ -75,7 +75,7 @@ Liste **genau einmal** vorkommen -- als **sortierte** Liste.
 ## Idee
 
 `Counter` zählt jedes Vorkommen. `c.items()` liefert
-`(key, count)`-Paare -- wir filtern auf `count == 1` und sortieren.
+`(key, count)`-Paare - wir filtern auf `count == 1` und sortieren.
 
 ## Verwandt
 
@@ -83,12 +83,12 @@ Liste **genau einmal** vorkommen -- als **sortierte** Liste.
 |--------------------------|--------------------------------|
 | **011-listen-duplikate** | Werte die >= 2x vorkommen     |
 | **027-eindeutige-reihenfolge** | Duplikate raus, Reihenfolge bewahrt |
-| **162-häufigster-wert** | Modus (max-Anzahl)            |
+| **162-haeufigster-wert** | Modus (max-Anzahl)            |
 | **250 hier**             | Werte mit Anzahl genau 1      |
 
 ## Anwendung
 
-- **Singletons** in Daten finden: Verkaeufe, die nur einmal stattfanden.
+- **Singletons** in Daten finden: Verkäufe, die nur einmal stattfanden.
 - **Token-Filterung**: Hapax Legomena (Wörter die im Text einmal vorkommen)
   in Linguistik und Stilometrie.
-- **Spurensuche**: in Logs ungewoehnliche IPs identifizieren.
+- **Spurensuche**: in Logs ungewöhnliche IPs identifizieren.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s155-autoren-jahre-zwischen
-revision: 1
+revision: 2
 titel: "Autoren des 19. Jahrhunderts"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [where, between]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

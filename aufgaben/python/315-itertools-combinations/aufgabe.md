@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 315-itertools-combinations
-revision: 1
+revision: 2
 titel: Alle k-er Kombinationen aus Liste
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: kombis
 hints:
   - kosten: 0
     text: |
-      Liefere alle k-elementigen Kombinationen aus der Liste -- als
+      Liefere alle k-elementigen Kombinationen aus der Liste - als
       Liste von Listen, lexikographisch geordnet.
       [1,2,3] mit k=2 → [[1,2], [1,3], [2,3]].
       k <= 0 oder k > len → [].
@@ -63,7 +63,7 @@ starter_code: |
 # Alle k-er Kombinationen aus Liste
 
 Schreibe `kombis(liste, k)`, die alle **k-elementigen Kombinationen**
-aus der Liste liefert -- lexikographisch geordnet.
+aus der Liste liefert - lexikographisch geordnet.
 
 `k <= 0` oder `k > len(liste)` → `[]`.
 
@@ -83,7 +83,7 @@ Bei `[1,2,3,4]` mit `k=2`: $\binom{4}{2} = 6$.
 ## Idee
 
 `itertools.combinations` ist hochoptimiert (C-Implementierung) und
-liefert die Reihenfolge **lexikographisch** -- also genau wie in
+liefert die Reihenfolge **lexikographisch** - also genau wie in
 unseren Tests erwartet.
 
 ## Verwandt
@@ -94,6 +94,6 @@ unseren Tests erwartet.
 
 ## Anwendung
 
-- **Lotto-Tippen**: alle moeglichen 6-aus-49 Ziehungen.
+- **Lotto-Tippen**: alle möglichen 6-aus-49 Ziehungen.
 - **Team-Aufstellung**: alle Spieler-Kombinationen.
 - **Subset-Probleme** in der Algorithmik.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 154-zahl-umkehren-int
-revision: 1
+revision: 2
 titel: Ganze Zahl umdrehen
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [zahlen, strings, vorzeichen]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: LeetCode 7 (vereinfacht ohne Overflow)
+  notiz: Klassische Übungsaufgabe (vereinfacht ohne Overflow)
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -24,7 +24,7 @@ hints:
     text: |
       Drehe die Ziffernreihenfolge einer ganzen Zahl um.
       123 -> 321, -123 -> -321, 100 -> 1.
-      Vorzeichen bleibt; fuehrende Nullen entfallen.
+      Vorzeichen bleibt; führende Nullen entfallen.
   - kosten: 10
     text: |
       Per String: int(str(abs(n))[::-1]) und dann mit dem
@@ -60,7 +60,7 @@ starter_code: |
 # Ganze Zahl umdrehen
 
 Schreibe eine Funktion `zahl_umdrehen(n)`, die die **Ziffernreihenfolge**
-einer ganzen Zahl umdreht. Vorzeichen bleibt erhalten, fuehrende Nullen
+einer ganzen Zahl umdreht. Vorzeichen bleibt erhalten, führende Nullen
 nach dem Umdrehen entfallen automatisch.
 
 ## Beispiele
@@ -75,19 +75,19 @@ nach dem Umdrehen entfallen automatisch.
 | `1000000`     | `1`          |
 | `9876543210`  | `123456789`  |
 
-## Idee -- per String
+## Idee - per String
 
-`str(abs(n))[::-1]` dreht die Ziffernkette, `int(...)` killt fuehrende
+`str(abs(n))[::-1]` dreht die Ziffernkette, `int(...)` killt führende
 Nullen automatisch.
 
-## Idee -- ohne String
+## Idee - ohne String
 
 Per Modulo / Division:
 
-Klassische Schul-Variante -- gleichzeitig die Vorlage für
+Klassische Schul-Variante - gleichzeitig die Vorlage für
 Konvertierungen in andere Zahlensysteme (Basis statt 10).
 
 ## Hinweis
 
-In LeetCode 7 muss zusaetzlich auf 32-Bit-Overflow geprüft werden.
+In der verbreiteten Fassung dieser Aufgabe muss zusätzlich auf 32-Bit-Overflow geprüft werden.
 Hier nutzen wir Pythons unbegrenzte Integer und sparen den Sonderfall.

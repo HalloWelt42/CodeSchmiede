@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s148-shop-grosser-bestellungen
-revision: 1
+revision: 2
 titel: "Shop: Große Bestellungen (Umsatz > 10 EUR)"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [join, group-by, having]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 244-gleitender-mittelwert
-revision: 1
+revision: 2
 titel: Gleitender Mittelwert (Sliding Mean)
 sprache: python
 task_type: code_schreiben
@@ -61,8 +61,8 @@ starter_code: |
 # Gleitender Mittelwert (Sliding Mean)
 
 Schreibe `gleitend(zahlen, k)`, die einen **gleitenden Mittelwert**
-über die Liste mit Fenstergröße `k` berechnet. Liste der Laenge
-`n` → Ergebnis der Laenge `n - k + 1`. Werte auf **4 Nachkomma**.
+über die Liste mit Fenstergröße `k` berechnet. Liste der Länge
+`n` → Ergebnis der Länge `n - k + 1`. Werte auf **4 Nachkomma**.
 
 Bei `k > n` oder `k <= 0` → `[]`.
 
@@ -85,6 +85,6 @@ Bei sehr großen Listen oder großem `k` macht das einen Unterschied.
 
 ## Anwendung
 
-- Zeitreihen-Glaettung (Finanzdaten, Sensor-Messungen).
+- Zeitreihen-Glättung (Finanzdaten, Sensor-Messungen).
 - Bewegungsdaten (Schritte pro Tag, gleitend über 7 Tage).
 - Bildverarbeitung: 1D-Box-Filter ist genau das.

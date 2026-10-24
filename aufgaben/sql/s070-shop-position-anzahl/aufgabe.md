@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s070-shop-position-anzahl
-revision: 1
+revision: 2
 titel: "Shop: Anzahl Positionen pro Bestellung"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [group-by, count]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -55,4 +55,4 @@ starter_code: |
 
 # Positionen pro Bestellung
 
-Bestell-ID + wieviele Positionen, hauefigste zuerst.
+Bestell-ID + wieviele Positionen, häufigste zuerst.

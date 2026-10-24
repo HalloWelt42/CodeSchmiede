@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 214-text-wiederholen
-revision: 1
-titel: Text wiederholen bis Ziel-Laenge
+revision: 2
+titel: Text wiederholen bis Ziel-Länge
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -22,13 +22,13 @@ funktion: wiederhole
 hints:
   - kosten: 0
     text: |
-      Wiederhole "muster" so oft wie nötig, bis "laenge" Zeichen
-      zusammenkommen, dann auf laenge slicen.
-      "ab" mit laenge=5 → "ababa".
-      Bei muster == "" oder laenge <= 0 → "".
+      Wiederhole "muster" so oft wie nötig, bis "länge" Zeichen
+      zusammenkommen, dann auf länge slicen.
+      "ab" mit länge=5 → "ababa".
+      Bei muster == "" oder länge <= 0 → "".
   - kosten: 8
     text: |
-      anzahl = laenge // len(muster) + 1, dann (muster * anzahl)[:laenge].
+      anzahl = länge // len(muster) + 1, dann (muster * anzahl)[:länge].
 tests_sichtbar:
   - input: ["ab", 5]
     expected: "ababa"
@@ -57,7 +57,7 @@ starter_code: |
       pass
 ---
 
-# Text wiederholen bis Ziel-Laenge
+# Text wiederholen bis Ziel-Länge
 
 Schreibe `wiederhole(muster, laenge)`, die das Muster **so oft
 wiederholt** und dann **abschneidet**, dass das Ergebnis genau
@@ -67,7 +67,7 @@ Bei leerem Muster oder `laenge <= 0` → `""`.
 
 ## Beispiele
 
-| Muster   | Laenge | Ergebnis       |
+| Muster   | Länge | Ergebnis       |
 |----------|--------|----------------|
 | `"ab"`   | `5`    | `"ababa"`      |
 | `"x"`    | `3`    | `"xxx"`        |
@@ -76,12 +76,12 @@ Bei leerem Muster oder `laenge <= 0` → `""`.
 | `"xyz"`  | `9`    | `"xyzxyzxyz"`  |
 | `""`     | `5`    | `""`           |
 
-## Idee -- Multiplikation + Slice
+## Idee - Multiplikation + Slice
 
 Die `+1` stellt sicher, dass wir **mindestens** `laenge` Zeichen haben.
-Das Slicing schneidet auf die genaue Laenge.
+Das Slicing schneidet auf die genaue Länge.
 
-## Beispiel-Rechnung "ab" mit laenge=5
+## Beispiel-Rechnung "ab" mit länge=5
 
 `5 // 2 + 1 = 3` → `"ab" * 3 = "ababab"` → `[:5] = "ababa"`.
 
@@ -89,4 +89,4 @@ Das Slicing schneidet auf die genaue Laenge.
 
 Padding-Strings, Banner-Trenner (`"-" * 80`), Mock-Daten generieren,
 und der **Cesar-Schlüssel-Trick** in der Vigenere-Chiffre (Aufgabe
-105: Schlüssel auf Klartext-Laenge bringen).
+105: Schlüssel auf Klartext-Länge bringen).

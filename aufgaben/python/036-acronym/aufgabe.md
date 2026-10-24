@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 036-acronym
-revision: 1
+revision: 2
 titel: Akronym aus Satz
 sprache: python
 task_type: code_schreiben
@@ -62,7 +62,7 @@ den **ersten Buchstaben** nimmt und sie zu einem großgeschriebenen
 Akronym zusammensetzt.
 
 Worte werden an Whitespace getrennt; mehrfache Leerzeichen oder
-fuehrende/abschließende Whitespaces werden korrekt ignoriert.
+führende/abschließende Whitespaces werden korrekt ignoriert.
 
 ## Beispiele
 
@@ -76,7 +76,7 @@ fuehrende/abschließende Whitespaces werden korrekt ignoriert.
 
 ## Idee
 
-`text.split()` -- ohne Argument splittet es an beliebigen Whitespace
+`text.split()` - ohne Argument splittet es an beliebigen Whitespace
 und ignoriert leere Bestandteile. Genau, was hier gebraucht wird.
 
 ## Hintergrund

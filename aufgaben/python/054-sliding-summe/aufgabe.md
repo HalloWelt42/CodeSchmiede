@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 054-sliding-summe
-revision: 1
+revision: 2
 titel: Maximum-Summe in Sliding-Window
 sprache: python
 task_type: code_schreiben
@@ -80,7 +80,7 @@ Statt jedes Fenster komplett neu zu summieren, "rolle" das Fenster:
 - Schiebe es weiter: subtrahiere das verlorene linke Element, addiere
   das neue rechte Element
 
-So sparen wir uns Rechenzeit -- $O(n)$ statt $O(n \cdot k)$.
+So sparen wir uns Rechenzeit - $O(n)$ statt $O(n \cdot k)$.
 
 ## Hintergrund
 

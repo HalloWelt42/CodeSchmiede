@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 192-rechteck
-revision: 1
+revision: 2
 titel: Rechteck-Eigenschaften
 sprache: python
 task_type: code_schreiben
@@ -22,13 +22,13 @@ funktion: rechteck
 hints:
   - kosten: 0
     text: |
-      Liefere [flaeche, umfang, diagonale] eines Rechtecks mit
+      Liefere [fläche, umfang, diagonale] eines Rechtecks mit
       Breite b und Höhe h. Diagonale via Pythagoras.
       Alle drei Werte auf 2 Nachkommastellen.
       b oder h <= 0 -> [0, 0, 0].
   - kosten: 5
     text: |
-      flaeche = b * h
+      fläche = b * h
       umfang = 2 * (b + h)
       diagonale = sqrt(b**2 + h**2)
 tests_sichtbar:
@@ -66,19 +66,19 @@ starter_code: |
 Schreibe `rechteck(b, h)`, die für ein Rechteck der Breite `b`
 und Höhe `h` drei Werte zurückgibt:
 
-`[flaeche, umfang, diagonale]` -- alle auf **2 Nachkommastellen**.
+`[flaeche, umfang, diagonale]` - alle auf **2 Nachkommastellen**.
 
 Bei ungültigen Eingaben (`b <= 0` oder `h <= 0`) → `[0, 0, 0]`.
 
 ## Formeln
 
-- Flaeche: $A = b \cdot h$
+- Fläche: $A = b \cdot h$
 - Umfang:  $U = 2(b + h)$
 - Diagonale: $d = \sqrt{b^2 + h^2}$ (**Pythagoras**)
 
 ## Beispiele
 
-| `b`  | `h`  | Flaeche | Umfang | Diagonale |
+| `b`  | `h`  | Fläche | Umfang | Diagonale |
 |------|------|---------|--------|-----------|
 | `3`  | `4`  | `12.0`  | `14.0` | `5.0`     |
 | `1`  | `1`  | `1.0`   | `4.0`  | `1.41`    |
@@ -86,11 +86,11 @@ Bei ungültigen Eingaben (`b <= 0` oder `h <= 0`) → `[0, 0, 0]`.
 | `6`  | `8`  | `48.0`  | `28.0` | `10.0`    |
 | `12` | `5`  | `60.0`  | `34.0` | `13.0`    |
 
-Quadrate sind Sonderfaelle, bei denen $d = b \sqrt{2}$.
+Quadrate sind Sonderfälle, bei denen $d = b \sqrt{2}$.
 
 ## Pythagoras-Klassiker
 
 Die Tripel `(3, 4, 5)`, `(6, 8, 10)`, `(5, 12, 13)` erscheinen oft
-in Schulaufgaben -- das sind sogenannte **pythagoraeische Tripel**
+in Schulaufgaben - das sind sogenannte **pythagoräische Tripel**
 (siehe Aufgabe 084), bei denen die Diagonale **ganzzahlig** wird.
 Geometrisch beruhigend, weil Wurzeln verschwinden.

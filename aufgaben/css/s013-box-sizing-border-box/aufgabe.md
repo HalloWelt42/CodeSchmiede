@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s013-box-sizing-border-box
-revision: 1
-titel: "Grundlagen 13: box-sizing -- Padding INNERHALB der Breite"
+revision: 2
+titel: "Grundlagen 13: box-sizing - Padding INNERHALB der Breite"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [grundlagen, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -38,7 +38,7 @@ hints:
   - kosten: 0
     text: |
       CSS wählt Elemente per **Selektor** und gibt ihnen Eigenschaften.
-      Welcher Selektor zählt, regeln Spezifizitaet und Quellreihenfolge.
+      Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
       `box-sizing: border-box;`
@@ -60,15 +60,15 @@ Mit border-box bleibt die Box trotz Padding genau 200px breit
 
 ## Aha
 
-Standard ist `box-sizing: content-box` -- da kommt das Padding ZU
+Standard ist `box-sizing: content-box` - da kommt das Padding ZU
 der width dazu. Eine Box mit `width: 200px; padding: 20px` ist also
 tatsächlich 240px breit. Mit `box-sizing: border-box` bleibt die
-Box bei 200px -- das Padding wird vom Inhalt abgezogen. Das ist
+Box bei 200px - das Padding wird vom Inhalt abgezogen. Das ist
 intuitiver und der Grund, warum praktisch jedes Projekt mit
 `* { box-sizing: border-box; }` startet.
 
 ## Wozu in der Praxis?
 
 Ohne border-box muss man bei jeder Breitenrechnung Padding und Border
-abziehen -- ein Albtraum bei responsiven Layouts. `box-sizing: border-
+abziehen - ein Albtraum bei responsiven Layouts. `box-sizing: border-
 box` global setzen ist seit Jahren Best-Practice.

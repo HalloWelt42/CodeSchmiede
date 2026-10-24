@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 326-js-summe-quadrate
-revision: 1
-titel: JavaScript -- Summe der Quadrate
+revision: 2
+titel: JavaScript - Summe der Quadrate
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, zahlen, mathematik, formel]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Sum_of_squares
-  notiz: Rosetta Code -- Sum of squares, JS-Version
+  notiz: Rosetta Code - Sum of squares, JS-Version
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -26,7 +26,7 @@ hints:
       Geschlossene Formel ist O(1): n*(n+1)*(2n+1)/6.
   - kosten: 5
     text: |
-      Math.floor(n*(n+1)*(2*n+1)/6) -- Floor wegen Float-Trick.
+      Math.floor(n*(n+1)*(2*n+1)/6) - Floor wegen Float-Trick.
 tests_sichtbar:
   - input: [0]
     expected: 0
@@ -42,7 +42,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Summe der Quadrate
+# JavaScript - Summe der Quadrate
 
 Schreibe `summeQuadrate(n)`, die `1² + 2² + ... + n²` berechnet.
 
@@ -61,7 +61,7 @@ Bei `n <= 0` → `0`.
 
 $$\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$$
 
-## Idee -- O(1) per Formel
+## Idee - O(1) per Formel
 
 `Math.floor` ist hier nicht streng nötig (das Produkt
 `n(n+1)(2n+1)` ist immer durch 6 teilbar), aber durch

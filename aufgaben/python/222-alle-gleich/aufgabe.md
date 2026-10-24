@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 222-alle-gleich
-revision: 1
+revision: 2
 titel: Alle Elemente gleich?
 sprache: python
 task_type: code_schreiben
@@ -76,24 +76,24 @@ Elemente in der Liste **gleich** sind. Leere Liste → `True`.
 | `["a", "A"]`       | `False`      |
 | `[0, 0.0]`         | `True` (Wert-gleich, Typ egal) |
 
-## Idee 1 -- Set-Trick
+## Idee 1 - Set-Trick
 
 Wenn das Set höchstens **ein Element** hat, sind alle gleich (oder
 es gibt keine).
 
-## Idee 2 -- All mit Vergleich
+## Idee 2 - All mit Vergleich
 
-Spart die Set-Konstruktion -- bei sehr großen Listen mit vielen
+Spart die Set-Konstruktion - bei sehr großen Listen mit vielen
 unterschiedlichen Werten ein **Short-Circuit**: bricht beim ersten
 Mismatch ab.
 
-## Stolperstein -- Hashbarkeit
+## Stolperstein - Hashbarkeit
 
-`set(liste)` setzt voraus, dass alle Elemente **hashbar** sind --
-bei Listen oder Dicts in der Liste schlaegt das fehl. Idee 2 hat
-diese Einschraenkung nicht.
+`set(liste)` setzt voraus, dass alle Elemente **hashbar** sind -
+bei Listen oder Dicts in der Liste schlägt das fehl. Idee 2 hat
+diese Einschränkung nicht.
 
-## Mathematische Subtilitaet -- Vacuous Truth
+## Mathematische Subtilität - Vacuous Truth
 
 Aussage "Für alle x in der leeren Menge gilt P(x)" ist immer wahr,
 weil es kein Gegenbeispiel gibt. Darum `[]` → `True`.

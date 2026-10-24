@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: f010-flex-wrap
-revision: 1
-titel: "Flexbox 10: Umbruch in neue Zeile -- flex-wrap: wrap"
+revision: 2
+titel: "Flexbox 10: Umbruch in neue Zeile - flex-wrap: wrap"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [flexbox, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -53,7 +53,7 @@ hints:
   - kosten: 0
     text: |
       Flexbox-Eltern muss `display: flex` haben, damit `justify-content`, `align-items` & Co. greifen.
-      Diese Aufgabe lehrt EINE Property -- die anderen kommen in den nächsten Levels.
+      Diese Aufgabe lehrt EINE Property - die anderen kommen in den nächsten Levels.
   - kosten: 3
     text: |
       `display: flex;
@@ -70,19 +70,19 @@ starter_code: |
 ## Aufgabe
 
 Im Bahn-Rahmen sollen die drei Kacheln so angeordnet werden, dass
-**vier froesche, der vierte landet in einer zweiten zeile, weil er nicht mehr in die erste passt**.
+**vier frösche, der vierte landet in einer zweiten zeile, weil er nicht mehr in die erste passt**.
 
-Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` -- der Rest
+Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` - der Rest
 (Größe, Farbe, Quadrate) ist schon da.
 
 ## Aha
 
-Standardmaessig ist `flex-wrap: nowrap` -- Items schrumpfen lieber, als
+Standardmäßig ist `flex-wrap: nowrap` - Items schrumpfen lieber, als
 umzubrechen. Mit `wrap` brechen sie sauber in neue Zeilen um, sobald der
 Platz nicht reicht.
 
 ## Wozu in der Praxis?
 
 Tag-Clouds, responsive Galerien, Toolbar mit vielen Buttons auf schmalen
-Bildschirmen -- überall wo eine Reihe zu lang werden kann, ist `flex-wrap`
+Bildschirmen - überall wo eine Reihe zu lang werden kann, ist `flex-wrap`
 die simple Antwort, ohne Media-Queries schreiben zu müssen.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 025-set-schnitt
-revision: 1
+revision: 2
 titel: Schnittmenge zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -33,7 +33,7 @@ hints:
       return [x for x in a if x in gemeinsam]
       ```
 
-      Aber pass auf Doppelte in `a` auf -- jedes Element nur einmal
+      Aber pass auf Doppelte in `a` auf - jedes Element nur einmal
       ins Ergebnis aufnehmen.
 tests_sichtbar:
   - input: [[1, 2, 3, 4], [3, 4, 5, 6]]
@@ -83,5 +83,5 @@ noch nicht im Ergebnis steht.
 ## Hintergrund
 
 In Python ist `x in set` ein O(1)-Test (Hash-Lookup), während `x in
-list` linear in der Listenlaenge ist. Bei großen Datenmengen macht
+list` linear in der Listenlänge ist. Bei großen Datenmengen macht
 diese Wahl einen riesigen Unterschied.

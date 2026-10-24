@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 088-allergien
-revision: 1
+revision: 2
 titel: Allergien aus Bitfeld lesen
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: allergien
 hints:
   - kosten: 0
     text: |
-      Jede Allergie hat einen Bit-Wert: Eier=1, Erdnuesse=2, Schalentiere=4,
+      Jede Allergie hat einen Bit-Wert: Eier=1, Erdnüsse=2, Schalentiere=4,
       Erdbeeren=8, Tomaten=16, Schokolade=32, Pollen=64, Katzen=128.
       Bit-AND `score & wert` testet ob Allergie vorhanden.
   - kosten: 9
@@ -61,7 +61,7 @@ starter_code: |
 # Allergien aus Bitfeld lesen
 
 In einem alten medizinischen System sind Allergien eines Patienten
-als **einzelne Zahl** kodiert -- ein Bitfeld. Schreibe eine Funktion
+als **einzelne Zahl** kodiert - ein Bitfeld. Schreibe eine Funktion
 `allergien(score)`, die die Liste der Allergien zurückgibt.
 
 ## Bit-Werte

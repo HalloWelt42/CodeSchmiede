@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 221-vorkommen-zaehlen
-revision: 1
+revision: 2
 titel: Vorkommen eines Werts in Liste zählen
 sprache: python
 task_type: code_schreiben
@@ -73,16 +73,16 @@ Bei leerer Liste → `0`.
 | `["a", "b", "a"]`  | `"a"`| `2`    |
 | `[]`               | `5`  | `0`    |
 
-## Idee 1 -- Builtin
+## Idee 1 - Builtin
 
-`list.count` ist in C implementiert -- maximal schnell.
+`list.count` ist in C implementiert - maximal schnell.
 
-## Idee 2 -- per Comprehension
+## Idee 2 - per Comprehension
 
 Lehrreich, weil es das Pattern "zähle wie oft Bedingung wahr ist"
-zeigt -- mit `sum(1 for ... if ...)`.
+zeigt - mit `sum(1 for ... if ...)`.
 
-## Vergleich -- `count` vs `Counter`
+## Vergleich - `count` vs `Counter`
 
 | Aufgabe                          | Was?                  |
 |----------------------------------|-----------------------|

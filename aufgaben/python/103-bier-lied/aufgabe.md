@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 103-bier-lied
-revision: 1
+revision: 2
 titel: Bier-Lied generieren
 sprache: python
 task_type: code_schreiben
@@ -26,7 +26,7 @@ hints:
       für n=99: "99 Flaschen Bier auf der Wand, 99 Flaschen Bier.\nNimm eine runter, gib sie rum, 98 Flaschen Bier auf der Wand."
   - kosten: 8
     text: |
-      Sonderfaelle:
+      Sonderfälle:
       - n = 1: "1 Flasche..." (Singular), nächste = 0 → "keine mehr Flaschen"
       - n = 0: "Keine Flaschen Bier auf der Wand, keine Flaschen Bier.\nGeh in den Laden, kauf neues, 99 Flaschen Bier auf der Wand."
 tests_sichtbar:
@@ -87,4 +87,4 @@ Geh in den Laden, kauf neues, 99 Flaschen Bier auf der Wand.
 
 "99 Bottles of Beer" ist ein Standard-Test für Sprach-Vergleiche
 (siehe [99-bottles-of-beer.net](https://www.99-bottles-of-beer.net/))
--- über 1500 Sprach-Implementierungen sind dort gesammelt.
+- über 1500 Sprach-Implementierungen sind dort gesammelt.

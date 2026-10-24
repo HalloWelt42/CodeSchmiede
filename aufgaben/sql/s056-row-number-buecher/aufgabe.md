@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s056-row-number-buecher
-revision: 1
+revision: 2
 titel: "Bücher mit fortlaufender Nummer pro Kategorie"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [window-function, row-number, partition-by]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

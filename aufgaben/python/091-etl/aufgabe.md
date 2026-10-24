@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 091-etl
-revision: 1
-titel: ETL -- Punkte-Tabelle umbauen
+revision: 2
+titel: ETL - Punkte-Tabelle umbauen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -54,7 +54,7 @@ starter_code: |
       pass
 ---
 
-# ETL -- Punkte-Tabelle umbauen
+# ETL - Punkte-Tabelle umbauen
 
 Bei einem **alten** Format der Scrabble-Punkte sind die Werte
 gruppiert: pro Punktzahl eine Liste der Buchstaben.
@@ -64,7 +64,7 @@ Punktzahl, alles kleingeschrieben.
 
 ## Hintergrund
 
-ETL = **Extract, Transform, Load** -- der Standard-Begriff für solche
+ETL = **Extract, Transform, Load** - der Standard-Begriff für solche
 Format-Umbauten. Diese Aufgabe ist ein Mini-T (transform), wie es
 in jedem Daten-Pipeline-Job vorkommt.
 

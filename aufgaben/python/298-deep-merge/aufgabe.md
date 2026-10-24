@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 298-deep-merge
-revision: 1
+revision: 2
 titel: Deep-Merge zweier Dicts
 sprache: python
 task_type: code_schreiben
@@ -67,7 +67,7 @@ Schreibe `deep_merge(a, b)`, die zwei Dicts **rekursiv** verschmelzt:
   - Wenn beide Werte Dicts sind → rekursiv verschmelzen.
   - Sonst → `b`-Wert überschreibt `a`-Wert.
 
-Original-Dicts **nicht mutieren** -- neue Dicts bauen.
+Original-Dicts **nicht mutieren** - neue Dicts bauen.
 
 ## Beispiele
 
@@ -81,16 +81,16 @@ Original-Dicts **nicht mutieren** -- neue Dicts bauen.
 | `{"a": 1}`                  | `{"a": {"b": 2}}`              | `{"a": {"b": 2}}` (Typ-Wechsel)     |
 | `{"a": {"b": 1}}`           | `{"a": "überschrieben"}`      | `{"a": "überschrieben"}`           |
 
-## Idee -- Rekursion
+## Idee - Rekursion
 
-`dict(a)` macht eine **flache Kopie** -- ändert nicht die innere
+`dict(a)` macht eine **flache Kopie** - ändert nicht die innere
 Dicts. Diese werden bei Bedarf rekursiv ersetzt.
 
-## Stolperstein -- Listen mergen?
+## Stolperstein - Listen mergen?
 
 Es gibt zwei Konventionen für Listen:
 
-1. **Komplett überschreiben** (b gewinnt) -- unsere Wahl.
+1. **Komplett überschreiben** (b gewinnt) - unsere Wahl.
 2. **Konkatenieren** (a + b).
 
 Wir nehmen Variante 1, weil sie konsistent mit dem "b gewinnt"-

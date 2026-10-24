@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 016-quersumme
-revision: 1
+revision: 2
 titel: Quersumme einer Zahl
 sprache: python
 task_type: code_schreiben
@@ -61,7 +61,7 @@ starter_code: |
 # Quersumme einer Zahl
 
 Schreibe eine Funktion `quersumme(n)`, die die **Quersumme** einer
-nicht-negativen ganzen Zahl `n` zurückgibt -- also die Summe aller
+nicht-negativen ganzen Zahl `n` zurückgibt - also die Summe aller
 Ziffern.
 
 ## Beispiele
@@ -81,6 +81,6 @@ unterwegs alle Ziffern.
 
 ## Hintergrund
 
-Die Quersumme spielt eine Rolle bei vielen Teilbarkeitsregeln -- eine
+Die Quersumme spielt eine Rolle bei vielen Teilbarkeitsregeln - eine
 Zahl ist genau dann durch 3 (oder 9) teilbar, wenn ihre Quersumme es
 ist. Mehr dazu unter [Wikipedia: Quersumme](https://de.wikipedia.org/wiki/Quersumme).

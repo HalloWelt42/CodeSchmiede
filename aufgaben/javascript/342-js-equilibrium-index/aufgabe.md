@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 342-js-equilibrium-index
-revision: 1
-titel: JavaScript -- Gleichgewichts-Index
+revision: 2
+titel: JavaScript - Gleichgewichts-Index
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, array, prefix-sum, algorithmen]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Equilibrium_index
-  notiz: Rosetta Code -- Equilibrium index, JS
+  notiz: Rosetta Code - Equilibrium index, JS
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -43,7 +43,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Gleichgewichts-Index
+# JavaScript - Gleichgewichts-Index
 
 Liefere alle Indizes `i`, an denen die Summe links von `i` gleich
 der Summe rechts von `i` ist (beides ohne `arr[i]`).
@@ -59,7 +59,7 @@ Bei leerem Array → `[]`. Einzelelement → `[0]`.
 | `[10, -10, 10]`             | `[1]`           |
 | `[1, 2, 3]`                 | `[]`            |
 
-## Idee -- O(n)
+## Idee - O(n)
 
 Ein-Pass-Algorithmus mit konstantem Extra-Speicher.
 

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 037-binaere-suche
-revision: 1
-titel: Binaere Suche
+revision: 2
+titel: Binäre Suche
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -72,7 +72,7 @@ starter_code: |
       pass
 ---
 
-# Binaere Suche
+# Binäre Suche
 
 Schreibe eine Funktion `binaere_suche(liste, ziel)`, die in einer
 **aufsteigend sortierten** Liste das Ziel sucht und seinen **Index**
@@ -92,11 +92,11 @@ zurückgibt. Falls das Ziel nicht enthalten ist: `-1`.
 
 Halbiere bei jedem Schritt den Suchbereich. Variablen `links`,
 `rechts`, `mitte`. Wenn `liste[mitte] == ziel`: gefunden. Sonst eine
-der beiden Haelften verwerfen.
+der beiden Hälften verwerfen.
 
-## Komplexitaet
+## Komplexität
 
-Lineare Suche braucht im Worst-Case $O(n)$ Schritte, die binaere
+Lineare Suche braucht im Worst-Case $O(n)$ Schritte, die binäre
 Suche $O(\log n)$. Bei $n = 1.000.000$ ist das der Unterschied
 zwischen einer Million und 20 Vergleichen.
 

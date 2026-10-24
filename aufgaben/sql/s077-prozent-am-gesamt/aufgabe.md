@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s077-prozent-am-gesamt
-revision: 1
+revision: 2
 titel: "Shop: Anteil jeder Bestellung am Gesamtumsatz"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 12
 tags: [window-function, sum-over, prozent]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -46,7 +46,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `SUM(SUM(...)) OVER ()` -- aeussere SUM über alle gruppierten Zeilen.
+      `SUM(SUM(...)) OVER ()` - äußere SUM über alle gruppierten Zeilen.
 starter_code: |
   SELECT ___
   FROM ___

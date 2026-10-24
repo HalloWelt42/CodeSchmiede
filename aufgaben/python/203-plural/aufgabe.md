@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 203-plural
-revision: 1
+revision: 2
 titel: Singular oder Plural wählen
 sprache: python
 task_type: code_schreiben
@@ -23,9 +23,9 @@ hints:
   - kosten: 0
     text: |
       Liefere "n singular" bei n == 1, sonst "n plural".
-      Beispiel: plural(1, "Apfel", "Aepfel") -> "1 Apfel".
-              plural(2, "Apfel", "Aepfel") -> "2 Aepfel".
-      0 zählt als plural: "0 Aepfel".
+      Beispiel: plural(1, "Apfel", "Äpfel") -> "1 Apfel".
+              plural(2, "Apfel", "Äpfel") -> "2 Äpfel".
+      0 zählt als plural: "0 Äpfel".
       Negative Zahlen wie der Betrag, Vorzeichen bleibt:
       plural(-1, ...) -> "-1 singular".
   - kosten: 5
@@ -80,16 +80,16 @@ Negativzahlen verhalten sich wie ihr Betrag, das Vorzeichen bleibt.
 | `-1`  | `Tag`    | `Tage`   | `"-1 Tag"`      |
 | `100` | `Buch`   | `Bücher`| `"100 Bücher"` |
 
-## Hintergrund -- i18n
+## Hintergrund - i18n
 
 In manchen Sprachen gibt es **mehr als zwei** Plural-Formen
 (z.B. Russisch: 1, 2-4, 5-20, dann zyklisch). Frameworks wie
-**ICU MessageFormat** unterstuetzen das. Im Deutschen reichen
+**ICU MessageFormat** unterstützen das. Im Deutschen reichen
 zwei Formen.
 
 ## Erweiterung
 
 Eine "smarte" Variante könnte den Plural automatisch ableiten:
 "Hund" → "Hunde" (e anhängen). Das funktioniert aber nur für
-einen Bruchteil der Substantive -- in der Praxis ist explizite
+einen Bruchteil der Substantive - in der Praxis ist explizite
 Angabe robuster.

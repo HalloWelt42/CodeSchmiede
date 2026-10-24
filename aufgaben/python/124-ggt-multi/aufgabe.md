@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 124-ggt-multi
-revision: 1
+revision: 2
 titel: ggT mehrerer Zahlen
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: ggt_liste
 hints:
   - kosten: 0
     text: |
-      ggT von n Zahlen: paarweise reduzieren --
+      ggT von n Zahlen: paarweise reduzieren -
       `ggt(a, b, c) = ggt(ggt(a, b), c)`. Leere Liste → 0.
   - kosten: 8
     text: |

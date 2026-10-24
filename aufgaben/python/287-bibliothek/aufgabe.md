@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 287-bibliothek
-revision: 1
+revision: 2
 titel: Bibliothek mit Buchausleihen
 sprache: python
 task_type: code_schreiben
@@ -25,7 +25,7 @@ hints:
       Eine Bibliothek hat einen Bestand (Liste von Bücher-Titeln,
       jeder einmal). Operationen:
       ["leihen", titel] → entfernt aus Bestand falls da
-      ["zurück", titel] → fuegt zum Bestand hinzu falls nicht da
+      ["zurück", titel] → fügt zum Bestand hinzu falls nicht da
       ["prüfen", titel] → kein State-Change, gibt aktuellen Bestand zurück
       Liefere den finalen Bestand als sortierte Liste.
   - kosten: 19
@@ -62,15 +62,15 @@ starter_code: |
 
 # Bibliothek mit Buchausleihen
 
-Implementiere `ausleihen(bestand, operationen)` -- eine Bibliothek
+Implementiere `ausleihen(bestand, operationen)` - eine Bibliothek
 hat einen Bestand (jeder Titel einmal), eine Liste von Operationen
 modifiziert ihn:
 
 | Operation              | Wirkung                                |
 |------------------------|----------------------------------------|
 | `["leihen", titel]`    | entfernt titel aus dem Bestand (falls vorhanden) |
-| `["zurück", titel]`   | fuegt titel zum Bestand hinzu (falls nicht da)   |
-| `["prüfen", titel]`   | keine Änderung -- nur Lese-Op       |
+| `["zurück", titel]`   | fügt titel zum Bestand hinzu (falls nicht da)   |
+| `["prüfen", titel]`   | keine Änderung - nur Lese-Op       |
 
 Liefere den **finalen Bestand** als **alphabetisch sortierte** Liste.
 
@@ -84,15 +84,15 @@ Liefere den **finalen Bestand** als **alphabetisch sortierte** Liste.
 | `["A"]`          | `[["leihen","A"],["zurück","A"]]` | `["A"]`      |
 | `[]`             | `[["zurück","A"]]`                | `["A"]`      |
 
-## Idee -- Set + Methoden
+## Idee - Set + Methoden
 
 `set.discard(x)` ist wie `set.remove(x)`, wirft aber **keinen
-Fehler**, wenn das Element nicht da ist -- ideal für "lösche falls
-vorhanden". `set.add(x)` ist idempotent (fuegt nicht doppelt).
+Fehler**, wenn das Element nicht da ist - ideal für "lösche falls
+vorhanden". `set.add(x)` ist idempotent (fügt nicht doppelt).
 
-## Erweiterung -- Mehrfache Exemplare
+## Erweiterung - Mehrfache Exemplare
 
 In einer echten Bibliothek gibt es Bücher in **mehreren Exemplaren**:
 "Der Herr der Ringe" 5x da, davon 3 ausgeliehen. Dafür braucht man
-ein `dict[titel, anzahl]` statt eines Sets -- der Sprung von Set zu
-Dict ist klein, das Konzept aber maechtig.
+ein `dict[titel, anzahl]` statt eines Sets - der Sprung von Set zu
+Dict ist klein, das Konzept aber mächtig.

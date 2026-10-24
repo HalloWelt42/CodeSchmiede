@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 324-js-power-set
-revision: 1
-titel: JavaScript -- Potenzmenge
+revision: 2
+titel: JavaScript - Potenzmenge
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, kombinatorik, array, reduce, modern]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Power_set
-  notiz: Rosetta Code -- Power Set, JS-Version
+  notiz: Rosetta Code - Power Set, JS-Version
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -45,10 +45,10 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Potenzmenge
+# JavaScript - Potenzmenge
 
 Schreibe `potenzmenge(arr)`, die alle Teilmengen eines Arrays
-zurückgibt -- inklusive leerer Menge und Gesamtmenge.
+zurückgibt - inklusive leerer Menge und Gesamtmenge.
 
 Reihenfolge: zuerst **Größe aufsteigend**, innerhalb gleicher
 Größe **lexikographisch**.
@@ -64,18 +64,18 @@ Größe **lexikographisch**.
 
 Anzahl: $2^n$ Teilmengen.
 
-## Idee -- Bit-Maskierung
+## Idee - Bit-Maskierung
 
-Jede Teilmenge entspricht einer Binaerzahl von 0 bis $2^n - 1$.
+Jede Teilmenge entspricht einer Binärzahl von 0 bis $2^n - 1$.
 Bit `i` gesetzt ↔ Element `i` enthalten.
 
-## Idee -- Reduce-Pattern (funktional)
+## Idee - Reduce-Pattern (funktional)
 
 Klassisches funktionales Pattern: starte mit `[[]]`, für jedes
-Element x verdopple die Menge -- einmal ohne x, einmal mit x.
+Element x verdopple die Menge - einmal ohne x, einmal mit x.
 
 ## Vergleich mit Python
 
 Pythons `itertools.combinations(arr, k)` liefert gleich
-gruppiert nach Größe. In JS gibt es kein `itertools` -- man
+gruppiert nach Größe. In JS gibt es kein `itertools` - man
 baut es per `reduce` oder Bit-Maske selbst.

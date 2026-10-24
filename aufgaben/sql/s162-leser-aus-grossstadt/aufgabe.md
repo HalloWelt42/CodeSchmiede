@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s162-leser-aus-grossstadt
-revision: 1
-titel: "Leser aus den Top-Drei-Staedten"
+revision: 2
+titel: "Leser aus den Top-Drei-Städten"
 sprache: sql
 task_type: sql_abfrage
 runner_type: docker_sqlite
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [subquery, in, limit]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -46,6 +46,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Leser aus Top-3-Staedten
+# Leser aus Top-3-Städten
 
 Name + Ort der Leser aus den 3 Orten mit den meisten Lesern.

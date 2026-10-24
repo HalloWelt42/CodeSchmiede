@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 165-tuerme-von-hanoi
-revision: 1
+revision: 2
 titel: Türme von Hanoi (Zugfolge)
 sprache: python
 task_type: code_schreiben
@@ -58,7 +58,7 @@ starter_code: |
 Schreibe eine Funktion `hanoi(n)`, die für das klassische
 **Türme-von-Hanoi**-Problem die komplette Zugfolge zurückgibt.
 
-Drei Stuetzen `A`, `B`, `C`. Zu Beginn liegen `n` Scheiben (groß
+Drei Stützen `A`, `B`, `C`. Zu Beginn liegen `n` Scheiben (groß
 unten, klein oben) auf `A`. Ziel: alle nach `C`. Regeln:
 
 1. Pro Zug nur eine Scheibe.
@@ -80,9 +80,9 @@ A → C   (große Scheibe ans Ziel)
 B → C   (kleine drüber)
 ```
 
-`n = 3`: 7 Zuege. `n = 4`: 15. `n = 10`: 1023. Allgemein: $2^n - 1$.
+`n = 3`: 7 Züge. `n = 4`: 15. `n = 10`: 1023. Allgemein: $2^n - 1$.
 
-## Idee -- Rekursion
+## Idee - Rekursion
 
 Um `n` Scheiben von `von` nach `nach` zu bringen:
 
@@ -92,7 +92,7 @@ Um `n` Scheiben von `von` nach `nach` zu bringen:
 
 ## Anekdote
 
-Der Legende nach lösen Moenche im Tempel von Brahma das Ratsel mit
+Der Legende nach lösen Mönche im Tempel von Brahma das Ratsel mit
 **64 Scheiben**. Bei einem Zug pro Sekunde dauert das $2^{64}-1$
-Sekunden -- über 580 Milliarden Jahre. Wenn die Moenche fertig sind,
+Sekunden - über 580 Milliarden Jahre. Wenn die Mönche fertig sind,
 ist das Ende der Welt da.

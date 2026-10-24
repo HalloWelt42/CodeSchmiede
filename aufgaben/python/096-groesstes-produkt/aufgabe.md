@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 096-groesstes-produkt
-revision: 1
+revision: 2
 titel: Größtes Produkt aufeinanderfolgender Ziffern
 sprache: python
 task_type: code_schreiben
@@ -9,11 +9,11 @@ runner_type: docker_python
 schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 9
-tags: [zahlen, strings, sliding-window, project-euler]
+tags: [zahlen, strings, sliding-window, zahlenrätsel]
 voraussetzungen: [054-sliding-summe]
 quelle:
   url: https://projecteuler.net/problem=8
-  notiz: Project Euler 8, eigene Formulierung
+  notiz: Bekanntes Zahlenrätsel, eigene Formulierung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -22,7 +22,7 @@ funktion: groesstes_produkt
 hints:
   - kosten: 0
     text: |
-      Sliding-Window: schau dir alle Fenster der Laenge `n` an,
+      Sliding-Window: schau dir alle Fenster der Länge `n` an,
       multipliziere die Ziffern, behalte das größte Produkt.
   - kosten: 11
     text: |
@@ -83,6 +83,6 @@ Ziffern findet.
 
 ## Hintergrund
 
-Project Euler Problem 8 liefert eine 1000-stellige Zahl und fragt
+Ein bekanntes Zahlenrätsel liefert eine 1000-stellige Zahl und fragt
 nach dem größten Produkt 13 aufeinanderfolgender Ziffern.
 Antwort: 23.514.624.000.

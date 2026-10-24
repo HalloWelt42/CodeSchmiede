@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s017-top-3-dickste
-revision: 1
+revision: 2
 titel: "Top 3 dickste Bücher"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [order-by, limit]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -32,7 +32,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `ORDER BY seiten DESC LIMIT 3` -- die ersten 3 nach Sortierung.
+      `ORDER BY seiten DESC LIMIT 3` - die ersten 3 nach Sortierung.
 starter_code: |
   SELECT ___
   FROM ___

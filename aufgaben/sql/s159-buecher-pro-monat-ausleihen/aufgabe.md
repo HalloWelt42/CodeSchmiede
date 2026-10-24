@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s159-buecher-pro-monat-ausleihen
-revision: 1
+revision: 2
 titel: "Top-Bücher in 2025 nach Ausleihen"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [join, group-by, limit, date]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

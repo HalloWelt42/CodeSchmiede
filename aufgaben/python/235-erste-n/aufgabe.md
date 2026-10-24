@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 235-erste-n
-revision: 1
+revision: 2
 titel: Erste n Elemente einer Liste
 sprache: python
 task_type: code_schreiben
@@ -23,11 +23,11 @@ hints:
   - kosten: 0
     text: |
       Liefere die ersten n Elemente einer Liste.
-      n <= 0 → []. n > Listenlaenge → ganze Liste.
+      n <= 0 → []. n > Listenlänge → ganze Liste.
       Original-Liste nicht verändern.
   - kosten: 2
     text: |
-      list(liste[:n]) -- Slicing erledigt alle Sonderfaelle.
+      list(liste[:n]) - Slicing erledigt alle Sonderfälle.
 tests_sichtbar:
   - input: [[1, 2, 3, 4, 5], 3]
     expected: [1, 2, 3]
@@ -77,15 +77,15 @@ Liste zurückgibt.
 
 ## Idee
 
-`liste[:n]` verhaelt sich elegant: bei `n > len(liste)` gibt es einfach
-die ganze Liste zurück -- kein Out-of-Bounds-Error. `list(...)`
+`liste[:n]` verhält sich elegant: bei `n > len(liste)` gibt es einfach
+die ganze Liste zurück - kein Out-of-Bounds-Error. `list(...)`
 sorgt dafür, dass wir eine **Kopie** liefern (statt einer Slice-Sicht).
 
-## Stolperstein -- Negatives n
+## Stolperstein - Negatives n
 
-`liste[:-1]` wäre "alle außer dem letzten" -- nicht das, was wir
+`liste[:-1]` wäre "alle außer dem letzten" - nicht das, was wir
 wollen. Darum die explizite Prüfung `n <= 0 → []`.
 
-## Pendant -- Letzte n Elemente
+## Pendant - Letzte n Elemente
 
 Aufgabe **236-letzte-n** macht das andere Ende.

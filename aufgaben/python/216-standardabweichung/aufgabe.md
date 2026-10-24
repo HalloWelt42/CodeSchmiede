@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 216-standardabweichung
-revision: 1
+revision: 2
 titel: Standardabweichung (Population)
 sprache: python
 task_type: code_schreiben
@@ -65,7 +65,7 @@ starter_code: |
 # Standardabweichung (Population)
 
 Schreibe `stdabw(zahlen)`, die die **Standardabweichung** berechnet
--- als Mass für die Streuung um den Mittelwert. Wir nehmen die
+- als Maß für die Streuung um den Mittelwert. Wir nehmen die
 **Populations**-Variante (Division durch `n`), nicht die
 **Stichproben**-Variante (durch `n-1`).
 
@@ -100,7 +100,7 @@ Pythons `statistics.stdev` ist die Stichproben-Variante,
 
 ## Hintergrund
 
-Die Standardabweichung ist DAS Streuungsmass schlechthin. In der
+Die Standardabweichung ist DAS Streuungsmaß schlechthin. In der
 **Glockenkurve** (Normalverteilung) liegen 68 % der Werte innerhalb
-von ±σ, 95 % innerhalb ±2σ und 99,7 % innerhalb ±3σ -- die
+von ±σ, 95 % innerhalb ±2σ und 99,7 % innerhalb ±3σ - die
 **68-95-99-Regel**.

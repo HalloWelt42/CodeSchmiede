@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 177-trapped-water
-revision: 1
+revision: 2
 titel: Regenwasser im Histogramm
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [listen, two-pointers, algorithmen]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: LeetCode 42 -- Trapping Rain Water
+  notiz: Trapping Rain Water, klassische Übungsaufgabe
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Gegeben ist ein Höhenprofil. Berechne die Regenwasser-Menge,
-      die zwischen den Saeulen gefangen wird (1 Einheit Breite).
+      die zwischen den Säulen gefangen wird (1 Einheit Breite).
       Beispiel [0,1,0,2,1,0,1,3,2,1,2,1] -> 6.
   - kosten: 25
     text: |
@@ -63,9 +63,9 @@ starter_code: |
 
 # Regenwasser im Histogramm
 
-Stell dir ein Höhenprofil vor, in dem jede Saeule 1 Einheit breit
+Stell dir ein Höhenprofil vor, in dem jede Säule 1 Einheit breit
 ist. Wenn es regnet, sammeln sich Wasser-Einheiten **zwischen** den
-Saeulen. Wieviel Wasser bleibt insgesamt liegen?
+Säulen. Wieviel Wasser bleibt insgesamt liegen?
 
 ## Beispiel
 
@@ -89,19 +89,19 @@ Antwort: **6** Einheiten.
 | `[1, 2, 3, 4]`                      | `0`         |
 | `[5, 4, 3, 2, 1]`                   | `0`         |
 
-## Idee -- Two Pointers (O(n) Zeit, O(1) Speicher)
+## Idee - Two Pointers (O(n) Zeit, O(1) Speicher)
 
 Pro Position würde sich Wasser auf **min(max-links, max-rechts) -
-höhe** sammeln. Naive Lösung: zwei Praefix-Arrays mit den jeweiligen
-Maxima -- `O(n)` Zeit, `O(n)` Speicher. Kürzer per Two-Pointers:
+höhe** sammeln. Naive Lösung: zwei Präfix-Arrays mit den jeweiligen
+Maxima - `O(n)` Zeit, `O(n)` Speicher. Kürzer per Two-Pointers:
 
-Wir bewegen immer den **kleineren** Zeiger -- die Begrenzung kommt
+Wir bewegen immer den **kleineren** Zeiger - die Begrenzung kommt
 also garantiert von der anderen Seite. So sparen wir uns die
-Praefix-Arrays.
+Präfix-Arrays.
 
 ## Hintergrund
 
 Klassische **Algorithmus-Olympiade**-Aufgabe. Veranschaulicht zwei
-wichtige Patterns: **Praefix-Maxima** und **Two Pointers**.
-Aequivalent in 2D ist die "Trapping Rain Water II"-Aufgabe, die
+wichtige Patterns: **Präfix-Maxima** und **Two Pointers**.
+Äquivalent in 2D ist die "Trapping Rain Water II"-Aufgabe, die
 einen Heap braucht.

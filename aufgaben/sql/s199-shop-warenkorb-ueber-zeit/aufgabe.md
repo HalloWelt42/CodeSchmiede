@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s199-shop-warenkorb-ueber-zeit
-revision: 1
+revision: 2
 titel: "Shop: Bestellungen + Warenkorb-Größe pro Tag"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [join, group-by, sum, count-distinct]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

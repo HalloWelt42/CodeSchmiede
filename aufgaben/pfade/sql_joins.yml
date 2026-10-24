@@ -1,7 +1,7 @@
 id: sql_joins
 titel: SQL-JOINs und Subqueries
 beschreibung: |
-  Tabellen verknuepfen ist das Herz relationaler Datenbanken. INNER JOIN (passende Zeilen), LEFT JOIN (alle der linken Tabelle), Anti-Joins, CROSS JOIN, Self-JOIN. Plus Subqueries in WHERE (IN, NOT IN, EXISTS) und correlated Subqueries.
+  Tabellen verknüpfen ist das Herz relationaler Datenbanken. INNER JOIN (passende Zeilen), LEFT JOIN (alle der linken Tabelle), Anti-Joins, CROSS JOIN, Self-JOIN. Plus Subqueries in WHERE (IN, NOT IN, EXISTS) und correlated Subqueries.
 reihenfolge:
   - s003-shop-getraenke
   - s025-leser-mit-buchnamen

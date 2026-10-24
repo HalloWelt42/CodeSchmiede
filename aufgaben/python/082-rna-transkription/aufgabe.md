@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 082-rna-transkription
-revision: 1
+revision: 2
 titel: DNA zu RNA umwandeln
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Tausch: G→C, C→G, T→A, A→U. Andere Zeichen bleiben (oder werfen
-      einen Fehler -- hier: bleiben).
+      einen Fehler - hier: bleiben).
   - kosten: 5
     text: |
       `str.translate(str.maketrans("GCTA", "CGAU"))` ist ein Einzeiler.

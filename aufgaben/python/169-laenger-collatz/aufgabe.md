@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 169-laenger-collatz
-revision: 1
+revision: 2
 titel: Collatz-Rekord unter n
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [collatz, mathematik, schleifen, optimierung]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Project-Euler-Aufgabe 14
+  notiz: Bekanntes Zahlenrätsel (längste Collatz-Folge)
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -23,13 +23,13 @@ hints:
   - kosten: 0
     text: |
       Finde unter allen Startwerten 1 <= s < n diejenige Zahl mit
-      der laengsten Collatz-Folge (Anzahl Schritte bis 1).
+      der längsten Collatz-Folge (Anzahl Schritte bis 1).
       Bei Gleichstand: kleinste solche Zahl.
       n <= 1 → 0 (keine gültigen Startwerte).
   - kosten: 20
     text: |
-      Memoization: Dict {1: 0}. Pro Zahl rekursiv Laenge berechnen
-      (1 + laenge[n//2] bzw. 1 + laenge[3n+1]) und im Cache speichern.
+      Memoization: Dict {1: 0}. Pro Zahl rekursiv Länge berechnen
+      (1 + länge[n//2] bzw. 1 + länge[3n+1]) und im Cache speichern.
 tests_sichtbar:
   - input: [10]
     expected: 9
@@ -66,17 +66,17 @@ Die **Collatz-Folge** (auch "3n+1") für einen Startwert `s`:
 - `s` ungerade → `3 * s + 1`
 - weiter, bis `s == 1`.
 
-Die **Laenge** ist die Anzahl der Schritte bis zur 1.
+Die **Länge** ist die Anzahl der Schritte bis zur 1.
 
 Schreibe `laengster_collatz(n)`, die unter allen Startwerten
 `1 <= s < n` diejenige Zahl liefert, deren Collatz-Folge **am
-laengsten** ist. Bei Gleichstand: die **kleinste** solche Zahl.
+längsten** ist. Bei Gleichstand: die **kleinste** solche Zahl.
 
 Bei `n <= 1` → `0`.
 
 ## Beispiele
 
-| `n`    | Sieger | Laenge |
+| `n`    | Sieger | Länge |
 |--------|--------|--------|
 | `2`    | `1`    | `0`    |
 | `10`   | `9`    | `19`   |
@@ -93,7 +93,7 @@ mehrfach durchgerechnet werden. Mit einem Cache:
 
 Die **Collatz-Vermutung** besagt, dass jeder Startwert irgendwann bei
 1 landet. Bewiesen ist das bis $2^{68}$, aber **kein allgemeiner
-Beweis** bekannt -- Paul Erdoes meinte: "Mathematics may not be ready
+Beweis** bekannt - Paul Erdős meinte: "Mathematics may not be ready
 for such problems."
 
 Bei rekursiver Lösung Achtung: Pythons Stack-Limit erreicht man bei

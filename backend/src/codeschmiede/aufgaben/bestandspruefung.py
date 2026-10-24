@@ -6,6 +6,7 @@ Befunde:
 - Voraussetzungen und Pfad-Einträge, die auf keine Aufgabe zeigen
 - Sprache, Schwierigkeit oder Aufgabentyp, die `_konfig.yml` nicht kennt
 - Aufgabentypen ohne Pruefer
+- versteckte Tests, die der Aufgabentext samt Erwartung verrät
 
 Die Befunde stehen in der Verwaltung und im Health-Check.
 """
@@ -16,6 +17,7 @@ from ..models.aufgabe import Aufgabe
 from ..models.konfig import Konfiguration
 from ..models.pfad import Pfad
 from ..pruefung.registry import PRUEFER_REGISTRY
+from .lecksuche import verratene_tests
 from .loader import Ladefehler
 
 
@@ -45,6 +47,10 @@ def pruefe_bestand(
             befunde.append(Befund(ort=a.id, meldung=f"Aufgabentyp '{a.task_type}' fehlt in _konfig.yml"))
         if a.task_type not in PRUEFER_REGISTRY:
             befunde.append(Befund(ort=a.id, meldung=f"Kein Pruefer für Aufgabentyp '{a.task_type}'"))
+        verraten = verratene_tests(a)
+        if verraten:
+            nummern = ", ".join(str(i + 1) for i in verraten)
+            befunde.append(Befund(ort=a.id, meldung=f"Text verrät versteckte Tests Nr. {nummern}"))
 
     for p in pfade:
         for aid in p.reihenfolge:

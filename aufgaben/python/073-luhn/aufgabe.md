@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 073-luhn
-revision: 1
+revision: 2
 titel: Luhn-Prüfziffer
 sprache: python
 task_type: code_schreiben
@@ -57,7 +57,7 @@ starter_code: |
 # Luhn-Prüfziffer
 
 Schreibe eine Funktion `ist_luhn_gültig(kandidat)`, die prüft, ob ein
-String die **Luhn-Prüfziffer-Regel** erfüllt -- der Klassiker für
+String die **Luhn-Prüfziffer-Regel** erfüllt - der Klassiker für
 Kreditkartennummern, IMEI und viele andere Identifikatoren.
 
 ## Regeln
@@ -85,5 +85,5 @@ Kreditkartennummern, IMEI und viele andere Identifikatoren.
 ## Hintergrund
 
 Hans Peter Luhn hat den Algorithmus 1954 bei IBM entwickelt. Er
-fängt die meisten **Tippfehler** in Identifikatoren ab -- vor allem
+fängt die meisten **Tippfehler** in Identifikatoren ab - vor allem
 einzelne falsche Ziffern und Vertauschen benachbarter Ziffern.

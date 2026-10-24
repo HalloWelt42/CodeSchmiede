@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 276-hashtags-extrahieren
-revision: 1
+revision: 2
 titel: Hashtags aus Text extrahieren
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: hashtags
 hints:
   - kosten: 0
     text: |
-      Extrahiere alle Hashtags aus einem Text -- ohne #.
+      Extrahiere alle Hashtags aus einem Text - ohne #.
       Hashtag = #wort, wort = Buchstaben/Ziffern/Unterstrich, mind. 1.
       "Tolles #python und #regex hier!" → ["python", "regex"].
       Bei keinem Treffer → [].
@@ -65,7 +65,7 @@ starter_code: |
 # Hashtags aus Text extrahieren
 
 Schreibe `hashtags(text)`, die alle Hashtags aus einem Text liefert
--- **ohne das `#`-Zeichen**, Reihenfolge wie im Text.
+- **ohne das `#`-Zeichen**, Reihenfolge wie im Text.
 
 Ein Hashtag ist `#` gefolgt von einem oder mehreren **Wort-Zeichen**
 (Buchstaben, Ziffern, Unterstrich).
@@ -82,17 +82,17 @@ Ein Hashtag ist `#` gefolgt von einem oder mehreren **Wort-Zeichen**
 | `"##doppelt"`                          | `["doppelt"]`                  |
 | `"mitten#im#wort"`                     | `["im", "wort"]`               |
 
-## Idee -- Capture-Group
+## Idee - Capture-Group
 
 Die Klammern `(\w+)` sind eine **Capture-Group**: `re.findall`
 liefert nur den Inhalt der Gruppe, also den Wort-Teil **ohne** das `#`.
 
 ## Erweiterungen
 
-- **Mit Umlauten**: `r"#(\w+)"` matcht in Python standardmaessig
-  Unicode-Wort-Zeichen, also auch `#München` -- in den Tests aber
+- **Mit Umlauten**: `r"#(\w+)"` matcht in Python standardmäßig
+  Unicode-Wort-Zeichen, also auch `#München` - in den Tests aber
   nicht berücksichtigt.
-- **Nur am Wort-Anfang** (Twitter-Stil): `r"(?:^|\s)#(\w+)"` --
+- **Nur am Wort-Anfang** (wie in sozialen Netzen üblich): `r"(?:^|\s)#(\w+)"` -
   `#` mitten im Wort wird nicht gematcht.
 
 ## Anwendung

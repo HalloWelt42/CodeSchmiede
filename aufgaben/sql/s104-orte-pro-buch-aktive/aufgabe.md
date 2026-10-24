@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s104-orte-pro-buch-aktive
-revision: 1
+revision: 2
 titel: "Shop: Orte pro Produkt (Bestellungen)"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [group-concat, distinct, join]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

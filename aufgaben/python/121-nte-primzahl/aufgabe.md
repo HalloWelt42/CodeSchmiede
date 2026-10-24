@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 121-nte-primzahl
-revision: 1
+revision: 2
 titel: n-te Primzahl
 sprache: python
 task_type: code_schreiben
@@ -27,7 +27,7 @@ hints:
     text: |
       Schleife: gefunden = 0, kandidat = 1.
       Solange gefunden < n: kandidat += 1; wenn prim, gefunden += 1.
-      Primalitaet via i*i <= n bis sqrt.
+      Primalität via i*i <= n bis sqrt.
 tests_sichtbar:
   - input: [1]
     expected: 2
@@ -84,6 +84,6 @@ Naive Variante: Zahlen aufzählen, jede auf Primalität prüfen,
 zählen bis n. $O(\sqrt{p})$ pro Test, daher insgesamt $O(p \sqrt{p})$
 mit $p$ = n-te Primzahl.
 
-Schneller wäre ein **Sieb des Eratosthenes** -- aber dafür braucht
+Schneller wäre ein **Sieb des Eratosthenes** - aber dafür braucht
 man eine Obergrenze. Praktisch für große n nimmt man eine grobe
 Schätzung wie $n \cdot (\ln n + \ln \ln n)$.

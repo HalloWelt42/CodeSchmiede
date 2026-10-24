@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 098-diamond-muster
-revision: 1
+revision: 2
 titel: Diamant aus Buchstaben
 sprache: python
 task_type: code_schreiben
@@ -89,6 +89,6 @@ D     D
 
 ## Hintergrund
 
-Diamond ist ein Exercism-Klassiker -- toll für das Verstaendnis
+Diamond ist ein Exercism-Klassiker - toll für das Verständnis
 von **Padding**, **Symmetrie** und **String-Multiplikation** in
 Python.

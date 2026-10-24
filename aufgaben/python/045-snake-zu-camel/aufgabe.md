@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 045-snake-zu-camel
-revision: 1
+revision: 2
 titel: snake_case zu camelCase
 sprache: python
 task_type: code_schreiben
@@ -57,7 +57,7 @@ starter_code: |
 # snake_case zu camelCase
 
 Schreibe eine Funktion `snake_zu_camel(text)`, die einen
-**snake_case**-String in **camelCase** überfuehrt.
+**snake_case**-String in **camelCase** überführt.
 
 ## Beispiele
 
@@ -78,6 +78,6 @@ Anfang. `''.join(...)` setzt sie wieder zusammen.
 ## Falle
 
 `"__leer__doppelt__"` enthält leere Bestandteile. `"".capitalize()`
-liefert `""`, also kein Crash -- aber das fuehrende `_` macht das
+liefert `""`, also kein Crash - aber das führende `_` macht das
 erste Element leer und damit beginnt das Ergebnis mit einem
 Großbuchstaben.

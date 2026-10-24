@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 023-dict-invertieren
-revision: 1
+revision: 2
 titel: Dictionary invertieren
 sprache: python
 task_type: code_schreiben
@@ -75,5 +75,5 @@ Schlüssel abgebildet, und nur der letzte überlebt.
 ## Hintergrund
 
 Das Invertieren von Dictionaries ist eine häufige Operation, wenn
-man eine Lookup-Tabelle in beide Richtungen braucht -- etwa bei
+man eine Lookup-Tabelle in beide Richtungen braucht - etwa bei
 Sprachcodes, Indizes oder Mapping-Tabellen.

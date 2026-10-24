@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 116-uhren-addition
-revision: 1
+revision: 2
 titel: Uhrzeit + Minuten
 sprache: python
 task_type: code_schreiben
@@ -28,7 +28,7 @@ hints:
   - kosten: 8
     text: |
       `gesamt = stunde * 60 + minute + zusatz_minuten`. Dann
-      `gesamt %= 24 * 60` (auch bei negativen Werten -- Python
+      `gesamt %= 24 * 60` (auch bei negativen Werten - Python
       modulo macht das richtig). Format mit f"{h:02d}:{m:02d}".
 tests_sichtbar:
   - input: [10, 0, 3]
@@ -64,7 +64,7 @@ Schreibe eine Funktion `uhrzeit_plus(stunde, minute, zusatz_minuten)`,
 die zur Eingabe-Zeit eine Anzahl Minuten (positiv oder negativ)
 addiert und das Ergebnis als `"HH:MM"` zurückgibt.
 
-24-Stunden-Format. Tagesüberlauf wird gewickelt -- nur die
+24-Stunden-Format. Tagesüberlauf wird gewickelt - nur die
 Tageszeit interessiert.
 
 ## Beispiele

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 323-power-set
-revision: 1
-titel: Potenzmenge -- alle Teilmengen
+revision: 2
+titel: Potenzmenge - alle Teilmengen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -13,7 +13,7 @@ tags: [kombinatorik, listen, itertools, mengen]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Power_set
-  notiz: Rosetta Code -- Power Set
+  notiz: Rosetta Code - Power Set
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -22,7 +22,7 @@ funktion: potenzmenge
 hints:
   - kosten: 0
     text: |
-      Liefere alle Teilmengen einer Liste -- inklusive leerer Menge
+      Liefere alle Teilmengen einer Liste - inklusive leerer Menge
       und Gesamtmenge. Reihenfolge: nach Größe aufsteigend, innerhalb
       gleicher Größe lexikographisch.
       Bei [] -> [[]] (genau eine Teilmenge: die leere).
@@ -58,10 +58,10 @@ starter_code: |
       pass
 ---
 
-# Potenzmenge -- alle Teilmengen
+# Potenzmenge - alle Teilmengen
 
 Schreibe `potenzmenge(liste)`, die **alle Teilmengen** der Liste
-liefert -- die leere Menge zählt mit, die Gesamtmenge auch.
+liefert - die leere Menge zählt mit, die Gesamtmenge auch.
 
 Reihenfolge: zuerst nach **Größe aufsteigend**, innerhalb gleicher
 Größe **lexikographisch**.
@@ -81,13 +81,13 @@ Bei vier Elementen wären es 16, bei zehn schon 1024 Teilmengen.
 
 ## Idee
 
-Doppelte Comprehension: aussen `k` von 0 bis `n`, innen alle
+Doppelte Comprehension: außen `k` von 0 bis `n`, innen alle
 k-elementigen Kombinationen. `combinations` liefert bereits
 lexikographisch geordnet.
 
-## Idee -- Bit-Maskierung
+## Idee - Bit-Maskierung
 
-Jede Teilmenge entspricht einer Binaer-Zahl: Bit `i` gesetzt ↔
+Jede Teilmenge entspricht einer Binär-Zahl: Bit `i` gesetzt ↔
 Element `i` enthalten. Elegant, aber Sortierung am Ende nötig.
 
 ## Anwendung

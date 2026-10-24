@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 151-schnapszahl
-revision: 1
+revision: 2
 titel: Schnapszahl-Prüfung
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: ist_schnapszahl
 hints:
   - kosten: 0
     text: |
-      Eine Schnapszahl besteht aus mindestens 2 gleichen Ziffern --
+      Eine Schnapszahl besteht aus mindestens 2 gleichen Ziffern -
       11, 22, 333, 7777. Nicht 1, nicht 12, nicht 122.
       Negative Zahlen verhalten sich wie ihr Betrag.
   - kosten: 5
@@ -85,15 +85,15 @@ auch nicht.
 Negative Zahlen verhalten sich wie ihr **Betrag**: `-44` ist
 Schnapszahl, weil `44` eine ist.
 
-## Idee -- Set der Ziffern
+## Idee - Set der Ziffern
 
 Wenn `set(str(abs(n)))` genau 1 Element enthält UND die Zahl mindestens
 2 Stellen hat, ist es eine Schnapszahl.
 
 ## Hintergrund
 
-Der Name kommt aus dem Kartenspiel **Schnapsen** -- dort schreibt man
+Der Name kommt aus dem Kartenspiel **Schnapsen** - dort schreibt man
 einen Punktestand wie 22, 33, 66 gerne als Schnapszahl auf, weil sie
 sich gut einprägen. Im Deutschen werden auch Wiederholungen wie 121
-oder 1221 (Palindrom-Zahlen) manchmal als Schnapszahl bezeichnet --
+oder 1221 (Palindrom-Zahlen) manchmal als Schnapszahl bezeichnet -
 hier nutzen wir die strenge Definition.

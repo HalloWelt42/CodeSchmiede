@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 308-fibonacci-bis-n-gen
-revision: 1
+revision: 2
 titel: Fibonacci-Generator bis Maximum
 sprache: python
 task_type: code_schreiben
@@ -78,19 +78,19 @@ Fibonacci: $F_0 = 0, F_1 = 1, F_n = F_{n-1} + F_{n-2}$.
 | `100`      | `[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]` |
 | `144`      | `[..., 89, 144]`                        |
 
-## Idee -- Generator intern
+## Idee - Generator intern
 
 Der Generator endet, wenn `a` zu groß wird. Die Tupel-Zuweisung
 `a, b = b, a + b` ist Pythons elegante Form für den Fibonacci-
-Schritt -- in C/Java braucht man eine Hilfsvariable.
+Schritt - in C/Java braucht man eine Hilfsvariable.
 
 ## Warum Generator?
 
 Bei sehr großen `max_wert` (oder unbekanntem Limit) kann man den
-Generator iterieren, bis man genug hat -- ohne die ganze Liste im
+Generator iterieren, bis man genug hat - ohne die ganze Liste im
 Speicher zu halten.
 
-Das ist mit einer Liste nicht so elegant moeglich.
+Das ist mit einer Liste nicht so elegant möglich.
 
 ## Verwandt
 

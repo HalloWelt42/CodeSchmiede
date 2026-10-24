@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 021-potenz
-revision: 1
+revision: 2
 titel: Eigene Potenzfunktion
 sprache: python
 task_type: code_schreiben
@@ -62,7 +62,7 @@ starter_code: |
 # Eigene Potenzfunktion
 
 Schreibe eine Funktion `potenz(basis, exponent)`, die `basis` hoch
-`exponent` zurückgibt -- ohne `**` und ohne `pow()` zu verwenden.
+`exponent` zurückgibt - ohne `**` und ohne `pow()` zu verwenden.
 Der Exponent ist immer eine nicht-negative ganze Zahl.
 
 ## Beispiele
@@ -77,13 +77,13 @@ Der Exponent ist immer eine nicht-negative ganze Zahl.
 ## Idee
 
 Per Definition ist $b^0 = 1$. Für $n > 0$ gilt $b^n = b \cdot b^{n-1}$.
-Daraus laesst sich sowohl eine **Schleife** als auch eine **rekursive**
+Daraus lässt sich sowohl eine **Schleife** als auch eine **rekursive**
 Lösung bauen.
 
 ## Wofür ist das gut?
 
 Reimplementierungen von Standardfunktionen sind eine schöne
-Lernübung -- man lernt, was die Sprache eigentlich für einen
+Lernübung - man lernt, was die Sprache eigentlich für einen
 erledigt. Später (in einer separaten Aufgabe) kann man das gleiche
 Problem mit **schneller Exponentiation** in $O(\log n)$ statt $O(n)$
 lösen.

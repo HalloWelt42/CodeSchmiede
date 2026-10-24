@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 153-matrix-rotieren
-revision: 1
+revision: 2
 titel: Matrix 90 Grad rotieren
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [matrix, listen, zip, 2d, rotation]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: LeetCode-Klassiker 48
+  notiz: Klassiker aus Bewerbungsgesprächen
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -30,7 +30,7 @@ hints:
     text: |
       Rotation 90 Grad CW = Transponieren + jede Zeile umdrehen
       ODER: list(zip(*matrix[::-1])).
-      Aussere Liste, innere Listen.
+      Äußere Liste, innere Listen.
 tests_sichtbar:
   - input: [[[1, 2, 3], [4, 5, 6], [7, 8, 9]]]
     expected: [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
@@ -71,7 +71,7 @@ Schreibe eine Funktion `rotieren(matrix)`, die eine 2D-Matrix um
 Die linke Spalte wird zur oberen Zeile (von rechts nach links gelesen).
 Bei `[]` → `[]`.
 
-## Idee -- Zwei Tricks
+## Idee - Zwei Tricks
 
 **Trick 1**: Erst **Zeilen umdrehen**, dann **transponieren**:
 
@@ -92,6 +92,6 @@ neu[j][n - 1 - i] = matrix[i][j]
 
 ## Wozu?
 
-In Spielen wie Tetris oder Sudoku-Generatoren rotiert man Bloecke
+In Spielen wie Tetris oder Sudoku-Generatoren rotiert man Blöcke
 oder Felder. In der Bildverarbeitung sind 90-Grad-Rotationen die
-einzigen, die **ohne Interpolation** verlustfrei moeglich sind.
+einzigen, die **ohne Interpolation** verlustfrei möglich sind.

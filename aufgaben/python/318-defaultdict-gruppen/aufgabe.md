@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 318-defaultdict-gruppen
-revision: 1
+revision: 2
 titel: Strings nach Anfangsbuchstabe gruppieren
 sprache: python
 task_type: code_schreiben
@@ -23,8 +23,8 @@ hints:
   - kosten: 0
     text: |
       Gruppiere Strings nach ihrem ersten Buchstaben (kleinbuch).
-      Liefere ein Dict {letter: [strings]} -- innen alphabetisch sortiert,
-      aussen nach key sortiert.
+      Liefere ein Dict {letter: [strings]} - innen alphabetisch sortiert,
+      außen nach key sortiert.
       Leere Strings → überspringen.
   - kosten: 10
     text: |
@@ -64,7 +64,7 @@ Schreibe `gruppiere_anfang(strings)`, die eine Liste von Strings
 nach **erstem Buchstaben** (kleingeschrieben) gruppiert.
 
 Liefere ein Dict `{letter: [strings]}`:
-- aussen: nach Letter alphabetisch sortiert
+- außen: nach Letter alphabetisch sortiert
 - innen: alphabetisch sortiert
 
 Leere Strings werden übersprungen.
@@ -81,12 +81,12 @@ Leere Strings werden übersprungen.
 ## Idee
 
 `defaultdict(list)` legt automatisch eine leere Liste an, wenn ein
-Key zum ersten Mal angefasst wird -- spart die `if key in dict`-
+Key zum ersten Mal angefasst wird - spart die `if key in dict`-
 Prüfung.
 
 ## Vergleich mit `dict.setdefault`
 
-Funktioniert auch, ist aber laenger zu lesen. `defaultdict` ist
+Funktioniert auch, ist aber länger zu lesen. `defaultdict` ist
 idiomatischer.
 
 ## Anwendung

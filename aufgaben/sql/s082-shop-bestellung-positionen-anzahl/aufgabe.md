@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s082-shop-bestellung-positionen-anzahl
-revision: 1
+revision: 2
 titel: "Shop: Bestellungen mit mehr als 2 Positionen"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [group-by, having]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

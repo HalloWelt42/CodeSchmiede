@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s089-shop-mittelpreis-kategorie
-revision: 1
+revision: 2
 titel: "Shop: Produkt vs. Kategorie-Durchschnitt"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [window-function, avg-over, partition-by]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

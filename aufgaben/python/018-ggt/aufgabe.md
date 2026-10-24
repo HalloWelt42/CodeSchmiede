@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 018-ggt
-revision: 1
+revision: 2
 titel: Größter gemeinsamer Teiler
 sprache: python
 task_type: code_schreiben
@@ -62,7 +62,7 @@ starter_code: |
 # Größter gemeinsamer Teiler
 
 Schreibe eine Funktion `ggt(a, b)`, die den **größten gemeinsamen
-Teiler** zweier nicht-negativer ganzer Zahlen zurückgibt -- die
+Teiler** zweier nicht-negativer ganzer Zahlen zurückgibt - die
 größte Zahl, durch die sowohl `a` als auch `b` ohne Rest teilbar sind.
 
 ## Beispiele
@@ -83,7 +83,7 @@ $$
 \gcd(a, b) = \gcd(b, a \bmod b)
 $$
 
-Wiederhole das, bis `b` null wird -- dann ist `a` der ggT.
+Wiederhole das, bis `b` null wird - dann ist `a` der ggT.
 
 ## Hintergrund
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 060-wochentag
-revision: 1
+revision: 2
 titel: Wochentag mit Zeller-Formel
 sprache: python
 task_type: code_schreiben
@@ -99,6 +99,6 @@ also `(h + 6) % 7`.
 
 ## Hintergrund
 
-Pythons `datetime.date(jahr, monat, tag).weekday()` macht das natuerlich
-auch -- liefert aber `0 = Montag`. Hier geht es darum, die Formel
+Pythons `datetime.date(jahr, monat, tag).weekday()` macht das natürlich
+auch - liefert aber `0 = Montag`. Hier geht es darum, die Formel
 selbst zu programmieren.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 035-run-length
-revision: 1
+revision: 2
 titel: Run-Length-Encoding
 sprache: python
 task_type: code_schreiben
@@ -56,7 +56,7 @@ starter_code: |
 # Run-Length-Encoding
 
 Schreibe eine Funktion `rle(text)`, die einen String in seine
-**Lauflaengen-Codierung** überfuehrt: gleiche aufeinanderfolgende
+**Lauflängen-Codierung** überführt: gleiche aufeinanderfolgende
 Zeichen werden durch das Zeichen + Anzahl ersetzt. Ein einzelnes
 Vorkommen wird **ohne Zahl** geschrieben (also `"abc"` -> `"abc"`,
 nicht `"a1b1c1"`).
@@ -80,7 +80,7 @@ Falls nicht: aktuelles Zeichen ans Ergebnis anhängen (mit Zahl, falls
 
 ## Hintergrund
 
-RLE ist eine der **einfachsten Kompressionen**, die es gibt --
+RLE ist eine der **einfachsten Kompressionen**, die es gibt -
 funktioniert hervorragend bei Daten mit langen Wiederholungen
-(Faxbilder, Sprite-Grafiken), aber kann bei zufaelligen Daten sogar
-**laenger** werden als das Original.
+(Faxbilder, Sprite-Grafiken), aber kann bei zufälligen Daten sogar
+**länger** werden als das Original.

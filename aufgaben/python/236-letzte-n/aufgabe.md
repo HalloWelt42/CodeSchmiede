@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 236-letzte-n
-revision: 1
+revision: 2
 titel: Letzte n Elemente einer Liste
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Liefere die letzten n Elemente einer Liste.
-      n <= 0 → []. n > Listenlaenge → ganze Liste.
+      n <= 0 → []. n > Listenlänge → ganze Liste.
   - kosten: 4
     text: |
       list(liste[-n:]) hat einen Sonderfall: bei n == 0 ist [-0:]
@@ -73,7 +73,7 @@ Liste zurückgibt.
 | `[1, 2, 3]`        | 0  | `[]`            |
 | `[1, 2, 3]`        | -1 | `[]`            |
 
-## Stolperstein -- `liste[-0:]`
+## Stolperstein - `liste[-0:]`
 
 `liste[-0:]` ist nicht `[]`, sondern die **ganze Liste**, weil
 `-0 == 0` und `liste[0:]` die ganze Liste ist. Darum `n <= 0`
@@ -82,5 +82,5 @@ explizit abfangen!
 ## Verwandt
 
 - `erste_n` (Aufgabe 235): das andere Ende.
-- `chunks` (Aufgabe 029): Liste in Bloecke teilen.
+- `chunks` (Aufgabe 029): Liste in Blöcke teilen.
 - `rotation` (030): zyklisch verschieben.

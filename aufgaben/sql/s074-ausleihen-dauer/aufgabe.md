@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s074-ausleihen-dauer
-revision: 1
+revision: 2
 titel: "Ausleih-Dauer in Tagen"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 7
 tags: [date, julianday, cast]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -57,4 +57,4 @@ starter_code: |
 
 # Ausleih-Dauer in Tagen
 
-Für alle zurückgegebenen Ausleihen: ID + Anzahl Tage (Integer), laengste zuerst.
+Für alle zurückgegebenen Ausleihen: ID + Anzahl Tage (Integer), längste zuerst.

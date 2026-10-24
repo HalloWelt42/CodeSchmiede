@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 302-pipeline-anwenden
-revision: 1
+revision: 2
 titel: Pipeline mehrerer Operationen
 sprache: python
 task_type: code_schreiben
@@ -62,7 +62,7 @@ starter_code: |
 # Pipeline mehrerer Operationen
 
 Schreibe `pipeline(liste, ops)`, die eine **Folge von Operationen**
-auf jedes Element der Liste anwendet -- nacheinander, von links
+auf jedes Element der Liste anwendet - nacheinander, von links
 nach rechts.
 
 ## Verfügbare Operationen
@@ -80,7 +80,7 @@ Leere Op-Liste → Original-Liste zurück.
 
 ## Beispiele
 
-| Liste       | Ops                          | Ergebnis     | Begruendung |
+| Liste       | Ops                          | Ergebnis     | Begründung |
 |-------------|------------------------------|---------------|-------------|
 | `[1, 2, 3]` | `["double", "increment"]`    | `[3, 5, 7]`   | x*2+1      |
 | `[5]`       | `["increment", "square"]`    | `[36]`        | (5+1)²     |
@@ -90,16 +90,16 @@ Leere Op-Liste → Original-Liste zurück.
 
 ## Idee
 
-Pro Operation wird die ganze Liste neu transformiert -- klar lesbar,
+Pro Operation wird die ganze Liste neu transformiert - klar lesbar,
 einfach zu erweitern.
 
-## Aequivalente Variante
+## Äquivalente Variante
 
-Pro Element wird durch alle Ops gefaltet. Aequivalent für pure
+Pro Element wird durch alle Ops gefaltet. Äquivalent für pure
 Funktionen, anders bei seitlichen Effekten (z.B. Logging pro Op).
 
 ## Pattern
 
 Pipelines sind in **Stream-Processing** (RxJS, Kafka), **Image-
 Filtern** (PIL/OpenCV), **Build-Tools** (Webpack-Loaders) und
-**Daten-Transformation** allgegenwaertig.
+**Daten-Transformation** allgegenwärtig.

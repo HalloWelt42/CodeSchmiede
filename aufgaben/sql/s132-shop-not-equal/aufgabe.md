@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s132-shop-not-equal
-revision: 1
-titel: "Shop: alles außer Suesswaren"
+revision: 2
+titel: "Shop: alles außer Süßwaren"
 sprache: sql
 task_type: sql_abfrage
 runner_type: docker_sqlite
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [join, where, not-equal]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -55,6 +55,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Shop ohne Suesswaren
+# Shop ohne Süßwaren
 
-Produkte aus allen Kategorien außer Suesswaren.
+Produkte aus allen Kategorien außer Süßwaren.

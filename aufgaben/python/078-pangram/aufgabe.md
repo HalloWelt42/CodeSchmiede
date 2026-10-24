@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 078-pangram
-revision: 1
+revision: 2
 titel: Pangramm-Test
 sprache: python
 task_type: code_schreiben
@@ -55,7 +55,7 @@ starter_code: |
 # Pangramm-Test
 
 Schreibe eine Funktion `ist_pangramm(text)`, die prüft, ob der Text
-ein **Pangramm** ist -- also jeden Buchstaben des englischen Alphabets
+ein **Pangramm** ist - also jeden Buchstaben des englischen Alphabets
 (a-z) mindestens einmal enthält.
 
 Groß-/Kleinschreibung wird ignoriert. Andere Zeichen (Ziffern,
@@ -73,7 +73,7 @@ Leerzeichen, Sonderzeichen) sind erlaubt, zählen aber nicht.
 ## Hintergrund
 
 "The quick brown fox jumps over the lazy dog" ist seit dem 19. Jh.
-das Standard-Pangramm im Englischen -- benutzt um Schreibmaschinen
+das Standard-Pangramm im Englischen - benutzt um Schreibmaschinen
 zu testen oder Schriftarten zu zeigen. Im Deutschen ist
 "Franz jagt im komplett verwahrlosten Taxi quer durch Bayern" ein
 gängiges Pangramm.

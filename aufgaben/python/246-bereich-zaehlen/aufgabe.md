@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 246-bereich-zaehlen
-revision: 1
+revision: 2
 titel: Zahlen im Bereich [a, b] zählen
 sprache: python
 task_type: code_schreiben
@@ -27,7 +27,7 @@ hints:
       a > b liefert 0.
   - kosten: 4
     text: |
-      sum(a <= x <= b for x in zahlen) -- Pythons booleans sind 0/1.
+      sum(a <= x <= b for x in zahlen) - Pythons booleans sind 0/1.
 tests_sichtbar:
   - input: [[1, 2, 3, 4, 5], 2, 4]
     expected: 3
@@ -75,16 +75,16 @@ Bei `a > b` → `0`.
 
 ## Idee
 
-`a <= x <= b` ist Pythons **chained comparison** -- liest sich wie
+`a <= x <= b` ist Pythons **chained comparison** - liest sich wie
 in Mathematik. In den meisten anderen Sprachen müsste man
 `x >= a and x <= b` schreiben.
 
-## Idee -- Boolean-Trick
+## Idee - Boolean-Trick
 
 Da `True == 1` und `False == 0` in Python, ist `sum` über Booleans
 das Gleiche wie eine Zähl-Funktion. Sehr kurz, sehr Pythonisch.
 
-## Stolperstein -- Inklusiv vs Exklusiv
+## Stolperstein - Inklusiv vs Exklusiv
 
 `a <= x <= b` schließt **beide** Grenzen ein. Für halb-offene
 Bereiche `[a, b)` wäre es `a <= x < b`. Für offene `(a, b)`:

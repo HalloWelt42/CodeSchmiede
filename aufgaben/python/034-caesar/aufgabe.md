@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 034-caesar
-revision: 1
+revision: 2
 titel: Caesar-Verschlüsselung
 sprache: python
 task_type: code_schreiben
@@ -89,9 +89,9 @@ Pro Zeichen:
 ## Hintergrund
 
 Die Caesar-Chiffre ist eine der **ältesten Verschlüsselungen**, von
-Julius Caesar für militaerische Korrespondenz benutzt (mit `k = 3`).
-Sie ist heute trivial zu brechen -- es gibt nur 25 sinnvolle
-Schlüssel -- aber didaktisch hervorragend, weil sie modulares
+Julius Caesar für militärische Korrespondenz benutzt (mit `k = 3`).
+Sie ist heute trivial zu brechen - es gibt nur 25 sinnvolle
+Schlüssel - aber didaktisch hervorragend, weil sie modulares
 Rechnen anschaulich macht.
 
 `k = 13` ist als **ROT13** bekannt: zwei Anwendungen heben sich auf.

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 310-pairwise
-revision: 1
-titel: Pairwise -- aufeinanderfolgende Paare
+revision: 2
+titel: Pairwise - aufeinanderfolgende Paare
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -24,7 +24,7 @@ hints:
     text: |
       Liefere alle UEBERLAPPENDEN Paare aufeinander folgender Elemente.
       [1,2,3,4] → [[1,2], [2,3], [3,4]].
-      Intern Generator mit yield. Bei Liste der Laenge < 2 → [].
+      Intern Generator mit yield. Bei Liste der Länge < 2 → [].
   - kosten: 15
     text: |
       Generator: for i in range(len-1): yield [a[i], a[i+1]].
@@ -55,12 +55,12 @@ starter_code: |
       pass
 ---
 
-# Pairwise -- aufeinanderfolgende Paare
+# Pairwise - aufeinanderfolgende Paare
 
 Schreibe `pairwise(a)`, die alle **überlappenden Paare** aufeinander
 folgender Elemente liefert.
 
-Bei Liste der Laenge < 2 → `[]`.
+Bei Liste der Länge < 2 → `[]`.
 
 ## Beispiele
 
@@ -73,12 +73,12 @@ Bei Liste der Laenge < 2 → `[]`.
 | `["a", "b", "c"]`    | `[["a", "b"], ["b", "c"]]`                      |
 | `[5, 10, 15, 20]`    | `[[5,10], [10,15], [15,20]]`                    |
 
-## Idee 2 -- zip mit Slice (Pythonisch)
+## Idee 2 - zip mit Slice (Pythonisch)
 
-`zip(a, a[1:])` paart Element 0 mit 1, 1 mit 2, etc. -- super
+`zip(a, a[1:])` paart Element 0 mit 1, 1 mit 2, etc. - super
 elegant und in der Praxis das übliche Idiom.
 
-## Idee 3 -- itertools.pairwise (Python 3.10+)
+## Idee 3 - itertools.pairwise (Python 3.10+)
 
 Die `pairwise`-Funktion gibt es seit Python 3.10 in `itertools`.
 

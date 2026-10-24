@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 339-josephus
-revision: 1
-titel: Josephus-Problem -- letzter Überlebender
+revision: 2
+titel: Josephus-Problem - letzter Überlebender
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -13,7 +13,7 @@ tags: [algorithmen, listen, modulo, klassiker]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Josephus_problem
-  notiz: Rosetta Code -- Josephus problem
+  notiz: Rosetta Code - Josephus problem
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -86,21 +86,21 @@ Liefere den **Index des letzten Überlebenden**.
 | 10 | 1 | `9`    | 0, 1, 2, ..., 8           |
 | 41 | 3 | `30`   | (Original-Josephus-Beispiel) |
 
-## Idee -- iterative Rekurrenz O(n)
+## Idee - iterative Rekurrenz O(n)
 
-`J(1) = 0` (allein -> Sieger). Bei jedem Hinzufuegen einer Person
+`J(1) = 0` (allein -> Sieger). Bei jedem Hinzufügen einer Person
 verschiebt sich der Sieger um `k` modulo der neuen Anzahl.
 
 ## Hintergrund
 
-Der Algorithmus geht auf den juedischen Historiker **Flavius
+Der Algorithmus geht auf den jüdischen Historiker **Flavius
 Josephus** zurück (1. Jh. n. Chr.). Bei der Belagerung von
 Yodfat (67 n. Chr.) sollen sich er und 40 Soldaten in einer
-Hoehle versteckt und einen Selbstmord-Pakt geschlossen haben:
-im Kreis stehen, jeden dritten toeten. Josephus angeblich
+Höhle versteckt und einen Selbstmord-Pakt geschlossen haben:
+im Kreis stehen, jeden dritten töten. Josephus angeblich
 berechnete seine Position so, dass er überlebte.
 
-## Naive Variante mit Liste -- O(n²)
+## Naive Variante mit Liste - O(n²)
 
 Klar lesbar, aber bei `n = 10000` schon merkbar langsam. Die
 Rekurrenz oben ist viel eleganter.

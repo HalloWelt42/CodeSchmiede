@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 126-laengster-praefix
-revision: 1
+revision: 2
 titel: Längster gemeinsamer Präfix
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [strings, listen, vergleich, zip]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Klassische LeetCode-Aufgabe (longest-common-prefix), eigene Formulierung
+  notiz: Klassische Aufgabe (längstes gemeinsames Präfix), eigene Formulierung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

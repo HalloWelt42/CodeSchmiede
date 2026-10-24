@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s109-ueberfaellig
-revision: 1
-titel: "Überfaellige Bücher (> 30 Tage offen)"
+revision: 2
+titel: "Überfällige Bücher (> 30 Tage offen)"
 sprache: sql
 task_type: sql_abfrage
 runner_type: docker_sqlite
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [date, julianday, where]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -44,6 +44,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Überfaellige Bücher
+# Überfällige Bücher
 
 Ausleihen, die noch offen sind und vor mehr als 30 Tagen (Stichtag 2026-05-11) begonnen wurden.

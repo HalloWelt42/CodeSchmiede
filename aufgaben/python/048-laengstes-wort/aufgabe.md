@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 048-laengstes-wort
-revision: 1
-titel: Laengstes Wort eines Satzes
+revision: 2
+titel: Längstes Wort eines Satzes
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -13,7 +13,7 @@ tags: [strings, split, max]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Klassischer Aufwaermer
+  notiz: Klassischer Aufwärmer
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -51,9 +51,9 @@ starter_code: |
       pass
 ---
 
-# Laengstes Wort eines Satzes
+# Längstes Wort eines Satzes
 
-Schreibe eine Funktion `laengstes_wort(text)`, die das **laengste
+Schreibe eine Funktion `laengstes_wort(text)`, die das **längste
 Wort** im String zurückgibt. Bei mehreren gleich langen das **erste**.
 
 Bei leerem String oder String ohne Wörter liefere einen leeren String.
@@ -70,7 +70,7 @@ Bei leerem String oder String ohne Wörter liefere einen leeren String.
 ## Idee
 
 `split()` ohne Argument splittet an Whitespace und ignoriert leere
-Bestandteile. Dann `max(...)` mit `key=len` -- bei Gleichstand
+Bestandteile. Dann `max(...)` mit `key=len` - bei Gleichstand
 nimmt `max` das **erste** maximale Element, das passt hier perfekt.
 
 ## Falle

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 257-woerter-kuerzer-als
-revision: 1
+revision: 2
 titel: Wörter kürzer als n
 sprache: python
 task_type: code_schreiben
@@ -72,7 +72,7 @@ zurückgibt, die **kürzer als n Zeichen** sind.
 
 ## Idee
 
-Spiegelbild zu **256-wörter-laenger-als**: nur das Vergleichs-
+Spiegelbild zu **256-woerter-laenger-als**: nur das Vergleichs-
 Operator dreht.
 
 ## Verallgemeinerung
@@ -80,11 +80,11 @@ Operator dreht.
 Mit Predicate-Funktion ließe sich beides in eine generische
 "filter"-Funktion verpacken:
 
-In Tests aber schwer zu serialisieren -- darum die spezialisierten
+In Tests aber schwer zu serialisieren - darum die spezialisierten
 Aufgaben.
 
 ## Anwendung
 
-- **Schreibtipp**: kurze Wuesterhilfe aussortieren ("Vermeide
-  Fuell-Wörter mit unter 4 Zeichen").
+- **Schreibtipp**: kurze Füllwörter aussortieren ("Vermeide
+  Füll-Wörter mit unter 4 Zeichen").
 - **Linter-Regel**: Variablen mit unter 3 Zeichen als Warnung.

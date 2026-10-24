@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 200-euklid-ggt
-revision: 1
+revision: 2
 titel: GgT mit Euklid (eigene Implementierung)
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Berechne den größten gemeinsamen Teiler zweier nicht-negativer
-      ganzer Zahlen -- OHNE math.gcd.
+      ganzer Zahlen - OHNE math.gcd.
       ggt(a, 0) = a. Sonst: ggt(a, b) = ggt(b, a % b).
   - kosten: 10
     text: |
@@ -64,7 +64,7 @@ starter_code: |
 # GgT mit Euklid (eigene Implementierung)
 
 Schreibe `ggt(a, b)`, die den **größten gemeinsamen Teiler** zweier
-ganzer Zahlen liefert -- ohne `math.gcd`.
+ganzer Zahlen liefert - ohne `math.gcd`.
 
 Negative Eingaben: Betrag nehmen. `ggt(0, 0) = 0`.
 
@@ -75,7 +75,7 @@ ggt(a, 0) = a
 ggt(a, b) = ggt(b, a % b)   für b > 0
 ```
 
-Die Folge `a, b, a%b, b%(a%b), ...` schrumpft sehr schnell -- bei
+Die Folge `a, b, a%b, b%(a%b), ...` schrumpft sehr schnell - bei
 zwei Zahlen mit `n` Stellen ist sie nach `O(n)` Schritten am Ende.
 
 ## Beispiele
@@ -89,17 +89,17 @@ zwei Zahlen mit `n` Stellen ist sie nach `O(n)` Schritten am Ende.
 | `0`     | `5`    | `5` |
 | `-12`   | `18`   | `6` |
 
-## Idee -- iterativ
+## Idee - iterativ
 
 Pythons Tupel-Zuweisung macht den Variablen-Tausch in **einer Zeile**
-moeglich -- in C oder Java braucht man eine Hilfsvariable.
+möglich - in C oder Java braucht man eine Hilfsvariable.
 
-## Idee -- rekursiv
+## Idee - rekursiv
 
 Eleganter, aber bei sehr großen Zahlen Stack-Limit beachten.
 
 ## Anwendung
 
-GgT taucht überall auf, wo man **Brueche kürzen** will:
+GgT taucht überall auf, wo man **Brüche kürzen** will:
 `12/18 → 12/ggt(12,18) / 18/ggt(12,18) = 2/3`. In der Kryptographie
 ist Euklids Algorithmus die Basis für **modulare Inverse** (RSA).

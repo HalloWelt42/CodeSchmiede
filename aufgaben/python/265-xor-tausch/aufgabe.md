@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 265-xor-tausch
-revision: 1
+revision: 2
 titel: XOR-Tausch ohne Hilfsvariable
 sprache: python
 task_type: code_schreiben
@@ -24,7 +24,7 @@ hints:
     text: |
       Tausche zwei ganzen Zahlen mit dem XOR-Trick OHNE Hilfsvariable.
       Liefere [b, a].
-      Funktioniert mit positiven, negativen und 0 -- in Python
+      Funktioniert mit positiven, negativen und 0 - in Python
       sind ints unbegrenzt, das macht XOR sicher.
   - kosten: 15
     text: |
@@ -63,7 +63,7 @@ starter_code: |
 # XOR-Tausch ohne Hilfsvariable
 
 Schreibe `xor_tausch(a, b)`, die zwei Ganzzahlen tauscht **ohne
-Hilfsvariable** -- über den klassischen XOR-Trick.
+Hilfsvariable** - über den klassischen XOR-Trick.
 
 ## Der Trick
 
@@ -86,21 +86,21 @@ funktioniert das.
 | 42    | 99    | `[99, 42]`   |
 | 7     | 7     | `[7, 7]`     |
 
-## Vergleich -- Pythonisch vs Bit-Trick
+## Vergleich - Pythonisch vs Bit-Trick
 
 In Python ist der **schönste** Tausch:
 
-Tupel-Zuweisung -- kein Hilfsvariable nötig, **liest** sich
+Tupel-Zuweisung - kein Hilfsvariable nötig, **liest** sich
 selbsterklärend. Der XOR-Trick ist ein **Show-Off** aus C-Zeiten.
 
 ## Wann sinnvoll?
 
 In **Embedded**-Programmierung (sehr kleine RAM-Mengen) oder bei
 **Inline-Assembler** kann man so 1 Register sparen. Heute praktisch
-nie nötig, aber als **Klassiker** lehrreich -- und in
-Bewerbungsgespraechen taucht er auf.
+nie nötig, aber als **Klassiker** lehrreich - und in
+Bewerbungsgesprächen taucht er auf.
 
-## Stolperstein -- bei `a` und `b` gleicher Variable
+## Stolperstein - bei `a` und `b` gleicher Variable
 
 Wenn `a` und `b` dieselbe **Speicher-Adresse** wären (in C-Code),
 würde der Trick `a` zu **0** machen. In Python kein Problem,

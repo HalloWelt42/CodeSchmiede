@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 114-grid-kuerzester-weg
-revision: 1
+revision: 2
 titel: Kürzester Weg im Raster (BFS)
 sprache: python
 task_type: code_schreiben
@@ -87,6 +87,6 @@ besuchte Felder merken. Erste Erreichung des Ziels = kürzester Weg.
 ## Hintergrund
 
 Grid-BFS ist die Eintrittskarte zu **Pfadfindung**, vom 8-Bit-Spiel
-bis hin zu Google Maps (allerdings dort gewichtet -- A*). Wer das
+bis hin zu Navigationsdiensten (allerdings dort gewichtet - A*). Wer das
 Pattern beherrscht, kann viele scheinbar verschiedene Probleme
 lösen.

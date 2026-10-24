@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 281-split-mehrere-trenner
-revision: 1
+revision: 2
 titel: Text an mehreren Trennzeichen splitten
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Splitte einen Text an JEDER der Trennzeichen ',', ';', '|' oder
-      Whitespace -- in einem Aufruf. Leere Stücke entfernen.
+      Whitespace - in einem Aufruf. Leere Stücke entfernen.
       "a,b ;c|d  e" → ["a", "b", "c", "d", "e"].
   - kosten: 20
     text: |
@@ -86,24 +86,24 @@ Trennzeichen splittet:
 | `",;|"`                  | `[]`                             |
 | `""`                     | `[]`                             |
 
-## Idee -- re.split + Filter
+## Idee - re.split + Filter
 
 `[,;|\s]+` ist eine **Zeichen-Klasse**: matcht eines der
-aufgefuehrten Zeichen, **`+`** matcht eines oder mehr (das
+aufgeführten Zeichen, **`+`** matcht eines oder mehr (das
 verschluckt mehrfache Trenner direkt).
 
 `if t` filtert leere Strings (truthy-Check).
 
-## Stolperstein -- leere Strings am Rand
+## Stolperstein - leere Strings am Rand
 
-`re.split(r"[,;|\s]+", ",a,")` liefert `["", "a", ""]` -- das
-fuehrende und nachfolgende Trennzeichen erzeugt jeweils ein leeres
+`re.split(r"[,;|\s]+", ",a,")` liefert `["", "a", ""]` - das
+führende und nachfolgende Trennzeichen erzeugt jeweils ein leeres
 Element. Daher das `if t`-Filter.
 
 ## Vergleich mit `str.split`
 
 `str.split` mit Argument splittet nur an **einem** Trennzeichen
-und behaelt leere Stücke. Ohne Argument splittet es an Whitespace
+und behält leere Stücke. Ohne Argument splittet es an Whitespace
 und filtert. Wenn man mehrere Trennzeichen will, ist `re.split`
 das Mittel der Wahl.
 

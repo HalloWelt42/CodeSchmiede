@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 187-morse-encode
-revision: 1
-titel: Morse-Code -- Text codieren
+revision: 2
+titel: Morse-Code - Text codieren
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -93,7 +93,7 @@ G --.     N -.      U ..-
 ## Hintergrund
 
 Samuel Morse erfand den Code 1838 zusammen mit Alfred Vail. Die
-Buchstabenlaenge ist **anti-proportional zur Häufigkeit** im
-Englischen -- **E** (`.`) und **T** (`-`) sind am kürzesten,
+Buchstabenlänge ist **anti-proportional zur Häufigkeit** im
+Englischen - **E** (`.`) und **T** (`-`) sind am kürzesten,
 weil am häufigsten. Damit ist Morse einer der ersten praktisch
-genutzten **Variable-Length-Codes** -- ein Vorlaeufer von Huffman.
+genutzten **Variable-Length-Codes** - ein Vorläufer von Huffman.

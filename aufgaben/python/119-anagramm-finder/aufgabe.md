@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 119-anagramm-finder
-revision: 1
+revision: 2
 titel: Anagramme aus Liste finden
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Liefere die Worte aus `kandidaten`, die Anagramme von `wort`
-      sind -- Groß-/Kleinschreibung egal. Aber: das Wort selbst
+      sind - Groß-/Kleinschreibung egal. Aber: das Wort selbst
       (gleiche Buchstaben gleich groß/klein) ist KEIN Anagramm.
   - kosten: 8
     text: |

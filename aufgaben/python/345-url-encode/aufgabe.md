@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 345-url-encode
-revision: 1
+revision: 2
 titel: URL-Prozent-Codierung (eigene Implementierung)
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [strings, codierung, url, web]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/URL_encoding
-  notiz: Rosetta Code -- URL encoding (RFC 3986 unreserved)
+  notiz: Rosetta Code - URL encoding (RFC 3986 unreserved)
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -62,7 +62,7 @@ starter_code: |
 
 # URL-Prozent-Codierung
 
-Schreibe `url_encode(s)`, die einen String **URL-codiert** -- nach
+Schreibe `url_encode(s)`, die einen String **URL-codiert** - nach
 RFC 3986 (Prozent-Codierung).
 
 Regel:
@@ -88,14 +88,14 @@ Regel:
 gibt Integer-Werte (0-255). Für ASCII-Bytes ist `chr(byte)` das
 entsprechende Zeichen.
 
-## Stolperstein -- Umlaute (UTF-8)
+## Stolperstein - Umlaute (UTF-8)
 
-`"ä"` ist in UTF-8 `0xC3 0xA4` -- zwei Bytes. Daher wird
+`"ä"` ist in UTF-8 `0xC3 0xA4` - zwei Bytes. Daher wird
 `url_encode("ä")` zu `"%C3%A4"` (zwei Prozent-Codes).
 
 ## Vergleich mit Builtin
 
-`urllib.parse.quote(s, safe='')` macht praktisch dasselbe -- mit
+`urllib.parse.quote(s, safe='')` macht praktisch dasselbe - mit
 Default-Liste der "sicheren" Zeichen. Wir bauen es selbst, damit
 das Pattern klar wird.
 

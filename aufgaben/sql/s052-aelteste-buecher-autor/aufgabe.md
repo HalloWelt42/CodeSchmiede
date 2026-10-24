@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s052-aelteste-buecher-autor
-revision: 1
-titel: "Aeltestes Buch jedes Autors"
+revision: 2
+titel: "Ältestes Buch jedes Autors"
 sprache: sql
 task_type: sql_abfrage
 runner_type: docker_sqlite
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [correlated-subquery]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -40,13 +40,13 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      Correlated Subquery: Subquery in WHERE referenziert die aeussere Tabelle.
+      Correlated Subquery: Subquery in WHERE referenziert die äußere Tabelle.
 starter_code: |
   SELECT ___
   FROM ___
   WHERE ___;
 ---
 
-# Aeltestes Buch jedes Autors
+# Ältestes Buch jedes Autors
 
 Für jeden Autor das früh erschienene Buch.

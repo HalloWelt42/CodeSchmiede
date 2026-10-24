@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 003-fibonacci
-revision: 1
+revision: 2
 titel: Fibonacci-Zahl
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: Die Fibonacci-Folge beginnt mit 0, 1, jede weitere Zahl ist die Summe der beiden vorigen.
   - kosten: 8
-    text: Eine rekursive Loesung ist kurz, wird aber fuer grosse n sehr langsam (exponentielle Laufzeit). Iterativ ist linear.
+    text: Eine rekursive Lösung ist kurz, wird aber für große n sehr langsam (exponentielle Laufzeit). Iterativ ist linear.
   - kosten: 16
     text: |
       Iterative Variante:
@@ -83,8 +83,8 @@ $$F_0 = 0, \quad F_1 = 1, \quad F_n = F_{n-1} + F_{n-2} \text{ für } n \ge 2$$
 ## Worauf zu achten ist
 
 - Eine **rekursive** Lösung ist sehr kurz, hat aber **exponentielle Laufzeit**
-  -- bei `n = 30` werden bereits über 1,3 Mio. Funktionsaufrufe ausgefuehrt
-- Eine **iterative** Lösung laeuft in **linearer Zeit** $O(n)$ und
+  - bei `n = 30` werden bereits über 1,3 Mio. Funktionsaufrufe ausgeführt
+- Eine **iterative** Lösung läuft in **linearer Zeit** $O(n)$ und
   konstantem Speicher
 - Mit `functools.lru_cache` lassen sich rekursive Aufrufe **memoisieren**
   und damit ebenfalls auf $O(n)$ drücken

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 066-quiz-list-comprehension
-revision: 1
+revision: 2
 titel: Was gibt die Comprehension aus?
 sprache: python
 task_type: output_quiz
@@ -45,9 +45,9 @@ Eine List-Comprehension hat die Form:
 
 Sie wird von links nach rechts ausgewertet:
 
-1. `for x in range(5)` -- nimmt alle x von 0 bis 4
-2. `if x % 2 == 0` -- behaelt nur die geraden
-3. `x*x` -- quadriert das Ergebnis
+1. `for x in range(5)` - nimmt alle x von 0 bis 4
+2. `if x % 2 == 0` - behält nur die geraden
+3. `x*x` - quadriert das Ergebnis
 
 ## Hinweise
 

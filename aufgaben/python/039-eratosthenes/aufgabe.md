@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 039-eratosthenes
-revision: 1
+revision: 2
 titel: Sieb des Eratosthenes
 sprache: python
 task_type: code_schreiben
@@ -75,16 +75,16 @@ bis einschließlich n** in aufsteigender Reihenfolge zurückgibt.
 
 ## Idee: das Sieb
 
-1. Lege eine Liste `ist_prim` der Laenge `n+1` an, initial alle `True`
+1. Lege eine Liste `ist_prim` der Länge `n+1` an, initial alle `True`
 2. Setze `ist_prim[0] = ist_prim[1] = False`
 3. Für jede `i` von 2 bis `sqrt(n)`: wenn `ist_prim[i]`, streiche alle
    Vielfachen ab `i*i` (kleinere Vielfache wurden schon gestrichen)
 4. Sammle alle Indizes mit `ist_prim[i] == True`
 
-## Komplexitaet
+## Komplexität
 
 Das Sieb ist mit $O(n \log \log n)$ deutlich schneller als jedes
-Element einzeln auf Primalitaet zu prüfen ($O(n \sqrt{n})$). Bei
+Element einzeln auf Primalität zu prüfen ($O(n \sqrt{n})$). Bei
 $n = 1.000.000$ ist der Unterschied praktisch riesig.
 
 ## Hintergrund

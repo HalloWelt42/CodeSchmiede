@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f002-flex-justify-end
-revision: 1
+revision: 2
 titel: "Flexbox 02: Alles rechts mit justify-content: flex-end"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [flexbox, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -53,7 +53,7 @@ hints:
   - kosten: 0
     text: |
       Flexbox-Eltern muss `display: flex` haben, damit `justify-content`, `align-items` & Co. greifen.
-      Diese Aufgabe lehrt EINE Property -- die anderen kommen in den nächsten Levels.
+      Diese Aufgabe lehrt EINE Property - die anderen kommen in den nächsten Levels.
   - kosten: 3
     text: |
       `display: flex;
@@ -70,17 +70,17 @@ starter_code: |
 ## Aufgabe
 
 Im Bahn-Rahmen sollen die drei Kacheln so angeordnet werden, dass
-**drei froesche stehen am rechten rand**.
+**drei frösche stehen am rechten rand**.
 
-Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` -- der Rest
+Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` - der Rest
 (Größe, Farbe, Quadrate) ist schon da.
 
 ## Aha
 
 `justify-content` arbeitet auf der **Haupt-Achse** (bei row also horizontal).
-`flex-end` schiebt alle Items ans Ende -- aber sie bleiben in ihrer Reihenfolge.
+`flex-end` schiebt alle Items ans Ende - aber sie bleiben in ihrer Reihenfolge.
 
 ## Wozu in der Praxis?
 
-Damit verschiebst du z.B. das User-Menue in einer Topbar nach rechts,
-während das Logo links bleibt -- ein klassisches Layout-Pattern.
+Damit verschiebst du z.B. das User-Menü in einer Topbar nach rechts,
+während das Logo links bleibt - ein klassisches Layout-Pattern.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 228-partition-vorzeichen
-revision: 1
+revision: 2
 titel: Liste nach Vorzeichen partitionieren
 sprache: python
 task_type: code_schreiben
@@ -76,16 +76,16 @@ Die Reihenfolge **innerhalb** jeder Teil-Liste bleibt wie im Original.
 | `[0, 0, 0]`          | `[[], [0, 0, 0], []]`             |
 | `[-5]`               | `[[-5], [], []]`                  |
 
-## Idee 1 -- Drei Comprehensions
+## Idee 1 - Drei Comprehensions
 
-Sehr lesbar -- aber die Liste wird **dreimal** durchlaufen.
+Sehr lesbar - aber die Liste wird **dreimal** durchlaufen.
 
-## Idee 2 -- Eine Schleife
+## Idee 2 - Eine Schleife
 
-Effizient -- bei sehr großen Listen merkbar schneller.
+Effizient - bei sehr großen Listen merkbar schneller.
 
-## Pattern -- Allgemeine Partition
+## Pattern - Allgemeine Partition
 
-Die Idee laesst sich mit einem **Predicate** verallgemeinern:
+Die Idee lässt sich mit einem **Predicate** verallgemeinern:
 
 Geht in einer Zeile, wenn die Sortier-Reihenfolge egal ist.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 254-tag-im-jahr
-revision: 1
+revision: 2
 titel: Tag-Nummer im Jahr aus Datum
 sprache: python
 task_type: code_schreiben
@@ -91,7 +91,7 @@ einen `ValueError`). `tm_yday` ist genau der "day of year".
 
 ## Idee ohne `datetime`
 
-Komplizierter, aber lehrreich -- enthält die **Gregorianische
+Komplizierter, aber lehrreich - enthält die **Gregorianische
 Schaltjahr-Regel** (Aufgabe 058).
 
 ## Anwendung

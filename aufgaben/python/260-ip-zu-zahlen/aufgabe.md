@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 260-ip-zu-zahlen
-revision: 1
+revision: 2
 titel: IPv4-String in vier Zahlen zerlegen
 sprache: python
 task_type: code_schreiben
@@ -71,7 +71,7 @@ Ungültig sind:
 - nicht 4 Teile
 - nicht-numerische Werte
 - Werte außerhalb 0..255
-- leerer String, fuehrende Vorzeichen
+- leerer String, führende Vorzeichen
 
 ## Beispiele
 
@@ -88,8 +88,8 @@ Ungültig sind:
 
 ## Idee
 
-`isdigit` schließt auch fuehrende Nullen wie `"007"` als gültig ein.
-Wer das verbieten will, kann zusaetzlich prüfen:
+`isdigit` schließt auch führende Nullen wie `"007"` als gültig ein.
+Wer das verbieten will, kann zusätzlich prüfen:
 
 ## Pendant
 
@@ -99,5 +99,5 @@ Aufgabe **128-ipv4-validierung** liefert nur True/False.
 ## Hintergrund
 
 IPv4 hat **32 Bit** = 4 Bytes a 8 Bit = 4 Zahlen 0..255.
-Insgesamt $2^{32} \approx 4{,}3$ Milliarden Adressen -- bei 8 Mrd
+Insgesamt $2^{32} \approx 4{,}3$ Milliarden Adressen - bei 8 Mrd
 Menschen plus IoT-Geräten klar zu wenig. Darum **IPv6** (128 Bit).

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 113-baum-aus-eltern
-revision: 1
+revision: 2
 titel: Baum aus Eltern-IDs aufbauen
 sprache: python
 task_type: code_schreiben
@@ -28,7 +28,7 @@ hints:
     text: |
       Validieren: IDs müssen 0..n-1 sein. Wurzel id=0 muss parent=0
       haben. Bei Fehler -> {}. Erst Knoten anlegen, dann Kinder
-      einsortieren -- nach ID aufsteigend.
+      einsortieren - nach ID aufsteigend.
 tests_sichtbar:
   - input: [[{"id": 0, "parent": 0}]]
     expected: { "id": 0, "kinder": [] }

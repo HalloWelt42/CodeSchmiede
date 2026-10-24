@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s001-alle-buecher
-revision: 1
+revision: 2
 titel: "SELECT alle Bücher: Titel und Jahr"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [select, basics]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SELECT-Basics.
+  notiz: Eigene Aufgabe - SELECT-Basics.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -49,7 +49,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `SELECT spalte1, spalte2 FROM tabelle` -- ohne WHERE liefert
+      `SELECT spalte1, spalte2 FROM tabelle` - ohne WHERE liefert
       es alle Zeilen, in der Reihenfolge wie sie eingefügt wurden.
   - kosten: 2
     text: |
@@ -61,7 +61,7 @@ starter_code: |
 # SELECT alle Bücher: Titel und Jahr
 
 Schreibe eine Abfrage, die für **alle Bücher** den `titel` und das
-`jahr` liefert -- in der Reihenfolge, wie sie in der Tabelle stehen.
+`jahr` liefert - in der Reihenfolge, wie sie in der Tabelle stehen.
 
 ## Spalten
 

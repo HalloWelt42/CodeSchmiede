@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s012-margin-aussenabstand
-revision: 1
-titel: "Grundlagen 12: Margin -- Aussenabstand zwischen Boxen"
+revision: 2
+titel: "Grundlagen 12: Margin - Außenabstand zwischen Boxen"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [grundlagen, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -41,7 +41,7 @@ hints:
   - kosten: 0
     text: |
       CSS wählt Elemente per **Selektor** und gibt ihnen Eigenschaften.
-      Welcher Selektor zählt, regeln Spezifizitaet und Quellreihenfolge.
+      Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
       `margin: 16px 0;`
@@ -55,21 +55,21 @@ starter_code: |
   }
 ---
 
-# Grundlagen 12: Beide Boxen haben 16px Margin oben und unten -- dadurch entsteht Luft zwischen ihnen
+# Grundlagen 12: Beide Boxen haben 16px Margin oben und unten - dadurch entsteht Luft zwischen ihnen
 
 ## Aufgabe
 
-Beide Boxen haben 16px Margin oben und unten -- dadurch entsteht Luft zwischen ihnen
+Beide Boxen haben 16px Margin oben und unten - dadurch entsteht Luft zwischen ihnen
 
 ## Aha
 
 **Margin** ist der Abstand AUSSERHALB einer Box. Anders als Padding
-ist Margin nicht Teil der sichtbaren Box -- die Hintergrundfarbe der
+ist Margin nicht Teil der sichtbaren Box - die Hintergrundfarbe der
 Box endet vor dem Margin. Vertikale Margins benachbarter Boxen
 **kollabieren** überraschenderweise (es gewinnt der größere).
 
 ## Wozu in der Praxis?
 
 Margin trennt Boxen voneinander. Klassische Faustregel: Padding für
-Innen-Luft, Margin für Aussen-Abstand. Mit `margin: 0 auto` kann
+Innen-Luft, Margin für Außen-Abstand. Mit `margin: 0 auto` kann
 man eine Box mit fester Breite horizontal zentrieren.

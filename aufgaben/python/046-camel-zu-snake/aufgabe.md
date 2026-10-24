@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 046-camel-zu-snake
-revision: 1
+revision: 2
 titel: camelCase zu snake_case
 sprache: python
 task_type: code_schreiben
@@ -73,7 +73,7 @@ Schreibe eine Funktion `camel_zu_snake(text)`, die einen
 ## Idee
 
 Schleife durch jedes Zeichen: ist es **groß** und **nicht das erste**,
-fuege vorher `_` ein. Dann den Buchstaben kleingeschrieben anhängen.
+füge vorher `_` ein. Dann den Buchstaben kleingeschrieben anhängen.
 
 ## Tipp
 

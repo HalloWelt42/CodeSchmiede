@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 242-erstes-positives
-revision: 1
+revision: 2
 titel: Erstes positives Element
 sprache: python
 task_type: code_schreiben
@@ -62,7 +62,7 @@ starter_code: |
 # Erstes positives Element
 
 Schreibe `erstes_positiv(zahlen)`, die das **erste positive Element**
-(`> 0`) aus der Liste liefert -- oder `None`, wenn keins existiert.
+(`> 0`) aus der Liste liefert - oder `None`, wenn keins existiert.
 
 ## Beispiele
 
@@ -75,12 +75,12 @@ Schreibe `erstes_positiv(zahlen)`, die das **erste positive Element**
 | `[]`                   | `None`   |
 | `[10, 20, 30, -1, -2]` | `10`     |
 
-## Idee 1 -- next mit Default
+## Idee 1 - next mit Default
 
 `next` mit zwei Argumenten: erstes ist der Generator, zweites der
 **Default**, wenn der Generator leer ist. Sehr elegant.
 
-## Idee 2 -- klassische Schleife
+## Idee 2 - klassische Schleife
 
 Liest sich vielleicht klarer. Pythonisch ist beides.
 
@@ -90,9 +90,9 @@ Liest sich vielleicht klarer. Pythonisch ist beides.
 - **Eingriff in beliebige Generatoren** (auch unendliche!).
 - **Default** spart die `try/except StopIteration`-Konstruktion.
 
-## Pattern -- "find first matching"
+## Pattern - "find first matching"
 
 Diese Idee ist universell:
 
-Damit lassen sich alle "find first"-Aufgaben in einer Zeile lösen --
+Damit lassen sich alle "find first"-Aufgaben in einer Zeile lösen -
 ein wichtiger Pythonismus.

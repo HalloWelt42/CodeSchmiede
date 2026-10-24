@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 331-range-expansion
-revision: 1
+revision: 2
 titel: Bereichs-Notation entpacken
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [strings, parsing, listen, bereiche]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Range_expansion
-  notiz: Rosetta Code -- Range expansion
+  notiz: Rosetta Code - Range expansion
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -24,11 +24,11 @@ hints:
     text: |
       Entpacke einen Bereichs-String wie "1-3,5,7-9" in eine Liste
       von Zahlen [1, 2, 3, 5, 7, 8, 9]. Negative Untergrenzen sind
-      erlaubt: "-3--1,2,4-6" -> [-3, -2, -1, 2, 4, 5, 6].
+      erlaubt: "-3-1,2,4-6" -> [-3, -2, -1, 2, 4, 5, 6].
       Bei leerem String -> [].
   - kosten: 17
     text: |
-      Splitte an "," -- pro Stück prüfen ob Bindestrich (Trenner)
+      Splitte an "," - pro Stück prüfen ob Bindestrich (Trenner)
       drin steckt. Bei negativen Untergrenzen ist der Trenner ein
       Bindestrich, der NICHT direkt nach dem ersten Zeichen steht.
 tests_sichtbar:
@@ -87,10 +87,10 @@ Bei leerem String -> `[]`.
 
 ## Idee
 
-`stück.find("-", 1)` sucht ab Index 1 -- damit wird ein fuehrendes
+`stück.find("-", 1)` sucht ab Index 1 - damit wird ein führendes
 Minus (negative Untergrenze) **nicht** als Trenner missverstanden.
 
-## Pendant -- Range Extraction
+## Pendant - Range Extraction
 
 Die umgekehrte Operation gibt's auch in Rosetta:
 `[1,2,3,5,7,8,9]` zurück zu `"1-3,5,7-9"`. Tricky weil man

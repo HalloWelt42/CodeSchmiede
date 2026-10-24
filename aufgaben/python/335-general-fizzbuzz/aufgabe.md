@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 335-general-fizzbuzz
-revision: 1
+revision: 2
 titel: Verallgemeinertes FizzBuzz
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [zahlen, listen, dicts, modulo]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/General_FizzBuzz
-  notiz: Rosetta Code -- General FizzBuzz
+  notiz: Rosetta Code - General FizzBuzz
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -65,7 +65,7 @@ spielt: statt fest `3 -> Fizz, 5 -> Buzz` wird eine Liste von
 `[teiler, wort]`-Paaren übergeben.
 
 Pro Zahl `i` von 1 bis n:
-1. Sammle alle Wörter, deren Teiler `i` teilt -- konkateniere sie.
+1. Sammle alle Wörter, deren Teiler `i` teilt - konkateniere sie.
 2. Wenn nichts zusammenkommt, nimm `str(i)`.
 
 `n <= 0` oder leere Regelliste behandeln wie folgt:
@@ -95,7 +95,7 @@ Diese Verallgemeinerung erlaubt:
 
 - **PrimePower**: `[[2,"Bi"],[3,"Tri"],[5,"Quint"]]`
 - **Schach**: `[[3,"Hopp"],[5,"Sprung"]]`
-- **Spass**: `[[7,"Boom"],[11,"Bang"],[13,"Buzz"]]`
+- **Spaß**: `[[7,"Boom"],[11,"Bang"],[13,"Buzz"]]`
 
 Wer den klassischen FizzBuzz beherrscht, kann das hier in 5 Minuten.
 Macht es zur **soliden Erweiterungsaufgabe**.

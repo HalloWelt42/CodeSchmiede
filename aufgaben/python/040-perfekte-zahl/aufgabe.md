@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 040-perfekte-zahl
-revision: 1
+revision: 2
 titel: Perfekte Zahl prüfen
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: ist_perfekt
 hints:
   - kosten: 0
     text: |
-      Eine perfekte Zahl ist gleich der Summe ihrer echten Teiler --
+      Eine perfekte Zahl ist gleich der Summe ihrer echten Teiler -
       also aller Teiler ohne sich selbst.
   - kosten: 3
     text: |
@@ -62,7 +62,7 @@ starter_code: |
 # Perfekte Zahl prüfen
 
 Schreibe eine Funktion `ist_perfekt(n)`, die `True` zurückgibt, wenn
-`n` eine **vollkommene Zahl** (perfekte Zahl) ist -- also gleich der
+`n` eine **vollkommene Zahl** (perfekte Zahl) ist - also gleich der
 Summe aller ihrer **echten Teiler** (Teiler ohne `n` selbst).
 
 ## Beispiele

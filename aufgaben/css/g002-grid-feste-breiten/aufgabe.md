@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g002-grid-feste-breiten
-revision: 1
+revision: 2
 titel: "Grid 02: Drei feste Spaltenbreiten"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [grid, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -44,7 +44,7 @@ hints:
     text: |
       CSS-Grid ist 2-dimensional (Zeilen UND Spalten gleichzeitig).
       Im Gegensatz zu Flexbox musst du dem Container das Raster-Muster
-      vorgeben -- erst dann wissen die Zellen, wohin sie gehören.
+      vorgeben - erst dann wissen die Zellen, wohin sie gehören.
   - kosten: 3
     text: |
       `grid-template-columns: 80px 120px 160px;`
@@ -77,7 +77,7 @@ Schreibe die fehlende(n) Grid-Anweisung(en) in `.setzkasten`.
 
 ## Aha
 
-Du kannst beliebig viele Werte hinter `grid-template-columns` schreiben --
+Du kannst beliebig viele Werte hinter `grid-template-columns` schreiben -
 der Browser zählt sie als Spaltenanzahl. Pixelwerte machen die Spalten
 **fix**, unabhängig von der Container-Breite.
 

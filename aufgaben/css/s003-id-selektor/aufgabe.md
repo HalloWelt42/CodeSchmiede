@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s003-id-selektor
-revision: 1
+revision: 2
 titel: "Grundlagen 03: Nur ein Element per ID treffen"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [grundlagen, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -35,7 +35,7 @@ hints:
   - kosten: 0
     text: |
       CSS wählt Elemente per **Selektor** und gibt ihnen Eigenschaften.
-      Welcher Selektor zählt, regeln Spezifizitaet und Quellreihenfolge.
+      Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
       `#leitsatz { font-weight: 700; font-size: 24px; }`
@@ -51,12 +51,12 @@ Nur das Element mit der ID 'leitsatz' soll größer und fett werden
 
 ## Aha
 
-Der **ID-Selektor** beginnt mit `#`. IDs sind pro Seite eindeutig --
+Der **ID-Selektor** beginnt mit `#`. IDs sind pro Seite eindeutig -
 anders als Klassen darf jede ID nur EINMAL vorkommen. Sie haben hohe
-Spezifizitaet und überschreiben Klassen-Stile.
+Spezifizität und überschreiben Klassen-Stile.
 
 ## Wozu in der Praxis?
 
-IDs werden eher selten zum Stylen genutzt -- meist für Anker-Links
+IDs werden eher selten zum Stylen genutzt - meist für Anker-Links
 (`<a href='#abschnitt'>`) und JavaScript-Hooks. Wegen ihrer harten
-Spezifizitaet bevorzugt man Klassen, sie sind flexibler.
+Spezifizität bevorzugt man Klassen, sie sind flexibler.

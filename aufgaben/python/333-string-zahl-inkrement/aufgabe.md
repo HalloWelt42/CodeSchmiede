@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 333-string-zahl-inkrement
-revision: 1
+revision: 2
 titel: Numerischen String inkrementieren
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [strings, zahlen, parsing]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Increment_a_numerical_string
-  notiz: Rosetta Code -- Increment a numerical string
+  notiz: Rosetta Code - Increment a numerical string
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -62,7 +62,7 @@ starter_code: |
 # Numerischen String inkrementieren
 
 Schreibe `inkrement(s)`, die einen numerischen String um `1`
-erhoeht und das Ergebnis als String zurückgibt.
+erhöht und das Ergebnis als String zurückgibt.
 
 Bei ungültiger Eingabe (Buchstaben, leerer String, Dezimalpunkt)
 -> `""`.
@@ -84,14 +84,14 @@ Bei ungültiger Eingabe (Buchstaben, leerer String, Dezimalpunkt)
 
 ## Idee
 
-Pythons `int` akzeptiert fuehrendes `+`/`-`, aber kein Dezimalpunkt.
-Beliebig große Zahlen sind kein Problem -- Python hat unbegrenzte
+Pythons `int` akzeptiert führendes `+`/`-`, aber kein Dezimalpunkt.
+Beliebig große Zahlen sind kein Problem - Python hat unbegrenzte
 ganze Zahlen.
 
-## Stolperstein -- in anderen Sprachen
+## Stolperstein - in anderen Sprachen
 
-In **C** oder **Java** ist `int` 32 oder 64 Bit -- bei
-`"99999999999999999999"` haette man Overflow. In Python passiert
+In **C** oder **Java** ist `int` 32 oder 64 Bit - bei
+`"99999999999999999999"` hätte man Overflow. In Python passiert
 das nie.
 
 In **JavaScript** gibt es seit ES2020 `BigInt`, aber `parseInt`

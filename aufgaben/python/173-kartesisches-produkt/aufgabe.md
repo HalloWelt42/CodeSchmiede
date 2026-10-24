@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 173-kartesisches-produkt
-revision: 1
+revision: 2
 titel: Kartesisches Produkt zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -58,7 +58,7 @@ starter_code: |
 # Kartesisches Produkt zweier Listen
 
 Schreibe eine Funktion `kartesisch(a, b)`, die alle Paare `[a_i, b_j]`
-liefert -- die **Mengentheoretische Produktmenge** $A \times B$.
+liefert - die **Mengentheoretische Produktmenge** $A \times B$.
 
 Reihenfolge: erst Element aus `a` fest wählen, dann alle `b`
 durchgehen.
@@ -72,10 +72,10 @@ durchgehen.
 | `[1]`       | `[2]`       | `[[1, 2]]`                                |
 | `["a","b"]` | `["x","y"]` | `[["a","x"], ["a","y"], ["b","x"], ["b","y"]]` |
 
-## Idee -- Listen-Comprehension
+## Idee - Listen-Comprehension
 
-Die zwei Schleifen werden in einer Comprehension verschachtelt -- die
-**erste** ist die aeussere, die **zweite** die innere.
+Die zwei Schleifen werden in einer Comprehension verschachtelt - die
+**erste** ist die äußere, die **zweite** die innere.
 
 ## Pythons `itertools.product`
 

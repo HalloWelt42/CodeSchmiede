@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s068-shop-orte-anzahl
-revision: 1
+revision: 2
 titel: "Shop: Kunden pro Ort"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [group-by, count]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -47,4 +47,4 @@ starter_code: |
 
 # Kunden pro Ort
 
-Wieviele Kunden in welchem Ort, hauefigster Ort zuerst.
+Wieviele Kunden in welchem Ort, häufigster Ort zuerst.

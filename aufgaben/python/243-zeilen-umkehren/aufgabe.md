@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 243-zeilen-umkehren
-revision: 1
+revision: 2
 titel: Jede Zeile zeichenweise umdrehen
 sprache: python
 task_type: code_schreiben
@@ -73,12 +73,12 @@ selbst bleibt erhalten.
 ## Idee
 
 `s[::-1]` ist Pythons Slicing-Trick für **String/Liste umkehren**:
-Start, Stop weglassen, Step `-1` -- liest die Sequenz rückwärts.
+Start, Stop weglassen, Step `-1` - liest die Sequenz rückwärts.
 
 ## Anwendung
 
 - Spiegelschrift-Effekt für Texte/Banner.
 - Test-Pattern für Palindrom-Detektoren.
-- Praxis bei rechts-nach-links-Sprachen wie Hebraeisch oder Arabisch
+- Praxis bei rechts-nach-links-Sprachen wie Hebräisch oder Arabisch
   (in echt sind die aber "logisch" links nach rechts gespeichert,
   die Anzeige dreht).

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 332-js-range-expansion
-revision: 1
-titel: JavaScript -- Bereichs-Notation entpacken
+revision: 2
+titel: JavaScript - Bereichs-Notation entpacken
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, strings, parsing, array, modern]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Range_expansion
-  notiz: Rosetta Code -- Range expansion, JS
+  notiz: Rosetta Code - Range expansion, JS
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -23,10 +23,10 @@ hints:
   - kosten: 0
     text: |
       Entpacke "1-3,5,7-9" zu [1,2,3,5,7,8,9]. Negative Untergrenzen
-      ("-3--1") müssen funktionieren. Leerer String -> [].
+      ("-3-1") müssen funktionieren. Leerer String -> [].
   - kosten: 17
     text: |
-      split(",") -- pro Stück indexOf("-", 1) für den Trenner.
+      split(",") - pro Stück indexOf("-", 1) für den Trenner.
       Array.from({length: b-a+1}, (_, i) => a+i) erzeugt den Bereich.
 tests_sichtbar:
   - input: ["1-3,5,7-9"]
@@ -43,7 +43,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Bereichs-Notation entpacken
+# JavaScript - Bereichs-Notation entpacken
 
 Schreibe `bereichEntpacken(s)`, die einen Bereichs-String wie
 `"1-3,5,7-9"` in das Array `[1, 2, 3, 5, 7, 8, 9]` umwandelt.
@@ -65,7 +65,7 @@ Schreibe `bereichEntpacken(s)`, die einen Bereichs-String wie
 
 ## Idee
 
-`indexOf("-", 1)` sucht ab Index 1 -- damit greift ein fuehrendes
+`indexOf("-", 1)` sucht ab Index 1 - damit greift ein führendes
 Minus (negative Untergrenze) nicht als Trenner.
 
 ## Variante mit Array.from + Spread

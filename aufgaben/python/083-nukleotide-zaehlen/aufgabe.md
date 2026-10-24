@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 083-nukleotide-zaehlen
-revision: 1
+revision: 2
 titel: Nukleotide zählen
 sprache: python
 task_type: code_schreiben
@@ -75,4 +75,4 @@ Dict** zurück.
 
 DNA besteht aus vier **Nukleobasen**: Adenin (A), Cytosin (C),
 Guanin (G), Thymin (T). Das Zählen ist die einfachste Bioinformatik-
-Operation -- z.B. für **GC-Gehalt** der Genome.
+Operation - z.B. für **GC-Gehalt** der Genome.

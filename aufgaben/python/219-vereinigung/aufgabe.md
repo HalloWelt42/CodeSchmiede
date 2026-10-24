@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 219-vereinigung
-revision: 1
+revision: 2
 titel: Vereinigung zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: vereinigung
 hints:
   - kosten: 0
     text: |
-      Liefere alle Elemente, die in a oder b vorkommen --
+      Liefere alle Elemente, die in a oder b vorkommen -
       eindeutig und aufsteigend sortiert.
   - kosten: 5
     text: |
@@ -67,7 +67,7 @@ Schreibe `vereinigung(a, b)`, die alle Elemente aus `a` oder `b` als
 | `[1, 1, 2, 2]`   | `[2, 2, 3, 3]`   | `[1, 2, 3]`            |
 | `[1, 2, 3]`      | `[1, 2, 3]`      | `[1, 2, 3]`            |
 
-## Idee -- Set-Operation
+## Idee - Set-Operation
 
 Der `|`-Operator ist die Set-Vereinigung. Sehr lesbar, sehr schnell
 (`O(n + m)`).

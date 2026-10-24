@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 107-rpn-rechner
-revision: 1
+revision: 2
 titel: Reverse Polish Notation
 sprache: python
 task_type: code_schreiben
@@ -82,7 +82,7 @@ Operatoren: `+`, `-`, `*`, `/`. Division ist **Ganzzahl-Division**
 1. Token für Token gehen
 2. Zahl → auf Stack
 3. Operator → zwei Werte poppen, anwenden, Ergebnis auf Stack
-4. Am Ende: genau ein Wert auf dem Stack -- das Ergebnis
+4. Am Ende: genau ein Wert auf dem Stack - das Ergebnis
 
 Bei ungültigem Input (zu wenige Operanden, am Ende mehr als 1 Wert,
 unbekannter Operator) → `None`.
@@ -90,5 +90,5 @@ unbekannter Operator) → `None`.
 ## Hintergrund
 
 Die Notation stammt vom polnischen Logiker **Jan Łukasiewicz** (1924).
-Stack-Maschinen wie die HP-Taschenrechner nutzten sie -- und unter
+Stack-Maschinen wie die HP-Taschenrechner nutzten sie - und unter
 der Haube benutzen Compiler genau dieses Pattern bei Ausdrucksauswertung.

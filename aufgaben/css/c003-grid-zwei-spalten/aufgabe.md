@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c003-grid-zwei-spalten
-revision: 1
+revision: 2
 titel: Zwei-Spalten-Grid mit Lücke
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 7
 tags: [grid, layout, gap]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Grid-Basics.
+  notiz: Eigene Aufgabe - CSS-Grid-Basics.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -81,7 +81,7 @@ starter_code: |
 
 # Zwei-Spalten-Grid mit Lücke
 
-Vier Zellen sollen in einem 2x2-Grid angeordnet sein, mit gleichmässigen
+Vier Zellen sollen in einem 2x2-Grid angeordnet sein, mit gleichmäßigen
 Lücken dazwischen.
 
 ## Vorgaben

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s128-leser-ohne-letztes-jahr
-revision: 1
+revision: 2
 titel: "Inaktive Leser (keine Ausleihe in 2025)"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [subquery, not-in, date]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -39,4 +39,4 @@ starter_code: |
 
 # Inaktive Leser
 
-Leser, die in 2025 keine Ausleihe getaetigt haben.
+Leser, die in 2025 keine Ausleihe getätigt haben.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 030-rotation
-revision: 1
+revision: 2
 titel: Liste rotieren
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: rotiere
 hints:
   - kosten: 0
     text: |
-      `k` Positionen nach links: nimm die ersten `k` Elemente und haenge
+      `k` Positionen nach links: nimm die ersten `k` Elemente und hänge
       sie ans Ende. Aber pass auf: `k` kann größer sein als die Liste.
   - kosten: 9
     text: |
@@ -75,11 +75,11 @@ Positionen **nach links** rotiert.
 
 `k` kann größer sein als die Liste. `5` Rotationen bei einer
 4-elementigen Liste sind dasselbe wie `5 % 4 = 1` Rotation. Ohne
-Modulo bekommst du einen `IndexError` -- oder schlimmer, einen still
+Modulo bekommst du einen `IndexError` - oder schlimmer, einen still
 falschen Wert.
 
 Auch der **leere Fall** ist eine Falle: `len(liste) == 0` darf nicht
-zur Division durch Null fuehren.
+zur Division durch Null führen.
 
 ## Idee
 

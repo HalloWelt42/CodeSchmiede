@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 147-stein-schere-papier
-revision: 1
+revision: 2
 titel: Stein, Schere, Papier
 sprache: python
 task_type: code_schreiben
@@ -22,13 +22,13 @@ funktion: gewinner
 hints:
   - kosten: 0
     text: |
-      Bestimme den Gewinner zwischen zwei Zuegen:
+      Bestimme den Gewinner zwischen zwei Zügen:
       "stein", "schere", "papier". Liefere "spieler1", "spieler2"
       oder "unentschieden". Bei ungültiger Eingabe → "ungültig".
   - kosten: 10
     text: |
-      Dictionary "schlaegt" abbilden: stein→schere, schere→papier,
-      papier→stein. Prüfen ob z2 == schlaegt[z1] → spieler1 gewinnt.
+      Dictionary "schlägt" abbilden: stein→schere, schere→papier,
+      papier→stein. Prüfen ob z2 == schlägt[z1] → spieler1 gewinnt.
 tests_sichtbar:
   - input: ["stein", "schere"]
     expected: "spieler1"
@@ -72,8 +72,8 @@ schere schlaegt papier
 papier schlaegt stein
 ```
 
-Gleiche Zuege → `"unentschieden"`.
-Unbekannte Zuege → `"ungültig"`.
+Gleiche Züge → `"unentschieden"`.
+Unbekannte Züge → `"ungültig"`.
 
 ## Beispiele
 
@@ -85,7 +85,7 @@ Unbekannte Zuege → `"ungültig"`.
 | `papier`  | `stein`   | `"spieler1"`      |
 | `stein`   | `feuer`   | `"ungültig"`     |
 
-## Erweiterung -- Stein-Schere-Papier-Echse-Spock
+## Erweiterung - Stein-Schere-Papier-Echse-Spock
 
-Sheldon Coopers Lieblings-Variante hat 5 Zuege und 10 Schlag-Beziehungen.
+Sheldon Coopers Lieblings-Variante hat 5 Züge und 10 Schlag-Beziehungen.
 Mit dem gleichen Dict-Pattern bleibt der Code trotzdem überschaubar.

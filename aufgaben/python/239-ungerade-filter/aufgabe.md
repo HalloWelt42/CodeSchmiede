@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 239-ungerade-filter
-revision: 1
+revision: 2
 titel: Nur ungerade Zahlen behalten
 sprache: python
 task_type: code_schreiben
@@ -22,12 +22,12 @@ funktion: nur_ungerade
 hints:
   - kosten: 0
     text: |
-      Liefere alle UNGERADEN Zahlen aus der Liste -- Reihenfolge
+      Liefere alle UNGERADEN Zahlen aus der Liste - Reihenfolge
       wie im Original.
   - kosten: 2
     text: |
       [x for x in liste if x % 2 != 0].
-      Achtung: -3 % 2 ist 1 in Python (nicht -1) -- die Filter-Variante
+      Achtung: -3 % 2 ist 1 in Python (nicht -1) - die Filter-Variante
       mit "!= 0" ist robust.
 tests_sichtbar:
   - input: [[1, 2, 3, 4, 5]]
@@ -72,18 +72,18 @@ Schreibe `nur_ungerade(zahlen)`, die alle **ungeraden Zahlen**
 | `[0]`              | `[]`            |
 | `[-3, -2, -1, 0, 1]`| `[-3, -1, 1]`  |
 
-## Stolperstein -- Negative Modulo
+## Stolperstein - Negative Modulo
 
 In **Python** gilt `-3 % 2 == 1` (nicht -1, wie in C/Java). Darum
 funktioniert `if x % 2 != 0` auch mit negativen Zahlen sauber.
 
 In Sprachen mit "C-Modulo" müsste man `if x % 2 != 0` schreiben
-und sich klarmachen, dass `-3 % 2 == -1` -- der Filter funktioniert
+und sich klarmachen, dass `-3 % 2 == -1` - der Filter funktioniert
 trotzdem, weil `-1 != 0`.
 
 ## Pendant
 
 Aufgabe **238-gerade-filter** ist das Gegenstück. Beide zusammen
-zerlegen die Liste -- ohne Verlust:
+zerlegen die Liste - ohne Verlust:
 `nur_gerade(xs) + nur_ungerade(xs)` enthält jede Zahl genau einmal,
 nur in zwei Gruppen aufgeteilt.

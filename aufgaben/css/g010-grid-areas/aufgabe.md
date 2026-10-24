@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: g010-grid-areas
-revision: 1
-titel: "Grid 10: Benannte Bereiche -- grid-template-areas"
+revision: 2
+titel: "Grid 10: Benannte Bereiche - grid-template-areas"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [grid, lernpfad, grid-area, template-areas]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -55,7 +55,7 @@ hints:
   - kosten: 0
     text: |
       Mit `grid-template-areas` zeichnest du das Layout direkt als ASCII-Art im
-      CSS -- jede Zelle bekommt einen Namen, jedes Item wird per `grid-area`-Property
+      CSS - jede Zelle bekommt einen Namen, jedes Item wird per `grid-area`-Property
       einer Zelle zugeordnet.
   - kosten: 5
     text: |
@@ -93,7 +93,7 @@ starter_code: |
 
 Klassisches App-Shell-Layout: Header oben (über beide Spalten),
 Nav links, Hauptbereich rechts, Footer unten (wieder beide Spalten). Die
-Container-Definition mit Areas ist schon da -- du musst nur den vier Items
+Container-Definition mit Areas ist schon da - du musst nur den vier Items
 ihre Area zuweisen.
 
 ## Aha

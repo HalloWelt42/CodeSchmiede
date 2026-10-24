@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: f011-flex-grow
-revision: 1
-titel: "Flexbox 11: Ein Item waechst -- flex-grow: 1"
+revision: 2
+titel: "Flexbox 11: Ein Item wächst - flex-grow: 1"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [flexbox, lernpfad, flex-grow]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -84,21 +84,21 @@ starter_code: |
   }
 ---
 
-# Flexbox 11: Ein Item waechst
+# Flexbox 11: Ein Item wächst
 
 ## Aufgabe
 
 A und C haben feste Breiten. **B (das mittlere) soll den
-gesamten Rest-Platz fuellen** -- egal wie breit der Container ist.
+gesamten Rest-Platz füllen** - egal wie breit der Container ist.
 
 ## Aha
 
-`flex-grow: 1` auf einem Item heisst: 'nimm den ganzen Rest für
-dich'. Mehrere Items mit `flex-grow: 1` teilen sich den Rest gleichmaessig.
+`flex-grow: 1` auf einem Item heißt: 'nimm den ganzen Rest für
+dich'. Mehrere Items mit `flex-grow: 1` teilen sich den Rest gleichmäßig.
 Mit `flex-grow: 2` vs `flex-grow: 1` bekommt das eine das Doppelte.
 
 ## Wozu in der Praxis?
 
-Sidebar (fest) + Hauptinhalt (waechst) ist das klassische Beispiel. Auch
+Sidebar (fest) + Hauptinhalt (wächst) ist das klassische Beispiel. Auch
 ein Such-Input neben einem 'Suchen'-Button: Input mit `flex-grow: 1` dehnt
 sich aus, der Button bleibt schmal.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 145-tausender-trennzeichen
-revision: 1
+revision: 2
 titel: Tausender-Trennzeichen (deutsch)
 sprache: python
 task_type: code_schreiben
@@ -72,7 +72,7 @@ String mit **deutschem Tausender-Trennzeichen** (Punkt) zurückgibt.
 | `-1234`        | `"-1.234"`          |
 | `1234567890`   | `"1.234.567.890"`   |
 
-## Idee -- Format-String mit Unterstrich
+## Idee - Format-String mit Unterstrich
 
 Python kennt seit 3.6 das `_`-Format als Tausender-Trenner. Danach
 einmal `replace`:

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 100-yacht-wurf
-revision: 1
+revision: 2
 titel: Yacht-Würfel-Wurf bewerten
 sprache: python
 task_type: code_schreiben
@@ -74,8 +74,8 @@ starter_code: |
 
 # Yacht-Würfel-Wurf bewerten
 
-Yacht ist ein einfaches Würfelspiel mit fuenf Würfeln. Pro Runde
-wählt der Spieler eine **Wertungs-Kategorie** -- die Punktzahl
+Yacht ist ein einfaches Würfelspiel mit fünf Würfeln. Pro Runde
+wählt der Spieler eine **Wertungs-Kategorie** - die Punktzahl
 hängt von der Kategorie und dem Wurf ab.
 
 Schreibe eine Funktion `yacht_punkte(wurf, kategorie)`, die die
@@ -91,7 +91,7 @@ Punkte berechnet.
 | `little_straight` | genau {1,2,3,4,5}: 30, sonst 0                       |
 | `big_straight`    | genau {2,3,4,5,6}: 30, sonst 0                       |
 | `choice`          | Summe aller Würfel                                  |
-| `yacht`           | alle fuenf gleich: 50, sonst 0                       |
+| `yacht`           | alle fünf gleich: 50, sonst 0                       |
 
 ## Beispiele
 
@@ -108,6 +108,6 @@ Punkte berechnet.
 
 ## Hintergrund
 
-Yacht ist Vorgaenger von Yahtzee, das in den 1950ern die
+Yacht ist Vorgänger von Yahtzee, das in den 1950ern die
 amerikanische Familienspielwelt eroberte. Die Punkte-Logik ist
 eine schöne Übung in **Kategorisierung + Bedingungen**.

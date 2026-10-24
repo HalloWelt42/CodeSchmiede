@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 032-mittelwert
-revision: 1
+revision: 2
 titel: Mittelwert einer Liste
 sprache: python
 task_type: code_schreiben
@@ -71,7 +71,7 @@ Mittelwert** der Liste zurückgibt. Bei leerer Liste liefere `0.0`.
 ## Idee
 
 `sum(zahlen) / len(zahlen)`. Der einzige Fallstrick ist die leere
-Liste -- dann wäre `len == 0` und du würdest durch null teilen.
+Liste - dann wäre `len == 0` und du würdest durch null teilen.
 
 ## Hintergrund
 

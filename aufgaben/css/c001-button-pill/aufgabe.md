@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c001-button-pill
-revision: 1
+revision: 2
 titel: Pill-Button mit Petrol-Akzent
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [button, padding, border-radius, farbe]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- klassischer Pill-Button.
+  notiz: Eigene Aufgabe - klassischer Pill-Button.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -70,7 +70,7 @@ starter_code: |
 # Pill-Button mit Petrol-Akzent
 
 Style den Button so, dass er rund (Pille), petrol-türkis und mit
-fettem dunklem Text erscheint -- ohne Rahmen, mit großzügigem
+fettem dunklem Text erscheint - ohne Rahmen, mit großzügigem
 Innenabstand.
 
 ## Vorgaben

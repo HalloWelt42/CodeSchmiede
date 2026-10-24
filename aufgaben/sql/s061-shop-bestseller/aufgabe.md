@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s061-shop-bestseller
-revision: 1
+revision: 2
 titel: "Shop: meistbestellte Produkte"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [join, group-by, sum, limit]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

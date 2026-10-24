@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 137-naechste-permutation
-revision: 1
+revision: 2
 titel: Nächste Permutation
 sprache: python
 task_type: code_schreiben
@@ -72,7 +72,7 @@ liefere sie aufsteigend sortiert.
 ## Algorithmus
 
 1. Suche das **größte** $i$ mit $a[i] < a[i+1]$.
-2. Wenn keines existiert -- Liste ist absteigend sortiert -- liefere
+2. Wenn keines existiert - Liste ist absteigend sortiert - liefere
    sie aufsteigend sortiert.
 3. Suche das **größte** $j > i$ mit $a[j] > a[i]$.
 4. Tausche $a[i]$ und $a[j]$.
@@ -80,7 +80,7 @@ liefere sie aufsteigend sortiert.
 
 ## Beispiele
 
-| Eingabe       | Naechste      |
+| Eingabe       | Nächste      |
 |---------------|---------------|
 | `[1, 2, 3]`   | `[1, 3, 2]`   |
 | `[3, 2, 1]`   | `[1, 2, 3]`   | (war letzte)
@@ -93,4 +93,4 @@ liefere sie aufsteigend sortiert.
 Die Algorithmus stammt aus den 1960ern und ist die Grundlage von
 `std::next_permutation` in C++. Damit kann man in einer Schleife
 **alle Permutationen** in lexikographischer Reihenfolge erzeugen,
-ohne sie alle vorab zu speichern -- $O(n)$ pro Schritt.
+ohne sie alle vorab zu speichern - $O(n)$ pro Schritt.

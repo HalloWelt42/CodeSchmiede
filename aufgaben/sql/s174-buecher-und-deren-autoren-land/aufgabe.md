@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s174-buecher-und-deren-autoren-land
-revision: 1
+revision: 2
 titel: "Bücher mit Land des Autors"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [join, where, not-equal]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g001-grid-aktivieren
-revision: 1
+revision: 2
 titel: "Grid 01: Grid einschalten"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [grid, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -47,7 +47,7 @@ hints:
     text: |
       CSS-Grid ist 2-dimensional (Zeilen UND Spalten gleichzeitig).
       Im Gegensatz zu Flexbox musst du dem Container das Raster-Muster
-      vorgeben -- erst dann wissen die Zellen, wohin sie gehören.
+      vorgeben - erst dann wissen die Zellen, wohin sie gehören.
   - kosten: 3
     text: |
       `display: grid;` und `grid-template-columns: 1fr 1fr;`
@@ -81,10 +81,10 @@ Schreibe die fehlende(n) Grid-Anweisung(en) in `.setzkasten`.
 
 Mit `display: grid` wird der Container zum Raster. Erst die Anweisung
 `grid-template-columns` sagt, **wieviele Spalten und wie breit**.
-`1fr 1fr` heisst: zwei gleichbreite Spalten, die den Platz teilen.
+`1fr 1fr` heißt: zwei gleichbreite Spalten, die den Platz teilen.
 
 ## Wozu in der Praxis?
 
-Dashboards, KPI-Kacheln, Produktgalerien -- alles wo etwas in einer
+Dashboards, KPI-Kacheln, Produktgalerien - alles wo etwas in einer
 klaren tabellarischen Anordnung erscheint, sitzt in einem Grid.
 Im Gegensatz zu Flexbox musst du das Raster vorgeben.

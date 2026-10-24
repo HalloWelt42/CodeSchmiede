@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c128-button-fab
-revision: 1
+revision: 2
 titel: "Floating-Action-Button (Kreis)"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [button, fab, kreis, komponente]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

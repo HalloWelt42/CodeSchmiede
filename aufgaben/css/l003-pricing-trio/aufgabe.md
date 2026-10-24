@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l003-pricing-trio
-revision: 1
+revision: 2
 titel: "Layout 03: Pricing-Trio mit hervorgehobener Mitte"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [layout, lernpfad, grid, card, pricing]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -60,7 +60,7 @@ asserts:
 hints:
   - kosten: 0
     text: |
-      Drei gleichbreite Spalten via Grid. Die mittlere Karte bekommt einen Petrol-Hintergrund und wird leicht größer skaliert -- klassisches 'empfohlener Tarif'-Pattern.
+      Drei gleichbreite Spalten via Grid. Die mittlere Karte bekommt einen Petrol-Hintergrund und wird leicht größer skaliert - klassisches 'empfohlener Tarif'-Pattern.
   - kosten: 5
     text: |
       Auf .preise: `display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: center;` und auf .empfohlen: `background: #2dd4bf; transform: scale(1.08);`
@@ -97,7 +97,7 @@ als die anderen (per transform: scale).
 ## Aha
 
 Durch transform: scale
-bleibt das Grid-Layout intakt -- die Karte 'wirkt' größer, das umliegende
+bleibt das Grid-Layout intakt - die Karte 'wirkt' größer, das umliegende
 Layout ändert sich nicht. Mit align-items: center auf dem Container sitzen
 die kleineren Karten vertikal zentriert.
 

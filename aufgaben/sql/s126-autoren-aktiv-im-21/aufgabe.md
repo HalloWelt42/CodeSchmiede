@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s126-autoren-aktiv-im-21
-revision: 1
+revision: 2
 titel: "Autoren mit Buch nach 2000"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [join, where, distinct]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

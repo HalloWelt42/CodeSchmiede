@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s057-rank-seiten
-revision: 1
+revision: 2
 titel: "Rang nach Seitenzahl"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 7
 tags: [window-function, rank]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -49,7 +49,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `RANK() OVER (ORDER BY ... DESC)` -- gleiche Werte teilen sich Rang.
+      `RANK() OVER (ORDER BY ... DESC)` - gleiche Werte teilen sich Rang.
 starter_code: |
   SELECT ___
   FROM ___

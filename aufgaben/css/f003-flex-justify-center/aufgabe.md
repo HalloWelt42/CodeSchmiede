@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f003-flex-justify-center
-revision: 1
+revision: 2
 titel: "Flexbox 03: Mittig mit justify-content: center"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [flexbox, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -53,7 +53,7 @@ hints:
   - kosten: 0
     text: |
       Flexbox-Eltern muss `display: flex` haben, damit `justify-content`, `align-items` & Co. greifen.
-      Diese Aufgabe lehrt EINE Property -- die anderen kommen in den nächsten Levels.
+      Diese Aufgabe lehrt EINE Property - die anderen kommen in den nächsten Levels.
   - kosten: 3
     text: |
       `display: flex;
@@ -70,17 +70,17 @@ starter_code: |
 ## Aufgabe
 
 Im Bahn-Rahmen sollen die drei Kacheln so angeordnet werden, dass
-**drei froesche sammeln sich in der mitte**.
+**drei frösche sammeln sich in der mitte**.
 
-Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` -- der Rest
+Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` - der Rest
 (Größe, Farbe, Quadrate) ist schon da.
 
 ## Aha
 
-`center` zieht alle Items in die Mitte der Haupt-Achse -- der **Abstand**
+`center` zieht alle Items in die Mitte der Haupt-Achse - der **Abstand**
 links und rechts entsteht automatisch, du brauchst keinen `margin`.
 
 ## Wozu in der Praxis?
 
-Modale Dialoge, leere Zustände ('Noch keine Daten...'), Logo-Reihen --
+Modale Dialoge, leere Zustände ('Noch keine Daten...'), Logo-Reihen -
 alles wo Inhalte in der Mitte stehen sollen, nutzt diese Property.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s008-buecher-roman
-revision: 1
+revision: 2
 titel: "Romane"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [where, string-equal]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -40,7 +40,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `WHERE kategorie = 'Roman'` -- String in einfachen Anführungszeichen.
+      `WHERE kategorie = 'Roman'` - String in einfachen Anführungszeichen.
 starter_code: |
   SELECT ___
   FROM ___

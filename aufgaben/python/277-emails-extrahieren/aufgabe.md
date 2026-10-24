@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 277-emails-extrahieren
-revision: 1
+revision: 2
 titel: Email-Adressen aus Text extrahieren
 sprache: python
 task_type: code_schreiben
@@ -23,13 +23,13 @@ hints:
   - kosten: 0
     text: |
       Extrahiere alle einfachen Email-Adressen aus dem Text.
-      Pattern: word@word.word -- Buchstaben, Ziffern, Punkt,
+      Pattern: word@word.word - Buchstaben, Ziffern, Punkt,
       Unterstrich, Bindestrich vor dem @, gleicher Charset nach @,
       dann ein Punkt und mind. 2 Buchstaben.
   - kosten: 8
     text: |
       re.findall(r"[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}", text).
-      Achtung: das ist nur EIN sinnvolles Pattern -- echte
+      Achtung: das ist nur EIN sinnvolles Pattern - echte
       Email-RFCs sind viel komplizierter.
 tests_sichtbar:
   - input: ["Schreib an alice@example.com bitte"]
@@ -93,11 +93,11 @@ und matcht z.B. auch Adressen mit Klammern oder Quoting. Für 99%
 aller Praxis-Anwendungen reicht ein simpleres Pattern.
 
 **Faustregel**: Email-Validierung "perfekt" gibt es nicht. Wer
-wirklich sichergehen will, schickt eine **Bestaetigungs-Email** --
-die ist die einzige verlaessliche Prüfung.
+wirklich sichergehen will, schickt eine **Bestätigungs-Email** -
+die ist die einzige verlässliche Prüfung.
 
 ## Stolperstein
 
 Im Test `"x@y.zz und a@b.cd."` matcht das Pattern den letzten Punkt
 **nicht** mit. Das `.` in `[a-zA-Z]{2,}` war kein Punkt sondern eine
-Buchstaben-Bedingung -- wir liefern `"a@b.cd"` ohne den Schluss-Punkt.
+Buchstaben-Bedingung - wir liefern `"a@b.cd"` ohne den Schluss-Punkt.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 206-matrix-mal-matrix
-revision: 1
+revision: 2
 titel: Matrix mal Matrix
 sprache: python
 task_type: code_schreiben
@@ -81,10 +81,10 @@ Drei Schleifen → `O(m * n * p)`. Effizientere Algorithmen
 (Straßen, Coppersmith-Winograd) kommen erst bei sehr großen
 Matrizen ins Spiel.
 
-## Identitaets-Matrix
+## Identitäts-Matrix
 
 Die **Einheitsmatrix** `I` mit Einsen auf der Diagonale wirkt wie
-"1" bei der Multiplikation -- `A * I = A`. Test im Beispiel:
+"1" bei der Multiplikation - `A * I = A`. Test im Beispiel:
 
 ```
 [[1, 0],   *   [[5, 6],   =   [[5, 6],
@@ -96,4 +96,4 @@ Die **Einheitsmatrix** `I` mit Einsen auf der Diagonale wirkt wie
 Matrix-Multiplikation ist die zentrale Operation in **Computer-Grafik**
 (3D-Transformation), **neuronalen Netzen** (Layer-Berechnung) und
 **Statistik** (lineare Modelle). Numpy oder PyTorch nutzen hochoptimierte
-BLAS-Bibliotheken -- aber das Schul-Schema steckt drunter.
+BLAS-Bibliotheken - aber das Schul-Schema steckt drunter.

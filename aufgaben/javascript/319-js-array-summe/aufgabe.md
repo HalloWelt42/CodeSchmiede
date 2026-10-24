@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 319-js-array-summe
-revision: 1
-titel: JavaScript -- Array-Summe mit reduce
+revision: 2
+titel: JavaScript - Array-Summe mit reduce
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -44,7 +44,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Array-Summe mit reduce
+# JavaScript - Array-Summe mit reduce
 
 Schreibe `arraySumme(arr)`, die alle Zahlen im Array summiert.
 Bei leerem Array → `0`.
@@ -58,11 +58,11 @@ Bei leerem Array → `0`.
 | `[-1, -2, 3]`    | `0`   |
 | `[]`             | `0`   |
 
-## Idee -- modernes JS
+## Idee - modernes JS
 
 Oder als **Arrow Function**:
 
-`Array.reduce` ist das JavaScript-Aequivalent von Pythons
+`Array.reduce` ist das JavaScript-Äquivalent von Pythons
 `functools.reduce`. Der **Startwert** `0` ist wichtig: ohne ihn
 würde `reduce` bei leerem Array einen `TypeError` werfen.
 
@@ -70,9 +70,9 @@ würde `reduce` bei leerem Array einen `TypeError` werfen.
 
 | Sprache    | Variante                              |
 |------------|---------------------------------------|
-| Python     | `sum(arr)` -- builtin, kein reduce    |
+| Python     | `sum(arr)` - builtin, kein reduce    |
 | JavaScript | `arr.reduce((a, x) => a + x, 0)`      |
-| JavaScript | `arr.reduce((a, b) => a + b, 0)` -- gleich |
+| JavaScript | `arr.reduce((a, b) => a + b, 0)` - gleich |
 
 Pythons `sum` ist hochoptimiert in C, in JS gibt es kein direktes
-Pendant -- `reduce` ist der Standard-Weg.
+Pendant - `reduce` ist der Standard-Weg.

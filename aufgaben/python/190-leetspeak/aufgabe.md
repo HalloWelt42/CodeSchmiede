@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 190-leetspeak
-revision: 1
+revision: 2
 titel: Leetspeak-Konvertierung
 sprache: python
 task_type: code_schreiben
@@ -73,7 +73,7 @@ einfaches Subset umsetzt:
 | `t`       | `7`    |
 
 Andere Zeichen bleiben unverändert. Die Eingabe darf gemischte
-Groß/Kleinschreibung haben -- die Ausgabe ist **immer klein**.
+Groß/Kleinschreibung haben - die Ausgabe ist **immer klein**.
 
 ## Beispiele
 
@@ -99,5 +99,5 @@ Effizienter über Python-Translate-Tabelle:
 
 Leetspeak entstand in den 80ern in BBS-Foren als Code, um
 Filter-Wortlisten (z.B. für "elite") auszuhebeln. Aus "elite"
-wurde "1337" -- daher der Name. Heute eher Internet-Folklore als
+wurde "1337" - daher der Name. Heute eher Internet-Folklore als
 Kommunikations-Geheimcode.

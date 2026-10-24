@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 125-kgv
-revision: 1
+revision: 2
 titel: Kleinstes gemeinsames Vielfaches
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       kgV von zwei Zahlen: a*b // ggt(a,b). Auch für Listen
-      assoziativ -- reduce über Paare.
+      assoziativ - reduce über Paare.
   - kosten: 8
     text: |
       `from math import lcm; from functools import reduce`.
@@ -67,7 +67,7 @@ $$
 \text{kgV}(a, b) = \frac{a \cdot b}{\text{ggT}(a, b)}
 $$
 
-Für mehr Zahlen reduziere paarweise -- kgV ist assoziativ.
+Für mehr Zahlen reduziere paarweise - kgV ist assoziativ.
 
 ## Beispiele
 
@@ -83,5 +83,5 @@ Für mehr Zahlen reduziere paarweise -- kgV ist assoziativ.
 
 ## Hintergrund
 
-`[1..10]` mit kgV = 2520 ist eine klassische Project-Euler-Frage
-(Problem 5: "kgV von 1..20" → 232792560).
+`[1..10]` mit kgV = 2520 ist eine klassische Rätselfrage
+(Fortsetzung: "kgV von 1..20" → 232792560).

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c024-flex-row-center
-revision: 1
+revision: 2
 titel: "Flex: row, mittig"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [flexbox, layout]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

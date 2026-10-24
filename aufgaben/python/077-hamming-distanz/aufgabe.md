@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 077-hamming-distanz
-revision: 1
+revision: 2
 titel: Hamming-Distanz
 sprache: python
 task_type: code_schreiben
@@ -23,11 +23,11 @@ hints:
   - kosten: 0
     text: |
       Vergleiche Position für Position. Zähle, wo sich die Strings
-      unterscheiden. Nur erlaubt für Strings gleicher Länge --
+      unterscheiden. Nur erlaubt für Strings gleicher Länge -
       sonst -1 zurückgeben.
   - kosten: 7
     text: |
-      `sum(1 for a, b in zip(s1, s2) if a != b)` -- aber vorher
+      `sum(1 for a, b in zip(s1, s2) if a != b)` - aber vorher
       Längen-Check.
 tests_sichtbar:
   - input: ["GAGCCTACTAACGGGAT", "CATCGTAATGACGGCCT"]
@@ -58,7 +58,7 @@ starter_code: |
 # Hamming-Distanz
 
 Schreibe eine Funktion `hamming_distanz(a, b)`, die die **Hamming-Distanz**
-zweier Strings zurückgibt -- die Anzahl der Positionen, an denen
+zweier Strings zurückgibt - die Anzahl der Positionen, an denen
 sich die Strings unterscheiden.
 
 Beide Strings müssen die **gleiche Länge** haben. Sonst gib `-1`

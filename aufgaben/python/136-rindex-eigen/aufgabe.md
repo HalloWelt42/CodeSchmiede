@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 136-rindex-eigen
-revision: 1
+revision: 2
 titel: Letztes Vorkommen finden
 sprache: python
 task_type: code_schreiben
@@ -84,6 +84,6 @@ return -1
 
 ## Vergleich mit Standard-Library
 
-Strings haben `str.rfind(sub)` -- liefert `-1` bei nicht gefunden.
+Strings haben `str.rfind(sub)` - liefert `-1` bei nicht gefunden.
 Listen haben `list.index(x)` (vorwärts) aber kein `rindex` direkt.
 Hier baust du die fehlende Funktion.

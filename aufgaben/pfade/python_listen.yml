@@ -3,8 +3,8 @@ titel: Python-Listen
 beschreibung: |
   Listen-Operationen vom Einsteiger bis Fortgeschritten: Summen,
   Maxima, Duplikate, Sortieren, Mittelwerte, Verschachtelung
-  flachklopfen, in Bloecke teilen, rotieren und zwei Listen verzahnen.
-  Plus eine Komplexitaets-Uebung mit der Primzahl-Pruefung.
+  flachklopfen, in Blöcke teilen, rotieren und zwei Listen verzahnen.
+  Plus eine Komplexitäts-Übung mit der Primzahl-Prüfung.
 reihenfolge:
   - 009-listen-summe
   - 010-listen-maximum

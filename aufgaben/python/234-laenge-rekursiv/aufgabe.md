@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 234-laenge-rekursiv
-revision: 1
-titel: Listenlaenge rekursiv ohne len
+revision: 2
+titel: Listenlänge rekursiv ohne len
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -22,15 +22,15 @@ funktion: laenge
 hints:
   - kosten: 0
     text: |
-      Berechne die Laenge einer Liste OHNE len() oder __len__.
+      Berechne die Länge einer Liste OHNE len() oder __len__.
       Klassische Rekursion: leere Liste → 0,
-      sonst → 1 + laenge(rest).
+      sonst → 1 + länge(rest).
   - kosten: 12
     text: |
-      def laenge(liste):
+      def länge(liste):
           if not liste:
               return 0
-          return 1 + laenge(liste[1:])
+          return 1 + länge(liste[1:])
 tests_sichtbar:
   - input: [[]]
     expected: 0
@@ -59,16 +59,16 @@ starter_code: |
       pass
 ---
 
-# Listenlaenge rekursiv ohne `len`
+# Listenlänge rekursiv ohne `len`
 
 Schreibe `laenge(liste)`, die die Anzahl der Elemente einer Liste
-zurückgibt -- **ohne** `len()` oder `__len__()` zu nutzen.
+zurückgibt - **ohne** `len()` oder `__len__()` zu nutzen.
 
 **Rekursive Lösung erwartet** (gehört zur didaktischen Idee).
 
 ## Beispiele
 
-| Liste              | Laenge |
+| Liste              | Länge |
 |--------------------|--------|
 | `[]`               | `0`    |
 | `[1]`              | `1`    |
@@ -76,19 +76,19 @@ zurückgibt -- **ohne** `len()` oder `__len__()` zu nutzen.
 | `[null, null, null]` | `3` |
 | `[[1, 2], [3], []]`| `3` (3 Elemente, egal was drin ist) |
 
-## Idee -- Rekursion
+## Idee - Rekursion
 
 Klassisches **Divide and Conquer** im Mini-Stil:
 - **Basis**: leere Liste → `0`.
-- **Schritt**: 1 + Laenge des Rests.
+- **Schritt**: 1 + Länge des Rests.
 
 ## Iterativer Vergleich
 
-Auch ohne `len`. In der Praxis bevorzugt -- weil Python kein
+Auch ohne `len`. In der Praxis bevorzugt - weil Python kein
 Tail-Call-Optimization macht und die Rekursion bei sehr langen
 Listen den Stack sprengt (`RecursionError`).
 
-## Stolperstein -- Stack-Limit
+## Stolperstein - Stack-Limit
 
 Pythons Default-Recursion-Limit ist 1000. Eine Liste mit > 1000
 Elementen sprengt die rekursive Variante. Mit `sys.setrecursionlimit`
@@ -96,7 +96,7 @@ ließe sich das hochsetzen, aber elegant ist das nicht.
 
 ## Hintergrund
 
-Rekursion ist ein wichtiger Lernschritt -- vielleicht **das**
-schwerste Konzept für Anfänger. Listen-Laenge zu rekursiv zu
-implementieren ist die einfachste Form überhaupt -- jede Stufe
+Rekursion ist ein wichtiger Lernschritt - vielleicht **das**
+schwerste Konzept für Anfänger. Listen-Länge zu rekursiv zu
+implementieren ist die einfachste Form überhaupt - jede Stufe
 schrumpft das Problem garantiert um eins.

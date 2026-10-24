@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: f007-flex-align-stretch
-revision: 1
-titel: "Flexbox 07: Auf volle Höhe ziehen -- align-items: stretch"
+revision: 2
+titel: "Flexbox 07: Auf volle Höhe ziehen - align-items: stretch"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [flexbox, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -53,7 +53,7 @@ hints:
   - kosten: 0
     text: |
       Flexbox-Eltern muss `display: flex` haben, damit `justify-content`, `align-items` & Co. greifen.
-      Diese Aufgabe lehrt EINE Property -- die anderen kommen in den nächsten Levels.
+      Diese Aufgabe lehrt EINE Property - die anderen kommen in den nächsten Levels.
   - kosten: 3
     text: |
       `display: flex;
@@ -70,9 +70,9 @@ starter_code: |
 ## Aufgabe
 
 Im Bahn-Rahmen sollen die drei Kacheln so angeordnet werden, dass
-**froesche dehnen sich vertikal auf die volle bahn-höhe**.
+**frösche dehnen sich vertikal auf die volle bahn-höhe**.
 
-Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` -- der Rest
+Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` - der Rest
 (Größe, Farbe, Quadrate) ist schon da.
 
 ## Aha
@@ -83,6 +83,6 @@ einer Flex-Reihe sind so ohne Tricks gleich hoch.
 
 ## Wozu in der Praxis?
 
-Wenn drei Spalten in einer Sektion gleich hoch wirken sollen -- z.B. drei
-Feature-Karten nebeneinander, die unterschiedlich viel Text enthalten --
+Wenn drei Spalten in einer Sektion gleich hoch wirken sollen - z.B. drei
+Feature-Karten nebeneinander, die unterschiedlich viel Text enthalten -
 dann sorgt `stretch` dafür, dass keine Karte 'hochsteht'.

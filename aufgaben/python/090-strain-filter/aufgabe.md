@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 090-strain-filter
-revision: 1
+revision: 2
 titel: Eigene filter-Funktion
 sprache: python
 task_type: code_schreiben
@@ -28,7 +28,7 @@ hints:
     text: |
       List-Comprehension ist ein schöner One-Liner:
       `[x for x in liste if funktion(x)]`. Aber bewusst NICHT die
-      eingebaute `filter()` verwenden -- die wäre Cheating.
+      eingebaute `filter()` verwenden - die wäre Cheating.
 tests_sichtbar:
   - input: [[1, 2, 3], "lambda x: x > 1"]
     expected: [2, 3]
@@ -63,7 +63,7 @@ Schreibe eine Funktion `behalte(liste, funktion_text)`, die eine
 `True` (oder truthy) liefert. **Ohne** das eingebaute `filter()` zu
 verwenden.
 
-`funktion_text` kommt als String -- du machst daraus mit `eval()` eine
+`funktion_text` kommt als String - du machst daraus mit `eval()` eine
 echte Funktion.
 
 ## Beispiele
@@ -80,5 +80,5 @@ echte Funktion.
 
 Die eingebaute `filter()`-Funktion ist nur ein dünner Wrapper um
 genau diese Logik. Selbst-Reimplementierung trainiert das Pattern
-und macht klar, was unter der Haube passiert -- der Pfad zu
+und macht klar, was unter der Haube passiert - der Pfad zu
 `map`, `reduce` und Higher-Order-Functions öffnet sich.

@@ -1,7 +1,7 @@
 id: python_listen2
 titel: "Python-Listen erweitert"
 beschreibung: |
-  Weitere 37 Listen-Aufgaben aus den jüngeren Chargen -- Indizes, Slicing, Partitionierung, Filterung, Sortierung nach Eigenschaft, Rotation, Range-Expansion, Permutationen.
+  Weitere 37 Listen-Aufgaben aus den jüngeren Chargen - Indizes, Slicing, Partitionierung, Filterung, Sortierung nach Eigenschaft, Rotation, Range-Expansion, Permutationen.
 reihenfolge:
   - 070-bug-summe
   - 181-sudoku-zeile

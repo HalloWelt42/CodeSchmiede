@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 042-armstrong
-revision: 1
+revision: 2
 titel: Armstrong-Zahl
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [zahlen, ziffern, potenz]
 voraussetzungen: [016-quersumme, 021-potenz]
 quelle:
   url: https://de.wikipedia.org/wiki/Narzisstische_Zahl
-  notiz: Klassische Aufgabe -- auch "narzisstische Zahl" genannt.
+  notiz: Klassische Aufgabe - auch "narzisstische Zahl" genannt.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -75,7 +75,7 @@ die gleich der Summe ihrer Ziffern hoch der Anzahl ihrer Ziffern ist.
 
 ## Hinweis
 
-Alle einstelligen Zahlen (`0` bis `9`) sind Armstrong-Zahlen --
+Alle einstelligen Zahlen (`0` bis `9`) sind Armstrong-Zahlen -
 für `n = 1` ist die Bedingung `n^1 = n` trivial erfüllt.
 
 ## Hintergrund

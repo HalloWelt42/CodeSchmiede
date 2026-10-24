@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 133-letzte-ziffer-potenz
-revision: 1
+revision: 2
 titel: Letzte Ziffer von a hoch b
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Letzte Ziffer von a^b ist (a^b) % 10. Aber a^b kann riesig werden!
-      Trick: Modular-Exponentiation -- pow(a, b, 10).
+      Trick: Modular-Exponentiation - pow(a, b, 10).
   - kosten: 8
     text: |
       Sonderfall b=0: Ergebnis ist 1, also letzte Ziffer 1.
@@ -59,12 +59,12 @@ starter_code: |
 # Letzte Ziffer von a hoch b
 
 Schreibe eine Funktion `letzte_ziffer(a, b)`, die die **letzte Ziffer**
-von $a^b$ zurückgibt -- ohne $a^b$ selbst zu berechnen.
+von $a^b$ zurückgibt - ohne $a^b$ selbst zu berechnen.
 
 ## Warum nicht einfach `(a**b) % 10`?
 
 Bei `a = 999, b = 999` wäre $a^b$ eine Zahl mit über 2997 Stellen.
-Mit `pow(a, b, 10)` rechnet Python das **modular** -- also nur die
+Mit `pow(a, b, 10)` rechnet Python das **modular** - also nur die
 Reste behaltend. $O(\log b)$ statt $O(b)$.
 
 ## Beispiele

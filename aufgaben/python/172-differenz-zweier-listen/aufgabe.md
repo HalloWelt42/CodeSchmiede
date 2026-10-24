@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 172-differenz-zweier-listen
-revision: 1
+revision: 2
 titel: Differenz zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: differenz
 hints:
   - kosten: 0
     text: |
-      Liefere die Elemente, die in a aber NICHT in b vorkommen --
+      Liefere die Elemente, die in a aber NICHT in b vorkommen -
       eindeutig und aufsteigend sortiert.
   - kosten: 8
     text: |
@@ -56,7 +56,7 @@ starter_code: |
 # Differenz zweier Listen
 
 Schreibe eine Funktion `differenz(a, b)`, die die Elemente aus `a`
-liefert, die **nicht** in `b` vorkommen -- als **aufsteigend
+liefert, die **nicht** in `b` vorkommen - als **aufsteigend
 sortierte, eindeutige** Liste.
 
 ## Beispiele
@@ -79,7 +79,7 @@ Doppelte Werte in `a` werden zu einem Eintrag verdichtet.
 | `b - a`       | nur in b, nicht in a                          |
 
 Die symmetrische Differenz ist die Vereinigung von `a - b` und `b - a`
--- praktisch, wenn man "Was ist anders?" beantworten will.
+- praktisch, wenn man "Was ist anders?" beantworten will.
 
 ## Anwendung
 

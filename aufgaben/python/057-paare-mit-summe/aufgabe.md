@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 057-paare-mit-summe
-revision: 1
+revision: 2
 titel: Anzahl Paare mit Zielsumme
 sprache: python
 task_type: code_schreiben
@@ -68,7 +68,7 @@ der Index-Paare** `(i, j)` mit `i < j` zählt, deren Werte sich zur
 | `[3,3,3,3]`        | `6`  | `6`      | $\binom{4}{2} = 6$       |
 | `[0,0,0]`          | `0`  | `3`      | $\binom{3}{2} = 3$       |
 
-## Komplexitaet
+## Komplexität
 
 | Variante      | Zeit     |
 |---------------|----------|

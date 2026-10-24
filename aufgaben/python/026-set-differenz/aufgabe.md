@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 026-set-differenz
-revision: 1
+revision: 2
 titel: A ohne B
 sprache: python
 task_type: code_schreiben
@@ -66,11 +66,11 @@ jedes Element nur einmal.
 ## Idee
 
 `set(b)` macht den "ist drin?"-Test schnell. Dann eine Schleife über
-`a` mit Duplikat-Tracking -- entweder über ein zweites Set oder
+`a` mit Duplikat-Tracking - entweder über ein zweites Set oder
 implizit über das Prüfen `x not in ergebnis`.
 
 ## Vergleich mit Set-Operationen
 
-In Python kannst du `set(a) - set(b)` schreiben -- das gibt dir aber
+In Python kannst du `set(a) - set(b)` schreiben - das gibt dir aber
 ein **Set ohne Reihenfolge**. Hier wollen wir die Reihenfolge von `a`
 erhalten und brauchen daher die Schleifen-Variante.

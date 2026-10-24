@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 076-atbash
-revision: 1
+revision: 2
 titel: Atbash-Chiffre
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
 # Atbash-Chiffre
 
 Schreibe eine Funktion `atbash_codiere(text)`, die einen Text mit
-**Atbash** verschlüsselt -- einer der ältesten bekannten Chiffren.
+**Atbash** verschlüsselt - einer der ältesten bekannten Chiffren.
 
 ## Regeln
 
@@ -82,7 +82,7 @@ Schreibe eine Funktion `atbash_codiere(text)`, die einen Text mit
 
 ## Hintergrund
 
-Atbash stammt aus dem hebräischen Alphabet -- der Name ist eine
+Atbash stammt aus dem hebräischen Alphabet - der Name ist eine
 Konkatenation der Buchstaben Aleph (1.), Taw (letzter), Beth (2.),
 Schin (vorletzter). Im Alten Testament wird die Chiffre benutzt,
 etwa in Jeremia 25,26 (Babel → Sheshach).

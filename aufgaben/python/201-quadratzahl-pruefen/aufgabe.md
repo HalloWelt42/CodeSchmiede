@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 201-quadratzahl-pruefen
-revision: 1
+revision: 2
 titel: Ist die Zahl ein Quadrat?
 sprache: python
 task_type: code_schreiben
@@ -66,7 +66,7 @@ starter_code: |
 # Ist die Zahl ein Quadrat?
 
 Schreibe `ist_quadratzahl(n)`, die `True` zurückgibt, wenn `n` eine
-**Quadratzahl** ist -- also $n = k^2$ für ein nicht-negatives ganzes
+**Quadratzahl** ist - also $n = k^2$ für ein nicht-negatives ganzes
 $k$.
 
 Bei `n < 0` → `False`. `0` zählt als Quadrat (`0 = 0^2`).
@@ -94,12 +94,12 @@ Damit ist die Prüfung auch für riesige Zahlen exakt.
 `math.sqrt` arbeitet mit Floats (`float64`). Bei sehr großen Zahlen
 (> $2^{52}$) verliert `float` Genauigkeit:
 
-Für "kleine" `n` reicht `int(math.sqrt(n) + 0.5)` plus Vergleich --
+Für "kleine" `n` reicht `int(math.sqrt(n) + 0.5)` plus Vergleich -
 aber `isqrt` ist sauberer.
 
 ## Hintergrund
 
 Quadratzahlen erscheinen in der **Pythagoras-Aufgabe** (084),
-in der **Project-Euler-Reihe** (z.B. **Quadrat-Summen-Differenz**, 086),
+in den **Zahlenrätseln** (z.B. **Quadrat-Summen-Differenz**, 086),
 und sind die Basis vieler **zahlentheoretischer Vermutungen**
-(Lagrange: jede natuerliche Zahl ist Summe von höchstens vier Quadraten).
+(Lagrange: jede natürliche Zahl ist Summe von höchstens vier Quadraten).

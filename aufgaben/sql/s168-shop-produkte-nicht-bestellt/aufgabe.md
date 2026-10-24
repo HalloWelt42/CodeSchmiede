@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s168-shop-produkte-nicht-bestellt
-revision: 1
+revision: 2
 titel: "Shop: Produkte, die nie bestellt wurden"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [subquery, not-in]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

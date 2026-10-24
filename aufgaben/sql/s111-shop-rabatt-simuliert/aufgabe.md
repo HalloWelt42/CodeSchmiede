@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s111-shop-rabatt-simuliert
-revision: 1
+revision: 2
 titel: "Shop: 10% Rabatt simulieren"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [math, where, round]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -45,4 +45,4 @@ starter_code: |
 
 # 10% Rabatt simulieren
 
-Produkte ab 2 EUR -- Name, Originalpreis, neuer Preis nach 10% Rabatt (auf 2 Stellen).
+Produkte ab 2 EUR - Name, Originalpreis, neuer Preis nach 10% Rabatt (auf 2 Stellen).

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r001-repo-karte
-revision: 1
+revision: 2
 titel: "Repro 01: Repository-Karte (Code-Hosting-Stil)"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [repro, lernpfad, card, flexbox]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -98,7 +98,7 @@ hints:
       Karte als flex-column mit drei Sektionen (Header, Beschreibung, Footer-Meta). Im Header sorgt margin-right: auto auf dem Namen dafür, dass das public-Label nach rechts wandert.
   - kosten: 6
     text: |
-      Auf .repo: `display: flex; flex-direction: column; gap: 12px;` -- auf .kopf: `display: flex; gap: 8px;` -- auf .name: `margin-right: auto;`
+      Auf .repo: `display: flex; flex-direction: column; gap: 12px;` - auf .kopf: `display: flex; gap: 8px;` - auf .name: `margin-right: auto;`
 starter_code: |
   .repo {
     width: 480px;

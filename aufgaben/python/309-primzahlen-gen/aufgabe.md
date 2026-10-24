@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 309-primzahlen-gen
-revision: 1
+revision: 2
 titel: Primzahl-Generator bis n
 sprache: python
 task_type: code_schreiben
@@ -62,7 +62,7 @@ starter_code: |
 # Primzahl-Generator bis n
 
 Schreibe `primzahlen_bis(n)`, die alle **Primzahlen ≤ n** als Liste
-liefert -- intern via **Generator** (`yield`).
+liefert - intern via **Generator** (`yield`).
 
 `n < 2` → `[]`.
 
@@ -79,13 +79,13 @@ liefert -- intern via **Generator** (`yield`).
 
 Bis 100 gibt es **25 Primzahlen**.
 
-## Idee 1 -- Sieb des Eratosthenes mit Generator
+## Idee 1 - Sieb des Eratosthenes mit Generator
 
 **Wichtig**: Das `yield` kommt **VOR** dem Streichen, sonst
 verpasst man `i = 2`. Generator-Logik und Sieb-Logik werden
-verschraenkt.
+verschränkt.
 
-## Idee 2 -- Trial-Division im Generator
+## Idee 2 - Trial-Division im Generator
 
 Klarer, aber langsamer (`O(n*sqrt(n))` statt `O(n*log log n)`).
 

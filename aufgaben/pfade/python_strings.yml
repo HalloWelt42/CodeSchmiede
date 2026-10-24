@@ -2,8 +2,8 @@ id: python_strings
 titel: Python-Strings
 beschreibung: |
   Aufgaben rund um Strings: Slicing, Methoden, Counter, Sortieren,
-  Akronyme, Verschluesselung und Lauflaengen-Codierung. Vom
-  Vokal-Zaehlen bis zur Caesar-Chiffre -- ein breiter Querschnitt
+  Akronyme, Verschlüsselung und Lauflängen-Codierung. Vom
+  Vokal-Zählen bis zur Caesar-Chiffre - ein breiter Querschnitt
   durch die String-Werkzeuge.
 reihenfolge:
   - 004-vokale-zaehlen

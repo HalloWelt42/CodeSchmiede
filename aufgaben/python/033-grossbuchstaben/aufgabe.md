@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 033-grossbuchstaben
-revision: 1
+revision: 2
 titel: Großbuchstaben zählen
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [strings, schleifen, methoden]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Aufwaermer für String-Methoden
+  notiz: Aufwärmer für String-Methoden
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -75,5 +75,5 @@ Schleife über jedes Zeichen, Test mit `c.isupper()`, Zähler hoch.
 ## Verwandt
 
 Pythons String-Methoden sind überraschend reichhaltig: `isupper`,
-`islower`, `isdigit`, `isalpha`, `isspace`, `isalnum` -- alle sehr
+`islower`, `isdigit`, `isalpha`, `isspace`, `isalnum` - alle sehr
 nützlich, um schnell Strings zu klassifizieren.

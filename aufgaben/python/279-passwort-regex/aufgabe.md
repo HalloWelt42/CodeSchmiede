@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 279-passwort-regex
-revision: 1
+revision: 2
 titel: Passwort-Prüfung mit Lookahead-Regex
 sprache: python
 task_type: code_schreiben
@@ -23,14 +23,14 @@ hints:
   - kosten: 0
     text: |
       Prüfe ob das Passwort ALLE vier Bedingungen erfüllt:
-      - Laenge >= 8
+      - Länge >= 8
       - mind. 1 Kleinbuchstabe
       - mind. 1 Großbuchstabe
       - mind. 1 Ziffer
-      Liefere True/False -- KEIN Score wie 129.
+      Liefere True/False - KEIN Score wie 129.
   - kosten: 21
     text: |
-      Mit Lookahead-Asseritionen alle Bedingungen in einem Pattern:
+      Mit Lookahead-Assertionen alle Bedingungen in einem Pattern:
       r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$".
       (?=...) prüft OHNE den Cursor zu bewegen.
 tests_sichtbar:
@@ -72,14 +72,14 @@ starter_code: |
 Schreibe `passwort_ok(p)`, die `True` zurückgibt, wenn das Passwort
 **alle vier** Bedingungen erfüllt:
 
-1. Laenge **mindestens 8** Zeichen
+1. Länge **mindestens 8** Zeichen
 2. **mindestens 1 Kleinbuchstabe** (`a-z`)
 3. **mindestens 1 Großbuchstabe** (`A-Z`)
 4. **mindestens 1 Ziffer** (`0-9`)
 
 ## Beispiele
 
-| Eingabe          | Gültig? | Begruendung               |
+| Eingabe          | Gültig? | Begründung               |
 |------------------|----------|---------------------------|
 | `"Passwort1"`    | `True`   | alle vier erfüllt        |
 | `"Abcdefg1"`     | `True`   |                           |
@@ -90,7 +90,7 @@ Schreibe `passwort_ok(p)`, die `True` zurückgibt, wenn das Passwort
 | `"Aa1"`          | `False`  | zu kurz                   |
 | `"12345678"`     | `False`  | nur Ziffern               |
 
-## Idee -- Lookahead-Regex
+## Idee - Lookahead-Regex
 
 `(?=...)` ist eine **Lookahead-Assertion**: prüft das Pattern,
 bewegt den Cursor aber **nicht weiter**. Damit können wir mehrere
@@ -107,13 +107,13 @@ unabhängige Bedingungen "an die selbe Stelle" hängen.
 .{8,}        # Match: mindestens 8 beliebige Zeichen
 ```
 
-Alle drei Lookaheads prüfen zuerst -- nur wenn alle erfüllt sind,
+Alle drei Lookaheads prüfen zuerst - nur wenn alle erfüllt sind,
 wird die "echte" Match-Bedingung getestet.
 
 ## Vergleich mit Aufgabe 129
 
-Aufgabe **129-passwort-stärke** liefert einen Score 0-5 (mit
-Sonderzeichen-Bonus). Hier nur True/False mit 4 Kriterien -- ein
+Aufgabe **129-passwort-staerke** liefert einen Score 0-5 (mit
+Sonderzeichen-Bonus). Hier nur True/False mit 4 Kriterien - ein
 einziger Regex statt einer Schleife durch Bedingungen.
 
 ## Anwendung

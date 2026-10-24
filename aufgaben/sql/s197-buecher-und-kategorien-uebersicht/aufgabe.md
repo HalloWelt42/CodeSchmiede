@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s197-buecher-und-kategorien-uebersicht
-revision: 1
+revision: 2
 titel: "Kategorien-Übersicht: Anzahl + Schnitt-Seiten"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [group-by, count, avg, sum]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

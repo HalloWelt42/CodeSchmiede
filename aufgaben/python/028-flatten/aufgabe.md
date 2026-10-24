@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 028-flatten
-revision: 1
+revision: 2
 titel: Verschachtelte Liste flachklopfen
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [listen, schleifen, comprehension]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null
-  notiz: Standard-Aufgabe -- nur eine Ebene tief.
+  notiz: Standard-Aufgabe - nur eine Ebene tief.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -22,8 +22,8 @@ funktion: flatten
 hints:
   - kosten: 0
     text: |
-      Eine doppelte Schleife: über die aeussere Liste, dann über jede
-      innere Liste -- alle Elemente in eine flache Ergebnisliste schieben.
+      Eine doppelte Schleife: über die äußere Liste, dann über jede
+      innere Liste - alle Elemente in eine flache Ergebnisliste schieben.
   - kosten: 9
     text: |
       Eine Zeile mit Comprehension:
@@ -72,10 +72,10 @@ eine Liste von Listen, nicht beliebig tief verschachtelt.
 
 ## Wege
 
-- **Doppelte Schleife** -- aeussere über `liste`, innere über jede
+- **Doppelte Schleife** - äußere über `liste`, innere über jede
   Sub-Liste, anhängen.
-- **List-Comprehension** -- die idiomatische Variante: kompakt, schnell,
-  aber gewoehnungsbeduerftig in der Lesart von links nach rechts.
+- **List-Comprehension** - die idiomatische Variante: kompakt, schnell,
+  aber gewöhnungsbedürftig in der Lesart von links nach rechts.
 
 ## Falle
 

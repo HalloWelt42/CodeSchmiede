@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l006-form-grid
-revision: 1
+revision: 2
 titel: "Layout 06: Form-Layout mit Labels (Grid 1fr 2fr)"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [layout, lernpfad, form, grid]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -54,7 +54,7 @@ asserts:
 hints:
   - kosten: 0
     text: |
-      Form als 2-Spalten-Grid mit Verhaeltnis 1:2 -- Labels schmal links, Felder breiter rechts. gap erlaubt unterschiedliche Werte für Reihen und Spalten.
+      Form als 2-Spalten-Grid mit Verhältnis 1:2 - Labels schmal links, Felder breiter rechts. gap erlaubt unterschiedliche Werte für Reihen und Spalten.
   - kosten: 4
     text: |
       `grid-template-columns: 1fr 2fr; gap: 12px 16px;`
@@ -86,16 +86,16 @@ starter_code: |
 ## Aufgabe
 
 Klassisches Form-Layout: Labels links, Eingabefelder rechts. Die Spalten
-stehen im Verhaeltnis 1:2.
+stehen im Verhältnis 1:2.
 
 ## Aha
 
 gap akzeptiert zwei Werte: erst
 die Reihen-Lücke (12px), dann die Spalten-Lücke (16px). Damit kontrollierst
-du Vertikal- und Horizontal-Abstaende separat.
+du Vertikal- und Horizontal-Abstände separat.
 
 Labels sitzen in einem
-Flex-Container, damit sie vertikal zentriert auf Höhe der Inputs sind --
+Flex-Container, damit sie vertikal zentriert auf Höhe der Inputs sind -
 sonst würden sie oben kleben.
 
 ## Wozu in der Praxis?

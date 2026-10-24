@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 197-hex-zu-rgb
-revision: 1
+revision: 2
 titel: Hex-Farbe zu RGB-Tripel
 sprache: python
 task_type: code_schreiben
@@ -28,7 +28,7 @@ hints:
   - kosten: 10
     text: |
       lstrip("#") entfernt das #. Pro Komponente int(s, 16).
-      Prüfe: Laenge 6 und alle Zeichen Hex.
+      Prüfe: Länge 6 und alle Zeichen Hex.
 tests_sichtbar:
   - input: ["#ff0000"]
     expected: [255, 0, 0]
@@ -64,9 +64,9 @@ starter_code: |
 Schreibe `hex_zu_rgb(s)`, die einen Hex-Farbcode wie `"#ff0000"` in
 ein RGB-Tripel `[255, 0, 0]` umwandelt.
 
-- Mit oder ohne fuehrendes `#`.
+- Mit oder ohne führendes `#`.
 - Groß-/Kleinschreibung egal.
-- Ungültige Eingabe (falsche Laenge, Nicht-Hex) → `[0, 0, 0]`.
+- Ungültige Eingabe (falsche Länge, Nicht-Hex) → `[0, 0, 0]`.
 
 ## Beispiele
 
@@ -81,10 +81,10 @@ ein RGB-Tripel `[255, 0, 0]` umwandelt.
 | `"#abc"`     | `[0, 0, 0]`          |
 | `""`         | `[0, 0, 0]`          |
 
-## Erweiterung -- Kurzform
+## Erweiterung - Kurzform
 
 In CSS gibt's auch die **Kurzform** `#abc` = `#aabbcc`
-(jede Stelle verdoppelt). Die ist hier explizit nicht erlaubt --
+(jede Stelle verdoppelt). Die ist hier explizit nicht erlaubt -
 sie wäre als Erweiterung leicht einbaubar.
 
 ## Hintergrund

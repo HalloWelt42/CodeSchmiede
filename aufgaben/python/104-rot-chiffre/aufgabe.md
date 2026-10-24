@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 104-rot-chiffre
-revision: 1
+revision: 2
 titel: ROT-N Chiffre
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: rot
 hints:
   - kosten: 0
     text: |
-      ROT13 als Spezialfall von Caesar -- aber: Groß-/Kleinschreibung
+      ROT13 als Spezialfall von Caesar - aber: Groß-/Kleinschreibung
       bleibt erhalten, Nicht-Buchstaben bleiben unverändert. Leerzeichen
       und Satzzeichen werden NICHT entfernt.
   - kosten: 8
@@ -59,7 +59,7 @@ starter_code: |
 # ROT-N Chiffre
 
 Schreibe eine Funktion `rot(text, n)`, die einen Text um `n`
-Positionen im Alphabet rotiert -- die **verallgemeinerte
+Positionen im Alphabet rotiert - die **verallgemeinerte
 Caesar-Chiffre**.
 
 ## Unterschied zu Aufgabe 034 (Caesar)
@@ -83,5 +83,5 @@ Caesar-Chiffre**.
 ## Hintergrund
 
 ROT13 ist die kleine Schwester der Caesar-Chiffre und ein
-Internet-Klassiker -- in Usenet-Foren wurden Spoiler früher
+Internet-Klassiker - in Usenet-Foren wurden Spoiler früher
 "verschlüsselt", indem man sie mit ROT13 codierte.

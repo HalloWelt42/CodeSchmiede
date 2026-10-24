@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 210-prozent-zu-zahl
-revision: 1
+revision: 2
 titel: Prozent-String zur Zahl
 sprache: python
 task_type: code_schreiben
@@ -68,7 +68,7 @@ in eine Bruchzahl (`0.5`) umwandelt.
 Akzeptiere:
 - mit oder ohne `%`-Zeichen
 - mit `,` oder `.` als Dezimaltrenner
-- mit fuehrenden/nachfolgenden Leerzeichen
+- mit führenden/nachfolgenden Leerzeichen
 - mit Vorzeichen
 
 Bei ungültiger Eingabe → `0.0`.
@@ -94,18 +94,18 @@ Drei Schritte:
 2. **Parsen**: `float(s)`.
 3. **Skalieren**: durch 100.
 
-`try/except ValueError` faengt sowohl leere Strings als auch
+`try/except ValueError` fängt sowohl leere Strings als auch
 Buchstaben-Eingaben.
 
-## Pendant -- Zahl zu Prozent
+## Pendant - Zahl zu Prozent
 
 Aufgabe **209** macht den Weg hin (`0.5 → "50.00%"`). Zusammen
 ist es ein **Round-Trip**: `aus_prozent(zu_prozent(x)) == round(x, 4)`
 (bis auf Rundungs-Stellen).
 
-## Hintergrund -- Lokalisierung
+## Hintergrund - Lokalisierung
 
 In Deutschland ist das **Komma** der Dezimaltrenner (`12,5%`),
 in den USA der **Punkt** (`12.5%`). Eine robuste Parse-Funktion
-sollte beide erkennen -- so machen es z.B. Excel und LibreOffice
+sollte beide erkennen - so machen es Tabellenkalkulationen
 beim Import von CSV-Dateien.

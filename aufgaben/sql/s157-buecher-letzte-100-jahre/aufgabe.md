@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s157-buecher-letzte-100-jahre
-revision: 1
+revision: 2
 titel: "Bücher der letzten 100 Jahre"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [where]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

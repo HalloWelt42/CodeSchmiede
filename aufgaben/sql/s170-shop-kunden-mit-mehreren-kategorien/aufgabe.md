@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s170-shop-kunden-mit-mehreren-kategorien
-revision: 1
+revision: 2
 titel: "Shop: Kunden mit mind. 3 Kategorien"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [join-multi, count-distinct, having]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

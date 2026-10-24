@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s090-leser-jung-aktiv
-revision: 1
+revision: 2
 titel: "Junge aktive Leser"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [left-join, group-by, having, where]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -46,4 +46,4 @@ starter_code: |
 
 # Junge aktive Leser
 
-Leser unter 35 mit mindestens einer Ausleihe -- Name, Alter, Anzahl Ausleihen.
+Leser unter 35 mit mindestens einer Ausleihe - Name, Alter, Anzahl Ausleihen.

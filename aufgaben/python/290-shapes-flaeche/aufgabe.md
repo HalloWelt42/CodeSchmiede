@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 290-shapes-flaeche
-revision: 1
-titel: Shapes mit Flaechen-Polymorphismus
+revision: 2
+titel: Shapes mit Flächen-Polymorphismus
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -22,16 +22,16 @@ funktion: gesamt_flaeche
 hints:
   - kosten: 0
     text: |
-      Liste von Shape-Beschreibungen → Gesamt-Flaeche (auf 2 Nachkomma).
+      Liste von Shape-Beschreibungen → Gesamt-Fläche (auf 2 Nachkomma).
       Shape-Form: ["kreis", radius]
                   ["rechteck", breite, höhe]
                   ["dreieck", a, b, c]   (Heron)
       Negative oder ungültige Shapes → 0 (überspringen).
   - kosten: 25
     text: |
-      Basis-Klasse Shape mit Methode flaeche().
-      Subklassen Kreis/Rechteck/Dreieck implementieren flaeche().
-      Funktion baut die Shapes und summiert flaeche().
+      Basis-Klasse Shape mit Methode fläche().
+      Subklassen Kreis/Rechteck/Dreieck implementieren fläche().
+      Funktion baut die Shapes und summiert fläche().
 tests_sichtbar:
   - input: [[["kreis", 1]]]
     expected: 3.14
@@ -64,10 +64,10 @@ starter_code: |
       pass
 ---
 
-# Shapes mit Flaechen-Polymorphismus
+# Shapes mit Flächen-Polymorphismus
 
-Implementiere `gesamt_flaeche(shapes)` -- eine Liste von Shape-
-Beschreibungen wird zur **Gesamt-Flaeche** addiert.
+Implementiere `gesamt_flaeche(shapes)` - eine Liste von Shape-
+Beschreibungen wird zur **Gesamt-Fläche** addiert.
 
 ## Shape-Formate
 
@@ -75,16 +75,16 @@ Beschreibungen wird zur **Gesamt-Flaeche** addiert.
 |---------------------------|------------------------------------|
 | `["kreis", r]`            | Kreis mit Radius r                 |
 | `["rechteck", b, h]`      | Rechteck Breite x Höhe            |
-| `["dreieck", a, b, c]`    | Dreieck mit Seitenlaengen a, b, c (Heron) |
+| `["dreieck", a, b, c]`    | Dreieck mit Seitenlängen a, b, c (Heron) |
 
 Ungültige Shapes (negative Werte, unbekannter Typ, Dreiecks-
-Ungleichung verletzt) zählen mit Flaeche **0**.
+Ungleichung verletzt) zählen mit Fläche **0**.
 
 Auf **2 Nachkommastellen** gerundet.
 
 ## Beispiele
 
-| Shapes                                  | Flaeche  |
+| Shapes                                  | Fläche  |
 |-----------------------------------------|----------|
 | `[["kreis", 1]]`                        | `3.14`   |
 | `[["rechteck", 3, 4]]`                  | `12.0`   |
@@ -104,6 +104,6 @@ Auf **2 Nachkommastellen** gerundet.
 
 ## Anwendung
 
-Diese Idee steckt in **CAD-Tools** (jede Form weiss ihre Flaeche),
-**Spielen** (jede Figur weiss ihre Hitbox), **Layout-Engines**
+Diese Idee steckt in **CAD-Tools** (jede Form weiß ihre Fläche),
+**Spielen** (jede Figur weiß ihre Hitbox), **Layout-Engines**
 (jedes Widget seine Größe).

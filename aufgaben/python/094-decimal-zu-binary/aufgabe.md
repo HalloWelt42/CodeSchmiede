@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 094-decimal-zu-binary
-revision: 1
+revision: 2
 titel: Dezimal zu Binär
 sprache: python
 task_type: code_schreiben
@@ -82,5 +82,5 @@ while n > 0:
 return "".join(reversed(ziffern)) or "0"
 ```
 
-`n = 0` ist der Sonderfall -- die Schleife wird nie betreten,
+`n = 0` ist der Sonderfall - die Schleife wird nie betreten,
 deshalb das `or "0"` am Ende.

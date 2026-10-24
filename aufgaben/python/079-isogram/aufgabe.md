@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 079-isogram
-revision: 1
+revision: 2
 titel: Isogramm-Test
 sprache: python
 task_type: code_schreiben
@@ -58,7 +58,7 @@ starter_code: |
 # Isogramm-Test
 
 Schreibe eine Funktion `ist_isogramm(text)`, die prüft, ob der Text
-ein **Isogramm** ist -- also kein Buchstabe mehrfach vorkommt.
+ein **Isogramm** ist - also kein Buchstabe mehrfach vorkommt.
 
 - Groß-/Kleinschreibung wird ignoriert
 - Bindestriche und Leerzeichen werden ignoriert

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 143-coin-change
-revision: 1
-titel: Muenz-Wechsel (Coin Change)
+revision: 2
+titel: Münz-Wechsel (Coin Change)
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -13,7 +13,7 @@ tags: [dp, optimierung, listen, algorithmen]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: LeetCode-Klassiker 322
+  notiz: Klassiker der dynamischen Programmierung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -22,12 +22,12 @@ funktion: muenz_wechsel
 hints:
   - kosten: 0
     text: |
-      Liefere die kleinste Anzahl Muenzen, die genau "betrag" ergeben.
-      Wenn unmoeglich → -1. Jede Muenz-Sorte beliebig oft verwendbar.
+      Liefere die kleinste Anzahl Münzen, die genau "betrag" ergeben.
+      Wenn unmöglich → -1. Jede Münz-Sorte beliebig oft verwendbar.
   - kosten: 25
     text: |
       DP-Tabelle dp[0..betrag]. dp[0] = 0.
-      dp[k] = 1 + min(dp[k - m] for m in muenzen if m <= k and dp[k-m] != inf).
+      dp[k] = 1 + min(dp[k - m] for m in münzen if m <= k and dp[k-m] != inf).
       Am Ende: -1 falls dp[betrag] == inf.
 tests_sichtbar:
   - input: [[1, 2, 5], 11]
@@ -57,37 +57,37 @@ starter_code: |
       pass
 ---
 
-# Muenz-Wechsel (Coin Change)
+# Münz-Wechsel (Coin Change)
 
-Gegeben sind eine Liste verfügbarer **Muenz-Werte** (jede Sorte
+Gegeben sind eine Liste verfügbarer **Münz-Werte** (jede Sorte
 unbegrenzt oft) und ein Ziel-`betrag`. Schreibe eine Funktion
-`muenz_wechsel(muenzen, betrag)`, die die **minimale Anzahl Muenzen**
-zurückgibt, mit der sich der Betrag genau zusammensetzen laesst.
+`muenz_wechsel(muenzen, betrag)`, die die **minimale Anzahl Münzen**
+zurückgibt, mit der sich der Betrag genau zusammensetzen lässt.
 
 Wenn keine Kombination existiert → `-1`.
-Bei `betrag == 0` → `0` (keine Muenzen nötig).
+Bei `betrag == 0` → `0` (keine Münzen nötig).
 
 ## Beispiele
 
-| Muenzen        | Betrag | Min. Anzahl | Aufteilung      |
+| Münzen        | Betrag | Min. Anzahl | Aufteilung      |
 |----------------|--------|-------------|-----------------|
 | `[1, 2, 5]`    | `11`   | `3`         | `5 + 5 + 1`     |
-| `[2]`          | `3`    | `-1`        | unmoeglich      |
+| `[2]`          | `3`    | `-1`        | unmöglich      |
 | `[1, 5, 10, 25]` | `30` | `2`         | `25 + 5`        |
-| `[7, 11]`      | `23`   | `-1`        | unmoeglich      |
+| `[7, 11]`      | `23`   | `-1`        | unmöglich      |
 
-## Idee -- Bottom-Up-DP
+## Idee - Bottom-Up-DP
 
-`dp[k]` = minimale Anzahl Muenzen für Betrag `k`.
+`dp[k]` = minimale Anzahl Münzen für Betrag `k`.
 
 ## Vorsicht: Greedy reicht nicht!
 
-Bei `[1, 3, 4]` und Betrag 6 gibt Greedy (immer größte Muenze
+Bei `[1, 3, 4]` und Betrag 6 gibt Greedy (immer größte Münze
 zuerst) `4 + 1 + 1 = 3`, aber optimal ist `3 + 3 = 2`. Deswegen DP.
 
 ## Hintergrund
 
 Coin-Change ist eine der kanonischen DP-Aufgaben. Verwandte Probleme:
 **Anzahl der Wege** (statt Minimum), **Rucksack-Problem**, **Partition**.
-Viele real existierende Muenz-Systeme (Cent-Stückelung) sind so
-gewählt, dass Greedy zufaellig optimal ist.
+Viele real existierende Münz-Systeme (Cent-Stückelung) sind so
+gewählt, dass Greedy zufällig optimal ist.

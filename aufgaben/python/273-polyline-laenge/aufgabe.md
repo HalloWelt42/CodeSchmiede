@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 273-polyline-laenge
-revision: 1
-titel: Gesamtlaenge eines Polygonzugs
+revision: 2
+titel: Gesamtlänge eines Polygonzugs
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -59,17 +59,17 @@ starter_code: |
       pass
 ---
 
-# Gesamtlaenge eines Polygonzugs
+# Gesamtlänge eines Polygonzugs
 
-Schreibe `polyline(punkte)`, die die **Gesamtlaenge** eines
-Polygonzugs (Folge von Punkten) berechnet -- als Summe der
+Schreibe `polyline(punkte)`, die die **Gesamtlänge** eines
+Polygonzugs (Folge von Punkten) berechnet - als Summe der
 **Distanzen** zwischen aufeinanderfolgenden Punkten.
 
 Bei < 2 Punkten → `0.0`. Auf 4 Nachkommastellen.
 
 ## Beispiele
 
-| Punkte                          | Laenge | Bemerkung           |
+| Punkte                          | Länge | Bemerkung           |
 |---------------------------------|--------|---------------------|
 | `[[0, 0], [3, 4]]`              | `5.0`  | eine Strecke (3-4-5)|
 | `[[0, 0], [3, 4], [3, 0]]`      | `9.0`  | 5 + 4               |
@@ -80,19 +80,19 @@ Bei < 2 Punkten → `0.0`. Auf 4 Nachkommastellen.
 
 ## Idee
 
-`zip(punkte, punkte[1:])` paart **aufeinanderfolgende** Punkte --
+`zip(punkte, punkte[1:])` paart **aufeinanderfolgende** Punkte -
 ein Pattern, das wir auch in **230-ist-aufsteigend** und
-**240-wechsel-zählen** nutzen.
+**240-wechsel-zaehlen** nutzen.
 
 ## Geschlossene Polygone
 
 Wenn der erste und letzte Punkt **gleich** sind, ist es ein
 geschlossenes Polygon (z.B. das Quadrat im Beispiel oben). Die
-Laenge ist dann der **Umfang**.
+Länge ist dann der **Umfang**.
 
 ## Anwendung
 
-- **Karten-Apps**: Routenlaenge zwischen Stationen.
+- **Karten-Apps**: Routenlänge zwischen Stationen.
 - **Geometrie**: Polygon-Umfang.
-- **Spiele**: Patrol-Path-Laenge für NPCs.
-- **3D-Grafik**: Spline-Approximation, Kanten-Laengen-Berechnung.
+- **Spiele**: Patrol-Path-Länge für NPCs.
+- **3D-Grafik**: Spline-Approximation, Kanten-Längen-Berechnung.

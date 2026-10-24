@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 224-min-max-index
-revision: 1
+revision: 2
 titel: Index von Minimum und Maximum
 sprache: python
 task_type: code_schreiben
@@ -59,7 +59,7 @@ starter_code: |
 # Index von Minimum und Maximum
 
 Schreibe `min_max_index(liste)`, die `[index_min, index_max]`
-zurückgibt -- die Positionen des kleinsten und größten Elements.
+zurückgibt - die Positionen des kleinsten und größten Elements.
 
 Bei mehreren gleichen Werten: **erster** Treffer.
 Bei leerer Liste → `[-1, -1]`.
@@ -74,19 +74,19 @@ Bei leerer Liste → `[-1, -1]`.
 | `[2, 2, 2]`        | `[0, 0]` | erster bei Gleichstand   |
 | `[]`               | `[-1, -1]`| leer                    |
 
-## Idee 1 -- Builtins
+## Idee 1 - Builtins
 
 Sehr lesbar, aber **3 Iterationen** durch die Liste (`min`, `max`,
 `index`).
 
-## Idee 2 -- in einer Schleife
+## Idee 2 - in einer Schleife
 
-Eine Schleife, weniger Vergleiche -- bei sehr großen Listen
+Eine Schleife, weniger Vergleiche - bei sehr großen Listen
 relevant. Pythons Builtins sind aber so optimiert, dass die
-Drei-Pass-Variante meist trotzdem schneller laeuft.
+Drei-Pass-Variante meist trotzdem schneller läuft.
 
 ## Verwandt
 
 - `min(liste)` / `max(liste)` → nur die **Werte**.
 - `liste.index(x)` → nur **erster** Treffer eines Wertes.
-- Aufgabe **161-median**, **162-häufigster-wert**.
+- Aufgabe **161-median**, **162-haeufigster-wert**.

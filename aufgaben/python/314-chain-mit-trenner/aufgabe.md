@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 314-chain-mit-trenner
-revision: 1
+revision: 2
 titel: Listen verketten mit Trenner-Element
 sprache: python
 task_type: code_schreiben
@@ -65,7 +65,7 @@ starter_code: |
 # Listen verketten mit Trenner-Element
 
 Schreibe `verketten_mit_trenner(listen, trenner)`, die mehrere Listen
-zu einer einzigen verkettet -- mit einem **trenner-Element** zwischen
+zu einer einzigen verkettet - mit einem **trenner-Element** zwischen
 benachbarten Listen.
 
 Regeln:
@@ -85,23 +85,23 @@ Regeln:
 | `[["a"], ["b"], ["c"]]`         | `"-"`   | `["a","-","b","-","c"]` |
 | `[]`                            | `0`     | `[]`                    |
 
-## Idee -- Generator mit Flag
+## Idee - Generator mit Flag
 
 `yield from` ist eine **delegierende** Yield: liefert alle Werte
-des inneren Iterables -- elegant für "leere alle Werte aus dieser
+des inneren Iterables - elegant für "leere alle Werte aus dieser
 Liste".
 
 `zuerst`-Flag stellt sicher, dass vor der allerersten nicht-leeren
 Liste kein Trenner kommt.
 
-## Vergleich -- ohne Trenner
+## Vergleich - ohne Trenner
 
 `itertools.chain.from_iterable(listen)` macht die Verkettung **ohne**
-Trenner. Mit Trenner ist nicht direkt im Builtin -- daher diese
+Trenner. Mit Trenner ist nicht direkt im Builtin - daher diese
 Aufgabe als Erweiterung.
 
 ## Anwendung
 
-- **Pretty-Print** mehrerer Bloecke mit Separator-Zeilen
+- **Pretty-Print** mehrerer Blöcke mit Separator-Zeilen
 - **CSV-Generierung** mit Header-Trenner zwischen Sektionen
 - **Animations-Loops** mit Pausen-Frames zwischen Aktionen

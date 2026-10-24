@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 159-bit-zaehlen
-revision: 1
+revision: 2
 titel: Gesetzte Bits zählen (Hamming-Gewicht)
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [bits, zahlen, schleifen, optimierung]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Brian-Kernighan-Trick / LeetCode 191
+  notiz: Brian-Kernighan-Trick
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -22,7 +22,7 @@ funktion: bit_anzahl
 hints:
   - kosten: 0
     text: |
-      Zähle die Anzahl gesetzter Bits (1en) in der Binaer-Darstellung
+      Zähle die Anzahl gesetzter Bits (1en) in der Binär-Darstellung
       einer nicht-negativen Zahl. 0 -> 0, 7 -> 3, 255 -> 8.
       bin().count("1") und int.bit_count() sind verboten.
   - kosten: 15
@@ -62,15 +62,15 @@ starter_code: |
 # Gesetzte Bits zählen (Hamming-Gewicht)
 
 Schreibe eine Funktion `bit_anzahl(n)`, die die **Anzahl der gesetzten
-Bits** (1-en in der Binaer-Darstellung) einer nicht-negativen ganzen
+Bits** (1-en in der Binär-Darstellung) einer nicht-negativen ganzen
 Zahl zurückgibt.
 
-`bin().count("1")` und `int.bit_count()` zählen nicht -- du sollst
+`bin().count("1")` und `int.bit_count()` zählen nicht - du sollst
 selber rechnen.
 
 ## Beispiele
 
-| `n`           | Binaer       | Bit-Anzahl |
+| `n`           | Binär       | Bit-Anzahl |
 |---------------|--------------|------------|
 | `0`           | `0`          | `0`        |
 | `1`           | `1`          | `1`        |
@@ -79,15 +79,15 @@ selber rechnen.
 | `255`         | `11111111`   | `8`        |
 | `4294967295`  | `1...1` (32) | `32`       |
 
-## Idee 1 -- Modulo-Schleife
+## Idee 1 - Modulo-Schleife
 
 Pro Schritt das niedrigste Bit auslesen (`n & 1`), dann nach rechts
 schieben.
 
-## Idee 2 -- Brian-Kernighan-Trick (eleganter)
+## Idee 2 - Brian-Kernighan-Trick (eleganter)
 
-`n & (n-1)` löscht **immer das niedrigste gesetzte Bit** -- darum
-laeuft die Schleife nur so oft wie 1-en da sind. Bei sparsam besetzten
+`n & (n-1)` löscht **immer das niedrigste gesetzte Bit** - darum
+läuft die Schleife nur so oft wie 1-en da sind. Bei sparsam besetzten
 Zahlen (z.B. `2**31`) ist das deutlich schneller als die Modulo-Schleife.
 
 ## Hintergrund

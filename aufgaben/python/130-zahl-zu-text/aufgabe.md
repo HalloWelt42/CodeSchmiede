@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 130-zahl-zu-text
-revision: 1
+revision: 2
 titel: Zahl 0-99 als Wort
 sprache: python
 task_type: code_schreiben
@@ -23,13 +23,13 @@ hints:
   - kosten: 0
     text: |
       0-19 sind eigene Wörter. 20, 30, ..., 90 auch. Sonst:
-      Einer + "und" + Zehner -- z.B. 23 = "dreiundzwanzig".
+      Einer + "und" + Zehner - z.B. 23 = "dreiundzwanzig".
       Bei n < 0 oder n > 99 → "" zurück.
   - kosten: 9
     text: |
       Lookup-Tabellen `EINER` (0-19) und `ZEHNER` (20, 30, ...).
       Sonderfall 1 in der Einer-Stelle wird "ein" (nicht "eins"):
-      "einundzwanzig", "einunddreissig".
+      "einundzwanzig", "einunddreißig".
 tests_sichtbar:
   - input: [0]
     expected: "null"
@@ -100,5 +100,5 @@ Bei `n < 0` oder `n > 99` → `""`.
 ## Hinweis zur Schreibweise
 
 Wir nutzen ASCII-Schreibweisen (`zwölf`, `dreissig`), damit die
-Tests einfach bleiben und Identifier-Vergleiche zuverlaessig sind.
+Tests einfach bleiben und Identifier-Vergleiche zuverlässig sind.
 Echte Lokalisierung würde "zwölf", "dreißig" verwenden.

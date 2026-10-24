@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 084-pythagoras-tripel
-revision: 1
+revision: 2
 titel: Pythagoreisches Tripel
 sprache: python
 task_type: code_schreiben
@@ -9,11 +9,11 @@ runner_type: docker_python
 schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 10
-tags: [zahlen, schleifen, geometrie, project-euler]
+tags: [zahlen, schleifen, geometrie, zahlenrätsel]
 voraussetzungen: []
 quelle:
   url: https://projecteuler.net/problem=9
-  notiz: Inspiration aus Project Euler 9, eigene Formulierung
+  notiz: Bekanntes Zahlenrätsel, eigene Formulierung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -61,7 +61,7 @@ Ein **pythagoreisches Tripel** ist ein Trio natürlicher Zahlen
 $(a, b, c)$ mit $a < b < c$ und $a^2 + b^2 = c^2$.
 
 Schreibe eine Funktion `pythagoras_tripel(n)`, die alle Tripel
-zurückgibt, deren **Summe genau** $n$ ist -- aufsteigend sortiert
+zurückgibt, deren **Summe genau** $n$ ist - aufsteigend sortiert
 nach $a$.
 
 ## Beispiele
@@ -76,6 +76,6 @@ nach $a$.
 
 ## Hintergrund
 
-Project Euler Problem 9: "Es gibt genau ein pythagoreisches Tripel,
+Ein bekanntes Zahlenrätsel: "Es gibt genau ein pythagoreisches Tripel,
 für das $a + b + c = 1000$. Finde das Produkt $abc$." Die Antwort
 ist $200 \cdot 375 \cdot 425 = 31\,875\,000$.

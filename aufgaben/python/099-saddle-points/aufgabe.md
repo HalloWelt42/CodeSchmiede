@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 099-saddle-points
-revision: 1
+revision: 2
 titel: Sattel-Punkte einer Matrix
 sprache: python
 task_type: code_schreiben
@@ -78,7 +78,7 @@ nach Zeile dann Spalte.
 `5` ist max in Zeile 1 (5 > 3 > 2) und min in Spalte 0 (5 vs 9, 6).
 **Sattel-Punkt bei `(1, 0)`**.
 
-## Komplexitaet
+## Komplexität
 
 Naive Lösung: pro Element zwei Schleifen → $O(n \cdot m \cdot (n+m))$.
 Smart: zuerst pro Zeile das Maximum, pro Spalte das Minimum berechnen,

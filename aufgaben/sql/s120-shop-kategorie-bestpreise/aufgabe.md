@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s120-shop-kategorie-bestpreise
-revision: 1
+revision: 2
 titel: "Shop: billigstes und teuerstes Produkt pro Kategorie"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [join, min, max, group-by]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

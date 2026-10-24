@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 320-js-objekt-keys-sort
-revision: 1
-titel: JavaScript -- Objekt-Keys alphabetisch sortiert
+revision: 2
+titel: JavaScript - Objekt-Keys alphabetisch sortiert
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -43,10 +43,10 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Objekt-Keys alphabetisch sortiert
+# JavaScript - Objekt-Keys alphabetisch sortiert
 
 Schreibe `keysSortiert(obj)`, die die Keys eines Objekts als Array
-zurückgibt -- **alphabetisch sortiert**.
+zurückgibt - **alphabetisch sortiert**.
 
 Bei leerem Objekt → `[]`.
 
@@ -59,14 +59,14 @@ Bei leerem Objekt → `[]`.
 | `{zebra: 1, apfel: 2, maus: 3}` | `["apfel","maus","zebra"]` |
 | `{}`                            | `[]`                  |
 
-## Idee -- modernes JS
+## Idee - modernes JS
 
 `Object.keys(obj)` liefert ein Array aller eigenen, enumerable
-Keys -- immer als **Strings** (auch wenn die Keys Zahlen wären).
+Keys - immer als **Strings** (auch wenn die Keys Zahlen wären).
 `Array.sort()` sortiert in-place und liefert das sortierte Array
 zurück.
 
-## Stolperstein -- numerische Keys
+## Stolperstein - numerische Keys
 
 In JavaScript werden **numerische Keys** in Objekten automatisch
 zu Strings konvertiert UND iteriert in numerischer Reihenfolge:
@@ -75,7 +75,7 @@ Das ist ein **historischer Quirk** von JavaScript. Bei rein
 numerischen Keys liefert `.sort()` lexikographisch (`["1","2","3"]`),
 das ist hier OK.
 
-## Verwandt -- Object.values, Object.entries
+## Verwandt - Object.values, Object.entries
 
 | Methode             | Liefert            |
 |---------------------|---------------------|

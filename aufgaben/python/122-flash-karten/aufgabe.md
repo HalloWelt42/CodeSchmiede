@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 122-flash-karten
-revision: 1
+revision: 2
 titel: Flash-Karten - SM-2 Update
 sprache: python
 task_type: code_schreiben
@@ -104,4 +104,4 @@ $$
 
 SM-2 ist der **Algorithmus hinter Anki**. Genau diesen verwenden
 wir auch in der Codeschmiede für die Wiederholungs-Logik. Die
-Aufgabe selbst zu lösen heisst auch: zu verstehen wie Anki tickt.
+Aufgabe selbst zu lösen heißt auch: zu verstehen wie Anki tickt.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 012-listen-sortieren
-revision: 1
+revision: 2
 titel: Liste absteigend sortieren
 sprache: python
 task_type: code_schreiben
@@ -58,7 +58,7 @@ starter_code: |
 # Liste absteigend sortieren
 
 Schreibe eine Funktion `sortiere_absteigend(zahlen)`, die eine **neue**
-Liste zurückgibt -- die Elemente vom größten zum kleinsten.
+Liste zurückgibt - die Elemente vom größten zum kleinsten.
 
 ## Beispiele
 
@@ -72,5 +72,5 @@ Liste zurückgibt -- die Elemente vom größten zum kleinsten.
 ## Hinweise
 
 - Gleiche Werte bleiben nebeneinander stehen (`[1, 1]` bleibt `[1, 1]`).
-- Die Originalliste soll **nicht** verändert werden -- gib eine neue
+- Die Originalliste soll **nicht** verändert werden - gib eine neue
   zurück. (`sorted()` macht genau das, `.sort()` würde in-place ändern.)

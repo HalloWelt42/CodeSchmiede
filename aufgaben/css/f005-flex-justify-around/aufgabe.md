@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: f005-flex-justify-around
-revision: 1
-titel: "Flexbox 05: Mit Aussenrand -- space-around"
+revision: 2
+titel: "Flexbox 05: Mit Außenrand - space-around"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [flexbox, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -53,7 +53,7 @@ hints:
   - kosten: 0
     text: |
       Flexbox-Eltern muss `display: flex` haben, damit `justify-content`, `align-items` & Co. greifen.
-      Diese Aufgabe lehrt EINE Property -- die anderen kommen in den nächsten Levels.
+      Diese Aufgabe lehrt EINE Property - die anderen kommen in den nächsten Levels.
   - kosten: 3
     text: |
       `display: flex;
@@ -72,16 +72,16 @@ starter_code: |
 Im Bahn-Rahmen sollen die drei Kacheln so angeordnet werden, dass
 **jeder kachel hat links und rechts gleich viel platz**.
 
-Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` -- der Rest
+Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` - der Rest
 (Größe, Farbe, Quadrate) ist schon da.
 
 ## Aha
 
 `space-around` gibt jedem Item links und rechts die selbe **Polsterung**.
-Achtung: die Polsterungen zwischen zwei Items addieren sich -- die
-Mittel-Lücken sind doppelt so groß wie die zum Aussenrand.
+Achtung: die Polsterungen zwischen zwei Items addieren sich - die
+Mittel-Lücken sind doppelt so groß wie die zum Außenrand.
 
 ## Wozu in der Praxis?
 
-Bottom-Tab-Bars in Mobile-Apps nutzen `space-around` -- damit jeder Button
-rundum gleichmaessig Platz hat, auch zum Rand der App hin.
+Bottom-Tab-Bars in Mobile-Apps nutzen `space-around` - damit jeder Button
+rundum gleichmäßig Platz hat, auch zum Rand der App hin.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s078-dense-rank-jahr
-revision: 1
+revision: 2
 titel: "Bücher: DENSE_RANK nach Jahr"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [window-function, dense-rank]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -49,7 +49,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `DENSE_RANK()` -- gleiche Werte teilen sich den Rang, ohne Lücken im nächsten.
+      `DENSE_RANK()` - gleiche Werte teilen sich den Rang, ohne Lücken im nächsten.
 starter_code: |
   SELECT ___
   FROM ___

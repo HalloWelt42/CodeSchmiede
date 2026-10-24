@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 171-schnitt-zweier-listen
-revision: 1
+revision: 2
 titel: Schnitt zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: schnitt
 hints:
   - kosten: 0
     text: |
-      Liefere die Elemente, die in beiden Listen vorkommen --
+      Liefere die Elemente, die in beiden Listen vorkommen -
       eindeutig und aufsteigend sortiert.
       Bei [] und/oder Disjunktion → [].
   - kosten: 8
@@ -71,7 +71,7 @@ zurückgibt.
 
 Doppelte Werte in den Eingaben werden zu einem Eintrag verdichtet.
 
-## Idee -- Set-Operation
+## Idee - Set-Operation
 
 Effizient (`O(n + m)` Hash-Vergleiche) und **lesbar**.
 
@@ -85,5 +85,5 @@ Effizient (`O(n + m)` Hash-Vergleiche) und **lesbar**.
 | `^`      | Symmetrische Diff.  |
 
 Alle vier sind in der Mengenlehre Standard und in Python direkt
-verfügbar -- siehe Aufgaben **172-differenz-zweier-listen** und
-spaeter **vereinigung** / **symmetrische Differenz**.
+verfügbar - siehe Aufgaben **172-differenz-zweier-listen** und
+später **vereinigung** / **symmetrische Differenz**.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 068-quiz-late-binding
-revision: 1
+revision: 2
 titel: Late-Binding-Closure
 sprache: python
 task_type: output_quiz
@@ -42,7 +42,7 @@ Was wird hier ausgegeben?
 
 In Python "merkt" sich eine **Closure** den **Namen** der Variable,
 nicht den **Wert**. Wenn die Lambda später aufgerufen wird, schaut
-sie nach, **was `i` jetzt ist** -- und `i` ist nach der Schleife `2`.
+sie nach, **was `i` jetzt ist** - und `i` ist nach der Schleife `2`.
 
 Alle drei Lambdas zeigen also auf dasselbe `i` und liefern den
 letzten Wert.
@@ -52,9 +52,9 @@ letzten Wert.
 Um den Wert zur Definitionszeit zu binden:
 
 Der Default-Parameter `i=i` erzeugt eine eigene lokale Variable in
-jeder Lambda -- die wird zur Definitionszeit ausgewertet.
+jeder Lambda - die wird zur Definitionszeit ausgewertet.
 
 ## Hinweis
 
-Diese Falle ist so beruehmt, dass viele moderne Linter und IDEs
+Diese Falle ist so berühmt, dass viele moderne Linter und IDEs
 warnen, sobald sie eine Lambda in einer Schleife sehen.

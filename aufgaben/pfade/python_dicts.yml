@@ -4,7 +4,7 @@ beschreibung: |
   Dictionaries als Schweizer Taschenmesser für Schlüssel-Wert-Daten.
   Worte und Zeichen zählen, Zuordnungen invertieren, Format-Wechsel
   per ETL, Anagramm-Klassen gruppieren, Schüler nach Klassen
-  sortieren -- praktische Daten-Operationen, die in jedem Job
+  sortieren - praktische Daten-Operationen, die in jedem Job
   vorkommen.
 reihenfolge:
   - 022-wortzaehler

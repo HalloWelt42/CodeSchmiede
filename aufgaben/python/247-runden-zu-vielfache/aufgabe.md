@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 247-runden-zu-vielfache
-revision: 1
+revision: 2
 titel: Auf Vielfaches von k runden
 sprache: python
 task_type: code_schreiben
@@ -28,7 +28,7 @@ hints:
       Negative n und k werden korrekt behandelt.
   - kosten: 8
     text: |
-      round(n / k) * k -- Standard-Trick.
+      round(n / k) * k - Standard-Trick.
 tests_sichtbar:
   - input: [13, 5]
     expected: 15
@@ -71,11 +71,11 @@ Vielfache von k** rundet.
 
 ## Beispiele
 
-| `n`  | `k`  | Ergebnis | Begruendung               |
+| `n`  | `k`  | Ergebnis | Begründung               |
 |------|------|----------|---------------------------|
-| 13   | 5    | 15       | naeher an 15 als an 10    |
-| 12   | 5    | 10       | naeher an 10 als an 15    |
-| 7    | 3    | 6        | naeher an 6 als an 9      |
+| 13   | 5    | 15       | näher an 15 als an 10    |
+| 12   | 5    | 10       | näher an 10 als an 15    |
+| 7    | 3    | 6        | näher an 6 als an 9      |
 | 25   | 10   | 20       | banker's: gerade Zahl     |
 | 100  | 10   | 100      | schon Vielfaches          |
 | 99   | 100  | 100      | nächstes Vielfaches      |
@@ -89,7 +89,7 @@ Der Trick: durch k teilen, runden, mit k multiplizieren.
 
 In Python rundet `round` bei `.5` auf die **gerade** Zahl:
 
-Das ist statistisch fairer als immer aufrunden -- vermeidet **Bias**
+Das ist statistisch fairer als immer aufrunden - vermeidet **Bias**
 bei vielen Werten. In der Praxis gemerkenswert, wenn man "runden"
 beibringt.
 

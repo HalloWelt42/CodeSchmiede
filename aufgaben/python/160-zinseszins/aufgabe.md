@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 160-zinseszins
-revision: 1
+revision: 2
 titel: Zinseszins-Berechnung
 sprache: python
 task_type: code_schreiben
@@ -22,13 +22,13 @@ funktion: zinseszins
 hints:
   - kosten: 0
     text: |
-      Berechne den Endwert eines Kapitals nach n Jahren bei jaehrlicher
+      Berechne den Endwert eines Kapitals nach n Jahren bei jährlicher
       Verzinsung. zinssatz_prozent ist eine Zahl wie 5 für 5%.
       Liefere auf 2 Nachkommastellen gerundet.
   - kosten: 10
     text: |
       Formel: K_n = K_0 * (1 + p/100)^n.
-      Mit pow() oder ** ist beides moeglich.
+      Mit pow() oder ** ist beides möglich.
       round(..., 2) am Ende.
 tests_sichtbar:
   - input: [1000.0, 5.0, 1]
@@ -61,7 +61,7 @@ starter_code: |
 # Zinseszins-Berechnung
 
 Schreibe eine Funktion `zinseszins(kapital, zinssatz_prozent, jahre)`,
-die den **Endwert** eines Kapitals nach `jahre` Jahren jaehrlicher
+die den **Endwert** eines Kapitals nach `jahre` Jahren jährlicher
 Verzinsung berechnet. Liefere auf **2 Nachkommastellen gerundet**.
 
 ## Formel
@@ -80,14 +80,14 @@ mit `K_0` = Anfangskapital, `p` = Zinssatz in Prozent, `n` = Jahre.
 | `10000` | `3%` | `10`  | `13439.16` |
 | `1`     | `100%`|`10`  | `1024.00`  |
 
-## Beobachtung -- Verdopplungs-Faustregel
+## Beobachtung - Verdopplungs-Faustregel
 
 Bei einem Zinssatz `p` verdoppelt sich Kapital nach etwa `72/p` Jahren
 (genauer: `ln(2)/ln(1 + p/100)`). Bei 5% also ca. 14,4 Jahre.
 
 ## Hintergrund
 
-Zinseszins war historisch eine **moralisch umstrittene** Erfindung --
+Zinseszins war historisch eine **moralisch umstrittene** Erfindung -
 der Glaube verbot Zinseszins (Wucher). Heute ist er die Grundlage
 nahezu aller langfristigen Geldanlagen, von Sparbüchern bis zu
 Investmentfonds.

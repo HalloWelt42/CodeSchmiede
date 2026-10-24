@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: f006-flex-align-center
-revision: 1
-titel: "Flexbox 06: Vertikal mittig -- align-items: center"
+revision: 2
+titel: "Flexbox 06: Vertikal mittig - align-items: center"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [flexbox, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -53,7 +53,7 @@ hints:
   - kosten: 0
     text: |
       Flexbox-Eltern muss `display: flex` haben, damit `justify-content`, `align-items` & Co. greifen.
-      Diese Aufgabe lehrt EINE Property -- die anderen kommen in den nächsten Levels.
+      Diese Aufgabe lehrt EINE Property - die anderen kommen in den nächsten Levels.
   - kosten: 3
     text: |
       `display: flex;
@@ -70,19 +70,19 @@ starter_code: |
 ## Aufgabe
 
 Im Bahn-Rahmen sollen die drei Kacheln so angeordnet werden, dass
-**froesche sitzen in der vertikalen mitte des bahns**.
+**frösche sitzen in der vertikalen mitte des bahns**.
 
-Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` -- der Rest
+Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` - der Rest
 (Größe, Farbe, Quadrate) ist schon da.
 
 ## Aha
 
 `align-items` arbeitet auf der **Quer-Achse** (bei row also vertikal).
 Es macht das aus, was früher mit `vertical-align` und Tabellen-Tricks
-schmerzhaft erkaempft werden musste.
+schmerzhaft erkämpft werden musste.
 
 ## Wozu in der Praxis?
 
 Buttons-mit-Icons, Avatar-mit-Name-Reihen, Header mit unterschiedlich großen
-Elementen -- jedes Mal wenn etwas in einer Reihe optisch auf einer Linie sitzen
+Elementen - jedes Mal wenn etwas in einer Reihe optisch auf einer Linie sitzen
 soll, kommt diese Property zum Einsatz.

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: f009-flex-direction-row-reverse
-revision: 1
-titel: "Flexbox 09: Umgekehrte Reihenfolge -- row-reverse"
+revision: 2
+titel: "Flexbox 09: Umgekehrte Reihenfolge - row-reverse"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [flexbox, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -53,7 +53,7 @@ hints:
   - kosten: 0
     text: |
       Flexbox-Eltern muss `display: flex` haben, damit `justify-content`, `align-items` & Co. greifen.
-      Diese Aufgabe lehrt EINE Property -- die anderen kommen in den nächsten Levels.
+      Diese Aufgabe lehrt EINE Property - die anderen kommen in den nächsten Levels.
   - kosten: 3
     text: |
       `display: flex;
@@ -72,7 +72,7 @@ starter_code: |
 Im Bahn-Rahmen sollen die drei Kacheln so angeordnet werden, dass
 **die dom-reihenfolge ist a-b-c, aber visuell siehst du c-b-a**.
 
-Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` -- der Rest
+Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` - der Rest
 (Größe, Farbe, Quadrate) ist schon da.
 
 ## Aha
@@ -83,6 +83,6 @@ trotzdem die DOM-Reihenfolge A-B-C.
 
 ## Wozu in der Praxis?
 
-Bei RTL-Sprachen (Arabisch, Hebraeisch) wechseln Layouts auf row-reverse.
+Bei RTL-Sprachen (Arabisch, Hebräisch) wechseln Layouts auf row-reverse.
 Auch für Karussells, die nach links scrollen, oder Animation-Reihenfolgen
-ist das ein Standard-Trick -- ohne den HTML-Code zu ändern.
+ist das ein Standard-Trick - ohne den HTML-Code zu ändern.

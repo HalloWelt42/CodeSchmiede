@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 138-alle-teiler
-revision: 1
+revision: 2
 titel: Alle Teiler einer Zahl
 sprache: python
 task_type: code_schreiben
@@ -27,7 +27,7 @@ hints:
   - kosten: 8
     text: |
       Effizient: Schleife nur bis sqrt(n). Pro Treffer i auch n//i
-      einfuegen. Set verwenden gegen Doppelte (Quadratzahlen!).
+      einfügen. Set verwenden gegen Doppelte (Quadratzahlen!).
 tests_sichtbar:
   - input: [1]
     expected: [1]
@@ -59,7 +59,7 @@ starter_code: |
 # Alle Teiler einer Zahl
 
 Schreibe eine Funktion `alle_teiler(n)`, die alle natürlichen Teiler
-von `n` als **aufsteigend sortierte Liste** zurückgibt -- inklusive
+von `n` als **aufsteigend sortierte Liste** zurückgibt - inklusive
 `1` und `n` selbst.
 
 Bei `n < 1` → `[]`.
@@ -80,10 +80,10 @@ Bei `n < 1` → `[]`.
 
 Schleife nur bis $\sqrt{n}$. Wenn `i` Teiler ist, ist `n // i` auch
 einer (das **Partner-Teiler-Pattern**). Quadratzahlen wie 25 haben
-einen Sonderfall: bei `i == n // i` nur einmal einfuegen.
+einen Sonderfall: bei `i == n // i` nur einmal einfügen.
 
 ## Hintergrund
 
 Damit kann man prüfen, ob eine Zahl **vollkommen** ist (siehe 040-perfekte-zahl),
-**überfluessig** (sum > 2n) oder **defizient** (sum < 2n) -- ein
+**überflüssig** (sum > 2n) oder **defizient** (sum < 2n) - ein
 Klassiker der Zahlentheorie.

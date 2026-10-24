@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 293-query-string-parsen
-revision: 1
+revision: 2
 titel: URL-Query-String parsen
 sprache: python
 task_type: code_schreiben
@@ -24,7 +24,7 @@ hints:
     text: |
       Parse einen Query-String "a=1&b=2&c=3" zu Dict {"a": "1", ...}.
       Werte BLEIBEN STRINGS (kein int-cast).
-      Optionales fuehrendes "?" abstrippen.
+      Optionales führendes "?" abstrippen.
       Leerer/None String → {}. Bei "k=" → {"k": ""}. Bei "k" ohne "=" → {"k": ""}.
   - kosten: 8
     text: |
@@ -66,7 +66,7 @@ Schreibe `query_parse(s)`, die einen Query-String wie `"a=1&b=2"`
 in ein Dict `{"a": "1", "b": "2"}` umwandelt.
 
 Regeln:
-- Optionales fuehrendes `?` wird abgestrippt.
+- Optionales führendes `?` wird abgestrippt.
 - Werte bleiben **Strings** (kein int/float-Cast).
 - `"key="` → `{"key": ""}` (leerer Wert).
 - `"key"` ohne `=` → `{"key": ""}`.
@@ -88,9 +88,9 @@ Regeln:
 ## Idee
 
 `split("=", 1)` mit Limit 1: spaltet nur am **ersten** `=`,
-spaetere bleiben Teil des Werts.
+spätere bleiben Teil des Werts.
 
-## Stolperstein -- URL-Encoding
+## Stolperstein - URL-Encoding
 
 Echte Query-Strings sind **URL-encoded** (Leerzeichen als `%20`,
 Sonderzeichen als `%XX`). `urllib.parse.parse_qs` und

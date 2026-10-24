@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s042-orte-gross
-revision: 1
+revision: 2
 titel: "Leserorte in Großbuchstaben"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [string, upper, distinct]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 270-heron-flaeche
-revision: 1
-titel: Dreiecks-Flaeche nach Heron
+revision: 2
+titel: Dreiecks-Fläche nach Heron
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -22,7 +22,7 @@ funktion: dreieck_flaeche
 hints:
   - kosten: 0
     text: |
-      Flaeche aus drei Seitenlaengen via Heron.
+      Fläche aus drei Seitenlängen via Heron.
       s = (a + b + c) / 2
       A = sqrt(s * (s-a) * (s-b) * (s-c))
       Auf 4 Nachkommastellen.
@@ -30,7 +30,7 @@ hints:
       ungleichung verletzt) → 0.0.
   - kosten: 12
     text: |
-      Prüfe alle Seiten > 0 UND laengste < Summe der anderen.
+      Prüfe alle Seiten > 0 UND längste < Summe der anderen.
       Dann Heron.
 tests_sichtbar:
   - input: [3, 4, 5]
@@ -64,10 +64,10 @@ starter_code: |
       pass
 ---
 
-# Dreiecks-Flaeche nach Heron
+# Dreiecks-Fläche nach Heron
 
-Schreibe `dreieck_flaeche(a, b, c)`, die die Flaeche eines Dreiecks
-aus drei Seitenlaengen berechnet -- via **Heron-Formel**.
+Schreibe `dreieck_flaeche(a, b, c)`, die die Fläche eines Dreiecks
+aus drei Seitenlängen berechnet - via **Heron-Formel**.
 
 Bei ungültigen Eingaben (Seite ≤ 0 oder Dreiecks-Ungleichung
 verletzt) → `0.0`. Auf **4 Nachkommastellen** gerundet.
@@ -78,7 +78,7 @@ $$s = \frac{a + b + c}{2} \qquad A = \sqrt{s(s-a)(s-b)(s-c)}$$
 
 ## Beispiele
 
-| a | b | c  | Flaeche  | Bemerkung           |
+| a | b | c  | Fläche  | Bemerkung           |
 |---|---|----|----------|---------------------|
 | 3 | 4 | 5  | `6.0`    | rechtwinklig 3-4-5  |
 | 6 | 8 | 10 | `24.0`   | doppelt 3-4-5       |
@@ -93,12 +93,12 @@ Bei spitzwinkligen Dreiecken auch:
 
 $$A = \frac{1}{2} \cdot a \cdot b \cdot \sin(\gamma)$$
 
-Brauchst Du den Winkel γ. Heron braucht **nur die Seitenlaengen**
--- daher beliebter, wenn keine Winkel gegeben sind.
+Brauchst Du den Winkel γ. Heron braucht **nur die Seitenlängen**
+- daher beliebter, wenn keine Winkel gegeben sind.
 
 ## Hintergrund
 
 Heron von Alexandria (ca. 60 n.Chr.) bewies die Formel. Sie ist eine
 der wenigen geometrischen Formeln, die ohne Winkelfunktionen
-auskommen -- und damit für **Vermessungen** vor der Trigonometrie
+auskommen - und damit für **Vermessungen** vor der Trigonometrie
 unbezahlbar war.

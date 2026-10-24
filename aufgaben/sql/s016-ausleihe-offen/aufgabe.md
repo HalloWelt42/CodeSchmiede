@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s016-ausleihe-offen
-revision: 1
+revision: 2
 titel: "Offene Ausleihen"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [where, is-null]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -37,7 +37,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      `IS NULL` -- nicht `= NULL`!
+      `IS NULL` - nicht `= NULL`!
 starter_code: |
   SELECT ___
   FROM ___

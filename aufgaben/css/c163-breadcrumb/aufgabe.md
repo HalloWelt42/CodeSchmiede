@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c163-breadcrumb
-revision: 1
+revision: 2
 titel: "Breadcrumb-Pfad"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [breadcrumb, nav, komponente]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

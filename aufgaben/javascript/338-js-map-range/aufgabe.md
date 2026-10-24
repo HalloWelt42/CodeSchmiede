@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 338-js-map-range
-revision: 1
-titel: JavaScript -- Wert in anderen Bereich übersetzen
+revision: 2
+titel: JavaScript - Wert in anderen Bereich übersetzen
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, mathematik, interpolation]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Map_range
-  notiz: Rosetta Code -- Map range, JS
+  notiz: Rosetta Code - Map range, JS
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -42,7 +42,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Wert in anderen Bereich übersetzen
+# JavaScript - Wert in anderen Bereich übersetzen
 
 Schreibe `mapRange(x, a1, a2, b1, b2)`, die `x` aus `[a1, a2]`
 linear in `[b1, b2]` übersetzt.
@@ -73,9 +73,9 @@ Hand.
 - **Canvas-Animationen**: Frame -> Position
 - **Sensor-Daten** (Web-Bluetooth, MediaDevices) auf UI-Werte
 
-## Stolperstein -- Float-Praezision
+## Stolperstein - Float-Präzision
 
-Float-Arithmetik kann Werte wie `49.99999999998` produzieren --
+Float-Arithmetik kann Werte wie `49.99999999998` produzieren -
 darum die explizite Rundung. Bei reiner Anzeige reicht
 `y.toFixed(4)`, aber das liefert einen String. Hier wollen wir
 ein Number.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 292-dict-zu-json
-revision: 1
+revision: 2
 titel: Dict zu JSON-String
 sprache: python
 task_type: code_schreiben
@@ -63,7 +63,7 @@ starter_code: |
 # Dict zu JSON-String
 
 Schreibe `json_dump(obj)`, die ein Python-Objekt in einen JSON-String
-serialisiert -- mit zwei Konventionen:
+serialisiert - mit zwei Konventionen:
 
 1. **Schlüssel alphabetisch sortiert** (deterministische Ausgabe)
 2. **Kompakt** (keine Leerzeichen nach `,` oder `:`)
@@ -84,7 +84,7 @@ serialisiert -- mit zwei Konventionen:
 ## Idee
 
 `sort_keys=True` sortiert die Dict-Schlüssel.
-`separators=(",", ":")` ist der **kompakte** Modus -- Default ist
+`separators=(",", ":")` ist der **kompakte** Modus - Default ist
 `(", ", ": ")` mit Leerzeichen.
 
 ## Pendant
@@ -94,10 +94,10 @@ es ein **Round-Trip**:
 
 (mit Caveat: `tuple` wird zu `list`, weil JSON keine Tuple kennt)
 
-## Anwendung -- Determinismus
+## Anwendung - Determinismus
 
 In Tests, Diff-Vergleichen oder Hashing braucht man **deterministische
-JSON-Ausgabe** -- gleicher Input → gleicher Output. Daher
+JSON-Ausgabe** - gleicher Input → gleicher Output. Daher
 `sort_keys=True`.
 
 In API-Antworten ist das eher unwichtig, aber **Cache-Keys** und

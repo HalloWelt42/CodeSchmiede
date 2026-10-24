@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 230-ist-aufsteigend
-revision: 1
+revision: 2
 titel: Ist die Liste aufsteigend sortiert?
 sprache: python
 task_type: code_schreiben
@@ -61,7 +61,7 @@ starter_code: |
 # Ist die Liste aufsteigend sortiert?
 
 Schreibe `ist_aufsteigend(liste)`, die `True` zurückgibt, wenn die
-Liste **nicht-fallend** sortiert ist -- also `a[i] <= a[i+1]` für
+Liste **nicht-fallend** sortiert ist - also `a[i] <= a[i+1]` für
 alle Indizes. Gleiche Werte hintereinander sind erlaubt.
 
 Leere oder 1-elementige Liste → `True`.
@@ -81,7 +81,7 @@ Leere oder 1-elementige Liste → `True`.
 
 `zip(liste, liste[1:])` paart **aufeinanderfolgende** Elemente:
 `zip([1,2,3], [2,3]) → (1,2), (2,3)`. `all` liefert `True`, sobald
-alle Paare die Bedingung erfüllen -- bei leerer Liste auch (vacuous
+alle Paare die Bedingung erfüllen - bei leerer Liste auch (vacuous
 truth).
 
 ## Strikt aufsteigend
@@ -92,5 +92,5 @@ Wer `<` statt `<=` will (also keine Duplikate):
 
 - `sorted(liste) == liste` ist eine **wahrere** Variante, aber **doppelt
   so langsam** (Sortieren ist `O(n log n)`, Linear-Check `O(n)`).
-- Aufgabe **178-LIS** (laengste aufsteigende Teilfolge) baut auf
+- Aufgabe **178-LIS** (längste aufsteigende Teilfolge) baut auf
   diesem Konzept auf.

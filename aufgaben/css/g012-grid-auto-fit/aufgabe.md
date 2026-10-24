@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: g012-grid-auto-fit
-revision: 1
-titel: "Grid 12: Galerie ohne Media-Query -- auto-fit + minmax"
+revision: 2
+titel: "Grid 12: Galerie ohne Media-Query - auto-fit + minmax"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [grid, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -45,7 +45,7 @@ hints:
     text: |
       CSS-Grid ist 2-dimensional (Zeilen UND Spalten gleichzeitig).
       Im Gegensatz zu Flexbox musst du dem Container das Raster-Muster
-      vorgeben -- erst dann wissen die Zellen, wohin sie gehören.
+      vorgeben - erst dann wissen die Zellen, wohin sie gehören.
   - kosten: 3
     text: |
       `grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));`
@@ -68,12 +68,12 @@ starter_code: |
   }
 ---
 
-# Grid 12: Beliebig viele Kacheln, mind. 80px breit, fuellen die verfügbare Breite
+# Grid 12: Beliebig viele Kacheln, mind. 80px breit, füllen die verfügbare Breite
 
 ## Aufgabe
 
 Im Setzkasten-Rahmen sollen die Kacheln so angeordnet werden, dass
-**beliebig viele kacheln, mind. 80px breit, fuellen die verfügbare breite**.
+**beliebig viele kacheln, mind. 80px breit, füllen die verfügbare breite**.
 
 Schreibe die fehlende(n) Grid-Anweisung(en) in `.setzkasten`.
 
@@ -82,7 +82,7 @@ Schreibe die fehlende(n) Grid-Anweisung(en) in `.setzkasten`.
 `repeat(auto-fit, minmax(80px, 1fr))` ist das **wichtigste Pattern in
 modernem CSS**: der Browser zählt selber, wieviele 80px-Spalten in den
 Container passen, und dehnt sie auf den Rest auf. Bei breitem Bildschirm
-viele Spalten, bei schmalem wenige -- ohne dass du eine einzige Media-Query
+viele Spalten, bei schmalem wenige - ohne dass du eine einzige Media-Query
 schreiben musst.
 
 ## Wozu in der Praxis?

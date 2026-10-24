@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 269-punkt-im-kreis
-revision: 1
+revision: 2
 titel: Punkt im Kreis?
 sprache: python
 task_type: code_schreiben
@@ -22,12 +22,12 @@ funktion: im_kreis
 hints:
   - kosten: 0
     text: |
-      Prüfe ob Punkt [x, y] im Kreis liegt -- Mittelpunkt [cx, cy],
+      Prüfe ob Punkt [x, y] im Kreis liegt - Mittelpunkt [cx, cy],
       Radius r. Inklusiv: Punkt AUF dem Kreis zählt als drinnen.
       Distanz zum Mittelpunkt <= r.
   - kosten: 5
     text: |
-      (x - cx)^2 + (y - cy)^2 <= r^2 -- ohne sqrt schneller!
+      (x - cx)^2 + (y - cy)^2 <= r^2 - ohne sqrt schneller!
 tests_sichtbar:
   - input: [[0, 0], [0, 0], 5]
     expected: true
@@ -76,13 +76,13 @@ Punkt = `[x, y]`, Mittelpunkt = `[cx, cy]`, Radius = `r`.
 | `[3, 5]` | `[0, 0]`    | 5 | `False` (3²+5²=34>25) |
 | `[1, 1]` | `[1, 1]`    | 0 | `True` (Punkt-Kreis) |
 
-## Idee -- ohne sqrt!
+## Idee - ohne sqrt!
 
 **Wichtig**: Wir vergleichen **Distanz²** mit **Radius²**, nicht
 Distanz mit Radius. Das spart die teure `sqrt`-Berechnung und
-vermeidet Float-Praezisionsprobleme.
+vermeidet Float-Präzisionsprobleme.
 
-## Vergleich -- mit sqrt
+## Vergleich - mit sqrt
 
 Funktioniert auch, aber langsamer und numerisch leicht schlechter.
 
@@ -90,4 +90,4 @@ Funktioniert auch, aber langsamer und numerisch leicht schlechter.
 
 - **Spiele**: Reichweiten-Skill ("Wer steht im Wirkungsradius?").
 - **Geo-Apps**: "Cafes in 500m Umkreis" (vereinfacht eben).
-- **Cluster-Analyse**: Naechste-Nachbarn-Suche.
+- **Cluster-Analyse**: Nächste-Nachbarn-Suche.

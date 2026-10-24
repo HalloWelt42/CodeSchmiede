@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 179-zweierpotenz
-revision: 1
+revision: 2
 titel: Ist die Zahl eine Zweierpotenz?
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [bits, zahlen, mathematik]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: LeetCode 231
+  notiz: Klassische Bit-Übung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -27,7 +27,7 @@ hints:
       Hinweis: Bit-Trick mit n & (n - 1).
   - kosten: 12
     text: |
-      Zweierpotenzen haben in Binaer GENAU EIN gesetztes Bit.
+      Zweierpotenzen haben in Binär GENAU EIN gesetztes Bit.
       n & (n - 1) löscht das niedrigste Bit. Wenn 0 herauskommt,
       war es das einzige.
 tests_sichtbar:
@@ -63,13 +63,13 @@ starter_code: |
 # Ist die Zahl eine Zweierpotenz?
 
 Schreibe `ist_zweierpotenz(n)`, die `True` zurückgibt, wenn `n`
-eine **Zweierpotenz** ist -- `1, 2, 4, 8, 16, 32, ...`.
+eine **Zweierpotenz** ist - `1, 2, 4, 8, 16, 32, ...`.
 
 `n <= 0` → `False`.
 
 ## Beispiele
 
-| `n`         | Ergebnis | Binaer       |
+| `n`         | Ergebnis | Binär       |
 |-------------|----------|--------------|
 | `1`         | `True`   | `1`          |
 | `2`         | `True`   | `10`         |
@@ -80,20 +80,20 @@ eine **Zweierpotenz** ist -- `1, 2, 4, 8, 16, 32, ...`.
 | `3`         | `False`  | `11`         |
 | `6`         | `False`  | `110`        |
 
-## Idee 1 -- Bit-Trick (O(1))
+## Idee 1 - Bit-Trick (O(1))
 
-Eine Zweierpotenz hat in Binaer **genau ein** gesetztes Bit. `n - 1`
+Eine Zweierpotenz hat in Binär **genau ein** gesetztes Bit. `n - 1`
 hat dann an dieser Stelle und allen tieferen Stellen die Bits
 **umgeklappt**. Folge: `n & (n - 1) == 0` genau dann, wenn `n` eine
 Zweierpotenz ist (und `n > 0`).
 
-## Idee 2 -- Schleife durch Halbierungen
+## Idee 2 - Schleife durch Halbierungen
 
 Eindeutig korrekt, aber `O(log n)` statt `O(1)`.
 
 ## Hintergrund
 
-Zweierpotenzen sind in der Informatik allgegenwaertig: Speicher-
+Zweierpotenzen sind in der Informatik allgegenwärtig: Speicher-
 Größen (1 KB = 1024 B), Bit-Felder, Hash-Tabellen-Größen.
-Der Bit-Trick gehört zum Bewerbungsgespraech-Standard wie der
+Der Bit-Trick gehört zum Bewerbungsgespräch-Standard wie der
 **Brian-Kernighan**-Trick (Aufgabe 159).

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 289-tier-laute
-revision: 1
+revision: 2
 titel: Tier-Hierarchie mit Vererbung
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
 
 # Tier-Hierarchie mit Vererbung
 
-Implementiere `tier_konzert(tiere)` -- eine Liste von Tier-Strings
+Implementiere `tier_konzert(tiere)` - eine Liste von Tier-Strings
 wird in eine Liste der **Laute** umgewandelt.
 
 | Tier        | Laut       |
@@ -87,13 +87,13 @@ wird in eine Liste der **Laute** umgewandelt.
 2. **Methoden überschreiben**: jede Subklasse hat eigenes `laut()`.
 3. **Polymorphismus**: `tier.laut()` ruft die Methode der **realen
    Klasse**, egal welche Variable du hast.
-4. **Default-Verhalten**: `Tier.laut()` liefert "?" -- praktischer
+4. **Default-Verhalten**: `Tier.laut()` liefert "?" - praktischer
    Fallback für unbekannte Subklassen.
 
-## Vergleich -- Dict ohne Klassen
+## Vergleich - Dict ohne Klassen
 
 Funktioniert genauso. Der Punkt der OOP-Variante ist die
-**Erweiterbarkeit**: wenn ein Tier zusaetzlich `größe()`,
+**Erweiterbarkeit**: wenn ein Tier zusätzlich `größe()`,
 `alter()`, `frisst(was)` können soll, profitiert man von der
 Hierarchie.
 

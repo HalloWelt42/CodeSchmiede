@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 238-gerade-filter
-revision: 1
+revision: 2
 titel: Nur gerade Zahlen behalten
 sprache: python
 task_type: code_schreiben
@@ -59,7 +59,7 @@ starter_code: |
 # Nur gerade Zahlen behalten
 
 Schreibe `nur_gerade(zahlen)`, die alle **geraden Zahlen** (`x % 2 == 0`)
-aus der Liste liefert -- in der **ursprünglichen Reihenfolge**.
+aus der Liste liefert - in der **ursprünglichen Reihenfolge**.
 
 Null zählt als gerade. Negative gerade Zahlen ebenso.
 

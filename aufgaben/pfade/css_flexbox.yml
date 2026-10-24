@@ -2,8 +2,8 @@ id: css_flexbox
 titel: CSS-Flexbox Lernpfad
 beschreibung: |
   15 didaktisch aufgebaute Flexbox-Aufgaben mit klarer Progression
-  -- vom Aktivieren von display:flex bis zu align-self-Ausnahmen.
-  Jede Aufgabe fuehrt GENAU EINE neue Property ein, mit Aha-Notiz und
+  - vom Aktivieren von display:flex bis zu align-self-Ausnahmen.
+  Jede Aufgabe führt GENAU EINE neue Property ein, mit Aha-Notiz und
   Praxis-Bezug. Inspiriert von Flexbox-Froggy, aber mit echten Lernzielen
   statt Frosch-Lebensraum.
 

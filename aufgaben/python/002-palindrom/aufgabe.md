@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 002-palindrom
-revision: 1
+revision: 2
 titel: Palindrom-Prüfung
 sprache: python
 task_type: code_schreiben
@@ -21,7 +21,7 @@ zeitlimit_sekunden: 5
 funktion: ist_palindrom
 hints:
   - kosten: 0
-    text: Ein Palindrom liest sich vorwaerts genauso wie rueckwaerts.
+    text: Ein Palindrom liest sich vorwärts genauso wie rückwärts.
   - kosten: 3
     text: In Python kannst du einen String mit `text[::-1]` umkehren.
   - kosten: 9
@@ -62,8 +62,8 @@ starter_code: |
 # Palindrom-Prüfung
 
 Schreibe eine Funktion `ist_palindrom(text)`, die `True` zurückgibt, wenn
-der eingegebene String ein **Palindrom** ist -- also vorwärts und
-rückwärts identisch -- und sonst `False`.
+der eingegebene String ein **Palindrom** ist - also vorwärts und
+rückwärts identisch - und sonst `False`.
 
 ## Beispiele
 
@@ -77,9 +77,9 @@ rückwärts identisch -- und sonst `False`.
 
 ## Worauf zu achten ist
 
-- **Groß-/Kleinschreibung zählt** -- `"Anna"` ist kein Palindrom in
+- **Groß-/Kleinschreibung zählt** - `"Anna"` ist kein Palindrom in
   dieser Aufgabe
-- **Leerzeichen werden mitgezählt** -- vereinfache, indem du davon
+- **Leerzeichen werden mitgezählt** - vereinfache, indem du davon
   ausgehst, dass keine Leerzeichen vorkommen
 - Der **leere String** gilt per Konvention als Palindrom
 

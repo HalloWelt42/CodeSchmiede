@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 180-string-add
-revision: 1
+revision: 2
 titel: Große Zahlen als Strings addieren
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [strings, zahlen, schleifen, simulation]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: LeetCode 415 -- Add Strings
+  notiz: Add Strings, klassische Übungsaufgabe
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -62,7 +62,7 @@ starter_code: |
 # Große Zahlen als Strings addieren
 
 Schreibe `zahl_addieren(a, b)`, die zwei nicht-negative ganze Zahlen
-addiert -- aber **die Eingaben und Ausgabe sind Strings**.
+addiert - aber **die Eingaben und Ausgabe sind Strings**.
 
 **Verboten**: `int(a) + int(b)` oder vergleichbare Tricks. Du sollst
 **Stelle für Stelle** addieren wie auf dem Block.
@@ -77,7 +77,7 @@ addiert -- aber **die Eingaben und Ausgabe sind Strings**.
 | `"123456789"`     | `"987654321"` | `"1111111110"`         |
 | `"0"`             | `"0"`         | `"0"`                  |
 
-## Idee -- Schule-Algorithmus
+## Idee - Schule-Algorithmus
 
 Von **rechts nach links** Stelle für Stelle addieren, Über-Trag
 merken.
@@ -86,12 +86,12 @@ merken.
 
 In Sprachen wie C oder Java gibt es keinen unbegrenzten Integer-Typ.
 Wer dort eine `200`-stellige Zahl addieren will, **muss** Stelle für
-Stelle rechnen. Pythons `int` könnte das zwar -- aber genau dieses
+Stelle rechnen. Pythons `int` könnte das zwar - aber genau dieses
 Pattern (Big-Number, GMP, RSA-Math) baut auf der Schul-Methode auf.
 
 ## Verwandt
 
 - **180-string-add** (diese Aufgabe)
-- **String-Multiplikation** (LeetCode 43)
+- **String-Multiplikation**
 - **String-Subtraktion** (mit Vorzeichen)
 - Implementierung von **Big-Integer-Bibliotheken**.

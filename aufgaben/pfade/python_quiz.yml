@@ -2,7 +2,7 @@ id: python_quiz
 titel: Python-Output-Quiz
 beschreibung: |
   Code lesen statt schreiben. Quiz-Aufgaben, bei denen man die
-  Ausgabe vorhersagen muss -- mit gemeinen Stolperfallen wie
+  Ausgabe vorhersagen muss - mit gemeinen Stolperfallen wie
   Mutable-Default-Args, Late-Binding-Closures und
   List-Comprehension-Tricks. Trainiert das genaue Lesen.
 reihenfolge:

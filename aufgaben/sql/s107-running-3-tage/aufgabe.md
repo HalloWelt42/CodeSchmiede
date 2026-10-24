@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s107-running-3-tage
-revision: 1
+revision: 2
 titel: "Bestellungen: laufende 3er-Summe"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 12
 tags: [window-function, rows-between, moving-sum]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

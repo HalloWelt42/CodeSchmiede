@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 182-trinkgeld-aufteilen
-revision: 1
+revision: 2
 titel: Rechnung mit Trinkgeld aufteilen
 sprache: python
 task_type: code_schreiben
@@ -60,10 +60,10 @@ starter_code: |
 # Rechnung mit Trinkgeld aufteilen
 
 Schreibe `pro_person(rechnung, tip_prozent, personen)`, die berechnet,
-wieviel jeder beim Restaurant zahlen muss -- inklusive **Trinkgeld**
-und gleichmaessig aufgeteilt.
+wieviel jeder beim Restaurant zahlen muss - inklusive **Trinkgeld**
+und gleichmäßig aufgeteilt.
 
-**Sonderfaelle**: bei `personen <= 0` oder `rechnung < 0` → `0.0`.
+**Sonderfälle**: bei `personen <= 0` oder `rechnung < 0` → `0.0`.
 Liefere auf **2 Nachkommastellen** gerundet.
 
 ## Beispiele
@@ -76,7 +76,7 @@ Liefere auf **2 Nachkommastellen** gerundet.
 | `85.50`  | `18%`| `4`     | `25.22`    |
 | `200`    | `25%`| `5`     | `50.00`    |
 
-## Hintergrund -- Trinkgeld-Konvention
+## Hintergrund - Trinkgeld-Konvention
 
 In Deutschland sind 5-10% üblich, in den USA werden 15-20% erwartet,
 in Japan ist Trinkgeld eher unüblich oder sogar unhöflich. Beim

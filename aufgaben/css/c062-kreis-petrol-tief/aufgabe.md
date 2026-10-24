@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c062-kreis-petrol-tief
-revision: 1
+revision: 2
 titel: "Kreis petrol-tief"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [border-radius, kreis, farbe]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

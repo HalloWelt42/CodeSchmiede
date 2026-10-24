@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s112-buecher-mit-stufen
-revision: 1
+revision: 2
 titel: "Bücher mit Dichte-Stufen"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [case-when, klassifizierung]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -58,4 +58,4 @@ starter_code: |
 
 # Bücher mit Dicke-Klassifizierung
 
-Titel + Seitenzahl + Klassifizierung: <200=duenn, <500=mittel, sonst dick.
+Titel + Seitenzahl + Klassifizierung: <200=dünn, <500=mittel, sonst dick.

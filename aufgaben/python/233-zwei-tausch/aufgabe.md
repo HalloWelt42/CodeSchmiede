@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 233-zwei-tausch
-revision: 1
+revision: 2
 titel: Zwei Werte tauschen
 sprache: python
 task_type: code_schreiben
@@ -57,7 +57,7 @@ starter_code: |
 
 # Zwei Werte tauschen
 
-Schreibe `tauschen(a, b)`, die ein Liste `[b, a]` zurückgibt --
+Schreibe `tauschen(a, b)`, die ein Liste `[b, a]` zurückgibt -
 die beiden Werte sind **vertauscht**.
 
 Trivial in Python, aber ein didaktischer Einstieg in
@@ -72,11 +72,11 @@ Trivial in Python, aber ein didaktischer Einstieg in
 | `"a"`    | `"b"`    | `["b", "a"]` |
 | `[1, 2]` | `[3, 4]` | `[[3, 4], [1, 2]]` |
 
-## Idee 1 -- direkt
+## Idee 1 - direkt
 
 Geht nicht kürzer.
 
-## Idee 2 -- Tupel-Zuweisung (äquivalent, aber anschaulich)
+## Idee 2 - Tupel-Zuweisung (äquivalent, aber anschaulich)
 
 Hier sieht man die **Pythonische Variablen-Tausch-Form**: `a, b = b, a`.
 In C oder Java braucht man eine **Hilfsvariable**:
@@ -87,10 +87,10 @@ a = b;
 b = tmp;
 ```
 
-In Python passiert das **atomar** -- die rechte Seite wird komplett
+In Python passiert das **atomar** - die rechte Seite wird komplett
 ausgewertet, bevor die linke zugewiesen wird.
 
 ## Anwendung
 
 Tupel-Tausch ist die Basis vieler **Sortier-Algorithmen** (Bubble,
-Selection, Insertion, Quicksort -- siehe Aufgaben 038, 049-052).
+Selection, Insertion, Quicksort - siehe Aufgaben 038, 049-052).

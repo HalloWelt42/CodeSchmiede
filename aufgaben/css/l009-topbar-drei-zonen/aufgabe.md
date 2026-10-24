@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l009-topbar-drei-zonen
-revision: 1
+revision: 2
 titel: "Layout 09: Topbar mit Logo, Menu und Avatar"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 7
 tags: [layout, lernpfad, navigation, flexbox]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -115,7 +115,7 @@ starter_code: |
 
 ## Aufgabe
 
-Eine klassische Topbar: Marken-Logo links, Hauptmenue in der Mitte,
+Eine klassische Topbar: Marken-Logo links, Hauptmenü in der Mitte,
 User-Avatar rechts.
 
 ## Aha

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 140-fisher-yates
-revision: 1
+revision: 2
 titel: Fisher-Yates-Shuffle (mit Seed)
 sprache: python
 task_type: code_schreiben
@@ -61,7 +61,7 @@ starter_code: |
 # Fisher-Yates-Shuffle (mit Seed)
 
 Schreibe eine Funktion `shuffle_seed(a, seed)`, die eine **gemischte
-Kopie** der Liste zurückgibt -- deterministisch für einen gegebenen
+Kopie** der Liste zurückgibt - deterministisch für einen gegebenen
 `seed`.
 
 Verwende `random.Random(seed).randint(0, i)` für die Index-Wahl, damit
@@ -70,13 +70,13 @@ das Ergebnis exakt reproduzierbar ist.
 ## Algorithmus (Fisher-Yates / Knuth-Shuffle)
 
 Iteriere von hinten nach vorn. Tausche jedes Element `a[i]` mit einem
-zufaellig gewählten Element aus `a[0..i]` (inklusive `i` selbst).
+zufällig gewählten Element aus `a[0..i]` (inklusive `i` selbst).
 
 ## Wichtig
 
 - **Original nicht verändern** → erst kopieren.
 - Bei leerer Liste oder einem Element: unverändert zurückgeben.
-- `random.Random(seed)` liefert eine eigene Instanz, keine Beruehrung
+- `random.Random(seed)` liefert eine eigene Instanz, keine Berührung
   des globalen Generators.
 
 ## Hintergrund
@@ -84,4 +84,4 @@ zufaellig gewählten Element aus `a[0..i]` (inklusive `i` selbst).
 Der Algorithmus ist seit 1938 bekannt und in praktisch jeder Standard-
 Bibliothek umgesetzt (Python: `random.shuffle`). Trotzdem lohnt sich
 das Selbst-Bauen: viele Naiv-Versionen sind subtil verzerrt
-(z.B. wenn `j` zufaellig aus `0..n-1` statt `0..i` gewählt wird).
+(z.B. wenn `j` zufällig aus `0..n-1` statt `0..i` gewählt wird).

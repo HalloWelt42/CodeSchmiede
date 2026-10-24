@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 188-morse-decode
-revision: 1
-titel: Morse-Code -- zurück in Text
+revision: 2
+titel: Morse-Code - zurück in Text
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -81,7 +81,7 @@ Schreibe `morse_decode(morse)`, die einen Morse-String wieder zu
 
 Invertiertes Dict, Wort-für-Wort dekodieren:
 
-## Stolperstein -- Trennung mit Spaces
+## Stolperstein - Trennung mit Spaces
 
 Morse hat **drei** Trenner-Stufen:
 - **kein** Trenner: zwischen Punkten/Strichen eines Buchstabens.
@@ -89,12 +89,12 @@ Morse hat **drei** Trenner-Stufen:
 - **Drei Leerzeichen** (oder " / "): zwischen Wörtern.
 
 Wenn man die Wort-Trenner falsch wählt (z.B. nur 1 Leerzeichen),
-laesst sich der Code nicht mehr eindeutig zerlegen. Darum hier die
+lässt sich der Code nicht mehr eindeutig zerlegen. Darum hier die
 explizite `" / "`-Konvention.
 
 ## Hintergrund
 
-Morse ist ein **selbst-synchronisierender Code** -- ein einziger
+Morse ist ein **selbst-synchronisierender Code** - ein einziger
 verlorener Punkt verschiebt nur einen Buchstaben, nicht den ganzen
 Rest. Das ist mit ein Grund, warum er über laute Funkverbindungen
 und schlechte Telegraphenleitungen funktionierte.

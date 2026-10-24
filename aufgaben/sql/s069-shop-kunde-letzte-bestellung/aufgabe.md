@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s069-shop-kunde-letzte-bestellung
-revision: 1
+revision: 2
 titel: "Shop: letzte Bestellung pro Kunde"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [join, max, group-by]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -51,4 +51,4 @@ starter_code: |
 
 # Letzte Bestellung pro Kunde
 
-Name + spaetestes Bestelldatum, neueste zuerst.
+Name + spätestes Bestelldatum, neueste zuerst.

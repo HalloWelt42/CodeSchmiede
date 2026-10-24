@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 268-punkt-im-rechteck
-revision: 1
+revision: 2
 titel: Punkt im Rechteck?
 sprache: python
 task_type: code_schreiben
@@ -62,7 +62,7 @@ starter_code: |
 
 Schreibe `im_rechteck(punkt, rect)`, die `True` zurückgibt, wenn
 der Punkt `[x, y]` innerhalb des achsen-parallelen Rechtecks liegt.
-Rechteck = `[xmin, ymin, xmax, ymax]`. **Inklusive Raender**.
+Rechteck = `[xmin, ymin, xmax, ymax]`. **Inklusive Ränder**.
 
 ## Beispiele
 
@@ -78,7 +78,7 @@ Rechteck = `[xmin, ymin, xmax, ymax]`. **Inklusive Raender**.
 
 Pythons **chained comparisons** machen das sehr lesbar.
 
-## Variante -- exklusive Raender
+## Variante - exklusive Ränder
 
 Wenn Punkte **auf** dem Rand nicht zählen sollen: `<` statt `<=`.
 

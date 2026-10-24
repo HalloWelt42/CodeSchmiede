@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 267-distanz-punkte
-revision: 1
+revision: 2
 titel: Distanz zwischen zwei Punkten
 sprache: python
 task_type: code_schreiben
@@ -82,11 +82,11 @@ Klassische **3-4-5** und **5-12-13** Tripel ergeben ganze Zahlen.
 
 ## Idee
 
-`math.hypot(a, b)` ist genau `sqrt(a*a + b*b)` -- mit **besserer
-numerischer Stabilitaet** bei extremen Werten (vermeidet Overflow
+`math.hypot(a, b)` ist genau `sqrt(a*a + b*b)` - mit **besserer
+numerischer Stabilität** bei extremen Werten (vermeidet Overflow
 durch Vor-Skalierung).
 
-## Erweiterung -- N Dimensionen
+## Erweiterung - N Dimensionen
 
 Für 3D oder beliebig:
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 139-levenshtein
-revision: 1
+revision: 2
 titel: Levenshtein-Distanz
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Liefere die minimale Anzahl Einzeloperationen
-      (Einfuegen, Löschen, Ersetzen), um a in b zu verwandeln.
+      (Einfügen, Löschen, Ersetzen), um a in b zu verwandeln.
   - kosten: 20
     text: |
       Dynamische Programmierung mit (n+1)x(m+1)-Matrix.
@@ -66,20 +66,20 @@ umzuwandeln.
 
 Erlaubte Operationen (jede zählt als 1):
 
-- **Einfuegen** eines Zeichens
+- **Einfügen** eines Zeichens
 - **Löschen** eines Zeichens
 - **Ersetzen** eines Zeichens
 
 ## Beispiele
 
-| `a`         | `b`         | Distanz | Begruendung                   |
+| `a`         | `b`         | Distanz | Begründung                   |
 |-------------|-------------|---------|-------------------------------|
 | `"kitten"`  | `"sitting"` | 3       | k→s, e→i, +g                  |
 | `"haus"`    | `"maus"`    | 1       | h→m                           |
 | `"abc"`     | `""`        | 3       | drei Löschungen              |
 | `"sonntag"` | `"samstag"` | 3       | onn→ams                       |
 
-## Idee -- Dynamische Programmierung
+## Idee - Dynamische Programmierung
 
 Tabelle `dp[i][j]` = Distanz zwischen den ersten `i` Zeichen von `a`
 und den ersten `j` Zeichen von `b`.
@@ -95,5 +95,5 @@ dp[i][j] = dp[i-1][j-1]                          falls a[i-1] == b[j-1]
 
 ## Hintergrund
 
-Levenshtein steckt hinter Tippfehler-Vorschlaegen, DNA-Sequenz-Alignment,
+Levenshtein steckt hinter Tippfehler-Vorschlägen, DNA-Sequenz-Alignment,
 Plagiats-Erkennung und der "did you mean ..."-Funktion in Suchmaschinen.

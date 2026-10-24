@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s023-anzahl-pro-kategorie
-revision: 1
+revision: 2
 titel: "Bücher pro Kategorie"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [group-by, count, aggregat]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -44,4 +44,4 @@ starter_code: |
 
 # Bücher pro Kategorie
 
-Kategorie und Anzahl der Bücher, hauefigste zuerst.
+Kategorie und Anzahl der Bücher, häufigste zuerst.

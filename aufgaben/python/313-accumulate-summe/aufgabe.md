@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 313-accumulate-summe
-revision: 1
+revision: 2
 titel: Laufende Summen (accumulate)
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
 # Laufende Summen (accumulate)
 
 Schreibe `laufende_summen(liste)`, die die **kumulierten Summen**
-einer Liste liefert -- jedes Element ist die Summe **bis einschließlich
+einer Liste liefert - jedes Element ist die Summe **bis einschließlich
 dieser Position**.
 
 `[1, 2, 3, 4]` → `[1, 1+2, 1+2+3, 1+2+3+4]` → `[1, 3, 6, 10]`.
@@ -78,16 +78,16 @@ Bei leerer Liste → `[]`.
 | `[100, 200, 300]`  | `[100, 300, 600]`   |
 | `[]`               | `[]`                |
 
-## Idee -- Generator
+## Idee - Generator
 
 Der Akkumulator `summe` wird zwischen den `yield`-Aufrufen
-**erhalten** -- das ist die Magie der Generator-Funktionen.
+**erhalten** - das ist die Magie der Generator-Funktionen.
 
 ## Mit itertools.accumulate
 
 `accumulate` macht es default mit Addition. Mit dem `func`-
 Parameter kann man auch Multiplikation, Maximum oder beliebige
-binaere Operationen nehmen:
+binäre Operationen nehmen:
 
 ## Verwandt
 
@@ -97,6 +97,6 @@ binaere Operationen nehmen:
 
 ## Anwendung
 
-- **Praefix-Summen-Optimierung**: Range-Summen in `O(1)` nach `O(n)`-Vorbereitung
+- **Präfix-Summen-Optimierung**: Range-Summen in `O(1)` nach `O(n)`-Vorbereitung
 - **Inkrementelle Statistik**: kumulierte Verkaufszahlen, laufender Score
 - **Visualisierung**: Kumulative Charts (z.B. CDF in der Statistik)

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 204-ascii-rahmen
-revision: 1
+revision: 2
 titel: ASCII-Rahmen um Text
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Umgib einen Text mit einem Rahmen aus + und - und |.
-      Mehrere Zeilen werden auf die laengste gepolstert.
+      Mehrere Zeilen werden auf die längste gepolstert.
       Beispiel:
       "Hi" -> ["+----+", "| Hi |", "+----+"].
       Eingabe ist eine Liste von Zeilen.
@@ -77,7 +77,7 @@ Schreibe `rahmen(zeilen)`, die einen Text mit einem **Rahmen aus
 Bei `[]` liefere `["++", "++"]` (leerer Rahmen).
 Bei `[""]` liefere `["++", "||", "++"]`.
 
-## Stolperstein -- alle Zeilen gleich lang
+## Stolperstein - alle Zeilen gleich lang
 
 Damit der rechte Rand sauber bleibt, müssen kürzere Zeilen mit
 Leerzeichen aufgefüllt werden. `str.ljust(breite)` macht das in
@@ -88,4 +88,4 @@ einer Zeile.
 ASCII-Rahmen tauchen in CLI-Tools (Banner-Text), Code-Reviews
 (Diff-Boxen), Drucker-Ausgaben und Retro-Spielen auf. Die
 **Box-Drawing-Characters** in Unicode (`╔═╗║╚╝`) bieten schickere
-Linien -- aber nicht jedes Terminal stellt sie korrekt dar.
+Linien - aber nicht jedes Terminal stellt sie korrekt dar.

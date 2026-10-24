@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 344-js-padovan-folge
-revision: 1
-titel: JavaScript -- Padovan-Folge
+revision: 2
+titel: JavaScript - Padovan-Folge
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, array, folgen, mathematik]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Padovan_sequence
-  notiz: Rosetta Code -- Padovan sequence, JS
+  notiz: Rosetta Code - Padovan sequence, JS
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -43,7 +43,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Padovan-Folge
+# JavaScript - Padovan-Folge
 
 Schreibe `padovan(n)`, die die ersten `n` Glieder der Padovan-Folge
 liefert.
@@ -62,12 +62,12 @@ liefert.
 
 ## Idee
 
-`folge.slice(0, n)` schneidet auf genau `n` Elemente -- bei `n < 3`
+`folge.slice(0, n)` schneidet auf genau `n` Elemente - bei `n < 3`
 landen wir mit weniger als 3 Werten am Ende.
 
 ## Hintergrund
 
-Padovan ist die "kleine Schwester" von Fibonacci -- gleiche Familie
-linearer Rekurrenzen, andere Verzoegerung. Das Verhaeltnis
+Padovan ist die "kleine Schwester" von Fibonacci - gleiche Familie
+linearer Rekurrenzen, andere Verzögerung. Das Verhältnis
 benachbarter Werte konvergiert gegen die **plastische Zahl**
 $\rho \approx 1{,}3247$.

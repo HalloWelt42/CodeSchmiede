@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 105-vigenere
-revision: 1
+revision: 2
 titel: Vigenère-Verschlüsselung
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: vigenere
 hints:
   - kosten: 0
     text: |
-      Wie ROT-N, aber pro Position eine andere Verschiebung -- bestimmt
+      Wie ROT-N, aber pro Position eine andere Verschiebung - bestimmt
       durch den Schlüssel. Schlüssel 'a'=0, 'b'=1, ..., 'z'=25.
       Schlüssel wird zyklisch wiederholt; Nicht-Buchstaben überspringen
       die Schlüsselposition NICHT.
@@ -59,7 +59,7 @@ starter_code: |
 Schreibe eine Funktion `vigenere(text, schlüssel)`, die einen Text
 mit der **Vigenère-Chiffre** verschlüsselt.
 
-Im Unterschied zu Caesar/ROT-N variiert die Verschiebung pro Position --
+Im Unterschied zu Caesar/ROT-N variiert die Verschiebung pro Position -
 gesteuert durch einen wiederholten Schlüssel.
 
 ## Regel
@@ -72,7 +72,7 @@ $$
 
 mit $a=0, b=1, ..., z=25$. Groß-/Kleinschreibung bleibt erhalten,
 Nicht-Buchstaben werden 1:1 durchgereicht. Der Schlüssel-Index
-wandert **nur** bei Buchstaben weiter -- Sonderzeichen überspringen
+wandert **nur** bei Buchstaben weiter - Sonderzeichen überspringen
 ihn nicht.
 
 ## Beispiele
@@ -86,7 +86,7 @@ ihn nicht.
 
 ## Hintergrund
 
-Beschrieben 1553 von Giovan Battista Bellaso, dann faelschlich
+Beschrieben 1553 von Giovan Battista Bellaso, dann fälschlich
 nach Blaise de Vigenère benannt. Galt 300 Jahre als unknackbar
 ("le chiffre indéchiffrable"), bis Charles Babbage und Friedrich
 Kasiski sie 1854 / 1863 mit Periodenanalyse brachen.

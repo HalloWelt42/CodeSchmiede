@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s098-shop-vip-kunden
-revision: 1
+revision: 2
 titel: "Shop: VIP-Kunden (über 30 EUR Umsatz)"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [join, group-by, having]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -40,4 +40,4 @@ starter_code: |
 
 # VIP-Kunden
 
-Kunden mit Gesamtumsatz > 30 EUR -- Name + Umsatz, höchste zuerst.
+Kunden mit Gesamtumsatz > 30 EUR - Name + Umsatz, höchste zuerst.

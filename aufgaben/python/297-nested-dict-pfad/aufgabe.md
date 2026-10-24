@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 297-nested-dict-pfad
-revision: 1
+revision: 2
 titel: Nested-Dict via dotted path lesen
 sprache: python
 task_type: code_schreiben
@@ -71,7 +71,7 @@ Bei fehlendem Schlüssel oder wenn ein Zwischen-Wert kein Dict ist
 → `default` zurückgeben.
 
 **Wichtig**: Wenn der Pfad existiert UND der Wert ist `False`/`0`/`None`,
-muss der **echte Wert** zurückkommen -- nicht der `default`.
+muss der **echte Wert** zurückkommen - nicht der `default`.
 
 ## Beispiele
 
@@ -92,7 +92,7 @@ Pro Schritt:
 2. Falls nicht → default.
 3. Falls ja → eine Ebene tiefer.
 
-## Stolperstein -- `False` vs. `default`
+## Stolperstein - `False` vs. `default`
 
 Wer es so schreibt:
 
@@ -103,5 +103,5 @@ None" und "Key nicht da". Daher die explizite `in`-Prüfung.
 ## Anwendung
 
 - **Konfigurations-Lookup**: `config.get("server.timeout", 30)`.
-- **Json-Path-Light** (echtes JSONPath ist maechtiger).
+- **Json-Path-Light** (echtes JSONPath ist mächtiger).
 - **Template-Engines**: `{{user.address.city}}`-Lookup.

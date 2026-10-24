@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s002-deutsche-autoren
-revision: 1
+revision: 2
 titel: "Deutsche Autoren alphabetisch"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [select, where, order-by]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- WHERE + ORDER BY.
+  notiz: Eigene Aufgabe - WHERE + ORDER BY.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

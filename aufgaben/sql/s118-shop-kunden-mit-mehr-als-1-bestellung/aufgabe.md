@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s118-shop-kunden-mit-mehr-als-1-bestellung
-revision: 1
+revision: 2
 titel: "Shop: Wiederkehrende Kunden"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [join, group-by, having]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

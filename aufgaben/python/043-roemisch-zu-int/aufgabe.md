@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 043-roemisch-zu-int
-revision: 1
+revision: 2
 titel: Römisch zu Integer
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [strings, dict, roemisch, schleifen]
 voraussetzungen: [022-wortzaehler]
 quelle:
   url: https://de.wikipedia.org/wiki/R%C3%B6mische_Zahlen
-  notiz: Klassische LeetCode/HackerRank-Aufgabe in eigener Reformulierung
+  notiz: Klassische Übungsaufgabe, eigene Formulierung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10

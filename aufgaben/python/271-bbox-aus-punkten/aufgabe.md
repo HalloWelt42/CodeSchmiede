@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 271-bbox-aus-punkten
-revision: 1
+revision: 2
 titel: Bounding-Box um Punkte
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: bbox
 hints:
   - kosten: 0
     text: |
-      Liefere [xmin, ymin, xmax, ymax] -- die kleinste achsen-
+      Liefere [xmin, ymin, xmax, ymax] - die kleinste achsen-
       parallele Box, die alle Punkte enthält.
       Punkte sind [[x1, y1], [x2, y2], ...]. Bei [] → [0, 0, 0, 0].
   - kosten: 8
@@ -58,7 +58,7 @@ starter_code: |
 # Bounding-Box um Punkte
 
 Schreibe `bbox(punkte)`, die die **kleinste achsen-parallele Box**
-liefert, die alle Punkte enthält -- als `[xmin, ymin, xmax, ymax]`.
+liefert, die alle Punkte enthält - als `[xmin, ymin, xmax, ymax]`.
 
 Bei leerer Liste → `[0, 0, 0, 0]`.
 
@@ -74,12 +74,12 @@ Bei leerer Liste → `[0, 0, 0, 0]`.
 
 ## Idee
 
-Vier `min`/`max`-Aufrufe -- konzeptuell vier Schleifen, real durch
+Vier `min`/`max`-Aufrufe - konzeptuell vier Schleifen, real durch
 Pythons C-Implementierung sehr schnell.
 
 ## Effizientere Variante (eine Schleife)
 
-Für extrem große Listen schneller -- vier Builtins durch eine
+Für extrem große Listen schneller - vier Builtins durch eine
 Schleife ersetzt.
 
 ## Anwendung

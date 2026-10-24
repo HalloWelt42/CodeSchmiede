@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: h003-verlauf-diagonal
-revision: 1
+revision: 2
 titel: "Challenge 03: Diagonaler Verlauf"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [challenge, lernpfad, gradient]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -53,13 +53,13 @@ nach Indigo (unten-rechts).
 
 ## Aha
 
-linear-gradient ist ein Bild im Sinne von background-image -- es geht
+linear-gradient ist ein Bild im Sinne von background-image - es geht
 nicht auf background-color. Wichtig: Winkel im CSS arbeiten anders als in
 Mathematik: 0deg ist nach OBEN, 90deg ist nach RECHTS, 135deg geht nach
 rechts-unten (Diagonale). Mit mehreren color-stops (50%, 80%, ...) kann man
-komplexere Verlaeufe bauen.
+komplexere Verläufe bauen.
 
 ## Wozu in der Praxis?
 
-Hero-Hintergruende, Buttons (Hover-Glanz), Card-Effekte, Avatar-Standards
+Hero-Hintergründe, Buttons (Hover-Glanz), Card-Effekte, Avatar-Standards
 ohne Bild.

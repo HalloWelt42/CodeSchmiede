@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s097-kategorien-mit-buechern
-revision: 1
+revision: 2
 titel: "Kategorien mit mind. 3 Büchern"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [group-by, having]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -40,4 +40,4 @@ starter_code: |
 
 # Kategorien mit min. 3 Büchern
 
-Kategorie + Anzahl, hauefigste zuerst.
+Kategorie + Anzahl, häufigste zuerst.

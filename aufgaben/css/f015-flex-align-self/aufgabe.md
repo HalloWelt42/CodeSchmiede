@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: f015-flex-align-self
-revision: 1
-titel: "Flexbox 15: Ein Item anders ausrichten -- align-self"
+revision: 2
+titel: "Flexbox 15: Ein Item anders ausrichten - align-self"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [flexbox, lernpfad, align-self]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -89,7 +89,7 @@ starter_code: |
 ## Aufgabe
 
 Der Bahn richtet alle Kacheln vertikal **mittig** aus.
-**B soll als Ausnahme oben kleben** -- während A und C in der Mitte
+**B soll als Ausnahme oben kleben** - während A und C in der Mitte
 bleiben.
 
 ## Aha

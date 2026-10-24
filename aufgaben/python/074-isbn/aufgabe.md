@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 074-isbn
-revision: 1
+revision: 2
 titel: ISBN-10 prüfen
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: ist_isbn_gueltig
 hints:
   - kosten: 0
     text: |
-      ISBN-10 hat 10 Stellen. Letzte Stelle darf "X" sein -- als 10
+      ISBN-10 hat 10 Stellen. Letzte Stelle darf "X" sein - als 10
       gewertet. Bindestriche werden ignoriert.
   - kosten: 9
     text: |

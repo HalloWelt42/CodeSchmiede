@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 316-counter-most-common
-revision: 1
+revision: 2
 titel: Top-N häufigste Werte
 sprache: python
 task_type: code_schreiben
@@ -62,7 +62,7 @@ starter_code: |
 # Top-N häufigste Werte
 
 Schreibe `top_n(liste, n)`, die die **N häufigsten Werte** als Liste
-von `[wert, anzahl]`-Paaren liefert -- absteigend nach Anzahl. Bei
+von `[wert, anzahl]`-Paaren liefert - absteigend nach Anzahl. Bei
 Gleichstand: **kleinerer Wert zuerst**.
 
 `n <= 0` → `[]`. `n` größer als Anzahl unique → alle.
@@ -85,7 +85,7 @@ Tupel-Key sortiert lexikographisch:
 
 ## Vergleich mit `Counter.most_common`
 
-`c.most_common(n)` liefert das fast direkt -- aber bei Gleichstand
+`c.most_common(n)` liefert das fast direkt - aber bei Gleichstand
 ist die Reihenfolge **insertion-order** des Counter, nicht lexikographisch
 des Werts. Daher hier eigene Sortierung.
 

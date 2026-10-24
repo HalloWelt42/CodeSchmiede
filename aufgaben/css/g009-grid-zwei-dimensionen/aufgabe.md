@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: g009-grid-zwei-dimensionen
-revision: 1
-titel: "Grid 09: 2D-Positionierung -- grid-row + grid-column"
+revision: 2
+titel: "Grid 09: 2D-Positionierung - grid-row + grid-column"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [grid, lernpfad, grid-row, grid-column]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -54,8 +54,8 @@ asserts:
 hints:
   - kosten: 0
     text: |
-      `grid-row` funktioniert analog zu `grid-column`: `1 / 3` heisst von Zeilen-
-      linie 1 bis 3 -- also über 2 Zeilen. Eine Sidebar kann so volle Höhe einnehmen.
+      `grid-row` funktioniert analog zu `grid-column`: `1 / 3` heißt von Zeilen-
+      linie 1 bis 3 - also über 2 Zeilen. Eine Sidebar kann so volle Höhe einnehmen.
   - kosten: 4
     text: |
       Setze auf `.sidebar`: `grid-row: 1 / 3;`
@@ -96,11 +96,11 @@ Kacheln darunter.
 
 ## Aha
 
-Grid laesst dich beliebige Zellen-Positionen explizit angeben.
-Das macht 2D-Layouts moeglich, die mit Flexbox sehr umstaendlich wären.
+Grid lässt dich beliebige Zellen-Positionen explizit angeben.
+Das macht 2D-Layouts möglich, die mit Flexbox sehr umständlich wären.
 Ein klassischer Use-Case ist die Sidebar, die über mehrere Reihen geht.
 
 ## Wozu in der Praxis?
 
 Mail-Clients (Ordner-Sidebar | Liste | Vorschau), IDEs (Datei-Tree | Editor
-| Output), Admin-Panels -- alle leben von solchen 2D-Layouts.
+| Output), Admin-Panels - alle leben von solchen 2D-Layouts.

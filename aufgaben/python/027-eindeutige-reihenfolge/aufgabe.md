@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 027-eindeutige-reihenfolge
-revision: 1
+revision: 2
 titel: Doppelte raus, Reihenfolge bleibt
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [listen, sets, schleifen]
 voraussetzungen: [025-set-schnitt]
 quelle:
   url: null
-  notiz: Klassische Aufgabe -- der Knackpunkt ist die Reihenfolge.
+  notiz: Klassische Aufgabe - der Knackpunkt ist die Reihenfolge.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -57,7 +57,7 @@ starter_code: |
 # Doppelte raus, Reihenfolge bleibt
 
 Schreibe eine Funktion `eindeutige(a)`, die jedes Element aus `a` nur
-**einmal** im Ergebnis behaelt -- in der Reihenfolge des **ersten
+**einmal** im Ergebnis behält - in der Reihenfolge des **ersten
 Auftretens**.
 
 ## Beispiele
@@ -71,11 +71,11 @@ Auftretens**.
 
 ## Falle
 
-`list(set(a))` zerstört die Reihenfolge -- Sets in Python sind nicht
+`list(set(a))` zerstört die Reihenfolge - Sets in Python sind nicht
 ordnungserhaltend. Es gibt zwei saubere Wege:
 
 1. Schleife mit `gesehen`-Set
-2. `list(dict.fromkeys(a))` -- nutzt aus, dass Dicts seit 3.7
+2. `list(dict.fromkeys(a))` - nutzt aus, dass Dicts seit 3.7
    Insertion-Order garantieren
 
 Beide sind gültig.
@@ -84,5 +84,5 @@ Beide sind gültig.
 
 Diese Aufgabe ist eines der typischen Beispiele dafür, dass eine
 augenscheinlich passende Standardlösung (`set`) eine subtile
-Schwaeche hat (Reihenfolge). Solche Faelle sind in echten Codebasen
+Schwäche hat (Reihenfolge). Solche Fälle sind in echten Codebasen
 sehr häufig.

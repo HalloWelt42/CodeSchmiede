@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 286-queue-ops
-revision: 1
+revision: 2
 titel: Queue (FIFO) mit Operations-Liste
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
 
 # Queue (FIFO) mit Operations-Liste
 
-Implementiere `queue_lauf(operationen)` -- eine **Queue** (FIFO --
+Implementiere `queue_lauf(operationen)` - eine **Queue** (FIFO -
 "First in, first out") wird mit einer Operations-Liste manipuliert.
 Liefere den finalen Queue-Inhalt als Liste, vorne zuerst.
 
@@ -82,17 +82,17 @@ Liefere den finalen Queue-Inhalt als Liste, vorne zuerst.
 
 ## Warum `deque` und nicht `list`?
 
-`list.pop(0)` ist `O(n)` -- alle Elemente müssen nach links
+`list.pop(0)` ist `O(n)` - alle Elemente müssen nach links
 verschoben werden. `deque.popleft()` ist `O(1)`. Bei vielen
 dequeue-Operationen macht das den Unterschied zwischen "schnell"
 und "unbenutzbar".
 
 `deque` aus `collections` ist eine **doppelt verkettete Liste**
-mit konstanter Zeit für beide Enden -- perfekt für Queues.
+mit konstanter Zeit für beide Enden - perfekt für Queues.
 
 ## Anwendung
 
 - **Task-Queues** (z.B. Print-Spooler).
-- **BFS** (Breitensuche) -- Aufgabe 114.
+- **BFS** (Breitensuche) - Aufgabe 114.
 - **Producer-Consumer**-Patterns.
 - **Sliding-Window**-Algorithmen.

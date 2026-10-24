@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s143-shop-status-und-anzahl-kunden
-revision: 1
+revision: 2
 titel: "Shop: Kunden mit Bestellungen pro Status"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [group-by, count-distinct]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

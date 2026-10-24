@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 261-zahlen-zu-ip
-revision: 1
+revision: 2
 titel: Vier Zahlen zur IPv4 zusammensetzen
 sprache: python
 task_type: code_schreiben
@@ -79,7 +79,7 @@ Bei ungültiger Eingabe → `""`.
 
 ## Idee
 
-Drei Schritte: Laenge prüfen, Werte prüfen, joinen.
+Drei Schritte: Länge prüfen, Werte prüfen, joinen.
 
 ## Pendant
 
@@ -88,7 +88,7 @@ Zusammen ist es ein **Round-Trip**:
 
 ## Loopback und 0.0.0.0
 
-- `127.0.0.1` ist die **Loopback-IP** -- der eigene Rechner.
+- `127.0.0.1` ist die **Loopback-IP** - der eigene Rechner.
 - `0.0.0.0` ist "alle Interfaces" beim Listen-Server,
   aber "ungültig" als Quell-Adresse.
 - `255.255.255.255` ist die **Broadcast-Adresse**.

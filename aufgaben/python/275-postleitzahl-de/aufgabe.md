@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 275-postleitzahl-de
-revision: 1
+revision: 2
 titel: Deutsche Postleitzahl validieren
 sprache: python
 task_type: code_schreiben
@@ -66,9 +66,9 @@ starter_code: |
 # Deutsche Postleitzahl validieren
 
 Schreibe `ist_plz(s)`, die `True` zurückgibt, wenn der String eine
-**deutsche Postleitzahl** ist -- **genau 5 Ziffern**, sonst nichts.
+**deutsche Postleitzahl** ist - **genau 5 Ziffern**, sonst nichts.
 
-Whitespace, Buchstaben, andere Laengen → `False`.
+Whitespace, Buchstaben, andere Längen → `False`.
 
 ## Beispiele
 
@@ -80,24 +80,24 @@ Whitespace, Buchstaben, andere Laengen → `False`.
 | `"1234"`   | `False` |
 | `"123456"` | `False` |
 | `"abcde"`  | `False` |
-| `" 12345"` | `False` (fuehrendes Leerzeichen) |
+| `" 12345"` | `False` (führendes Leerzeichen) |
 | `"1a345"`  | `False` |
 | `""`       | `False` |
 
-## Idee -- Regex
+## Idee - Regex
 
 `re.fullmatch` erwartet, dass das **gesamte String** dem Pattern
 entspricht (im Gegensatz zu `match`, das nur am Anfang prüft).
-`\d{5}` heisst "genau 5 Ziffern".
+`\d{5}` heißt "genau 5 Ziffern".
 
 ## Variante ohne Regex
 
-Funktioniert auch -- `str.isdigit` schließt `' '` und Buchstaben aus.
+Funktioniert auch - `str.isdigit` schließt `' '` und Buchstaben aus.
 `len(s) == 5` hängt mit dran.
 
 ## Hintergrund
 
 Deutsche PLZ haben **5 Ziffern** seit 1993 (vorher 4-stellig). Es
-gibt etwa 8200 PLZ in Deutschland. Manche Sonderfaelle (Postfaecher,
-Großempfaenger) haben eigene PLZ -- die kann man mit der einfachen
+gibt etwa 8200 PLZ in Deutschland. Manche Sonderfälle (Postfächer,
+Großempfänger) haben eigene PLZ - die kann man mit der einfachen
 Regex aber nicht von normalen unterscheiden.

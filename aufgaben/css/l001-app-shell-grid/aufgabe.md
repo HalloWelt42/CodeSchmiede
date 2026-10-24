@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l001-app-shell-grid
-revision: 1
+revision: 2
 titel: "Layout 01: App-Shell mit grid-template-areas"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [layout, lernpfad, grid, template-areas]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -64,7 +64,7 @@ hints:
       grid-template-areas:
         "kopf kopf"
         "seite haupt"
-        "fuss fuss";
+        "fuß fuß";
 starter_code: |
   .app {
     display: grid;
@@ -99,9 +99,9 @@ Klassische App-Struktur in 3 Zeilen und 2 Spalten:
 
 Mit grid-template-areas siehst du das Layout direkt im CSS
 als ASCII-Skizze. Jedes Item bekommt per `grid-area` einen Namen
-zugewiesen -- die Zuordnung ist deklarativ und auf einen Blick lesbar.
+zugewiesen - die Zuordnung ist deklarativ und auf einen Blick lesbar.
 
 ## Wozu in der Praxis?
 
-Admin-Panels, Mail-Clients, IDEs, Dashboards --
+Admin-Panels, Mail-Clients, IDEs, Dashboards -
 praktisch jede Web-App startet mit so einer Shell.

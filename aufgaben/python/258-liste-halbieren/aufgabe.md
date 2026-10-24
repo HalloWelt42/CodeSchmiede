@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 258-liste-halbieren
-revision: 1
-titel: Liste in zwei Haelften aufteilen
+revision: 2
+titel: Liste in zwei Hälften aufteilen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -22,8 +22,8 @@ funktion: halbieren
 hints:
   - kosten: 0
     text: |
-      Teile die Liste in zwei Haelften: [erste_haelfte, zweite_haelfte].
-      Bei UNGERADER Anzahl: das mittlere Element gehört zur ZWEITEN Haelfte.
+      Teile die Liste in zwei Hälften: [erste_hälfte, zweite_hälfte].
+      Bei UNGERADER Anzahl: das mittlere Element gehört zur ZWEITEN Hälfte.
       [1,2,3,4,5] → [[1,2], [3,4,5]].
       Bei [] → [[], []].
   - kosten: 4
@@ -56,30 +56,30 @@ starter_code: |
       pass
 ---
 
-# Liste in zwei Haelften aufteilen
+# Liste in zwei Hälften aufteilen
 
-Schreibe `halbieren(liste)`, die eine Liste in **zwei Haelften**
+Schreibe `halbieren(liste)`, die eine Liste in **zwei Hälften**
 teilt: `[erste_haelfte, zweite_haelfte]`.
 
 Bei **ungerader Anzahl**: das mittlere Element gehört zur **zweiten**
-Haelfte.
+Hälfte.
 
 ## Beispiele
 
 | Eingabe           | Ergebnis                  |
 |-------------------|---------------------------|
 | `[1, 2, 3, 4]`    | `[[1, 2], [3, 4]]`        |
-| `[1, 2, 3, 4, 5]` | `[[1, 2], [3, 4, 5]]` (3 in 2. Haelfte) |
+| `[1, 2, 3, 4, 5]` | `[[1, 2], [3, 4, 5]]` (3 in 2. Hälfte) |
 | `[1, 2, 3]`       | `[[1], [2, 3]]`           |
 | `[1]`             | `[[], [1]]`               |
 | `[]`              | `[[], []]`                |
 
 ## Idee
 
-Pythons `//` rundet **ab** -- bei `len == 5` ist `mid = 2`, also
-liegen Elemente 0-1 in der ersten Haelfte und 2-4 in der zweiten.
+Pythons `//` rundet **ab** - bei `len == 5` ist `mid = 2`, also
+liegen Elemente 0-1 in der ersten Hälfte und 2-4 in der zweiten.
 
-## Wenn die mittlere Stelle zur ERSTEN Haelfte soll
+## Wenn die mittlere Stelle zur ERSTEN Hälfte soll
 
 Mit `len == 5` ergibt das `3`, also `[1,2,3] | [4,5]`.
 

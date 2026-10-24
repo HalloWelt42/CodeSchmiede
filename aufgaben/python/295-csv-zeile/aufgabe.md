@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 295-csv-zeile
-revision: 1
+revision: 2
 titel: CSV-Zeile mit Quoting parsen
 sprache: python
 task_type: code_schreiben
@@ -87,7 +87,7 @@ Quoting-Regel:
 
 ## Idee mit `csv`-Modul
 
-Pythons `csv.reader` macht alles richtig -- inklusive
+Pythons `csv.reader` macht alles richtig - inklusive
 **escaped Quotes** (`""` innerhalb Quotes wird zu `"`),
 Whitespace-Tolerieren etc.
 
@@ -104,5 +104,5 @@ das Komma als Trenner gilt.
 
 Echte CSV-Files haben mehrere Zeilen + Header + Encoding-
 Spielereien. Das `csv`-Modul kann all das. Manche Tools nutzen
-`;` statt `,` (Excel mit deutscher Locale), das geht über
+`;` statt `,` (Tabellenkalkulationen mit deutscher Einstellung), das geht über
 `csv.reader([s], delimiter=";")`.

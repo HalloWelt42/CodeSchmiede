@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 240-wechsel-zaehlen
-revision: 1
-titel: Wechsel zum Vorgaenger zählen
+revision: 2
+titel: Wechsel zum Vorgänger zählen
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -22,7 +22,7 @@ funktion: wechsel
 hints:
   - kosten: 0
     text: |
-      Zähle, wie oft sich ein Element zum direkten Vorgaenger
+      Zähle, wie oft sich ein Element zum direkten Vorgänger
       unterscheidet.
       [1,1,2,2,3] → 2 (1->2 und 2->3).
       [] / [x] → 0.
@@ -57,16 +57,16 @@ starter_code: |
       pass
 ---
 
-# Wechsel zum Vorgaenger zählen
+# Wechsel zum Vorgänger zählen
 
 Schreibe `wechsel(liste)`, die zählt, wie oft sich ein Element zum
-direkten **Vorgaenger** unterscheidet.
+direkten **Vorgänger** unterscheidet.
 
 Bei leerer oder einelementiger Liste → `0`.
 
 ## Beispiele
 
-| Liste                    | Wechsel | Erklaerung                |
+| Liste                    | Wechsel | Erklärung                |
 |--------------------------|---------|----------------------------|
 | `[1, 1, 2, 2, 3]`        | `2`     | 1→2, 2→3                   |
 | `[1, 1, 1]`              | `0`     | nichts wechselt            |
@@ -76,10 +76,10 @@ Bei leerer oder einelementiger Liste → `0`.
 
 ## Idee
 
-`zip(liste, liste[1:])` paart aufeinanderfolgende Elemente -- ein
+`zip(liste, liste[1:])` paart aufeinanderfolgende Elemente - ein
 Pattern, das auch in **230-ist-aufsteigend** vorkommt.
 
-## Verwandt -- Run-Length-Encoding
+## Verwandt - Run-Length-Encoding
 
 Die Anzahl der Wechsel ist gleich (Anzahl Runs - 1):
 

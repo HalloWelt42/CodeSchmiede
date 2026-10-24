@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 038-bubble-sort
-revision: 1
+revision: 2
 titel: Bubble-Sort von Hand
 sprache: python
 task_type: code_schreiben
@@ -27,7 +27,7 @@ hints:
       vertauscht wurde.
   - kosten: 11
     text: |
-      Aussere Schleife `n` mal, innere von 0 bis n-i-1. Vertauschen mit
+      Äußere Schleife `n` mal, innere von 0 bis n-i-1. Vertauschen mit
       Tuple-Unpacking: `a[j], a[j+1] = a[j+1], a[j]`.
 tests_sichtbar:
   - input: [[3, 1, 2]]
@@ -56,7 +56,7 @@ starter_code: |
 # Bubble-Sort von Hand
 
 Schreibe eine Funktion `bubble_sort(liste)`, die die Liste mit
-**Bubble-Sort** sortiert -- ohne `sorted()` oder `list.sort()` zu
+**Bubble-Sort** sortiert - ohne `sorted()` oder `list.sort()` zu
 verwenden.
 
 ## Idee
@@ -64,7 +64,7 @@ verwenden.
 Vergleiche **benachbarte Elemente** und vertausche sie, falls sie in
 falscher Reihenfolge sind. Wiederhole das, bis kein Tausch mehr
 nötig ist. Bei jedem Durchlauf "blubbert" das jeweils größte
-verbliebene Element ans Ende -- daher der Name.
+verbliebene Element ans Ende - daher der Name.
 
 ## Beispiele
 
@@ -75,14 +75,14 @@ verbliebene Element ans Ende -- daher der Name.
 | `[]`             | `[]`            |
 | `[42]`           | `[42]`          |
 
-## Komplexitaet
+## Komplexität
 
 Bubble-Sort ist mit $O(n^2)$ **deutlich langsamer** als die in der
 Standardbibliothek eingebauten Sortierverfahren ($O(n \log n)$). In
 echtem Code nimm immer `sorted()`. Hier geht es ums **Verstehen**, wie
 ein Sortierverfahren von innen aussieht.
 
-## Stabilitaet
+## Stabilität
 
 Bubble-Sort ist **stabil**: gleiche Werte behalten ihre relative
 Reihenfolge. Beim Programmieren darauf achten, **nicht** zu tauschen,

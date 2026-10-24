@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 184-vier-gewinnt
-revision: 1
-titel: Vier-Gewinnt -- gibt es einen Sieger?
+revision: 2
+titel: Vier-Gewinnt - gibt es einen Sieger?
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -60,7 +60,7 @@ Schreibe `vier_gewinnt(brett)`, die für ein 6x7-Brett entscheidet,
 ob `"X"` oder `"O"` vier gleiche Zellen in einer Reihe hat.
 
 Vier in einer Reihe gibt es in **vier Richtungen**: horizontal,
-vertikal, und beide Diagonalen. Reihenfolge der Prüfung egal --
+vertikal, und beide Diagonalen. Reihenfolge der Prüfung egal -
 sobald ein Sieger gefunden ist, kann man zurückgeben.
 
 Wenn keiner gewonnen hat → `None`.
@@ -78,7 +78,7 @@ Wenn keiner gewonnen hat → `None`.
 
 → `"O"`.
 
-## Idee -- vier Richtungen
+## Idee - vier Richtungen
 
 Die Symmetrie der vier Richtungen ist wichtig: `(0,1)` deckt sowohl
 "links nach rechts" als auch "rechts nach links" ab, weil wir

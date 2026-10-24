@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s139-ausleihen-pro-leser-und-kategorie
-revision: 1
+revision: 2
 titel: "Ausleihen pro Leser und Kategorie"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [join, group-by-multi]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -57,4 +57,4 @@ starter_code: |
 
 # Ausleihen pro Leser-Kategorie
 
-Leser, Kategorie, Anzahl -- pro Leser dann meiste Ausleihen.
+Leser, Kategorie, Anzahl - pro Leser dann meiste Ausleihen.

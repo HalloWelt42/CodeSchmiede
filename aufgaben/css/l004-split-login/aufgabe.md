@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l004-split-login
-revision: 1
+revision: 2
 titel: "Layout 04: Split-Screen mit Bild und Formular"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [layout, lernpfad, split, flexbox]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -62,7 +62,7 @@ asserts:
 hints:
   - kosten: 0
     text: |
-      Zwei Spalten je 50% breit, beide mit eigenem Hintergrund. Container hat overflow: hidden damit der border-radius an den Aussen-Ecken sauber schneidet.
+      Zwei Spalten je 50% breit, beide mit eigenem Hintergrund. Container hat overflow: hidden damit der border-radius an den Außen-Ecken sauber schneidet.
   - kosten: 4
     text: |
       Auf .split: `display: flex; overflow: hidden;` und auf .visual und .form jeweils `flex: 1;`
@@ -98,19 +98,19 @@ starter_code: |
 
 ## Aufgabe
 
-Zwei gleich breite Spalten -- links Petrol-Bild-Platzhalter, rechts
-die Form. Die Aussen-Ecken sind abgerundet, ohne dass die inneren
+Zwei gleich breite Spalten - links Petrol-Bild-Platzhalter, rechts
+die Form. Die Außen-Ecken sind abgerundet, ohne dass die inneren
 Farben überlaufen.
 
 ## Aha
 
 flex: 1 ist Kurzform für
 flex-grow: 1 / flex-shrink: 1 / flex-basis: 0. Zwei Items mit
-je flex: 1 teilen sich den Platz haelftig.
+je flex: 1 teilen sich den Platz hälftig.
 
 Der Trick mit overflow:
 hidden auf dem Container: damit der border-radius greift, ohne
-dass die Kind-Hintergruende drüber stehen.
+dass die Kind-Hintergründe drüber stehen.
 
 ## Wozu in der Praxis?
 

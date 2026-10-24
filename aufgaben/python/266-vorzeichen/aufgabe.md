@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 266-vorzeichen
-revision: 1
+revision: 2
 titel: Vorzeichen-Funktion (sign)
 sprache: python
 task_type: code_schreiben
@@ -83,18 +83,18 @@ Funktioniert sowohl mit `int` als auch `float`.
 | -0.5        | `-1`      |
 | 1000000000  | `1`       |
 
-## Idee 1 -- if/elif
+## Idee 1 - if/elif
 
-Klar lesbar, drei Faelle.
+Klar lesbar, drei Fälle.
 
-## Idee 2 -- Boolean-Trick
+## Idee 2 - Boolean-Trick
 
 Kompakte Variante: `True - True == 0`, `True - False == 1`,
 `False - True == -1`. Ein Pythonismus.
 
 ## In `math` und `numpy`
 
-- `math.copysign(1, x)` liefert `1.0` oder `-1.0`, **nie** `0` --
+- `math.copysign(1, x)` liefert `1.0` oder `-1.0`, **nie** `0` -
   unbrauchbar für unsere Zwecke.
 - `numpy.sign(x)` macht genau das, was wir brauchen.
 
@@ -102,4 +102,4 @@ Kompakte Variante: `True - True == 0`, `True - False == 1`,
 
 - **Vergleichs-Funktionen** in alten APIs (cmp(a, b) lieferte -1/0/+1).
 - **Steuerung**: "drehe in Richtung Ziel" (+1 oder -1).
-- **Mathematische Identitaeten**: $|x| = x \cdot \text{sign}(x)$.
+- **Mathematische Identitäten**: $|x| = x \cdot \text{sign}(x)$.

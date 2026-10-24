@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s033-mitglieder-vor-2020
-revision: 1
+revision: 2
 titel: "Lange Mitglieder (vor 2020)"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [where, datum]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

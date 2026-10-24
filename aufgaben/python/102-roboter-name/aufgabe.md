@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 102-roboter-name
-revision: 1
+revision: 2
 titel: Roboter-Name generieren
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [strings, zufall, format]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Inspiration aus Exercism (robot-name), eigene Formulierung -- ohne State, deterministisch via Seed
+  notiz: Inspiration aus Exercism (robot-name), eigene Formulierung - ohne State, deterministisch via Seed
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -69,7 +69,7 @@ Der Name muss bei **gleichem Seed reproduzierbar** sein.
 
 ## Idee
 
-`random.Random(seed)` ist ein **lokaler Generator** -- er beruehrt
+`random.Random(seed)` ist ein **lokaler Generator** - er berührt
 nicht das globale `random`-State. Gut für Tests und parallele
 Verarbeitung.
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 218-harmonisches-mittel
-revision: 1
+revision: 2
 titel: Harmonisches Mittel
 sprache: python
 task_type: code_schreiben
@@ -77,13 +77,13 @@ Auf **4 Nachkommastellen** gerundet. Bei leerer Liste oder Werten
 | `[1, 0, 5]`        | `0.0`    | Null vorhanden            |
 | `[10, 20, 30, 40]` | `19.2`   |                           |
 
-## Klassisches Beispiel -- Durchschnittsgeschwindigkeit
+## Klassisches Beispiel - Durchschnittsgeschwindigkeit
 
-Du faehrst die ersten 60 km mit 60 km/h und die zweiten 60 km mit
+Du fährst die ersten 60 km mit 60 km/h und die zweiten 60 km mit
 30 km/h. Welche Durchschnittsgeschwindigkeit?
 
-- Arithmetisch: `(60 + 30)/2 = 45 km/h` -- **falsch!**
-- Harmonisch: `H = 2 / (1/60 + 1/30) = 40 km/h` -- **korrekt**.
+- Arithmetisch: `(60 + 30)/2 = 45 km/h` - **falsch!**
+- Harmonisch: `H = 2 / (1/60 + 1/30) = 40 km/h` - **korrekt**.
 
 Beweis: 60 km bei 60 km/h = 1h, 60 km bei 30 km/h = 2h, total
 120 km in 3h = 40 km/h.
@@ -102,4 +102,4 @@ alle Zahlen gleich sind.
 - Geschwindigkeiten über gleiche Strecke (s.o.).
 - F1-Score in Machine Learning (harmonisches Mittel von Precision
   und Recall).
-- Parallel-Widerstaende: $1/R_{ges} = 1/R_1 + ... + 1/R_n$.
+- Parallel-Widerstände: $1/R_{ges} = 1/R_1 + ... + 1/R_n$.

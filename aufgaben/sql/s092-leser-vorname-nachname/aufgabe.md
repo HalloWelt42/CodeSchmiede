@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s092-leser-vorname-nachname
-revision: 1
+revision: 2
 titel: "Vorname und Nachname trennen"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [string, substr, instr]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

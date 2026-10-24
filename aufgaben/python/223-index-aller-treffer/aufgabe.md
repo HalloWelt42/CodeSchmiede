@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 223-index-aller-treffer
-revision: 1
+revision: 2
 titel: Indizes aller Treffer in Liste
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: alle_indizes
 hints:
   - kosten: 0
     text: |
-      Liefere ALLE Indizes, an denen "wert" in der Liste vorkommt --
+      Liefere ALLE Indizes, an denen "wert" in der Liste vorkommt -
       aufsteigend. Bei keinem Treffer → [].
   - kosten: 5
     text: |
@@ -58,7 +58,7 @@ starter_code: |
 # Indizes aller Treffer in Liste
 
 Schreibe `alle_indizes(liste, wert)`, die **alle Indizes** liefert,
-an denen `wert` in der Liste vorkommt -- in **aufsteigender**
+an denen `wert` in der Liste vorkommt - in **aufsteigender**
 Reihenfolge. Bei keinem Treffer → `[]`.
 
 Im Gegensatz zu `list.index(wert)`, das nur den **ersten** Treffer
@@ -75,10 +75,10 @@ liefert.
 
 ## Idee
 
-`enumerate` liefert `(index, element)`-Paare -- die elegante Art,
+`enumerate` liefert `(index, element)`-Paare - die elegante Art,
 in Python über Indizes UND Werte gleichzeitig zu iterieren.
 
-## Pattern -- Index-Sammlung
+## Pattern - Index-Sammlung
 
 Diese Idee ist universell:
 

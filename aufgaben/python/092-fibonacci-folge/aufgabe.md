@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 092-fibonacci-folge
-revision: 1
+revision: 2
 titel: Fibonacci-Folge bis n
 sprache: python
 task_type: code_schreiben
@@ -74,12 +74,12 @@ $$
 
 ## Hintergrund
 
-Die Folge erscheint überall in der Natur -- Sonnenblumen-Spiralen,
+Die Folge erscheint überall in der Natur - Sonnenblumen-Spiralen,
 Schneckenhäuser, Tannenzapfen. Leonardo von Pisa (Fibonacci) führte
 sie 1202 in Europa ein, in China und Indien war sie schon vorher
 bekannt.
 
 ## Verwandt
 
-Bei Aufgabe `003-fibonacci` haben wir die n-te Zahl berechnet --
+Bei Aufgabe `003-fibonacci` haben wir die n-te Zahl berechnet -
 hier liefern wir die **ganze Folge** als Liste.

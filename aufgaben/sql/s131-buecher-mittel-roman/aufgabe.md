@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s131-buecher-mittel-roman
-revision: 1
-titel: "Romane mittlerer Laenge"
+revision: 2
+titel: "Romane mittlerer Länge"
 sprache: sql
 task_type: sql_abfrage
 runner_type: docker_sqlite
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [where, and, between]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -42,6 +42,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Romane mittlerer Laenge
+# Romane mittlerer Länge
 
 Romane mit 200-500 Seiten, sortiert nach Seitenzahl.

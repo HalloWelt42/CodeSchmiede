@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 135-fakultaet-stellen
-revision: 1
+revision: 2
 titel: Anzahl Stellen von n!
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [zahlen, fakultaet, mathematik, log]
 voraussetzungen: [017-fakultaet]
 quelle:
   url: null
-  notiz: Klassische Aufgabe -- 100! hat 158 Stellen
+  notiz: Klassische Aufgabe - 100! hat 158 Stellen
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

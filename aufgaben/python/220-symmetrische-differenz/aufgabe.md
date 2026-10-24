@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 220-symmetrische-differenz
-revision: 1
+revision: 2
 titel: Symmetrische Differenz zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -27,7 +27,7 @@ hints:
       Eindeutig, aufsteigend sortiert.
   - kosten: 8
     text: |
-      sorted(set(a) ^ set(b)) -- der ^-Operator ist die symmetrische
+      sorted(set(a) ^ set(b)) - der ^-Operator ist die symmetrische
       Differenz auf Sets.
 tests_sichtbar:
   - input: [[1, 2, 3], [3, 4, 5]]
@@ -75,7 +75,7 @@ $$A \triangle B = (A \cup B) \setminus (A \cap B)$$
 
 ## Idee
 
-Der `^`-Operator (XOR) auf Sets ist die symmetrische Differenz --
+Der `^`-Operator (XOR) auf Sets ist die symmetrische Differenz -
 "in genau einem von beiden".
 
 ## Wann braucht man das?
@@ -93,5 +93,5 @@ Der `^`-Operator (XOR) auf Sets ist die symmetrische Differenz --
 | `-`      | 172 (Differenz)           |
 | `^`      | hier                       |
 
-Vier Set-Operationen, vier Aufgaben -- danach ist die Mengenlehre
+Vier Set-Operationen, vier Aufgaben - danach ist die Mengenlehre
 in Python solide.

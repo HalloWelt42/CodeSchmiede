@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 193-dreieck-typ
-revision: 1
+revision: 2
 titel: Dreieck-Typ aus drei Seiten
 sprache: python
 task_type: code_schreiben
@@ -22,14 +22,14 @@ funktion: dreieck_typ
 hints:
   - kosten: 0
     text: |
-      Bestimme den Dreieck-Typ aus drei Seitenlaengen:
+      Bestimme den Dreieck-Typ aus drei Seitenlängen:
       "ungültig" (Dreiecksungleichung verletzt oder Seite <= 0),
       "gleichseitig" (alle drei gleich),
       "gleichschenklig" (mind. zwei gleich),
       "ungleichseitig" (alle verschieden).
   - kosten: 10
     text: |
-      Prüfe zuerst Gültigkeit: alle > 0 UND laengste Seite kleiner
+      Prüfe zuerst Gültigkeit: alle > 0 UND längste Seite kleiner
       als Summe der anderen beiden. Dann set-Trick für den Typ.
 tests_sichtbar:
   - input: [3, 3, 3]
@@ -65,7 +65,7 @@ starter_code: |
 
 # Dreieck-Typ aus drei Seiten
 
-Schreibe `dreieck_typ(a, b, c)`, die anhand dreier Seitenlaengen
+Schreibe `dreieck_typ(a, b, c)`, die anhand dreier Seitenlängen
 einen der vier Typen liefert:
 
 | Typ                | Bedingung                           |
@@ -78,7 +78,7 @@ einen der vier Typen liefert:
 ## Dreiecksungleichung
 
 Damit drei Strecken überhaupt ein Dreieck bilden können, muss die
-laengste Seite **kleiner** als die Summe der anderen beiden sein.
+längste Seite **kleiner** als die Summe der anderen beiden sein.
 
 Beispiel: `(2, 2, 4)` ist **kein** Dreieck, weil `2 + 2 = 4`
 (degeneriert zu einem Strich).
@@ -98,5 +98,5 @@ Beispiel: `(2, 2, 4)` ist **kein** Dreieck, weil `2 + 2 = 4`
 
 In der Geometrie sind Dreiecke die einfachste polygonale Figur und
 gleichzeitig die **stabilste** (deshalb Fachwerk-Konstruktionen).
-Klassifikation nach Seiten ist nur eine Sicht -- die andere ist
+Klassifikation nach Seiten ist nur eine Sicht - die andere ist
 nach Winkeln (spitz / recht / stumpf).

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 300-eigenes-filter
-revision: 1
+revision: 2
 titel: Eigenes filter mit Predicate-String
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
 
 # Eigenes filter mit Predicate-String
 
-Schreibe `filter_pred(liste, pred)`, die nur Elemente behaelt, die
+Schreibe `filter_pred(liste, pred)`, die nur Elemente behält, die
 das Predikat erfüllen.
 
 ## Verfügbare Predicates
@@ -85,7 +85,7 @@ Unbekanntes Predicate → unveränderte Liste.
 | `[1, 2, 3, 4, 5]`       | `"odd"`      | `[1, 3, 5]` |
 | `[-1, 0, 1, 2, 0]`      | `"nonzero"`  | `[-1, 1, 2]`|
 
-## Lehrziel -- Predicate-Pattern
+## Lehrziel - Predicate-Pattern
 
 Predicates (Funktionen `(x) -> bool`) sind das Herzstück von
 **Filter-Operationen**. In Pythons Builtin:
@@ -95,4 +95,4 @@ Mit Listen-Comprehension liest sich das aber in Python besser:
 ## Anwendung
 
 Predicates tauchen in **Validierung**, **Suche**, **SQL-WHERE-
-Aequivalenten** und **funktionalen Pipelines** überall auf.
+Äquivalenten** und **funktionalen Pipelines** überall auf.

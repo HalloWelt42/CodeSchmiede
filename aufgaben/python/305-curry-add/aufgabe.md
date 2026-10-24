@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 305-curry-add
-revision: 1
+revision: 2
 titel: Curry-artige partielle Anwendung
 sprache: python
 task_type: code_schreiben
@@ -73,27 +73,27 @@ fester Konstante `c` baut und auf jedes Element der Liste anwendet.
 | 100   | `[1, 2, 3, 4, 5]`| `[101,102,103,104,105]`|
 | 5     | `[]`             | `[]`                 |
 
-## Idee 1 -- Closure mit Lambda
+## Idee 1 - Closure mit Lambda
 
 Das Lambda **fängt** den aktuellen Wert von `c` aus dem
-umschließenden Scope ein -- das ist eine **Closure**.
+umschließenden Scope ein - das ist eine **Closure**.
 
-## Idee 2 -- functools.partial
+## Idee 2 - functools.partial
 
 `partial(add, c)` erzeugt eine neue Funktion, die `add(c, x)`
-ausführt -- das ist **partielle Anwendung**: aus einer 2-stelligen
+ausführt - das ist **partielle Anwendung**: aus einer 2-stelligen
 Funktion machen wir eine 1-stellige.
 
 ## Curry vs. Partial
 
-In **Haskell** ist jede Funktion implizit curried -- `add 3 5` ist
+In **Haskell** ist jede Funktion implizit curried - `add 3 5` ist
 das Gleiche wie `(add 3) 5`. In Python muss man explizit `partial`
 oder Lambdas nutzen.
 
 **Curry**: `f(a, b, c)` → `f(a)(b)(c)` (eine Stelle nach der anderen).
 **Partial**: `f(a, b, c)` → `g(b, c)` mit `g = partial(f, a)`.
 
-Im Alltag sind die Begriffe oft austauschbar -- gemeint ist meist
+Im Alltag sind die Begriffe oft austauschbar - gemeint ist meist
 "Funktion mit fixierten Argumenten".
 
 ## Anwendung

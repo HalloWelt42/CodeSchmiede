@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 191-kreis-flaeche
-revision: 1
-titel: Kreis-Flaeche und Umfang
+revision: 2
+titel: Kreis-Fläche und Umfang
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -22,13 +22,13 @@ funktion: kreis
 hints:
   - kosten: 0
     text: |
-      Liefere [flaeche, umfang] eines Kreises mit Radius r.
+      Liefere [fläche, umfang] eines Kreises mit Radius r.
       Beide auf 2 Nachkommastellen gerundet.
       r < 0 -> [0.0, 0.0]. Verwende math.pi.
   - kosten: 4
     text: |
-      flaeche = pi * r^2, umfang = 2 * pi * r.
-      [round(flaeche, 2), round(umfang, 2)].
+      fläche = pi * r^2, umfang = 2 * pi * r.
+      [round(fläche, 2), round(umfang, 2)].
 tests_sichtbar:
   - input: [1]
     expected: [3.14, 6.28]
@@ -57,11 +57,11 @@ starter_code: |
       pass
 ---
 
-# Kreis-Flaeche und Umfang
+# Kreis-Fläche und Umfang
 
 Schreibe `kreis(r)`, die für einen Kreis mit Radius `r` die
-**Flaeche** und den **Umfang** als Liste `[flaeche, umfang]`
-zurückgibt -- beide auf **2 Nachkommastellen** gerundet.
+**Fläche** und den **Umfang** als Liste `[flaeche, umfang]`
+zurückgibt - beide auf **2 Nachkommastellen** gerundet.
 
 Bei `r < 0` (oder `r == 0`) → `[0.0, 0.0]`.
 
@@ -71,7 +71,7 @@ $$A = \pi r^2 \qquad U = 2 \pi r$$
 
 ## Beispiele
 
-| `r`   | Flaeche | Umfang |
+| `r`   | Fläche | Umfang |
 |-------|---------|--------|
 | `0`   | `0.0`   | `0.0`  |
 | `1`   | `3.14`  | `6.28` |
@@ -82,12 +82,12 @@ $$A = \pi r^2 \qquad U = 2 \pi r$$
 
 ## Spezialfall r=2
 
-Bei `r = 2` sind Flaeche und Umfang gleich (`12.57`):
+Bei `r = 2` sind Fläche und Umfang gleich (`12.57`):
 $\pi \cdot 4 = 2\pi \cdot 2$. Das ist der einzige Radius, für den
 das gilt.
 
 ## Hintergrund
 
-Pi war seit der Antike interessant -- Archimedes berechnete es über
+Pi war seit der Antike interessant - Archimedes berechnete es über
 Polygone bis auf $3.14$. Heute kennen wir billionen Stellen, aber
 für praktische Geometrie reichen 6-15 Stellen vollkommen.

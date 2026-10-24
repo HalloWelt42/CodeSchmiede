@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c002-karte-zentriert
-revision: 1
+revision: 2
 titel: Karte mittig per Flexbox
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [flexbox, zentrierung, layout]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- Flex-Center-Klassiker.
+  notiz: Eigene Aufgabe - Flex-Center-Klassiker.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -88,8 +88,8 @@ starter_code: |
 
 # Karte mittig per Flexbox
 
-Zentriere die `.karte` im Container `.rahmen` -- horizontal und
-vertikal -- per Flexbox.
+Zentriere die `.karte` im Container `.rahmen` - horizontal und
+vertikal - per Flexbox.
 
 ## Vorgaben
 

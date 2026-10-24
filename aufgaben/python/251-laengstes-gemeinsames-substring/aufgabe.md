@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 251-laengstes-gemeinsames-substring
-revision: 1
-titel: Laengster gemeinsamer Substring (LCS)
+revision: 2
+titel: Längster gemeinsamer Substring (LCS)
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -28,7 +28,7 @@ hints:
       Bei keinem gemeinsamen Zeichen → "".
   - kosten: 25
     text: |
-      DP-Tabelle dp[i][j] = Laenge des gemeinsamen Substrings, der
+      DP-Tabelle dp[i][j] = Länge des gemeinsamen Substrings, der
       bei a[i-1] und b[j-1] endet. Position des Maximums merken.
 tests_sichtbar:
   - input: ["abcdef", "zcdex"]
@@ -60,20 +60,20 @@ starter_code: |
       pass
 ---
 
-# Laengster gemeinsamer Substring (LCS)
+# Längster gemeinsamer Substring (LCS)
 
-Schreibe `lcs(a, b)`, die den **laengsten zusammenhängenden
+Schreibe `lcs(a, b)`, die den **längsten zusammenhängenden
 Substring** liefert, der in **beiden** Strings vorkommt.
 
 Bei mehreren gleich-langen Treffern: den, der in `a` zuerst anfängt.
 Bei keinem Treffer → `""`.
 
-## Achtung -- Substring vs Subsequence
+## Achtung - Substring vs Subsequence
 
 - **Substring**: zusammenhängende Zeichen ("abc" → "ab", "bc", aber nicht "ac")
 - **Subsequence**: Reihenfolge bewahrt, aber Lücken erlaubt
 
-Wir suchen den **Substring** -- die schwerere Aufgabe ist die
+Wir suchen den **Substring** - die schwerere Aufgabe ist die
 Subsequence (LCS-Algorithmus klassisch in DNA-Vergleich).
 
 ## Beispiele
@@ -86,13 +86,13 @@ Subsequence (LCS-Algorithmus klassisch in DNA-Vergleich).
 | `"zxabcdezy"`   | `"yzabcdezx"`   | `"abcdez"`  |
 | `"abc"`         | `"xyz"`         | `""`        |
 
-## Idee -- DP-Tabelle
+## Idee - DP-Tabelle
 
-`dp[i][j]` = Laenge des gemeinsamen Substrings, der **endet** bei
+`dp[i][j]` = Länge des gemeinsamen Substrings, der **endet** bei
 `a[i-1]` und `b[j-1]`.
 
 `O(n * m)` Zeit und Speicher. Mit `O(min(n, m))` Speicher geht's
-auch -- nur die letzte Zeile merken.
+auch - nur die letzte Zeile merken.
 
 ## Anwendung
 

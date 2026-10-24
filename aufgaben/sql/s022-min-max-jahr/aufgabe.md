@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s022-min-max-jahr
-revision: 1
-titel: "Aelteste und neueste Veröffentlichung"
+revision: 2
+titel: "Älteste und neueste Veröffentlichung"
 sprache: sql
 task_type: sql_abfrage
 runner_type: docker_sqlite
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [min, max, aggregat]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -37,6 +37,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Aelteste und neueste Veröffentlichung
+# Älteste und neueste Veröffentlichung
 
-Früheste und spaeteste `jahr`-Spalte als `ältestes` und `neuestes`.
+Früheste und späteste `jahr`-Spalte als `ältestes` und `neuestes`.

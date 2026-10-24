@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 010-listen-maximum
-revision: 1
+revision: 2
 titel: Größtes Element einer Liste
 sprache: python
 task_type: code_schreiben
@@ -72,6 +72,6 @@ zurückgegeben werden.
 
 ## Hinweise
 
-- Negative Zahlen sind erlaubt -- `-2` ist größer als `-5`.
+- Negative Zahlen sind erlaubt - `-2` ist größer als `-5`.
 - Eine **leere Liste** ist der Sonderfall: `None` zurückgeben.
 - Du darfst `max()` benutzen oder von Hand vergleichen.

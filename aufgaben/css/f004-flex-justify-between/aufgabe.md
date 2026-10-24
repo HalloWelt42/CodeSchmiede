@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: f004-flex-justify-between
-revision: 1
-titel: "Flexbox 04: Gleichmaessige Lücken mit space-between"
+revision: 2
+titel: "Flexbox 04: Gleichmäßige Lücken mit space-between"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [flexbox, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -53,7 +53,7 @@ hints:
   - kosten: 0
     text: |
       Flexbox-Eltern muss `display: flex` haben, damit `justify-content`, `align-items` & Co. greifen.
-      Diese Aufgabe lehrt EINE Property -- die anderen kommen in den nächsten Levels.
+      Diese Aufgabe lehrt EINE Property - die anderen kommen in den nächsten Levels.
   - kosten: 3
     text: |
       `display: flex;
@@ -72,16 +72,16 @@ starter_code: |
 Im Bahn-Rahmen sollen die drei Kacheln so angeordnet werden, dass
 **der erste kachel links, der letzte rechts, die lücken dazwischen sind gleich groß**.
 
-Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` -- der Rest
+Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` - der Rest
 (Größe, Farbe, Quadrate) ist schon da.
 
 ## Aha
 
 Bei `space-between` kleben das erste und das letzte Item an den Rändern,
-der gesamte Rest-Platz wird **gleichmaessig zwischen** den Items aufgeteilt.
-Aussenrand ist 0.
+der gesamte Rest-Platz wird **gleichmäßig zwischen** den Items aufgeteilt.
+Außenrand ist 0.
 
 ## Wozu in der Praxis?
 
-Logo links, Menue rechts -- der klassische Header-Stil. Auch für Pricing-
+Logo links, Menü rechts - der klassische Header-Stil. Auch für Pricing-
 Tabellen, Footer-Spalten und Tag-Reihen das Standard-Werkzeug.

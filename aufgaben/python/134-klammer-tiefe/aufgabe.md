@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 134-klammer-tiefe
-revision: 1
+revision: 2
 titel: Maximale Klammer-Tiefe
 sprache: python
 task_type: code_schreiben
@@ -84,5 +84,5 @@ Counter pro Zeichen:
 ## Anwendung
 
 In Editoren wird die maximale Tiefe oft als Indikator für **Code-
-Komplexitaet** genommen -- tief verschachtelter Code ist schwerer
+Komplexität** genommen - tief verschachtelter Code ist schwerer
 zu lesen.

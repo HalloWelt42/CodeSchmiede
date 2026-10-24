@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s182-leser-mit-roman-historie
-revision: 1
+revision: 2
 titel: "Leser, die mind. einen Roman ausgeliehen haben"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [join, where, distinct]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

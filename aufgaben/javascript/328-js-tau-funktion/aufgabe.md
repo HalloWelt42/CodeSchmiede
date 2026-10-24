@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 328-js-tau-funktion
-revision: 1
-titel: JavaScript -- Tau-Funktion
+revision: 2
+titel: JavaScript - Tau-Funktion
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, zahlen, mathematik, teiler]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Tau_function
-  notiz: Rosetta Code -- Tau function, JS
+  notiz: Rosetta Code - Tau function, JS
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -43,7 +43,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Tau-Funktion
+# JavaScript - Tau-Funktion
 
 Schreibe `tau(n)`, die die **Anzahl der positiven Teiler** von `n`
 liefert. Bei `n < 1` → `0`.
@@ -60,11 +60,11 @@ liefert. Bei `n < 1` → `0`.
 
 ## Idee
 
-Pro Teiler `i` bekommt man `n / i` als Partner -- `+= 2`. Bei
+Pro Teiler `i` bekommt man `n / i` als Partner - `+= 2`. Bei
 Quadratzahlen (`i² = n`) sind beide Teiler gleich, also `+= 1`.
 
 ## Vergleich
 
 Pythons `//` und JavaScripts `Math.floor` haben den gleichen
-Effekt, aber wir brauchen hier nur Modulo (`%`) -- der Vergleich
+Effekt, aber wir brauchen hier nur Modulo (`%`) - der Vergleich
 `i * i === n` ist exakt für ganze Zahlen.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 058-schaltjahr
-revision: 1
+revision: 2
 titel: Schaltjahr prüfen
 sprache: python
 task_type: code_schreiben
@@ -89,10 +89,10 @@ In Code:
 
 ## Hintergrund
 
-Diese Regel kompensiert, dass ein Sonnenjahr ungefaehr 365.2422 Tage
-hat -- nicht ganz 365.25. Die 400-Jahr-Ausnahme korrigiert den
+Diese Regel kompensiert, dass ein Sonnenjahr ungefähr 365.2422 Tage
+hat - nicht ganz 365.25. Die 400-Jahr-Ausnahme korrigiert den
 Überschuss, der entstehen würde, wenn man jedes durch 4 teilbare
 Jahr als Schaltjahr nehmen würde.
 
-Die Regel wurde 1582 von **Papst Gregor XIII.** eingefuehrt, als der
+Die Regel wurde 1582 von **Papst Gregor XIII.** eingeführt, als der
 julianische Kalender über die Jahrhunderte aus dem Tritt geraten war.

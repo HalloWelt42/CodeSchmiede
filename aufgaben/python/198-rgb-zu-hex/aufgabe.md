@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 198-rgb-zu-hex
-revision: 1
+revision: 2
 titel: RGB-Tripel zu Hex-Farbe
 sprache: python
 task_type: code_schreiben
@@ -24,7 +24,7 @@ hints:
     text: |
       Wandle [r, g, b] mit Werten 0-255 in einen Hex-Farbcode "#rrggbb".
       Werte außerhalb 0-255 werden auf den nächsten gültigen Wert
-      geclampt. Ausgabe IMMER kleinbuchstabig und mit fuehrendem #.
+      geclampt. Ausgabe IMMER kleinbuchstabig und mit führendem #.
   - kosten: 8
     text: |
       f"#{r:02x}{g:02x}{b:02x}". max(0, min(255, x)) zum Clampen.
@@ -61,7 +61,7 @@ starter_code: |
 # RGB-Tripel zu Hex-Farbe
 
 Schreibe `rgb_zu_hex(rgb)`, die ein RGB-Tripel in einen Hex-Farbcode
-`"#rrggbb"` umwandelt -- klein und mit fuehrendem `#`.
+`"#rrggbb"` umwandelt - klein und mit führendem `#`.
 
 Werte außerhalb `0..255` werden **geclampt** (auf 0 bzw. 255).
 
@@ -79,12 +79,12 @@ Werte außerhalb `0..255` werden **geclampt** (auf 0 bzw. 255).
 ## Idee
 
 Der Format-Specifier `:02x` formatiert eine Zahl als Hex (klein),
-mit mindestens **zwei Stellen** -- bei Bedarf mit fuehrender Null.
+mit mindestens **zwei Stellen** - bei Bedarf mit führender Null.
 Für Großbuchstaben: `:02X`.
 
-## Hintergrund -- Wieso Clampen statt Fehler?
+## Hintergrund - Wieso Clampen statt Fehler?
 
 In Bildverarbeitung und CSS-Berechnungen entstehen oft kurzzeitig
 Werte außerhalb `0..255` (z.B. nach Filter-Anwendung). Sie auf
-gültige Werte zu **clampen** ist die üblichste Reaktion -- ein
+gültige Werte zu **clampen** ist die üblichste Reaktion - ein
 Error-Throw wäre meist nicht hilfreich.

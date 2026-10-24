@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 166-subset-sum
-revision: 1
+revision: 2
 titel: Teilmengen-Summe (Subset-Sum, Existenz)
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [dp, listen, set, algorithmen]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Klassisches NP-vollstaendiges Problem (DP-Lösung)
+  notiz: Klassisches NP-vollständiges Problem (DP-Lösung)
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -80,7 +80,7 @@ Die leere Teilmenge zählt (Summe `0`).
 | `[2, 4, 6, 8]`           | `1`  | `False` (alle gerade)            |
 | `[]`                     | `0`  | `True` (leere Menge)             |
 
-## Idee -- Erreichbare Summen als Set
+## Idee - Erreichbare Summen als Set
 
 Pro neue Zahl `x` können wir entweder weglassen (Summen unverändert)
 oder dazunehmen (Summen + x). Das Set wird in jeder Runde erweitert.
@@ -90,14 +90,14 @@ Effizienz: `O(n * S)`, wo `S` die Anzahl unterscheidbarer Summen ist
 
 ## Klassische DP-Tabelle
 
-Aequivalent als Boolean-Tabelle `dp[i][s]`:
+Äquivalent als Boolean-Tabelle `dp[i][s]`:
 
-Rückwaerts iterieren, damit eine Zahl nicht doppelt verbraucht wird.
+Rückwärts iterieren, damit eine Zahl nicht doppelt verbraucht wird.
 
 ## Hintergrund
 
-Subset-Sum ist **NP-vollstaendig** -- der allgemeine Fall hat keinen
+Subset-Sum ist **NP-vollständig** - der allgemeine Fall hat keinen
 bekannten Polynomial-Algorithmus. Die DP-Lösung ist
 **pseudo-polynomial**: `O(n*S)` ist nur polynomial in den
-**Werten**, nicht in der **Bit-Laenge** der Eingabe. Mit großen
+**Werten**, nicht in der **Bit-Länge** der Eingabe. Mit großen
 Zielen wird die Lösung exponentiell.

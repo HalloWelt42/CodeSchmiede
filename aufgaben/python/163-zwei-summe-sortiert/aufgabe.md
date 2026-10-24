@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 163-zwei-summe-sortiert
-revision: 1
+revision: 2
 titel: Zwei-Summe in sortierter Liste (Two Pointers)
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [listen, two-pointers, suchen, algorithmen]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: LeetCode 167 -- Two Sum II
+  notiz: Two Sum II, klassische Übungsaufgabe
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -61,7 +61,7 @@ starter_code: |
 
 Gegeben ist eine **aufsteigend sortierte** Liste und ein Zielwert.
 Schreibe `zwei_summe_sortiert(zahlen, ziel)`, die `[i, j]` mit
-`i < j` und `zahlen[i] + zahlen[j] == ziel` liefert -- oder `[]`,
+`i < j` und `zahlen[i] + zahlen[j] == ziel` liefert - oder `[]`,
 falls kein Paar existiert.
 
 ## Beispiele
@@ -71,11 +71,11 @@ falls kein Paar existiert.
 | `[2, 7, 11, 15]`      | `9`  | `[0, 1]` | `2 + 7 = 9`             |
 | `[1, 2, 3, 4, 6]`     | `6`  | `[1, 3]` | `2 + 4 = 6`             |
 | `[-3, -1, 0, 2, 4, 5]`| `1`  | `[1, 3]` | `-1 + 2 = 1`            |
-| `[1, 2, 3]`           | `7`  | `[]`     | unmoeglich              |
+| `[1, 2, 3]`           | `7`  | `[]`     | unmöglich              |
 
-## Idee -- Two Pointers (O(n))
+## Idee - Two Pointers (O(n))
 
-Da die Liste sortiert ist, können wir mit zwei Zeigern von aussen
+Da die Liste sortiert ist, können wir mit zwei Zeigern von außen
 nach innen wandern.
 
 ## Warum nicht Brute-Force?

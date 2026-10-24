@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 044-int-zu-roemisch
-revision: 1
+revision: 2
 titel: Integer zu Römisch
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [zahlen, schleifen, roemisch, greedy]
 voraussetzungen: [043-roemisch-zu-int]
 quelle:
   url: https://de.wikipedia.org/wiki/R%C3%B6mische_Zahlen
-  notiz: Die umgekehrte Richtung -- klassische Greedy-Aufgabe
+  notiz: Die umgekehrte Richtung - klassische Greedy-Aufgabe
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -23,8 +23,8 @@ hints:
   - kosten: 0
     text: |
       Gehe alle Werte vom größten zum kleinsten durch (inkl.
-      Sonderfaelle 900, 400, 90, 40, 9, 4) und ziehe so viele wie
-      möglich vom n ab, fuege das jeweilige Symbol hinzu.
+      Sonderfälle 900, 400, 90, 40, 9, 4) und ziehe so viele wie
+      möglich vom n ab, füge das jeweilige Symbol hinzu.
   - kosten: 12
     text: |
       Liste von Tupeln `(wert, symbol)` absteigend, dann pro Tupel
@@ -64,7 +64,7 @@ starter_code: |
 Schreibe eine Funktion `int_zu_römisch(n)`, die eine Dezimalzahl
 zwischen `1` und `3999` als römische Zahl zurückgibt.
 
-## Symbole + Sonderfaelle
+## Symbole + Sonderfälle
 
 | Wert | Symbol |
 |------|--------|
@@ -84,7 +84,7 @@ zwischen `1` und `3999` als römische Zahl zurückgibt.
 
 ## Greedy
 
-Gehe vom größten Wert nach unten. Solange `n >= wert`, haenge das
+Gehe vom größten Wert nach unten. Solange `n >= wert`, hänge das
 Symbol an und ziehe ab. So entsteht die kanonische Schreibweise.
 
 ## Beispiele
@@ -102,5 +102,5 @@ Symbol an und ziehe ab. So entsteht die kanonische Schreibweise.
 ## Hintergrund
 
 Die Römer selbst haben übrigens keinen klaren Standard für
-Subtraktionsschreibweise gehabt -- `IIII` neben `IV` war lange
-üblich (Uhrenziffernblaetter zeigen das oft heute noch).
+Subtraktionsschreibweise gehabt - `IIII` neben `IV` war lange
+üblich (Uhrenziffernblätter zeigen das oft heute noch).

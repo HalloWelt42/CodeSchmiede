@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 213-woerter-zaehlen
-revision: 1
+revision: 2
 titel: Anzahl Wörter im Text
 sprache: python
 task_type: code_schreiben
@@ -63,7 +63,7 @@ starter_code: |
 
 Schreibe `wörter_zählen(text)`, die die **Anzahl der Wörter** in
 einem Text zurückgibt. Mehrfache Whitespaces zählen als ein
-Trenner; fuehrende/nachfolgende Leerzeichen werden ignoriert.
+Trenner; führende/nachfolgende Leerzeichen werden ignoriert.
 
 Bei leerem oder nur Whitespace-haltigem Text → `0`.
 
@@ -81,20 +81,20 @@ Bei leerem oder nur Whitespace-haltigem Text → `0`.
 
 ## Idee
 
-Eine Zeile -- Pythons `str.split()` ohne Argument macht alles
+Eine Zeile - Pythons `str.split()` ohne Argument macht alles
 Würdige: trennen an Whitespace, leere Stücke filtern, fertig.
 
 ## Verwandt
 
 | Aufgabe                | Was?                          |
 |------------------------|--------------------------------|
-| **022-wortzähler**    | Häufigkeit pro Wort (Dict)   |
-| **048-laengstes-wort** | das laengste Wort             |
-| **148-wörter-umkehren** | Wort-Reihenfolge umdrehen   |
-| **213-wörter-zählen** | nur die Anzahl (diese)       |
+| **022-wortzaehler**    | Häufigkeit pro Wort (Dict)   |
+| **048-laengstes-wort** | das längste Wort             |
+| **148-woerter-umkehren** | Wort-Reihenfolge umdrehen   |
+| **213-woerter-zaehlen** | nur die Anzahl (diese)       |
 
 ## Hintergrund
 
 Wörter zählen ist die Basis vieler Text-Statistiken: Lesezeit
 (Faustregel: 200-300 Wörter pro Minute), Lexikalische Dichte,
-Twitter-Tweetlaenge (früher 140, jetzt 280 Zeichen oder ~50 Wörter).
+Länge einer Kurznachricht in sozialen Netzen (früher 140, heute meist 280 Zeichen oder ~50 Wörter).

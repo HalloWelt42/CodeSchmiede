@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s008-nth-child
-revision: 1
+revision: 2
 titel: "Grundlagen 08: Zebra-Streifen mit :nth-child(odd)"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [grundlagen, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -37,7 +37,7 @@ hints:
   - kosten: 0
     text: |
       CSS wählt Elemente per **Selektor** und gibt ihnen Eigenschaften.
-      Welcher Selektor zählt, regeln Spezifizitaet und Quellreihenfolge.
+      Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
       `tr:nth-child(odd) { background-color: rgb(34, 38, 45); }`
@@ -53,9 +53,9 @@ Jede zweite Tabellenzeile soll einen leicht abgesetzten Hintergrund bekommen
 
 ## Aha
 
-`:nth-child()` ist die maechtigste Pseudoklasse für Position. Du
+`:nth-child()` ist die mächtigste Pseudoklasse für Position. Du
 kannst Schlüsselwörter (`odd`, `even`) oder Formeln (`2n`, `3n+1`)
-verwenden -- jedes 2., 3., oder n-te Element treffen.
+verwenden - jedes 2., 3., oder n-te Element treffen.
 
 ## Wozu in der Praxis?
 

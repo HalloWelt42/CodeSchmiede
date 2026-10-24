@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 071-luecken-fizzbuzz
-revision: 1
-titel: Lückentext -- Mini-FizzBuzz
+revision: 2
+titel: Lückentext - Mini-FizzBuzz
 sprache: python
 task_type: lueckentext
 runner_type: docker_python
@@ -24,7 +24,7 @@ hints:
     text: Lücke 1 ist der Modulo-Operator, Lücke 2 die Zahl 5.
   - kosten: 5
     text: |
-      Lösung -- Lücke 1 = `%`, Lücke 2 = `5`, Lücke 3 = `"beides"`,
+      Lösung - Lücke 1 = `%`, Lücke 2 = `5`, Lücke 3 = `"beides"`,
       Lücke 4 = `"keines"`.
 tests_sichtbar:
   - input: [15]
@@ -58,7 +58,7 @@ lueckentext:
         return ___4___
   luecken:
     - nummer: 1
-      hinweis: "Operator -- liefert den Rest der Division"
+      hinweis: "Operator - liefert den Rest der Division"
     - nummer: 2
       hinweis: "Zahl"
     - nummer: 3
@@ -67,7 +67,7 @@ lueckentext:
       hinweis: "Zeichenkette in Anführungszeichen"
 ---
 
-# Lückentext -- Mini-FizzBuzz
+# Lückentext - Mini-FizzBuzz
 
 Eine vereinfachte Variante: gibt `"drei"`, `"fuenf"` oder `"beides"`
 zurück, je nachdem ob `n` durch 3, durch 5, oder durch beides
@@ -85,5 +85,5 @@ teilbar ist. Wenn nichts passt: `"keines"`.
 ## Hinweis
 
 Der Code im Editor hat **vier Lücken** (`___1___` bis `___4___`).
-Fuelle sie passend aus -- die gleiche Nummer kommt mehrfach vor und
+Fülle sie passend aus - die gleiche Nummer kommt mehrfach vor und
 soll identisch ersetzt werden.

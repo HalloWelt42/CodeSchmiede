@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s094-ausleihen-pro-monat
-revision: 1
+revision: 2
 titel: "Ausleihen pro Monat"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [date, strftime, group-by]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -35,7 +35,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      Wie bei Bestellungen-pro-Monat -- nur auf ausleihen.
+      Wie bei Bestellungen-pro-Monat - nur auf ausleihen.
 starter_code: |
   SELECT ___
   FROM ___

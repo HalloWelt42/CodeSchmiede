@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 274-dreieck-winkel-typ
-revision: 1
+revision: 2
 titel: Dreieck-Typ nach Winkel
 sprache: python
 task_type: code_schreiben
@@ -28,7 +28,7 @@ hints:
       Pythagoras umgekehrt: c² < a² + b² → spitz, == → recht, > → stumpf.
   - kosten: 12
     text: |
-      Sortiere Seiten -> c ist die laengste.
+      Sortiere Seiten -> c ist die längste.
       c² vs a² + b² mit math.isclose() bei "recht".
 tests_sichtbar:
   - input: [3, 4, 5]
@@ -78,7 +78,7 @@ Schreibe `dreieck_winkel(a, b, c)`, die ein Dreieck nach den
 
 ## Pythagoras umgedreht
 
-Sei `c` die laengste Seite:
+Sei `c` die längste Seite:
 
 - `c² < a² + b²` → spitzwinklig
 - `c² == a² + b²` → rechtwinklig (Pythagoras!)
@@ -99,7 +99,7 @@ Sei `c` die laengste Seite:
 
 ## Idee
 
-`math.isclose` für Float-Vergleich -- vermeidet Rundungs-Fehler bei
+`math.isclose` für Float-Vergleich - vermeidet Rundungs-Fehler bei
 Werten wie `5.0000000001`.
 
 ## Verwandt
@@ -108,4 +108,4 @@ Werten wie `5.0000000001`.
 |----------------------|-------------------------------|
 | **193-dreieck-typ**  | nach **Seiten** (gleichseitig, ...) |
 | **274 hier**         | nach **Winkeln** (spitz, recht, stumpf) |
-| **270-heron-flaeche**| Flaeche aus Seiten            |
+| **270-heron-flaeche**| Fläche aus Seiten            |

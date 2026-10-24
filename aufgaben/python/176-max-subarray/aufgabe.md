@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 176-max-subarray
-revision: 1
+revision: 2
 titel: Maximale Teilfolgen-Summe (Kadane)
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [listen, dp, algorithmen, kadane]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: LeetCode 53 -- Maximum Subarray (Kadane 1984)
+  notiz: Maximum Subarray (Kadane 1984)
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -84,13 +84,13 @@ Linear, ohne DP-Tabelle:
 
 Pro Element entscheiden wir: **dranbleiben** an der laufenden Summe,
 oder mit dem aktuellen Element **neu starten**. Die maximale
-gesehene Summe wird laufend mitgefuehrt.
+gesehene Summe wird laufend mitgeführt.
 
 ## Erweiterung
 
 Soll auch die **Teilfolge selbst** zurückgegeben werden, brauchen wir
 zwei extra Indizes (Start des aktuellen Laufs, Start/Ende des bisher
-besten Laufs). Komplexitaet bleibt `O(n)`.
+besten Laufs). Komplexität bleibt `O(n)`.
 
 ## Hintergrund
 

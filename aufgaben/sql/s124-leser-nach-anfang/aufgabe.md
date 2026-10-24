@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s124-leser-nach-anfang
-revision: 1
+revision: 2
 titel: "Leser gruppieren nach Anfangsbuchstabe"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [group-by, substr]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

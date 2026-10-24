@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s088-buecher-mit-mehrfach-ausleihen
-revision: 1
+revision: 2
 titel: "Bücher, die mehr als 2x ausgeliehen wurden"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [join, group-by, having]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -39,4 +39,4 @@ starter_code: |
 
 # Beliebte Bücher
 
-Bücher mit mehr als 2 Ausleihen + Anzahl, hauefigste zuerst.
+Bücher mit mehr als 2 Ausleihen + Anzahl, häufigste zuerst.

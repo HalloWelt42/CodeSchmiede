@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 051-merge-sort
-revision: 1
+revision: 2
 titel: Merge-Sort
 sprache: python
 task_type: code_schreiben
@@ -22,12 +22,12 @@ funktion: merge_sort
 hints:
   - kosten: 0
     text: |
-      Teile die Liste in zwei Haelften. Sortiere beide rekursiv.
-      Verschmilz die zwei sortierten Haelften.
+      Teile die Liste in zwei Hälften. Sortiere beide rekursiv.
+      Verschmilz die zwei sortierten Hälften.
   - kosten: 6
     text: |
-      Hilfsfunktion `merge(a, b)` -- nimmt zwei sortierte Listen,
-      vergleicht jeweils Spitze von a vs. Spitze von b, fuegt das
+      Hilfsfunktion `merge(a, b)` - nimmt zwei sortierte Listen,
+      vergleicht jeweils Spitze von a vs. Spitze von b, fügt das
       kleinere Element ans Ergebnis.
   - kosten: 9
     text: |
@@ -64,20 +64,20 @@ Schreibe eine Funktion `merge_sort(liste)`, die die Liste mit
 ## Idee: Divide and Conquer
 
 1. Liste mit 0 oder 1 Element: schon sortiert (Basisfall)
-2. Sonst: in zwei Haelften teilen, beide rekursiv sortieren, dann
+2. Sonst: in zwei Hälften teilen, beide rekursiv sortieren, dann
    verschmelzen ("merge")
 
 ## Merge-Schritt
 
 Zwei sortierte Listen `a` und `b` zu einer sortierten Liste mischen:
 nimm immer das kleinere der beiden vorderen Elemente. Wenn eine
-Liste leer ist, haenge den Rest der anderen an.
+Liste leer ist, hänge den Rest der anderen an.
 
-## Komplexitaet
+## Komplexität
 
-$O(n \log n)$ in **jedem** Fall -- Merge-Sort ist sehr vorhersagbar.
+$O(n \log n)$ in **jedem** Fall - Merge-Sort ist sehr vorhersagbar.
 **Stabil**: gleiche Elemente behalten ihre Reihenfolge.
-**Speicher**: $O(n)$ -- nicht in-place.
+**Speicher**: $O(n)$ - nicht in-place.
 
 Pythons eingebauter `sorted()` (Timsort) ist ein hochoptimierter
 Hybride aus Merge-Sort und Insertion-Sort.

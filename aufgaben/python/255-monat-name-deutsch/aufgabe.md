@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 255-monat-name-deutsch
-revision: 1
+revision: 2
 titel: Deutscher Monatsname aus Nummer
 sprache: python
 task_type: code_schreiben
@@ -27,7 +27,7 @@ hints:
       Ungültige Eingaben → "".
   - kosten: 2
     text: |
-      Liste mit 13 Eintraegen (Index 0 = Fueller). Prüfe Bereich.
+      Liste mit 13 Einträgen (Index 0 = Füller). Prüfe Bereich.
 tests_sichtbar:
   - input: [1]
     expected: "Januar"
@@ -88,14 +88,14 @@ Namen liefert. Ungültige Eingaben → `""`.
 
 ## Idee
 
-Liste-Lookup mit Index 0 als Fueller -- damit `monat == 1`
+Liste-Lookup mit Index 0 als Füller - damit `monat == 1`
 direkt `NAMEN[1]` ist.
 
-## Hinweis -- März ohne Umlaut
+## Hinweis - März ohne Umlaut
 
-In den Tests verwenden wir `"März"` statt `"März"` -- der Test-
+In den Tests verwenden wir `"März"` statt `"März"` - der Test-
 String wird durch JSON serialisiert und Umlaute können in manchen
-Test-Engines Ärger machen. In echten UIs natuerlich `März`
+Test-Engines Ärger machen. In echten UIs natürlich `März`
 schreiben.
 
 ## Verwandt

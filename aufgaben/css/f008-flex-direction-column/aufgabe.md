@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: f008-flex-direction-column
-revision: 1
-titel: "Flexbox 08: Vertikale Spalte -- flex-direction: column"
+revision: 2
+titel: "Flexbox 08: Vertikale Spalte - flex-direction: column"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [flexbox, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -53,7 +53,7 @@ hints:
   - kosten: 0
     text: |
       Flexbox-Eltern muss `display: flex` haben, damit `justify-content`, `align-items` & Co. greifen.
-      Diese Aufgabe lehrt EINE Property -- die anderen kommen in den nächsten Levels.
+      Diese Aufgabe lehrt EINE Property - die anderen kommen in den nächsten Levels.
   - kosten: 3
     text: |
       `display: flex;
@@ -70,9 +70,9 @@ starter_code: |
 ## Aufgabe
 
 Im Bahn-Rahmen sollen die drei Kacheln so angeordnet werden, dass
-**die froesche stapeln sich vertikal statt nebeneinander zu stehen**.
+**die frösche stapeln sich vertikal statt nebeneinander zu stehen**.
 
-Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` -- der Rest
+Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` - der Rest
 (Größe, Farbe, Quadrate) ist schon da.
 
 ## Aha
@@ -84,5 +84,5 @@ in vertikalen Layouts oft zwischen 'oben/unten' und 'links/rechts' verwechselt.
 ## Wozu in der Praxis?
 
 Vertikale Navigation, Form-Felder untereinander, Chat-Bubbles in einer
-Konversation -- überall wo Inhalte vertikal stapeln, ist `flex-direction:
+Konversation - überall wo Inhalte vertikal stapeln, ist `flex-direction:
 column` das Werkzeug der Wahl.

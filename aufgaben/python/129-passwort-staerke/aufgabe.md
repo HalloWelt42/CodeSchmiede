@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 129-passwort-staerke
-revision: 1
+revision: 2
 titel: Passwort-Stärke bewerten
 sprache: python
 task_type: code_schreiben
@@ -92,5 +92,5 @@ mit **0 bis 5 Punkten** bewertet.
 ## Hintergrund
 
 Echte Passwort-Bewertung wie bei zxcvbn ist deutlich schlauer
-(Wörterbuch-Angriffe, Substitutionen, Wiederholungen) -- diese Aufgabe
+(Wörterbuch-Angriffe, Substitutionen, Wiederholungen) - diese Aufgabe
 ist die einfache Schul-Variante.

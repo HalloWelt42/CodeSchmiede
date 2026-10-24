@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 330-js-fizzbuzz-liste
-revision: 1
-titel: JavaScript -- FizzBuzz als Liste
+revision: 2
+titel: JavaScript - FizzBuzz als Liste
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, array, klassiker, modulo]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/FizzBuzz
-  notiz: Rosetta Code -- FizzBuzz, JS-Sammelvariante
+  notiz: Rosetta Code - FizzBuzz, JS-Sammelvariante
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -44,7 +44,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- FizzBuzz als Liste
+# JavaScript - FizzBuzz als Liste
 
 Schreibe `fizzbuzzListe(n)`, die FizzBuzz für die Zahlen `1..n`
 als Array liefert.
@@ -65,13 +65,13 @@ Regeln:
 | `15`| `["1", ..., "FizzBuzz"]`                                |
 | `0` | `[]`                                                    |
 
-## Idee -- modernes JS
+## Idee - modernes JS
 
 `Array.from({ length: n }, fn)` ist das **moderne Pattern** zum
 Erzeugen eines Arrays mit n Elementen, ohne `new Array(n).fill()`-
 Trick.
 
-## Idee -- ternaer (kompakt)
+## Idee - ternär (kompakt)
 
 Schöner Pythonismus: leerer String ist falsy, also greift `||`.
 
@@ -83,4 +83,4 @@ Schöner Pythonismus: leerer String ist falsy, also greift `||`.
 | JavaScript | `Array.from({length: n}, (_, i) => ...)`|
 
 JS hat kein direktes `range(n)`. Mit Spread + Keys:
-`[...Array(n).keys()].map(...)` -- aber `Array.from` ist klarer.
+`[...Array(n).keys()].map(...)` - aber `Array.from` ist klarer.

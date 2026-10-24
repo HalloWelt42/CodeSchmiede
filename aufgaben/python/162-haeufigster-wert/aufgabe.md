@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 162-haeufigster-wert
-revision: 1
+revision: 2
 titel: Häufigster Wert (Modus)
 sprache: python
 task_type: code_schreiben
@@ -69,7 +69,7 @@ Wert** einer Liste zurückgibt.
 
 ## Beispiele
 
-| Liste                  | Modus | Begruendung           |
+| Liste                  | Modus | Begründung           |
 |------------------------|-------|------------------------|
 | `[1, 2, 2, 3]`         | `2`   | 2 kommt zweimal vor    |
 | `[1, 1, 2, 2]`         | `1`   | Gleichstand → kleinster|
@@ -80,12 +80,12 @@ Wert** einer Liste zurückgibt.
 ## Tie-Breaking
 
 Standard-`Counter.most_common(1)` liefert bei Gleichstand das **zuerst
-gesehene** Element -- nicht das kleinste. Darum hier die explizite
+gesehene** Element - nicht das kleinste. Darum hier die explizite
 Filter-und-Min-Variante.
 
 ## Statistik-Hintergrund
 
 Modus, **Median** (Aufgabe 161) und **Mittelwert** sind die drei
-Lagemasse. Bei kategorischen Daten (z.B. Lieblings-Eis-Sorten) ist
-der Modus oft die einzig sinnvolle Statistik -- du kannst nicht
+Lagemaße. Bei kategorischen Daten (z.B. Lieblings-Eis-Sorten) ist
+der Modus oft die einzig sinnvolle Statistik - du kannst nicht
 "den Durchschnitt aus Vanille und Schoko" bilden.

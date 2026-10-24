@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 015-quiz-listen-slicing
-revision: 1
+revision: 2
 titel: Was gibt das Slicing aus?
 sprache: python
 task_type: output_quiz
@@ -46,6 +46,6 @@ Slicing-Notation: `liste[start:stop:schritt]`
 ## Hinweise
 
 - Index 1 in `[1, 2, 3, 4, 5, 6, 7, 8]` ist die `2`.
-- Index 6 ist die `7` -- aber stop ist exklusiv, also wird `7` nicht
+- Index 6 ist die `7` - aber stop ist exklusiv, also wird `7` nicht
   mitgenommen.
-- Schritt `2` heisst: jedes zweite Element.
+- Schritt `2` heißt: jedes zweite Element.

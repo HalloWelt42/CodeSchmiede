@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 108-permutationen
-revision: 1
+revision: 2
 titel: Alle Permutationen
 sprache: python
 task_type: code_schreiben
@@ -57,7 +57,7 @@ starter_code: |
 # Alle Permutationen
 
 Schreibe eine Funktion `permutationen(text)`, die **alle eindeutigen
-Permutationen** der Buchstaben als Liste zurückgibt -- sortiert.
+Permutationen** der Buchstaben als Liste zurückgibt - sortiert.
 
 ## Beispiele
 
@@ -72,12 +72,12 @@ Permutationen** der Buchstaben als Liste zurückgibt -- sortiert.
 ## Anzahl
 
 Bei $n$ unterschiedlichen Zeichen sind es $n!$ Permutationen. Bei
-doppelten Zeichen entsprechend weniger -- z.B. `"aab"` hat
+doppelten Zeichen entsprechend weniger - z.B. `"aab"` hat
 $3!/2! = 3$ statt 6.
 
 ## Hintergrund
 
 Permutationen sind die Eintrittskarte zur **Kombinatorik**. In
 Algorithmen-Kursen oft als Beispiel für **Rekursion** mit Backtracking
-benutzt -- aber `itertools.permutations` macht es in Python ohnehin
+benutzt - aber `itertools.permutations` macht es in Python ohnehin
 in einer Zeile.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 304-compose-zwei
-revision: 1
+revision: 2
 titel: Zwei Operationen verschachteln (compose)
 sprache: python
 task_type: code_schreiben
@@ -28,7 +28,7 @@ hints:
       Bei UNBEKANNTER Op → x unverändert.
   - kosten: 15
     text: |
-      g(f(x)) -- erst f anwenden, dann g auf das Ergebnis.
+      g(f(x)) - erst f anwenden, dann g auf das Ergebnis.
 tests_sichtbar:
   - input: [3, "increment", "square"]
     expected: 16
@@ -62,11 +62,11 @@ starter_code: |
 # Zwei Operationen verschachteln (compose)
 
 Schreibe `compose_anwenden(x, f, g)`, die zwei Operationen **kombiniert**
-auf `x` anwendet -- nach mathematischer Konvention:
+auf `x` anwendet - nach mathematischer Konvention:
 
 $$(g \circ f)(x) = g(f(x))$$
 
-Das heisst: **erst f**, dann **g auf das Ergebnis**.
+Das heißt: **erst f**, dann **g auf das Ergebnis**.
 
 Bei unbekannter Op wird sie als `identity` behandelt (gibt x zurück).
 
@@ -92,16 +92,16 @@ Bei unbekannter Op wird sie als `identity` behandelt (gibt x zurück).
 
 ## Idee
 
-`OPS.get(name, IDENTITY)` -- bei unbekanntem Namen das Identitaets-
+`OPS.get(name, IDENTITY)` - bei unbekanntem Namen das Identitäts-
 Lambda als Fallback.
 
-## Mathematik -- Komposition
+## Mathematik - Komposition
 
 Komposition `g ∘ f` ist eine der grundlegendsten Operationen in der
 Mathematik:
 
-- Identitaet: `id ∘ f = f ∘ id = f`
-- Assoziativitaet: `(h ∘ g) ∘ f = h ∘ (g ∘ f)`
+- Identität: `id ∘ f = f ∘ id = f`
+- Assoziativität: `(h ∘ g) ∘ f = h ∘ (g ∘ f)`
 - I.A. **nicht kommutativ**: `g ∘ f ≠ f ∘ g`
 
 Beispiel oben: `square ∘ increment` (3 → 4 → 16) ≠

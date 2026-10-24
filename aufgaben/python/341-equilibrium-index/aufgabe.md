@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 341-equilibrium-index
-revision: 1
+revision: 2
 titel: Gleichgewichts-Index in Liste
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [listen, summe, prefix, algorithmen]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Equilibrium_index
-  notiz: Rosetta Code -- Equilibrium index
+  notiz: Rosetta Code - Equilibrium index
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -68,7 +68,7 @@ Element → `[0]` (beide Seiten leer).
 
 ## Beispiele
 
-| Liste                       | Indizes       | Begruendung               |
+| Liste                       | Indizes       | Begründung               |
 |-----------------------------|----------------|----------------------------|
 | `[-7, 1, 5, 2, -4, 3, 0]`   | `[3, 6]`      | i=3: -1 == -1; i=6: 0 == 0 |
 | `[5]`                       | `[0]`         | links + rechts beide 0    |
@@ -77,19 +77,19 @@ Element → `[0]` (beide Seiten leer).
 | `[1, 2, 3, 4, 6]`           | `[3]`         | i=3: 1+2+3 == 6            |
 | `[1, 2, 3]`                 | `[]`          | nirgendwo Gleichgewicht   |
 
-## Idee -- O(n) mit laufender Differenz
+## Idee - O(n) mit laufender Differenz
 
 Eine Schleife. `links` wird laufend aufaddiert, `rechts` ist
 immer "gesamt - links - aktuelles_element".
 
-## Naiv -- O(n²)
+## Naiv - O(n²)
 
-Lesbar, aber bei jeder Iteration neue Summe -- zu langsam für
+Lesbar, aber bei jeder Iteration neue Summe - zu langsam für
 große Listen.
 
 ## Anwendung
 
 - **Lastverteilung**: gleicher Aufwand auf beiden Seiten eines
   Punkts
-- **Algorithmen-Klassiker** in Bewerbungsgespraechen
-- **Praefix-Summen-Optimierung** -- Grundlage vieler Listen-Tricks
+- **Algorithmen-Klassiker** in Bewerbungsgesprächen
+- **Präfix-Summen-Optimierung** - Grundlage vieler Listen-Tricks

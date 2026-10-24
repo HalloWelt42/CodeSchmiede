@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 189-html-escape
-revision: 1
+revision: 2
 titel: HTML-Sonderzeichen escapen
 sprache: python
 task_type: code_schreiben
@@ -64,7 +64,7 @@ starter_code: |
 # HTML-Sonderzeichen escapen
 
 Schreibe `html_escape(s)`, die einen String so umwandelt, dass er
-**sicher in HTML eingebettet** werden kann -- ohne dass enthaltene
+**sicher in HTML eingebettet** werden kann - ohne dass enthaltene
 Sonderzeichen als HTML interpretiert werden.
 
 ## Ersetzungs-Tabelle
@@ -89,10 +89,10 @@ zu `&amp;lt;`.
 | `"a & b"`                  | `"a &amp; b"`                                   |
 | `"<script>alert(1)</script>"` | `"&lt;script&gt;alert(1)&lt;/script&gt;"`    |
 
-## Sicherheitskontext -- XSS
+## Sicherheitskontext - XSS
 
 Diese Funktion ist die Grundlage zur Verhinderung von **XSS**
-(Cross-Site Scripting) -- der häufigsten Webschwachstelle bis heute.
+(Cross-Site Scripting) - der häufigsten Webschwachstelle bis heute.
 Wer User-Eingaben unescaped ins HTML rendert, öffnet Angreifern
 die Tür für `<script>`-Injection.
 

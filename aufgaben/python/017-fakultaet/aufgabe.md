@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 017-fakultaet
-revision: 1
+revision: 2
 titel: Fakultät n!
 sprache: python
 task_type: code_schreiben
@@ -82,11 +82,11 @@ $$
 ## Wege
 
 Du kannst die Aufgabe **iterativ** (Schleife) oder **rekursiv**
-(Funktion ruft sich selbst auf) lösen. Beide Wege sind valide --
+(Funktion ruft sich selbst auf) lösen. Beide Wege sind valide -
 für große `n` ist die Iteration in Python aber bequemer.
 
 ## Hintergrund
 
 Die Fakultät zählt die Anzahl möglicher Anordnungen von $n$ Objekten.
-$5! = 120$ heisst: 5 Bücher kannst du auf 120 verschiedene Arten in
+$5! = 120$ heißt: 5 Bücher kannst du auf 120 verschiedene Arten in
 ein Regal sortieren.

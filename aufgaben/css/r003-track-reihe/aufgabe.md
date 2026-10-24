@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r003-track-reihe
-revision: 1
+revision: 2
 titel: "Repro 03: Musik-Track-Zeile"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [repro, lernpfad, flexbox, musik]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -87,7 +87,7 @@ asserts:
 hints:
   - kosten: 0
     text: |
-      Drei Flex-Bereiche nebeneinander: Cover (fix), Info (waechst), Dauer (fix). Lange Titel müssen mit ... abgekürzt werden -- daher die Truncation-Kombo: white-space, overflow, text-overflow.
+      Drei Flex-Bereiche nebeneinander: Cover (fix), Info (wächst), Dauer (fix). Lange Titel müssen mit ... abgekürzt werden - daher die Truncation-Kombo: white-space, overflow, text-overflow.
   - kosten: 6
     text: |
       `.info { flex: 1; min-width: 0; }` und `.titel { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }`
@@ -133,7 +133,7 @@ starter_code: |
 ## Aufgabe
 
 Eine kompakte Zeile für einen
-Song: Cover-Bild links, in der Mitte Titel + Kuenstler, ganz rechts die Dauer.
+Song: Cover-Bild links, in der Mitte Titel + Künstler, ganz rechts die Dauer.
 Lange Titel werden mit '...' abgekürzt statt das Layout zu sprengen.
 
 ## Aha

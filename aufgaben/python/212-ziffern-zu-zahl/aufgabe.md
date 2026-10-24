@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 212-ziffern-zu-zahl
-revision: 1
+revision: 2
 titel: Ziffern-Liste zur Zahl zusammensetzen
 sprache: python
 task_type: code_schreiben
@@ -60,9 +60,9 @@ starter_code: |
 # Ziffern-Liste zur Zahl zusammensetzen
 
 Schreibe `aus_ziffern(ziffern)`, die eine Liste von Ziffern (jeweils
-0-9) zu einer Zahl zusammensetzt -- höchstwertige Stelle zuerst.
+0-9) zu einer Zahl zusammensetzt - höchstwertige Stelle zuerst.
 
-Bei leerer Liste → `0`. Fuehrende Nullen entfallen automatisch.
+Bei leerer Liste → `0`. Führende Nullen entfallen automatisch.
 
 ## Beispiele
 
@@ -75,7 +75,7 @@ Bei leerer Liste → `0`. Fuehrende Nullen entfallen automatisch.
 | `[0, 5]`            | `5`        |
 | `[9, 8, 7, 6, 5, 4, 3, 2, 1]` | `987654321` |
 
-## Idee -- Horner-Schema
+## Idee - Horner-Schema
 
 Pro Stelle "verschieben" wir die bisherige Zahl eine Stelle nach
 links (Multiplikation mit 10) und addieren die neue Ziffer.
@@ -88,9 +88,9 @@ Beispiel `[1, 2, 3]`:
 | 2      | 1        | 12  |
 | 3      | 12       | 123 |
 
-## Idee -- per Join + int
+## Idee - per Join + int
 
-Liest sich kompakt, macht aber den Umweg über String -- bei sehr
+Liest sich kompakt, macht aber den Umweg über String - bei sehr
 großen Listen langsamer als Horner.
 
 ## Anwendung

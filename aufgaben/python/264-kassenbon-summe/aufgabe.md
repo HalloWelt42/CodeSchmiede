@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 264-kassenbon-summe
-revision: 1
+revision: 2
 titel: Kassenbon-Summe berechnen
 sprache: python
 task_type: code_schreiben
@@ -86,11 +86,11 @@ Mit Floats kann **Rundungs-Drift** entstehen:
 
 Für **echte Geld-Anwendungen** sollte man `decimal.Decimal` nutzen
 oder in **Cent-Ints** rechnen (`299` statt `2.99`). Pythons `round`
-hilft, gibt aber keine Garantie auf perfekte Praezision.
+hilft, gibt aber keine Garantie auf perfekte Präzision.
 
 ## Erweiterung
 
-Eine richtige Bon-Berechnung haette zusaetzlich:
+Eine richtige Bon-Berechnung hätte zusätzlich:
 - **MwSt** pro Posten (7% / 19% in DE).
 - **Rabatte** (prozentual oder absolut).
 - **Pfand**-Posten (separate Reihe).

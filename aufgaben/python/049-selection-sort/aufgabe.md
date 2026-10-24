@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 049-selection-sort
-revision: 1
+revision: 2
 titel: Selection-Sort
 sprache: python
 task_type: code_schreiben
@@ -26,7 +26,7 @@ hints:
       ersten Element des unsortierten Teils.
   - kosten: 9
     text: |
-      Aussere Schleife `i in range(n)`. Innen: Index des Minimums in
+      Äußere Schleife `i in range(n)`. Innen: Index des Minimums in
       `liste[i:]` finden, dann mit `liste[i]` tauschen.
 tests_sichtbar:
   - input: [[3, 1, 2]]
@@ -63,7 +63,7 @@ In jedem Durchlauf:
 
 1. Finde das **kleinste Element** im noch unsortierten Teil
 2. Tausche es mit dem ersten Element des unsortierten Teils
-3. Der sortierte Teil waechst um eins nach rechts
+3. Der sortierte Teil wächst um eins nach rechts
 
 ## Beispiele
 
@@ -73,12 +73,12 @@ In jedem Durchlauf:
 | `[5,4,3,2,1]` | `[1,2,3,4,5]` |
 | `[]`          | `[]`          |
 
-## Komplexitaet
+## Komplexität
 
-$O(n^2)$ in **jedem** Fall -- auch wenn die Liste schon sortiert ist,
+$O(n^2)$ in **jedem** Fall - auch wenn die Liste schon sortiert ist,
 müssen alle Vergleiche gemacht werden. Das ist anders als bei
 Bubble-Sort, der mit Early-Exit auf $O(n)$ schrumpft.
 
-Die Anzahl der **Tauschoperationen** ist allerdings nur $O(n)$ -- genau
+Die Anzahl der **Tauschoperationen** ist allerdings nur $O(n)$ - genau
 ein Tausch pro Durchlauf. Das macht Selection-Sort attraktiv, wenn
 Tauschen teuer ist (z.B. bei sehr großen Datensätzen im RAM).

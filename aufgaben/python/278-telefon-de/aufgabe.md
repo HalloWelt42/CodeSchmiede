@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 278-telefon-de
-revision: 1
+revision: 2
 titel: Deutsche Telefonnummer prüfen
 sprache: python
 task_type: code_schreiben
@@ -89,14 +89,14 @@ Formate** ist:
 | `"+49 89 7654321"`   | `True`   |
 | `"089/7654321"`      | `True`   |
 | `"+1 555 1234567"`   | `False` (US-Vorwahl) |
-| `"12345"`            | `False` (kein Praefix) |
+| `"12345"`            | `False` (kein Präfix) |
 | `"030 12"`           | `False` (Hauptnummer zu kurz) |
 | `"+49 0 1234"`       | `False` (Vorwahl zu kurz) |
 
 ## Idee
 
-`(?:...)` ist eine **non-capturing** Gruppe -- gruppiert nur, ohne
-das Ergebnis zu sammeln. `\d{2,5}` heisst "2 bis 5 Ziffern".
+`(?:...)` ist eine **non-capturing** Gruppe - gruppiert nur, ohne
+das Ergebnis zu sammeln. `\d{2,5}` heißt "2 bis 5 Ziffern".
 
 ## Warum so vereinfacht?
 
@@ -106,5 +106,5 @@ Bindestriche, etc.). Hier reicht ein robustes Schul-Pattern für
 typische deutsche Formate.
 
 In der Praxis nutzt man für ernsthafte Anwendungen die
-**libphonenumber**-Library von Google -- die kennt jedes Land und
+**libphonenumber**-Bibliothek - die kennt jedes Land und
 jede Eigenheit.

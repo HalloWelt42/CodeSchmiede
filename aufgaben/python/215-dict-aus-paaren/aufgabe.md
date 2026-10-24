@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 215-dict-aus-paaren
-revision: 1
+revision: 2
 titel: Dict aus Schlüssel-Wert-Paaren bauen
 sprache: python
 task_type: code_schreiben
@@ -76,12 +76,12 @@ Leere Liste → `{}`.
 ## Idee
 
 `dict()` akzeptiert ein Iterable von 2-Element-Iterables direkt.
-Bei doppelten Keys gewinnt automatisch das **letzte** Paar -- weil
-es spaeter eingesetzt wird und das frühere überschreibt.
+Bei doppelten Keys gewinnt automatisch das **letzte** Paar - weil
+es später eingesetzt wird und das frühere überschreibt.
 
 ## Hintergrund
 
-Dieses Pattern ist allgegenwaertig:
+Dieses Pattern ist allgegenwärtig:
 - Beim Parsen von **Query-Strings** (`?key=value&key2=value2`).
 - Bei **CSV-Headers** + Daten (zip(headers, row) → dict).
 - Bei **JSON-Roundtrip** (Python ↔ JSON serialisiert dict zu Pairs).

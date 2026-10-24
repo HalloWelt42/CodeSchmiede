@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s015-width-100-prozent
-revision: 1
-titel: "Grundlagen 15: width 100% -- Container voll ausnuetzen"
+revision: 2
+titel: "Grundlagen 15: width 100% - Container voll ausnützen"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [grundlagen, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -44,10 +44,10 @@ hints:
   - kosten: 0
     text: |
       CSS wählt Elemente per **Selektor** und gibt ihnen Eigenschaften.
-      Welcher Selektor zählt, regeln Spezifizitaet und Quellreihenfolge.
+      Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
-      `width: 100%; box-sizing: border-box;` -- letzteres ist schon gesetzt
+      `width: 100%; box-sizing: border-box;` - letzteres ist schon gesetzt
 starter_code: |
   .container {
     width: 300px;
@@ -74,13 +74,13 @@ Das Eingabefeld soll die volle Breite des Containers einnehmen, nicht nur die De
 
 `width: 100%` macht ein Element so breit wie sein Eltern-Element
 (genauer: dessen Inhaltsbreite). Bei `box-sizing: border-box` ist
-Padding inklusive -- bei `content-box` würde das Feld überlaufen,
+Padding inklusive - bei `content-box` würde das Feld überlaufen,
 weil das Padding noch dazukommt. Daher gehen die beiden Properties
 praktisch immer Hand in Hand.
 
 ## Wozu in der Praxis?
 
 Form-Felder, die im ganzen Container 'liegen', Card-Footer-Buttons,
-Bilder die volle Breite einnehmen sollen -- `width: 100%` ist das
+Bilder die volle Breite einnehmen sollen - `width: 100%` ist das
 Standard-Werkzeug. Mit `max-width` kombiniert: nimmt 100%, aber
 nicht mehr als z.B. 600px.

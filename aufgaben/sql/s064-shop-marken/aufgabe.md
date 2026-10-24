@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s064-shop-marken
-revision: 1
+revision: 2
 titel: "Shop: Anzahl Produkte pro Marke"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [group-by, count]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -52,4 +52,4 @@ starter_code: |
 
 # Produkte pro Marke
 
-Marken-Name + Anzahl Produkte, hauefigste Marke zuerst.
+Marken-Name + Anzahl Produkte, häufigste Marke zuerst.

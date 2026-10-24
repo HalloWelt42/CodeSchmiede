@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 053-two-sum
-revision: 1
+revision: 2
 titel: Two-Sum
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [listen, dict, suche, hashing]
 voraussetzungen: [022-wortzaehler]
 quelle:
   url: null
-  notiz: Klassisches Interview-Problem (LeetCode 1), eigene Reformulierung
+  notiz: Klassisches Interview-Problem, eigene Formulierung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -83,7 +83,7 @@ keines, gib `[]` zurück.
 | `[1,2,3]`        | `100`| `[]`     |
 | `[]`             | `5`  | `[]`     |
 
-## Komplexitaet
+## Komplexität
 
 | Variante     | Zeit     | Speicher |
 |--------------|----------|----------|
@@ -96,6 +96,6 @@ hast du das Paar.
 
 ## Hintergrund
 
-"Two-Sum" ist die **Aufgabe Nr. 1 auf LeetCode** und seit Jahren das
-Stoffel-Beispiel für Hashing-Tricks in Interviews. Wer das Pattern
+"Two-Sum" ist die **bekannteste Einstiegsaufgabe** für Bewerbungsgespräche und seit Jahren das
+Paradebeispiel für Hashing-Tricks in Interviews. Wer das Pattern
 kennt, sieht es überall wieder (Three-Sum, Pair-Differenz, ...).

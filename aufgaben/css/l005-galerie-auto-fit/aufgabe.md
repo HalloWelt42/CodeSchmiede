@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l005-galerie-auto-fit
-revision: 1
+revision: 2
 titel: "Layout 05: Galerie ohne Media-Query (auto-fit + minmax)"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 8
 tags: [layout, lernpfad, grid, auto-fit, responsiv]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -51,7 +51,7 @@ asserts:
 hints:
   - kosten: 0
     text: |
-      Wieviele Spalten passen rein? Das berechnet auto-fit selber. minmax(100px, 1fr) heisst: Spalten sind mind. 100px breit, dehnen sich aber auf den Rest. Zusammen ergibt sich ein responsives Grid ohne eine Media-Query.
+      Wieviele Spalten passen rein? Das berechnet auto-fit selber. minmax(100px, 1fr) heißt: Spalten sind mind. 100px breit, dehnen sich aber auf den Rest. Zusammen ergibt sich ein responsives Grid ohne eine Media-Query.
   - kosten: 5
     text: |
       Auf .galerie: `grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));`
@@ -81,7 +81,7 @@ starter_code: |
 ## Aufgabe
 
 8 quadratische Kacheln,
-die sich automatisch an die Container-Breite anpassen -- ohne dass du eine
+die sich automatisch an die Container-Breite anpassen - ohne dass du eine
 Media-Query schreibst.
 
 ## Aha

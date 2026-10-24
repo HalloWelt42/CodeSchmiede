@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l002-hero-mit-cta
-revision: 1
+revision: 2
 titel: "Layout 02: Hero-Sektion mit Headline und CTA"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 7
 tags: [layout, lernpfad, hero, flexbox]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -104,9 +104,9 @@ Vertikal gestapelt und in beiden Achsen zentriert:
 
 Flex-column + justify-center + align-center ist die
 einfachste Centering-Kombination für einen ganzen Block. Mit gap
-verteilst du die Abstaende, ohne margin schreiben zu müssen.
+verteilst du die Abstände, ohne margin schreiben zu müssen.
 
 ## Wozu in der Praxis?
 
 Landing-Pages, Onboarding-Slides, Empty-
-States -- alle nutzen diese Anordnung.
+States - alle nutzen diese Anordnung.

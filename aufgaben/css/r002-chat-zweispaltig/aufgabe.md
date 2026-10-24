@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r002-chat-zweispaltig
-revision: 1
+revision: 2
 titel: "Repro 02: Chat-Dialog mit eigener und fremder Nachricht"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [repro, lernpfad, chat, flexbox]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -81,7 +81,7 @@ asserts:
 hints:
   - kosten: 0
     text: |
-      Chat als flex-column. Jede Zeile ist eine Flex-Reihe mit Avatar + Bubble. Eigene Nachrichten haben justify-content: flex-end (Bubble rechts), fremde links. Die Bubble-Ecken sind asymmetrisch -- die 'Spitze' zeigt zum jeweiligen Avatar.
+      Chat als flex-column. Jede Zeile ist eine Flex-Reihe mit Avatar + Bubble. Eigene Nachrichten haben justify-content: flex-end (Bubble rechts), fremde links. Die Bubble-Ecken sind asymmetrisch - die 'Spitze' zeigt zum jeweiligen Avatar.
   - kosten: 6
     text: |
       fremd-Bubble: `border-radius: 12px 12px 12px 4px;` (spitze unten links)
@@ -135,13 +135,13 @@ starter_code: |
 Zwei Nachrichten in einem Chat-Layout.
 Die fremde Nachricht (links) hat einen Avatar daneben und Bubble in Grau, die
 eigene (rechts) ist Petrol ohne Avatar. Die untere Bubble-Ecke zeigt jeweils
-zum Sender -- bei fremd unten links spitz, bei eigen unten rechts.
+zum Sender - bei fremd unten links spitz, bei eigen unten rechts.
 
 ## Aha
 
 Border-radius akzeptiert vier Werte (im Uhrzeigersinn ab oben links). Mit
 asymmetrischen Werten gibst du Bubbles die typische Sprech-Form. Plus:
-`flex-shrink: 0` auf dem Avatar schuetzt ihn davor, bei langen Nachrichten
+`flex-shrink: 0` auf dem Avatar schützt ihn davor, bei langen Nachrichten
 zu schrumpfen.
 
 ## Wozu in der Praxis?

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 055-prefix-summe
-revision: 1
+revision: 2
 titel: Prefix-Summen-Liste
 sprache: python
 task_type: code_schreiben
@@ -64,7 +64,7 @@ starter_code: |
 # Prefix-Summen-Liste
 
 Schreibe eine Funktion `prefix_summe(zahlen)`, die eine Liste der
-**Praefix-Summen** zurückgibt. Das Element an Index `i` ist die
+**Präfix-Summen** zurückgibt. Das Element an Index `i` ist die
 Summe aller Elemente von Index 0 bis i.
 
 ## Beispiele
@@ -79,7 +79,7 @@ Summe aller Elemente von Index 0 bis i.
 
 ## Wozu das gut ist
 
-Mit Praefix-Summen kannst du **jede Range-Summe in O(1)** beantworten.
+Mit Präfix-Summen kannst du **jede Range-Summe in O(1)** beantworten.
 Suche die Summe von Index `l` bis `r`? `praefix[r] - praefix[l-1]`.
 Das macht aus quadratischen Algorithmen oft lineare.
 
@@ -92,5 +92,5 @@ from itertools import accumulate
 return list(accumulate(zahlen))
 ```
 
-Die manuelle Schleife ist trotzdem lehrreich -- das Akkumulator-Pattern
+Die manuelle Schleife ist trotzdem lehrreich - das Akkumulator-Pattern
 brauchst du oft.

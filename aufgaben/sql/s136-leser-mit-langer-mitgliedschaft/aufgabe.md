@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s136-leser-mit-langer-mitgliedschaft
-revision: 1
+revision: 2
 titel: "Mitglieder über 5 Jahre"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [date, julianday]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

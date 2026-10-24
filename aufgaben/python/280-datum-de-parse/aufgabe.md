@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 280-datum-de-parse
-revision: 1
+revision: 2
 titel: Deutsches Datum DD.MM.YYYY parsen
 sprache: python
 task_type: code_schreiben
@@ -69,14 +69,14 @@ starter_code: |
 # Deutsches Datum DD.MM.YYYY parsen
 
 Schreibe `datum_parse(s)`, die ein deutsches Datum im Format
-`"DD.MM.YYYY"` (mit oder ohne fuehrende Nullen) in eine Liste
+`"DD.MM.YYYY"` (mit oder ohne führende Nullen) in eine Liste
 `[tag, monat, jahr]` umwandelt.
 
 Bei ungültigem Format → `[]`.
 
 **Achtung**: Diese Aufgabe prüft nur die **Form**, nicht ob das
 Datum tatsächlich existiert. `"32.13.2026"` wird als Form-OK
-akzeptiert -- die semantische Prüfung wäre eine eigene Aufgabe.
+akzeptiert - die semantische Prüfung wäre eine eigene Aufgabe.
 
 ## Beispiele
 
@@ -89,14 +89,14 @@ akzeptiert -- die semantische Prüfung wäre eine eigene Aufgabe.
 | `"11/05/2026"`  | `[]` (falscher Trenner) |
 | `"11.5.26"`     | `[]` (Jahr nicht 4-stellig) |
 | `"abc"`         | `[]`                |
-| `" 1.1.2026"`   | `[]` (fuehrendes Leerzeichen) |
+| `" 1.1.2026"`   | `[]` (führendes Leerzeichen) |
 
-## Idee -- Capture-Groups
+## Idee - Capture-Groups
 
 `re.fullmatch` mit Capture-Groups: jedes Klammern-Paar ist eine
 Gruppe, `m.group(i)` (1-basiert) liefert den Inhalt.
 
-`\.` (mit Backslash) matcht den **literalen Punkt** -- ohne
+`\.` (mit Backslash) matcht den **literalen Punkt** - ohne
 Backslash wäre `.` "beliebiges Zeichen".
 
 ## Idiomatischer mit `groups()`

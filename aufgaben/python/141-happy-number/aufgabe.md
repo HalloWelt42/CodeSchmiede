@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 141-happy-number
-revision: 1
+revision: 2
 titel: Glückliche Zahl (Happy Number)
 sprache: python
 task_type: code_schreiben
@@ -13,7 +13,7 @@ tags: [zahlen, zyklus, set, mathematik]
 voraussetzungen: []
 quelle:
   url: null
-  notiz: Project-Euler-Klassiker / LeetCode 202
+  notiz: Zahlentheorie-Klassiker (fröhliche Zahlen)
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -96,6 +96,6 @@ Set für schon gesehene Zahlen. Solange weiter rechnen, bis entweder
 ## Hintergrund
 
 Mathematisch interessant: alle nicht-glucklichen Zahlen landen im
-selben Zyklus `4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4`. Das laesst
+selben Zyklus `4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4`. Das lässt
 sich beweisen, indem man zeigt, dass die Quadratsumme jeder Zahl > 99
 kleiner als die Zahl selbst ist (Schranken-Argument).

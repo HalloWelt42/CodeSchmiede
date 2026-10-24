@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 262-dauer-hms-text
-revision: 1
+revision: 2
 titel: Dauer als "Xh Ym Zs" formatieren
 sprache: python
 task_type: code_schreiben
@@ -65,7 +65,7 @@ starter_code: |
 # Dauer als "Xh Ym Zs" formatieren
 
 Schreibe `dauer_text(sekunden)`, die eine Zeit als kompakten Text
-ausgibt -- mit den Einheiten **h**, **m**, **s**, aber **Nullen
+ausgibt - mit den Einheiten **h**, **m**, **s**, aber **Nullen
 weggelassen**.
 
 Negative Zahlen → `"0s"`.
@@ -86,11 +86,11 @@ Negative Zahlen → `"0s"`.
 | 86400    | `"24h"`      |
 | -5       | `"0s"`       |
 
-## Verwandt -- Aufgabe 186 mit fester Form
+## Verwandt - Aufgabe 186 mit fester Form
 
 Aufgabe **186-zahl-zu-bisexagesimal** liefert immer
-`"HH:MM:SS"` (mit fuehrenden Nullen). Hier ist die Form **kompakt**
-und überspringt Nullen -- besser für CLI-Tool-Output, schlechter
+`"HH:MM:SS"` (mit führenden Nullen). Hier ist die Form **kompakt**
+und überspringt Nullen - besser für CLI-Tool-Output, schlechter
 für feste Tabellen-Spalten.
 
 ## Anwendung

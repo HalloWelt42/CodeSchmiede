@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 195-jahreszeit
-revision: 1
+revision: 2
 titel: Jahreszeit aus Monatsnummer
 sprache: python
 task_type: code_schreiben
@@ -30,7 +30,7 @@ hints:
       Ungültige Monate (< 1 oder > 12) -> "ungültig".
   - kosten: 4
     text: |
-      Liste mit 12 Eintraegen oder eine if-elif-Kette nach Bereichen.
+      Liste mit 12 Einträgen oder eine if-elif-Kette nach Bereichen.
       Achtung Dezember (12) liegt im Winter wie Januar/Februar.
 tests_sichtbar:
   - input: [1]
@@ -95,6 +95,6 @@ Ungültige Monate → `"ungültig"`.
 
 ## Hintergrund
 
-Auf der **Südhalbkugel** sind Jahreszeiten umgekehrt -- in
+Auf der **Südhalbkugel** sind Jahreszeiten umgekehrt - in
 Australien beginnt der Sommer im Dezember. Wer eine internationale
 App baut, sollte Südhalbkugel-Logik einbauen.

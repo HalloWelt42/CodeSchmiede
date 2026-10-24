@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 283-konto-saldi
-revision: 1
+revision: 2
 titel: Konto-Saldi nach jeder Buchung
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Liefere die Liste der Saldi nach jeder Buchung.
-      start = Anfangs-Saldo, buchungen = Liste von Betraegen (+/-).
+      start = Anfangs-Saldo, buchungen = Liste von Beträgen (+/-).
       Beispiel: start=100, buchungen=[10, -30, 50] → [110, 80, 130].
       Bei buchungen == [] → [].
   - kosten: 8
@@ -76,18 +76,18 @@ Bei leerer Buchungsliste → `[]`.
 | 50    | `[-50]`          | `[0]`             |
 | 1000  | `[100, 100, 100]`| `[1100, 1200, 1300]` |
 
-## Idee -- mit interner Klasse
+## Idee - mit interner Klasse
 
-Die Klasse haelt den Zustand (`self.saldo`), die Methode mutiert
-ihn und liefert den neuen Wert -- das ist klassisches OOP.
+Die Klasse hält den Zustand (`self.saldo`), die Methode mutiert
+ihn und liefert den neuen Wert - das ist klassisches OOP.
 
-## Idee -- ohne Klasse (procedural)
+## Idee - ohne Klasse (procedural)
 
 Genauso korrekt, kürzer. Die OOP-Variante zeigt aber, wie man
-**Zustand kapseln** kann -- was bei mehreren Konten oder zusaetzlichen
+**Zustand kapseln** kann - was bei mehreren Konten oder zusätzlichen
 Methoden (Zinsen, Sperre, Limit) sehr schnell hilfreich wird.
 
-## Pattern -- Akkumulator als Klasse
+## Pattern - Akkumulator als Klasse
 
 Wenn du in den nächsten Aufgaben **mehrere Operationen** auf dem
 gleichen Zustand brauchst, ist eine Klasse fast immer der bessere

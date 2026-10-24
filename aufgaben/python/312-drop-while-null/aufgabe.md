@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 312-drop-while-null
-revision: 1
+revision: 2
 titel: Drop-While null
 sprache: python
 task_type: code_schreiben
@@ -64,7 +64,7 @@ starter_code: |
 
 Schreibe `drop_while_null(liste)`, die Elemente am Anfang
 **übersprungen**, solange sie `0` sind. Beim ersten Element
-**ungleich** `0` wird der Skip-Modus beendet -- ab da werden
+**ungleich** `0` wird der Skip-Modus beendet - ab da werden
 alle weiteren Elemente übernommen, auch wenn `0` darunter sind.
 
 ## Beispiele
@@ -77,17 +77,17 @@ alle weiteren Elemente übernommen, auch wenn `0` darunter sind.
 | `[0, 0, 0, 1, 2, 3, 0, 0, 0]` | `[1, 2, 3, 0, 0, 0]`  |
 | `[-1, 0, 1]`                  | `[-1, 0, 1]` (-1 != 0) |
 
-## Idee -- Generator mit Flag
+## Idee - Generator mit Flag
 
 Sobald `dropping = False` gesetzt ist, kommt jedes weitere Element
-durch -- auch nullen.
+durch - auch nullen.
 
 ## Mit itertools.dropwhile
 
-`dropwhile` ist das Standard-Tool für dieses Pattern -- spiegelbildlich
+`dropwhile` ist das Standard-Tool für dieses Pattern - spiegelbildlich
 zu `takewhile`.
 
-## Vergleich -- takewhile vs dropwhile
+## Vergleich - takewhile vs dropwhile
 
 Bei `[0, 0, 1, 0, 2]` mit Predicate `x == 0`:
 

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 327-tau-funktion
-revision: 1
-titel: Tau-Funktion -- Anzahl der Teiler
+revision: 2
+titel: Tau-Funktion - Anzahl der Teiler
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -13,7 +13,7 @@ tags: [zahlen, mathematik, teiler, zahlentheorie]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Tau_function
-  notiz: Rosetta Code -- Tau function
+  notiz: Rosetta Code - Tau function
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -60,10 +60,10 @@ starter_code: |
       pass
 ---
 
-# Tau-Funktion -- Anzahl der Teiler
+# Tau-Funktion - Anzahl der Teiler
 
 Schreibe `tau(n)`, die die **Anzahl der positiven Teiler** von `n`
-liefert -- inklusive `1` und `n` selbst.
+liefert - inklusive `1` und `n` selbst.
 
 Bei `n < 1` → `0`.
 
@@ -80,13 +80,13 @@ Bei `n < 1` → `0`.
 | `97`    | `[1, 97]` (Primzahl)                | `2`    |
 | `1024`  | $2^0, 2^1, \dots, 2^{10}$           | `11`   |
 
-## Idee -- Schleife bis Wurzel
+## Idee - Schleife bis Wurzel
 
 Pro Treffer `i` als Teiler bekommt man **automatisch** `n // i`
-als Partner-Teiler -- daher `+= 2`. Bei Quadratzahlen
+als Partner-Teiler - daher `+= 2`. Bei Quadratzahlen
 (`i * i == n`) sind beide Teiler gleich, also nur `+= 1`.
 
-## Hintergrund -- Multiplikative Funktion
+## Hintergrund - Multiplikative Funktion
 
 Tau ist **multiplikativ**: bei teilerfremden `a, b` gilt
 $\tau(a \cdot b) = \tau(a) \cdot \tau(b)$. Wenn $n = p_1^{e_1} \cdot p_2^{e_2} \cdot \ldots$
@@ -99,5 +99,5 @@ Beispiel: $12 = 2^2 \cdot 3^1$, also $\tau(12) = (2+1)(1+1) = 6$.
 ## Vergleich mit Aufgabe 138
 
 **138-alle-teiler** liefert die **Liste** der Teiler.
-**327 hier** liefert nur die **Anzahl** -- effizienter, weil
+**327 hier** liefert nur die **Anzahl** - effizienter, weil
 keine Speicherung der Teiler nötig.

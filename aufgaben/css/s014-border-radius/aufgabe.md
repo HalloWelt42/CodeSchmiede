@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s014-border-radius
-revision: 1
-titel: "Grundlagen 14: Border-Radius -- abgerundete Ecken"
+revision: 2
+titel: "Grundlagen 14: Border-Radius - abgerundete Ecken"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [grundlagen, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -42,7 +42,7 @@ hints:
   - kosten: 0
     text: |
       CSS wählt Elemente per **Selektor** und gibt ihnen Eigenschaften.
-      Welcher Selektor zählt, regeln Spezifizitaet und Quellreihenfolge.
+      Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
       `border: 2px solid #2dd4bf; border-radius: 8px;`
@@ -65,12 +65,12 @@ Die Box bekommt 2px Rahmen in Petrol und 8px Radius an den Ecken
 ## Aha
 
 `border` ist die Shorthand für Width, Style und Color in einem.
-`border-radius` rundet die Ecken ab -- ein einzelner Wert wirkt auf
+`border-radius` rundet die Ecken ab - ein einzelner Wert wirkt auf
 alle vier Ecken. Mit vier Werten (`border-radius: 8px 0 0 8px`)
 bestimmst du jede Ecke einzeln (im Uhrzeigersinn von oben links).
 
 ## Wozu in der Praxis?
 
 Borders trennen Cards von ihrem Hintergrund. Border-Radius weicht
-harte rechteckige Optik auf -- praktisch jedes moderne UI nutzt
+harte rechteckige Optik auf - praktisch jedes moderne UI nutzt
 abgerundete Ecken bei Buttons, Cards, Inputs.

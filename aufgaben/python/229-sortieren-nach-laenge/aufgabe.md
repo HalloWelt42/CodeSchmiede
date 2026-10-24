@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 229-sortieren-nach-laenge
-revision: 1
-titel: Strings nach Laenge sortieren
+revision: 2
+titel: Strings nach Länge sortieren
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -23,12 +23,12 @@ hints:
   - kosten: 0
     text: |
       Sortiere eine Liste von Strings AUFSTEIGEND nach LAENGE.
-      Bei gleicher Laenge: alphabetisch.
+      Bei gleicher Länge: alphabetisch.
       Original-Liste nicht verändern.
   - kosten: 5
     text: |
       sorted mit key=lambda s: (len(s), s).
-      Tupel-Sortierung: zuerst nach laenge, dann alphabetisch.
+      Tupel-Sortierung: zuerst nach länge, dann alphabetisch.
 tests_sichtbar:
   - input: [["banana", "apple", "cherry", "fig"]]
     expected: ["fig", "apple", "banana", "cherry"]
@@ -55,10 +55,10 @@ starter_code: |
       pass
 ---
 
-# Strings nach Laenge sortieren
+# Strings nach Länge sortieren
 
 Schreibe `nach_laenge(strings)`, die eine Liste von Strings
-**aufsteigend nach Laenge** sortiert. Bei gleicher Laenge:
+**aufsteigend nach Länge** sortiert. Bei gleicher Länge:
 **alphabetisch** (das ist die Standard-Tie-Breaking-Regel).
 
 Original-Liste **nicht** verändern.
@@ -72,7 +72,7 @@ Original-Liste **nicht** verändern.
 | `["banane", "apfel", "birne"]`     | `["apfel", "birne", "banane"]` (5,5,6) |
 | `["zzz", "aaa", "yy", "bb"]`       | `["bb", "yy", "aaa", "zzz"]`        |
 
-## Idee -- key mit Tupel
+## Idee - key mit Tupel
 
 Pythons `sorted` mit Tupel-Key sortiert **lexikographisch** über
 das Tupel: zuerst nach `len(s)`, bei Gleichstand nach `s` selbst.
@@ -81,12 +81,12 @@ das Tupel: zuerst nach `len(s)`, bei Gleichstand nach `s` selbst.
 
 Wegen Pythons **stabiler Sortierung** könnte man auch:
 
-Erst alphabetisch, dann nach Laenge -- die Stabilitaet erhaelt die
-alphabetische Reihenfolge bei Gleichstand. Funktioniert -- aber
+Erst alphabetisch, dann nach Länge - die Stabilität erhält die
+alphabetische Reihenfolge bei Gleichstand. Funktioniert - aber
 liest sich verwirrender.
 
 ## Anwendung
 
-- Auto-Vervollstaendigung: zuerst kürzere Vorschlaege.
+- Auto-Vervollständigung: zuerst kürzere Vorschläge.
 - Tabellen-Spalten dynamisch dimensionieren.
 - Sortier-Visualisierungen / Lehre.

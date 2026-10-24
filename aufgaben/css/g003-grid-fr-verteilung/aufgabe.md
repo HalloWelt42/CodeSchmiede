@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g003-grid-fr-verteilung
-revision: 1
+revision: 2
 titel: "Grid 03: Spalten im Verhältnis 1:2:1"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [grid, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -44,7 +44,7 @@ hints:
     text: |
       CSS-Grid ist 2-dimensional (Zeilen UND Spalten gleichzeitig).
       Im Gegensatz zu Flexbox musst du dem Container das Raster-Muster
-      vorgeben -- erst dann wissen die Zellen, wohin sie gehören.
+      vorgeben - erst dann wissen die Zellen, wohin sie gehören.
   - kosten: 3
     text: |
       `grid-template-columns: 1fr 2fr 1fr;`
@@ -66,24 +66,24 @@ starter_code: |
   }
 ---
 
-# Grid 03: Die mittlere Spalte ist doppelt so breit wie die aeusseren
+# Grid 03: Die mittlere Spalte ist doppelt so breit wie die äußeren
 
 ## Aufgabe
 
 Im Setzkasten-Rahmen sollen die Kacheln so angeordnet werden, dass
-**die mittlere spalte ist doppelt so breit wie die aeusseren**.
+**die mittlere spalte ist doppelt so breit wie die äußeren**.
 
 Schreibe die fehlende(n) Grid-Anweisung(en) in `.setzkasten`.
 
 ## Aha
 
-Die `fr`-Einheit verteilt **Rest-Platz** im Verhaeltnis ihrer Werte.
-`1fr 2fr 1fr` heisst: der Mittelplatz bekommt doppelt so viel wie
-die aeusseren. Mische fr mit px und der Browser rechnet: Pixel-Werte
+Die `fr`-Einheit verteilt **Rest-Platz** im Verhältnis ihrer Werte.
+`1fr 2fr 1fr` heißt: der Mittelplatz bekommt doppelt so viel wie
+die äußeren. Mische fr mit px und der Browser rechnet: Pixel-Werte
 werden zuerst abgezogen, dann der Rest per fr verteilt.
 
 ## Wozu in der Praxis?
 
-Klassisches Sidebar-Layout: `200px 1fr` -- die Sidebar ist fix, der
+Klassisches Sidebar-Layout: `200px 1fr` - die Sidebar ist fix, der
 Hauptbereich nimmt den Rest. Oder ein Hero-Layout: `1fr 2fr 1fr` mit
 Spacing links/rechts und doppeltem Content in der Mitte.

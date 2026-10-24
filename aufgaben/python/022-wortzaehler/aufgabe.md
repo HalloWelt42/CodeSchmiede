@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 022-wortzaehler
-revision: 1
+revision: 2
 titel: Wortzähler aus Satz
 sprache: python
 task_type: code_schreiben
@@ -22,7 +22,7 @@ funktion: wortzaehler
 hints:
   - kosten: 0
     text: |
-      `text.split()` zerlegt den Satz an Whitespace -- und liefert eine
+      `text.split()` zerlegt den Satz an Whitespace - und liefert eine
       Liste der Wörter.
   - kosten: 2
     text: |
@@ -30,7 +30,7 @@ hints:
       eintragen und dabei `dict.get(wort, 0) + 1` als Wert setzen.
   - kosten: 6
     text: |
-      `collections.Counter` macht das in einer Zeile -- aber zum
+      `collections.Counter` macht das in einer Zeile - aber zum
       Lernen lieber per Hand.
 tests_sichtbar:
   - input: ["der die das"]
@@ -74,14 +74,14 @@ leeren String liefere ein leeres Dictionary.
 
 ## Idee
 
-Mit `text.split()` bekommst du die Liste der Wörter. Dann durchlaeufst
+Mit `text.split()` bekommst du die Liste der Wörter. Dann durchläufst
 du sie und zählst per Dict mit. Die Reihenfolge der Schlüssel im
-Ergebnis spielt keine Rolle -- Python-Dicts garantieren seit 3.7
+Ergebnis spielt keine Rolle - Python-Dicts garantieren seit 3.7
 zwar Insertion-Order, der Test prüft aber gegen einen Dict-Vergleich.
 
 ## Hintergrund
 
 Wortzähler sind die Eintrittskarte zu **Text-Statistik** und einem
-großen Teil von NLP -- vom simplen Such-Index bis zur
+großen Teil von NLP - vom simplen Such-Index bis zur
 TF-IDF-Berechnung. Wer Python und Dict-Operationen kann, kann genau
 solche Sachen bauen.

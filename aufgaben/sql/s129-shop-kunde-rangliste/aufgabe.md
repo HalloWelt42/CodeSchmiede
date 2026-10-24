@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s129-shop-kunde-rangliste
-revision: 1
+revision: 2
 titel: "Shop: Kunden-Rangliste nach Umsatz"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 12
 tags: [cte, window-function, rank]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -42,7 +42,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      CTE mit Pro-Kunde-Umsatz, dann RANK in der aeusseren Query.
+      CTE mit Pro-Kunde-Umsatz, dann RANK in der äußeren Query.
 starter_code: |
   SELECT ___
   FROM ___

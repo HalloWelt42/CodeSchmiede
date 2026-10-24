@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r004-issue-zeile
-revision: 1
+revision: 2
 titel: "Repro 04: Issue-Tracker-Zeile mit Status und Labels"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [repro, lernpfad, flexbox, tracker]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -84,7 +84,7 @@ asserts:
 hints:
   - kosten: 0
     text: |
-      Flex-Reihe mit fuenf Items. Der Titel waechst (flex: 1), die anderen behalten ihre Größe. Das Label hat einen halbtransparenten Hintergrund (rgba) damit der Petrol-Ton subtil wirkt.
+      Flex-Reihe mit fünf Items. Der Titel wächst (flex: 1), die anderen behalten ihre Größe. Das Label hat einen halbtransparenten Hintergrund (rgba) damit der Petrol-Ton subtil wirkt.
   - kosten: 6
     text: |
       `.titel { flex: 1; }` und `.label { background-color: rgba(45, 212, 191, 0.18); color: #2dd4bf; }`
@@ -135,13 +135,13 @@ starter_code: |
 
 Kompakte Zeile in einem
 Issue-Tracker: Status-Punkt, ID, Titel (dehnt sich aus), Label-Badge,
-Prioritaets-Box.
+Prioritäts-Box.
 
 ## Aha
 
 rgba mit Alpha-Wert unter 1 erzeugt halbtransparente Farben. Bei `rgba(45,
-212, 191, 0.18)` siehst du den Petrol-Ton nur schwach -- ideal für subtile
-Badge-Hintergruende, die nicht vom Text ablenken aber trotzdem als visuelle
+212, 191, 0.18)` siehst du den Petrol-Ton nur schwach - ideal für subtile
+Badge-Hintergründe, die nicht vom Text ablenken aber trotzdem als visuelle
 Markierung dienen.
 
 ## Wozu in der Praxis?

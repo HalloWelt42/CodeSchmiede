@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: f014-flex-order
-revision: 1
-titel: "Flexbox 14: Reihenfolge ändern -- order"
+revision: 2
+titel: "Flexbox 14: Reihenfolge ändern - order"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [flexbox, lernpfad, order]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -50,7 +50,7 @@ hints:
   - kosten: 0
     text: |
       Jedes Flex-Item hat einen `order`-Wert (Default 0). Items werden nach
-      `order` sortiert -- niedrige Werte zuerst. Negative Werte gehen ganz nach vorn.
+      `order` sortiert - niedrige Werte zuerst. Negative Werte gehen ganz nach vorn.
   - kosten: 4
     text: |
       Setze auf `.vorne`: `order: -1;`
@@ -88,7 +88,7 @@ ganz links erscheinen** (B-A-C), ohne dass der HTML-Code geändert wird.
 
 ## Aha
 
-`order` verändert nur die **visuelle** Reihenfolge -- die DOM-Reihenfolge
+`order` verändert nur die **visuelle** Reihenfolge - die DOM-Reihenfolge
 und damit Screen-Reader und Tab-Reihenfolge bleiben unverändert.
 Achtung: Das kann für Accessibility heikel sein, wenn man übertreibt.
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 167-digital-root
-revision: 1
+revision: 2
 titel: Digitale Wurzel
 sprache: python
 task_type: code_schreiben
@@ -62,7 +62,7 @@ starter_code: |
 # Digitale Wurzel
 
 Die **digitale Wurzel** einer nicht-negativen Zahl ist das Ergebnis,
-das man erhaelt, wenn man die Quersumme so lange wiederholt, bis nur
+das man erhält, wenn man die Quersumme so lange wiederholt, bis nur
 noch eine **einzelne Ziffer** (0-9) übrig bleibt.
 
 ## Beispiele
@@ -75,18 +75,18 @@ noch eine **einzelne Ziffer** (0-9) übrig bleibt.
 | `9875`  | `29 → 11 → 2`            | `2`    |
 | `12345` | `15 → 6`                 | `6`    |
 
-## Lösung 2 -- Modulo-Trick
+## Lösung 2 - Modulo-Trick
 
 Eine Zahl ist genau dann durch 9 teilbar, wenn ihre Quersumme es ist.
 Daraus folgt:
 
 $$dr(n) = \begin{cases} 0 & n = 0 \\ 1 + ((n-1) \bmod 9) & n > 0 \end{cases}$$
 
-Eine einzige Operation -- unabhängig von der Anzahl der Stellen.
+Eine einzige Operation - unabhängig von der Anzahl der Stellen.
 
 ## Hintergrund
 
-Die digitale Wurzel ist die Grundlage der **Neuner-Probe** -- einem
+Die digitale Wurzel ist die Grundlage der **Neuner-Probe** - einem
 historischen Verfahren zur Prüfung von Rechnungen. Wenn `a + b = c`
 gilt, dann muss auch `dr(a) + dr(b) ≡ dr(c) (mod 9)` gelten.
-Schüler haben das jahrzehntelang als Plausibilitaets-Check benutzt.
+Schüler haben das jahrzehntelang als Plausibilitäts-Check benutzt.

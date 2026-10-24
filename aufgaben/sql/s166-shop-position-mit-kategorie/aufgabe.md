@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s166-shop-position-mit-kategorie
-revision: 1
+revision: 2
 titel: "Shop: Positionen mit Produkt + Kategorie"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [join-multi, where]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -63,4 +63,4 @@ starter_code: |
 
 # Positionen aus gelieferten Bestellungen
 
-Bestell-ID, Produkt, Kategorie, Menge -- nur gelieferte Bestellungen.
+Bestell-ID, Produkt, Kategorie, Menge - nur gelieferte Bestellungen.

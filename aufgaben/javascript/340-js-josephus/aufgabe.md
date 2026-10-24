@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 340-js-josephus
-revision: 1
-titel: JavaScript -- Josephus-Problem
+revision: 2
+titel: JavaScript - Josephus-Problem
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -13,7 +13,7 @@ tags: [javascript, algorithmen, modulo, klassiker]
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Josephus_problem
-  notiz: Rosetta Code -- Josephus problem, JS
+  notiz: Rosetta Code - Josephus problem, JS
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -43,7 +43,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Josephus-Problem
+# JavaScript - Josephus-Problem
 
 `n` Personen stehen im Kreis (Index `0..n-1`). Jede `k`-te wird
 eliminiert. Wer überlebt?
@@ -59,7 +59,7 @@ eliminiert. Wer überlebt?
 | 10 | 1 | `9`    |
 | 41 | 3 | `30`   |
 
-## Idee -- Rekurrenz O(n)
+## Idee - Rekurrenz O(n)
 
 `J(1) = 0`. Pro hinzukommender Person verschiebt sich der Sieger
 um `k` modulo der neuen Anzahl.
@@ -72,5 +72,5 @@ diesen Trick beim Yodfat-Selbstmord-Pakt nutzte um zu überleben.
 ## Vergleich mit Python
 
 Beide Sprachen haben den selben Modulo-Operator `%` und gleiche
-for-Loop-Syntax -- die Lösungen sind nahezu identisch. Auch die
+for-Loop-Syntax - die Lösungen sind nahezu identisch. Auch die
 asymptotische Laufzeit `O(n)` ist gleich.

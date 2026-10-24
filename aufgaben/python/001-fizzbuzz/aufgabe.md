@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 001-fizzbuzz
-revision: 1
+revision: 2
 titel: FizzBuzz
 sprache: python
 task_type: code_schreiben
@@ -23,10 +23,10 @@ hints:
   - kosten: 0
     text: Der Modulo-Operator `%` liefert den Rest einer ganzzahligen Division. `15 % 3` ergibt `0`.
   - kosten: 2
-    text: Pruefe zuerst die Bedingung fuer "FizzBuzz" (teilbar durch 15), danach die einzelnen Bedingungen fuer 3 und 5.
+    text: Prüfe zuerst die Bedingung für "FizzBuzz" (teilbar durch 15), danach die einzelnen Bedingungen für 3 und 5.
   - kosten: 6
     text: |
-      Geruest:
+      Gerüst:
 
       ```
       if n % 15 == 0: return "FizzBuzz"
@@ -65,10 +65,10 @@ starter_code: |
 Schreibe eine Funktion `fizzbuzz(n)`, die für eine positive Ganzzahl `n`
 einen String zurückgibt:
 
-- `"FizzBuzz"` -- wenn `n` durch **3 und 5** teilbar ist
-- `"Fizz"` -- wenn `n` nur durch **3** teilbar ist
-- `"Buzz"` -- wenn `n` nur durch **5** teilbar ist
-- die Zahl als String -- in allen anderen Faellen
+- `"FizzBuzz"` - wenn `n` durch **3 und 5** teilbar ist
+- `"Fizz"` - wenn `n` nur durch **3** teilbar ist
+- `"Buzz"` - wenn `n` nur durch **5** teilbar ist
+- die Zahl als String - in allen anderen Fällen
 
 ## Beispiele
 

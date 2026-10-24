@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f001-flex-aktivieren
-revision: 1
+revision: 2
 titel: "Flexbox 01: Flexbox einschalten"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [flexbox, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -49,7 +49,7 @@ hints:
   - kosten: 0
     text: |
       Flexbox-Eltern muss `display: flex` haben, damit `justify-content`, `align-items` & Co. greifen.
-      Diese Aufgabe lehrt EINE Property -- die anderen kommen in den nächsten Levels.
+      Diese Aufgabe lehrt EINE Property - die anderen kommen in den nächsten Levels.
   - kosten: 3
     text: |
       `display: flex;`
@@ -64,19 +64,19 @@ starter_code: |
 ## Aufgabe
 
 Im Bahn-Rahmen sollen die drei Kacheln so angeordnet werden, dass
-**drei froesche nebeneinander in einer reihe stehen (statt untereinander)**.
+**drei frösche nebeneinander in einer reihe stehen (statt untereinander)**.
 
-Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` -- der Rest
+Schreib **nur** die fehlende Flexbox-Anweisung in `.bahn` - der Rest
 (Größe, Farbe, Quadrate) ist schon da.
 
 ## Aha
 
 Sobald du `display: flex` auf einen Container schreibst, werden alle direkten
-Kinder zu Flex-Items. Standardmaessig stehen sie dann in einer Reihe von links
+Kinder zu Flex-Items. Standardmäßig stehen sie dann in einer Reihe von links
 nach rechts und beginnen am linken Rand.
 
 ## Wozu in der Praxis?
 
 Jede Navigations-Leiste, jede Card-Reihe, jede Toolbar nutzt `display: flex`.
-Ohne Flexbox stehen Block-Elemente untereinander -- mit Flexbox lassen sie
-sich beliebig anordnen, ohne dass man `float` oder `inline-block` quaelen muss.
+Ohne Flexbox stehen Block-Elemente untereinander - mit Flexbox lassen sie
+sich beliebig anordnen, ohne dass man `float` oder `inline-block` quälen muss.

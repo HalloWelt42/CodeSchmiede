@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l008-footer-spalten
-revision: 1
+revision: 2
 titel: "Layout 08: Footer mit vier Link-Spalten"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [layout, lernpfad, footer, grid]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -77,11 +77,11 @@ starter_code: |
 ## Aufgabe
 
 Klassischer Webseiten-Footer mit vier Spalten Links nebeneinander.
-Oben eine duenne Trenn-Linie zum Hauptinhalt.
+Oben eine dünne Trenn-Linie zum Hauptinhalt.
 
 ## Aha
 
-repeat(4, 1fr) ist die einfachste Art, eine gleichmaessige Spalten-
+repeat(4, 1fr) ist die einfachste Art, eine gleichmäßige Spalten-
 Aufteilung zu erreichen. Mit gap: 16px haben die Spalten ausreichend
 Luft zwischen sich, ohne dass du margin schreiben musst.
 

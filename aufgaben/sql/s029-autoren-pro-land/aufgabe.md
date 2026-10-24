@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s029-autoren-pro-land
-revision: 1
+revision: 2
 titel: "Autoren pro Land"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [group-by, count]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -45,4 +45,4 @@ starter_code: |
 
 # Autoren pro Land
 
-Land + Anzahl Autoren, hauefigstes Land zuerst.
+Land + Anzahl Autoren, häufigstes Land zuerst.

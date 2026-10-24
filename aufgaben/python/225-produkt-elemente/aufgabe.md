@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 225-produkt-elemente
-revision: 1
+revision: 2
 titel: Produkt aller Listen-Elemente
 sprache: python
 task_type: code_schreiben
@@ -76,23 +76,23 @@ Bei leerer Liste → `1` (neutrales Element der Multiplikation, wie
 | `[1, 2, 3, 4, 5, 6, 7]`| `5040`  |
 | `[2, 2, 2, 2, 2, 2, 2, 2, 2, 2]` | `1024` (= 2^10) |
 
-## Idee 1 -- math.prod (seit Python 3.8)
+## Idee 1 - math.prod (seit Python 3.8)
 
-Eine Zeile -- standardisiert, getestet, schnell.
+Eine Zeile - standardisiert, getestet, schnell.
 
-## Idee 2 -- reduce
+## Idee 2 - reduce
 
-Allgemeineres Pattern -- `reduce` faltet jede binaere Operation
+Allgemeineres Pattern - `reduce` faltet jede binäre Operation
 über eine Liste.
 
-## Idee 3 -- Schleife
+## Idee 3 - Schleife
 
 Klar lesbar, jede Sprache versteht das.
 
 ## Anwendung
 
 `math.prod` braucht man für:
-- Fakultaet: `math.prod(range(1, n+1))`
+- Fakultät: `math.prod(range(1, n+1))`
 - Volumen einer Box: `math.prod([breite, höhe, tiefe])`
 - Wahrscheinlichkeit unabhängiger Ereignisse: $P(A \cap B) = P(A) \cdot P(B)$
 - Geometrisches Mittel (Aufgabe 217).

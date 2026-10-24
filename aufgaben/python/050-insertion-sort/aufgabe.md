@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 050-insertion-sort
-revision: 1
+revision: 2
 titel: Insertion-Sort
 sprache: python
 task_type: code_schreiben
@@ -27,7 +27,7 @@ hints:
       bis sie an der richtigen Stelle liegt.
   - kosten: 9
     text: |
-      Aussere Schleife `i` von 1 bis n. Innere `j` von i abwärts.
+      Äußere Schleife `i` von 1 bis n. Innere `j` von i abwärts.
       Solange `liste[j-1] > liste[j]`: tauschen, j -= 1.
 tests_sichtbar:
   - input: [[3, 1, 2]]
@@ -65,14 +65,14 @@ Der **linke Teil** der Liste ist immer sortiert. Pro Durchlauf:
 1. Nimm das nächste Element vom unsortierten Teil
 2. Schiebe es nach links, bis es an der richtigen Stelle steht
 
-Bildlich wie Spielkarten sortieren -- man hebt eine Karte hoch und
+Bildlich wie Spielkarten sortieren - man hebt eine Karte hoch und
 sortiert sie in die schon geordneten ein.
 
-## Komplexitaet
+## Komplexität
 
 $O(n^2)$ im Worst-Case, **aber $O(n)$ im Best-Case** (bereits
 sortierte Liste). Damit ist Insertion-Sort für **fast sortierte**
-Listen erstaunlich schnell -- besser als Selection-Sort, schneller
+Listen erstaunlich schnell - besser als Selection-Sort, schneller
 als die meisten "schnellen" Algorithmen für kleine Listen.
 
 In der Praxis verwenden viele "schnelle" Sortier-Bibliotheken

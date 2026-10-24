@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: f013-flex-basis
-revision: 1
-titel: "Flexbox 13: Start-Breite -- flex-basis"
+revision: 2
+titel: "Flexbox 13: Start-Breite - flex-basis"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [flexbox, lernpfad, flex-basis]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -85,16 +85,16 @@ starter_code: |
 ## Aufgabe
 
 Alle drei Kacheln starten mit 60px Basis. **Der mittlere
-soll mit 200px starten** -- er nimmt damit von Anfang an mehr Platz ein.
+soll mit 200px starten** - er nimmt damit von Anfang an mehr Platz ein.
 
 ## Aha
 
-`flex-basis` ist die **Vorschlags-Breite** -- der Browser nutzt sie als
+`flex-basis` ist die **Vorschlags-Breite** - der Browser nutzt sie als
 Ausgangspunkt und passt sie dann mit `flex-grow`/`flex-shrink` an. Wenn
-`flex-basis: auto` (Default), wird die natuerliche Breite des Inhalts genommen.
+`flex-basis: auto` (Default), wird die natürliche Breite des Inhalts genommen.
 
 ## Wozu in der Praxis?
 
 Bei drei Karten in einer Reihe: jeder Karte 'startet mit 280px' (`flex-basis:
-280px`), schrumpft wenn der Container schmal wird, waechst wenn breit -- das
+280px`), schrumpft wenn der Container schmal wird, wächst wenn breit - das
 ist die Grundlage von responsiven Card-Grids ohne Media-Queries.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 259-aufzaehlung-und
-revision: 1
+revision: 2
 titel: Aufzählung mit Komma und "und"
 sprache: python
 task_type: code_schreiben
@@ -30,7 +30,7 @@ hints:
       ["a", "b", "c", "d"] → "a, b, c und d"
   - kosten: 8
     text: |
-      Sonderfaelle: 0, 1, 2 Elemente getrennt.
+      Sonderfälle: 0, 1, 2 Elemente getrennt.
       Sonst: ", ".join(wörter[:-1]) + " und " + wörter[-1].
 tests_sichtbar:
   - input: [["a", "b", "c"]]
@@ -61,7 +61,7 @@ starter_code: |
 # Aufzählung mit Komma und "und"
 
 Schreibe `aufzählung(wörter)`, die eine Liste von Strings zu einer
-**deutschen Aufzählung** zusammenfuegt -- mit Kommas zwischen
+**deutschen Aufzählung** zusammenfügt - mit Kommas zwischen
 allen Elementen und " und " vor dem letzten.
 
 ## Beispiele
@@ -77,9 +77,9 @@ allen Elementen und " und " vor dem letzten.
 
 ## Idee
 
-Drei Sonderfaelle (0, 1, 2 Elemente), dann der allgemeine Fall.
+Drei Sonderfälle (0, 1, 2 Elemente), dann der allgemeine Fall.
 
-## Englisch -- "Oxford Comma"
+## Englisch - "Oxford Comma"
 
 Im Englischen gibt's die Diskussion über das **Oxford Comma**:
 
@@ -92,4 +92,4 @@ Im Deutschen ist "und" **ohne Komma davor** Standard.
 
 - Personen-Listen in Texten ("Anwesend waren X, Y und Z").
 - Auto-generierte Berichte mit dynamischen Listen.
-- Email-Empfaenger-Anzeige in UIs ("An: Hans, Maria und Klaus").
+- Email-Empfänger-Anzeige in UIs ("An: Hans, Maria und Klaus").

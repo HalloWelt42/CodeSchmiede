@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 013-zahl-pruefen
-revision: 1
+revision: 2
 titel: Primzahl-Prüfung
 sprache: python
 task_type: code_schreiben
@@ -24,7 +24,7 @@ hints:
     text: Eine Primzahl ist nur durch 1 und sich selbst ohne Rest teilbar.
   - kosten: 7
     text: |
-      Prüfe alle Zahlen von 2 bis n-1 -- wenn eine davon `n` teilt,
+      Prüfe alle Zahlen von 2 bis n-1 - wenn eine davon `n` teilt,
       ist es keine Primzahl. Vorsicht mit den Sonderfällen `n < 2`.
   - kosten: 15
     text: |
@@ -72,8 +72,8 @@ starter_code: |
 # Primzahl-Prüfung
 
 Schreibe eine Funktion `ist_primzahl(n)`, die `True` zurückgibt, wenn
-`n` eine **Primzahl** ist -- also nur durch 1 und sich selbst ohne Rest
-teilbar -- und sonst `False`.
+`n` eine **Primzahl** ist - also nur durch 1 und sich selbst ohne Rest
+teilbar - und sonst `False`.
 
 ## Beispiele
 
@@ -91,7 +91,7 @@ teilbar -- und sonst `False`.
 - **Sonderfälle:** `0`, `1` und alle negativen Zahlen sind **keine**
   Primzahlen.
 - `2` ist die kleinste Primzahl (und die einzige gerade Primzahl).
-- Du brauchst nur bis $\sqrt{n}$ zu prüfen -- jeder Teiler über
+- Du brauchst nur bis $\sqrt{n}$ zu prüfen - jeder Teiler über
   $\sqrt{n}$ hat einen Partner darunter.
 
 ## Hintergrund

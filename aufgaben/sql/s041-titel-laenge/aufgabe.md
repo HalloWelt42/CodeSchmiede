@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s041-titel-laenge
-revision: 1
-titel: "Buchtitel mit Laenge"
+revision: 2
+titel: "Buchtitel mit Länge"
 sprache: sql
 task_type: sql_abfrage
 runner_type: docker_sqlite
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [string, length]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -56,6 +56,6 @@ starter_code: |
   WHERE ___;
 ---
 
-# Buchtitel mit Laenge
+# Buchtitel mit Länge
 
-Titel + Anzahl Zeichen, laengster zuerst.
+Titel + Anzahl Zeichen, längster zuerst.

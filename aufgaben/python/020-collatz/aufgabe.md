@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 020-collatz
-revision: 1
-titel: Collatz-Folge Laenge
+revision: 2
+titel: Collatz-Folge Länge
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -13,7 +13,7 @@ tags: [zahlen, schleifen, beruehmt]
 voraussetzungen: [017-fakultaet]
 quelle:
   url: https://de.wikipedia.org/wiki/Collatz-Problem
-  notiz: Beruehmtes ungelöstes Problem, eigene Reformulierung
+  notiz: Berühmtes ungelöstes Problem, eigene Reformulierung
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-10
@@ -52,7 +52,7 @@ starter_code: |
       pass
 ---
 
-# Collatz-Folge: Laenge bis zur 1
+# Collatz-Folge: Länge bis zur 1
 
 Die **Collatz-Folge** ist nach folgender Regel definiert:
 
@@ -77,6 +77,6 @@ bei 1 startet, braucht 0 Schritte.
 
 Die **Collatz-Vermutung** behauptet, dass diese Folge für **jede**
 positive Startzahl irgendwann bei 1 endet. Stand 2026: bewiesen ist
-das immer noch nicht -- aber bis weit jenseits von $2^{68}$ stimmt es
-empirisch. Ein beruehmtes ungelöstes Problem der Mathematik, mit
+das immer noch nicht - aber bis weit jenseits von $2^{68}$ stimmt es
+empirisch. Ein berühmtes ungelöstes Problem der Mathematik, mit
 einer fast albern einfachen Formulierung.

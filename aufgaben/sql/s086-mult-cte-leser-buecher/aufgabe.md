@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s086-mult-cte-leser-buecher
-revision: 1
+revision: 2
 titel: "Multi-CTE: Top-Leser + ihre Lieblingsautoren"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 15
 tags: [multi-cte, join, group-by]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 317-namedtuple-punkt
-revision: 1
-titel: NamedTuple-Punkt -- Distanz und Mittelpunkt
+revision: 2
+titel: NamedTuple-Punkt - Distanz und Mittelpunkt
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -67,7 +67,7 @@ starter_code: |
 
 Schreibe `punkt_paar_info(x1, y1, x2, y2)`, die für zwei Punkte die
 **Distanz** und den **Mittelpunkt** als Liste `[distanz, mid_x, mid_y]`
-zurückgibt -- alle auf **4 Nachkommastellen** gerundet.
+zurückgibt - alle auf **4 Nachkommastellen** gerundet.
 
 Implementiere intern einen `namedtuple` `Punkt` mit Feldern `x, y`.
 
@@ -82,7 +82,7 @@ Implementiere intern einen `namedtuple` `Punkt` mit Feldern `x, y`.
 
 ## Idee mit namedtuple
 
-`namedtuple` ist eine **leichte Klasse** ohne Boilerplate -- perfekt
+`namedtuple` ist eine **leichte Klasse** ohne Boilerplate - perfekt
 für kleine Daten-Container mit benannten Feldern. Liest sich besser
 als `(x, y)` Tupel oder `{"x": ..., "y": ...}` Dict.
 
@@ -96,5 +96,5 @@ als `(x, y)` Tupel oder `{"x": ..., "y": ...}` Dict.
 | `dataclass(frozen=True)` | nein | mittel | wenig      |
 | `NamedTuple` (typing)| nein  | sehr     | wenig + Typen|
 
-Für Punkte ist `NamedTuple` ideal -- klein, immutable, hashable
+Für Punkte ist `NamedTuple` ideal - klein, immutable, hashable
 (kann als Dict-Key dienen).

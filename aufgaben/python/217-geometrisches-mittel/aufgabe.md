@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 217-geometrisches-mittel
-revision: 1
+revision: 2
 titel: Geometrisches Mittel
 sprache: python
 task_type: code_schreiben
@@ -89,17 +89,17 @@ Bei `[1, 100]`:
 - **Arithmetisch**: `50.5` (klassischer Durchschnitt).
 - **Geometrisch**: `10.0` ($\sqrt{100}$).
 
-Geometrisch eignet sich für **multiplikative Effekte** -- z.B.
-**Wachstumsraten** (mittlere jaehrliche Verzinsung), **Aspect-Ratios**
+Geometrisch eignet sich für **multiplikative Effekte** - z.B.
+**Wachstumsraten** (mittlere jährliche Verzinsung), **Aspect-Ratios**
 und **prozentuale Veränderungen**.
 
 ## Wachstums-Beispiel
 
 Aktie verdoppelt sich Jahr 1 (×2), halbiert sich Jahr 2 (×0.5):
-- Arithmetisches Mittel: `(2 + 0.5)/2 = 1.25` (irrefuehrend!)
+- Arithmetisches Mittel: `(2 + 0.5)/2 = 1.25` (irreführend!)
 - Geometrisches Mittel: `sqrt(2 * 0.5) = 1.0` (korrekt: kein Gewinn)
 
 ## Hintergrund
 
-Bei numerischer Stabilitaet: bei sehr vielen oder großen Zahlen
+Bei numerischer Stabilität: bei sehr vielen oder großen Zahlen
 besser über `exp(mean(log(x)))` rechnen, um Overflow zu vermeiden.

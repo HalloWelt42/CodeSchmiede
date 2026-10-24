@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 211-zahl-zu-ziffern
-revision: 1
+revision: 2
 titel: Zahl in Ziffern-Liste zerlegen
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
 # Zahl in Ziffern-Liste zerlegen
 
 Schreibe `zu_ziffern(n)`, die eine nicht-negative ganze Zahl in eine
-Liste ihrer **Ziffern** zerlegt -- höchstwertige Stelle zuerst.
+Liste ihrer **Ziffern** zerlegt - höchstwertige Stelle zuerst.
 
 `0` → `[0]`. Negative Zahlen werden wie ihr Betrag behandelt.
 
@@ -75,17 +75,17 @@ Liste ihrer **Ziffern** zerlegt -- höchstwertige Stelle zuerst.
 | `-123`      | `[1, 2, 3]`          |
 | `987654321` | `[9, 8, 7, 6, 5, 4, 3, 2, 1]` |
 
-## Idee 1 -- per String
+## Idee 1 - per String
 
-Kürzeste Variante -- nutzt aus, dass `str` die Ziffern in
+Kürzeste Variante - nutzt aus, dass `str` die Ziffern in
 **richtiger Reihenfolge** liefert.
 
-## Idee 2 -- per Modulo
+## Idee 2 - per Modulo
 
 Das geht **ohne String-Konvertierung**. Wichtig: am Ende umdrehen,
 weil wir die niedrigste Stelle zuerst sammeln.
 
-## Pendant -- Ziffern zur Zahl
+## Pendant - Ziffern zur Zahl
 
 Aufgabe **212** macht den Weg zurück. Zusammen ist es ein
 Round-Trip: `zu_ziffern(212-funktion(zifferliste))`.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 019-primfaktoren
-revision: 1
+revision: 2
 titel: Primfaktorzerlegung
 sprache: python
 task_type: code_schreiben
@@ -24,7 +24,7 @@ hints:
     text: Teile `n` so oft wie möglich durch 2, dann durch 3, dann durch 5, ...
   - kosten: 4
     text: |
-      Probiere alle Teiler ab 2 aufsteigend. Wenn `n % i == 0`, fuege `i`
+      Probiere alle Teiler ab 2 aufsteigend. Wenn `n % i == 0`, füge `i`
       zur Liste hinzu und teile `n` durch `i`. Sonst erhöhe `i` um 1.
   - kosten: 8
     text: |
@@ -81,8 +81,8 @@ zum nächsten $i$. Wiederhole, bis $n = 1$.
 
 ## Hintergrund
 
-Der **Fundamentalsatz der Arithmetik** garantiert, dass jede natuerliche
+Der **Fundamentalsatz der Arithmetik** garantiert, dass jede natürliche
 Zahl größer 1 eine eindeutige Primfaktorzerlegung hat. Diese
-Zerlegung ist die Grundlage vieler kryptographischer Verfahren -- die
+Zerlegung ist die Grundlage vieler kryptographischer Verfahren - die
 Sicherheit von RSA beruht darauf, dass die Zerlegung sehr großer
 Zahlen praktisch nicht in vertretbarer Zeit möglich ist.

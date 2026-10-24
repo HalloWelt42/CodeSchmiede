@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: g008-grid-rows
-revision: 1
-titel: "Grid 08: Zeilenhöhen festlegen -- grid-template-rows"
+revision: 2
+titel: "Grid 08: Zeilenhöhen festlegen - grid-template-rows"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [grid, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -45,7 +45,7 @@ hints:
     text: |
       CSS-Grid ist 2-dimensional (Zeilen UND Spalten gleichzeitig).
       Im Gegensatz zu Flexbox musst du dem Container das Raster-Muster
-      vorgeben -- erst dann wissen die Zellen, wohin sie gehören.
+      vorgeben - erst dann wissen die Zellen, wohin sie gehören.
   - kosten: 3
     text: |
       `grid-template-rows: 100px 50px;`
@@ -81,10 +81,10 @@ Schreibe die fehlende(n) Grid-Anweisung(en) in `.setzkasten`.
 
 Analog zu `grid-template-columns` gibt's `grid-template-rows` für Zeilen-
 höhen. Mit beiden zusammen hast du das volle 2D-Raster im Griff. Wenn du
-die Zeilen weglaesst, dehnen sie sich automatisch dem Inhalt an.
+die Zeilen weglässt, dehnen sie sich automatisch dem Inhalt an.
 
 ## Wozu in der Praxis?
 
 Header-Layout: erste Zeile 80px (Navigation), zweite Zeile `1fr` (Inhalt),
 dritte Zeile 40px (Footer). Mit `grid-template-rows: 80px 1fr 40px` ist
-das Layout in einer Zeile fertig -- klassisches App-Shell-Pattern.
+das Layout in einer Zeile fertig - klassisches App-Shell-Pattern.

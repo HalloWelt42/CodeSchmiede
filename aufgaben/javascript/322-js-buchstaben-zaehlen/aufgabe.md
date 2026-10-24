@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 322-js-buchstaben-zaehlen
-revision: 1
-titel: JavaScript -- Buchstaben im Text zählen
+revision: 2
+titel: JavaScript - Buchstaben im Text zählen
 sprache: javascript
 task_type: code_schreiben
 runner_type: docker_javascript
@@ -22,10 +22,10 @@ funktion: zaehleBuchstaben
 hints:
   - kosten: 0
     text: |
-      Zähle wie oft jeder Buchstabe im Text vorkommt -- als Object
+      Zähle wie oft jeder Buchstabe im Text vorkommt - als Object
       {buchstabe: anzahl}. Case-insensitive (alle klein), Whitespace
       und Sonderzeichen IGNORIEREN (nur a-z). Keys ALPHABETISCH
-      sortiert (sonst schlaegt der JSON-Vergleich fehl).
+      sortiert (sonst schlägt der JSON-Vergleich fehl).
       Bei "" → {}.
   - kosten: 12
     text: |
@@ -49,7 +49,7 @@ starter_code: |
   }
 ---
 
-# JavaScript -- Buchstaben im Text zählen
+# JavaScript - Buchstaben im Text zählen
 
 Schreibe `zähleBuchstaben(text)`, die ein Object liefert, das jeden
 **Buchstaben (a-z, lowercased)** im Text zählt.
@@ -67,13 +67,13 @@ Schreibe `zähleBuchstaben(text)`, die ein Object liefert, das jeden
 | `"Hallo Welt"`  | `{a:1, e:1, h:1, l:3, o:1, t:1, w:1}`                 |
 | `""`            | `{}`                                                  |
 
-## Idee -- modernes JS
+## Idee - modernes JS
 
 **Patterns**:
-- `[...text]` -- Spread macht aus String ein Array von Zeichen.
+- `[...text]` - Spread macht aus String ein Array von Zeichen.
   Sicher für Unicode (anders als `text.split('')` bei Surrogate-Pairs).
-- `text.toLowerCase()` -- Case-Folding.
-- `(akk[c] || 0) + 1` -- short-circuit für "key existiert nicht
+- `text.toLowerCase()` - Case-Folding.
+- `(akk[c] || 0) + 1` - short-circuit für "key existiert nicht
   → 0".
 - Filter im if statt vorher: spart eine Schleife.
 
@@ -81,10 +81,10 @@ Schreibe `zähleBuchstaben(text)`, die ein Object liefert, das jeden
 
 Funktional auch elegant:
 
-Lesbarkeit leidet -- die direkte Variante ist hier besser.
+Lesbarkeit leidet - die direkte Variante ist hier besser.
 
 ## Hintergrund
 
-In Python würde man `collections.Counter` nehmen -- in JS gibt's
+In Python würde man `collections.Counter` nehmen - in JS gibt's
 das nicht direkt. Ein `Map` wäre theoretisch besser (schneller,
 typensicher), aber Object ist idiomatischer für JSON-Output.

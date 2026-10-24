@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s176-leser-juenger-als-buch
-revision: 1
+revision: 2
 titel: "Leser jünger als das älteste Buch"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [subquery]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 241-eigenes-join
-revision: 1
+revision: 2
 titel: Eigenes join ohne str.join
 sprache: python
 task_type: code_schreiben
@@ -23,7 +23,7 @@ hints:
   - kosten: 0
     text: |
       Verbinde Strings einer Liste mit einem Trenner zu einem String.
-      OHNE str.join() -- selber bauen.
+      OHNE str.join() - selber bauen.
       Bei [] → "". Bei einem Element → das Element.
   - kosten: 8
     text: |
@@ -63,7 +63,7 @@ starter_code: |
 
 Schreibe `verbinden(strings, trenner)`, die eine Liste von Strings
 zu einem einzelnen String **mit Trenner zwischen jedem Paar**
-zusammenfuegt -- **ohne** `str.join` zu nutzen.
+zusammenfügt - **ohne** `str.join` zu nutzen.
 
 ## Beispiele
 
@@ -81,16 +81,16 @@ zusammenfuegt -- **ohne** `str.join` zu nutzen.
 Erstes Element ohne Trenner, alle weiteren mit. Dadurch landet der
 Trenner **zwischen** den Elementen, nicht davor oder dahinter.
 
-## Stolperstein -- String-Konkatenation in Schleife
+## Stolperstein - String-Konkatenation in Schleife
 
-In Python ist `out += s` in einer Schleife eigentlich **O(n^2)** --
+In Python ist `out += s` in einer Schleife eigentlich **O(n^2)** -
 weil jedes Mal ein neuer String erzeugt wird. Bei tausenden Elementen
 besser:
 
-Aber wir wollen ja `join` **vermeiden** -- dann lieber die naive
+Aber wir wollen ja `join` **vermeiden** - dann lieber die naive
 Variante akzeptieren oder selbst das `"".join` nochmal hand-bauen.
 
 ## Hintergrund
 
-`str.join` ist in CPython hochoptimiert -- in normalem Code
+`str.join` ist in CPython hochoptimiert - in normalem Code
 verwenden, hier nur didaktisch nachgebaut.

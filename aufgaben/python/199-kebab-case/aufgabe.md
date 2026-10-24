@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 199-kebab-case
-revision: 1
+revision: 2
 titel: kebab-case-Konvertierung
 sprache: python
 task_type: code_schreiben
@@ -24,7 +24,7 @@ hints:
     text: |
       Wandle einen Text in kebab-case: alle Buchstaben klein, Leerzeichen
       und Unterstriche zu Bindestrich. Mehrfache Trenner zu einem.
-      Fuehrende/nachfolgende Bindestriche entfernen.
+      Führende/nachfolgende Bindestriche entfernen.
       Sonderzeichen (außer a-z, 0-9) entfernen.
   - kosten: 10
     text: |
@@ -63,14 +63,14 @@ starter_code: |
 # kebab-case-Konvertierung
 
 Schreibe `kebab_case(text)`, die einen Text in **kebab-case**
-umwandelt -- ein gaengiges URL-Slug-Format.
+umwandelt - ein gängiges URL-Slug-Format.
 
 Regeln:
 
 1. Alles in **Kleinbuchstaben**.
 2. Alle Zeichen außer `a-z` und `0-9` werden zu **Bindestrich**.
 3. **Mehrfache Bindestriche** werden zu einem.
-4. **Fuehrende/Nachfolgende** Bindestriche werden entfernt.
+4. **Führende/Nachfolgende** Bindestriche werden entfernt.
 
 ## Beispiele
 
@@ -92,5 +92,5 @@ durch ein einzelnes `-` ersetzt. `strip("-")` entfernt Rand-Trenner.
 
 URL-Slugs (`mein-blog/wie-ich-python-lernte`), CSS-Klassen
 (`btn-primary-large`), Datei-Namen (`2026-05-11-notiz.md`).
-Konsistenz hier zahlt sich aus -- Suchmaschinen und Tools moegen
+Konsistenz hier zahlt sich aus - Suchmaschinen und Tools mögen
 es einheitlich.

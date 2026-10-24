@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 128-ipv4-validierung
-revision: 1
+revision: 2
 titel: IPv4-Adresse validieren
 sprache: python
 task_type: code_schreiben
@@ -23,11 +23,11 @@ hints:
   - kosten: 0
     text: |
       4 Zahlen, durch Punkte getrennt, jede zwischen 0 und 255.
-      Keine fuehrenden Nullen ("01" ist invalid). Kein Whitespace.
+      Keine führenden Nullen ("01" ist invalid). Kein Whitespace.
   - kosten: 8
     text: |
       `text.split('.')` muss exakt 4 Teile geben. Pro Teil:
-      isdigit, > "0" → keine fuehrende Null (außer bei 1 Stelle),
+      isdigit, > "0" → keine führende Null (außer bei 1 Stelle),
       0 <= int(t) <= 255.
 tests_sichtbar:
   - input: ["192.168.1.1"]

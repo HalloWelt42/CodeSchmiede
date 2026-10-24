@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 303-memoization
-revision: 1
+revision: 2
 titel: Memoization-Demo mit Cache-Verlauf
 sprache: python
 task_type: code_schreiben
@@ -60,8 +60,8 @@ starter_code: |
 # Memoization-Demo mit Cache-Verlauf
 
 Schreibe `memoize_lauf(eingaben)`, die eine "teure" Funktion
-(`square: x → x²`) auf eine Liste von Eingaben anwendet -- mit
-**Cache** -- und pro Eingabe zurückgibt:
+(`square: x → x²`) auf eine Liste von Eingaben anwendet - mit
+**Cache** - und pro Eingabe zurückgibt:
 
 `[wert, war_im_cache]`
 
@@ -77,17 +77,17 @@ schon im Cache war (also wir nicht wirklich neu rechnen mussten).
 | `[5, 5, 5, 5]` | `[[25, False], [25, True], [25, True], [25, True]]`     |
 | `[1, 2, 3, 1, 2, 3]` | `[[1,F], [4,F], [9,F], [1,T], [4,T], [9,T]]`     |
 
-**Achtung**: `-3` und `3` sind verschiedene Schlüssel -- der Cache
+**Achtung**: `-3` und `3` sind verschiedene Schlüssel - der Cache
 unterscheidet das nicht aufgrund vom Quadrat, sondern vom rohen
 Eingabe-Wert.
 
-## Pattern -- Memoization
+## Pattern - Memoization
 
 In echtem Code nutzt man oft `functools.lru_cache` oder
 `functools.cache` als **Decorator**:
 
 Damit wird jeder Aufruf automatisch gecached. Der **Hash-Lookup**
-ist `O(1)` -- bei teuren Funktionen massiv schneller als
+ist `O(1)` - bei teuren Funktionen massiv schneller als
 Neuberechnung.
 
 ## Anwendung
@@ -97,8 +97,8 @@ Neuberechnung.
 - **Datenbank-Query-Caches**.
 - **Render-Memoization** in React-ähnlichen Frameworks.
 
-## Stolperstein -- Mutable Args
+## Stolperstein - Mutable Args
 
 `@cache` braucht **hashbare** Argumente. Listen/Dicts gehen nicht
-direkt -- man müsste sie zu Tupeln konvertieren oder einen eigenen
+direkt - man müsste sie zu Tupeln konvertieren oder einen eigenen
 Hash-Schlüssel berechnen.

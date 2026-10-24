@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s007-buecher-nach-1950
-revision: 1
+revision: 2
 titel: "Bücher nach 1950"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 3
 tags: [where, order-by]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11

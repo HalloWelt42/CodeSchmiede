@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 011-listen-duplikate
-revision: 1
+revision: 2
 titel: Duplikate aus Liste entfernen
 sprache: python
 task_type: code_schreiben
@@ -21,7 +21,7 @@ zeitlimit_sekunden: 5
 funktion: ohne_duplikate
 hints:
   - kosten: 0
-    text: Ein `set` enthält jedes Element nur einmal -- aber die Reihenfolge geht verloren.
+    text: Ein `set` enthält jedes Element nur einmal - aber die Reihenfolge geht verloren.
   - kosten: 6
     text: |
       Wenn die Reihenfolge bleiben soll: in einer Schleife jedes Element
@@ -60,7 +60,7 @@ starter_code: |
 # Duplikate aus Liste entfernen
 
 Schreibe eine Funktion `ohne_duplikate(zahlen)`, die eine Liste
-zurückgibt, in der jedes Element nur **einmal** vorkommt -- in der
+zurückgibt, in der jedes Element nur **einmal** vorkommt - in der
 Reihenfolge des **ersten** Auftretens.
 
 ## Beispiele
@@ -75,7 +75,7 @@ Reihenfolge des **ersten** Auftretens.
 ## Hinweise
 
 - **Reihenfolge erhalten:** das erste Auftreten zählt, alle weiteren
-  Vorkommen werden weggelassen. `set()` allein reicht also nicht --
+  Vorkommen werden weggelassen. `set()` allein reicht also nicht -
   Sets garantieren keine Reihenfolge.
 - Die Funktion soll mit beliebigen vergleichbaren Werten arbeiten,
   nicht nur Zahlen.

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 056-laengste-aufsteigende
-revision: 1
-titel: Laengste aufsteigende Teilfolge
+revision: 2
+titel: Längste aufsteigende Teilfolge
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -27,7 +27,7 @@ hints:
       Nachbarn in der Liste.
   - kosten: 11
     text: |
-      Schleife mit "aktuelle Laenge" und "beste Laenge". Wenn
+      Schleife mit "aktuelle Länge" und "beste Länge". Wenn
       `liste[i] > liste[i-1]`: aktuell + 1, sonst zurück auf 1.
 tests_sichtbar:
   - input: [[1, 2, 3, 1, 2]]
@@ -53,14 +53,14 @@ starter_code: |
       pass
 ---
 
-# Laengste aufsteigende Teilfolge
+# Längste aufsteigende Teilfolge
 
-Schreibe eine Funktion `laengste_aufsteigend(liste)`, die die **Laenge
-der laengsten zusammenhängenden, streng monoton aufsteigenden
+Schreibe eine Funktion `laengste_aufsteigend(liste)`, die die **Länge
+der längsten zusammenhängenden, streng monoton aufsteigenden
 Teilfolge** zurückgibt.
 
-"Streng monoton" heisst: jedes Element ist **größer** als das
-vorherige -- nicht gleich. "Zusammenhängend" heisst: direkte Nachbarn,
+"Streng monoton" heißt: jedes Element ist **größer** als das
+vorherige - nicht gleich. "Zusammenhängend" heißt: direkte Nachbarn,
 keine Lücken.
 
 ## Beispiele
@@ -77,12 +77,12 @@ keine Lücken.
 ## Idee
 
 Lineare Schleife, ein Zähler für die aktuelle und einer für die
-beste Laenge. Bei jedem Schritt: ist das aktuelle Element größer als
+beste Länge. Bei jedem Schritt: ist das aktuelle Element größer als
 das vorherige, Zähler hoch; sonst zurück auf 1.
 
 ## Variante (nicht zusammenhängend)
 
 Die "klassische" LIS (Longest Increasing Subsequence, mit Lücken
-erlaubt) ist deutlich kniffliger -- $O(n \log n)$ ist optimal, aber
+erlaubt) ist deutlich kniffliger - $O(n \log n)$ ist optimal, aber
 nicht trivial. Diese Aufgabe hier ist die **einfachere Variante** mit
 zusammenhängender Folge.

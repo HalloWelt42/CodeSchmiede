@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r006-stat-trio
-revision: 1
+revision: 2
 titel: "Repro 06: Dashboard-KPI-Trio"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [repro, lernpfad, dashboard, grid]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -77,7 +77,7 @@ asserts:
 hints:
   - kosten: 0
     text: |
-      Drei gleichbreite Karten via Grid. Jede Karte ist intern eine flex-column mit Kennzahl (groß), Label (klein uppercase), Trend (gruen oder rot je nach Vorzeichen).
+      Drei gleichbreite Karten via Grid. Jede Karte ist intern eine flex-column mit Kennzahl (groß), Label (klein uppercase), Trend (grün oder rot je nach Vorzeichen).
   - kosten: 6
     text: |
       `.kpis: grid-template-columns: repeat(3, 1fr); gap: 12px;` und `.ktrend.pos { color: #22c55e; } .ktrend.neg { color: #ef4444; }`
@@ -119,11 +119,11 @@ starter_code: |
 
 Drei KPI-Kacheln nebeneinander:
 große Kennzahl in Petrol, kleines Label darunter (uppercase), Trend-Anzeige
-darunter (gruen positiv, rot negativ).
+darunter (grün positiv, rot negativ).
 
 ## Aha
 
-Die Trend-Zeile nutzt zwei Klassen (`ktrend pos` oder `ktrend neg`) -- die
+Die Trend-Zeile nutzt zwei Klassen (`ktrend pos` oder `ktrend neg`) - die
 Basis-Klasse legt Schrift und Abstand fest, die Modifier-Klasse die Farbe.
 Das ist das BEM-Pattern: Block + Modifier, gut wartbar.
 

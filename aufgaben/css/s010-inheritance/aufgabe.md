@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s010-inheritance
-revision: 1
-titel: "Grundlagen 10: Vererbung -- color erbt sich auf Kinder"
+revision: 2
+titel: "Grundlagen 10: Vererbung - color erbt sich auf Kinder"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [grundlagen, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -40,7 +40,7 @@ hints:
   - kosten: 0
     text: |
       CSS wählt Elemente per **Selektor** und gibt ihnen Eigenschaften.
-      Welcher Selektor zählt, regeln Spezifizitaet und Quellreihenfolge.
+      Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
       `article { color: rgb(45, 212, 191); }`
@@ -48,17 +48,17 @@ starter_code: |
   /* Nur article ansprechen -- alles darin erbt automatisch */
 ---
 
-# Grundlagen 10: Setze color nur auf `<article>` -- alle Texte darin werden automatisch petrol
+# Grundlagen 10: Setze color nur auf `<article>` - alle Texte darin werden automatisch petrol
 
 ## Aufgabe
 
-Setze color nur auf `<article>` -- alle Texte darin werden automatisch petrol
+Setze color nur auf `<article>` - alle Texte darin werden automatisch petrol
 
 ## Aha
 
 Manche CSS-Properties **erben sich** automatisch auf Kind-Elemente:
 `color`, `font-family`, `font-size`, `line-height`, `text-align`.
-Andere wie `background`, `border`, `padding` erben sich NICHT --
+Andere wie `background`, `border`, `padding` erben sich NICHT -
 die musst du pro Element neu setzen.
 
 ## Wozu in der Praxis?

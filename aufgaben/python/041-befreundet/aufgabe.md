@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 041-befreundet
-revision: 1
+revision: 2
 titel: Befreundete Zahlen
 sprache: python
 task_type: code_schreiben
@@ -22,9 +22,9 @@ funktion: sind_befreundet
 hints:
   - kosten: 0
     text: |
-      Berechne die Summe der echten Teiler von a -- nenn das `s(a)`.
+      Berechne die Summe der echten Teiler von a - nenn das `s(a)`.
       Genauso `s(b)`. Die Zahlen sind befreundet, wenn `s(a) == b` und
-      `s(b) == a` -- und beide verschieden sind.
+      `s(b) == a` - und beide verschieden sind.
   - kosten: 11
     text: |
       Hilfsfunktion `teiler_summe(n)` schreiben, dann zwei Aufrufe.
@@ -56,7 +56,7 @@ starter_code: |
 
 # Befreundete Zahlen
 
-Zwei Zahlen `a` und `b` heissen **befreundet**, wenn:
+Zwei Zahlen `a` und `b` heißen **befreundet**, wenn:
 
 - `a != b`
 - die Summe der echten Teiler von `a` **gleich** `b` ist
@@ -68,20 +68,20 @@ Schreibe eine Funktion `sind_befreundet(a, b)`, die das prüft.
 
 | `a`   | `b`   | Befreundet? | Hintergrund                              |
 |-------|-------|-------------|------------------------------------------|
-| `220` | `284` | `True`      | klassisches Paar -- seit Pythagoras bekannt |
-| `1184`| `1210`| `True`      | erst Anfang 19. Jh. entdeckt -- vom 16-Jaehrigen Niccolo Paganini! |
+| `220` | `284` | `True`      | klassisches Paar - seit Pythagoras bekannt |
+| `1184`| `1210`| `True`      | erst Anfang 19. Jh. entdeckt - vom 16-Jährigen Niccolo Paganini! |
 | `10`  | `12`  | `False`     |                                          |
-| `6`   | `6`   | `False`     | gleich -- nicht erlaubt                  |
+| `6`   | `6`   | `False`     | gleich - nicht erlaubt                  |
 
 ## Hintergrund
 
 Das Paar `(220, 284)` war den Pythagoreern als Symbol der Freundschaft
-bekannt -- sie sahen darin etwas Mystisches. Bis ins 18. Jh. waren nur
+bekannt - sie sahen darin etwas Mystisches. Bis ins 18. Jh. waren nur
 zwei oder drei Paare bekannt; heute sind es über **eine Milliarde**.
-Niccolo Paganini (nicht der Geiger -- ein Sechzehnjaehriger) entdeckte
+Niccolo Paganini (nicht der Geiger - ein Sechzehnjähriger) entdeckte
 1866 das Paar `(1184, 1210)`, das jahrhundertelang allen entgangen war.
 
 ## Tipp
 
 Eine Hilfsfunktion `teiler_summe(n)` für die Summe der echten Teiler
-spart Tipparbeit -- ist aber kein Muss.
+spart Tipparbeit - ist aber kein Muss.

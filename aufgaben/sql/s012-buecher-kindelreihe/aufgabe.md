@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s012-buecher-kindelreihe
-revision: 1
+revision: 2
 titel: "Kinderbücher mit mehr als 4 Exemplaren"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 4
 tags: [where, and, filter]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -31,7 +31,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      Zwei Bedingungen mit `AND` verknuepft.
+      Zwei Bedingungen mit `AND` verknüpft.
 starter_code: |
   SELECT ___
   FROM ___

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 161-median
-revision: 1
+revision: 2
 titel: Median einer Liste
 sprache: python
 task_type: code_schreiben
@@ -81,10 +81,10 @@ Liste von Zahlen liefert.
 
 ## Median vs. Mittelwert
 
-Der **Mittelwert** (Durchschnitt) ist anfaellig für Ausreisser
--- ein Millionaer im Raum hebt das Durchschnittsgehalt drastisch.
+Der **Mittelwert** (Durchschnitt) ist anfällig für Ausreißer
+- ein Millionär im Raum hebt das Durchschnittsgehalt drastisch.
 Der **Median** dagegen bleibt gleich. Darum gibt die Statistik bei
-Vermoegens- und Lohnverteilungen meist den Median an, nicht den
+Vermögens- und Lohnverteilungen meist den Median an, nicht den
 Durchschnitt.
 
 ## Effizienz

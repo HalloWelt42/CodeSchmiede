@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: g011-grid-minmax
-revision: 1
-titel: "Grid 11: Spalte mit Mindest-/Maximalbreite -- minmax()"
+revision: 2
+titel: "Grid 11: Spalte mit Mindest-/Maximalbreite - minmax()"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [grid, lernpfad]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -45,7 +45,7 @@ hints:
     text: |
       CSS-Grid ist 2-dimensional (Zeilen UND Spalten gleichzeitig).
       Im Gegensatz zu Flexbox musst du dem Container das Raster-Muster
-      vorgeben -- erst dann wissen die Zellen, wohin sie gehören.
+      vorgeben - erst dann wissen die Zellen, wohin sie gehören.
   - kosten: 3
     text: |
       `grid-template-columns: minmax(80px, 200px) 1fr 1fr;`
@@ -81,7 +81,7 @@ Schreibe die fehlende(n) Grid-Anweisung(en) in `.setzkasten`.
 
 `minmax(min, max)` ist eine Spaltenbreite mit unteren und oberen Grenzen.
 Solange genug Platz da ist, nimmt die Spalte die Max-Größe. Bei Engpass
-schrumpft sie -- aber nie unter Min. Das macht Layouts robust ohne
+schrumpft sie - aber nie unter Min. Das macht Layouts robust ohne
 Media-Query.
 
 ## Wozu in der Praxis?

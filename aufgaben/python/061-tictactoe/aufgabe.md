@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 061-tictactoe
-revision: 1
+revision: 2
 titel: TicTacToe-Gewinner
 sprache: python
 task_type: code_schreiben
@@ -58,7 +58,7 @@ starter_code: |
 # TicTacToe-Gewinner
 
 Schreibe eine Funktion `gewinner(brett)`, die für ein 3x3-TicTacToe-
-Brett den Gewinner zurückgibt -- `"X"` oder `"O"`. Wenn keiner
+Brett den Gewinner zurückgibt - `"X"` oder `"O"`. Wenn keiner
 gewonnen hat, gib `"."` zurück.
 
 Felder enthalten `"X"`, `"O"` oder `"."` (leer).
@@ -86,5 +86,5 @@ das der Gewinner.
 
 ## Annahme
 
-Wir nehmen an, das Brett ist gültig -- es gibt also nicht zwei
+Wir nehmen an, das Brett ist gültig - es gibt also nicht zwei
 Gewinner gleichzeitig.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 311-take-while-positiv
-revision: 1
+revision: 2
 titel: Take-While positiv
 sprache: python
 task_type: code_schreiben
@@ -61,7 +61,7 @@ starter_code: |
 # Take-While positiv
 
 Schreibe `take_while_positiv(liste)`, die Elemente vom Anfang der
-Liste nimmt -- **solange sie positiv (`> 0`)** sind. Beim ersten
+Liste nimmt - **solange sie positiv (`> 0`)** sind. Beim ersten
 nicht-positiven Element (`0` oder negativ) wird **abgebrochen**;
 der Rest wird **nicht** mitgenommen.
 
@@ -76,9 +76,9 @@ der Rest wird **nicht** mitgenommen.
 | `[0, 1, 2]`              | `[]`                |
 | `[1, 2, 3, -1, 100, 200]`| `[1, 2, 3]`         |
 
-## Idee -- Generator mit break
+## Idee - Generator mit break
 
-`break` beendet den Generator -- alle Werte nach dem ersten
+`break` beendet den Generator - alle Werte nach dem ersten
 nicht-positiven werden übersprungen.
 
 ## Mit itertools.takewhile
@@ -86,7 +86,7 @@ nicht-positiven werden übersprungen.
 `takewhile` ist exakt dafür gemacht: nimmt Elemente, solange das
 Predicate True liefert, bricht beim ersten False ab.
 
-## Vergleich -- filter vs takewhile
+## Vergleich - filter vs takewhile
 
 | Funktion    | Verhalten                                |
 |-------------|------------------------------------------|

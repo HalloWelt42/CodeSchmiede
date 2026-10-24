@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 052-quicksort
-revision: 1
+revision: 2
 titel: Quicksort
 sprache: python
 task_type: code_schreiben
@@ -22,8 +22,8 @@ funktion: quicksort
 hints:
   - kosten: 0
     text: |
-      Waehle ein Pivot-Element. Teile die Liste in: kleiner als Pivot,
-      gleich Pivot, größer als Pivot. Sortiere die beiden aeusseren
+      Wähle ein Pivot-Element. Teile die Liste in: kleiner als Pivot,
+      gleich Pivot, größer als Pivot. Sortiere die beiden äußeren
       Listen rekursiv und setze alles zusammen.
   - kosten: 15
     text: |
@@ -72,7 +72,7 @@ Schreibe eine Funktion `quicksort(liste)`, die die Liste mit
 4. Sortiere `kleiner` und `größer` rekursiv
 5. Setze `kleiner_sortiert + gleich + größer_sortiert` zusammen
 
-## Komplexitaet
+## Komplexität
 
 Im **Mittel** $O(n \log n)$, im **Worst-Case** (z.B. immer das
 schlechteste Pivot) $O(n^2)$. Praktisch sehr schnell, weil die
@@ -80,7 +80,7 @@ Cache-Effizienz gut ist.
 
 ## Geschichte
 
-Tony Hoare entwickelte Quicksort 1959 mit 25 Jahren in Moskau --
+Tony Hoare entwickelte Quicksort 1959 mit 25 Jahren in Moskau -
 ursprünglich, um russische Worte zu sortieren. Bis heute eines der
 am häufigsten verwendeten Sortier-Verfahren der Welt.
 

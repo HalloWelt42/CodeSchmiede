@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: 227-zip-mit-fuellwert
-revision: 1
-titel: Zip mit Fuellwert
+revision: 2
+titel: Zip mit Füllwert
 sprache: python
 task_type: code_schreiben
 runner_type: docker_python
@@ -24,11 +24,11 @@ hints:
     text: |
       Verzahne zwei Listen zu Paaren [a_i, b_i].
       Wenn eine Liste kürzer ist, werden die fehlenden Elemente
-      mit fuell aufgefüllt (statt abzuschneiden wie zip).
+      mit füll aufgefüllt (statt abzuschneiden wie zip).
       Bei zwei leeren Listen → [].
   - kosten: 10
     text: |
-      itertools.zip_longest(a, b, fillvalue=fuell).
+      itertools.zip_longest(a, b, fillvalue=füll).
       [list(p) for p in ...] um Tupel zu Listen.
 tests_sichtbar:
   - input: [[1, 2, 3], [4, 5, 6], 0]
@@ -58,10 +58,10 @@ starter_code: |
       pass
 ---
 
-# Zip mit Fuellwert
+# Zip mit Füllwert
 
 Schreibe `zip_fuell(a, b, fuell)`, die zwei Listen zu Paaren
-verzahnt -- aber **kürzere Listen werden aufgefüllt** statt
+verzahnt - aber **kürzere Listen werden aufgefüllt** statt
 abgeschnitten (wie das eingebaute `zip` es tut).
 
 ## Beispiele
@@ -73,22 +73,22 @@ abgeschnitten (wie das eingebaute `zip` es tut).
 | `[1,2,3]`   | `[]`           | `"x"`   | `[[1,"x"],[2,"x"],[3,"x"]]`      |
 | `[]`        | `[]`           | `0`     | `[]`                             |
 
-## Idee -- itertools.zip_longest
+## Idee - itertools.zip_longest
 
-`zip_longest` ist die "geht-weiter-bis-die-laengste-Liste-fertig-ist"-
-Variante. Pro Element ein Tupel -- wir konvertieren zu Listen.
+`zip_longest` ist die "geht-weiter-bis-die-längste-Liste-fertig-ist"-
+Variante. Pro Element ein Tupel - wir konvertieren zu Listen.
 
-## Vergleich -- zip vs zip_longest
+## Vergleich - zip vs zip_longest
 
-| Funktion       | Ergebnis-Laenge       | Fuellung |
+| Funktion       | Ergebnis-Länge       | Füllung |
 |----------------|------------------------|----------|
-| `zip`          | Laenge der **kürzeren**| keine    |
-| `zip_longest`  | Laenge der **laengeren**| ja       |
+| `zip`          | Länge der **kürzeren**| keine    |
+| `zip_longest`  | Länge der **längeren**| ja       |
 
 `zip` ist wie `min(len_a, len_b)`, `zip_longest` wie `max(len_a, len_b)`.
 
 ## Anwendung
 
-- Tabellen aus zwei Spalten unterschiedlicher Laenge.
-- Vergleich zweier Versions-Listen mit fehlenden Eintraegen.
+- Tabellen aus zwei Spalten unterschiedlicher Länge.
+- Vergleich zweier Versions-Listen mit fehlenden Einträgen.
 - Mathematik: Polynom-Addition, wenn Grade unterschiedlich sind.

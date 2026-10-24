@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r005-einstellungs-reihe
-revision: 1
+revision: 2
 titel: "Repro 05: Einstellungs-Zeile mit Toggle-Switch"
 sprache: css
 task_type: css_klon
@@ -12,7 +12,7 @@ schaetz_minuten: 10
 tags: [repro, lernpfad, settings, flexbox]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- CSS-Klon-Generator.
+  notiz: Eigene Aufgabe - CSS-Klon-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -78,10 +78,10 @@ asserts:
 hints:
   - kosten: 0
     text: |
-      Zwei-Spalten-Layout: Text-Stack links (flex: 1 für den Platz), Toggle-Switch rechts (flex-shrink: 0). Der Switch besteht aus Schiene + absolut positioniertem Knopf -- bei 'an' steht der Knopf rechts.
+      Zwei-Spalten-Layout: Text-Stack links (flex: 1 für den Platz), Toggle-Switch rechts (flex-shrink: 0). Der Switch besteht aus Schiene + absolut positioniertem Knopf - bei 'an' steht der Knopf rechts.
   - kosten: 6
     text: |
-      .schiene: `width: 44px; height: 24px; border-radius: 999px; position: relative;` -- .knopf: `position: absolute; top: 2px; left: 22px; width: 20px; height: 20px; border-radius: 50%;`
+      .schiene: `width: 44px; height: 24px; border-radius: 999px; position: relative;` - .knopf: `position: absolute; top: 2px; left: 22px; width: 20px; height: 20px; border-radius: 50%;`
 starter_code: |
   .reihe {
     /* flex, vertikal zentriert, 16px gap */
@@ -117,7 +117,7 @@ starter_code: |
 ## Aufgabe
 
 Eine Reihe in einem
-Einstellungs-Menue: links Titel + Erklaerung, rechts ein iOS-ähnlicher
+Einstellungs-Menü: links Titel + Erklärung, rechts ein iOS-ähnlicher
 Toggle-Switch im 'an'-Zustand.
 
 ## Aha

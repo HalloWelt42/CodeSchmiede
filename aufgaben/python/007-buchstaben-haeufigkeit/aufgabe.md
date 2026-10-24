@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 007-buchstaben-haeufigkeit
-revision: 1
+revision: 2
 titel: Buchstaben-Häufigkeit
 sprache: python
 task_type: code_schreiben
@@ -73,9 +73,9 @@ Häufigkeit zugeordnet ist.
 
 ## Hinweise
 
-- **Groß- und Kleinschreibung sind unterschiedliche Zeichen** --
+- **Groß- und Kleinschreibung sind unterschiedliche Zeichen** -
   `"H"` und `"h"` sind getrennte Schlüssel.
 - Auch Leerzeichen sind ein Zeichen und werden gezählt.
-- Die Reihenfolge der Schlüssel im Dictionary ist egal -- Python-
+- Die Reihenfolge der Schlüssel im Dictionary ist egal - Python-
   Dictionaries gelten als gleich, wenn sie die gleichen Schlüssel-
   Wert-Paare enthalten.

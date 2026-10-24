@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: s003-shop-getraenke
-revision: 1
-titel: "Shop: Getraenke unter 2 Euro"
+revision: 2
+titel: "Shop: Getränke unter 2 Euro"
 sprache: sql
 task_type: sql_abfrage
 runner_type: docker_sqlite
@@ -12,7 +12,7 @@ schaetz_minuten: 5
 tags: [select, where, join, kategorie]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- JOIN + WHERE.
+  notiz: Eigene Aufgabe - JOIN + WHERE.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
@@ -29,7 +29,7 @@ erwartetes_ergebnis:
 hints:
   - kosten: 0
     text: |
-      Verknuepfe `produkte` per JOIN mit `kategorien` (Kategorie-Name = 'Getränke')
+      Verknüpfe `produkte` per JOIN mit `kategorien` (Kategorie-Name = 'Getränke')
       und filtere `preis < 2.0`.
   - kosten: 4
     text: |
@@ -42,9 +42,9 @@ starter_code: |
   ORDER BY p.id;
 ---
 
-# Shop: Getraenke unter 2 Euro
+# Shop: Getränke unter 2 Euro
 
-Finde alle Produkte aus der Kategorie **Getraenke**, die weniger
+Finde alle Produkte aus der Kategorie **Getränke**, die weniger
 als 2 Euro kosten. Liefere `name` und `preis`, sortiert nach Produkt-ID.
 
 2 Zeilen werden erwartet.

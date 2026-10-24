@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 064-diagonale-summe
-revision: 1
+revision: 2
 titel: Diagonal-Summe einer Matrix
 sprache: python
 task_type: code_schreiben
@@ -51,7 +51,7 @@ starter_code: |
 # Diagonal-Summe einer Matrix
 
 Schreibe eine Funktion `diagonal_summen(matrix)`, die für eine
-**quadratische** Matrix die Summen beider Diagonalen zurückgibt --
+**quadratische** Matrix die Summen beider Diagonalen zurückgibt -
 als Liste `[haupt, neben]`.
 
 ## Beispiele
@@ -68,5 +68,5 @@ als Liste `[haupt, neben]`.
 - **Hauptdiagonale**: `matrix[i][i]` für `i = 0..n-1`
 - **Nebendiagonale**: `matrix[i][n-1-i]`
 
-Bei einer 1x1-Matrix sind beide Diagonalen das einzige Element --
+Bei einer 1x1-Matrix sind beide Diagonalen das einzige Element -
 Wert wird also doppelt zurückgegeben.

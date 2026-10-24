@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s153-ausleihen-letzten-30-tage
-revision: 1
+revision: 2
 titel: "Ausleihen der letzten 30 Tage"
 sprache: sql
 task_type: sql_abfrage
@@ -12,7 +12,7 @@ schaetz_minuten: 6
 tags: [date, julianday, where]
 voraussetzungen: []
 quelle:
-  notiz: Eigene Aufgabe -- SQL-Generator.
+  notiz: Eigene Aufgabe - SQL-Generator.
 lizenz: eigen
 autor: HalloWelt42
 erstellt_am: 2026-05-11
