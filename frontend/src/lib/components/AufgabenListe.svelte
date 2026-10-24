@@ -8,6 +8,7 @@
   import { farbeZuCss } from '../types/Konfig';
   import type { ProgressStatus } from '../api/ProgressApi';
   import AufgabenFilter from './AufgabenFilter.svelte';
+  import Seite from './Seite.svelte';
   import EmptyState from './EmptyState.svelte';
 
   // Filter-Zustand: persistiert in localStorage. Damit bleibt die
@@ -112,10 +113,20 @@
   );
 </script>
 
-<div class="liste">
-  <header class="kopf">
-    <h1>Aufgaben</h1>
-  </header>
+<Seite titel="Aufgaben">
+  {#snippet kopf()}
+    {#if !aufgabenStore.ladenListe && !aufgabenStore.fehler && aufgabenStore.liste.length > 0}
+      <AufgabenFilter
+        bind:suche
+        bind:sprache
+        bind:schwierigkeit
+        bind:status
+        bind:pfad
+        treffer={gefiltert.length}
+        gesamt={aufgabenStore.liste.length}
+      />
+    {/if}
+  {/snippet}
 
   {#if aufgabenStore.ladenListe}
     <p class="info">Lade Aufgaben ...</p>
@@ -128,16 +139,6 @@
       hinweis="Lege ein Verzeichnis unter aufgaben/python/NNN-id/ an. Das Backend indiziert sie automatisch."
     />
   {:else}
-    <AufgabenFilter
-      bind:suche
-      bind:sprache
-      bind:schwierigkeit
-      bind:status
-      bind:pfad
-      treffer={gefiltert.length}
-      gesamt={aufgabenStore.liste.length}
-    />
-
     {#if gefiltert.length === 0}
       <EmptyState
         icon="fa-magnifying-glass"
@@ -220,21 +221,9 @@
       </div>
     {/if}
   {/if}
-</div>
+</Seite>
 
 <style>
-  .liste {
-    padding: var(--sp-5) var(--sp-5) var(--sp-4);
-    overflow-y: auto;
-  }
-  .kopf {
-    margin-bottom: var(--sp-2);
-  }
-  h1 {
-    margin: 0;
-    font-size: var(--fs-xl);
-    font-weight: 600;
-  }
   .info {
     color: var(--fg-dim);
     font-family: var(--quick);

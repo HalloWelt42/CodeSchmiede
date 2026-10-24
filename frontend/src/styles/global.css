@@ -108,6 +108,20 @@
   --code-invalid:  #cf222e;
 }
 
+/* ========== Telefon ==========
+   Eigene, größere Schriftstufen am Telefon (GeraetStore setzt
+   data-geraet). Eingabefelder ab 17px, sonst zoomt iOS beim Tippen. */
+:root[data-geraet='telefon'] {
+  --fs-xs:  13px;
+  --fs-sm:  15px;
+  --fs-md:  17px;
+  --fs-lg:  20px;
+  --fs-xl:  24px;
+}
+:root[data-geraet='telefon'] :is(input, select, textarea) {
+  font-size: 17px;
+}
+
 /* CodeMirror-Highlights -- Klassen werden in PetrolTheme angeheftet,
    Farben aus den --code-*-Variablen pro Theme gezogen. */
 .cm-cs-keyword  { color: var(--code-keyword); font-weight: 600; }
@@ -137,7 +151,7 @@ html, body {
 }
 
 #app {
-  width: 100vw; height: 100vh;
+  width: 100vw; height: 100vh; height: 100dvh;
   display: flex;
   background: var(--bg);
   background-image: var(--texture);

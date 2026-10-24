@@ -106,7 +106,6 @@
     display: flex;
     align-items: center;
     gap: var(--sp-2);
-    padding: var(--sp-2) 0 var(--sp-3);
     flex-wrap: wrap;
   }
   .suche {

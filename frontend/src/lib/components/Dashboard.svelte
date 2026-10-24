@@ -5,6 +5,7 @@
   import { route } from '../stores/RouteStore.svelte';
   import AchievementListe from './AchievementListe.svelte';
   import ActionCard from './ActionCard.svelte';
+  import Seite from './Seite.svelte';
   import EmptyState from './EmptyState.svelte';
   import StreakHeatmap from './StreakHeatmap.svelte';
 
@@ -96,28 +97,24 @@
   }
 </script>
 
-<div class="dashboard">
-  {#if aufgabenStore.liste.length === 0 && !aufgabenStore.ladenListe}
-    <EmptyState
-      icon="fa-hammer"
-      titel="Willkommen in der Codeschmiede"
-      hinweis="Es sind noch keine Aufgaben vorhanden. Lege eine erste an unter aufgaben/python/NNN-id/aufgabe.md -- die Vorlage steht in docs/AUFGABEN-FORMAT.md. Das Backend indiziert sie automatisch."
-      ctaText="Aufgaben-Liste öffnen"
-      ctaAction={() => route.setze('aufgaben')}
-    />
-  {:else}
-
-  <header class="kopf">
-    <h1>Willkommen zurück</h1>
-    <p class="lead">
-      {#if progressStore.gesamt}
-        {progressStore.gesamt.bestandene_submissions} von
-        {progressStore.gesamt.submissions_gesamt} Submissions bestanden.
-      {:else}
-        Frischer Start in der Codeschmiede.
-      {/if}
-    </p>
-  </header>
+{#if aufgabenStore.liste.length === 0 && !aufgabenStore.ladenListe}
+  <EmptyState
+    icon="fa-hammer"
+    titel="Willkommen in der Codeschmiede"
+    hinweis="Es sind noch keine Aufgaben vorhanden. Lege eine erste an unter aufgaben/python/NNN-id/aufgabe.md - die Vorlage steht in docs/AUFGABEN-FORMAT.md. Das Backend indiziert sie automatisch."
+    ctaText="Aufgaben-Liste öffnen"
+    ctaAction={() => route.setze('aufgaben')}
+  />
+{:else}
+<Seite titel="Willkommen zurück">
+  {#snippet lead()}
+    {#if progressStore.gesamt}
+      {progressStore.gesamt.bestandene_submissions} von
+      {progressStore.gesamt.submissions_gesamt} Submissions bestanden.
+    {:else}
+      Frischer Start in der Codeschmiede.
+    {/if}
+  {/snippet}
 
   <div class="cards">
     <ActionCard
@@ -184,40 +181,21 @@
     <StreakHeatmap />
     <AchievementListe />
   </section>
-  {/if}
-</div>
+</Seite>
+{/if}
 
 <style>
-  .dashboard {
-    padding: var(--sp-5);
-    overflow-y: auto;
-  }
-  .kopf {
-    margin-bottom: var(--sp-5);
-  }
-  h1 {
-    margin: 0 0 var(--sp-2);
-    font-size: var(--fs-xl);
-    font-weight: 600;
-  }
-  .lead {
-    margin: 0;
-    color: var(--fg-dim);
-    font-family: var(--quick);
-    font-size: var(--fs-md);
-    max-width: 720px;
-  }
   .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--sp-3);
-    margin-bottom: var(--sp-5);
+    margin-bottom: var(--sp-3);
   }
 
   .gesamt {
     background: var(--bg-card-2);
     border: 1px solid var(--border);
-    padding: var(--sp-4);
+    padding: var(--sp-3);
     max-width: 720px;
   }
   .gesamt-kopf {
@@ -282,7 +260,7 @@
   }
 
   .extras {
-    margin-top: var(--sp-5);
+    margin-top: var(--sp-3);
     display: flex;
     flex-direction: column;
     gap: var(--sp-3);

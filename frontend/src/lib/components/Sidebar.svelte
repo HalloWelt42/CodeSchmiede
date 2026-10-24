@@ -1,36 +1,18 @@
 <script lang="ts">
-  import { route, type Route } from '../stores/RouteStore.svelte';
-
-  interface NavEintrag {
-    id: Route;
-    titel: string;
-    icon: string;
-  }
-
-  const eintraege: NavEintrag[] = [
-    { id: 'dashboard', titel: 'Dashboard', icon: 'fa-house' },
-    { id: 'aufgaben', titel: 'Aufgaben', icon: 'fa-list-check' },
-    { id: 'pfade', titel: 'Pfade', icon: 'fa-route' },
-    { id: 'verwaltung', titel: 'Verwaltung', icon: 'fa-table-cells-large' },
-  ];
-
-  function istAktiv(eintrag: NavEintrag): boolean {
-    if (eintrag.id === route.aktiv) return true;
-    if (eintrag.id === 'aufgaben' && route.aktiv === 'aufgabe') return true;
-    return false;
-  }
+  import { route } from '../stores/RouteStore.svelte';
+  import { BEREICHE, istAktiv } from '../navigation';
 </script>
 
 <aside class="sidebar">
   <nav>
-    {#each eintraege as eintrag (eintrag.id)}
+    {#each BEREICHE as bereich (bereich.id)}
       <button
         class="nav-btn"
-        class:aktiv={istAktiv(eintrag)}
-        onclick={() => route.setze(eintrag.id)}
+        class:aktiv={istAktiv(bereich, route.aktiv)}
+        onclick={() => route.setze(bereich.id)}
       >
-        <i class="fa-solid {eintrag.icon}" aria-hidden="true"></i>
-        <span>{eintrag.titel}</span>
+        <i class="fa-solid {bereich.icon}" aria-hidden="true"></i>
+        <span>{bereich.titel}</span>
       </button>
     {/each}
   </nav>
@@ -43,11 +25,11 @@
 
 <style>
   .sidebar {
-    width: 220px;
+    width: 200px;
     flex-shrink: 0;
     background: var(--bg-card);
     border: 1px solid var(--border);
-    padding: var(--sp-3);
+    padding: var(--sp-2);
     display: flex;
     flex-direction: column;
     gap: var(--sp-3);
@@ -61,7 +43,7 @@
     display: flex;
     align-items: center;
     gap: var(--sp-3);
-    padding: var(--sp-3);
+    padding: var(--sp-2) var(--sp-3);
     background: transparent;
     border: 1px solid transparent;
     color: var(--fg-dim);

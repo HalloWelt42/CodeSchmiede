@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Seite from './Seite.svelte';
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { pfadeStore } from '../stores/PfadeStore.svelte';
@@ -36,11 +37,8 @@
   }
 </script>
 
-<div class="liste">
-  <header class="kopf">
-    <h1>Pfade</h1>
-    <p class="lead">Didaktisch geordnete Aufgaben-Reihen.</p>
-  </header>
+<Seite titel="Pfade">
+  {#snippet lead()}Didaktisch geordnete Aufgaben-Reihen.{/snippet}
 
   {#if pfadeStore.laden}
     <p class="info">Lade ...</p>
@@ -83,21 +81,9 @@
       </article>
     {/each}
   {/if}
-</div>
+</Seite>
 
 <style>
-  .liste {
-    padding: var(--sp-5) var(--sp-5) var(--sp-4);
-    overflow-y: auto;
-  }
-  .kopf { margin-bottom: var(--sp-4); }
-  h1 { margin: 0 0 var(--sp-2); font-size: var(--fs-xl); font-weight: 600; }
-  .lead {
-    margin: 0;
-    color: var(--fg-dim);
-    font-family: var(--quick);
-    font-size: var(--fs-sm);
-  }
   .info { color: var(--fg-dim); }
   .info.fehler { color: var(--red); }
   .dim { color: var(--fg-dim); font-size: var(--fs-xs); }
@@ -105,7 +91,7 @@
   .pfad-karte {
     background: var(--bg-card-2);
     border: 1px solid var(--border);
-    padding: var(--sp-4);
+    padding: var(--sp-3);
     max-width: 760px;
     margin-bottom: var(--sp-3);
   }
