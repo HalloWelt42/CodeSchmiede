@@ -35,6 +35,8 @@ export interface ProgressEintrag {
   versuche: number;
   hints_genutzt: number;
   punkte_erreicht: number;
+  /** Musterlösungen vor dem Bestehen angesehen; Bestehen bringt danach keine Punkte. */
+  aufgegeben: boolean;
   geloest_am: string | null;
   ease: number;
   intervall_tage: number;

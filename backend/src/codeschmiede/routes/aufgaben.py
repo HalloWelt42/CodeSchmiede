@@ -4,34 +4,14 @@ from fastapi import APIRouter, HTTPException, Response
 
 from ..models.aufgabe import Aufgabe, AufgabeDetail, AufgabeKurz
 from ..models.progress import Progress
+from ..progress.submissions import SubmissionEintrag
+from ..pruefung.orchestrator import anzahl_versteckt, oeffentliches_extra
 from ..state import AppState
-
-
-# Frontmatter-Felder, die direkt in `Aufgabe` modelliert sind. Was hier
-# nicht steht und im Frontmatter vorkommt, landet in `extra` und ist für
-# die jeweilige task_type-View bestimmt (z.B. `quiz`).
-KERNFELDER_FRONTMATTER = {
-    "schema_version", "id", "revision", "titel", "sprache", "task_type",
-    "runner_type", "schwierigkeit", "schwierigkeit_score", "schaetz_minuten",
-    "tags", "pfade", "voraussetzungen", "quelle", "lizenz", "autor",
-    "erstellt_am", "zeitlimit_sekunden", "funktion", "hints",
-    "tests_sichtbar", "tests_versteckt", "starter_code",
-    "beschreibung_md", "dateipfad", "hash",
-}
 
 
 def _voraussetzungen_offen(a: Aufgabe, geloeste_ids: set[str]) -> list[str]:
     """Liefert die Liste der nicht-gelösten Voraussetzungen."""
     return [v for v in a.voraussetzungen if v not in geloeste_ids]
-
-
-def _extra_aus_frontmatter(a: Aufgabe) -> dict:
-    """Sammelt zusätzliche Frontmatter-Felder (extra='allow') ein.
-
-    Pydantic legt sie in `model_extra` ab. Damit die jeweilige
-    Aufgabentyp-View darauf zugreifen kann.
-    """
-    return getattr(a, "model_extra", {}) or {}
 
 
 def baue_aufgaben_router(state: AppState) -> APIRouter:
@@ -125,6 +105,7 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
             raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
 
         offen = _voraussetzungen_offen(a, hole_geloeste_ids())
+        progress = state.progress.hole_progress(aufgabe_id)
 
         return AufgabeDetail(
             schema_version=a.schema_version,
@@ -152,16 +133,32 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
             tests_sichtbar=a.tests_sichtbar,
             starter_code=a.starter_code,
             beschreibung_md=a.beschreibung_md,
-            anzahl_versteckte_tests=len(a.tests_versteckt),
-            extra=_extra_aus_frontmatter(a),
+            anzahl_versteckte_tests=anzahl_versteckt(a),
+            musterloesungen_anzahl=len(state.loader.lade_musterloesungen(a.id)),
+            musterloesungen_frei=bool(progress and progress.musterloesungen_frei),
+            extra=oeffentliches_extra(a),
         )
 
     @router.get("/{aufgabe_id}/musterloesungen")
     def musterloesungen(aufgabe_id: str) -> list[dict[str, str]]:
+        """Erst nach dem Bestehen oder nach dem Aufgeben."""
         a = state.aufgaben.aufgabe(aufgabe_id)
         if not a:
             raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+        progress = state.progress.hole_progress(aufgabe_id)
+        if not (progress and progress.musterloesungen_frei):
+            raise HTTPException(
+                status_code=403,
+                detail="Musterlösungen gibt es nach dem Bestehen oder nach dem Aufgeben",
+            )
         return state.loader.lade_musterloesungen(aufgabe_id)
+
+    @router.post("/{aufgabe_id}/aufgeben", response_model=Progress)
+    def aufgeben(aufgabe_id: str) -> Progress:
+        """Gibt die Musterlösungen frei; ein späteres Bestehen bringt keine Punkte."""
+        if not state.aufgaben.aufgabe(aufgabe_id):
+            raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+        return state.progress.gib_auf(aufgabe_id)
 
     @router.post("/{aufgabe_id}/hints/{hint_index}", response_model=Progress)
     def hint_geoeffnet(aufgabe_id: str, hint_index: int) -> Progress:
@@ -175,37 +172,14 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
             raise HTTPException(status_code=400, detail="Hint-Index ungültig")
         return state.progress.markiere_hint_gesehen(aufgabe_id, hint_index)
 
-    @router.get("/{aufgabe_id}/submissions")
-    def submissions_verlauf(aufgabe_id: str, limit: int = 20) -> list[dict]:
+    @router.get("/{aufgabe_id}/submissions", response_model=list[SubmissionEintrag])
+    def submissions_verlauf(aufgabe_id: str, limit: int = 20) -> list[SubmissionEintrag]:
         """Letzte N Submissions zu einer Aufgabe -- für den Verlauf im
         Detail-View. Code wird mitgeliefert, damit Re-Open trivial ist.
         """
-        a = state.aufgaben.aufgabe(aufgabe_id)
-        if not a:
+        if not state.aufgaben.aufgabe(aufgabe_id):
             raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
-        with state.db.connect() as conn:
-            rows = conn.execute(
-                """
-                SELECT id, datetime(zeitstempel) AS zeitstempel,
-                       bestanden, laufzeit_ms, codelaenge_zeichen, code
-                FROM submissions
-                WHERE aufgabe_id = ?
-                ORDER BY id DESC
-                LIMIT ?
-                """,
-                (aufgabe_id, max(1, min(100, limit))),
-            ).fetchall()
-        return [
-            {
-                "id": r["id"],
-                "zeitstempel": r["zeitstempel"],
-                "bestanden": bool(r["bestanden"]),
-                "laufzeit_ms": r["laufzeit_ms"],
-                "codelaenge_zeichen": r["codelaenge_zeichen"],
-                "code": r["code"],
-            }
-            for r in rows
-        ]
+        return state.submissions.verlauf(aufgabe_id, limit)
 
     @router.get("/{aufgabe_id}/letzte-submission")
     def letzte_submission(aufgabe_id: str) -> dict:
@@ -213,26 +187,11 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
         Editor beim erneuten Öffnen den letzten Stand zeigt statt der
         Starter-Boilerplate.
         """
-        a = state.aufgaben.aufgabe(aufgabe_id)
-        if not a:
+        if not state.aufgaben.aufgabe(aufgabe_id):
             raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
-        with state.db.connect() as conn:
-            row = conn.execute(
-                """
-                SELECT code, bestanden, zeitstempel
-                FROM submissions
-                WHERE aufgabe_id = ?
-                ORDER BY id DESC
-                LIMIT 1
-                """,
-                (aufgabe_id,),
-            ).fetchone()
-        if not row:
+        letzte = state.submissions.letzte(aufgabe_id)
+        if not letzte:
             return {"code": None, "bestanden": None, "zeitstempel": None}
-        return {
-            "code": row["code"],
-            "bestanden": bool(row["bestanden"]),
-            "zeitstempel": row["zeitstempel"],
-        }
+        return {"code": letzte.code, "bestanden": letzte.bestanden, "zeitstempel": letzte.zeitstempel}
 
     return router

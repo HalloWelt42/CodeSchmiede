@@ -1,15 +1,20 @@
-"""Runner-Interface (Protocol). Erlaubt spaeter weitere Runner ausser Docker."""
+"""Runner-Interface (Protocol) und die Fehler, die ein Runner melden darf."""
 
 from typing import Protocol
 
 from .result import RunLimits, RunResult
 
 
-class Runner(Protocol):
-    """Abstrakter Runner. Fuehrt Code in einer isolierten Umgebung aus."""
+class SandboxFehler(RuntimeError):
+    """Die Sandbox selbst ist nicht nutzbar (nicht erreichbar, abgewiesen,
+    unbekannte Sprache). Fehler im Nutzercode sind KEIN SandboxFehler --
+    die landen in `RunResult.stderr` / `exit_code`."""
 
-    def run_code(self, code: str, limits: RunLimits | None = None) -> RunResult:
-        """Fuehrt `code` aus und liefert das Ergebnis. Keine Exceptions
-        für Code-Fehler -- das wandert in `RunResult.stderr` / `exit_code`.
-        """
+
+class Runner(Protocol):
+    """Führt Code einer Sprache in einer isolierten Umgebung aus."""
+
+    def run_code(
+        self, code: str, sprache: str, limits: RunLimits | None = None
+    ) -> RunResult:
         ...

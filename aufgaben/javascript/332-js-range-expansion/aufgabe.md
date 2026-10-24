@@ -5,7 +5,7 @@ revision: 1
 titel: JavaScript -- Bereichs-Notation entpacken
 sprache: javascript
 task_type: code_schreiben
-runner_type: webworker_js
+runner_type: docker_javascript
 schwierigkeit: mittel
 schwierigkeit_score: 25
 schaetz_minuten: 10

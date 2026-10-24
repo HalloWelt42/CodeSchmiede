@@ -10,8 +10,10 @@ Wichtige Design-Punkte:
 - Validiert die Aufgabe ueber den Loader, bevor sie geschrieben wird.
   Wenn die Datei nach dem Schreiben nicht parst, hatten wir ein Problem
   vor dem Schreiben.
-- Erlaubt nur ASCII-IDs der Form `nnn-slug`, damit der Pfad ueberall
-  sauber funktioniert.
+- Erlaubt nur ASCII-IDs (`AUFGABEN_ID_MUSTER`), auch beim Löschen, damit
+  kein Pfad aus dem Aufgabenordner hinausführt.
+- Wechselt die Sprache einer bestehenden Aufgabe, zieht der ganze Ordner
+  (samt Musterlösungen) in die neue Sprache um.
 """
 
 from __future__ import annotations
@@ -23,10 +25,15 @@ from typing import Any
 
 import yaml
 
-from .loader import AufgabenLoader, FRONTMATTER_TRENNER, RESERVIERTE_VERZEICHNISSE
+from ..models.aufgabe import AUFGABEN_ID_MUSTER
+from .loader import (
+    FRONTMATTER_TRENNER,
+    MUSTERLOESUNG_ENDUNGEN,
+    RESERVIERTE_VERZEICHNISSE,
+    AufgabenLoader,
+)
 
 
-ID_MUSTER = re.compile(r"^[0-9]{3}-[a-z][a-z0-9-]*[a-z0-9]$")
 VARIANTE_MUSTER = re.compile(r"^[a-z][a-z0-9_]*$")
 PFAD_ID_MUSTER = re.compile(r"^[a-z][a-z0-9_]*$")
 
@@ -56,10 +63,7 @@ class AufgabenSchreiber:
         Update setzt das Flag auf False.
         """
         aufgabe_id = frontmatter.get("id", "")
-        if not ID_MUSTER.match(aufgabe_id):
-            raise AufgabenSchreiberFehler(
-                f"Ungueltige Aufgaben-ID '{aufgabe_id}'. Format: 3 Ziffern + Bindestrich + Slug, z.B. 070-mein-wurf"
-            )
+        self._pruefe_id(aufgabe_id)
         if sprache in RESERVIERTE_VERZEICHNISSE:
             raise AufgabenSchreiberFehler(
                 f"Sprache '{sprache}' ist reserviert"
@@ -72,9 +76,10 @@ class AufgabenSchreiber:
         ziel_dir = self.wurzel / sprache / aufgabe_id
         ziel_datei = ziel_dir / "aufgabe.md"
 
-        if existiert_pruefen and ziel_datei.exists():
+        bisher = self._finde_aufgaben_verzeichnis(aufgabe_id)
+        if existiert_pruefen and bisher is not None:
             raise AufgabenSchreiberFehler(
-                f"Aufgabe '{aufgabe_id}' existiert bereits unter {ziel_datei}"
+                f"Aufgabe '{aufgabe_id}' existiert bereits unter {bisher}"
             )
 
         # Frontmatter normalisieren -- Pydantic-Felder kommen oft mit
@@ -109,12 +114,17 @@ class AufgabenSchreiber:
                 f"Frontmatter ist ungueltig: {exc}"
             ) from exc
 
+        if bisher is not None and bisher != ziel_dir:
+            # Sprachwechsel: Ordner samt Musterlösungen umziehen
+            ziel_dir.parent.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(bisher), str(ziel_dir))
         ziel_dir.mkdir(parents=True, exist_ok=True)
         self._atomar_schreiben(ziel_datei, markdown_text)
         return ziel_datei
 
     def loesche_aufgabe(self, aufgabe_id: str) -> Path:
         """Loescht das ganze Aufgaben-Verzeichnis (inkl. solutions)."""
+        self._pruefe_id(aufgabe_id)
         verzeichnis = self._finde_aufgaben_verzeichnis(aufgabe_id)
         if verzeichnis is None:
             raise AufgabenSchreiberFehler(
@@ -126,34 +136,29 @@ class AufgabenSchreiber:
     # ---- Musterloesungen ----------------------------------------------
 
     def schreibe_musterloesung(
-        self, aufgabe_id: str, variante: str, code: str
+        self, aufgabe_id: str, variante: str, code: str, endung: str
     ) -> Path:
-        if not VARIANTE_MUSTER.match(variante):
-            raise AufgabenSchreiberFehler(
-                f"Variante '{variante}' muss Kleinbuchstaben + Ziffern + Underscore sein"
-            )
-        verzeichnis = self._finde_aufgaben_verzeichnis(aufgabe_id)
-        if verzeichnis is None:
-            raise AufgabenSchreiberFehler(
-                f"Aufgabe '{aufgabe_id}' nicht gefunden"
-            )
-        ziel = verzeichnis / f"solution_{variante}.py"
+        """Schreibt `solution_<variante>.<endung>`; die Endung kommt aus der
+        Sprache der Aufgabe (`_konfig.yml`)."""
+        self._pruefe_variante(variante)
+        if endung not in MUSTERLOESUNG_ENDUNGEN:
+            raise AufgabenSchreiberFehler(f"Endung '{endung}' ist für Musterlösungen nicht vorgesehen")
+        verzeichnis = self._finde_verzeichnis_oder_fehler(aufgabe_id)
+        for alt in self._musterloesung_dateien(verzeichnis, variante):
+            if alt.suffix != f".{endung}":
+                alt.unlink()
+        ziel = verzeichnis / f"solution_{variante}.{endung}"
         self._atomar_schreiben(ziel, code if code.endswith("\n") else code + "\n")
         return ziel
 
-    def loesche_musterloesung(self, aufgabe_id: str, variante: str) -> Path:
-        verzeichnis = self._finde_aufgaben_verzeichnis(aufgabe_id)
-        if verzeichnis is None:
-            raise AufgabenSchreiberFehler(
-                f"Aufgabe '{aufgabe_id}' nicht gefunden"
-            )
-        ziel = verzeichnis / f"solution_{variante}.py"
-        if not ziel.exists():
-            raise AufgabenSchreiberFehler(
-                f"Musterloesung '{variante}' nicht gefunden"
-            )
-        ziel.unlink()
-        return ziel
+    def loesche_musterloesung(self, aufgabe_id: str, variante: str) -> None:
+        self._pruefe_variante(variante)
+        verzeichnis = self._finde_verzeichnis_oder_fehler(aufgabe_id)
+        dateien = self._musterloesung_dateien(verzeichnis, variante)
+        if not dateien:
+            raise AufgabenSchreiberFehler(f"Musterloesung '{variante}' nicht gefunden")
+        for datei in dateien:
+            datei.unlink()
 
     # ---- Pfade ---------------------------------------------------------
 
@@ -192,6 +197,8 @@ class AufgabenSchreiber:
         return ziel
 
     def loesche_pfad(self, pfad_id: str) -> Path:
+        if not PFAD_ID_MUSTER.match(pfad_id):
+            raise AufgabenSchreiberFehler(f"Ungueltige Pfad-ID '{pfad_id}'")
         ziel = self.wurzel / "pfade" / f"{pfad_id}.yml"
         if not ziel.exists():
             raise AufgabenSchreiberFehler(f"Pfad '{pfad_id}' nicht gefunden")
@@ -199,6 +206,35 @@ class AufgabenSchreiber:
         return ziel
 
     # ---- Helfer --------------------------------------------------------
+
+    @staticmethod
+    def _pruefe_id(aufgabe_id: str) -> None:
+        if not AUFGABEN_ID_MUSTER.match(aufgabe_id):
+            raise AufgabenSchreiberFehler(
+                f"Ungueltige Aufgaben-ID '{aufgabe_id}'. Format z.B. 070-mein-wurf oder c001-button-pill"
+            )
+
+    @staticmethod
+    def _pruefe_variante(variante: str) -> None:
+        if not VARIANTE_MUSTER.match(variante):
+            raise AufgabenSchreiberFehler(
+                f"Variante '{variante}' muss Kleinbuchstaben + Ziffern + Underscore sein"
+            )
+
+    def _finde_verzeichnis_oder_fehler(self, aufgabe_id: str) -> Path:
+        self._pruefe_id(aufgabe_id)
+        verzeichnis = self._finde_aufgaben_verzeichnis(aufgabe_id)
+        if verzeichnis is None:
+            raise AufgabenSchreiberFehler(f"Aufgabe '{aufgabe_id}' nicht gefunden")
+        return verzeichnis
+
+    @staticmethod
+    def _musterloesung_dateien(verzeichnis: Path, variante: str) -> list[Path]:
+        return [
+            verzeichnis / f"solution_{variante}.{endung}"
+            for endung in MUSTERLOESUNG_ENDUNGEN
+            if (verzeichnis / f"solution_{variante}.{endung}").exists()
+        ]
 
     def _finde_aufgaben_verzeichnis(self, aufgabe_id: str) -> Path | None:
         for sprache_dir in self.wurzel.iterdir():

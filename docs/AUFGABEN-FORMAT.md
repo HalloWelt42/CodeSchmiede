@@ -75,8 +75,8 @@ Direkt danach folgt die Markdown-Beschreibung.
 | Feld                  | Typ      | Default            | Beschreibung |
 |-----------------------|----------|--------------------|--------------|
 | `revision`            | int      | `1`                | Hochzählen bei jeder inhaltlichen Änderung |
-| `task_type`           | string   | `code_schreiben`   | aktuell nur `code_schreiben` |
-| `runner_type`         | string   | `docker_python`    | aktuell nur `docker_python` |
+| `task_type`           | string   | `code_schreiben`   | `code_schreiben`, `bug_finden`, `lueckentext`, `output_quiz`, `sql_abfrage`, `css_klon` |
+| `runner_type`         | string   | `docker_python`    | wie in `_konfig.yml` für die Sprache: `docker_python`, `docker_javascript`, `docker_sqlite`, `iframe_css` |
 | `tags`                | string[] | `[]`               | Frei wählbare Schlagworte (Kleinbuchstaben, kebab-case) |
 | `pfade`               | string[] | `[]`               | IDs von Lernpfaden, denen die Aufgabe angehört |
 | `voraussetzungen`     | string[] | `[]`               | IDs anderer Aufgaben, die vorher Sinn ergeben |

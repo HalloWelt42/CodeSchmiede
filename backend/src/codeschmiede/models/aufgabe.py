@@ -12,16 +12,24 @@ Aufgabentypen (z.B. `output_quiz` mit `quiz`-Feld) ohne Schema-
 Erweiterung funktionieren.
 """
 
+import re
 from datetime import date
 from pathlib import Path
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 # Schwierigkeit ist ein freier String. Welche IDs erlaubt sind, steht in
 # `_konfig.yml` -- nicht im Code.
 Schwierigkeit = str
+
+# Aufgaben-IDs sind technische Bezeichner (Ordnername, URL): ASCII, ein
+# optionaler Buchstabe als Präfix der Sprache (c = CSS, s = SQL), drei
+# Ziffern, dann Wörter mit Bindestrich. Beispiele: 070-mein-wurf, c001-button-pill.
+AUFGABEN_ID_MUSTER = re.compile(r"^[a-z]?[0-9]{3}-[a-z0-9]+(?:-[a-z0-9]+)*$")
+# Funktionsnamen müssen in Python und JavaScript gültige Bezeichner sein.
+FUNKTIONS_MUSTER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 
 class Quelle(BaseModel):
@@ -75,6 +83,22 @@ class Frontmatter(BaseModel):
     tests_versteckt: list[TestFall] = Field(default_factory=list)
     starter_code: str = ""
 
+    @field_validator("id")
+    @classmethod
+    def _id_gueltig(cls, wert: str) -> str:
+        if not AUFGABEN_ID_MUSTER.match(wert):
+            raise ValueError(
+                f"Ungültige Aufgaben-ID '{wert}': ASCII, z. B. 070-mein-wurf oder c001-button-pill"
+            )
+        return wert
+
+    @field_validator("funktion")
+    @classmethod
+    def _funktion_gueltig(cls, wert: str | None) -> str | None:
+        if wert is not None and not FUNKTIONS_MUSTER.match(wert):
+            raise ValueError(f"Ungültiger Funktionsname '{wert}'")
+        return wert
+
 
 class Aufgabe(Frontmatter):
     """Vollständige Aufgabe: Frontmatter + Markdown-Beschreibung + Datei-Info."""
@@ -112,7 +136,8 @@ class AufgabeDetail(BaseModel):
     """Detail-Sicht. Enthält sichtbare Tests, aber nie `tests_versteckt`.
 
     `extra` enthält Aufgabentyp-spezifische Zusatzfelder aus dem
-    Frontmatter (z.B. `quiz` für Output-Quiz-Aufgaben).
+    Frontmatter (z.B. `quiz` für Output-Quiz-Aufgaben), ohne die Felder,
+    die der Pruefer des Typs verbirgt.
     """
 
     schema_version: int
@@ -141,4 +166,7 @@ class AufgabeDetail(BaseModel):
     starter_code: str
     beschreibung_md: str
     anzahl_versteckte_tests: int
+    # Musterlösungen gibt es erst nach dem Bestehen oder nach dem Aufgeben.
+    musterloesungen_anzahl: int = 0
+    musterloesungen_frei: bool = False
     extra: dict[str, Any] = Field(default_factory=dict)

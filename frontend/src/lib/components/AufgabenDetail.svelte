@@ -15,7 +15,6 @@
   import { aufgabenApi } from '../api/AufgabenApi';
   import { progressApi } from '../api/ProgressApi';
   import { submissionsApi } from '../api/SubmissionsApi';
-  import { webWorkerRunner } from '../sandbox/WebWorkerRunner';
   import { farbeZuCss } from '../types/Konfig';
   import type { AufgabeDetail, Musterloesung } from '../types/Aufgabe';
   import type { SubmissionAntwort, VerlaufEintrag } from '../types/Submission';
@@ -57,6 +56,7 @@
   let verlauf_geladen = $state(false);
 
   let reset_modal_offen = $state(false);
+  let aufgeben_modal_offen = $state(false);
 
   onMount(async () => {
     await lade();
@@ -72,6 +72,9 @@
         return;
       }
       detail = d;
+      if (d.musterloesungen_frei) {
+        musterloesungen = await aufgabenStore.ladeMusterloesungen(d.id);
+      }
       // Default: Starter-Code. Eine vorherige Submission laden wir nur,
       // wenn der Nutzer noch nicht bestanden hat -- sonst stuende die
       // alte Loesung im Editor und Wiederholungen waeren trivialisiert.
@@ -96,11 +99,7 @@
     pruef_fehler = null;
     const eingereicht = code;
     try {
-      if (detail.sprache === 'javascript') {
-        ergebnis = await pruefe_lokal();
-      } else {
-        ergebnis = await submissionsApi.submit(detail.id, code);
-      }
+      ergebnis = await submissionsApi.submit(detail.id, code);
       gesicherter_code = eingereicht;
       if (ergebnis.bestanden && !musterloesungen) {
         musterloesungen = await aufgabenStore.ladeMusterloesungen(detail.id);
@@ -116,44 +115,6 @@
     }
   }
 
-  async function pruefe_lokal(): Promise<SubmissionAntwort> {
-    if (!detail) throw new Error('kein detail');
-    // tests_versteckt liegt clientseitig nicht vor (Anti-Hardcoding).
-    // Wir nutzen daher nur tests_sichtbar. Die Backend-Pruefung wuerde
-    // weiterhin funktionieren -- aber JS hat keinen Backend-Runner.
-    // Konsequenz: bei JS-Aufgaben werden nur sichtbare Tests bewertet.
-    // Deep-Clone via JSON, damit Svelte-Reactive-Proxies in plain Objects
-    // landen -- structuredClone (postMessage) versteht Proxies nicht.
-    const tests = JSON.parse(JSON.stringify(
-      detail.tests_sichtbar.map((t) => ({ input: t.input, expected: t.expected })),
-    ));
-    const lauf = await webWorkerRunner.run(
-      code,
-      detail.funktion ?? 'main',
-      tests,
-      [],
-      (detail.zeitlimit_sekunden ?? 5) * 1000,
-    );
-    const pruefung = {
-      bestanden: lauf.bestanden,
-      sichtbar: lauf.sichtbar.map((s) => ({
-        index: s.index,
-        bestanden: s.bestanden,
-        eingabe: s.eingabe,
-        erwartet: s.erwartet,
-        tatsaechlich: s.tatsaechlich,
-        fehler: s.fehler,
-      })),
-      versteckt_pass: 0,
-      versteckt_fail: 0,
-      laufzeit_ms: lauf.laufzeit_ms,
-      stdout: lauf.stdout,
-      stderr: lauf.stderr,
-      timeout: lauf.timeout,
-    };
-    return await submissionsApi.submitLokal(detail.id, code, pruefung);
-  }
-
   async function geheZuNaechster(): Promise<void> {
     if (!detail) return;
     try {
@@ -165,6 +126,18 @@
       }
     } catch {
       route.setze('aufgaben');
+    }
+  }
+
+  async function aufgebenBestaetigt(): Promise<void> {
+    aufgeben_modal_offen = false;
+    if (!detail) return;
+    try {
+      await aufgabenApi.aufgeben(detail.id);
+      musterloesungen = await aufgabenStore.ladeMusterloesungen(detail.id);
+      await progressStore.ladeAlles();
+    } catch (e) {
+      pruef_fehler = (e as Error).message;
     }
   }
 
@@ -305,9 +278,10 @@
           <span><strong>Bug finden!</strong> Im Editor steht Code mit einem Fehler. Finde ihn, fixe ihn, drück Prüfen.</span>
         </div>
       {/if}
+    {@const aktuell = detail}
     <DreiSpaltenLayout>
       {#snippet links()}
-        {#if musterloesungen && musterloesungen.length > 0}
+        {#if aktuell.musterloesungen_anzahl > 0}
           <div class="tab-leiste" role="tablist">
             <button
               class="tab"
@@ -327,21 +301,30 @@
               onclick={() => (aktiver_tab = 'loesungen')}
             >
               <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
-              Musterlösungen ({musterloesungen.length})
+              Musterlösungen ({aktuell.musterloesungen_anzahl})
             </button>
           </div>
         {/if}
         <div class="tab-inhalt">
           {#if aktiver_tab === 'aufgabe'}
             <BeschreibungsBereich
-              aufgabeId={detail.id}
-              markdown={detail.beschreibung_md}
-              hints={detail.hints}
-              tests_sichtbar={detail.tests_sichtbar}
-              anzahl_versteckt={detail.anzahl_versteckte_tests}
-              quelle={detail.quelle}
-              schwierigkeit_score={detail.schwierigkeit_score}
+              aufgabeId={aktuell.id}
+              markdown={aktuell.beschreibung_md}
+              hints={aktuell.hints}
+              tests_sichtbar={aktuell.tests_sichtbar}
+              anzahl_versteckt={aktuell.anzahl_versteckte_tests}
+              quelle={aktuell.quelle}
+              schwierigkeit_score={aktuell.schwierigkeit_score}
             />
+          {:else if aktiver_tab === 'loesungen' && !musterloesungen}
+            <div class="aufgeben">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              <p>Die Musterlösungen gibt es nach dem Bestehen. Wer sie vorher ansieht, gibt die Aufgabe auf: ein späteres Bestehen bringt dann keine Punkte mehr.</p>
+              <button class="aufgeben-btn" onclick={() => (aufgeben_modal_offen = true)}>
+                <i class="fa-solid fa-flag" aria-hidden="true"></i>
+                Aufgeben und Lösungen ansehen
+              </button>
+            </div>
           {:else if aktiver_tab === 'loesungen' && musterloesungen}
             <div class="muster-liste">
               {#each musterloesungen as ml (ml.variante)}
@@ -357,7 +340,7 @@
 
       {#snippet mitte()}
         <div class="editor-kopf">
-          <span class="label">Editor &middot; {detail.sprache}</span>
+          <span class="label">Editor &middot; {aktuell.sprache}</span>
           <button class="pruefen" disabled={pruefen_laeuft || !code.trim()} onclick={pruefe}>
             {#if pruefen_laeuft}
               <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
@@ -369,9 +352,9 @@
           </button>
         </div>
         <div class="editor-host">
-          <EditorBereich sprache={detail.sprache} bind:code />
+          <EditorBereich sprache={aktuell.sprache} bind:code />
         </div>
-        <ProbelaufBereich aufgabeId={detail.id} {code} funktion={detail.funktion} />
+        <ProbelaufBereich aufgabeId={aktuell.id} {code} funktion={aktuell.funktion} />
       {/snippet}
 
       {#snippet rechts()}
@@ -379,8 +362,8 @@
           ergebnis={ergebnis}
           fehler={pruef_fehler}
           laeuft={pruefen_laeuft}
-          anzahl_versteckt={detail.anzahl_versteckte_tests}
-          schwierigkeit_score={detail.schwierigkeit_score}
+          anzahl_versteckt={aktuell.anzahl_versteckte_tests}
+          schwierigkeit_score={aktuell.schwierigkeit_score}
           onWeiter={geheZuNaechster}
         />
 
@@ -422,6 +405,17 @@
     {/if}
   {/if}
 </div>
+
+<ConfirmModal
+  offen={aufgeben_modal_offen}
+  titel="Aufgabe aufgeben?"
+  nachricht="Du siehst die Musterlösungen sofort. Bestehst du die Aufgabe danach, gibt es dafür keine Punkte mehr. Bereits erreichte Punkte bleiben."
+  bestaetigen_text="Aufgeben"
+  abbrechen_text="Weiter üben"
+  danger={true}
+  onBestaetigen={aufgebenBestaetigt}
+  onAbbrechen={() => (aufgeben_modal_offen = false)}
+/>
 
 <ConfirmModal
   offen={reset_modal_offen}
@@ -571,6 +565,23 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+  }
+  .aufgeben {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+    color: var(--fg-dim);
+  }
+  .aufgeben > i { color: var(--fg-mute); font-size: var(--fs-lg); }
+  .aufgeben p { margin: 0; font-family: var(--quick); }
+  .aufgeben-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    border-color: var(--orange);
+    color: var(--orange);
   }
   .tab-inhalt > .muster-liste {
     padding: var(--sp-3);

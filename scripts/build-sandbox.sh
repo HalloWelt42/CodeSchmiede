@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
-# Baut das Sandbox-Image fuer die Python-Aufgaben.
-# Idempotent. Ausfuehren bei jedem Update am Sandbox-Dockerfile.
+# Baut die Sandbox-Images aller Sprachen aus sandbox-bilder/<sprache>.Dockerfile
+# als codeschmiede-sandbox:<sprache>. Idempotent; nach jeder Änderung an
+# einem Sandbox-Dockerfile erneut ausführen.
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
-SANDBOX_DIR="$ROOT_DIR/aufgaben/sandbox"
+BILDER_DIR="$ROOT_DIR/sandbox-bilder"
 
-cd "$SANDBOX_DIR"
+for datei in "$BILDER_DIR"/*.Dockerfile; do
+  sprache="$(basename "$datei" .Dockerfile)"
+  echo "Baue codeschmiede-sandbox:$sprache ..."
+  docker build --quiet --tag "codeschmiede-sandbox:$sprache" --file "$datei" "$BILDER_DIR"
+done
 
-echo "Baue codeschmiede-sandbox:python aus $SANDBOX_DIR ..."
-docker build --tag codeschmiede-sandbox:python .
-
-echo ""
-echo "Image fertig:"
-docker images codeschmiede-sandbox:python
+echo
+docker images --filter "reference=codeschmiede-sandbox" --format '{{.Repository}}:{{.Tag}}  {{.Size}}'

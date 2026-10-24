@@ -4,10 +4,9 @@
    * Frontmatter enthält im `extra.quiz`-Feld:
    *   code: string
    *   optionen: string[]
-   *   richtig_index: number
    *
-   * Antwort an /api/submissions ist der gewählte Index als String.
-   * Backend pruefe-Funktion (`output_quiz_pruefer`) macht den Vergleich.
+   * `richtig_index` bleibt auf dem Server. Antwort an /api/submissions ist
+   * der gewählte Index als String; der Server sagt nur richtig oder falsch.
    */
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
@@ -19,7 +18,6 @@
   interface QuizDef {
     code: string;
     optionen: string[];
-    richtig_index: number;
   }
 
   interface Props {
@@ -96,7 +94,7 @@
       <h3>Wähle die richtige Ausgabe:</h3>
       <div class="optionen-liste">
         {#each quiz.optionen as opt, i (i)}
-          {@const istRichtig = bestanden !== null && i === quiz.richtig_index}
+          {@const istRichtig = bestanden === true && gewaehlt === i}
           {@const istFalschGewaehlt = bestanden === false && gewaehlt === i}
           <button
             class="option"

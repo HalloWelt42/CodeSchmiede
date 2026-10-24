@@ -5,7 +5,7 @@ revision: 1
 titel: "Autoren mit mehr als einem Buch"
 sprache: sql
 task_type: sql_abfrage
-runner_type: sqlite_backend
+runner_type: docker_sqlite
 schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 6

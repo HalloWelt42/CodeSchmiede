@@ -47,7 +47,7 @@ tests_versteckt:
   - input: ["AaBbCc"]
     expected: 3
   - input: ["The Quick BROWN Fox"]
-    expected: 7
+    expected: 8
 starter_code: |
   def zaehle_gross(text: str) -> int:
       # Deine Lösung hier

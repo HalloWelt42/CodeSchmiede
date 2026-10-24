@@ -17,11 +17,18 @@ class Progress(BaseModel):
     versuche: int = 0
     hints_genutzt: int = 0
     punkte_erreicht: int = 0
+    # Musterlösungen vor dem Bestehen angesehen; Bestehen bringt danach 0 Punkte.
+    aufgegeben: bool = False
     geloest_am: datetime | None = None
     ease: float = 2.5
     intervall_tage: int = 0
     faellig_am: date | None = None
     letzte_wiederholung: datetime | None = None
+
+
+    @property
+    def musterloesungen_frei(self) -> bool:
+        return self.status == "geloest" or self.aufgegeben
 
 
 class Streak(BaseModel):

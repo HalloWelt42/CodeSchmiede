@@ -29,19 +29,23 @@ sprachen:
   - id: python
     titel: Python
     editor_lang: python
+    endung: py
     runner_type: docker_python
   - id: javascript
     titel: JavaScript
     editor_lang: javascript
-    runner_type: webworker_js
+    endung: js
+    runner_type: docker_javascript
   - id: css
     titel: CSS
     editor_lang: css
+    endung: css
     runner_type: iframe_css
   - id: sql
     titel: SQL
     editor_lang: sql
-    runner_type: sqlite_backend
+    endung: sql
+    runner_type: docker_sqlite
 
 aufgabentypen:
   - id: code_schreiben

@@ -5,7 +5,7 @@ revision: 1
 titel: "Kategorien mit mind. 3 Büchern"
 sprache: sql
 task_type: sql_abfrage
-runner_type: sqlite_backend
+runner_type: docker_sqlite
 schwierigkeit: mittel
 schwierigkeit_score: 12
 schaetz_minuten: 5

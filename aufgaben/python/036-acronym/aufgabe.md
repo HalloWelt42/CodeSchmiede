@@ -45,7 +45,7 @@ tests_versteckt:
   - input: ["new York city"]
     expected: "NYC"
   - input: ["    leerzeichen   am   rand   "]
-    expected: "L"
+    expected: "LAR"
   - input: ["Just In Time"]
     expected: "JIT"
   - input: ["a b c d e"]

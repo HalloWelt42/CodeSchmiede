@@ -6,7 +6,9 @@ Eine Quiz-Aufgabe enthält im Frontmatter ein `quiz`-Feld mit:
   - `richtig_index`: 0-basierter Index der korrekten Option
 
 Die Antwort des Nutzers ist der gewählte Index als String. Kein
-Sandbox-Lauf nötig -- reine Index-Vergleichs-Logik.
+Sandbox-Lauf nötig -- reine Index-Vergleichs-Logik. `richtig_index`
+geht nie an den Browser, auch nicht nach einer falschen Antwort (sonst
+wäre der zweite Versuch geschenkt).
 """
 
 from ..models.aufgabe import Aufgabe
@@ -15,7 +17,7 @@ from .ergebnis import PruefErgebnis
 from .registry import registriere
 
 
-@registriere("output_quiz")
+@registriere("output_quiz", verbirgt=("quiz.richtig_index",))
 def pruefe(aufgabe: Aufgabe, antwort: str, runner: Runner) -> PruefErgebnis:
     quiz = (getattr(aufgabe, "model_extra", {}) or {}).get("quiz", {})
     richtig_index = quiz.get("richtig_index")
@@ -26,7 +28,7 @@ def pruefe(aufgabe: Aufgabe, antwort: str, runner: Runner) -> PruefErgebnis:
             versteckt_pass=0,
             versteckt_fail=0,
             laufzeit_ms=0,
-            stderr="Quiz-Definition fehlerhaft -- richtig_index fehlt",
+            stderr="Quiz-Definition fehlerhaft: richtig_index fehlt",
         )
 
     try:
@@ -48,6 +50,4 @@ def pruefe(aufgabe: Aufgabe, antwort: str, runner: Runner) -> PruefErgebnis:
         versteckt_pass=1 if bestanden else 0,
         versteckt_fail=0 if bestanden else 1,
         laufzeit_ms=0,
-        stdout="",
-        stderr="" if bestanden else f"Richtig wäre Option {richtig_index} gewesen.",
     )

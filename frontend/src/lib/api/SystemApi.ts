@@ -5,7 +5,8 @@ export interface Gesundheit {
   version: string;
   aufgaben_anzahl: number;
   pfade_anzahl: number;
-  sandbox_image: string;
+  befunde_anzahl: number;
+  aufgaben_schreibbar: boolean;
 }
 
 export class SystemApi extends HttpBase {

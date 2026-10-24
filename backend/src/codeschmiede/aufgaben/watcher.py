@@ -31,8 +31,7 @@ class AufgabenWatcher:
                 str(self.aufgaben_pfad), debounce=self.debounce_ms
             ):
                 try:
-                    self.state.konfig_neu_laden()
-                    self.state.aufgaben.neu_aufbauen()
+                    self.state.neu_einlesen()
                     print(f"[watcher] {len(changes)} Änderung(en), reindexed", flush=True)
                 except Exception as e:
                     # Reindex darf den Watcher nicht killen.

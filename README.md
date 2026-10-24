@@ -1,94 +1,92 @@
 # Codeschmiede
 
-Lokaler, gamifizierter Programmier-Trainer. Eigene Aufgaben in Markdown,
-sichere Sandbox-Ausführung in Docker, mehrere Musterlösungen mit
-Performance-Vergleich. Inhalte über didaktische Pfade strukturiert.
-
-Vorbild im Stil: Codewars, Codecademy, LeetCode, HackerRank, CodinGame --
-aber tutorialmäßig und für den Eigengebrauch.
+Lokaler Programmier-Trainer mit Spielelementen. Eigene Aufgaben in Markdown,
+Ausführung in einer abgeschotteten Docker-Sandbox, mehrere Musterlösungen mit
+Vergleich, Inhalte über didaktische Pfade geordnet. Für den Eigengebrauch.
 
 ## Stand
 
-Frühe Phase. Repo-Skelett, Sandbox-Image für Python, drei Beispielaufgaben
-(FizzBuzz, Palindrom, Fibonacci). Backend und Frontend in Aufbau.
-
-## Sprachen im MVP
-
-- **Python 3.11+** (Sandbox läuft im Docker-Container)
-
-Geplant nach MVP: JavaScript (Web-Worker), HTML/CSS (sandboxed iframe),
-SQL (In-Memory-SQLite).
+Rund 640 Aufgaben in Python, SQL, CSS und JavaScript, 34 Pfade.
+Geprüft wird auf dem Server: Python, JavaScript und SQL laufen in der
+Sandbox, CSS-Nachbauten rendert der Browser. Der weitere Ausbau steht in
+[`docs/PLAN.md`](docs/PLAN.md).
 
 ## Stack
 
 - Backend: Python 3.11+, FastAPI, Pydantic, SQLite
+- Sandbox-Dienst: eigener Prozess, einziger Teil mit Docker-Zugang
 - Frontend: Svelte 5 (Runes), TypeScript strict, Vite, CodeMirror 6
-- Sandbox: Docker (`python:3.11-slim`, isoliert ohne Netz)
 - Aufgaben: Markdown mit YAML-Frontmatter, eine Datei pro Aufgabe
 
 ## Schnellstart
 
-### Variante 1 -- Native (Mac, Linux, Pi)
+### Am Mac (Entwicklung)
 
 ```bash
 ./scripts/setup.sh
+./scripts/start.sh
 ```
 
-Das Skript prüft Docker, Python 3.11 und npm, baut das Sandbox-Image,
-legt das Backend-venv an und installiert die Frontend-Pakete.
-
-Danach in zwei Terminals:
-
-```bash
-# Backend
-cd backend && .venv/bin/python -m codeschmiede.main
-
-# Frontend
-cd frontend && npm run dev
-```
+`setup.sh` prüft Docker, Python 3.11 und npm, baut die Sandbox-Images,
+legt das Backend-venv an und installiert die Frontend-Pakete. `start.sh`
+startet Sandbox-Dienst (8203), Backend (8200) und Frontend (5184) im
+Hintergrund, `stop.sh` beendet sie.
 
 Browser: <http://localhost:5184>.
 
-### Variante 2 -- Docker Compose (für Pi-Deploys)
+### Docker Compose (Pi)
 
 ```bash
-./scripts/build-sandbox.sh    # einmalig: Sandbox-Image bauen
+./scripts/build-sandbox.sh    # einmalig: Sandbox-Images bauen
 docker compose up -d
 ```
 
-Browser: <http://localhost:8201>. Backend liegt auf 8200.
+Browser: <http://localhost:8201>. Backend und Sandbox-Dienst sind nur im
+Compose-Netz erreichbar; die Aufgaben sind dort nur lesbar.
+
+## Tests
+
+```bash
+cd backend && .venv/bin/python -m pytest
+```
+
+Die Sandbox-Tests brauchen die gebauten Images. Die Prüfung des ganzen
+Bestands (jede Musterlösung gegen ihre Tests, einige Minuten) läuft mit
+`CODESCHMIEDE_BESTAND=1`.
 
 ## Hilfs-Skripte
 
-- `scripts/build-sandbox.sh` -- Sandbox-Image bauen (idempotent)
-- `scripts/setup.sh` -- Plattform-Setup (Voraussetzungen + Pakete)
-- `scripts/inspect-db.sh` -- Tabellen-Counts, Submissions, Streak
-- `scripts/reset-db.sh` -- Datenbank löschen (Vorsicht-Modus)
-- `scripts/bump.sh [patch|minor|major]` -- Version anheben
+- `scripts/build-sandbox.sh` - Sandbox-Images aller Sprachen bauen (idempotent)
+- `scripts/setup.sh` - Plattform-Setup (Voraussetzungen + Pakete)
+- `scripts/start.sh`, `scripts/stop.sh` - Dienste starten und beenden
+- `scripts/inspect-db.sh` - Tabellen-Counts, Submissions, Streak
+- `scripts/reset-db.sh` - Datenbank löschen (Vorsicht-Modus)
+- `scripts/bump.sh [patch|minor|major]` - Version anheben
 
 ## Verzeichnisse
 
-- `backend/` -- FastAPI-Server
-- `frontend/` -- Svelte 5 + Vite
-- `aufgaben/` -- Aufgaben-Dateien (Markdown + Musterlösungen) und
-  Pfad-Definitionen
-- `aufgaben/sandbox/` -- Dockerfile für die Python-Sandbox
-- `data/` -- lokale SQLite-Datenbank (gitignored)
-- `scripts/` -- Setup, Versionierung, Hilfs-Tools
-- `docs/` -- Aufgaben-Format-Dokumentation, Architektur-Notizen
+- `backend/` - FastAPI-Server und Sandbox-Dienst
+- `frontend/` - Svelte 5 + Vite
+- `aufgaben/` - Aufgaben-Dateien (Markdown + Musterlösungen), Pfade, SQL-Datensätze
+- `sandbox-bilder/` - Dockerfiles der Sandbox-Images je Sprache
+- `mockups/` - Entwürfe der Oberfläche
+- `data/` - lokale SQLite-Datenbank und Sandbox-Schlüssel (gitignored)
+- `scripts/` - Setup, Versionierung, Hilfs-Tools
+- `docs/` - Plan, Architektur, Aufgaben-Format
 
 ## Neue Aufgaben anlegen
 
 Eine vollständige, autarke Spezifikation des Aufgaben-Formats steht in
 [`docs/AUFGABEN-FORMAT.md`](docs/AUFGABEN-FORMAT.md). Das Dokument ist
 so geschrieben, dass es als Prompt einer Sprachmodell-Instanz übergeben
-werden kann -- die kann daraus eigenständig neue Aufgaben generieren,
+werden kann; die kann daraus eigenständig neue Aufgaben erzeugen,
 ohne den Quellcode der App zu kennen.
 
-Manuell: ein Verzeichnis unter `aufgaben/<sprache>/NNN-id/` anlegen,
-mindestens `aufgabe.md` (Markdown mit YAML-Frontmatter),
-`solution_naive.py` und `solution_idiomatic.py`. Beim nächsten
-Backend-Start wird die Aufgabe automatisch indiziert.
+Manuell: ein Verzeichnis unter `aufgaben/<sprache>/<id>/` anlegen,
+mindestens `aufgabe.md` (Markdown mit YAML-Frontmatter) und eine
+Musterlösung `solution_<variante>.<endung>`. Das Backend liest neue und
+geänderte Aufgaben sofort ein; Fehler stehen in der Verwaltung unter den
+Befunden.
 
 ## Lizenz
 

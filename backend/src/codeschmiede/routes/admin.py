@@ -1,21 +1,31 @@
 """HTTP-Routen für die Verwaltungs-Übersicht.
 
-Bewusst entkoppelt vom übrigen API-Schnitt: eigener Praefix
-`/api/admin`, eigene Pydantic-Modelle. Liefert die komplette Sicht auf
-Aufgaben (inkl. versteckter Tests, Hints, Musterlösungen, Statistik)
-und erlaubt CRUD: Aufgaben + Musterloesungen anlegen, aendern, loeschen,
-gegen ihre eigenen Tests validieren. Im Single-User-MVP gibt es kein
-Auth -- das Endpoint ist genauso geschützt wie die App selbst.
+Eigener Präfix `/api/admin`, eigene Pydantic-Modelle. Liefert die
+komplette Sicht auf Aufgaben (inkl. versteckter Tests, Hints,
+Musterlösungen, Statistik), die Befunde der Bestandsprüfung und erlaubt
+CRUD: Aufgaben, Musterlösungen und Pfade anlegen, ändern, löschen,
+gegen ihre eigenen Tests validieren.
+
+Schreiben geht nur, wenn `aufgaben_schreibbar` gesetzt ist; auf dem Pi
+kommen die Aufgaben aus dem Repo und werden am Mac bearbeitet.
 """
 
+from datetime import datetime
 from typing import Any
 
-from fastapi import APIRouter, HTTPException, Response
+from fastapi import APIRouter, Depends, HTTPException, Response
 from pydantic import BaseModel, Field
 
+from .. import __version__
+from ..aufgaben.bestandspruefung import Befund
 from ..aufgaben.schreiber import AufgabenSchreiberFehler
+from ..models.aufgabe import Aufgabe
 from ..models.konfig import Konfiguration
+from ..models.pfad import Pfad
+from ..models.progress import Progress
+from ..progress.submissions import SubmissionStatistik
 from ..pruefung.orchestrator import pruefe
+from ..sandbox.runner import SandboxFehler
 from ..state import AppState
 
 
@@ -29,11 +39,7 @@ class AufgabenStatistik(BaseModel):
 
 
 class VerwaltungsEintrag(BaseModel):
-    """Komplette Sicht auf eine Aufgabe für die Verwaltungsansicht.
-
-    Bewusst breit -- die Tabelle zeigt alles, was über das Frontmatter
-    einkommt, plus Statistik aus den Tabellen `submissions` + `progress`.
-    """
+    """Komplette Sicht auf eine Aufgabe für die Verwaltungsansicht."""
 
     schema_version: int
     id: str
@@ -87,10 +93,10 @@ class PfadEintrag(BaseModel):
 
 
 class AufgabeSchreibAnfrage(BaseModel):
-    """Was das Frontend zum Anlegen / Aendern einer Aufgabe schickt.
+    """Was das Frontend zum Anlegen / Ändern einer Aufgabe schickt.
 
     `frontmatter` ist ein freies Dict, weil verschiedene `task_type`s
-    unterschiedliche Felder haben (z.B. `quiz` fuer Output-Quiz).
+    unterschiedliche Felder haben (z.B. `quiz` für Output-Quiz).
     Validierung gegen das Pydantic-Modell passiert im Schreiber.
     """
 
@@ -122,47 +128,107 @@ class ValidierungsErgebnis(BaseModel):
     varianten: list[VarianteErgebnis]
 
 
+def _statistik(sub: SubmissionStatistik | None, p: Progress | None) -> AufgabenStatistik:
+    sub = sub or SubmissionStatistik()
+    return AufgabenStatistik(
+        submissions_gesamt=sub.gesamt,
+        bestandene_submissions=sub.bestanden,
+        versuche=p.versuche if p else 0,
+        hints_genutzt=p.hints_genutzt if p else 0,
+        punkte_erreicht=p.punkte_erreicht if p else 0,
+        status=p.status if p else "neu",
+    )
+
+
+def _eintrag(
+    a: Aufgabe, statistik: AufgabenStatistik, musterloesungen_anzahl: int, slim: bool = False
+) -> VerwaltungsEintrag:
+    """Slim: große Felder leer, Anzahlen bleiben (die Tabelle zeigt "Hints (4)")."""
+    return VerwaltungsEintrag(
+        schema_version=a.schema_version,
+        id=a.id,
+        revision=a.revision,
+        titel=a.titel,
+        sprache=a.sprache,
+        task_type=a.task_type,
+        runner_type=a.runner_type,
+        schwierigkeit=a.schwierigkeit,
+        schwierigkeit_score=a.schwierigkeit_score,
+        schaetz_minuten=a.schaetz_minuten,
+        tags=a.tags,
+        pfade=a.pfade,
+        voraussetzungen=a.voraussetzungen,
+        quelle=a.quelle.model_dump(),
+        lizenz=a.lizenz,
+        autor=a.autor,
+        erstellt_am=a.erstellt_am.isoformat() if a.erstellt_am else None,
+        zeitlimit_sekunden=a.zeitlimit_sekunden,
+        funktion=a.funktion,
+        hints=[{"kosten": 0, "text": ""} if slim else h.model_dump() for h in a.hints],
+        tests_sichtbar=[{"input": [], "expected": None} if slim else t.model_dump() for t in a.tests_sichtbar],
+        tests_versteckt=[{"input": [], "expected": None} if slim else t.model_dump() for t in a.tests_versteckt],
+        starter_code="" if slim else a.starter_code,
+        beschreibung_md="" if slim else a.beschreibung_md,
+        musterloesungen_anzahl=musterloesungen_anzahl,
+        dateipfad=str(a.dateipfad),
+        hash=a.hash,
+        statistik=statistik,
+    )
+
+
+def _pfad_eintrag(p: Pfad) -> PfadEintrag:
+    return PfadEintrag(
+        id=p.id,
+        titel=p.titel,
+        beschreibung=p.beschreibung,
+        reihenfolge=p.reihenfolge,
+        aufgaben_anzahl=len(p.reihenfolge),
+    )
+
+
 def baue_admin_router(state: AppState) -> APIRouter:
     router = APIRouter(prefix="/api/admin", tags=["admin"])
 
+    def schreibrecht() -> None:
+        if not state.settings.aufgaben_schreibbar:
+            raise HTTPException(
+                409, "Aufgaben sind hier nur lesbar; bearbeitet wird am Mac, dann ausrollen"
+            )
+
+    schreibend = [Depends(schreibrecht)]
+
+    def hole(aufgabe_id: str) -> Aufgabe:
+        a = state.aufgaben.aufgabe(aufgabe_id)
+        if a is None:
+            raise HTTPException(404, f"Aufgabe '{aufgabe_id}' nicht gefunden")
+        return a
+
+    def endung(a: Aufgabe) -> str:
+        for s in state.konfig.sprachen:
+            if s.id == a.sprache:
+                return s.endung
+        raise HTTPException(400, f"Sprache '{a.sprache}' fehlt in _konfig.yml")
+
     @router.get("/konfig", response_model=Konfiguration)
     def konfig() -> Konfiguration:
-        """Liefert die zentrale Konfiguration (Schwierigkeiten, Sprachen,
-        Aufgabentypen). Frontend zieht das beim Start und nutzt es reaktiv."""
+        """Zentrale Konfiguration (Schwierigkeiten, Sprachen, Aufgabentypen)."""
         return state.konfig
+
+    @router.get("/befunde", response_model=list[Befund])
+    def befunde() -> list[Befund]:
+        """Was die Bestandsprüfung beim letzten Einlesen gefunden hat."""
+        return state.befunde
 
     @router.get("/export")
     def export() -> dict:
-        """Vollständiger Backup als JSON: alle Submissions, Progress,
-        Streak, Konfig. Aufgaben sind als Dateien im Repo, hier nur die
-        ID-Referenzen.
-        """
-        with state.db.connect() as conn:
-            submissions = [
-                dict(row)
-                for row in conn.execute(
-                    """
-                    SELECT id, aufgabe_id, aufgabe_revision,
-                           datetime(zeitstempel) AS zeitstempel,
-                           code, bestanden, laufzeit_ms, codelaenge_zeichen
-                    FROM submissions ORDER BY id
-                    """
-                ).fetchall()
-            ]
-            progress = [
-                dict(row)
-                for row in conn.execute("SELECT * FROM progress").fetchall()
-            ]
-            kv = {
-                row["key"]: row["value"]
-                for row in conn.execute("SELECT key, value FROM kv_state").fetchall()
-            }
+        """Vollständige Sicherung als JSON: Submissions, Progress, Streak,
+        Konfig. Aufgaben sind Dateien im Repo, hier nur die IDs."""
         return {
-            "version": __import__("codeschmiede").__version__,
-            "exportiert_am": __import__("datetime").datetime.now().isoformat(),
-            "submissions": submissions,
-            "progress": progress,
-            "kv_state": kv,
+            "version": __version__,
+            "exportiert_am": datetime.now().isoformat(),
+            "submissions": state.submissions.alle_fuer_export(),
+            "progress": [p.model_dump(mode="json") for p in state.progress.hole_alle_progress()],
+            "streak": state.progress.hole_streak().model_dump(mode="json"),
             "konfig": state.konfig.model_dump(),
             "aufgaben_ids": [a.id for a in state.aufgaben.alle_aufgaben()],
         }
@@ -176,178 +242,45 @@ def baue_admin_router(state: AppState) -> APIRouter:
         limit: int | None = None,
         offset: int = 0,
     ) -> list[VerwaltungsEintrag]:
-        """Verwaltungs-Liste aller Aufgaben.
-
-        Mit `slim=true` werden grosse Felder (beschreibung_md, tests,
-        starter_code, hints-Texte) als leere Strings/Listen geliefert --
-        spart bei vielen Aufgaben massiv Bandbreite. Detail dann via
-        `/api/admin/aufgaben/{id}` einzeln nachladen.
-
-        Filter:
-        - sprache: exakter Match
-        - suche: Substring in id/titel (case-insensitive)
-        - limit/offset: Pagination, X-Total-Count im Header
-        """
+        """Verwaltungs-Liste aller Aufgaben; `slim=true` lässt große Felder
+        leer (Detail über `/api/admin/aufgaben/{id}`)."""
         such_lower = (suche or "").lower().strip()
-        eintraege: list[VerwaltungsEintrag] = []
-
-        # Statistik vorab in einem Query holen, dann pro Aufgabe zuordnen
-        with state.db.connect() as conn:
-            sub_rows = conn.execute(
-                """
-                SELECT aufgabe_id,
-                       COUNT(*) AS gesamt,
-                       SUM(CASE WHEN bestanden = 1 THEN 1 ELSE 0 END) AS bestanden
-                FROM submissions
-                GROUP BY aufgabe_id
-                """
-            ).fetchall()
-            sub_stats = {
-                r["aufgabe_id"]: (r["gesamt"], r["bestanden"] or 0) for r in sub_rows
-            }
-
-            progress_rows = conn.execute("SELECT * FROM progress").fetchall()
-            progress_by_id = {r["aufgabe_id"]: r for r in progress_rows}
-
-        gefiltert = []
-        for a in state.aufgaben.alle_aufgaben():
-            if sprache and a.sprache != sprache:
-                continue
-            if such_lower and such_lower not in a.id.lower() and such_lower not in a.titel.lower():
-                continue
-            gefiltert.append(a)
+        gefiltert = [
+            a for a in state.aufgaben.alle_aufgaben()
+            if (not sprache or a.sprache == sprache)
+            and (not such_lower or such_lower in a.id.lower() or such_lower in a.titel.lower())
+        ]
         gefiltert.sort(key=lambda x: (x.sprache, x.schwierigkeit_score, x.id))
         response.headers["X-Total-Count"] = str(len(gefiltert))
-
         if limit is not None and limit > 0:
             start = max(0, offset)
             gefiltert = gefiltert[start:start + min(500, limit)]
 
-        for a in gefiltert:
-            sub_gesamt, sub_bestanden = sub_stats.get(a.id, (0, 0))
-            p = progress_by_id.get(a.id)
-            statistik = AufgabenStatistik(
-                submissions_gesamt=sub_gesamt,
-                bestandene_submissions=sub_bestanden,
-                versuche=p["versuche"] if p else 0,
-                hints_genutzt=p["hints_genutzt"] if p else 0,
-                punkte_erreicht=p["punkte_erreicht"] if p else 0,
-                status=p["status"] if p else "neu",
+        sub_stats = state.submissions.statistik_je_aufgabe()
+        progress = {p.aufgabe_id: p for p in state.progress.hole_alle_progress()}
+        return [
+            _eintrag(
+                a,
+                _statistik(sub_stats.get(a.id), progress.get(a.id)),
+                0 if slim else len(state.loader.lade_musterloesungen(a.id)),
+                slim=slim,
             )
-            # Musterloesungen-Anzahl ist immer relevant (Tabelle), aber im
-            # Slim-Modus sparen wir uns das Dateisystem-Listing.
-            ml_anzahl = 0 if slim else len(state.loader.lade_musterloesungen(a.id))
-            # Slim-Modus: grosse Felder leeren, Anzahlen aus Original
-            # behalten (das Frontend rendert "Hints (4)" auch ohne Text).
-            hints_payload = (
-                [{"kosten": 0, "text": ""} for _ in a.hints]
-                if slim
-                else [h.model_dump() for h in a.hints]
-            )
-            tests_sichtbar_payload = (
-                [{"input": [], "expected": None} for _ in a.tests_sichtbar]
-                if slim
-                else [t.model_dump() for t in a.tests_sichtbar]
-            )
-            tests_versteckt_payload = (
-                [{"input": [], "expected": None} for _ in a.tests_versteckt]
-                if slim
-                else [t.model_dump() for t in a.tests_versteckt]
-            )
-            eintraege.append(
-                VerwaltungsEintrag(
-                    schema_version=a.schema_version,
-                    id=a.id,
-                    revision=a.revision,
-                    titel=a.titel,
-                    sprache=a.sprache,
-                    task_type=a.task_type,
-                    runner_type=a.runner_type,
-                    schwierigkeit=a.schwierigkeit,
-                    schwierigkeit_score=a.schwierigkeit_score,
-                    schaetz_minuten=a.schaetz_minuten,
-                    tags=a.tags,
-                    pfade=a.pfade,
-                    voraussetzungen=a.voraussetzungen,
-                    quelle=a.quelle.model_dump(),
-                    lizenz=a.lizenz,
-                    autor=a.autor,
-                    erstellt_am=a.erstellt_am.isoformat() if a.erstellt_am else None,
-                    zeitlimit_sekunden=a.zeitlimit_sekunden,
-                    funktion=a.funktion,
-                    hints=hints_payload,
-                    tests_sichtbar=tests_sichtbar_payload,
-                    tests_versteckt=tests_versteckt_payload,
-                    starter_code="" if slim else a.starter_code,
-                    beschreibung_md="" if slim else a.beschreibung_md,
-                    musterloesungen_anzahl=ml_anzahl,
-                    dateipfad=str(a.dateipfad),
-                    hash=a.hash,
-                    statistik=statistik,
-                )
-            )
-        return eintraege
+            for a in gefiltert
+        ]
 
     @router.get("/aufgaben/{aufgabe_id}", response_model=VerwaltungsEintrag)
     def aufgabe_einzeln(aufgabe_id: str) -> VerwaltungsEintrag:
-        """Einzelne Verwaltungs-Sicht -- nuetzlich nach Edit, um den
-        frischen Zustand zu holen ohne die ganze Liste neu zu fetchen."""
-        a = state.aufgaben.aufgabe(aufgabe_id)
-        if a is None:
-            raise HTTPException(404, f"Aufgabe '{aufgabe_id}' nicht gefunden")
-        with state.db.connect() as conn:
-            sub_row = conn.execute(
-                """
-                SELECT COUNT(*) AS gesamt,
-                       SUM(CASE WHEN bestanden = 1 THEN 1 ELSE 0 END) AS bestanden
-                FROM submissions WHERE aufgabe_id = ?
-                """,
-                (aufgabe_id,),
-            ).fetchone()
-            p = conn.execute(
-                "SELECT * FROM progress WHERE aufgabe_id = ?", (aufgabe_id,)
-            ).fetchone()
-        statistik = AufgabenStatistik(
-            submissions_gesamt=sub_row["gesamt"] if sub_row else 0,
-            bestandene_submissions=(sub_row["bestanden"] or 0) if sub_row else 0,
-            versuche=p["versuche"] if p else 0,
-            hints_genutzt=p["hints_genutzt"] if p else 0,
-            punkte_erreicht=p["punkte_erreicht"] if p else 0,
-            status=p["status"] if p else "neu",
-        )
-        ml = state.loader.lade_musterloesungen(aufgabe_id)
-        return VerwaltungsEintrag(
-            schema_version=a.schema_version,
-            id=a.id,
-            revision=a.revision,
-            titel=a.titel,
-            sprache=a.sprache,
-            task_type=a.task_type,
-            runner_type=a.runner_type,
-            schwierigkeit=a.schwierigkeit,
-            schwierigkeit_score=a.schwierigkeit_score,
-            schaetz_minuten=a.schaetz_minuten,
-            tags=a.tags,
-            pfade=a.pfade,
-            voraussetzungen=a.voraussetzungen,
-            quelle=a.quelle.model_dump(),
-            lizenz=a.lizenz,
-            autor=a.autor,
-            erstellt_am=a.erstellt_am.isoformat() if a.erstellt_am else None,
-            zeitlimit_sekunden=a.zeitlimit_sekunden,
-            funktion=a.funktion,
-            hints=[h.model_dump() for h in a.hints],
-            tests_sichtbar=[t.model_dump() for t in a.tests_sichtbar],
-            tests_versteckt=[t.model_dump() for t in a.tests_versteckt],
-            starter_code=a.starter_code,
-            beschreibung_md=a.beschreibung_md,
-            musterloesungen_anzahl=len(ml),
-            dateipfad=str(a.dateipfad),
-            hash=a.hash,
-            statistik=statistik,
+        a = hole(aufgabe_id)
+        return _eintrag(
+            a,
+            _statistik(
+                state.submissions.statistik_je_aufgabe().get(a.id),
+                state.progress.hole_progress(a.id),
+            ),
+            len(state.loader.lade_musterloesungen(a.id)),
         )
 
-    @router.post("/aufgaben", response_model=VerwaltungsEintrag, status_code=201)
+    @router.post("/aufgaben", response_model=VerwaltungsEintrag, status_code=201, dependencies=schreibend)
     def aufgabe_anlegen(daten: AufgabeSchreibAnfrage) -> VerwaltungsEintrag:
         try:
             state.schreiber.schreibe_aufgabe(
@@ -358,20 +291,14 @@ def baue_admin_router(state: AppState) -> APIRouter:
             )
         except AufgabenSchreiberFehler as exc:
             raise HTTPException(400, str(exc)) from exc
-        state.aufgaben.neu_aufbauen()
+        state.neu_einlesen()
         return aufgabe_einzeln(daten.frontmatter["id"])
 
-    @router.put("/aufgaben/{aufgabe_id}", response_model=VerwaltungsEintrag)
-    def aufgabe_aendern(
-        aufgabe_id: str, daten: AufgabeSchreibAnfrage
-    ) -> VerwaltungsEintrag:
+    @router.put("/aufgaben/{aufgabe_id}", response_model=VerwaltungsEintrag, dependencies=schreibend)
+    def aufgabe_aendern(aufgabe_id: str, daten: AufgabeSchreibAnfrage) -> VerwaltungsEintrag:
         if daten.frontmatter.get("id") != aufgabe_id:
-            raise HTTPException(
-                400,
-                "ID im Pfad und im Frontmatter muessen uebereinstimmen",
-            )
-        if state.aufgaben.aufgabe(aufgabe_id) is None:
-            raise HTTPException(404, f"Aufgabe '{aufgabe_id}' nicht gefunden")
+            raise HTTPException(400, "ID im Pfad und im Frontmatter müssen übereinstimmen")
+        hole(aufgabe_id)
         try:
             state.schreiber.schreibe_aufgabe(
                 frontmatter=daten.frontmatter,
@@ -381,24 +308,20 @@ def baue_admin_router(state: AppState) -> APIRouter:
             )
         except AufgabenSchreiberFehler as exc:
             raise HTTPException(400, str(exc)) from exc
-        state.aufgaben.neu_aufbauen()
+        state.neu_einlesen()
         return aufgabe_einzeln(aufgabe_id)
 
-    @router.delete("/aufgaben/{aufgabe_id}", status_code=204)
+    @router.delete("/aufgaben/{aufgabe_id}", status_code=204, dependencies=schreibend)
     def aufgabe_loeschen(aufgabe_id: str) -> None:
         try:
             state.schreiber.loesche_aufgabe(aufgabe_id)
         except AufgabenSchreiberFehler as exc:
             raise HTTPException(404, str(exc)) from exc
-        state.aufgaben.neu_aufbauen()
+        state.neu_einlesen()
 
-    @router.get(
-        "/aufgaben/{aufgabe_id}/musterloesungen",
-        response_model=list[MusterloesungEintrag],
-    )
+    @router.get("/aufgaben/{aufgabe_id}/musterloesungen", response_model=list[MusterloesungEintrag])
     def musterloesungen(aufgabe_id: str) -> list[MusterloesungEintrag]:
-        if state.aufgaben.aufgabe(aufgabe_id) is None:
-            raise HTTPException(404, f"Aufgabe '{aufgabe_id}' nicht gefunden")
+        hole(aufgabe_id)
         return [
             MusterloesungEintrag(variante=m["variante"], code=m["code"])
             for m in state.loader.lade_musterloesungen(aufgabe_id)
@@ -407,19 +330,23 @@ def baue_admin_router(state: AppState) -> APIRouter:
     @router.put(
         "/aufgaben/{aufgabe_id}/musterloesungen/{variante}",
         response_model=MusterloesungEintrag,
+        dependencies=schreibend,
     )
     def musterloesung_speichern(
         aufgabe_id: str, variante: str, daten: MusterloesungInhalt
     ) -> MusterloesungEintrag:
+        a = hole(aufgabe_id)
         try:
-            state.schreiber.schreibe_musterloesung(aufgabe_id, variante, daten.code)
+            state.schreiber.schreibe_musterloesung(aufgabe_id, variante, daten.code, endung(a))
         except AufgabenSchreiberFehler as exc:
             raise HTTPException(400, str(exc)) from exc
         state.aufgaben.leere_metriken_cache()
         return MusterloesungEintrag(variante=variante, code=daten.code)
 
     @router.delete(
-        "/aufgaben/{aufgabe_id}/musterloesungen/{variante}", status_code=204
+        "/aufgaben/{aufgabe_id}/musterloesungen/{variante}",
+        status_code=204,
+        dependencies=schreibend,
     )
     def musterloesung_loeschen(aufgabe_id: str, variante: str) -> None:
         try:
@@ -428,123 +355,65 @@ def baue_admin_router(state: AppState) -> APIRouter:
             raise HTTPException(404, str(exc)) from exc
         state.aufgaben.leere_metriken_cache()
 
-    @router.get(
-        "/aufgaben/{aufgabe_id}/versionen", response_model=list[AufgabeVersion]
-    )
+    @router.get("/aufgaben/{aufgabe_id}/versionen", response_model=list[AufgabeVersion])
     def aufgabe_versionen(aufgabe_id: str) -> list[AufgabeVersion]:
-        """Frühere Revisionen einer Aufgabe -- aus aufgaben_versionen-Tabelle."""
-        with state.db.connect() as conn:
-            rows = conn.execute(
-                """
-                SELECT revision, hash, datetime(gueltig_ab) AS gueltig_ab
-                FROM aufgaben_versionen
-                WHERE aufgabe_id = ?
-                ORDER BY revision DESC
-                """,
-                (aufgabe_id,),
-            ).fetchall()
-        return [
-            AufgabeVersion(
-                revision=r["revision"], hash=r["hash"], gueltig_ab=r["gueltig_ab"]
-            )
-            for r in rows
-        ]
+        """Frühere Revisionen einer Aufgabe aus `aufgaben_versionen`."""
+        return [AufgabeVersion(**v) for v in state.aufgaben.versionen(aufgabe_id)]
 
     @router.get("/pfade", response_model=list[PfadEintrag])
     def pfade_liste() -> list[PfadEintrag]:
-        eintraege: list[PfadEintrag] = []
-        for p in state.aufgaben.alle_pfade():
-            eintraege.append(
-                PfadEintrag(
-                    id=p.id,
-                    titel=p.titel,
-                    beschreibung=p.beschreibung,
-                    reihenfolge=p.reihenfolge,
-                    aufgaben_anzahl=len(p.reihenfolge),
-                )
-            )
-        return eintraege
+        return [_pfad_eintrag(p) for p in state.aufgaben.alle_pfade()]
 
-    @router.post("/pfade", response_model=PfadEintrag, status_code=201)
-    def pfad_anlegen(daten: PfadSchreibAnfrage) -> PfadEintrag:
+    def pfad_schreiben(daten: PfadSchreibAnfrage, neu: bool) -> PfadEintrag:
         try:
             state.schreiber.schreibe_pfad(
                 pfad_id=daten.id,
                 titel=daten.titel,
                 beschreibung=daten.beschreibung,
                 reihenfolge=daten.reihenfolge,
-                existiert_pruefen=True,
+                existiert_pruefen=neu,
             )
         except AufgabenSchreiberFehler as exc:
             raise HTTPException(400, str(exc)) from exc
-        state.aufgaben.neu_aufbauen()
+        state.neu_einlesen()
         p = state.aufgaben.pfad(daten.id)
         if p is None:
-            raise HTTPException(500, "Pfad nicht indiziert")
-        return PfadEintrag(
-            id=p.id,
-            titel=p.titel,
-            beschreibung=p.beschreibung,
-            reihenfolge=p.reihenfolge,
-            aufgaben_anzahl=len(p.reihenfolge),
-        )
+            raise HTTPException(500, "Pfad wurde geschrieben, aber nicht eingelesen")
+        return _pfad_eintrag(p)
 
-    @router.put("/pfade/{pfad_id}", response_model=PfadEintrag)
+    @router.post("/pfade", response_model=PfadEintrag, status_code=201, dependencies=schreibend)
+    def pfad_anlegen(daten: PfadSchreibAnfrage) -> PfadEintrag:
+        return pfad_schreiben(daten, neu=True)
+
+    @router.put("/pfade/{pfad_id}", response_model=PfadEintrag, dependencies=schreibend)
     def pfad_aendern(pfad_id: str, daten: PfadSchreibAnfrage) -> PfadEintrag:
         if daten.id != pfad_id:
-            raise HTTPException(400, "ID im Pfad und im Body muessen uebereinstimmen")
+            raise HTTPException(400, "ID im Pfad und im Body müssen übereinstimmen")
         if state.aufgaben.pfad(pfad_id) is None:
             raise HTTPException(404, f"Pfad '{pfad_id}' nicht gefunden")
-        try:
-            state.schreiber.schreibe_pfad(
-                pfad_id=daten.id,
-                titel=daten.titel,
-                beschreibung=daten.beschreibung,
-                reihenfolge=daten.reihenfolge,
-                existiert_pruefen=False,
-            )
-        except AufgabenSchreiberFehler as exc:
-            raise HTTPException(400, str(exc)) from exc
-        state.aufgaben.neu_aufbauen()
-        p = state.aufgaben.pfad(pfad_id)
-        if p is None:
-            raise HTTPException(500, "Pfad nicht indiziert")
-        return PfadEintrag(
-            id=p.id,
-            titel=p.titel,
-            beschreibung=p.beschreibung,
-            reihenfolge=p.reihenfolge,
-            aufgaben_anzahl=len(p.reihenfolge),
-        )
+        return pfad_schreiben(daten, neu=False)
 
-    @router.delete("/pfade/{pfad_id}", status_code=204)
+    @router.delete("/pfade/{pfad_id}", status_code=204, dependencies=schreibend)
     def pfad_loeschen(pfad_id: str) -> None:
         try:
             state.schreiber.loesche_pfad(pfad_id)
         except AufgabenSchreiberFehler as exc:
             raise HTTPException(404, str(exc)) from exc
-        state.aufgaben.neu_aufbauen()
+        state.neu_einlesen()
 
-    @router.post(
-        "/aufgaben/{aufgabe_id}/validieren",
-        response_model=ValidierungsErgebnis,
-    )
+    @router.post("/aufgaben/{aufgabe_id}/validieren", response_model=ValidierungsErgebnis)
     def aufgabe_validieren(aufgabe_id: str) -> ValidierungsErgebnis:
-        """Laesst alle Musterloesungen gegen alle Tests laufen.
-
-        Antwort enthaelt pro Variante: bestanden ja/nein, Anzahl
-        sichtbarer + versteckter Pass/Fail. Hilft beim Aufgaben-Bauen,
-        um zu sehen, ob die Tests konsistent sind.
-        """
-        a = state.aufgaben.aufgabe(aufgabe_id)
-        if a is None:
-            raise HTTPException(404, f"Aufgabe '{aufgabe_id}' nicht gefunden")
-        loesungen = state.loader.lade_musterloesungen(aufgabe_id)
-        if not loesungen:
-            return ValidierungsErgebnis(varianten=[])
+        """Lässt alle Musterlösungen gegen alle Tests laufen: zeigt beim
+        Aufgabenbau, ob Tests und Lösungen zusammenpassen."""
+        a = hole(aufgabe_id)
         ergebnisse: list[VarianteErgebnis] = []
-        for ml in loesungen:
-            erg = pruefe(a, ml["code"], state.runner)
+        for ml in state.loader.lade_musterloesungen(aufgabe_id):
+            try:
+                erg = pruefe(a, ml["code"], state.runner)
+            except SandboxFehler as fehler:
+                raise HTTPException(503, str(fehler)) from fehler
+            except ValueError as fehler:
+                raise HTTPException(422, f"Aufgabe fehlerhaft: {fehler}") from fehler
             ergebnisse.append(
                 VarianteErgebnis(
                     variante=ml["variante"],
@@ -555,7 +424,7 @@ def baue_admin_router(state: AppState) -> APIRouter:
                     versteckt_fail=erg.versteckt_fail,
                     laufzeit_ms=erg.laufzeit_ms,
                     fehler_text="\n".join(
-                        t.fehler for t in erg.sichtbar if t.fehler
+                        [t.fehler for t in erg.sichtbar if t.fehler] + ([erg.stderr] if erg.stderr else [])
                     ) or None,
                 )
             )

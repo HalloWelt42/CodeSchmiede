@@ -9,6 +9,8 @@
  *   4. marked rendert den Rest (GFM, Tabellen, Codebloecke).
  *   5. DOMPurify saeubert das Ergebnis. SVG-Tags werden zugelassen,
  *      damit Mermaid-Output (der spaeter eingefuegt wird) durchlaeuft.
+ *   6. Mermaid laeuft mit securityLevel "strict": Beschriftungen werden
+ *      gesaeubert, Klick-Skripte in Diagrammen sind aus.
  */
 
 import DOMPurify from 'dompurify';
@@ -23,7 +25,7 @@ function initMermaid(): void {
   mermaid.initialize({
     startOnLoad: false,
     theme: 'dark',
-    securityLevel: 'loose',
+    securityLevel: 'strict',
     themeVariables: {
       primaryColor: '#22262d',
       primaryBorderColor: '#2dd4bf',

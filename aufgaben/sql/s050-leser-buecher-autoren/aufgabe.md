@@ -5,7 +5,7 @@ revision: 1
 titel: "Leser, Buch, Autor (3-fach JOIN)"
 sprache: sql
 task_type: sql_abfrage
-runner_type: sqlite_backend
+runner_type: docker_sqlite
 schwierigkeit: fortgeschritten
 schwierigkeit_score: 15
 schaetz_minuten: 7

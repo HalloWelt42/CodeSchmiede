@@ -31,7 +31,7 @@ from ..models.aufgabe import Aufgabe
 from ..sandbox.runner import Runner
 from .ergebnis import PruefErgebnis
 from .registry import registriere
-from .yaml_pruefer import pruefe as pruefe_code_schreiben
+from .code_pruefer import pruefe as pruefe_code_schreiben
 
 
 PLATZHALTER_MUSTER = re.compile(r"___(\d+)___")

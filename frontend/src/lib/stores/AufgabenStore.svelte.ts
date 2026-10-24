@@ -1,9 +1,11 @@
 /*
- * Store für Aufgaben. Liste wird einmal geladen, Detail-Daten und
- * Musterloesungen werden lazy geladen und gecached.
+ * Store für Aufgaben. Liste wird einmal geladen, Musterloesungen werden
+ * lazy geladen und gecached. Details kommen immer frisch, weil sie vom
+ * Fortschritt abhängen (gesperrt, Musterlösungen frei).
  */
 
 import { aufgabenApi } from '../api/AufgabenApi';
+import { ApiFehler } from '../api/HttpBase';
 import type { AufgabeDetail, AufgabeKurz, Musterloesung } from '../types/Aufgabe';
 
 class AufgabenStore {
@@ -11,7 +13,6 @@ class AufgabenStore {
   ladenListe = $state(false);
   fehler = $state<string | null>(null);
 
-  detailCache = $state<Record<string, AufgabeDetail>>({});
   musterCache = $state<Record<string, Musterloesung[]>>({});
 
   async ladeListe(): Promise<void> {
@@ -26,15 +27,13 @@ class AufgabenStore {
     }
   }
 
+  /** null nur, wenn es die Aufgabe nicht gibt; andere Fehler gehen an den Aufrufer. */
   async ladeDetail(id: string): Promise<AufgabeDetail | null> {
-    if (this.detailCache[id]) return this.detailCache[id];
     try {
-      const detail = await aufgabenApi.detail(id);
-      this.detailCache[id] = detail;
-      return detail;
+      return await aufgabenApi.detail(id);
     } catch (e) {
-      this.fehler = (e as Error).message;
-      return null;
+      if (e instanceof ApiFehler && e.status === 404) return null;
+      throw e;
     }
   }
 

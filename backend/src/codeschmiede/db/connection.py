@@ -3,7 +3,9 @@
 Migrations liegen als `001_*.sql`, `002_*.sql` etc. neben dieser Datei.
 Beim ersten Aufruf von `migriere()` wird eine `schema_version`-Tabelle
 angelegt, die die hoechste angewandte Migrationsnummer trackt. Spaetere
-Aufrufe wenden nur die fehlenden Migrationen an.
+Aufrufe wenden nur die fehlenden Migrationen an. Jede Migration läuft
+samt Versionszeile in einer Transaktion: schlägt sie fehl, bleibt die
+Datenbank auf dem Stand davor.
 """
 
 import sqlite3
@@ -49,7 +51,14 @@ class Datenbank:
                 if nummer <= aktuell:
                     continue
                 sql = migration.read_text(encoding="utf-8")
-                conn.executescript(sql)
-                conn.execute(
-                    "INSERT INTO schema_version (version) VALUES (?)", (nummer,)
-                )
+                try:
+                    conn.executescript(
+                        "BEGIN;\n"
+                        f"{sql}\n"
+                        f"INSERT INTO schema_version (version) VALUES ({nummer});\n"
+                        "COMMIT;"
+                    )
+                except sqlite3.Error:
+                    if conn.in_transaction:
+                        conn.execute("ROLLBACK")
+                    raise

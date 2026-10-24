@@ -5,7 +5,7 @@ revision: 1
 titel: "Bücher der letzten 100 Jahre"
 sprache: sql
 task_type: sql_abfrage
-runner_type: sqlite_backend
+runner_type: docker_sqlite
 schwierigkeit: anfaenger
 schwierigkeit_score: 6
 schaetz_minuten: 3

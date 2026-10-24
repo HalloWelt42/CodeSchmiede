@@ -31,7 +31,10 @@ export class HttpBase {
       } catch {
         // ignorieren -- nicht alle Fehler liefern JSON
       }
-      throw new ApiFehler(antwort.status, `${antwort.status} ${antwort.statusText}`, body);
+      // Der Server nennt den Grund im Feld `detail` (z.B. Sandbox nicht erreichbar).
+      const detail = (body as { detail?: unknown } | null)?.detail;
+      const nachricht = typeof detail === 'string' ? detail : `${antwort.status} ${antwort.statusText}`;
+      throw new ApiFehler(antwort.status, nachricht, body);
     }
 
     if (antwort.status === 204) return null as T;

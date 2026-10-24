@@ -2,6 +2,7 @@
 
 from pathlib import Path
 
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # backend/src/codeschmiede/config.py -> Projekt-Wurzel ist 4 Ebenen darüber
@@ -20,8 +21,20 @@ class Settings(BaseSettings):
     aufgaben_pfad: Path = PROJEKT_WURZEL / "aufgaben"
     daten_pfad: Path = PROJEKT_WURZEL / "data"
     db_datei: Path = PROJEKT_WURZEL / "data" / "codeschmiede.db"
+    # Dürfen Verwaltung und Editor Aufgabendateien schreiben? Auf dem Pi
+    # nein: dort kommen die Aufgaben aus dem Repo (Bearbeiten am Mac).
+    aufgaben_schreibbar: bool = True
 
-    sandbox_image: str = "codeschmiede-sandbox:python"
+    # Sandbox-Dienst (einziger Teil mit Docker-Zugang). Ohne gesetzten
+    # Schlüssel teilen sich Backend und Dienst eine Schlüsseldatei
+    # (Vorgabe `<daten_pfad>/sandbox-schluessel`).
+    sandbox_url: str = "http://127.0.0.1:8203"
+    sandbox_schluessel: SecretStr = SecretStr("")
+    sandbox_schluessel_datei: Path | None = None
+
+    # Fremde Herkünfte, die die API aus dem Browser nutzen dürfen. Leer:
+    # nur die eigene Herkunft (Oberfläche und API unter derselben Adresse).
+    erlaubte_herkuenfte: list[str] = []
 
     api_host: str = "127.0.0.1"
     api_port: int = 8200

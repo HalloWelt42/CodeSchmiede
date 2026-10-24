@@ -66,6 +66,9 @@ export interface AufgabeDetail {
   starter_code: string;
   beschreibung_md: string;
   anzahl_versteckte_tests: number;
+  /** Musterlösungen gibt es erst nach dem Bestehen oder nach dem Aufgeben. */
+  musterloesungen_anzahl: number;
+  musterloesungen_frei: boolean;
   /** Aufgabentyp-spezifische Zusatzdaten (z.B. quiz für output_quiz). */
   extra: Record<string, unknown>;
 }

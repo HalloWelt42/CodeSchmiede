@@ -10,12 +10,12 @@ dependencies = [
     "pydantic-settings>=2.6",
     "pyyaml>=6.0",
     "watchfiles>=0.24",
+    "httpx>=0.27",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.3",
-    "httpx>=0.27",
 ]
 
 [build-system]
@@ -27,3 +27,6 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 codeschmiede = ["db/migrations/*.sql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

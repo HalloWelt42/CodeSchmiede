@@ -1,9 +1,8 @@
 """Ergebnis-Modelle einer Pruefung.
 
-`TestErgebnis` ist ein einzelner Test (sichtbar oder versteckt).
-`PruefErgebnis` ist die Antwort an den Frontend: aggregiert + roher
-stdout/stderr + Laufzeit. Versteckte Tests werden nur als Anzahl
-durchgereicht (Anti-Hardcoding).
+`TestErgebnis` ist ein einzelner sichtbarer Test. `PruefErgebnis` ist
+die Antwort an das Frontend: aggregiert + Nutzerausgabe + Laufzeit.
+Versteckte Tests werden nur als Anzahl durchgereicht (Anti-Hardcoding).
 """
 
 from typing import Any

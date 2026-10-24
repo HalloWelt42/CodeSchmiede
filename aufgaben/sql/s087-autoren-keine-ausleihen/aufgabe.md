@@ -5,7 +5,7 @@ revision: 1
 titel: "Autoren, deren Bücher nie ausgeliehen wurden"
 sprache: sql
 task_type: sql_abfrage
-runner_type: sqlite_backend
+runner_type: docker_sqlite
 schwierigkeit: fortgeschritten
 schwierigkeit_score: 18
 schaetz_minuten: 10

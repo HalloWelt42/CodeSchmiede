@@ -2,15 +2,20 @@
 
 Verzeichnislayout:
   aufgaben/
+    _konfig.yml
     pfade/<id>.yml
-    sandbox/Dockerfile          (vom Loader ignoriert)
-    <sprache>/<aufgabe-id>/aufgabe.md   (+ optional solution_*.py)
+    <sprache>/<aufgabe-id>/aufgabe.md   (+ optional solution_*.<endung>)
+    sql/datasets/<name>.sql             (Datensätze der SQL-Aufgaben)
 
 Eine Aufgabe-Datei beginnt mit YAML-Frontmatter zwischen `---`-Linien,
 gefolgt von Markdown-Beschreibung. Loader produziert Pydantic-Modelle.
+
+Eine kaputte Datei hält das Einlesen nicht auf: sie fehlt im Ergebnis
+und steht mit Grund in `ladefehler`.
 """
 
 import hashlib
+from dataclasses import dataclass
 from pathlib import Path
 
 import yaml
@@ -20,7 +25,17 @@ from ..models.pfad import Pfad
 
 
 FRONTMATTER_TRENNER = "---"
-RESERVIERTE_VERZEICHNISSE = {"pfade", "sandbox"}
+RESERVIERTE_VERZEICHNISSE = {"pfade"}
+MUSTERLOESUNG_ENDUNGEN = ("py", "js", "ts", "html", "css", "sql")
+# Didaktische Reihenfolge der Musterlösungen laut Aufgabenformat
+# (docs/AUFGABEN-FORMAT.md); andere Varianten folgen alphabetisch.
+MUSTERLOESUNG_REIHENFOLGE = ("naive", "idiomatic", "optimal")
+
+
+@dataclass(frozen=True)
+class Ladefehler:
+    datei: str
+    meldung: str
 
 
 class AufgabenLoader:
@@ -28,18 +43,38 @@ class AufgabenLoader:
 
     def __init__(self, wurzel: Path):
         self.wurzel = wurzel
+        self.ladefehler: list[Ladefehler] = []
 
-    def lade_alle_aufgaben(self) -> list[Aufgabe]:
+    def aufgaben_dateien(self) -> list[Path]:
         if not self.wurzel.exists():
             return []
-        aufgaben: list[Aufgabe] = []
+        dateien: list[Path] = []
         for sprache_dir in sorted(self.wurzel.iterdir()):
             if not sprache_dir.is_dir() or sprache_dir.name in RESERVIERTE_VERZEICHNISSE:
                 continue
             for aufgabe_dir in sorted(sprache_dir.iterdir()):
                 aufgabe_md = aufgabe_dir / "aufgabe.md"
                 if aufgabe_md.exists():
-                    aufgaben.append(self.lade_aufgabe(aufgabe_md))
+                    dateien.append(aufgabe_md)
+        return dateien
+
+    def lade_alle_aufgaben(self) -> list[Aufgabe]:
+        aufgaben: list[Aufgabe] = []
+        fehler: list[Ladefehler] = []
+        for datei in self.aufgaben_dateien():
+            try:
+                aufgabe = self.lade_aufgabe(datei)
+            except (ValueError, yaml.YAMLError, OSError) as e:
+                fehler.append(Ladefehler(self._relativ(datei), str(e)))
+                continue
+            if aufgabe.id != datei.parent.name:
+                fehler.append(Ladefehler(
+                    self._relativ(datei),
+                    f"ID '{aufgabe.id}' passt nicht zum Ordner '{datei.parent.name}'",
+                ))
+                continue
+            aufgaben.append(aufgabe)
+        self.ladefehler = fehler
         return aufgaben
 
     def lade_aufgabe(self, datei: Path) -> Aufgabe:
@@ -62,47 +97,47 @@ class AufgabenLoader:
             return []
         pfade: list[Pfad] = []
         for datei in sorted(pfade_dir.glob("*.yml")):
-            with datei.open(encoding="utf-8") as f:
-                daten = yaml.safe_load(f) or {}
-            pfade.append(Pfad.model_validate(daten))
+            try:
+                with datei.open(encoding="utf-8") as f:
+                    daten = yaml.safe_load(f) or {}
+                pfade.append(Pfad.model_validate(daten))
+            except (ValueError, yaml.YAMLError, OSError) as e:
+                self.ladefehler.append(Ladefehler(self._relativ(datei), str(e)))
         return pfade
 
     def lade_musterloesungen(self, aufgabe_id: str) -> list[dict[str, str]]:
-        """Liest alle `solution_*.{py,js,ts,html,css,sql}`-Dateien neben
-        der `aufgabe.md`.
-
-        Rückgabe: Liste von `{variante, code}`. Reihenfolge ist stabil
-        und didaktisch sortiert: naive vor idiomatic vor optimal, der
-        Rest alphabetisch.
-        """
-        endungen = ("*.py", "*.js", "*.ts", "*.html", "*.css", "*.sql")
         for sprache_dir in self.wurzel.iterdir():
             if not sprache_dir.is_dir() or sprache_dir.name in RESERVIERTE_VERZEICHNISSE:
                 continue
             kandidat = sprache_dir / aufgabe_id
             if (kandidat / "aufgabe.md").exists():
-                ergebnis: list[dict[str, str]] = []
-                gesehen: set[str] = set()
-                for muster in endungen:
-                    for datei in kandidat.glob(f"solution_{muster}"):
-                        variante = datei.stem.removeprefix("solution_")
-                        if variante in gesehen:
-                            continue
-                        gesehen.add(variante)
-                        ergebnis.append(
-                            {"variante": variante, "code": datei.read_text(encoding="utf-8")}
-                        )
-
-                ordnung = ["naive", "idiomatic", "optimal"]
-
-                def sortier_key(item: dict[str, str]) -> tuple[int, str]:
-                    if item["variante"] in ordnung:
-                        return (ordnung.index(item["variante"]), item["variante"])
-                    return (len(ordnung), item["variante"])
-
-                ergebnis.sort(key=sortier_key)
-                return ergebnis
+                return self.musterloesungen_neben(kandidat)
         return []
+
+    @staticmethod
+    def musterloesungen_neben(verzeichnis: Path) -> list[dict[str, str]]:
+        """Alle `solution_<variante>.<endung>` eines Aufgabenordners als
+        `{variante, code}`, didaktisch sortiert."""
+        ergebnis: dict[str, str] = {}
+        for endung in MUSTERLOESUNG_ENDUNGEN:
+            for datei in sorted(verzeichnis.glob(f"solution_*.{endung}")):
+                variante = datei.stem.removeprefix("solution_")
+                ergebnis.setdefault(variante, datei.read_text(encoding="utf-8"))
+
+        def sortier_key(variante: str) -> tuple[int, str]:
+            if variante in MUSTERLOESUNG_REIHENFOLGE:
+                return (MUSTERLOESUNG_REIHENFOLGE.index(variante), variante)
+            return (len(MUSTERLOESUNG_REIHENFOLGE), variante)
+
+        return [
+            {"variante": v, "code": ergebnis[v]} for v in sorted(ergebnis, key=sortier_key)
+        ]
+
+    def _relativ(self, datei: Path) -> str:
+        try:
+            return str(datei.relative_to(self.wurzel))
+        except ValueError:
+            return str(datei)
 
     @staticmethod
     def _spalte(text: str) -> tuple[str, str]:

@@ -13,17 +13,12 @@ from ..models.progress import (
     WeiterVorschlag,
 )
 from ..progress.streak import streak_aktiv
+from ..progress.submissions import TagesAktivitaet
 from ..state import AppState
 
 
-class HeatmapTag(BaseModel):
-    datum: str
-    submissions: int
-    bestanden: int
-
-
 class HeatmapAntwort(BaseModel):
-    tage: list[HeatmapTag]
+    tage: list[TagesAktivitaet]
 
 
 class Achievement(BaseModel):
@@ -154,45 +149,14 @@ def baue_progress_router(state: AppState) -> APIRouter:
         if jahr is None and tage is None:
             jahr = date.today().year
 
-        with state.db.connect() as conn:
-            if jahr is not None:
-                if jahr < 2000 or jahr > 2100:
-                    raise HTTPException(400, "Jahr muss zwischen 2000 und 2100 sein")
-                rows = conn.execute(
-                    """
-                    SELECT date(zeitstempel) AS datum,
-                           COUNT(*) AS submissions,
-                           SUM(CASE WHEN bestanden = 1 THEN 1 ELSE 0 END) AS bestanden
-                    FROM submissions
-                    WHERE strftime('%Y', zeitstempel) = ?
-                    GROUP BY date(zeitstempel)
-                    ORDER BY datum
-                    """,
-                    (str(jahr),),
-                ).fetchall()
-            else:
-                if tage is None or tage < 1 or tage > 730:
-                    raise HTTPException(400, "tage muss zwischen 1 und 730 sein")
-                rows = conn.execute(
-                    """
-                    SELECT date(zeitstempel) AS datum,
-                           COUNT(*) AS submissions,
-                           SUM(CASE WHEN bestanden = 1 THEN 1 ELSE 0 END) AS bestanden
-                    FROM submissions
-                    WHERE date(zeitstempel) >= date('now', ?)
-                    GROUP BY date(zeitstempel)
-                    ORDER BY datum
-                    """,
-                    (f"-{tage - 1} days",),
-                ).fetchall()
-        eintraege = [
-            HeatmapTag(
-                datum=r["datum"],
-                submissions=r["submissions"],
-                bestanden=r["bestanden"] or 0,
-            )
-            for r in rows
-        ]
+        if jahr is not None:
+            if jahr < 2000 or jahr > 2100:
+                raise HTTPException(400, "Jahr muss zwischen 2000 und 2100 sein")
+            eintraege = state.submissions.je_tag_im_jahr(jahr)
+        else:
+            if tage is None or tage < 1 or tage > 730:
+                raise HTTPException(400, "tage muss zwischen 1 und 730 sein")
+            eintraege = state.submissions.je_tag_seit(tage)
         return HeatmapAntwort(tage=eintraege)
 
     @router.get("/achievements", response_model=AchievementsAntwort)
@@ -201,25 +165,10 @@ def baue_progress_router(state: AppState) -> APIRouter:
         gesamt = state.progress.gesamt_fortschritt(state.aufgaben.alle_aufgaben())
         streak = state.progress.hole_streak()
 
-        with state.db.connect() as conn:
-            sprachen_count = conn.execute(
-                """
-                SELECT COUNT(DISTINCT a.sprache) AS n
-                FROM submissions s
-                JOIN aufgaben a ON s.aufgabe_id = a.id
-                WHERE s.bestanden = 1
-                """
-            ).fetchone()
-            sprachen = sprachen_count["n"] if sprachen_count else 0
-
-            pfade_voll = conn.execute(
-                """
-                SELECT COUNT(*) AS n FROM (
-                  SELECT a.pfade FROM aufgaben a
-                ) WHERE pfade IS NOT NULL AND pfade != '[]'
-                """
-            ).fetchone()
-            _ = pfade_voll  # Detail-Pruefung folgt in Python
+        bestandene = state.submissions.bestandene_aufgaben_ids()
+        sprachen = len({
+            a.sprache for a in state.aufgaben.alle_aufgaben() if a.id in bestandene
+        })
 
         # Pfad-Vollendung in Python (einfacher mit Pfad-Modellen)
         progress_dict = {p.aufgabe_id: p for p in state.progress.hole_alle_progress()}

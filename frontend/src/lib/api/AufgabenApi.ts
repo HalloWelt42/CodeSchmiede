@@ -26,6 +26,11 @@ export class AufgabenApi extends HttpBase {
     return this.get<Musterloesung[]>(`/${id}/musterloesungen`);
   }
 
+  /** Gibt die Musterlösungen frei; ein späteres Bestehen bringt keine Punkte. */
+  aufgeben(id: string): Promise<ProgressEintrag> {
+    return this.post<ProgressEintrag>(`/${id}/aufgeben`, {});
+  }
+
   hintGeoeffnet(aufgabeId: string, hintIndex: number): Promise<ProgressEintrag> {
     return this.post<ProgressEintrag>(`/${aufgabeId}/hints/${hintIndex}`, {});
   }

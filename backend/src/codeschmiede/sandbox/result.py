@@ -19,7 +19,9 @@ class RunResult(BaseModel):
     exit_code: int
     laufzeit_ms: float
     timeout: bool = False
+    # Ausgabe überschritt die Höchstmenge; der Lauf wurde abgebrochen.
+    gekuerzt: bool = False
 
     @property
     def erfolgreich(self) -> bool:
-        return self.exit_code == 0 and not self.timeout
+        return self.exit_code == 0 and not self.timeout and not self.gekuerzt

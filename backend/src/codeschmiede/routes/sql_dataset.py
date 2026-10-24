@@ -12,6 +12,7 @@ from typing import Any
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
+from ..pruefung.sql_pruefer import DATASET_NAME
 from ..state import AppState
 
 
@@ -35,6 +36,9 @@ def baue_sql_dataset_router(state: AppState) -> APIRouter:
 
     @router.get("/datasets/{name}/vorschau", response_model=DatasetVorschau)
     def vorschau(name: str, limit: int = 5) -> DatasetVorschau:
+        if not DATASET_NAME.match(name):
+            raise HTTPException(status_code=400, detail="Ungültiger Datensatzname")
+        limit = max(1, min(50, limit))
         datei = _datasets_dir() / f"{name}.sql"
         if not datei.exists():
             raise HTTPException(status_code=404, detail=f"Dataset '{name}' nicht gefunden")

@@ -1,35 +1,57 @@
-# Codeschmiede -- Production-aehnliches Setup mit Docker Compose.
+# Codeschmiede mit Docker Compose.
 #
-# Voraussetzung: Sandbox-Image einmal bauen, BEVOR der Backend-Container
-# Submissions ausfuehrt:
+# Voraussetzung: Sandbox-Images einmal bauen, bevor geprüft wird:
 #   ./scripts/build-sandbox.sh
 #
 # Start:
 #   docker compose up -d
 #
 # Browser: http://localhost:8201
+#
+# Nur der Dienst "sandbox" sieht den Docker-Socket; er ist nicht nach
+# außen veröffentlicht und nimmt Läufe nur mit dem gemeinsamen Schlüssel
+# an (Datei im Volume "sandbox-schluessel"). Das Backend hat keinen
+# Docker-Zugang.
 
 services:
   backend:
     build:
       context: .
       dockerfile: backend/Dockerfile
+      target: backend
     image: codeschmiede-backend:latest
     container_name: codeschmiede-backend
     restart: unless-stopped
-    ports:
-      - "8200:8200"
     volumes:
-      # Aufgaben read-only -- Editieren erfolgt am Host
+      # Aufgaben nur lesend: bearbeitet wird am Mac, ausgerollt über das Repo
       - ./aufgaben:/app/aufgaben:ro
-      # SQLite-DB persistieren
       - ./data:/app/data
-      # Docker-Daemon-Socket fuer Sandbox-Container-Spawn
-      - /var/run/docker.sock:/var/run/docker.sock
+      - sandbox-schluessel:/schluessel
     environment:
       CODESCHMIEDE_AUFGABEN_PFAD: /app/aufgaben
       CODESCHMIEDE_DATEN_PFAD: /app/data
       CODESCHMIEDE_DB_DATEI: /app/data/codeschmiede.db
+      CODESCHMIEDE_AUFGABEN_SCHREIBBAR: "false"
+      CODESCHMIEDE_SANDBOX_URL: http://sandbox:8203
+      CODESCHMIEDE_SANDBOX_SCHLUESSEL_DATEI: /schluessel/sandbox-schluessel
+    depends_on:
+      - sandbox
+
+  sandbox:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+      target: sandbox
+    image: codeschmiede-sandbox-dienst:latest
+    container_name: codeschmiede-sandbox
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - sandbox-schluessel:/schluessel
+    environment:
+      CODESCHMIEDE_SANDBOX_HOST: 0.0.0.0
+      CODESCHMIEDE_SANDBOX_SCHLUESSEL_DATEI: /schluessel/sandbox-schluessel
+      CODESCHMIEDE_SANDBOX_MAX_PARALLEL: "2"
 
   frontend:
     build:
@@ -42,3 +64,6 @@ services:
       - "8201:8201"
     depends_on:
       - backend
+
+volumes:
+  sandbox-schluessel:

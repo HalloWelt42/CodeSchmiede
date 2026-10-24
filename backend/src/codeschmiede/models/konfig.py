@@ -23,7 +23,8 @@ class SprachKonfig(BaseModel):
     id: str  # z.B. "python"
     titel: str  # z.B. "Python"
     editor_lang: str  # CodeMirror-Sprach-Plugin-Schlüssel
-    runner_type: str  # Backend-Runner, der diese Sprache ausführt
+    endung: str  # Dateiendung der Musterlösungen, z.B. "py"
+    runner_type: str  # Wo der Code läuft (docker_python, docker_javascript, iframe_css, ...)
 
 
 class AufgabentypKonfig(BaseModel):

@@ -5,7 +5,7 @@ revision: 1
 titel: JavaScript -- Numerischen String inkrementieren
 sprache: javascript
 task_type: code_schreiben
-runner_type: webworker_js
+runner_type: docker_javascript
 schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 6

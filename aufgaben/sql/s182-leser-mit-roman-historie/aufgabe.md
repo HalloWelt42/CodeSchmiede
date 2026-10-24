@@ -5,7 +5,7 @@ revision: 1
 titel: "Leser, die mind. einen Roman ausgeliehen haben"
 sprache: sql
 task_type: sql_abfrage
-runner_type: sqlite_backend
+runner_type: docker_sqlite
 schwierigkeit: mittel
 schwierigkeit_score: 10
 schaetz_minuten: 4

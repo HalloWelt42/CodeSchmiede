@@ -5,7 +5,7 @@ revision: 1
 titel: JavaScript -- Verallgemeinertes FizzBuzz
 sprache: javascript
 task_type: code_schreiben
-runner_type: webworker_js
+runner_type: docker_javascript
 schwierigkeit: mittel
 schwierigkeit_score: 22
 schaetz_minuten: 10

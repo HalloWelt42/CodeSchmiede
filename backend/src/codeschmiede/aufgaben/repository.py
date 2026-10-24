@@ -122,6 +122,20 @@ class AufgabenRepository:
                     (p.id, p.titel, p.beschreibung, json.dumps(p.reihenfolge)),
                 )
 
+    def versionen(self, aufgabe_id: str) -> list[dict[str, str | int]]:
+        """Gespeicherte Revisionen einer Aufgabe, neueste zuerst."""
+        with self.db.connect() as conn:
+            rows = conn.execute(
+                """
+                SELECT revision, hash, datetime(gueltig_ab) AS gueltig_ab
+                FROM aufgaben_versionen
+                WHERE aufgabe_id = ?
+                ORDER BY revision DESC
+                """,
+                (aufgabe_id,),
+            ).fetchall()
+        return [dict(r) for r in rows]
+
     def alle_aufgaben(self) -> list[Aufgabe]:
         return list(self._aufgaben.values())
 

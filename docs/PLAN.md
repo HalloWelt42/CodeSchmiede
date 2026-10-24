@@ -22,12 +22,14 @@ Geklärt am 24.10.2026 (Analyse plus Frage-für-Frage-Klärung). Entwürfe der O
 | Aufgabendateien auf dem Pi | Repo ist die Wahrheit; Pi nur lesend, Bearbeiten in der Verwaltung nur am Mac, danach Commit und Ausrollen |
 | Repo | Vorhandenes öffentliches Repo `HalloWelt42/CodeSchmiede` |
 | PHP-Lücke (CVE-2026-109618/-109619, -115560) | Betrifft die Codeschmiede nicht (kein PHP) |
+| Gamifizierung | Alles gamifizieren, in bester Qualität (Nutzer 24.10.2026); Ausgestaltung mit Entwürfen vor dem Bau, zusammen mit den Spielen |
+| Lokale KI | Wo sinnvoll einbauen (Nutzer 24.10.2026), gerechnet auf dem Mac über die Leitstelle; Stellen vor dem Bau klären |
 
 ## Reihenfolge des Baus
 
 Jeder Schritt einzeln committet und gepusht.
 
-1. **Sicherheit und Fehler**
+1. **Sicherheit und Fehler** (erledigt mit 0.72.0)
    - Sandbox-Dienst mit gehärteten Containern: `--cap-drop=ALL`, `no-new-privileges`, `--user`, `--memory-swap`, begrenzte Ausgabe, Container per Name beenden bei Zeitüberschreitung
    - SQL-Prüfung mit Zeitabbruch und ohne `ATTACH`
    - CORS fest auf die eigene Herkunft, Mermaid nicht mehr `loose`
@@ -48,11 +50,27 @@ Jeder Schritt einzeln committet und gepusht.
    - Daten unter `/mnt/data`
    - Verwaltung nur lesend
    - Sicherung, Handbuchseite, Einrichtungsskript
-6. **Spiele**: erst Entwürfe, nach Freigabe Bau der vier Spiele.
+6. **Spiele und Gamifizierung**: erst Entwürfe (Spiele, Spielmechanik über die ganze App), nach Freigabe Bau.
 7. **Neue Aufgaben** in den vier Bereichen mit automatischer Prüfung.
+
+## Ergebnis Schritt 1
+
+- Sandbox-Dienst als einziger Teil mit Docker-Zugang, Code über stdin, gehärtete Container, Startreserve einstellbar
+- Prüfung im Backend: nur Eingaben gehen in die Sandbox, Rückgaben typgetreu, Vergleich im Backend; JavaScript und SQL laufen ebenfalls in der Sandbox
+- SQL-Gegenprobe auf ausgedünnten Datensätzen als versteckte Tests
+- Musterlösungen erst nach Bestehen oder Aufgeben (Punkte verfallen), Quiz-Antwort bleibt auf dem Server
+- CORS nur für erlaubte Herkünfte, ändernde Anfragen aus fremder Herkunft abgewiesen, Mermaid strikt
+- Einlesen robust je Datei, Bestandsprüfung mit Befunden, IDs und Funktionsnamen geprüft, CSS- und SQL-Aufgaben speicherbar, Sprachwechsel zieht um, Musterlösungen mit Endung der Sprache
+- Verwaltung auf "nur lesen" schaltbar (Compose: aus)
+- Migrationen atomar, Submissions über ein Repository, doppelte Logik zusammengeführt
+- Fehler im Bestand behoben: Umlaut-ID 024, drei tote Voraussetzungen, zwei falsche versteckte Tests (033, 036)
+- Frontend: 18 Typfehler behoben, Probelauf zeigt die Rückgabe, echte Fehlertexte statt "nicht gefunden"
+- Backend-Tests: 51, dazu die Prüfung des ganzen Bestands (590 Musterlösungen)
 
 ## Offen
 
 - Freigabe der Entwürfe in `mockups/` (vor Schritt 4).
 - Entwürfe der Spiele (Schritt 6).
 - Port und Adresse auf dem Pi werden beim Ausrollen nach den Regeln des Unterbaus vergeben.
+- Startreserve der Sandbox auf dem Pi messen (am Mac braucht Docker Desktop gerade 6 bis 13 s je Container).
+- Bis zur Anmeldung (Schritt 5) ist die Verwaltung samt Musterlösungen ohne Schutz erreichbar.

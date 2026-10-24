@@ -29,6 +29,7 @@ export interface ProgressEintragLeicht {
   versuche: number;
   hints_genutzt: number;
   punkte_erreicht: number;
+  aufgegeben: boolean;
   geloest_am: string | null;
   ease: number;
   intervall_tage: number;

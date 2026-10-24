@@ -5,7 +5,7 @@ revision: 1
 titel: JavaScript -- Buchstaben im Text zählen
 sprache: javascript
 task_type: code_schreiben
-runner_type: webworker_js
+runner_type: docker_javascript
 schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 8

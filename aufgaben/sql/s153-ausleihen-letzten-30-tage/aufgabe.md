@@ -5,7 +5,7 @@ revision: 1
 titel: "Ausleihen der letzten 30 Tage"
 sprache: sql
 task_type: sql_abfrage
-runner_type: sqlite_backend
+runner_type: docker_sqlite
 schwierigkeit: fortgeschritten
 schwierigkeit_score: 14
 schaetz_minuten: 6

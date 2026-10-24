@@ -130,7 +130,9 @@ class ProgressRepository:
                 bisher.ease, bisher.intervall_tage, qualitaet
             )
             faellig = heute + timedelta(days=sm2.intervall_tage)
-            erreichte_punkte = self._berechne_punkte(aufgabe, bisher.hints_genutzt)
+            erreichte_punkte = (
+                0 if bisher.aufgegeben else self._berechne_punkte(aufgabe, bisher.hints_genutzt)
+            )
             best_of = max(bisher.punkte_erreicht, erreichte_punkte)
             neu = bisher.model_copy(
                 update={
@@ -163,6 +165,26 @@ class ProgressRepository:
             update={
                 "hints_genutzt": max(bisher.hints_genutzt, hint_index + 1),
                 "status": neuer_status,
+                "letzte_wiederholung": datetime.now(),
+            }
+        )
+        self._schreibe(neu)
+        return neu
+
+    # --- Aufgeben ---------------------------------------------------------
+
+    def gib_auf(self, aufgabe_id: str) -> Progress:
+        """Gibt die Aufgabe auf und gibt damit die Musterlösungen frei.
+        Schon erreichte Punkte bleiben; ein späteres Bestehen bringt keine."""
+        bisher = self.hole_progress(aufgabe_id) or Progress(
+            aufgabe_id=aufgabe_id, status="neu"
+        )
+        if bisher.musterloesungen_frei:
+            return bisher
+        neu = bisher.model_copy(
+            update={
+                "aufgegeben": True,
+                "status": "in_arbeit",
                 "letzte_wiederholung": datetime.now(),
             }
         )
@@ -227,13 +249,15 @@ class ProgressRepository:
                 """
                 INSERT INTO progress (
                     aufgabe_id, status, versuche, hints_genutzt, punkte_erreicht,
-                    geloest_am, ease, intervall_tage, faellig_am, letzte_wiederholung
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    aufgegeben, geloest_am, ease, intervall_tage, faellig_am,
+                    letzte_wiederholung
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(aufgabe_id) DO UPDATE SET
                     status=excluded.status,
                     versuche=excluded.versuche,
                     hints_genutzt=excluded.hints_genutzt,
                     punkte_erreicht=excluded.punkte_erreicht,
+                    aufgegeben=excluded.aufgegeben,
                     geloest_am=excluded.geloest_am,
                     ease=excluded.ease,
                     intervall_tage=excluded.intervall_tage,
@@ -246,6 +270,7 @@ class ProgressRepository:
                     p.versuche,
                     p.hints_genutzt,
                     p.punkte_erreicht,
+                    1 if p.aufgegeben else 0,
                     p.geloest_am.isoformat() if p.geloest_am else None,
                     p.ease,
                     p.intervall_tage,
@@ -263,18 +288,13 @@ class ProgressRepository:
 
     @staticmethod
     def _row_zu_progress(row: sqlite3.Row) -> Progress:
-        # `punkte_erreicht` kann fehlen, wenn die DB noch nicht migriert
-        # ist (Test-Setup). Sicher abfragen.
-        try:
-            punkte = row["punkte_erreicht"] or 0
-        except (KeyError, IndexError):
-            punkte = 0
         return Progress(
             aufgabe_id=row["aufgabe_id"],
             status=row["status"],
             versuche=row["versuche"],
             hints_genutzt=row["hints_genutzt"],
-            punkte_erreicht=punkte,
+            punkte_erreicht=row["punkte_erreicht"] or 0,
+            aufgegeben=bool(row["aufgegeben"]),
             geloest_am=datetime.fromisoformat(row["geloest_am"]) if row["geloest_am"] else None,
             ease=row["ease"],
             intervall_tage=row["intervall_tage"],

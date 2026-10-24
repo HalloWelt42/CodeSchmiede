@@ -97,11 +97,19 @@
 </script>
 
 <div class="dashboard">
-  {#if aufgabenStore.liste.length === 0 && !aufgabenStore.ladenListe}
+  {#if aufgabenStore.fehler && aufgabenStore.liste.length === 0}
+    <EmptyState
+      icon="fa-plug-circle-xmark"
+      titel="Server nicht erreichbar"
+      hinweis={`Die Aufgaben ließen sich nicht laden (${aufgabenStore.fehler}).`}
+      ctaText="Erneut versuchen"
+      ctaAction={() => aufgabenStore.ladeListe()}
+    />
+  {:else if aufgabenStore.liste.length === 0 && !aufgabenStore.ladenListe}
     <EmptyState
       icon="fa-hammer"
       titel="Willkommen in der Codeschmiede"
-      hinweis="Es sind noch keine Aufgaben vorhanden. Lege eine erste an unter aufgaben/python/NNN-id/aufgabe.md -- die Vorlage steht in docs/AUFGABEN-FORMAT.md. Das Backend indiziert sie automatisch."
+      hinweis="Es sind noch keine Aufgaben vorhanden. Lege eine erste an unter aufgaben/python/NNN-id/aufgabe.md, die Vorlage steht in docs/AUFGABEN-FORMAT.md. Das Backend liest sie automatisch ein."
       ctaText="Aufgaben-Liste öffnen"
       ctaAction={() => route.setze('aufgaben')}
     />

@@ -160,7 +160,7 @@ ${nutzer_css}
       expected: erwartet,
       tatsaechlich: ist,
       bestanden,
-      fehler: bestanden ? null : null,
+      fehler: null,
     };
   }
 

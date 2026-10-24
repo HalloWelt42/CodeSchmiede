@@ -1,6 +1,6 @@
 ---
 schema_version: 1
-id: 024-zeichen-häufigkeit
+id: 024-zeichen-haeufigkeit
 revision: 1
 titel: Zeichen-Häufigkeit als Dict
 sprache: python

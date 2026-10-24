@@ -5,9 +5,12 @@ Bei einem bestandenen Submit liefern wir einen Performance-Vergleich
 mit den Musterlösungen mit. Die werden einmal pro Aufgabe durch die
 Sandbox geschickt und im AufgabenRepository gecacht; ein Reindex über
 den Watcher leert den Cache.
+
+Geprüft wird auf dem Server. Nur Aufgabentypen, deren Pruefer
+`im_browser` ist (CSS-Nachbauten), schicken ein fertiges Ergebnis über
+`/lokal`; alle anderen nehmen nur diesen Weg.
 """
 
-import json
 from typing import Any
 
 from fastapi import APIRouter, HTTPException
@@ -15,13 +18,14 @@ from pydantic import BaseModel, Field
 
 from ..models.aufgabe import Aufgabe
 from ..models.progress import Progress
+from ..progress.submissions import codelaenge
 from ..pruefung.ergebnis import PruefErgebnis
-from ..pruefung.orchestrator import pruefe
+from ..pruefung.kodierung import anzeigen
+from ..pruefung.orchestrator import UnbekannterAufgabentyp, pruefe, pruefer_fuer
+from ..pruefung.testlauf import fuehre_aus
 from ..sandbox.result import RunLimits
+from ..sandbox.runner import SandboxFehler
 from ..state import AppState
-
-
-PROBELAUF_MARKER = "===CODESCHMIEDE_PROBELAUF===\n"
 
 
 class SubmissionAnfrage(BaseModel):
@@ -45,13 +49,7 @@ class SubmissionAntwort(BaseModel):
 
 
 class LokaleSubmissionAnfrage(BaseModel):
-    """Submission, deren Pruefung clientseitig (z.B. WebWorker) lief.
-
-    Das Frontend liefert das fertige PruefErgebnis mit; das Backend
-    speichert es nur und aktualisiert Progress + Streak. Wir vertrauen
-    dem Client hier explizit -- die Codeschmiede ist Single-User-MVP
-    ohne Auth, und ein Nutzer hat keinen Anreiz sich selbst zu betruegen.
-    """
+    """Submission eines Aufgabentyps, der im Browser geprüft wird."""
 
     aufgabe_id: str
     code: str = Field(min_length=1, max_length=50_000)
@@ -73,193 +71,124 @@ class ProbelaufAntwort(BaseModel):
     fehler: str | None = None
 
 
-def _berechne_vergleich(state: AppState, aufgabe: Aufgabe) -> list[VergleichEintrag]:
-    """Lazy-cached: einmal pro Aufgabe Musterlösungen durch Sandbox.
-
-    Output-Quizzes etc. haben keine ausführbaren Musterlösungen --
-    Rückgabe ist leere Liste.
-    """
-    if aufgabe.task_type != "code_schreiben":
-        return []
-
-    cached = state.aufgaben.metriken_cache(aufgabe.id)
-    if cached is not None:
-        return [VergleichEintrag(**m) for m in cached]
-
-    eintraege: list[dict] = []
-    for ml in state.loader.lade_musterloesungen(aufgabe.id):
-        ergebnis = pruefe(aufgabe, ml["code"], state.runner)
-        eintraege.append(
-            {
-                "variante": ml["variante"],
-                "laufzeit_ms": ergebnis.laufzeit_ms,
-                "codelaenge_zeichen": sum(
-                    1 for c in ml["code"] if not c.isspace()
-                ),
-            }
-        )
-    state.aufgaben.setze_metriken_cache(aufgabe.id, eintraege)
-    return [VergleichEintrag(**m) for m in eintraege]
-
-
 def baue_submissions_router(state: AppState) -> APIRouter:
     router = APIRouter(prefix="/api/submissions", tags=["submissions"])
 
-    @router.post("", response_model=SubmissionAntwort)
-    def submit(anfrage: SubmissionAnfrage) -> SubmissionAntwort:
-        aufgabe = state.aufgaben.aufgabe(anfrage.aufgabe_id)
+    def hole_aufgabe(aufgabe_id: str) -> Aufgabe:
+        aufgabe = state.aufgaben.aufgabe(aufgabe_id)
         if not aufgabe:
             raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+        return aufgabe
 
-        ergebnis = pruefe(aufgabe, anfrage.code, state.runner)
-        codelaenge = sum(1 for c in anfrage.code if not c.isspace())
+    def pruefe_sicher(aufgabe: Aufgabe, code: str) -> PruefErgebnis:
+        try:
+            return pruefe(aufgabe, code, state.runner)
+        except SandboxFehler as fehler:
+            raise HTTPException(status_code=503, detail=str(fehler)) from fehler
+        except ValueError as fehler:
+            raise HTTPException(status_code=422, detail=f"Aufgabe fehlerhaft: {fehler}") from fehler
 
-        with state.db.connect() as conn:
-            cursor = conn.execute(
-                """
-                INSERT INTO submissions (
-                    aufgabe_id, aufgabe_revision, code, bestanden,
-                    laufzeit_ms, codelaenge_zeichen
-                ) VALUES (?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    aufgabe.id,
-                    aufgabe.revision,
-                    anfrage.code,
-                    1 if ergebnis.bestanden else 0,
-                    ergebnis.laufzeit_ms,
-                    codelaenge,
-                ),
-            )
-            submission_id = cursor.lastrowid or 0
+    def vergleich(aufgabe: Aufgabe) -> list[VergleichEintrag]:
+        """Lazy-cached: einmal pro Aufgabe die Musterlösungen durch die Sandbox."""
+        if aufgabe.task_type != "code_schreiben":
+            return []
+        cached = state.aufgaben.metriken_cache(aufgabe.id)
+        if cached is None:
+            cached = [
+                {
+                    "variante": ml["variante"],
+                    "laufzeit_ms": pruefe_sicher(aufgabe, ml["code"]).laufzeit_ms,
+                    "codelaenge_zeichen": codelaenge(ml["code"]),
+                }
+                for ml in state.loader.lade_musterloesungen(aufgabe.id)
+            ]
+            state.aufgaben.setze_metriken_cache(aufgabe.id, cached)
+        return [VergleichEintrag(**m) for m in cached]
 
-        progress = state.progress.aktualisiere_nach_submission(
-            aufgabe, ergebnis.bestanden
+    def speichere(aufgabe: Aufgabe, code: str, ergebnis: PruefErgebnis) -> tuple[int, Progress]:
+        submission_id = state.submissions.speichere(
+            aufgabe, code, ergebnis.bestanden, ergebnis.laufzeit_ms
         )
+        progress = state.progress.aktualisiere_nach_submission(aufgabe, ergebnis.bestanden)
+        return submission_id, progress
 
-        vergleich = _berechne_vergleich(state, aufgabe) if ergebnis.bestanden else []
+    @router.post("", response_model=SubmissionAntwort)
+    def submit(anfrage: SubmissionAnfrage) -> SubmissionAntwort:
+        aufgabe = hole_aufgabe(anfrage.aufgabe_id)
+        try:
+            im_browser = pruefer_fuer(aufgabe).im_browser
+        except UnbekannterAufgabentyp as fehler:
+            raise HTTPException(status_code=422, detail=str(fehler)) from fehler
+        if im_browser:
+            raise HTTPException(status_code=400, detail="Diese Aufgabe wird im Browser geprüft")
 
+        ergebnis = pruefe_sicher(aufgabe, anfrage.code)
+        submission_id, progress = speichere(aufgabe, anfrage.code, ergebnis)
         return SubmissionAntwort(
             bestanden=ergebnis.bestanden,
             pruefung=ergebnis,
-            codelaenge_zeichen=codelaenge,
+            codelaenge_zeichen=codelaenge(anfrage.code),
             submission_id=submission_id,
             progress=progress,
-            vergleich=vergleich,
+            vergleich=vergleich(aufgabe) if ergebnis.bestanden else [],
         )
 
     @router.post("/lokal", response_model=SubmissionAntwort)
     def submit_lokal(anfrage: LokaleSubmissionAnfrage) -> SubmissionAntwort:
-        """Speichert eine Submission, die clientseitig ausgefuehrt wurde
-        (z.B. JavaScript im WebWorker)."""
-        aufgabe = state.aufgaben.aufgabe(anfrage.aufgabe_id)
-        if not aufgabe:
-            raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+        """Speichert das Ergebnis einer im Browser geprüften Aufgabe."""
+        aufgabe = hole_aufgabe(anfrage.aufgabe_id)
+        try:
+            im_browser = pruefer_fuer(aufgabe).im_browser
+        except UnbekannterAufgabentyp as fehler:
+            raise HTTPException(status_code=422, detail=str(fehler)) from fehler
+        if not im_browser:
+            raise HTTPException(status_code=400, detail="Diese Aufgabe wird auf dem Server geprüft")
 
-        ergebnis = anfrage.pruefung
-        codelaenge = sum(1 for c in anfrage.code if not c.isspace())
-
-        with state.db.connect() as conn:
-            cursor = conn.execute(
-                """
-                INSERT INTO submissions (
-                    aufgabe_id, aufgabe_revision, code, bestanden,
-                    laufzeit_ms, codelaenge_zeichen
-                ) VALUES (?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    aufgabe.id,
-                    aufgabe.revision,
-                    anfrage.code,
-                    1 if ergebnis.bestanden else 0,
-                    ergebnis.laufzeit_ms,
-                    codelaenge,
-                ),
-            )
-            submission_id = cursor.lastrowid or 0
-
-        progress = state.progress.aktualisiere_nach_submission(
-            aufgabe, ergebnis.bestanden
-        )
-
+        submission_id, progress = speichere(aufgabe, anfrage.code, anfrage.pruefung)
         return SubmissionAntwort(
-            bestanden=ergebnis.bestanden,
-            pruefung=ergebnis,
-            codelaenge_zeichen=codelaenge,
+            bestanden=anfrage.pruefung.bestanden,
+            pruefung=anfrage.pruefung,
+            codelaenge_zeichen=codelaenge(anfrage.code),
             submission_id=submission_id,
             progress=progress,
-            vergleich=[],
         )
 
     @router.post("/probelauf", response_model=ProbelaufAntwort)
     def probelauf(anfrage: ProbelaufAnfrage) -> ProbelaufAntwort:
-        """Führt die Funktion mit benutzerdefiniertem Input aus, ohne
-        Bewertung. Liefert Rückgabe + stdout zurück.
-        """
-        aufgabe = state.aufgaben.aufgabe(anfrage.aufgabe_id)
-        if not aufgabe:
-            raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
+        """Führt die Funktion mit eigener Eingabe aus, ohne Bewertung."""
+        aufgabe = hole_aufgabe(anfrage.aufgabe_id)
         if not aufgabe.funktion:
-            raise HTTPException(
-                status_code=400, detail="Aufgabe definiert keine Funktion"
+            raise HTTPException(status_code=400, detail="Aufgabe definiert keine Funktion")
+        try:
+            lauf = fuehre_aus(
+                state.runner,
+                aufgabe.sprache,
+                anfrage.code,
+                aufgabe.funktion,
+                [anfrage.input],
+                RunLimits(timeout_sekunden=aufgabe.zeitlimit_sekunden),
             )
+        except SandboxFehler as fehler:
+            raise HTTPException(status_code=503, detail=str(fehler)) from fehler
+        except ValueError as fehler:
+            raise HTTPException(status_code=422, detail=str(fehler)) from fehler
 
-        skript = _baue_probelauf_skript(
-            anfrage.code, aufgabe.funktion, anfrage.input
-        )
-        limits = RunLimits(timeout_sekunden=aufgabe.zeitlimit_sekunden)
-        run = state.runner.run_code(skript, limits=limits)
-
-        if PROBELAUF_MARKER not in run.stdout:
+        if lauf.aufrufe is None:
             return ProbelaufAntwort(
-                rueckgabe=None,
-                stdout=run.stdout,
-                stderr=run.stderr,
-                laufzeit_ms=run.laufzeit_ms,
-                timeout=run.timeout,
+                stdout=lauf.nutzer_stdout,
+                stderr=lauf.stderr,
+                laufzeit_ms=lauf.laufzeit_ms,
+                timeout=lauf.timeout,
                 fehler="Code wurde nicht vollständig ausgeführt",
             )
-
-        nutzer_stdout, _, json_teil = run.stdout.partition(PROBELAUF_MARKER)
-        try:
-            ergebnis = json.loads(json_teil.strip())
-        except json.JSONDecodeError:
-            return ProbelaufAntwort(
-                rueckgabe=None,
-                stdout=nutzer_stdout,
-                stderr=run.stderr or "Ergebnis konnte nicht geparst werden",
-                laufzeit_ms=run.laufzeit_ms,
-                timeout=run.timeout,
-                fehler="Ergebnis nicht parsebar",
-            )
-
+        aufruf = lauf.aufrufe[0]
         return ProbelaufAntwort(
-            rueckgabe=ergebnis.get("rueckgabe"),
-            stdout=nutzer_stdout,
-            stderr=run.stderr,
-            laufzeit_ms=run.laufzeit_ms,
-            timeout=run.timeout,
-            fehler=ergebnis.get("fehler"),
+            rueckgabe=anzeigen(aufruf.wert) if aufruf.ok else None,
+            stdout=lauf.nutzer_stdout,
+            stderr=lauf.stderr,
+            laufzeit_ms=lauf.laufzeit_ms,
+            timeout=lauf.timeout,
+            fehler=aufruf.fehler,
         )
 
     return router
-
-
-def _baue_probelauf_skript(code: str, funktion: str, eingabe: list[Any]) -> str:
-    eingabe_json = json.dumps(eingabe)
-    return (
-        f"{code}\n\n"
-        "# === codeschmiede probelauf (auto generated) ===\n"
-        "import json as _json\n"
-        "import sys as _sys\n"
-        f"_eingabe = _json.loads({eingabe_json!r})\n"
-        "try:\n"
-        f"    _rueckgabe = {funktion}(*_eingabe)\n"
-        "    _ergebnis = {'rueckgabe': _rueckgabe, 'fehler': None}\n"
-        "except Exception as _e:\n"
-        "    _ergebnis = {'rueckgabe': None,\n"
-        "                 'fehler': type(_e).__name__ + ': ' + str(_e)}\n"
-        f"_sys.stdout.write({PROBELAUF_MARKER!r})\n"
-        "_sys.stdout.write(_json.dumps(_ergebnis, default=str))\n"
-        "_sys.stdout.flush()\n"
-    )

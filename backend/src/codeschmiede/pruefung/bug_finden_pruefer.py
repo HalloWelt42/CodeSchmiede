@@ -12,14 +12,14 @@ Im Frontmatter:
 
 Pruefer-Logik ist identisch zu `code_schreiben` -- der Unterschied
 liegt nur in der Aufgaben-Setup. Wir leihen uns die Skript-Bauerei
-direkt vom yaml_pruefer.
+direkt vom code_pruefer.
 """
 
 from ..models.aufgabe import Aufgabe
 from ..sandbox.runner import Runner
 from .ergebnis import PruefErgebnis
 from .registry import registriere
-from .yaml_pruefer import pruefe as pruefe_code_schreiben
+from .code_pruefer import pruefe as pruefe_code_schreiben
 
 
 @registriere("bug_finden")

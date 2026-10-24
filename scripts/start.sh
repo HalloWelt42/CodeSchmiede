@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Startet Backend + Frontend im Hintergrund. Beide Prozesse werden
-# vom Terminal abgehaengt (nohup + disown), die PIDs landen in
-# data/codeschmiede.pids -- so kann scripts/stop.sh sie gezielt
+# Startet Sandbox-Dienst, Backend und Frontend im Hintergrund. Alle
+# Prozesse werden vom Terminal abgehaengt (nohup + disown), die PIDs
+# landen in data/codeschmiede.pids -- so kann scripts/stop.sh sie gezielt
 # beenden, ohne dass sie an die Session gebunden sind.
 #
 # Voraussetzung: ./scripts/setup.sh wurde einmal ausgefuehrt.
@@ -13,11 +13,13 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
 BACKEND_DIR="$ROOT_DIR/backend"
 FRONTEND_DIR="$ROOT_DIR/frontend"
+SANDBOX_PORT=8203
 BACKEND_PORT=8200
 FRONTEND_PORT=5184
 
 LOG_DIR="$ROOT_DIR/data"
 mkdir -p "$LOG_DIR"
+SANDBOX_LOG="$LOG_DIR/sandbox.log"
 BACKEND_LOG="$LOG_DIR/backend.log"
 FRONTEND_LOG="$LOG_DIR/frontend.log"
 PID_FILE="$LOG_DIR/codeschmiede.pids"
@@ -70,8 +72,16 @@ pruefe_server_port() {
     exit 1
   fi
 }
+pruefe_server_port "$SANDBOX_PORT"
 pruefe_server_port "$BACKEND_PORT"
 pruefe_server_port "$FRONTEND_PORT"
+
+echo "Starte Sandbox-Dienst (Port $SANDBOX_PORT) ..."
+cd "$BACKEND_DIR"
+nohup .venv/bin/python -m codeschmiede.sandbox.dienst > "$SANDBOX_LOG" 2>&1 &
+SANDBOX_PID=$!
+disown "$SANDBOX_PID" 2>/dev/null || true
+echo "  PID $SANDBOX_PID, Log: $SANDBOX_LOG"
 
 echo "Starte Backend (Port $BACKEND_PORT) ..."
 cd "$BACKEND_DIR"
@@ -89,12 +99,26 @@ echo "  PID $FRONTEND_PID, Log: $FRONTEND_LOG"
 
 # PIDs persistieren
 {
+  echo "sandbox $SANDBOX_PID"
   echo "backend $BACKEND_PID"
   echo "frontend $FRONTEND_PID"
 } > "$PID_FILE"
 
 # Health-Check abwarten
 echo
+echo "Warte auf Sandbox-Dienst ..."
+for i in {1..20}; do
+  if curl -sf "http://localhost:$SANDBOX_PORT/gesund" > /dev/null 2>&1; then
+    echo "  Sandbox-Dienst antwortet."
+    break
+  fi
+  if ! kill -0 "$SANDBOX_PID" 2>/dev/null; then
+    echo "  Sandbox-Prozess (PID $SANDBOX_PID) ist gestorben -- siehe $SANDBOX_LOG"
+    exit 1
+  fi
+  sleep 1
+done
+
 echo "Warte auf Backend ..."
 for i in {1..20}; do
   if curl -sf "http://localhost:$BACKEND_PORT/api/healthz" > /dev/null 2>&1; then

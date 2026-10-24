@@ -107,7 +107,7 @@
     {:else}
       <div class="ergebnis ok">
         <span class="ergebnis-label">Rückgabe</span>
-        <code class="rückgabe">{formatiere(antwort.rückgabe)}</code>
+        <code class="rueckgabe">{formatiere(antwort.rueckgabe)}</code>
       </div>
     {/if}
     {#if antwort.stdout}
@@ -249,7 +249,7 @@
     padding: 0;
     color: var(--fg);
   }
-  .rückgabe {
+  .rueckgabe {
     color: var(--accent) !important;
   }
 

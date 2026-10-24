@@ -5,7 +5,7 @@ revision: 1
 titel: JavaScript -- FizzBuzz als Liste
 sprache: javascript
 task_type: code_schreiben
-runner_type: webworker_js
+runner_type: docker_javascript
 schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 5
