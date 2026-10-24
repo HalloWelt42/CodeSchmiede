@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 002-palindrom
-revision: 2
+revision: 3
 titel: Palindrom-Prüfung
 sprache: python
 task_type: code_schreiben
@@ -41,11 +41,11 @@ tests_sichtbar:
   - input: [""]
     expected: true
 tests_versteckt:
-  - input: ["rentner"]
+  - input: ["reliefpfeiler"]
     expected: true
   - input: ["regallager"]
     expected: true
-  - input: ["Anna"]
+  - input: ["Otto"]
     expected: false
   - input: ["ab"]
     expected: false

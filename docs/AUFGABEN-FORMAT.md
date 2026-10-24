@@ -20,10 +20,11 @@ indiziert.
 Wenn ein Nutzer eine Aufgabe öffnet, sieht er die Markdown-Beschreibung
 links, schreibt seine Lösung im CodeMirror-Editor mittig und schickt
 sie an das Backend. Dort läuft der Code in einer dockerisierten
-Sandbox (`python:3.11-slim`), wird gegen sichtbare und versteckte
-Tests geprüft und das Ergebnis kommt mit Performance-Metriken zurück.
+Sandbox, wird gegen sichtbare und versteckte Tests geprüft und das
+Ergebnis kommt mit Performance-Metriken zurück.
 
-Aktuelle Sprache: **Python 3.11**. Andere Sprachen kommen später.
+Sprachen: **Python 3.15** und **JavaScript (Node 26)** laufen in der
+Sandbox, **SQL** in SQLite ebenfalls dort, **CSS** rendert der Browser.
 
 ---
 
@@ -129,10 +130,17 @@ Vergleich erfolgt mit Python-`==`. Erlaubte Typen für `expected`:
 - `tests_sichtbar` werden dem Nutzer im UI angezeigt (mit Eingabe und
   erwartetem Ergebnis)
 - `tests_versteckt` laufen serverseitig, nur Anzahl pass/fail wird
-  zurückgemeldet -- **wichtig gegen Hardcoding** (Nutzer könnte sonst
-  die sichtbaren Inputs in einem Dict abbilden)
+  zurückgemeldet - **wichtig gegen Hardcoding** (Nutzer könnte sonst
+  die sichtbaren Inputs in einem Dict abbilden). In die Sandbox gehen
+  nur die Eingaben; die Erwartungen bleiben auf dem Server.
 - **Faustregel:** mindestens 4-6 versteckte Tests, davon einige
   Edge-Cases (leere Eingabe, sehr große Werte, Grenzfälle)
+- **Kein versteckter Test im Text:** Eine Zeile in Beschreibung oder
+  Hinweisen (Beispieltabelle, Aufzählung) darf nie Eingabe und
+  Erwartung eines versteckten Tests zeigen. Beispiele im Text sind die
+  sichtbaren Tests oder eigene Werte. Die Bestandsprüfung meldet
+  Verstöße; `scripts/verratene-tests-ersetzen.py` ersetzt sie durch
+  gleichwertige neue Werte.
 
 ### Hints -- gestaffelt mit Kosten
 
@@ -329,16 +337,24 @@ Für **alle Texte** in `aufgabe.md` (Frontmatter `titel`, `notiz`,
 `hints[].text`, Beschreibung, Quelle), für **Doc-Strings** in den
 Musterlösungen und für **Kommentare**:
 
-- **Deutsch mit Umlauten** (ä, ö, ü, ß) -- niemals ae, oe, ue, ss
+- **Deutsch mit Umlauten** (ä, ö, ü, ß) - niemals ae, oe, ue, ss
   als Ersatz
-- **Keine typografischen Sonderzeichen** -- nur gerade Anführungs-
-  zeichen (`"`, `'`), gerade Bindestriche (`-`, `--`); kein Em-Dash,
-  kein En-Dash, keine typografischen Quotes
+- **Keine typografischen Sonderzeichen** - nur gerade Anführungs-
+  zeichen (`"`, `'`) und der einfache Bindestrich `-`, auch als
+  Gedankenstrich; kein doppelter Bindestrich `--` in Prosa, kein
+  Em-Dash, kein En-Dash, keine typografischen Quotes
+- **Keine fremden Marken** im Text, auch nicht in `quelle.notiz`:
+  keine Übungsplattformen, Dienste oder Produkte anderer Anbieter.
+  Klassiker werden mit ihrem Fachnamen beschrieben ("Maximum Subarray
+  (Kadane 1984)", "bekanntes Zahlenrätsel"). Links auf Lexikonartikel
+  als Quellenangabe sind erlaubt.
 - **Keine Verweise** auf Sprachmodelle, KI, Anthropic, Claude, OpenAI
   oder ähnliche Hersteller. Eine Aufgabe ist eine Aufgabe -- woher
   sie inhaltlich stammt, gehört in `quelle.notiz`, nicht in den
   Beschreibungstext.
-- **Variablennamen, Funktionsnamen, Klassennamen, Tag-Namen** im
+- **Aufgaben-Kennungen** bleiben ASCII, auch wenn sie im Text
+  genannt werden (`048-laengstes-wort`).
+- **Variablennamen, Funktionsnamen, Klassennamen** im
   Code bleiben **englisch / ASCII** (z.B. `summe`, `ist_palindrom`
   sind ok als deutsche Identifier ohne Umlaute, weil ASCII).
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 006-erstes-wort
-revision: 1
+revision: 2
 titel: Erstes Wort eines Satzes
 sprache: python
 task_type: code_schreiben
@@ -45,8 +45,8 @@ tests_versteckt:
     expected: "abstand"
   - input: ["ein zwei drei vier"]
     expected: "ein"
-  - input: ["    "]
-    expected: ""
+  - input: ["] "]
+    expected: "]"
   - input: ["a b"]
     expected: "a"
 starter_code: |

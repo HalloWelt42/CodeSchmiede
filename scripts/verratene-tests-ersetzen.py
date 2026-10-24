@@ -1,36 +1,32 @@
 """Ersetzt versteckte Tests, die der Aufgabentext samt Erwartung verrät.
 
-Ablauf je Aufgabe (nur Python-Aufgaben mit Funktion und Musterlösungen):
-1. Die lokale KI (über die Leitstelle) schlägt für jeden verratenen Test
-   eine neue Eingabe vor, die dasselbe prüft (gleicher Sonderfall, gleiche
-   Art von Werten), aber nicht im Text steht.
-2. Alle Musterlösungen laufen mit den Vorschlägen in der Sandbox. Die
-   Erwartung ist ihr gemeinsames Ergebnis; weichen sie voneinander ab oder
-   scheitern, fällt der Vorschlag weg.
-3. Ein Vorschlag gilt nur, wenn er dieselbe Zahl und Art Argumente hat,
-   keinem vorhandenen Test gleicht und selbst nicht verraten ist.
-4. Angenommene Vorschläge ersetzen den alten Test in der Datei; die
-   Revision der Aufgabe steigt einmal.
+Ablauf:
+1. `--dossier akte.json` schreibt je betroffener Aufgabe Funktion, Text,
+   Tests, die verratenen Nummern und die Merkmale, die ein Ersatz behalten
+   muss (Null, negative Zahl, leerer Behälter, Großbuchstaben ...).
+2. Daraus entstehen Vorschläge {aufgaben_id: [{"nummer": i, "input": [...]}]}.
+3. `--vorschlaege vorschlaege.json` prüft jeden Vorschlag und trägt ihn ein:
+   - alle Musterlösungen laufen in der Sandbox; die Erwartung ist ihr
+     gemeinsames Ergebnis (weichen sie ab oder scheitern, fällt er weg)
+   - gleiche Zahl und Art der Argumente, Merkmale des alten Tests erhalten
+   - gleicht keinem vorhandenen Test und ist selbst nicht verraten
+   Angenommene Werte ersetzen den alten Test; die Revision steigt einmal.
+   Abgelehnte stehen mit Grund im Bericht.
 
 Aufruf (aus backend/):
-    .venv/bin/python ../scripts/verratene-tests-ersetzen.py [--nur ID ...] [--trocken]
-
-Schlüssel der Leitstelle: data/leitstelle-schluessel oder CODESCHMIEDE_LEITSTELLE_SCHLUESSEL,
-Adresse: CODESCHMIEDE_LEITSTELLE_URL (Vorgabe http://leitstelle:8530).
+    .venv/bin/python ../scripts/verratene-tests-ersetzen.py --dossier akte.json
+    .venv/bin/python ../scripts/verratene-tests-ersetzen.py --vorschlaege vorschlaege.json [--trocken]
 """
 
 import argparse
 import json
 import math
-import os
 import re
 import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
-
-import httpx2
 
 WURZEL = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(WURZEL / "backend" / "src"))
@@ -43,39 +39,6 @@ from codeschmiede.pruefung.testlauf import fuehre_aus  # noqa: E402
 from codeschmiede.sandbox.docker_runner import DockerRunner  # noqa: E402
 from codeschmiede.sandbox.result import RunLimits  # noqa: E402
 
-RUNDEN = 3
-SYSTEM = (
-    "Du hilfst beim Pflegen von Programmieraufgaben. Ein versteckter Test steht wörtlich im "
-    "Aufgabentext und muss ersetzt werden. Schlage je verratenem Test genau eine neue Eingabe vor, "
-    "die dasselbe prüft: denselben Sonderfall (leer, null, negativ, Grenze, Gleichstand, Sonderzeichen "
-    "usw.), dieselbe Art und Anzahl Argumente, ähnliche Größe. Die neue Eingabe darf nicht im "
-    "Aufgabentext vorkommen und keinem anderen Test gleichen. Halte dich an die Vorbedingungen der "
-    "Aufgabe (gültige Monate, positive Zahlen und so weiter). Gib nur Eingaben an, keine Ergebnisse; "
-    "die rechnet das System selbst aus. Die Eingabe steht in input_json als JSON-Liste der Argumente, "
-    "genau wie im Feld input der Tests. Antworte auf Deutsch mit echten Umlauten."
-)
-SCHEMA = {
-    "type": "object",
-    "properties": {
-        "ersatz": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "nummer": {"type": "integer"},
-                    "zweck": {"type": "string"},
-                    # als JSON-Text: ein offenes Schema für beliebige Werte macht die
-                    # strukturierte Ausgabe des Modell-Läufers extrem langsam
-                    "input_json": {"type": "string"},
-                },
-                "required": ["nummer", "zweck", "input_json"],
-                "additionalProperties": False,
-            },
-        }
-    },
-    "required": ["ersatz"],
-    "additionalProperties": False,
-}
 
 ausgabe_sperre = threading.Lock()
 
@@ -143,50 +106,15 @@ def gleiche_art(a: Any, b: Any) -> bool:
     return type(a) is type(b)
 
 
-class Leitstelle:
-    def __init__(self) -> None:
-        self.url = os.environ.get("CODESCHMIEDE_LEITSTELLE_URL", "http://leitstelle:8530").rstrip("/")
-        schluessel = os.environ.get("CODESCHMIEDE_LEITSTELLE_SCHLUESSEL") or (
-            WURZEL / "data" / "leitstelle-schluessel"
-        ).read_text().strip()
-        self.client = httpx2.Client(
-            headers={
-                "Authorization": f"Bearer {schluessel}",
-                "X-Leitstelle-Titel": "Codeschmiede%20Tests%20ersetzen",
-                "X-Leitstelle-Arbeit": "codeschmiede-tests-ersetzen",
-            },
-            timeout=httpx2.Timeout(10.0, read=None),
-        )
+class DateiQuelle:
+    """Vorschläge aus einer Datei; Absagen stehen im Bericht."""
 
-    def frage(self, nachricht: str) -> list[dict[str, Any]]:
-        antwort = self.client.post(
-            f"{self.url}/v1/chat/completions",
-            json={
-                "messages": [{"role": "system", "content": SYSTEM}, {"role": "user", "content": nachricht}],
-                "response_format": {"type": "json_schema", "json_schema": {"name": "ersatz", "strict": True, "schema": SCHEMA}},
-                "temperature": 0.4,
-                "max_tokens": 1500,
-            },
-        )
-        antwort.raise_for_status()
-        return json.loads(antwort.json()["choices"][0]["message"]["content"])["ersatz"]
+    def __init__(self, pfad: Path) -> None:
+        self.vorschlaege: dict[str, list[dict[str, Any]]] = json.loads(pfad.read_text(encoding="utf-8"))
 
+    def vorschlaege_fuer(self, aufgabe: Aufgabe) -> list[dict[str, Any]]:
+        return self.vorschlaege.get(aufgabe.id, [])
 
-def anfrage(aufgabe: Aufgabe, offen: list[int], absagen: dict[int, str]) -> str:
-    teile = [
-        f"Funktion: {aufgabe.funktion}",
-        f"Aufgabentext:\n{aufgabe.beschreibung_md}",
-        "Sichtbare Tests:\n" + "\n".join(f"- input {json.dumps(t.input, ensure_ascii=False)} -> {json.dumps(t.expected, ensure_ascii=False)}" for t in aufgabe.tests_sichtbar),
-        "Versteckte Tests (Nummer, input, Erwartung):\n" + "\n".join(
-            f"- Nr. {i}: input {json.dumps(t.input, ensure_ascii=False)} -> {json.dumps(t.expected, ensure_ascii=False)}"
-            + ("   <- VERRATEN, bitte ersetzen" if i in offen else "")
-            for i, t in enumerate(aufgabe.tests_versteckt)
-        ),
-    ]
-    if absagen:
-        teile.append("Frühere Vorschläge wurden abgelehnt:\n" + "\n".join(f"- Nr. {i}: {g}" for i, g in absagen.items()))
-    teile.append(f"Ersetze die Nummern {offen}.")
-    return "\n\n".join(teile)
 
 
 def berechne(runner: DockerRunner, aufgabe: Aufgabe, loesungen: list[str], eingaben: list[list[Any]]) -> list[tuple[bool, Any, str]]:
@@ -234,7 +162,7 @@ def ersetze_in_datei(datei: Path, ersatz: dict[int, TestFall]) -> None:
     datei.write_text(kopf + text[kopf_ende:], encoding="utf-8")
 
 
-def bearbeite(aufgabe: Aufgabe, leitstelle: Leitstelle, runner: DockerRunner, loader: AufgabenLoader, trocken: bool) -> tuple[int, list[str]]:
+def bearbeite(aufgabe: Aufgabe, quelle: DateiQuelle, runner: DockerRunner, loader: AufgabenLoader, trocken: bool) -> tuple[int, list[str]]:
     offen = verratene_tests(aufgabe)
     loesungen = [m["code"] for m in AufgabenLoader.musterloesungen_neben(aufgabe.dateipfad.parent)]
     if aufgabe.sprache != "python" or not aufgabe.funktion or not loesungen:
@@ -243,38 +171,25 @@ def bearbeite(aufgabe: Aufgabe, leitstelle: Leitstelle, runner: DockerRunner, lo
     vorhanden = [json.dumps(t.input, sort_keys=True) for t in aufgabe.tests_sichtbar + aufgabe.tests_versteckt]
     angenommen: dict[int, TestFall] = {}
     absagen: dict[int, str] = {}
-    for _ in range(RUNDEN):
-        rest = [i for i in offen if i not in angenommen]
-        if not rest:
-            break
-        try:
-            vorschlaege = leitstelle.frage(anfrage(aufgabe, rest, absagen))
-        except Exception as fehler:  # noqa: BLE001  Netz, Schema, Leitstelle
-            absagen = {i: f"Antwort unbrauchbar ({fehler})" for i in rest}
+    kandidaten: list[tuple[int, list[Any]]] = []
+    for v in quelle.vorschlaege_fuer(aufgabe):
+        i, eingabe = v["nummer"], v["input"]
+        if i not in offen or not isinstance(eingabe, list):
             continue
-        kandidaten: list[tuple[int, list[Any]]] = []
-        for v in vorschlaege:
-            i = v.get("nummer")
-            try:
-                eingabe = json.loads(v.get("input_json", ""))
-            except (TypeError, ValueError):
-                eingabe = None
-            if i not in rest or i in angenommen or not isinstance(eingabe, list):
-                continue
-            alt = aufgabe.tests_versteckt[i].input
-            if len(eingabe) != len(alt) or not all(gleiche_art(a, b) for a, b in zip(eingabe, alt)):
-                absagen[i] = f"input {json.dumps(eingabe, ensure_ascii=False)}: Anzahl oder Art der Argumente passt nicht"
-            elif fehlend := merkmale(alt) - merkmale(eingabe):
-                absagen[i] = (
-                    f"input {json.dumps(eingabe, ensure_ascii=False)}: der alte Test enthielt "
-                    f"{', '.join(sorted(fehlend))}; der Ersatz muss das ebenfalls enthalten"
-                )
-            elif json.dumps(eingabe, sort_keys=True) in vorhanden:
-                absagen[i] = f"input {json.dumps(eingabe, ensure_ascii=False)}: gleicht einem vorhandenen Test"
-            else:
-                kandidaten.append((i, eingabe))
-        if not kandidaten:
-            continue
+        alt = aufgabe.tests_versteckt[i].input
+        if len(eingabe) != len(alt) or not all(gleiche_art(a, b) for a, b in zip(eingabe, alt)):
+            absagen[i] = f"input {json.dumps(eingabe, ensure_ascii=False)}: Anzahl oder Art der Argumente passt nicht"
+        elif fehlend := merkmale(alt) - merkmale(eingabe):
+            absagen[i] = (
+                f"input {json.dumps(eingabe, ensure_ascii=False)}: der alte Test enthielt "
+                f"{', '.join(sorted(fehlend))}; der Ersatz muss das ebenfalls enthalten"
+            )
+        elif json.dumps(eingabe, sort_keys=True) in vorhanden:
+            absagen[i] = f"input {json.dumps(eingabe, ensure_ascii=False)}: gleicht einem vorhandenen Test"
+        else:
+            kandidaten.append((i, eingabe))
+            vorhanden.append(json.dumps(eingabe, sort_keys=True))
+    if kandidaten:
         for (i, eingabe), (gueltig, erwartung, grund) in zip(
             kandidaten, berechne(runner, aufgabe, loesungen, [k[1] for k in kandidaten])
         ):
@@ -285,8 +200,6 @@ def bearbeite(aufgabe: Aufgabe, leitstelle: Leitstelle, runner: DockerRunner, lo
                 absagen[i] = f"input {json.dumps(eingabe, ensure_ascii=False)}: steht samt Ergebnis im Text"
             else:
                 angenommen[i] = test
-                absagen.pop(i, None)
-                vorhanden.append(json.dumps(eingabe, sort_keys=True))
     if angenommen and not trocken:
         ersetze_in_datei(aufgabe.dateipfad, angenommen)
         neu = loader.lade_aufgabe(aufgabe.dateipfad)
@@ -297,20 +210,46 @@ def bearbeite(aufgabe: Aufgabe, leitstelle: Leitstelle, runner: DockerRunner, lo
     return len(angenommen), probleme
 
 
+def dossier(aufgaben: list[Aufgabe]) -> list[dict[str, Any]]:
+    akte = []
+    for a in aufgaben:
+        offen = verratene_tests(a)
+        akte.append({
+            "id": a.id,
+            "funktion": a.funktion,
+            "text": a.beschreibung_md,
+            "sichtbar": [{"input": t.input, "expected": t.expected} for t in a.tests_sichtbar],
+            "versteckt": [
+                {"nummer": i, "input": t.input, "expected": t.expected, "verraten": i in offen,
+                 "muss_enthalten": sorted(merkmale(t.input)) if i in offen else []}
+                for i, t in enumerate(a.tests_versteckt)
+            ],
+        })
+    return akte
+
+
 def main() -> None:
     teil = argparse.ArgumentParser()
     teil.add_argument("--nur", nargs="*", default=None)
     teil.add_argument("--trocken", action="store_true")
     teil.add_argument("--parallel", type=int, default=2)
+    teil.add_argument("--dossier", type=Path)
+    teil.add_argument("--vorschlaege", type=Path)
     args = teil.parse_args()
 
     loader = AufgabenLoader(WURZEL / "aufgaben")
     aufgaben = [a for a in loader.lade_alle_aufgaben() if verratene_tests(a) and (args.nur is None or a.id in args.nur)]
     runner = DockerRunner({"python": "codeschmiede-sandbox:python"}, startzeit_sekunden=60)
-    leitstelle = Leitstelle()
+    if args.dossier:
+        args.dossier.write_text(json.dumps(dossier(aufgaben), ensure_ascii=False, indent=1), encoding="utf-8")
+        melde(f"Akte mit {len(aufgaben)} Aufgaben geschrieben: {args.dossier}")
+        return
+    if not args.vorschlaege:
+        teil.error("--dossier oder --vorschlaege angeben")
+    quelle = DateiQuelle(args.vorschlaege)
     melde(f"{len(aufgaben)} Aufgaben mit verratenen Tests")
     with ThreadPoolExecutor(max_workers=args.parallel) as pool:
-        ergebnisse = list(pool.map(lambda a: bearbeite(a, leitstelle, runner, loader, args.trocken), aufgaben))
+        ergebnisse = list(pool.map(lambda a: bearbeite(a, quelle, runner, loader, args.trocken), aufgaben))
     ersetzt = sum(e[0] for e in ergebnisse)
     probleme = [p for e in ergebnisse for p in e[1]]
     melde(f"\nErsetzt: {ersetzt}; offen: {len(probleme)}")

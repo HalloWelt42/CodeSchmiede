@@ -40,8 +40,9 @@ Backend (FastAPI :8200)                       kein Docker-Zugang
 | `db/migrations/*.sql`     | Nummerierte Schema-Migrationen |
 | `models/*.py`             | Pydantic-Modelle (Aufgabe mit ID- und Funktionsprüfung, Pfad, Progress, Konfig) |
 | `aufgaben/loader.py`      | Markdown + YAML -> Pydantic; kaputte Dateien landen in `ladefehler` |
-| `aufgaben/bestandspruefung.py` | Befunde: Ladefehler, tote Verweise, unbekannte Sprache/Stufe/Typ |
-| `aufgaben/repository.py`  | Index in SQLite, Versionen je Revision |
+| `aufgaben/bestandspruefung.py` | Befunde: Ladefehler, tote Verweise, unbekannte Sprache/Stufe/Typ, verratene Tests |
+| `aufgaben/lecksuche.py`   | Findet versteckte Tests, die eine Textzeile samt Erwartung zeigt |
+| `aufgaben/repository.py`  | Index in SQLite, Versionen je Revision; Pfad-Zugehörigkeit abgeleitet aus den Pfad-Dateien |
 | `aufgaben/schreiber.py`   | Aufgaben, Musterlösungen und Pfade schreiben (nur wenn `aufgaben_schreibbar`) |
 | `aufgaben/watcher.py`     | watchfiles -> `AppState.neu_einlesen()` |
 | `sandbox/runner.py`       | Runner-Protocol, `SandboxFehler` |

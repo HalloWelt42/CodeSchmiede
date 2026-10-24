@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 005-text-umkehren
-revision: 1
+revision: 2
 titel: Text umkehren
 sprache: python
 task_type: code_schreiben
@@ -49,8 +49,8 @@ tests_versteckt:
     expected: "nohtyP"
   - input: ["  "]
     expected: "  "
-  - input: ["a b c"]
-    expected: "c b a"
+  - input: ["x y z w"]
+    expected: "w z y x"
 starter_code: |
   def text_umkehren(text: str) -> str:
       # Deine Lösung hier
