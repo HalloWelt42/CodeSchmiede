@@ -1,24 +1,24 @@
 /*
- * LayoutStore -- Sidebar-Toggle und Spaltenbreiten der Aufgaben-Detail-
- * Ansicht. Persistierung in localStorage. Spaltenbreiten werden als
+ * LayoutStore: breite oder schmale Navigation (nur Symbole) und
+ * Spaltenbreiten der Aufgabenansicht. Persistierung in localStorage. Spaltenbreiten werden als
  * Anteile (Summe = 1) gehalten, damit die Aufteilung bei
  * unterschiedlichen Fensterbreiten konsistent bleibt.
  */
 
-const SIDEBAR_SCHLUESSEL = 'codeschmiede.sidebar_offen';
+const NAV_SCHLUESSEL = 'codeschmiede.sidebar_offen';
 const SPALTEN_SCHLUESSEL = 'codeschmiede.detail_spalten';
 
 const STANDARD_SPALTEN: [number, number, number] = [1 / 3, 1 / 3, 1 / 3];
 const MIN_ANTEIL = 0.12;
 
 class LayoutStore {
-  sidebarOffen = $state(true);
+  navBreit = $state(true);
   detailSpalten = $state<[number, number, number]>([...STANDARD_SPALTEN]);
 
   init(): void {
-    const sb = localStorage.getItem(SIDEBAR_SCHLUESSEL);
-    if (sb !== null) {
-      this.sidebarOffen = sb === '1';
+    const nb = localStorage.getItem(NAV_SCHLUESSEL);
+    if (nb !== null) {
+      this.navBreit = nb === '1';
     }
     const sp = localStorage.getItem(SPALTEN_SCHLUESSEL);
     if (sp) {
@@ -33,9 +33,9 @@ class LayoutStore {
     }
   }
 
-  toggleSidebar(): void {
-    this.sidebarOffen = !this.sidebarOffen;
-    localStorage.setItem(SIDEBAR_SCHLUESSEL, this.sidebarOffen ? '1' : '0');
+  umschaltenNav(): void {
+    this.navBreit = !this.navBreit;
+    localStorage.setItem(NAV_SCHLUESSEL, this.navBreit ? '1' : '0');
   }
 
   setzeSpalten(werte: [number, number, number]): void {

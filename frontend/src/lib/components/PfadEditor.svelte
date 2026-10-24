@@ -182,9 +182,9 @@
 
           <div class="hinzufuegen">
             <select bind:value={neue_aufgabe}>
-              <option value="">-- Aufgabe wählen --</option>
+              <option value="">Aufgabe wählen ...</option>
               {#each verfuegbare_aufgaben as a (a.id)}
-                <option value={a.id}>{a.id} -- {a.titel}</option>
+                <option value={a.id}>{a.id}: {a.titel}</option>
               {/each}
             </select>
             <button type="button" class="add" onclick={aufgabe_hinzufuegen} disabled={!neue_aufgabe}>

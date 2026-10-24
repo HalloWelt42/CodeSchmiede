@@ -58,228 +58,111 @@
 </script>
 
 <div class="probelauf">
-  <header class="kopf">
-    <span class="label">
-      <i class="fa-solid fa-flask" aria-hidden="true"></i>
-      Probelauf
-    </span>
-    <span class="hint">
-      eigener Input -- ohne Bewertung
-    </span>
-  </header>
-
-  <div class="eingabe-zeile">
-    <span class="aufruf">
-      {funktion ?? 'fn'}(
-    </span>
+  <div class="zeile">
+    <span class="aufruf">{funktion ?? 'f'}(</span>
     <input
       type="text"
       bind:value={eingabe_text}
-      placeholder='z.B. 7  oder  "anna"  oder  [1,2,3]'
+      placeholder='Probelauf ohne Wertung, etwa 7 oder "anna" oder [1, 2, 3]'
+      aria-label="Eingabe für den Probelauf"
       onkeydown={(e) => { if (e.key === 'Enter') laufeAb(); }}
     />
     <span class="aufruf">)</span>
-    <button
-      class="laufe-button"
-      onclick={laufeAb}
-      disabled={laeuft || !code.trim()}
-      title="Funktion mit diesem Input ausführen"
-    >
-      {#if laeuft}
-        <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
-      {:else}
-        <i class="fa-solid fa-play" aria-hidden="true"></i>
-      {/if}
-      Lauf
+    <button class="knopf" onclick={laufeAb} disabled={laeuft || !code.trim()}>
+      <i class="fa-solid {laeuft ? 'fa-spinner fa-spin' : 'fa-play'}" aria-hidden="true"></i>Lauf
     </button>
   </div>
 
   {#if fehler}
-    <p class="meldung fehler">{fehler}</p>
+    <p class="meldung">{fehler}</p>
   {/if}
-
   {#if antwort}
-    {#if antwort.fehler}
-      <div class="ergebnis fehler">
-        <span class="ergebnis-label">Fehler</span>
-        <code>{antwort.fehler}</code>
-      </div>
-    {:else}
-      <div class="ergebnis ok">
-        <span class="ergebnis-label">Rückgabe</span>
-        <code class="rueckgabe">{formatiere(antwort.rueckgabe)}</code>
-      </div>
-    {/if}
-    {#if antwort.stdout}
-      <div class="stdout-block">
-        <span class="ergebnis-label">stdout</span>
-        <pre>{antwort.stdout}</pre>
-      </div>
-    {/if}
-    <div class="meta">
-      <span class="laufzeit num">{antwort.laufzeit_ms.toFixed(0)} ms</span>
-      {#if antwort.timeout}
-        <span class="badge timeout">Timeout</span>
+    <div class="antwort">
+      {#if antwort.fehler}
+        <span class="marke">Fehler</span><code class="fehlertext">{antwort.fehler}</code>
+      {:else}
+        <span class="marke">Rückgabe</span><code class="rueckgabe">{formatiere(antwort.rueckgabe)}</code>
       {/if}
+      <span class="laufzeit num">{antwort.laufzeit_ms.toFixed(0)} ms{antwort.timeout ? ', Zeit überschritten' : ''}</span>
     </div>
+    {#if antwort.stdout}
+      <pre class="ausgabe">{antwort.stdout}</pre>
+    {/if}
   {/if}
 </div>
 
 <style>
   .probelauf {
+    flex: none;
     border-top: 1px solid var(--border);
     background: var(--bg-card);
-    padding: var(--sp-3);
-    flex-shrink: 0;
-    max-height: 240px;
+    padding: var(--sp-2) var(--sp-3);
+    max-height: 220px;
     overflow-y: auto;
-  }
-  .kopf {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: var(--sp-2);
-  }
-  .label {
-    color: var(--fg-dim);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-2);
-  }
-  .label i {
-    color: var(--accent);
-  }
-  .hint {
-    color: var(--fg-mute);
-    font-size: var(--fs-xs);
-    font-family: var(--quick);
-  }
-
-  .eingabe-zeile {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-    margin-bottom: var(--sp-2);
-  }
-  .aufruf {
     font-family: var(--mono);
-    font-size: var(--fs-sm);
-    color: var(--fg-dim);
+    font-size: 12px;
   }
+  .zeile {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+  .aufruf { color: var(--fg-dim); white-space: nowrap; }
   input {
     flex: 1;
-    background: var(--bg);
+    min-width: 0;
+    height: 28px;
+    padding: 0 var(--sp-2);
     border: 1px solid var(--border);
-    color: var(--fg);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
     font-family: var(--mono);
-    font-size: var(--fs-sm);
-    padding: 6px var(--sp-2);
-    border-radius: var(--radius-sm);
+    font-size: 12px;
   }
-  input:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-  .laufe-button {
-    background: color-mix(in srgb, var(--accent) 14%, transparent);
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 6px 12px;
-    font-size: var(--fs-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-  }
-  .laufe-button:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--accent) 22%, transparent);
-  }
-  .laufe-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
+  input:focus { outline: none; border-color: var(--accent); }
+  .knopf { height: 28px; }
   .meldung {
     margin: var(--sp-2) 0 0;
-    font-size: var(--fs-xs);
-    color: var(--fg-dim);
-  }
-  .meldung.fehler {
     color: var(--orange);
+    font-family: var(--sans);
+    font-size: var(--fs-xs);
   }
-
-  .ergebnis {
+  .antwort {
     margin-top: var(--sp-2);
-    padding: var(--sp-2);
-    background: var(--bg);
-    border: 1px solid var(--border);
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: var(--sp-2);
-    font-size: var(--fs-sm);
+    min-width: 0;
   }
-  .ergebnis.fehler {
-    border-color: var(--red);
-  }
-  .ergebnis.fehler code {
-    color: var(--red);
-  }
-  .ergebnis.ok {
-    border-color: var(--green);
-  }
-  .ergebnis-label {
+  .marke {
     color: var(--fg-mute);
+    font-family: var(--sans);
     font-size: var(--fs-xs);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    flex-shrink: 0;
+    flex: none;
   }
-  .ergebnis code {
-    font-family: var(--mono);
+  .antwort code {
     background: transparent;
-    border: none;
+    border: 0;
     padding: 0;
-    color: var(--fg);
+    overflow-wrap: anywhere;
   }
-  .rueckgabe {
-    color: var(--accent) !important;
+  .rueckgabe { color: var(--accent); }
+  .fehlertext { color: var(--red); }
+  .laufzeit {
+    margin-left: auto;
+    color: var(--fg-mute);
+    font-weight: 500;
+    white-space: nowrap;
   }
-
-  .stdout-block {
-    margin-top: var(--sp-2);
-    padding: var(--sp-2);
+  .ausgabe {
+    margin: var(--sp-1) 0 0;
+    padding: var(--sp-1) var(--sp-2);
     background: var(--bg);
     border: 1px solid var(--border);
-  }
-  .stdout-block pre {
-    margin: 4px 0 0;
-    font-family: var(--mono);
-    font-size: var(--fs-xs);
-    color: var(--fg);
     white-space: pre-wrap;
     max-height: 80px;
     overflow-y: auto;
-  }
-
-  .meta {
-    margin-top: var(--sp-2);
-    display: flex;
-    gap: var(--sp-2);
-    align-items: center;
-    color: var(--fg-mute);
-    font-size: var(--fs-xs);
-  }
-  .badge.timeout {
-    color: var(--orange);
-    border: 1px solid var(--orange);
-    padding: 2px 6px;
   }
 </style>

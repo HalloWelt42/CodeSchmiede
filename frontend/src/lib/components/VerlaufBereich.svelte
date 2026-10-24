@@ -14,10 +14,13 @@
     aufgabeId: string;
     stand: number;
     onUebernehmen: (code: string) => void;
+    /** gleich aufgeklappt, etwa in einem eigenen Reiter */
+    anfangsOffen?: boolean;
   }
-  let { aufgabeId, stand, onUebernehmen }: Props = $props();
+  let { aufgabeId, stand, onUebernehmen, anfangsOffen = false }: Props = $props();
 
-  let offen = $state(false);
+  // svelte-ignore state_referenced_locally
+  let offen = $state(anfangsOffen);
   let eintraege = $state<VerlaufEintrag[] | null>(null);
   let fehler = $state<string | null>(null);
 
@@ -39,7 +42,6 @@
     return new Date(iso).toLocaleString('de-DE', {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
     });
@@ -52,107 +54,56 @@
 </script>
 
 <div class="verlauf">
-  <button class="umschalter" onclick={() => (offen = !offen)}>
+  <button class="gruppe umschalter" onclick={() => (offen = !offen)} aria-expanded={offen}>
     <i class="fa-solid {offen ? 'fa-chevron-down' : 'fa-chevron-right'}" aria-hidden="true"></i>
     Verlauf{eintraege ? ` (${eintraege.length})` : ''}
   </button>
   {#if offen}
     {#if fehler}
-      <div class="info">{fehler}</div>
+      <p class="info">{fehler}</p>
     {:else if !eintraege}
-      <div class="info">Lade Verlauf ...</div>
+      <p class="info">Lade Verlauf ...</p>
     {:else if eintraege.length === 0}
-      <div class="info leer">Noch keine Abgaben vorhanden.</div>
+      <p class="info">Noch keine Abgaben.</p>
     {:else}
-      <ul class="liste">
-        {#each eintraege as v (v.id)}
-          <li class:bestanden={v.bestanden}>
-            <button
-              type="button"
-              class="eintrag"
-              onclick={() => uebernehmen(v)}
-              title="Diesen Code in den Editor übernehmen"
-            >
-              <span class="status">
-                <i class="fa-solid {v.bestanden ? 'fa-check' : 'fa-xmark'}" aria-hidden="true"></i>
-              </span>
-              <span class="zeit">{formatiereDatum(v.zeitstempel)}</span>
-              <span class="metrik num">{v.laufzeit_ms === null ? '' : `${v.laufzeit_ms.toFixed(0)} ms`}</span>
-              <span class="metrik num">{v.codelaenge_zeichen ?? 0} Z.</span>
-            </button>
-          </li>
-        {/each}
-      </ul>
+      {#each eintraege as v (v.id)}
+        <button class="test-zeile eintrag" onclick={() => uebernehmen(v)} title="Diesen Code in den Editor übernehmen">
+          <i class="fa-solid {v.bestanden ? 'fa-check ok' : 'fa-xmark nein'}" aria-hidden="true"></i>
+          <span class="zeit">{formatiereDatum(v.zeitstempel)}</span>
+          <span class="num rechts">{v.laufzeit_ms === null ? '' : `${v.laufzeit_ms.toFixed(0)} ms`}</span>
+          <span class="dim zeichen">{v.codelaenge_zeichen ?? 0} Z.</span>
+        </button>
+      {/each}
     {/if}
   {/if}
 </div>
 
 <style>
-  .verlauf {
-    border-top: 1px dashed var(--border);
-    padding: var(--sp-3);
-  }
+  .verlauf { margin-top: var(--sp-4); }
   .umschalter {
+    border: 0;
+    padding: 0;
     background: transparent;
-    border: none;
-    color: var(--accent);
-    font-size: var(--fs-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     cursor: pointer;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-2);
   }
-  .umschalter:hover:not(:disabled) {
-    background: transparent;
-  }
+  .umschalter:hover:not(:disabled) { background: transparent; color: var(--accent); }
   .info {
-    margin-top: var(--sp-2);
+    margin: var(--sp-2) 0 0;
     color: var(--fg-dim);
-    font-family: var(--quick);
     font-size: var(--fs-sm);
-  }
-  .info.leer {
-    color: var(--fg-mute);
-  }
-  .liste {
-    list-style: none;
-    padding: 0;
-    margin: var(--sp-3) 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
   }
   .eintrag {
     width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--border);
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    background: transparent;
     color: var(--fg);
-    padding: 6px var(--sp-2);
-    cursor: pointer;
-    display: grid;
-    grid-template-columns: 24px minmax(0, 1fr) 70px 70px;
-    align-items: center;
-    gap: var(--sp-2);
-    font-size: var(--fs-xs);
     text-align: left;
+    cursor: pointer;
   }
-  .eintrag:hover {
-    border-color: var(--accent);
-  }
-  .status {
-    color: var(--red);
-    text-align: center;
-  }
-  .liste li.bestanden .status { color: var(--green); }
-  .zeit {
-    font-family: var(--mono);
-    color: var(--fg-dim);
-  }
-  .metrik {
-    color: var(--fg);
-    text-align: right;
-  }
+  .eintrag:hover:not(:disabled) { background: var(--bg-card-2); border-color: var(--border); }
+  .zeit { color: var(--fg-dim); }
+  .rechts { margin-left: auto; font-weight: 500; }
+  .zeichen { width: 52px; text-align: right; }
 </style>

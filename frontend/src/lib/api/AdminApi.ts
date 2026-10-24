@@ -48,9 +48,19 @@ export interface PfadSchreibAnfrage {
   reihenfolge: string[];
 }
 
+export interface Befund {
+  ort: string;
+  meldung: string;
+}
+
 export class AdminApi extends HttpBase {
   constructor() {
     super('/api/admin');
+  }
+
+  /** Was die Bestandsprüfung beim letzten Einlesen gefunden hat */
+  befunde(): Promise<Befund[]> {
+    return this.get<Befund[]>('/befunde');
   }
 
   aufgaben(): Promise<VerwaltungsEintrag[]> {

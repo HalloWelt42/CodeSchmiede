@@ -1,20 +1,22 @@
 <script lang="ts">
   /*
-   * Verwaltungs-Übersicht aller Aufgaben.
-   * Bewusst entkoppelt: eigener Endpoint /api/admin/aufgaben, eigener
-   * Store, eigene Typen. Tabelle iteriert über alle Aufgaben und zeigt
-   * pro Eintrag eine Zeile mit den Kern-Metadaten plus ausklappbare
-   * Sektionen für Beschreibung, sichtbare Tests, versteckte Tests,
-   * Hints, Frontmatter, Statistik.
+   * Verwaltung aller Aufgaben und Pfade.
+   * Bewusst entkoppelt: eigener Endpunkt /api/admin/aufgaben, eigene
+   * Typen. Eine Tabellenzeile je Aufgabe mit den Kernwerten; ein Klick
+   * klappt die Zeile auf (Tests samt versteckten, Beschreibung, Hinweise,
+   * Startcode, technische Daten). Die Einzelheiten lädt erst das
+   * Aufklappen nach.
    */
   import { onMount } from 'svelte';
   import { adminApi } from '../api/AdminApi';
-  import type { PfadEintrag } from '../api/AdminApi';
+  import type { Befund, PfadEintrag } from '../api/AdminApi';
   import { progressApi } from '../api/ProgressApi';
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { konfig } from '../stores/KonfigStore.svelte';
   import type { VerwaltungsEintrag } from '../types/Admin';
   import { route } from '../stores/RouteStore.svelte';
+  import { farbeZuCss } from '../types/Konfig';
+  import Seite from './Seite.svelte';
   import AufgabeEditor from './AufgabeEditor.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
   import PfadEditor from './PfadEditor.svelte';
@@ -171,9 +173,35 @@
     }
   }
 
+  let befunde = $state<Befund[]>([]);
+  let befundeOffen = $state(false);
+  async function ladeBefunde(): Promise<void> {
+    try {
+      befunde = await adminApi.befunde();
+    } catch {
+      befunde = [];
+    }
+  }
+
   onMount(async () => {
-    await Promise.all([neuLaden(), ladePfade()]);
+    await Promise.all([neuLaden(), ladePfade(), ladeBefunde()]);
   });
+
+  // aufgeklappte Zeile und ihr Reiter
+  type AusklappReiter = 'tests' | 'text' | 'hints' | 'start' | 'technik';
+  let offenId = $state<string | null>(null);
+  let ausklappReiter = $state<AusklappReiter>('tests');
+  let offenerPfad = $state<string | null>(null);
+
+  function umschalten(e: VerwaltungsEintrag): void {
+    if (offenId === e.id) {
+      offenId = null;
+      return;
+    }
+    offenId = e.id;
+    ausklappReiter = 'tests';
+    void detail_nachladen(e);
+  }
 
   // Slim-Liste initial -- pro Eintrag deutlich kleiner. Detail-Sektionen
   // (beschreibung, tests, hints) werden beim Aufklappen on-demand
@@ -205,10 +233,6 @@
     }
   }
 
-  function on_section_toggle(eintrag: VerwaltungsEintrag, ev: Event): void {
-    const el = ev.currentTarget as HTMLDetailsElement;
-    if (el.open) detail_nachladen(eintrag);
-  }
 
   function formatiere(wert: unknown): string {
     return JSON.stringify(wert);
@@ -258,289 +282,225 @@
     sprachen: new Set(eintraege.map((e) => e.sprache)).size,
     pfade: new Set(eintraege.flatMap((e) => e.pfade)).size,
     submissions: eintraege.reduce((s, e) => s + e.statistik.submissions_gesamt, 0),
+    geloest: eintraege.filter((e) => e.statistik.status === 'geloest').length,
   });
 </script>
 
-<div class="verwaltung">
-  <header class="kopf">
-    <div>
-      <h1>Verwaltung</h1>
-      <p class="lead">
-        Vollständige Übersicht aller indizierten Aufgaben.
-        Versteckte Tests sind hier sichtbar -- nur du siehst diese Ansicht.
-      </p>
-    </div>
-    <div class="kopf-actions">
-      {#if aktiver_tab === 'aufgaben'}
-        <button class="primaer-btn" onclick={neu_oeffnen}>
-          <i class="fa-solid fa-plus" aria-hidden="true"></i>
-          Neue Aufgabe
-        </button>
-        <button class="reload-btn" onclick={neuLaden} disabled={laden}>
-          <i class="fa-solid fa-rotate" aria-hidden="true"></i>
-          {laden ? 'Lade ...' : 'Neu laden'}
-        </button>
-        <button class="danger-btn" onclick={() => (reset_alles_bestaetigung = true)} title="Alle Submissions, Punkte und Streak löschen">
-          <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-          Alles zurücksetzen
-        </button>
-      {:else}
-        <button class="primaer-btn" onclick={pfad_neu}>
-          <i class="fa-solid fa-plus" aria-hidden="true"></i>
-          Neuer Pfad
-        </button>
-        <button class="reload-btn" onclick={ladePfade}>
-          <i class="fa-solid fa-rotate" aria-hidden="true"></i>
-          Neu laden
-        </button>
+<Seite
+  titel="Verwaltung"
+  lead={aktiver_tab === 'aufgaben' ? 'Alle eingelesenen Aufgaben mit versteckten Tests, nur hier sichtbar' : 'Pfade: Reihenfolge der Aufgaben'}
+  ohneRand
+>
+  {#snippet aktionen()}
+    {#if aktiver_tab === 'aufgaben'}
+      <button class="knopf primaer" onclick={neu_oeffnen}><i class="fa-solid fa-plus" aria-hidden="true"></i>Neue Aufgabe</button>
+      <button class="knopf" onclick={() => { void neuLaden(); void ladeBefunde(); }} disabled={laden}>
+        <i class="fa-solid fa-rotate" aria-hidden="true"></i>{laden ? 'Lade ...' : 'Neu laden'}
+      </button>
+      <button class="knopf gefahr" onclick={() => (reset_alles_bestaetigung = true)}>
+        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>Alles zurücksetzen
+      </button>
+    {:else}
+      <button class="knopf primaer" onclick={pfad_neu}><i class="fa-solid fa-plus" aria-hidden="true"></i>Neuer Pfad</button>
+      <button class="knopf" onclick={ladePfade}><i class="fa-solid fa-rotate" aria-hidden="true"></i>Neu laden</button>
+    {/if}
+  {/snippet}
+
+  {#snippet kopf()}
+    <nav class="reiter">
+      <button class:aktiv={aktiver_tab === 'aufgaben'} onclick={() => (aktiver_tab = 'aufgaben')}>
+        <i class="fa-solid fa-list-check" aria-hidden="true"></i>Aufgaben <span class="num">{eintraege.length}</span>
+      </button>
+      <button class:aktiv={aktiver_tab === 'pfade'} onclick={() => (aktiver_tab = 'pfade')}>
+        <i class="fa-solid fa-route" aria-hidden="true"></i>Pfade <span class="num">{pfade.length}</span>
+      </button>
+    </nav>
+    {#if fehler}
+      <p class="hinweis-box fehler"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>{fehler}</p>
+    {/if}
+    {#if befunde.length > 0}
+      <button class="hinweis-box befunde-knopf" onclick={() => (befundeOffen = !befundeOffen)}>
+        <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
+        Bestandsprüfung: {befunde.length} {befunde.length === 1 ? 'Befund' : 'Befunde'}
+        <i class="fa-solid {befundeOffen ? 'fa-chevron-up' : 'fa-chevron-down'} rechts" aria-hidden="true"></i>
+      </button>
+      {#if befundeOffen}
+        <ul class="befunde">
+          {#each befunde as b, i (i)}<li><code>{b.ort}</code> {b.meldung}</li>{/each}
+        </ul>
       {/if}
-    </div>
-  </header>
-
-  <nav class="tabs">
-    <button
-      class:aktiv={aktiver_tab === 'aufgaben'}
-      onclick={() => (aktiver_tab = 'aufgaben')}
-    >
-      <i class="fa-solid fa-list-check" aria-hidden="true"></i>
-      Aufgaben <span class="num">{eintraege.length}</span>
-    </button>
-    <button
-      class:aktiv={aktiver_tab === 'pfade'}
-      onclick={() => (aktiver_tab = 'pfade')}
-    >
-      <i class="fa-solid fa-route" aria-hidden="true"></i>
-      Pfade <span class="num">{pfade.length}</span>
-    </button>
-  </nav>
-
-  {#if fehler}
-    <p class="fehler">Fehler: {fehler}</p>
-  {/if}
-
-  {#if aktiver_tab === 'aufgaben' && !laden && eintraege.length > 0}
-    <section class="aggregat">
-      <div class="kennzahl"><span class="num">{aggregat.gesamt}</span><small>Aufgaben</small></div>
-      <div class="kennzahl"><span class="num">{aggregat.sprachen}</span><small>Sprachen</small></div>
-      <div class="kennzahl"><span class="num">{aggregat.pfade}</span><small>Pfade</small></div>
-      <div class="kennzahl"><span class="num">{aggregat.submissions}</span><small>Submissions</small></div>
-    </section>
-
-    <div class="filterleiste">
-      <div class="suche-zeile">
-        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-        <input
-          type="text"
-          bind:value={suche}
-          placeholder="Suchen (ID, Titel, Tag, Pfad)"
-        />
+    {/if}
+    {#if aktiver_tab === 'aufgaben' && eintraege.length > 0}
+      <div class="kennzahlen">
+        <div class="kennzahl"><span class="num">{aggregat.gesamt}</span><small>Aufgaben</small></div>
+        <div class="kennzahl"><span class="num">{aggregat.sprachen}</span><small>Sprachen</small></div>
+        <div class="kennzahl"><span class="num">{aggregat.pfade}</span><small>Pfade</small></div>
+        <div class="kennzahl"><span class="num">{aggregat.submissions}</span><small>Submissions</small></div>
+        <div class="kennzahl"><span class="num">{aggregat.geloest}</span><small>gelöst</small></div>
       </div>
-
-      <select bind:value={sprache} aria-label="Sprache">
-        <option value="">Alle Sprachen</option>
-        {#each konfig.daten.sprachen as s (s.id)}
-          <option value={s.id}>{s.titel}</option>
-        {/each}
-      </select>
-
-      <select bind:value={schwierigkeit} aria-label="Schwierigkeit">
-        <option value="">Alle Stufen</option>
-        {#each konfig.daten.schwierigkeiten as st (st.id)}
-          <option value={st.id}>{st.titel}</option>
-        {/each}
-      </select>
-
-      <select bind:value={pfad} aria-label="Pfad">
-        <option value="">Alle Pfade</option>
-        <option value="__ohne__">Ohne Pfad</option>
-        {#each pfade_sortiert as p (p)}
-          <option value={p}>{p}</option>
-        {/each}
-      </select>
-
-      <span class="treffer" class:gefiltert={filter_aktiv}>
+      <div class="filter">
+        <label class="suche">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="text" bind:value={suche} placeholder="Suchen (ID, Titel, Tag, Pfad)" />
+        </label>
+        <select class="wahl" bind:value={sprache} aria-label="Sprache">
+          <option value="">Alle Sprachen</option>
+          {#each konfig.daten.sprachen as s (s.id)}<option value={s.id}>{s.titel}</option>{/each}
+        </select>
+        <select class="wahl" bind:value={schwierigkeit} aria-label="Stufe">
+          <option value="">Alle Stufen</option>
+          {#each konfig.daten.schwierigkeiten as st (st.id)}<option value={st.id}>{st.titel}</option>{/each}
+        </select>
+        <select class="wahl" bind:value={pfad} aria-label="Pfad">
+          <option value="">Alle Pfade</option>
+          <option value="__ohne__">Ohne Pfad</option>
+          {#each pfade_sortiert as p (p)}<option value={p}>{p}</option>{/each}
+        </select>
+        <span class="treffer"><span class="num">{gefiltert.length}</span> Aufgaben</span>
         {#if filter_aktiv}
-          <i class="fa-solid fa-filter" aria-hidden="true"></i>
-          <span class="num">{gefiltert.length}</span>
-          von <span class="num">{eintraege.length}</span> sichtbar
-        {:else}
-          <span class="num">{eintraege.length}</span> Aufgaben
+          <button class="knopf-klein" onclick={filterZuruecksetzen}><i class="fa-solid fa-xmark" aria-hidden="true"></i>Zurücksetzen</button>
         {/if}
-      </span>
+      </div>
+    {/if}
+  {/snippet}
 
-      {#if filter_aktiv}
-        <button class="reset" onclick={filterZuruecksetzen}>
-          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-          Filter zurücksetzen
-        </button>
-      {/if}
-    </div>
-
-    <div class="tabelle">
-      {#each gefiltert as e (e.id)}
-        <article class="zeile status-{e.statistik.status}">
-          <header class="zeilen-kopf">
-            <div class="haupt">
-              <span class="id">{e.id}</span>
-              <span class="titel">{e.titel}</span>
-            </div>
-
-            <div class="meta">
-              <span class="badge">{e.sprache}</span>
-              <span class="badge schw-{e.schwierigkeit}">{konfig.schwierigkeitTitel(e.schwierigkeit)}</span>
-              <span class="badge num">{e.schwierigkeit_score}</span>
-              <span class="badge revision">rev {e.revision}</span>
-              <span class="badge lizenz">{e.lizenz}</span>
-              {#each e.pfade as pfad}
-                <span class="badge pfad">{pfad}</span>
-              {/each}
-              <span class="badge stat-{e.statistik.status}">{e.statistik.status}</span>
-            </div>
-
-            <div class="aktionen">
-              <button class="action" onclick={() => bearbeiten(e)} title="Bearbeiten" aria-label="Bearbeiten">
-                <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
-              </button>
-              <button class="action" onclick={() => duplizieren(e)} title="Duplizieren" aria-label="Duplizieren">
-                <i class="fa-solid fa-clone" aria-hidden="true"></i>
-              </button>
-              <button class="action danger" onclick={() => loesch_anfordern(e)} title="Löschen" aria-label="Löschen">
-                <i class="fa-solid fa-trash" aria-hidden="true"></i>
-              </button>
-              <button class="action" onclick={() => route.setze('aufgabe', e.id)} title="Aufgabe öffnen" aria-label="Öffnen">
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-              </button>
-            </div>
-          </header>
-
-          <div class="kennzahlen-zeile">
-            <span><i class="fa-solid fa-coins" aria-hidden="true"></i> <span class="num">{e.statistik.punkte_erreicht} / {e.schwierigkeit_score}</span> Punkte</span>
-            <span><i class="fa-solid fa-arrow-rotate-right" aria-hidden="true"></i> <span class="num">{e.statistik.versuche}</span> Versuche</span>
-            <span><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> <span class="num">{e.statistik.submissions_gesamt}</span> Submissions ({e.statistik.bestandene_submissions} bestanden)</span>
-            <span><i class="fa-solid fa-eye" aria-hidden="true"></i> <span class="num">{e.statistik.hints_genutzt}</span> / <span class="num">{e.hints.length}</span> Hints genutzt</span>
-            <span><i class="fa-regular fa-clock" aria-hidden="true"></i> <span class="num">{e.schaetz_minuten}</span> min, Timeout <span class="num">{e.zeitlimit_sekunden}</span>s</span>
-            <span><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> <span class="num">{e.musterloesungen_anzahl}</span> Musterlösungen</span>
+  {#if aktiver_tab === 'aufgaben'}
+    {#if laden && eintraege.length === 0}
+      <p class="leer-zeile">Lade Aufgaben ...</p>
+    {:else if gefiltert.length === 0}
+      <p class="leer-zeile">Keine Aufgaben gefunden.</p>
+    {:else}
+      <div class="tabelle">
+        <div class="t-kopf cols">
+          <span>Aufgabe</span><span>Stufe</span><span>Sprache</span><span class="rechts-b">Rev</span>
+          <span class="rechts-b">Tests</span><span class="rechts-b">Hints</span><span class="rechts-b">Muster</span>
+          <span class="rechts-b">Versuche</span><span></span>
+        </div>
+        {#each gefiltert as e (e.id)}
+          {@const auf = offenId === e.id}
+          <div
+            class="t-zeile cols"
+            class:offen={auf}
+            role="button"
+            tabindex="0"
+            aria-expanded={auf}
+            onclick={() => umschalten(e)}
+            onkeydown={(ev) => { if (ev.key === 'Enter') umschalten(e); }}
+          >
+            <span class="zelle-titel"><b>{e.titel}</b><span>{e.id}</span></span>
+            <span><span class="badge" style:color={farbeZuCss(konfig.schwierigkeitFarbe(e.schwierigkeit))}>{konfig.schwierigkeitTitel(e.schwierigkeit)}</span></span>
+            <span><span class="badge sprache">{konfig.sprache(e.sprache)?.titel ?? e.sprache}</span></span>
+            <span class="rechts-b num">{e.revision}</span>
+            <span class="rechts-b num">{e.tests_sichtbar.length}+{e.tests_versteckt.length}</span>
+            <span class="rechts-b num">{e.hints.length}</span>
+            <span class="rechts-b num">{e.musterloesungen_anzahl}</span>
+            <span class="rechts-b num">{e.statistik.versuche}</span>
+            <span class="zeilen-aktionen">
+              <button class="ikon" onclick={(ev) => { ev.stopPropagation(); bearbeiten(e); }} aria-label="Bearbeiten"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+              <button class="ikon" onclick={(ev) => { ev.stopPropagation(); duplizieren(e); }} aria-label="Duplizieren"><i class="fa-solid fa-copy" aria-hidden="true"></i></button>
+              <button class="ikon gefahr" onclick={(ev) => { ev.stopPropagation(); loesch_anfordern(e); }} aria-label="Löschen"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
+              <button class="ikon" onclick={(ev) => { ev.stopPropagation(); route.setze('aufgabe', e.id); }} aria-label="Öffnen"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+            </span>
           </div>
-
-          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
-            <summary>Beschreibung &middot; {e.beschreibung_md.length} Zeichen</summary>
-            <pre class="markdown-quelle">{e.beschreibung_md}</pre>
-          </details>
-
-          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
-            <summary>Sichtbare Tests &middot; {e.tests_sichtbar.length}</summary>
-            <ul class="test-liste">
-              {#each e.tests_sichtbar as t, i (i)}
-                <li>
-                  <code>{e.funktion}({t.input.map(formatiere).join(', ')})</code>
-                  <span class="zeichen">=</span>
-                  <code class="erwartet">{formatiere(t.expected)}</code>
-                </li>
-              {/each}
-            </ul>
-          </details>
-
-          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
-            <summary>
-              Versteckte Tests &middot; {e.tests_versteckt.length}
-              <span class="warn">
-                <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
-                nur in der Verwaltung sichtbar
-              </span>
-            </summary>
-            <ul class="test-liste">
-              {#each e.tests_versteckt as t, i (i)}
-                <li>
-                  <code>{e.funktion}({t.input.map(formatiere).join(', ')})</code>
-                  <span class="zeichen">=</span>
-                  <code class="erwartet">{formatiere(t.expected)}</code>
-                </li>
-              {/each}
-            </ul>
-          </details>
-
-          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
-            <summary>Hints &middot; {e.hints.length}</summary>
-            <ol class="hint-liste">
-              {#each e.hints as h, i (i)}
-                <li>
-                  <span class="hint-kosten">-{h.kosten}</span>
-                  <pre>{h.text}</pre>
-                </li>
-              {/each}
-            </ol>
-          </details>
-
-          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
-            <summary>Frontmatter &middot; technische Daten</summary>
-            <dl class="metadata">
-              <dt>schema_version</dt><dd>{e.schema_version}</dd>
-              <dt>task_type</dt><dd><code>{e.task_type}</code></dd>
-              <dt>runner_type</dt><dd><code>{e.runner_type}</code></dd>
-              <dt>funktion</dt><dd><code>{e.funktion ?? '-'}</code></dd>
-              <dt>tags</dt><dd>{e.tags.join(', ') || '-'}</dd>
-              <dt>voraussetzungen</dt><dd>{e.voraussetzungen.join(', ') || '-'}</dd>
-              <dt>autor</dt><dd>{e.autor ?? '-'}</dd>
-              <dt>erstellt_am</dt><dd>{e.erstellt_am ?? '-'}</dd>
-              <dt>quelle.url</dt><dd>{e.quelle.url ?? '-'}</dd>
-              <dt>quelle.notiz</dt><dd>{e.quelle.notiz ?? '-'}</dd>
-              <dt>dateipfad</dt><dd><code>{e.dateipfad}</code></dd>
-              <dt>hash</dt><dd><code>{e.hash.slice(0, 12)}…</code></dd>
-            </dl>
-          </details>
-
-          <details class="sektion" ontoggle={(ev) => on_section_toggle(e, ev)}>
-            <summary>Starter-Code &middot; {e.starter_code.length} Zeichen</summary>
-            <pre class="code">{e.starter_code}</pre>
-          </details>
-        </article>
-      {/each}
-    </div>
-  {:else if aktiver_tab === 'aufgaben' && !laden}
-    <p class="info">Keine Aufgaben gefunden.</p>
-  {/if}
-
-  {#if aktiver_tab === 'pfade'}
-    <div class="pfad-tabelle">
-      {#if pfade.length === 0}
-        <p class="info">Noch keine Pfade.</p>
-      {:else}
-        {#each pfade as p (p.id)}
-          <article class="pfad-zeile">
-            <header class="zeilen-kopf">
-              <div class="haupt">
-                <span class="id">{p.id}</span>
-                <span class="titel">{p.titel}</span>
+          {#if auf}
+            <div class="ausklapp">
+              <nav>
+                <button class:aktiv={ausklappReiter === 'tests'} onclick={() => (ausklappReiter = 'tests')}>Tests <span class="num">{e.tests_sichtbar.length} + {e.tests_versteckt.length}</span></button>
+                <button class:aktiv={ausklappReiter === 'text'} onclick={() => (ausklappReiter = 'text')}>Beschreibung</button>
+                <button class:aktiv={ausklappReiter === 'hints'} onclick={() => (ausklappReiter = 'hints')}>Hints <span class="num">{e.hints.length}</span></button>
+                <button class:aktiv={ausklappReiter === 'start'} onclick={() => (ausklappReiter = 'start')}>Starter-Code</button>
+                <button class:aktiv={ausklappReiter === 'technik'} onclick={() => (ausklappReiter = 'technik')}>Technische Daten</button>
+              </nav>
+              <div class="inhalt">
+                {#if !details_geladen.has(e.id) && e.beschreibung_md === ''}
+                  <p class="dim">Lade ...</p>
+                {:else if ausklappReiter === 'tests'}
+                  <table class="testtab">
+                    <thead><tr><th>Art</th><th>Eingabe</th><th>Erwartet</th></tr></thead>
+                    <tbody>
+                      {#each e.tests_sichtbar as t, i (i)}
+                        <tr><td class="dim">sichtbar</td><td>{e.funktion ?? ''}({t.input.map(formatiere).join(', ')})</td><td>{formatiere(t.expected)}</td></tr>
+                      {/each}
+                      {#each e.tests_versteckt as t, i (i)}
+                        <tr><td class="warnmarke">versteckt</td><td>{e.funktion ?? ''}({t.input.map(formatiere).join(', ')})</td><td>{formatiere(t.expected)}</td></tr>
+                      {/each}
+                    </tbody>
+                  </table>
+                {:else if ausklappReiter === 'text'}
+                  <pre class="quelle">{e.beschreibung_md}</pre>
+                {:else if ausklappReiter === 'hints'}
+                  {#each e.hints as h, i (i)}
+                    <p class="hint"><span class="badge">{h.kosten} Punkte</span> {h.text}</p>
+                  {:else}
+                    <p class="dim">Keine Hinweise.</p>
+                  {/each}
+                {:else if ausklappReiter === 'start'}
+                  <pre class="quelle code">{e.starter_code}</pre>
+                {:else}
+                  <dl class="technik">
+                    <dt>schema_version</dt><dd>{e.schema_version}</dd>
+                    <dt>revision</dt><dd>{e.revision}</dd>
+                    <dt>task_type</dt><dd><code>{e.task_type}</code></dd>
+                    <dt>runner_type</dt><dd><code>{e.runner_type}</code></dd>
+                    <dt>funktion</dt><dd><code>{e.funktion ?? '-'}</code></dd>
+                    <dt>zeitlimit</dt><dd>{e.zeitlimit_sekunden} s</dd>
+                    <dt>tags</dt><dd>{e.tags.join(', ') || '-'}</dd>
+                    <dt>pfade</dt><dd>{e.pfade.join(', ') || '-'}</dd>
+                    <dt>voraussetzungen</dt><dd>{e.voraussetzungen.join(', ') || '-'}</dd>
+                    <dt>lizenz</dt><dd>{e.lizenz}</dd>
+                    <dt>autor</dt><dd>{e.autor ?? '-'}</dd>
+                    <dt>erstellt_am</dt><dd>{e.erstellt_am ?? '-'}</dd>
+                    <dt>quelle</dt><dd>{e.quelle.url ?? '-'} {e.quelle.notiz ?? ''}</dd>
+                    <dt>statistik</dt><dd>{e.statistik.submissions_gesamt} Submissions, {e.statistik.bestandene_submissions} bestanden, {e.statistik.punkte_erreicht} / {e.schwierigkeit_score} Punkte, {e.statistik.hints_genutzt} Hints genutzt</dd>
+                    <dt>dateipfad</dt><dd><code>{e.dateipfad}</code></dd>
+                    <dt>hash</dt><dd><code>{e.hash.slice(0, 12)}</code></dd>
+                  </dl>
+                {/if}
               </div>
-              <div class="meta">
-                <span class="badge num">{p.aufgaben_anzahl} Aufgaben</span>
-              </div>
-              <div class="aktionen">
-                <button class="action" onclick={() => pfad_bearbeiten(p)} title="Bearbeiten" aria-label="Bearbeiten">
-                  <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
-                </button>
-                <button class="action danger" onclick={() => pfad_loesch_anfordern(p)} title="Löschen" aria-label="Löschen">
-                  <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                </button>
-              </div>
-            </header>
-            {#if p.beschreibung}
-              <p class="pfad-beschreibung">{p.beschreibung}</p>
-            {/if}
-            <ol class="pfad-aufgaben">
-              {#each p.reihenfolge as aid (aid)}
-                <li>
-                  <span class="num pos">{p.reihenfolge.indexOf(aid) + 1}.</span>
-                  <code>{aid}</code>
-                </li>
-              {/each}
-            </ol>
-          </article>
+            </div>
+          {/if}
         {/each}
-      {/if}
-    </div>
+      </div>
+    {/if}
+  {:else}
+    {#if pfade.length === 0}
+      <p class="leer-zeile">Noch keine Pfade.</p>
+    {:else}
+      <div class="tabelle">
+        <div class="t-kopf cols-pfade">
+          <span>Pfad</span><span class="rechts-b">Aufgaben</span><span></span>
+        </div>
+        {#each pfade as p (p.id)}
+          {@const auf = offenerPfad === p.id}
+          <div
+            class="t-zeile cols-pfade"
+            class:offen={auf}
+            role="button"
+            tabindex="0"
+            aria-expanded={auf}
+            onclick={() => (offenerPfad = auf ? null : p.id)}
+            onkeydown={(ev) => { if (ev.key === 'Enter') offenerPfad = auf ? null : p.id; }}
+          >
+            <span class="zelle-titel"><b>{p.titel}</b><span>{p.id}</span></span>
+            <span class="rechts-b num">{p.aufgaben_anzahl}</span>
+            <span class="zeilen-aktionen">
+              <button class="ikon" onclick={(ev) => { ev.stopPropagation(); pfad_bearbeiten(p); }} aria-label="Bearbeiten"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+              <button class="ikon gefahr" onclick={(ev) => { ev.stopPropagation(); pfad_loesch_anfordern(p); }} aria-label="Löschen"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
+            </span>
+          </div>
+          {#if auf}
+            <div class="pfad-ausklapp">
+              {#if p.beschreibung}<p class="dim">{p.beschreibung}</p>{/if}
+              <ol>
+                {#each p.reihenfolge as aid (aid)}<li><code>{aid}</code></li>{/each}
+              </ol>
+            </div>
+          {/if}
+        {/each}
+      </div>
+    {/if}
   {/if}
-</div>
+</Seite>
 
 <AufgabeEditor
   offen={editor_offen}
@@ -554,7 +514,7 @@
   offen={loesch_eintrag !== null}
   titel="Aufgabe löschen?"
   nachricht={loesch_eintrag
-    ? `Aufgabe '${loesch_eintrag.id}' (${loesch_eintrag.titel}) wird komplett entfernt -- inkl. aller Musterlösungen. Submissions in der Historie bleiben erhalten.`
+    ? `Aufgabe '${loesch_eintrag.id}' (${loesch_eintrag.titel}) wird mit allen Musterlösungen entfernt. Submissions in der Historie bleiben erhalten.`
     : ''}
   bestaetigen_text="Löschen"
   abbrechen_text="Abbrechen"
@@ -574,7 +534,7 @@
 <ConfirmModal
   offen={reset_alles_bestaetigung}
   titel="Alles zurücksetzen?"
-  nachricht="Alle Submissions, Fortschritte, Punkte und der Streak werden komplett gelöscht. Die Aufgaben-Dateien selbst bleiben erhalten -- du fängst von vorne an. Dieser Schritt ist nicht umkehrbar."
+  nachricht="Alle Submissions, Fortschritte, Punkte und der Streak werden komplett gelöscht. Die Aufgaben-Dateien selbst bleiben erhalten, du fängst von vorne an. Dieser Schritt ist nicht umkehrbar."
   bestaetigen_text="Komplett zurücksetzen"
   abbrechen_text="Abbrechen"
   danger={true}
@@ -586,7 +546,7 @@
   offen={pfad_loesch_eintrag !== null}
   titel="Pfad löschen?"
   nachricht={pfad_loesch_eintrag
-    ? `Pfad '${pfad_loesch_eintrag.id}' (${pfad_loesch_eintrag.titel}) wird entfernt. Aufgaben selbst bleiben erhalten -- nur die Pfad-Zuordnung verschwindet.`
+    ? `Pfad '${pfad_loesch_eintrag.id}' (${pfad_loesch_eintrag.titel}) wird entfernt. Aufgaben selbst bleiben erhalten, nur die Zuordnung zum Pfad verschwindet.`
     : ''}
   bestaetigen_text="Löschen"
   abbrechen_text="Abbrechen"
@@ -596,522 +556,117 @@
 />
 
 <style>
-  .verwaltung {
-    padding: var(--sp-5);
-    overflow-y: auto;
+  .cols {
+    grid-template-columns: minmax(0, 2.4fr) 124px 80px 44px 64px 52px 52px 70px 112px;
   }
-  .kopf {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--sp-3);
-    margin-bottom: var(--sp-4);
+  .cols-pfade {
+    grid-template-columns: minmax(0, 1fr) 80px 60px;
   }
-  h1 {
-    margin: 0 0 var(--sp-2);
-    font-size: var(--fs-xl);
-    font-weight: 600;
+  .befunde-knopf {
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 0;
   }
-  .lead {
+  .befunde-knopf .rechts { margin-left: auto; }
+  .befunde {
     margin: 0;
-    color: var(--fg-dim);
-    font-family: var(--quick);
+    padding: var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-5);
+    max-height: 160px;
+    overflow-y: auto;
     font-size: var(--fs-sm);
-  }
-  .kopf-actions {
-    display: flex;
-    gap: var(--sp-2);
-    flex-shrink: 0;
-    align-items: center;
-  }
-  .primaer-btn {
-    background: color-mix(in srgb, var(--accent) 14%, transparent);
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 6px 14px;
-    font-size: var(--fs-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .primaer-btn:hover {
-    background: color-mix(in srgb, var(--accent) 22%, transparent);
-  }
-  .danger-btn {
-    background: transparent;
     border: 1px solid var(--border);
-    color: var(--fg-mute);
-    padding: 6px 14px;
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
   }
-  .danger-btn:hover {
-    color: var(--red);
-    border-color: var(--red);
-  }
-  .reload-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--fg-dim);
-    padding: 6px 12px;
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-  }
-  .reload-btn:hover:not(:disabled) {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-  .reload-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .fehler {
-    color: var(--red);
-    background: color-mix(in srgb, var(--red) 10%, transparent);
-    padding: var(--sp-2) var(--sp-3);
-    border: 1px solid var(--red);
-  }
-  .info {
-    color: var(--fg-dim);
-    font-family: var(--quick);
-  }
-
-  .aggregat {
+  .ausklapp {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: var(--sp-2);
-    margin-bottom: var(--sp-3);
+    grid-template-columns: 170px minmax(0, 1fr);
+    min-height: 220px;
+    border-bottom: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    background: var(--bg);
   }
-  .kennzahl {
-    background: var(--bg-card-2);
-    border: 1px solid var(--border);
-    padding: var(--sp-3);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .kennzahl .num {
-    font-size: var(--fs-xl);
-    color: var(--accent);
-  }
-  .kennzahl small {
-    color: var(--fg-dim);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .filterleiste {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-    margin-bottom: var(--sp-3);
-    flex-wrap: wrap;
-  }
-  .suche-zeile {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: 6px var(--sp-3);
-    border-radius: var(--radius-sm);
-    flex: 1;
-    min-width: 220px;
-    height: 36px;
-  }
-  .suche-zeile i {
-    color: var(--fg-mute);
-    font-size: var(--fs-sm);
-  }
-  .suche-zeile input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: var(--fg);
-    font-family: var(--sans);
-    font-size: var(--fs-sm);
-    padding: 4px;
-  }
-  .suche-zeile input:focus {
-    outline: none;
-  }
-  .filterleiste select {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    color: var(--fg);
-    font-family: var(--sans);
-    font-size: var(--fs-sm);
-    padding: 0 var(--sp-3);
-    height: 36px;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-  }
-  .filterleiste select:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-  .treffer {
-    color: var(--fg-dim);
-    font-size: var(--fs-sm);
-    margin-left: auto;
-    padding: 0 var(--sp-2);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .treffer.gefiltert {
-    color: var(--accent);
-  }
-  .treffer .num {
-    color: var(--fg);
-    font-weight: 600;
-  }
-  .treffer.gefiltert .num {
-    color: var(--accent);
-  }
-  .filterleiste .reset {
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    height: 36px;
-    padding: 0 12px;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: var(--fs-sm);
-    font-weight: 500;
-  }
-  .filterleiste .reset:hover {
-    color: var(--red);
-    border-color: var(--red);
-  }
-
-  .tabelle {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-3);
-  }
-  .zeile {
-    background: var(--bg-card-2);
-    border: 1px solid var(--border);
-    padding: var(--sp-3);
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-  }
-  .zeile.status-geloest {
-    border-left: 3px solid var(--green);
-  }
-  .zeile.status-in_arbeit {
-    border-left: 3px solid var(--orange);
-  }
-
-  .zeilen-kopf {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-3);
-    flex-wrap: wrap;
-  }
-  .haupt {
+  .ausklapp nav {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    flex: 1;
-    min-width: 200px;
-  }
-  .id {
-    font-family: var(--mono);
-    font-size: var(--fs-xs);
-    color: var(--fg-mute);
-  }
-  .titel {
-    font-size: var(--fs-md);
-    font-weight: 600;
-    color: var(--fg);
-  }
-  .meta {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-1);
-    flex-wrap: wrap;
-  }
-  .badge {
-    padding: 2px 8px;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    color: var(--fg-dim);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-  }
-  .badge.schw-anfaenger { color: var(--green); border-color: var(--green); }
-  .badge.schw-mittel { color: var(--orange); border-color: var(--orange); }
-  .badge.schw-fortgeschritten,
-  .badge.schw-experte { color: var(--red); border-color: var(--red); }
-  .badge.pfad { color: var(--accent); border-color: var(--accent); }
-  .badge.revision { font-family: var(--mono); }
-  .badge.lizenz { font-family: var(--mono); }
-  .badge.stat-geloest { color: var(--green); }
-  .badge.stat-in_arbeit { color: var(--orange); }
-  .aktionen {
-    display: flex;
-    gap: var(--sp-1);
-  }
-  .action {
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--fg-dim);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-  }
-  .action:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-  .action.danger:hover {
-    color: var(--red);
-    border-color: var(--red);
-  }
-
-  .tabs {
-    display: flex;
-    gap: var(--sp-1);
-    border-bottom: 1px solid var(--border);
-    margin-bottom: var(--sp-3);
-  }
-  .tabs button {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid transparent;
-    color: var(--fg-dim);
-    padding: 8px 16px;
-    font-size: var(--fs-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    font-family: inherit;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: -1px;
-  }
-  .tabs button.aktiv {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-  .tabs .num {
-    color: var(--fg-mute);
-    font-size: var(--fs-xs);
-  }
-  .tabs button.aktiv .num { color: var(--accent); }
-
-  .pfad-tabelle {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-3);
-  }
-  .pfad-zeile {
-    background: var(--bg-card-2);
-    border: 1px solid var(--border);
-    padding: var(--sp-3);
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-  }
-  .pfad-beschreibung {
-    margin: 0;
-    color: var(--fg-dim);
-    font-family: var(--quick);
-    font-size: var(--fs-sm);
-  }
-  .pfad-aufgaben {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-1);
-  }
-  .pfad-aufgaben li {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: 2px 8px;
-    font-size: var(--fs-xs);
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .pfad-aufgaben .pos {
-    color: var(--fg-mute);
-  }
-  .pfad-aufgaben code {
-    font-family: var(--mono);
-    background: transparent;
-    border: none;
-    padding: 0;
-    color: var(--accent);
-  }
-
-  .kennzahlen-zeile {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-3);
-    color: var(--fg-dim);
-    font-size: var(--fs-xs);
-    padding: var(--sp-2) 0;
-    border-top: 1px dashed var(--border);
-  }
-  .kennzahlen-zeile span {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .kennzahlen-zeile .num {
-    color: var(--fg);
-  }
-
-  .sektion {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: var(--sp-2) var(--sp-3);
-    border-radius: var(--radius-sm);
-  }
-  .sektion summary {
-    cursor: pointer;
-    color: var(--fg-dim);
-    font-size: var(--fs-sm);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 2px 0;
-    list-style-position: inside;
-  }
-  .sektion summary:hover {
-    color: var(--accent);
-  }
-  .sektion[open] summary {
-    color: var(--accent);
-    margin-bottom: var(--sp-2);
-  }
-  .sektion .warn {
-    margin-left: var(--sp-2);
-    color: var(--orange);
-    font-size: var(--fs-xs);
-    text-transform: none;
-    letter-spacing: 0;
-  }
-  .markdown-quelle, .code {
-    margin: 0;
-    font-family: var(--mono);
-    font-size: var(--fs-xs);
-    color: var(--fg);
-    background: var(--bg);
     padding: var(--sp-2);
-    border: 1px solid var(--border);
-    overflow-x: auto;
-    white-space: pre-wrap;
-    max-height: 320px;
+    border-right: 1px solid var(--border);
+  }
+  .ausklapp nav button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    padding: 0 var(--sp-2);
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--fg-dim);
+    font-size: var(--fs-sm);
+    text-align: left;
+  }
+  .ausklapp nav button:hover:not(:disabled) { background: var(--bg-card-2); color: var(--fg); }
+  .ausklapp nav button.aktiv { background: var(--bg-card-2); color: var(--accent); }
+  .ausklapp .inhalt {
+    min-width: 0;
+    padding: var(--sp-3) var(--sp-4);
+    max-height: 420px;
     overflow-y: auto;
   }
-  .test-liste, .hint-liste {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-1);
-  }
-  .test-liste li, .hint-liste li {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 4px var(--sp-2);
-    font-size: var(--fs-xs);
-    display: flex;
-    align-items: flex-start;
-    gap: var(--sp-2);
-  }
-  .test-liste code {
-    font-family: var(--mono);
-    background: transparent;
-    border: none;
-    color: var(--fg);
-    padding: 0;
-  }
-  .test-liste .erwartet { color: var(--green); }
-  .test-liste .zeichen { color: var(--fg-mute); }
-  .hint-liste {
-    counter-reset: hints;
-  }
-  .hint-liste li {
-    flex-direction: column;
-    gap: 4px;
-    counter-increment: hints;
-  }
-  .hint-kosten {
-    color: var(--orange);
-    font-family: var(--mono);
-    font-size: var(--fs-xs);
-  }
-  .hint-liste pre {
-    margin: 0;
-    font-family: var(--quick);
+  .testtab {
+    width: 100%;
+    border-collapse: collapse;
     font-size: var(--fs-sm);
-    color: var(--fg);
-    white-space: pre-wrap;
   }
-
-  .metadata {
+  .testtab th, .testtab td {
+    padding: 5px var(--sp-2);
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+  .testtab th {
+    color: var(--fg-mute);
+    font-weight: 500;
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .testtab td {
+    font-family: var(--mono);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+  .quelle {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .hint {
+    margin: 0 0 var(--sp-2);
+    font-family: var(--quick);
+  }
+  .technik {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 150px minmax(0, 1fr);
     gap: 4px var(--sp-3);
     margin: 0;
+    font-size: var(--fs-sm);
   }
-  .metadata dt {
-    color: var(--fg-mute);
-    font-size: var(--fs-xs);
-    font-family: var(--mono);
-  }
-  .metadata dd {
-    margin: 0;
-    color: var(--fg);
-    font-size: var(--fs-xs);
-    word-break: break-all;
-  }
-  .metadata code {
-    font-family: var(--mono);
+  .technik dt { color: var(--fg-mute); font-family: var(--mono); font-size: 12px; }
+  .technik dd { margin: 0; overflow-wrap: anywhere; }
+  .pfad-ausklapp {
+    padding: var(--sp-2) var(--sp-4) var(--sp-3) calc(var(--sp-4) + 3px);
+    border-bottom: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
     background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 1px 4px;
-    color: var(--fg);
+    font-size: var(--fs-sm);
+  }
+  .pfad-ausklapp p { margin: 0 0 var(--sp-2); }
+  .pfad-ausklapp ol {
+    margin: 0;
+    padding-left: var(--sp-5);
+    columns: 3 220px;
   }
 </style>

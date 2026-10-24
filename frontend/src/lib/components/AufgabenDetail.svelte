@@ -22,6 +22,8 @@
   import ConfirmModal from './ConfirmModal.svelte';
   import CssKlonView from './CssKlonView.svelte';
   import DreiSpaltenLayout from './DreiSpaltenLayout.svelte';
+  import SpaltenReiter from './SpaltenReiter.svelte';
+  import { geraet } from '../stores/GeraetStore.svelte';
   import MusterloesungenBereich from './MusterloesungenBereich.svelte';
   import EditorBereich from './EditorBereich.svelte';
   import LueckentextView from './LueckentextView.svelte';
@@ -161,148 +163,121 @@
 
 </script>
 
-<div class="detail">
+<div class="seite">
   {#if ladenDetail}
-    <div class="info">Lade Aufgabe ...</div>
+    <p class="leer-zeile">Lade Aufgabe ...</p>
   {:else if fehler}
-    <div class="info fehler">Fehler: {fehler}</div>
+    <p class="leer-zeile fehlertext">Fehler: {fehler}</p>
   {:else if detail}
-    <header class="kopf">
-      <button class="kopf-btn" onclick={zurueck} title="Zurück zur Liste" aria-label="Zurück">
+    {@const aktuell = detail}
+    <header class="a-kopf">
+      <button class="ikon" onclick={zurueck} aria-label="Zurück zur Liste">
         <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
       </button>
-      <div class="kopf-info">
-        <span class="id">{detail.id}</span>
-        <h1>{detail.titel}</h1>
-      </div>
-      <div class="kopf-meta">
-        <span
-          class="badge"
-          style:color={schwFarbe}
-          style:border-color={schwFarbe}
-        >{konfig.schwierigkeitTitel(detail.schwierigkeit)}</span>
-        <span class="badge sprache">{detail.sprache}</span>
-        <span class="zeit">
-          <i class="fa-regular fa-clock" aria-hidden="true"></i>
-          {detail.schaetz_minuten} min
+      {#if geraet.telefon}
+        <span class="zelle-titel">
+          <b>{aktuell.titel}</b>
+          <span class="meta-text">
+            {konfig.schwierigkeitTitel(aktuell.schwierigkeit)}, {konfig.sprache(aktuell.sprache)?.titel ?? aktuell.sprache},
+            {aktuell.schaetz_minuten} min, {aktProgress?.punkte_erreicht ?? 0} / {aktuell.schwierigkeit_score} Punkte
+          </span>
         </span>
-        <span class="score num" title="Erreicht / Maximum">
-          <i class="fa-solid fa-coins" aria-hidden="true"></i>
-          {aktProgress?.punkte_erreicht ?? 0} / {detail.schwierigkeit_score}
-        </span>
-        {#if aktProgress && (aktProgress.versuche > 0 || aktProgress.hints_genutzt > 0)}
-          <button class="kopf-btn warn" onclick={resetAnfragen} title="Aufgabe zurücksetzen" aria-label="Reset">
-            <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
-          </button>
-        {/if}
-      </div>
+      {:else}
+        <span class="zelle-titel"><b>{aktuell.titel}</b><span>{aktuell.id}</span></span>
+        <div class="meta">
+          <span class="badge" style:color={schwFarbe}>{konfig.schwierigkeitTitel(aktuell.schwierigkeit)}</span>
+          <span class="badge sprache">{konfig.sprache(aktuell.sprache)?.titel ?? aktuell.sprache}</span>
+          <span><i class="fa-regular fa-clock" aria-hidden="true"></i> {aktuell.schaetz_minuten} min</span>
+          <span class="num punkte"><i class="fa-solid fa-coins" aria-hidden="true"></i> {aktProgress?.punkte_erreicht ?? 0} / {aktuell.schwierigkeit_score}</span>
+        </div>
+      {/if}
+      {#if aktProgress && (aktProgress.versuche > 0 || aktProgress.hints_genutzt > 0)}
+        <button class="ikon warn" onclick={resetAnfragen} aria-label="Aufgabe zurücksetzen">
+          <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+        </button>
+      {/if}
     </header>
 
-    {#if detail.gesperrt}
-      <div class="sperre-banner">
+    {#if aktuell.gesperrt}
+      <div class="hinweis-box band">
         <i class="fa-solid fa-lock" aria-hidden="true"></i>
         <span>
-          Diese Aufgabe ist gesperrt -- folgende Voraussetzungen sind noch nicht gelöst:
-          {#each detail.voraussetzungen_offen as v, i}
-            <button class="vor-link" onclick={() => route.setze('aufgabe', v)}>
-              {aufgabenStore.findeKurz(v)?.titel ?? v}
-            </button>{#if i < detail.voraussetzungen_offen.length - 1}, {/if}
+          Gesperrt, erst lösen:
+          {#each aktuell.voraussetzungen_offen as v, i (v)}
+            <button class="verweis" onclick={() => route.setze('aufgabe', v)}>{aufgabenStore.findeKurz(v)?.titel ?? v}</button>{#if i < aktuell.voraussetzungen_offen.length - 1}, {/if}
           {/each}
         </span>
       </div>
     {/if}
 
-    {#if detail.task_type === 'output_quiz'}
-      <OutputQuizView {detail} />
-    {:else if detail.task_type === 'lueckentext'}
-      <LueckentextView {detail} />
-    {:else if detail.task_type === 'css_klon'}
-      <CssKlonView {detail} />
-    {:else if detail.task_type === 'sql_abfrage'}
-      <SqlAbfrageView {detail} />
+    {#if aktuell.task_type === 'output_quiz'}
+      <OutputQuizView detail={aktuell} />
+    {:else if aktuell.task_type === 'lueckentext'}
+      <LueckentextView detail={aktuell} />
+    {:else if aktuell.task_type === 'css_klon'}
+      <CssKlonView detail={aktuell} />
+    {:else if aktuell.task_type === 'sql_abfrage'}
+      <SqlAbfrageView detail={aktuell} />
     {:else}
-      {#if detail.task_type === 'bug_finden'}
-        <div class="bug-banner">
+      {#if aktuell.task_type === 'bug_finden'}
+        <div class="hinweis-box band fehler">
           <i class="fa-solid fa-bug" aria-hidden="true"></i>
-          <span><strong>Bug finden!</strong> Im Editor steht Code mit einem Fehler. Finde ihn, fixe ihn, drück Prüfen.</span>
+          <span><strong>Fehler finden:</strong> Im Editor steht Code mit einem Fehler. Finde und behebe ihn, dann Prüfen.</span>
         </div>
       {/if}
-    {@const aktuell = detail}
-    <DreiSpaltenLayout>
-      {#snippet links()}
-        {#if aktuell.musterloesungen_anzahl > 0}
-          <div class="tab-leiste" role="tablist">
-            <button
-              class="tab"
-              class:aktiv={aktiver_tab === 'aufgabe'}
-              role="tab"
-              aria-selected={aktiver_tab === 'aufgabe'}
-              onclick={() => (aktiver_tab = 'aufgabe')}
-            >
-              <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
-              Aufgabe
-            </button>
-            <button
-              class="tab"
-              class:aktiv={aktiver_tab === 'loesungen'}
-              role="tab"
-              aria-selected={aktiver_tab === 'loesungen'}
-              onclick={() => (aktiver_tab = 'loesungen')}
-            >
-              <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
-              Musterlösungen ({aktuell.musterloesungen_anzahl})
-            </button>
-          </div>
-        {/if}
-        <div class="tab-inhalt">
-          {#if aktiver_tab === 'aufgabe'}
-            <BeschreibungsBereich
-              aufgabeId={aktuell.id}
-              markdown={aktuell.beschreibung_md}
-              hints={aktuell.hints}
-              tests_sichtbar={aktuell.tests_sichtbar}
-              anzahl_versteckt={aktuell.anzahl_versteckte_tests}
-              quelle={aktuell.quelle}
-              schwierigkeit_score={aktuell.schwierigkeit_score}
+      <DreiSpaltenLayout
+        mitteTitel="Editor, {konfig.sprache(aktuell.sprache)?.titel ?? aktuell.sprache}"
+        rechtsTitel="Ergebnis"
+        pruefen={{ aktion: pruefe, laeuft: pruefen_laeuft, moeglich: code.trim() !== '' }}
+      >
+        {#snippet links()}
+          {#if aktuell.musterloesungen_anzahl > 0}
+            <SpaltenReiter
+              reiter={[
+                { id: 'aufgabe', titel: 'Aufgabe', icon: 'fa-file-lines' },
+                { id: 'loesungen', titel: `Musterlösungen (${aktuell.musterloesungen_anzahl})`, icon: 'fa-lightbulb' },
+              ]}
+              bind:aktiv={aktiver_tab}
             />
-          {:else}
-            <MusterloesungenBereich aufgabeId={aktuell.id} bind:freigegeben={musterloesungen_frei} />
           {/if}
-        </div>
-      {/snippet}
-
-      {#snippet mitte()}
-        <div class="editor-kopf">
-          <span class="label">Editor &middot; {aktuell.sprache}</span>
-          <button class="pruefen" disabled={pruefen_laeuft || !code.trim()} onclick={pruefe}>
-            {#if pruefen_laeuft}
-              <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
-              läuft ...
+          <div class="rollfeld ohne-rand">
+            {#if aktiver_tab === 'aufgabe'}
+              <BeschreibungsBereich
+                aufgabeId={aktuell.id}
+                markdown={aktuell.beschreibung_md}
+                hints={aktuell.hints}
+                tests_sichtbar={aktuell.tests_sichtbar}
+                anzahl_versteckt={aktuell.anzahl_versteckte_tests}
+                quelle={aktuell.quelle}
+                schwierigkeit_score={aktuell.schwierigkeit_score}
+              />
             {:else}
-              <i class="fa-solid fa-play" aria-hidden="true"></i>
-              Prüfen
+              <MusterloesungenBereich aufgabeId={aktuell.id} bind:freigegeben={musterloesungen_frei} />
             {/if}
-          </button>
-        </div>
-        <div class="editor-host">
-          <EditorBereich sprache={aktuell.sprache} bind:code />
-        </div>
-        <ProbelaufBereich aufgabeId={aktuell.id} {code} funktion={aktuell.funktion} />
-      {/snippet}
+          </div>
+        {/snippet}
 
-      {#snippet rechts()}
-        <OutputBereich
-          ergebnis={ergebnis}
-          fehler={pruef_fehler}
-          laeuft={pruefen_laeuft}
-          anzahl_versteckt={aktuell.anzahl_versteckte_tests}
-          schwierigkeit_score={aktuell.schwierigkeit_score}
-          onWeiter={geheZuNaechster}
-        />
+        {#snippet mitte()}
+          <div class="editor-host">
+            <EditorBereich sprache={aktuell.sprache} bind:code />
+          </div>
+          <ProbelaufBereich aufgabeId={aktuell.id} {code} funktion={aktuell.funktion} />
+        {/snippet}
 
-        <VerlaufBereich aufgabeId={aktuell.id} stand={abgaben} onUebernehmen={(c) => (code = c)} />
-      {/snippet}
-    </DreiSpaltenLayout>
+        {#snippet rechts()}
+          <div class="rollfeld">
+            <OutputBereich
+              {ergebnis}
+              fehler={pruef_fehler}
+              laeuft={pruefen_laeuft}
+              anzahl_versteckt={aktuell.anzahl_versteckte_tests}
+              schwierigkeit_score={aktuell.schwierigkeit_score}
+              onWeiter={geheZuNaechster}
+            />
+            <VerlaufBereich aufgabeId={aktuell.id} stand={abgaben} onUebernehmen={(c) => (code = c)} />
+          </div>
+        {/snippet}
+      </DreiSpaltenLayout>
     {/if}
   {/if}
 </div>
@@ -319,185 +294,32 @@
 />
 
 <style>
-  .detail {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 0;
-  }
-  .info { padding: var(--sp-4); color: var(--fg-dim); }
-  .info.fehler { color: var(--red); }
-
-  .kopf {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-3);
-    padding: var(--sp-3) var(--sp-4);
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-card);
-    flex-shrink: 0;
-  }
-  .kopf-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--fg-dim);
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .kopf-btn:hover { color: var(--accent); border-color: var(--accent); }
-  .kopf-btn.warn:hover { color: var(--orange); border-color: var(--orange); }
-  .kopf-info { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
-  .id { font-family: var(--mono); font-size: var(--fs-xs); color: var(--fg-mute); }
-  h1 { margin: 0; font-size: var(--fs-lg); font-weight: 600; }
-  .kopf-meta { display: flex; align-items: center; gap: var(--sp-2); }
-  .badge {
-    padding: 2px 8px;
-    border: 1px solid var(--border);
+  .a-kopf .punkte { color: var(--accent); }
+  .a-kopf .ikon.warn { margin-left: var(--sp-1); }
+  .meta-text {
+    font-family: var(--sans);
     font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     color: var(--fg-dim);
-    border-radius: var(--radius-sm);
+    white-space: normal;
   }
-  .badge.sprache { color: var(--accent); border-color: var(--accent); }
-
-  .sperre-banner {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-    padding: var(--sp-3) var(--sp-4);
-    background: color-mix(in srgb, var(--orange) 12%, transparent);
-    border-bottom: 1px solid var(--orange);
-    color: var(--fg);
+  .fehlertext { color: var(--red); }
+  .band {
+    flex: none;
+    border-width: 0 0 1px;
     font-family: var(--quick);
-    font-size: var(--fs-sm);
-    flex-wrap: wrap;
   }
-  .bug-banner {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-    padding: var(--sp-2) var(--sp-4);
-    background: color-mix(in srgb, var(--red) 10%, transparent);
-    border-bottom: 1px solid var(--red);
-    color: var(--fg);
-    font-family: var(--quick);
-    font-size: var(--fs-sm);
-  }
-  .bug-banner i { color: var(--red); }
-  .sperre-banner i {
-    color: var(--orange);
-  }
-  .vor-link {
+  .verweis {
+    border: 0;
+    padding: 0;
     background: transparent;
-    border: none;
     color: var(--accent);
-    cursor: pointer;
-    font-family: inherit;
-    font-size: inherit;
+    font: inherit;
     text-decoration: underline;
-    padding: 0;
   }
-  .vor-link:hover {
-    color: var(--accent-strong);
-  }
-  .zeit {
-    color: var(--fg-dim);
-    font-size: var(--fs-xs);
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .score {
-    font-size: var(--fs-sm);
-    color: var(--accent);
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .tab-leiste {
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-card);
-    flex-shrink: 0;
-  }
-  .tab {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid transparent;
-    color: var(--fg-dim);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: var(--sp-2) var(--sp-3);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-2);
-    font-family: inherit;
-  }
-  .tab:hover { color: var(--accent); }
-  .tab.aktiv {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-  .tab-inhalt {
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-  }
-  .editor-kopf {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--sp-2) var(--sp-3);
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-card);
-    flex-shrink: 0;
-  }
-  .label {
-    color: var(--fg-dim);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .pruefen {
-    background: color-mix(in srgb, var(--accent) 14%, transparent);
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 6px 14px;
-    font-size: var(--fs-sm);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-2);
-  }
-  .pruefen:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--accent) 22%, transparent);
-  }
-  .pruefen:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  .verweis:hover:not(:disabled) { background: transparent; color: var(--accent-strong); }
   .editor-host {
-    flex: 1 1 auto;
+    flex: 1;
     min-height: 0;
     overflow: hidden;
   }
-
-
 </style>

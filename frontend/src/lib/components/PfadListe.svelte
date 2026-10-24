@@ -1,204 +1,175 @@
 <script lang="ts">
+  /* Pfade am Rechner: nach Sprache gruppiert, aufklappbar mit allen Schritten. */
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { pfadeStore } from '../stores/PfadeStore.svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
+  import { konfig } from '../stores/KonfigStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
-  import type { Pfad } from '../types/Aufgabe';
+  import { statusIcon, statusKlasse } from '../anzeige';
+  import { nachSprache, pfadGeloest, pfadProzent, pfadSprache, pfadStand, type PfadStand } from '../pfade.svelte';
+  import EmptyState from './EmptyState.svelte';
+  import Seite from './Seite.svelte';
 
   onMount(async () => {
-    if (pfadeStore.liste.length === 0) await pfadeStore.ladeListe();
-    if (aufgabenStore.liste.length === 0) await aufgabenStore.ladeListe();
-    if (!progressStore.gesamt) await progressStore.ladeAlles();
+    await Promise.all([
+      pfadeStore.liste.length === 0 ? pfadeStore.ladeListe() : null,
+      aufgabenStore.liste.length === 0 ? aufgabenStore.ladeListe() : null,
+      progressStore.gesamt ? null : progressStore.ladeAlles(),
+    ]);
   });
 
-  function findeTitel(id: string): string {
-    return aufgabenStore.findeKurz(id)?.titel ?? id;
-  }
+  let suche = $state('');
+  let sprache = $state('');
+  let stand = $state<PfadStand | ''>('');
+  let offen = $state<string | null>(null);
 
-  function oeffne(id: string): void {
-    route.setze('aufgabe', id);
-  }
-
-  function pfadFortschritt(pfad: Pfad): { geloest: number; gesamt: number; prozent: number } {
-    const gesamt = pfad.reihenfolge.length;
-    const geloest = pfad.reihenfolge.filter(
-      (id) => progressStore.status(id) === 'geloest',
-    ).length;
-    return { geloest, gesamt, prozent: gesamt === 0 ? 0 : Math.round((geloest / gesamt) * 100) };
-  }
-
-  function statusIcon(id: string): string {
-    const s = progressStore.status(id);
-    if (s === 'geloest') return 'fa-circle-check';
-    if (s === 'in_arbeit') return 'fa-pen-to-square';
-    return 'fa-circle';
-  }
+  let gefiltert = $derived(
+    pfadeStore.liste.filter((p) => {
+      if (sprache && pfadSprache(p) !== sprache) return false;
+      if (stand && pfadStand(p) !== stand) return false;
+      const q = suche.trim().toLowerCase();
+      return !q || `${p.titel} ${p.beschreibung}`.toLowerCase().includes(q);
+    }),
+  );
+  let gruppen = $derived(nachSprache(gefiltert, konfig.daten.sprachen.map((s) => s.id)));
 </script>
 
-<div class="liste">
-  <header class="kopf">
-    <h1>Pfade</h1>
-    <p class="lead">Didaktisch geordnete Aufgaben-Reihen.</p>
-  </header>
+<Seite titel="Pfade" lead="{pfadeStore.liste.length} didaktisch geordnete Reihen, nach Sprache gruppiert">
+  {#snippet kopf()}
+    <div class="filter">
+      <label class="suche">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input type="text" placeholder="Pfad suchen" bind:value={suche} />
+      </label>
+      <select class="wahl" bind:value={sprache} aria-label="Sprache">
+        <option value="">Alle Sprachen</option>
+        {#each konfig.daten.sprachen as s (s.id)}<option value={s.id}>{s.titel}</option>{/each}
+      </select>
+      <select class="wahl" bind:value={stand} aria-label="Stand">
+        <option value="">Alle Stände</option>
+        <option value="offen">Nicht begonnen</option>
+        <option value="begonnen">Begonnen</option>
+        <option value="fertig">Abgeschlossen</option>
+      </select>
+    </div>
+  {/snippet}
 
   {#if pfadeStore.laden}
-    <p class="info">Lade ...</p>
+    <p class="dim">Lade ...</p>
   {:else if pfadeStore.fehler}
-    <p class="info fehler">Fehler: {pfadeStore.fehler}</p>
+    <EmptyState icon="fa-plug-circle-xmark" titel="Server nicht erreichbar" hinweis={pfadeStore.fehler} ctaText="Erneut versuchen" ctaAction={() => pfadeStore.ladeListe()} />
+  {:else if gefiltert.length === 0}
+    <EmptyState icon="fa-magnifying-glass" titel="Kein Pfad gefunden" hinweis="Passe Suche oder Auswahl an." />
   {:else}
-    {#each pfadeStore.liste as pfad (pfad.id)}
-      {@const fb = pfadFortschritt(pfad)}
-      <article class="pfad-karte">
-        <header class="pfad-kopf">
-          <i class="fa-solid fa-route" aria-hidden="true"></i>
-          <div class="info-zeile">
-            <span class="titel">{pfad.titel}</span>
-            <span class="anzahl num">{pfad.reihenfolge.length} Aufgaben</span>
-          </div>
-        </header>
-
-        <p class="beschreibung">{pfad.beschreibung}</p>
-
-        <ol class="schritte">
-          {#each pfad.reihenfolge as id, i (id)}
-            {@const status = progressStore.status(id)}
-            <li class="schritt status-{status}"
-                onclick={() => oeffne(id)} role="button" tabindex="0"
-                onkeydown={(e) => { if (e.key === 'Enter') oeffne(id); }}>
-              <span class="nummer num">{i + 1}</span>
-              <div class="text">
-                <span class="aufgabe-id">{id}</span>
-                <span class="aufgabe-titel">{findeTitel(id)}</span>
-              </div>
-              <i class="fa-solid {statusIcon(id)} status-icon-{status}" aria-hidden="true"></i>
-            </li>
-          {/each}
-        </ol>
-
-        <div class="fortschritt">
-          <span class="balken"><span class="fuell" style="width: {fb.prozent}%"></span></span>
-          <span class="dim num">{fb.geloest} / {fb.gesamt} gelöst</span>
+    {#each gruppen as [sp, liste] (sp)}
+      <div class="gruppe">{konfig.sprache(sp)?.titel ?? 'Sonstige'} <span class="num">{liste.length}</span></div>
+      {#each liste as p (p.id)}
+        {@const auf = offen === p.id}
+        <div class="pfad" class:offen={auf}>
+          <button class="pfad-zeile" onclick={() => (offen = auf ? null : p.id)} aria-expanded={auf}>
+            <i class="fa-solid {auf ? 'fa-chevron-down' : 'fa-chevron-right'} chev" aria-hidden="true"></i>
+            <b>{p.titel}</b>
+            <span class="dim">{p.reihenfolge.length} Aufgaben</span>
+            <span class="balken"><span style:width="{pfadProzent(p)}%"></span></span>
+            <span class="dim num rechts-b">{pfadGeloest(p)} / {p.reihenfolge.length}</span>
+          </button>
+          {#if auf}
+            <div class="schritte">
+              <div class="pfad-text">{p.beschreibung}</div>
+              {#each p.reihenfolge as id, i (id)}
+                {@const st = progressStore.status(id)}
+                <button class="schritt {statusKlasse(st)}" onclick={() => route.setze('aufgabe', id)}>
+                  <span class="nr">{i + 1}</span>
+                  <span class="t">{aufgabenStore.findeKurz(id)?.titel ?? id}</span>
+                  <i class="fa-solid {statusIcon(st)}" aria-hidden="true"></i>
+                </button>
+              {/each}
+            </div>
+          {/if}
         </div>
-      </article>
+      {/each}
     {/each}
   {/if}
-</div>
+</Seite>
 
 <style>
-  .liste {
-    padding: var(--sp-5) var(--sp-5) var(--sp-4);
-    overflow-y: auto;
-  }
-  .kopf { margin-bottom: var(--sp-4); }
-  h1 { margin: 0 0 var(--sp-2); font-size: var(--fs-xl); font-weight: 600; }
-  .lead {
-    margin: 0;
-    color: var(--fg-dim);
-    font-family: var(--quick);
-    font-size: var(--fs-sm);
-  }
-  .info { color: var(--fg-dim); }
-  .info.fehler { color: var(--red); }
-  .dim { color: var(--fg-dim); font-size: var(--fs-xs); }
-
-  .pfad-karte {
+  .pfad {
+    border: 1px solid var(--border);
     background: var(--bg-card-2);
-    border: 1px solid var(--border);
-    padding: var(--sp-4);
-    max-width: 760px;
-    margin-bottom: var(--sp-3);
+    margin-bottom: 4px;
   }
-  .pfad-kopf {
-    display: flex;
-    align-items: center;
+  .pfad.offen { border-color: var(--accent); }
+  .pfad-zeile {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr) 90px 140px 70px;
     gap: var(--sp-3);
-    margin-bottom: var(--sp-3);
-  }
-  .pfad-kopf i { color: var(--accent); font-size: var(--fs-xl); }
-  .info-zeile {
-    display: flex;
-    align-items: baseline;
-    gap: var(--sp-3);
-    flex: 1;
-  }
-  .titel { font-size: var(--fs-lg); font-weight: 600; }
-  .anzahl {
-    color: var(--fg-dim);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .beschreibung {
-    color: var(--fg-dim);
-    font-family: var(--quick);
-    margin: 0 0 var(--sp-4);
-    line-height: 1.65;
-  }
-  .schritte {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--sp-4);
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-  }
-  .schritte li {
-    display: flex;
     align-items: center;
-    gap: var(--sp-3);
-    padding: var(--sp-2) var(--sp-3);
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: border-color 0.15s;
-  }
-  .schritte li:hover { border-color: var(--accent); }
-  .schritte li.status-geloest {
-    border-left: 3px solid var(--green);
-  }
-  .schritte li.status-in_arbeit {
-    border-left: 3px solid var(--orange);
-  }
-  .status-icon-geloest { color: var(--green); }
-  .status-icon-in_arbeit { color: var(--orange); }
-  .status-icon-neu { color: var(--fg-mute); }
-  .nummer {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-elev);
-    color: var(--accent);
-    border: 1px solid var(--border);
+    min-height: 40px;
+    padding: 0 var(--sp-3);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--fg);
     font-size: var(--fs-md);
+    text-align: left;
   }
-  .text {
+  .pfad-zeile:hover:not(:disabled) { background: var(--bg-elev); border-color: transparent; }
+  .pfad-zeile b {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .pfad-zeile .dim { font-size: var(--fs-sm); }
+  .chev { color: var(--fg-mute); font-size: 12px; }
+  .schritte {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px var(--sp-3);
+    padding: var(--sp-2) var(--sp-3) var(--sp-3) 42px;
+    border-top: 1px solid var(--border);
+  }
+  .pfad-text {
+    grid-column: 1 / -1;
+    font-size: var(--fs-sm);
+    color: var(--fg-dim);
+    margin-bottom: 4px;
+    white-space: pre-line;
+  }
+  .schritt {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
-    flex: 1;
+    align-items: center;
+    gap: var(--sp-2);
+    min-height: 28px;
     min-width: 0;
+    padding: 0 4px;
+    border: 0;
+    background: transparent;
+    color: var(--fg);
+    font-size: var(--fs-sm);
+    text-align: left;
   }
-  .aufgabe-id {
-    font-family: var(--mono);
-    font-size: var(--fs-xs);
+  .schritt:hover:not(:disabled) { background: var(--bg-elev); border-color: transparent; }
+  .nr {
+    font-family: var(--num);
+    font-size: 11px;
+    color: var(--fg-mute);
+    width: 20px;
+    text-align: right;
+    flex: none;
+  }
+  .t {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .schritt i {
+    margin-left: auto;
+    font-size: 11px;
     color: var(--fg-mute);
   }
-  .aufgabe-titel { font-size: var(--fs-md); font-weight: 500; }
-  .fortschritt {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-3);
-  }
-  .balken {
-    flex: 1;
-    height: 8px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-  .fuell { display: block; height: 100%; background: var(--accent); }
+  .schritt.geloest i { color: var(--green); }
+  .schritt.arbeit i { color: var(--orange); }
 </style>

@@ -100,7 +100,7 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .kennzahl .warn { color: var(--orange); }
 
 /* Filter */
-.filter { display: flex; align-items: center; gap: var(--sp-2); }
+.filter { display: flex; flex-wrap: wrap; align-items: center; gap: 6px var(--sp-2); }
 .suche { flex: 1; min-width: 180px; display: flex; align-items: center; gap: var(--sp-2); height: var(--knopf-h); padding: 0 var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); color: var(--fg-mute); font-size: var(--fs-sm); }
 .suche input { flex: 1; min-width: 0; border: 0; background: transparent; outline: none; color: var(--fg); }
 .wahl { height: var(--knopf-h); padding: 0 var(--sp-2); border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: var(--fs-sm); color: var(--fg); }
@@ -131,8 +131,8 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .status-i { text-align: center; color: var(--fg-mute); }
 .status-i.geloest { color: var(--green); } .status-i.arbeit { color: var(--orange); }
 .rechts-b { text-align: right; }
-.cols-aufgaben { grid-template-columns: 20px minmax(0, 2.6fr) 104px 96px 52px 56px minmax(0, 1.4fr); }
-.cols-verwaltung { grid-template-columns: minmax(0, 2.4fr) 104px 80px 44px 64px 52px 52px 70px 112px; }
+.cols-aufgaben { grid-template-columns: 20px minmax(0, 2.6fr) 124px 96px 52px 56px minmax(0, 1.4fr); }
+.cols-verwaltung { grid-template-columns: minmax(0, 2.4fr) 124px 80px 44px 64px 52px 52px 70px 112px; }
 .zeilen-aktionen { display: flex; gap: 4px; justify-content: flex-end; }
 .zeilen-aktionen .ikon { width: 26px; height: 26px; font-size: 12px; }
 .warnmarke { color: var(--orange); font-size: 12px; }
@@ -288,7 +288,7 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .wert-kachel .num { display: block; font-size: var(--fs-lg); }
 .wert-kachel small { font-size: var(--fs-xs); color: var(--fg-dim); text-transform: uppercase; letter-spacing: .05em; }
 .reiter-klein { display: flex; border-bottom: 1px solid var(--border); flex: none; }
-.reiter-klein button { flex: 1; height: 34px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--fg-dim); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .05em; cursor: pointer; }
+.reiter-klein button { flex: 1; height: 34px; padding: 0 6px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--fg-dim); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .04em; cursor: pointer; white-space: nowrap; }
 .reiter-klein button.aktiv { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* Zielbild der Beispielaufgabe (zwei Formen auf dunklem Grund) */

@@ -1,314 +1,144 @@
 <script lang="ts">
   /*
-   * Streak-Heatmap im GitHub-Contribution-Style.
-   * Zeigt ein ganzes Jahr (53 Wochen-Spalten x 7 Wochentage), mit
-   * Pfeilen zum Vor- und Zurueck-Blaettern. Default: aktuelles Jahr.
+   * Aktivitätsfeld: ein Kästchen je Tag, Spalten sind Wochen (Montag
+   * oben). Am Rechner das ganze Jahr mit Blättern, am Telefon nur die
+   * letzten Wochen. Rechtsbündig, damit bei wenig Platz die jüngsten
+   * Wochen sichtbar bleiben.
    */
   import { onMount } from 'svelte';
   import { progressApi } from '../api/ProgressApi';
   import type { HeatmapTag } from '../api/ProgressApi';
 
+  /** nur die letzten n Wochen bis heute statt des ganzen Jahres */
+  let { wochen }: { wochen?: number } = $props();
+
+  const HEUTE = new Date();
+  const HEUTE_JAHR = HEUTE.getFullYear();
+
   let tage = $state<HeatmapTag[]>([]);
-  let geladen = $state(false);
-  let aktuelles_jahr = $state(new Date().getFullYear());
-  const HEUTE_JAHR = new Date().getFullYear();
+  let jahr = $state(HEUTE_JAHR);
 
-  onMount(async () => {
-    await ladeJahr(aktuelles_jahr);
-  });
+  onMount(() => lade(jahr));
 
-  async function ladeJahr(jahr: number): Promise<void> {
-    geladen = false;
+  async function lade(j: number): Promise<void> {
     try {
-      const r = await progressApi.heatmapJahr(jahr);
-      tage = r.tage;
+      tage = (await progressApi.heatmapJahr(j)).tage;
     } catch {
       tage = [];
-    } finally {
-      geladen = true;
     }
   }
 
-  function vorheriges_jahr(): void {
-    aktuelles_jahr -= 1;
-    void ladeJahr(aktuelles_jahr);
-  }
-  function naechstes_jahr(): void {
-    if (aktuelles_jahr >= HEUTE_JAHR) return;
-    aktuelles_jahr += 1;
-    void ladeJahr(aktuelles_jahr);
-  }
-  function dieses_jahr(): void {
-    if (aktuelles_jahr === HEUTE_JAHR) return;
-    aktuelles_jahr = HEUTE_JAHR;
-    void ladeJahr(aktuelles_jahr);
+  function blaettern(schritt: number): void {
+    jahr += schritt;
+    void lade(jahr);
   }
 
-  function formatiere_datum(d: Date): string {
-    // 'en-CA' liefert YYYY-MM-DD im lokalen Timezone -- ohne UTC-Shift
-    return d.toLocaleDateString('en-CA');
+  // 'en-CA' liefert JJJJ-MM-TT in lokaler Zeit, ohne Verschiebung nach UTC
+  const iso = (d: Date): string => d.toLocaleDateString('en-CA');
+
+  interface Zelle {
+    datum: string;
+    submissions: number;
+    bestanden: number;
   }
 
-  // Erzeugt fuer ein ganzes Jahr alle Tage mit Submission-Werten gemerged.
-  let karte = $derived.by(() => {
-    const map = new Map<string, HeatmapTag>();
-    for (const t of tage) map.set(t.datum, t);
-    const start = new Date(aktuelles_jahr, 0, 1);
-    const ende = new Date(aktuelles_jahr, 11, 31);
-    const ergebnisse: { datum: string; submissions: number; bestanden: number; wochentag: number; monat: number }[] = [];
-    const d = new Date(start);
-    while (d <= ende) {
-      const iso = formatiere_datum(d);
-      const t = map.get(iso);
-      ergebnisse.push({
-        datum: iso,
-        submissions: t?.submissions ?? 0,
-        bestanden: t?.bestanden ?? 0,
-        wochentag: d.getDay(),
-        monat: d.getMonth(),
-      });
+  let zeitraum = $derived.by(() => {
+    if (wochen) {
+      const start = new Date(HEUTE);
+      start.setDate(start.getDate() - (wochen * 7 - 1));
+      return { start, ende: new Date(HEUTE) };
+    }
+    const ende = jahr === HEUTE_JAHR ? new Date(HEUTE) : new Date(jahr, 11, 31);
+    return { start: new Date(jahr, 0, 1), ende };
+  });
+
+  // null füllt die erste Woche bis zum Starttag auf
+  let zellen = $derived.by(() => {
+    const nachDatum = new Map(tage.map((t) => [t.datum, t]));
+    const liste: (Zelle | null)[] = [];
+    const d = new Date(zeitraum.start);
+    for (let i = 0; i < (d.getDay() + 6) % 7; i++) liste.push(null);
+    while (d <= zeitraum.ende) {
+      const t = nachDatum.get(iso(d));
+      liste.push({ datum: iso(d), submissions: t?.submissions ?? 0, bestanden: t?.bestanden ?? 0 });
       d.setDate(d.getDate() + 1);
     }
-    return ergebnisse;
+    return liste;
   });
 
-  // Gruppiere die Tage in Wochen-Spalten (Montag startet eine Spalte).
-  type Zelle = { datum: string; submissions: number; bestanden: number; monat: number } | null;
-  let spalten = $derived.by(() => {
-    const sp: Zelle[][] = [];
-    if (karte.length === 0) return sp;
-    function montag_idx(wt: number): number {
-      return (wt + 6) % 7;
-    }
-    let aktuelle: Zelle[] = [];
-    for (let i = 0; i < montag_idx(karte[0].wochentag); i++) aktuelle.push(null);
-    for (const t of karte) {
-      aktuelle.push({
-        datum: t.datum,
-        submissions: t.submissions,
-        bestanden: t.bestanden,
-        monat: t.monat,
-      });
-      if (montag_idx(t.wochentag) === 6) {
-        sp.push(aktuelle);
-        aktuelle = [];
-      }
-    }
-    if (aktuelle.length > 0) {
-      while (aktuelle.length < 7) aktuelle.push(null);
-      sp.push(aktuelle);
-    }
-    return sp;
-  });
+  let echte = $derived(zellen.filter((z): z is Zelle => z !== null));
+  let aktiveTage = $derived(echte.filter((z) => z.submissions > 0).length);
+  let summe = $derived(echte.reduce((s, z) => s + z.submissions, 0));
+  let bestanden = $derived(echte.reduce((s, z) => s + z.bestanden, 0));
 
-  // Monats-Label oberhalb des Rasters: nur einmal pro Monat zeigen,
-  // an der Spalte wo der erste Tag des Monats erscheint.
-  const MONATSNAMEN = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
-  let monatslabels = $derived.by(() => {
-    const labels: { spalte_idx: number; label: string }[] = [];
-    let letzter_monat = -1;
-    spalten.forEach((sp, i) => {
-      // Erster nicht-null Eintrag der Spalte
-      const erste = sp.find((z) => z !== null);
-      if (!erste) return;
-      if (erste.monat !== letzter_monat) {
-        labels.push({ spalte_idx: i, label: MONATSNAMEN[erste.monat] });
-        letzter_monat = erste.monat;
-      }
-    });
-    return labels;
-  });
-
-  function intensitaet(submissions: number): number {
-    if (submissions === 0) return 0;
-    if (submissions === 1) return 1;
-    if (submissions <= 3) return 2;
-    if (submissions <= 6) return 3;
+  function stufe(n: number): number {
+    if (n === 0) return 0;
+    if (n === 1) return 1;
+    if (n <= 3) return 2;
+    if (n <= 6) return 3;
     return 4;
   }
-
-  let summe = $derived(karte.reduce((s, t) => s + t.submissions, 0));
-  let bestanden_summe = $derived(karte.reduce((s, t) => s + t.bestanden, 0));
-  let aktive_tage = $derived(karte.filter((t) => t.submissions > 0).length);
-
-  let kann_vor = $derived(aktuelles_jahr < HEUTE_JAHR);
 </script>
 
-<div class="heatmap">
-  <header class="kopf">
-    <span class="titel">Aktivität {aktuelles_jahr}</span>
-    <span class="zahlen">
-      <span class="num">{aktive_tage}</span> aktive Tage,
-      <span class="num">{bestanden_summe}</span> / <span class="num">{summe}</span> bestanden
+<div class="block">
+  <div class="block-kopf">
+    <span>{wochen ? `Letzte ${wochen} Wochen` : `Aktivität ${jahr}`}</span>
+    <span class="rechts">
+      {aktiveTage} aktive {aktiveTage === 1 ? 'Tag' : 'Tage'}{wochen ? '' : `, ${bestanden} / ${summe} bestanden`}
+      {#if !wochen}
+        <button class="knopf-klein" onclick={() => blaettern(-1)} aria-label="Vorheriges Jahr">
+          <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button class="knopf-klein" onclick={() => blaettern(1)} disabled={jahr >= HEUTE_JAHR} aria-label="Nächstes Jahr">
+          <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      {/if}
     </span>
-    <span class="nav">
-      <button type="button" onclick={vorheriges_jahr} aria-label="Vorheriges Jahr" title="Vorheriges Jahr">
-        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-      </button>
-      <button type="button" onclick={dieses_jahr} disabled={aktuelles_jahr === HEUTE_JAHR} class="heute-btn" title="Aktuelles Jahr">
-        Heute
-      </button>
-      <button type="button" onclick={naechstes_jahr} disabled={!kann_vor} aria-label="Nächstes Jahr" title="Nächstes Jahr">
-        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-      </button>
-    </span>
-  </header>
-
-  {#if geladen}
-    <div class="raster-wrap">
-      <div class="raster">
-        <div class="spalte spalte-monate">
-          {#each monatslabels as ml (ml.spalte_idx)}
-            <span class="monat-label" style="left: {ml.spalte_idx * 15}px">{ml.label}</span>
-          {/each}
-        </div>
-        <div class="raster-zeilen">
-          {#each spalten as spalte, sp_idx (sp_idx)}
-            <div class="spalte">
-              {#each spalte as zelle, zi (zi)}
-                {#if zelle}
-                  <span
-                    class="zelle stufe-{intensitaet(zelle.submissions)}"
-                    title={`${zelle.datum}: ${zelle.submissions} Submissions, ${zelle.bestanden} bestanden`}
-                  ></span>
-                {:else}
-                  <span class="zelle leer"></span>
-                {/if}
-              {/each}
-            </div>
-          {/each}
-        </div>
-      </div>
-    </div>
-    <div class="legende">
-      <span>weniger</span>
-      <span class="zelle stufe-0"></span>
-      <span class="zelle stufe-1"></span>
-      <span class="zelle stufe-2"></span>
-      <span class="zelle stufe-3"></span>
-      <span class="zelle stufe-4"></span>
-      <span>mehr</span>
-    </div>
-  {/if}
+  </div>
+  <div class="heat">
+    {#each zellen as z, i (i)}
+      {#if z}
+        <span class="s{stufe(z.submissions)}" title="{z.datum}: {z.submissions} Submissions, {z.bestanden} bestanden"></span>
+      {:else}
+        <span class="leer"></span>
+      {/if}
+    {/each}
+  </div>
 </div>
 
 <style>
-  .heatmap {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: var(--sp-3);
-    border-radius: var(--radius-sm);
-  }
-  .kopf {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: var(--sp-2);
-    font-size: var(--fs-xs);
-    gap: var(--sp-3);
-  }
-  .titel {
-    color: var(--fg-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .zahlen {
-    color: var(--fg-mute);
-    flex: 1;
-  }
-  .zahlen .num {
-    color: var(--fg);
-  }
-  .nav {
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-  }
-  .nav button {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--fg-dim);
-    width: 28px;
-    height: 24px;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    font-size: var(--fs-xs);
-    padding: 0;
+  .rechts {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-  }
-  .nav button:hover:not(:disabled) {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-  .nav button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-  .nav .heute-btn {
-    width: auto;
-    padding: 0 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .raster-wrap {
-    overflow-x: auto;
-    padding-bottom: 4px;
-  }
-  .raster {
-    display: flex;
-    flex-direction: column;
     gap: 4px;
-    min-width: max-content;
+    text-transform: none;
+    letter-spacing: 0;
   }
-  .spalte-monate {
-    position: relative;
-    height: 14px;
-    margin-left: 0;
+  .rechts .knopf-klein {
+    height: 20px;
+    padding: 0 6px;
   }
-  .monat-label {
-    position: absolute;
-    color: var(--fg-mute);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+  .heat {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(7, 10px);
+    grid-auto-columns: 10px;
+    gap: 2px;
+    justify-content: end;
+    overflow: hidden;
   }
-  .raster-zeilen {
-    display: flex;
-    gap: 3px;
-  }
-  .spalte:not(.spalte-monate) {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-  .zelle {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-    background: var(--bg-elev);
+  .heat span {
+    width: 10px;
+    height: 10px;
+    background: var(--bg);
     border: 1px solid var(--border);
-    box-sizing: border-box;
   }
-  .zelle.leer {
+  .heat span.leer {
     background: transparent;
-    border: none;
+    border-color: transparent;
   }
-  .zelle.stufe-0 { background: var(--bg-elev); }
-  .zelle.stufe-1 { background: color-mix(in srgb, var(--accent) 28%, var(--bg-elev)); border-color: color-mix(in srgb, var(--accent) 28%, transparent); }
-  .zelle.stufe-2 { background: color-mix(in srgb, var(--accent) 50%, var(--bg-elev)); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
-  .zelle.stufe-3 { background: color-mix(in srgb, var(--accent) 75%, var(--bg-elev)); border-color: color-mix(in srgb, var(--accent) 75%, transparent); }
-  .zelle.stufe-4 { background: var(--accent); border-color: var(--accent); }
-
-  .legende {
-    margin-top: var(--sp-2);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: var(--fs-xs);
-    color: var(--fg-mute);
-    justify-content: flex-end;
-  }
+  .heat span.s1 { background: color-mix(in srgb, var(--accent) 35%, var(--bg)); border-color: transparent; }
+  .heat span.s2 { background: color-mix(in srgb, var(--accent) 60%, var(--bg)); border-color: transparent; }
+  .heat span.s3 { background: color-mix(in srgb, var(--accent) 80%, var(--bg)); border-color: transparent; }
+  .heat span.s4 { background: var(--accent); border-color: transparent; }
 </style>

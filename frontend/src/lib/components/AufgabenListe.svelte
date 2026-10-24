@@ -1,387 +1,126 @@
 <script lang="ts">
+  /* Aufgabenliste am Rechner: Filter im festen Kopf, Tabelle mit fester Kopfzeile. */
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { pfadeStore } from '../stores/PfadeStore.svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { konfig } from '../stores/KonfigStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
+  import { aufgabenFilter as f } from '../stores/AufgabenFilterStore.svelte';
+  import { statusIcon, statusKlasse } from '../anzeige';
   import { farbeZuCss } from '../types/Konfig';
-  import type { ProgressStatus } from '../api/ProgressApi';
   import AufgabenFilter from './AufgabenFilter.svelte';
   import EmptyState from './EmptyState.svelte';
-
-  // Filter-Zustand: persistiert in localStorage. Damit bleibt die
-  // Auswahl ueber Page-Reloads und Tabs-Wechsel hinweg erhalten -- man
-  // muss nicht jedes Mal 'Python + Anfaenger + In Arbeit' neu klicken.
-  const FILTER_KEY = 'codeschmiede.aufgaben_filter';
-  interface FilterState {
-    suche: string;
-    sprache: string;
-    schwierigkeit: string;
-    status: ProgressStatus | '';
-    pfad: string;
-  }
-  function ladeFilter(): FilterState {
-    try {
-      const r = localStorage.getItem(FILTER_KEY);
-      if (r) {
-        const o = JSON.parse(r);
-        return {
-          suche: typeof o.suche === 'string' ? o.suche : '',
-          sprache: typeof o.sprache === 'string' ? o.sprache : '',
-          schwierigkeit: typeof o.schwierigkeit === 'string' ? o.schwierigkeit : '',
-          status: ['', 'neu', 'in_arbeit', 'geloest'].includes(o.status) ? o.status : '',
-          pfad: typeof o.pfad === 'string' ? o.pfad : '',
-        };
-      }
-    } catch {
-      /* ungueltig -> Default */
-    }
-    return { suche: '', sprache: '', schwierigkeit: '', status: '', pfad: '' };
-  }
-  const init = ladeFilter();
-  let suche = $state(init.suche);
-  let sprache = $state(init.sprache);
-  let schwierigkeit = $state(init.schwierigkeit);
-  let status = $state<ProgressStatus | ''>(init.status);
-  let pfad = $state(init.pfad);
-
-  $effect(() => {
-    try {
-      localStorage.setItem(
-        FILTER_KEY,
-        JSON.stringify({ suche, sprache, schwierigkeit, status, pfad }),
-      );
-    } catch {
-      /* z.B. private mode -- still */
-    }
-  });
+  import Seite from './Seite.svelte';
 
   onMount(async () => {
-    if (aufgabenStore.liste.length === 0) await aufgabenStore.ladeListe();
-    if (!progressStore.gesamt) await progressStore.ladeAlles();
-    if (pfadeStore.liste.length === 0) await pfadeStore.ladeListe();
+    await Promise.all([
+      aufgabenStore.liste.length === 0 ? aufgabenStore.ladeListe() : null,
+      progressStore.gesamt ? null : progressStore.ladeAlles(),
+      pfadeStore.liste.length === 0 ? pfadeStore.ladeListe() : null,
+    ]);
   });
 
-  function oeffne(id: string): void {
-    route.setze('aufgabe', id);
-  }
+  let treffer = $derived(f.treffer);
 
-  function statusIcon(s: string): string {
-    if (s === 'geloest') return 'fa-circle-check';
-    if (s === 'in_arbeit') return 'fa-pen-to-square';
-    return 'fa-circle';
-  }
+  let lead = $derived.by(() => {
+    const g = progressStore.gesamt;
+    const n = aufgabenStore.liste.length;
+    const sprachen = new Set(aufgabenStore.liste.map((a) => a.sprache)).size;
+    return g
+      ? `${n} Aufgaben in ${sprachen} Sprachen, ${g.aufgaben_geloest} gelöst, ${g.aufgaben_in_arbeit} in Arbeit`
+      : `${n} Aufgaben`;
+  });
 
-  function schwierigkeitFarbe(id: string): string {
-    return farbeZuCss(konfig.schwierigkeitFarbe(id));
-  }
-
-  function schwierigkeitTitel(id: string): string {
-    return konfig.schwierigkeitTitel(id);
-  }
-
-  function findeTitel(id: string): string {
+  function titelVon(id: string): string {
     return aufgabenStore.findeKurz(id)?.titel ?? id;
   }
-
-  function tagAnklicken(event: MouseEvent, tag: string): void {
-    event.stopPropagation();
-    suche = suche.trim() === `#${tag}` ? '' : `#${tag}`;
-  }
-
-  let gefiltert = $derived(
-    aufgabenStore.liste.filter((a) => {
-      if (sprache && a.sprache !== sprache) return false;
-      if (schwierigkeit && a.schwierigkeit !== schwierigkeit) return false;
-      if (status && progressStore.status(a.id) !== status) return false;
-      if (pfad === '__ohne__' && a.pfade.length > 0) return false;
-      if (pfad && pfad !== '__ohne__' && !a.pfade.includes(pfad)) return false;
-      const q = suche.trim().toLowerCase();
-      if (q) {
-        if (q.startsWith('#')) {
-          const wunsch = q.slice(1);
-          if (!a.tags.some((t) => t.toLowerCase() === wunsch)) return false;
-        } else {
-          const haystack = [a.id, a.titel, ...a.tags].join(' ').toLowerCase();
-          if (!haystack.includes(q)) return false;
-        }
-      }
-      return true;
-    }),
-  );
 </script>
 
-<div class="liste">
-  <header class="kopf">
-    <h1>Aufgaben</h1>
-  </header>
+<Seite titel="Aufgaben" lead={aufgabenStore.liste.length ? lead : undefined} ohneRand>
+  {#snippet kopf()}
+    {#if aufgabenStore.liste.length > 0}
+      <AufgabenFilter treffer={treffer.length} />
+    {/if}
+  {/snippet}
 
   {#if aufgabenStore.ladenListe}
-    <p class="info">Lade Aufgaben ...</p>
+    <p class="leer-zeile">Lade Aufgaben ...</p>
   {:else if aufgabenStore.fehler}
-    <p class="info fehler">Fehler: {aufgabenStore.fehler}</p>
-  {:else if aufgabenStore.liste.length === 0}
     <EmptyState
-      icon="fa-folder-open"
-      titel="Noch keine Aufgaben"
-      hinweis="Lege ein Verzeichnis unter aufgaben/python/NNN-id/ an. Das Backend indiziert sie automatisch."
+      icon="fa-plug-circle-xmark"
+      titel="Server nicht erreichbar"
+      hinweis={`Die Aufgaben ließen sich nicht laden (${aufgabenStore.fehler}).`}
+      ctaText="Erneut versuchen"
+      ctaAction={() => aufgabenStore.ladeListe()}
+    />
+  {:else if aufgabenStore.liste.length === 0}
+    <EmptyState icon="fa-folder-open" titel="Noch keine Aufgaben" hinweis="Lege ein Verzeichnis unter aufgaben/python/NNN-id/ an." />
+  {:else if treffer.length === 0}
+    <EmptyState
+      icon="fa-magnifying-glass"
+      titel="Kein Treffer"
+      hinweis="Passe die Filter an oder setze sie zurück."
+      ctaText="Filter zurücksetzen"
+      ctaAction={() => f.zuruecksetzen()}
     />
   {:else}
-    <AufgabenFilter
-      bind:suche
-      bind:sprache
-      bind:schwierigkeit
-      bind:status
-      bind:pfad
-      treffer={gefiltert.length}
-      gesamt={aufgabenStore.liste.length}
-    />
-
-    {#if gefiltert.length === 0}
-      <EmptyState
-        icon="fa-magnifying-glass"
-        titel="Kein Treffer"
-        hinweis="Passe die Filter an oder setze sie zurück."
-      />
-    {:else}
-      <div class="tabelle">
-        {#each gefiltert as aufgabe (aufgabe.id)}
-          {@const aktSt = progressStore.status(aufgabe.id)}
-          {@const farbe = schwierigkeitFarbe(aufgabe.schwierigkeit)}
-          <article
-            class="zeile status-{aktSt}"
-            class:gesperrt={aufgabe.gesperrt}
-            onclick={() => oeffne(aufgabe.id)}
-            role="button"
-            tabindex="0"
-            onkeydown={(e) => { if (e.key === 'Enter') oeffne(aufgabe.id); }}
-          >
-            <span class="status-icon" aria-label={aktSt} title={aufgabe.gesperrt ? 'gesperrt' : aktSt}>
-              {#if aufgabe.gesperrt}
-                <i class="fa-solid fa-lock" aria-hidden="true"></i>
-              {:else}
-                <i class="fa-solid {statusIcon(aktSt)}" aria-hidden="true"></i>
-              {/if}
-            </span>
-
-            <div class="haupt">
-              <span class="id">{aufgabe.id}</span>
-              <span class="titel">{aufgabe.titel}</span>
-              {#if aufgabe.gesperrt}
-                <span class="sperre-hint" title="Voraussetzungen offen">
-                  <i class="fa-solid fa-link" aria-hidden="true"></i>
-                  Erst lösen:
-                  {#each aufgabe.voraussetzungen_offen as v, i}
-                    <strong>{findeTitel(v)}</strong>{#if i < aufgabe.voraussetzungen_offen.length - 1}, {/if}
-                  {/each}
-                </span>
-              {/if}
-            </div>
-
-            <div class="meta">
-              <span
-                class="badge"
-                style:color={farbe}
-                style:border-color={farbe}
-              >{schwierigkeitTitel(aufgabe.schwierigkeit)}</span>
-              <span class="badge sprache">{aufgabe.sprache}</span>
-              <span class="zeit">
-                <i class="fa-regular fa-clock" aria-hidden="true"></i>
-                {aufgabe.schaetz_minuten} min
-              </span>
-              <span class="score num" title="Erreicht / Maximum">
-                <i class="fa-solid fa-coins" aria-hidden="true"></i>
-                {progressStore.proAufgabe[aufgabe.id]?.punkte_erreicht ?? 0}/{aufgabe.schwierigkeit_score}
-              </span>
-            </div>
-
-            <div class="tags">
-              {#each aufgabe.tags as tag}
-                <button
-                  type="button"
-                  class="tag"
-                  class:aktiv={suche.trim() === `#${tag}`}
-                  onclick={(e) => tagAnklicken(e, tag)}
-                  title="Nach #{tag} filtern"
-                >#{tag}</button>
-              {/each}
-            </div>
-
-            <button
-              class="oeffnen"
-              aria-label="Aufgabe öffnen"
-              onclick={(e) => { e.stopPropagation(); oeffne(aufgabe.id); }}
-            >
-              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-            </button>
-          </article>
-        {/each}
+    <div class="tabelle">
+      <div class="t-kopf cols">
+        <span></span><span>Aufgabe</span><span>Stufe</span><span>Sprache</span>
+        <span class="rechts-b">Zeit</span><span class="rechts-b">Punkte</span><span>Tags</span>
       </div>
-    {/if}
+      {#each treffer as a (a.id)}
+        {@const st = progressStore.status(a.id)}
+        <div
+          class="t-zeile cols {statusKlasse(st)}"
+          class:gesperrt={a.gesperrt}
+          role="button"
+          tabindex="0"
+          onclick={() => route.setze('aufgabe', a.id)}
+          onkeydown={(e) => { if (e.key === 'Enter') route.setze('aufgabe', a.id); }}
+        >
+          <i class="fa-solid {a.gesperrt ? 'fa-lock' : statusIcon(st)} status-i {statusKlasse(st)}" aria-hidden="true"></i>
+          <span class="zelle-titel">
+            <b>{a.titel}</b>
+            {#if a.gesperrt}
+              <span>Erst lösen: {a.voraussetzungen_offen.map(titelVon).join(', ')}</span>
+            {:else}
+              <span>{a.id}</span>
+            {/if}
+          </span>
+          <span><span class="badge" style:color={farbeZuCss(konfig.schwierigkeitFarbe(a.schwierigkeit))}>{konfig.schwierigkeitTitel(a.schwierigkeit)}</span></span>
+          <span><span class="badge sprache">{konfig.sprache(a.sprache)?.titel ?? a.sprache}</span></span>
+          <span class="rechts-b dim">{a.schaetz_minuten} min</span>
+          <span class="rechts-b num">{progressStore.proAufgabe[a.id]?.punkte_erreicht ?? 0}/{a.schwierigkeit_score}</span>
+          <span class="zelle-tags">
+            {#each a.tags as tag (tag)}
+              <button
+                class="tag"
+                class:aktiv={f.suche.trim() === `#${tag}`}
+                onclick={(e) => { e.stopPropagation(); f.schlagwort(tag); }}
+              >#{tag}</button>
+            {/each}
+          </span>
+        </div>
+      {/each}
+    </div>
   {/if}
-</div>
+</Seite>
 
 <style>
-  .liste {
-    padding: var(--sp-5) var(--sp-5) var(--sp-4);
-    overflow-y: auto;
+  .cols {
+    grid-template-columns: 20px minmax(0, 2.6fr) 124px 96px 52px 56px minmax(0, 1.4fr);
   }
-  .kopf {
-    margin-bottom: var(--sp-2);
-  }
-  h1 {
-    margin: 0;
-    font-size: var(--fs-xl);
-    font-weight: 600;
-  }
-  .info {
-    color: var(--fg-dim);
-    font-family: var(--quick);
-  }
-  .info.fehler {
-    color: var(--red);
-  }
-
-  .tabelle {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-  }
-  .zeile {
-    display: grid;
-    grid-template-columns: 28px 1.6fr 1.4fr 1.2fr 44px;
-    gap: var(--sp-3);
-    align-items: center;
-    background: var(--bg-card-2);
-    border: 1px solid var(--border);
-    padding: var(--sp-3) var(--sp-4);
-    transition: border-color 0.15s, transform 0.15s;
-    cursor: pointer;
-  }
-  .zeile:hover {
-    border-color: var(--accent);
-    transform: translateY(-1px);
-  }
-  .zeile.status-geloest {
-    border-left: 3px solid var(--green);
-  }
-  .zeile.status-in_arbeit {
-    border-left: 3px solid var(--orange);
-  }
-  .zeile.gesperrt {
-    opacity: 0.55;
-    border-left: 3px dashed var(--fg-mute);
-  }
-  .zeile.gesperrt:hover {
-    opacity: 0.85;
-  }
-  .status-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--fg-mute);
-    font-size: var(--fs-md);
-  }
-  .zeile.status-geloest .status-icon {
-    color: var(--green);
-  }
-  .zeile.status-in_arbeit .status-icon {
-    color: var(--orange);
-  }
-  .zeile.gesperrt .status-icon {
-    color: var(--fg-mute);
-  }
-  .haupt {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-  }
-  .id {
-    font-family: var(--mono);
-    font-size: var(--fs-xs);
-    color: var(--fg-mute);
-  }
-  .titel {
-    font-size: var(--fs-md);
-    font-weight: 600;
-    color: var(--fg);
-  }
-  .sperre-hint {
-    color: var(--orange);
-    font-size: var(--fs-xs);
-    font-family: var(--quick);
-    margin-top: 2px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    flex-wrap: wrap;
-  }
-  .sperre-hint strong {
-    font-weight: 600;
-  }
-  .meta {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-    flex-wrap: wrap;
-  }
-  .badge {
-    padding: 2px 8px;
-    border: 1px solid var(--border);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--fg-dim);
-    border-radius: var(--radius-sm);
-    background: var(--bg-card);
-  }
-  .badge.sprache { color: var(--accent); border-color: var(--accent); }
-  .zeit {
-    color: var(--fg-dim);
-    font-size: var(--fs-xs);
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .score {
-    font-size: var(--fs-sm);
-    color: var(--accent);
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .tags { display: flex; gap: var(--sp-1); flex-wrap: wrap; }
-  .tag {
-    padding: 1px 6px;
-    background: var(--bg-elev);
-    color: var(--fg-mute);
-    font-size: var(--fs-xs);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-    font-family: var(--mono);
-    cursor: pointer;
-    transition: color 0.15s, border-color 0.15s, background 0.15s;
-  }
-  .tag:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-  .tag.aktiv {
-    color: var(--accent);
-    border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 14%, transparent);
-  }
-  .oeffnen {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--fg-dim);
-    width: 36px;
-    height: 36px;
+  .zelle-tags .tag {
+    border: 0;
     padding: 0;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
+    background: transparent;
+    line-height: 18px;
   }
-  .oeffnen:hover { color: var(--accent); border-color: var(--accent); }
+  .zelle-tags .tag:hover,
+  .zelle-tags .tag.aktiv {
+    color: var(--accent);
+    background: transparent;
+  }
 </style>

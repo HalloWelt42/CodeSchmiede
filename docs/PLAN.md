@@ -27,6 +27,7 @@ Geklärt am 24.10.2026 (Analyse plus Frage-für-Frage-Klärung). Entwürfe der O
 | Lokale KI | Nur als Hilfe im Lernhelfer (Nachschlagewerk mit Wissenspool), gerechnet auf dem Mac über die Leitstelle; Wissenspool und Einzelheiten vor dem Bau klären |
 | Lernhelfer | Die lokale KI ist nur Hilfe: Assistent und Nachschlagewerk, das man nach Befehlen und Anweisungen fragt und das dafür in einem Wissenspool sucht (Nutzer 24.10.2026). Schwebendes, verschiebbares Hilfefenster mit diesem Lernhelfer (über die Leitstelle, Anwendung "Codeschmiede" ist angemeldet): löst nie die Aufgabe, gibt Rückfragen, kleine korrekte Bausteine (einzelne Befehle mit neutralem Mini-Beispiel), erklärt Fehler, schlägt den nächsten kleinen Schritt vor; minimalistisch. Der Server gibt ihm nur Aufgabentext, eigenen Code und letztes Ergebnis, nie Musterlösung oder versteckte Tests (Nutzer 24.10.2026). Einzelheiten vor dem Bau klären |
 | Aufbaukurs | Ein idiotensicherer Aufbaukurs von null an, in kleinsten Schritten mit einer neuen Sache je Aufgabe, als eigener zweiter Lauf in Schritt 7 (Nutzer 25.10.2026). Bisher gibt es nur Themenpfade (Python-Grundlagen hat 3 Aufgaben). Ideen und Reihenfolge der Themen kommen von einer großen bekannten Lernseite für Webtechnik und Programmierung; übernommen wird nur, was sinnvoll ist, und alles wird neu geschrieben: eigene Erklärungen, eigene Beispiele, eigene Werte und Namen, kein Text und kein Beispielcode im Wortlaut. Kursform und Umfang vor dem Bau klären |
+| Aufgabenvarianten (später) | Je Aufgabe mehr Vielfalt: Werte vorab erzeugen und nachrechnen, bei Auswahlaufgaben die Reihenfolge der Antworten zufällig mischen, immer nachweislich korrekt; dazu eine Lösungserklärung, die das Verständnis stärkt. Als Plan aufgehoben, weil es aufwendig ist (Nutzer 25.10.2026) |
 | Literaturhinweise | Passende Stellen aus den eigenen Büchern als Literaturhinweise (zur Aufgabe und im Lernhelfer), gefunden über den Wissenspool. Nur für die eigene Installation: öffentlich hat kaum jemand diese Bücher (Nutzer 25.10.2026). Darum abschaltbar und ab Werk aus; Titel, Fundstellen und Zugang liegen nicht im öffentlichen Repo, sondern kommen zur Laufzeit aus dem privaten Wissenspool. Einzelheiten vor dem Bau klären |
 | CSS-Bewertung | Nach dem Bild, nicht nach Eigenschaften: Deckung mit dem Ziel in Prozent und Kürze des Codes entscheiden; die Deckung wird grafisch gezeigt (Überblenden, eingefärbte Abweichung), das ist spannender als eine Liste (Nutzer 24.10.2026) |
 | CSS-Ansicht | Beim Lösen stehen Ziel und eigenes Ergebnis untereinander in der rechten Spalte, Zoom mit dem Mausrad auf beiden zugleich, gedämpft für Trackpad und Mac-Maus (Stärke nach Scrollweite, ein Schritt je Bildschirmbild, höchstens 8 %); Ergebnis und Verlauf wandern aus der rechten Spalte in die Reiter links (Entwurf `mockups/rechner-css.html`) |
@@ -52,7 +53,7 @@ Jeder Schritt einzeln committet und gepusht.
    - neue versteckte Tests für die 134 verratenen Aufgaben
    - Umlaute und einfache Bindestriche in Texten und Titeln (IDs bleiben ASCII)
    - Warnung beim Einlesen
-4. **Oberfläche** nach den Entwürfen: feste Köpfe, Rollfelder, Telefonschale (Freigabe der Entwürfe vorher einholen).
+4. **Oberfläche** nach den Entwürfen: feste Köpfe, Rollfelder, Telefonschale (Entwürfe freigegeben 25.10.2026, erledigt mit 0.75.0).
 5. **Anmeldung und Ausrollen auf den Pi**
    - Kellerwolke-Konto
    - Daten unter `/mnt/data`
@@ -97,9 +98,19 @@ Jeder Schritt einzeln committet und gepusht.
 - Werkzeug `scripts/verratene-tests-ersetzen.py`: prüft Vorschläge aus einer Datei (Art, Merkmale, Doppelte, Sandbox-Lauf aller Musterlösungen, Lecksuche) und schreibt sie erst danach
 - Bestandsprüfung: 644 Aufgaben, 0 Ladefehler, 0 Befunde
 
+## Ergebnis Schritt 4
+
+- Gestaltungssystem aus den Entwürfen in `frontend/src/styles/global.css` (Seite, Kopf, Rollfeld, Knöpfe, Reiter, Kennzahlen, Filter, Tabellen, Karten, Telefonbausteine); Entwurf und App nutzen dieselben Klassen und Werte
+- Rechnerschale: feste Kopfleiste, Navigation breit oder nur mit Symbolen (unter 1200 px immer schmal), Fuß mit Fassung
+- Übersichten mit festem Kopf und Rollfeld: Dashboard (drei Karten, Fortschritt, Aktivität, Erfolge), Aufgaben (Tabelle mit fester Kopfzeile, Filter gespeichert), Pfade (nach Sprache gruppiert, aufklappbar), Verwaltung (Kennzahlenleiste, aufklappbare Zeile mit Tests, Beschreibung, Hinweisen, Startcode, technischen Daten; Befunde der Bestandsprüfung, sobald es welche gibt)
+- Aufgabenansicht: ein gemeinsames Spaltenlayout für Code, SQL, Lückentext und CSS; der Prüfen-Knopf gehört dem Layout; Ergebnis mit Trefferzahl und Testzeilen
+- CSS-Aufgabe nach Entwurf: Reiter Aufgabe, Hinweise, Verlauf, Lösung; Zeichenzahl im Editorkopf; rechts Ziel über eigenem Ergebnis, Getrennt, Überblenden mit Regler, Abweichung als Farbdifferenz, gemeinsamer gedämpfter Zoom. Der Ring zeigt bis zur Bewertung nach Deckung (Schritt 6) den Anteil erfüllter Prüfpunkte, daneben Zeichen und eigener Bestwert
+- Telefon als eigene Schale: Reiter unten ohne Abstand über dem Home-Balken, eigene Startseite, Aufgaben- und Pfadliste; jede Aufgabe in drei Schritten (Aufgabe, Code, Ergebnis), nach dem Prüfen direkt beim Ergebnis
+- Geprüft: alle Ansichten in 1920, 1440, 1280, 1100, 900 und 390 px ohne seitliches Rollen und ohne Überlauf, Seite rollt nie als Ganzes; Prüfablauf am Telefon mit der Sandbox
+- Texte bereinigt (doppelte Bindestriche, Ersatzschreibungen in Bestätigungen und im Aufgabeneditor)
+
 ## Offen
 
-- Freigabe der Entwürfe in `mockups/` (vor Schritt 4).
 - Entwürfe der Spiele (Schritt 6).
 - Port und Adresse auf dem Pi werden beim Ausrollen nach den Regeln des Unterbaus vergeben.
 - Startreserve der Sandbox auf dem Pi messen (am Mac braucht Docker Desktop gerade 6 bis 13 s je Container).

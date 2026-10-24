@@ -150,11 +150,16 @@
 
 <style>
   .quiz {
-    padding: var(--sp-5);
+    flex: 1;
+    min-height: 0;
+    padding: var(--sp-4);
     overflow-y: auto;
     max-width: 880px;
     margin: 0 auto;
     width: 100%;
+  }
+  :global([data-geraet='telefon']) .quiz {
+    padding: var(--sp-3);
   }
   .warn {
     color: var(--orange);
@@ -165,7 +170,7 @@
   }
 
   .frage {
-    margin-bottom: var(--sp-5);
+    margin-bottom: var(--sp-4);
   }
   h2 {
     font-family: var(--sans);

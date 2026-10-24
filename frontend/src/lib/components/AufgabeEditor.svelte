@@ -535,9 +535,9 @@
 
           <fieldset>
             <legend>Sichtbare Tests</legend>
-            <p class="lead">Werte als JSON: <code>[1, 2]</code>, <code>true</code>, <code>"hallo"</code>, <code>null</code></p>
+            <p class="erklaerung">Werte als JSON: <code>[1, 2]</code>, <code>true</code>, <code>"hallo"</code>, <code>null</code></p>
             {#each tests_sichtbar_text as _, idx (idx)}
-              <div class="test-zeile">
+              <div class="testfall-zeile">
                 <input type="text" bind:value={tests_sichtbar_text[idx].input} placeholder="[3, 4]" class="mono" />
                 <span class="zeichen">→</span>
                 <input type="text" bind:value={tests_sichtbar_text[idx].expected} placeholder="7" class="mono" />
@@ -553,9 +553,9 @@
 
           <fieldset>
             <legend>Versteckte Tests</legend>
-            <p class="lead">Anti-Hardcoding -- nur in dieser Verwaltung sichtbar.</p>
+            <p class="erklaerung">Gegen fest eingetragene Antworten, nur in dieser Verwaltung sichtbar.</p>
             {#each tests_versteckt_text as _, idx (idx)}
-              <div class="test-zeile">
+              <div class="testfall-zeile">
                 <input type="text" bind:value={tests_versteckt_text[idx].input} placeholder="[100]" class="mono" />
                 <span class="zeichen">→</span>
                 <input type="text" bind:value={tests_versteckt_text[idx].expected} placeholder="200" class="mono" />
@@ -655,10 +655,10 @@
           {#if versionen.length > 0}
             <fieldset>
               <legend>Versionsgeschichte ({versionen.length})</legend>
-              <p class="lead">
-                Jede inhaltliche Aenderung erhoeht die `revision` -- alte
-                Submissions referenzieren weiterhin die zum Submit-Zeitpunkt
-                gueltige Version.
+              <p class="erklaerung">
+                Jede inhaltliche Änderung erhöht die Revision; alte
+                Submissions verweisen weiter auf die Fassung, die beim
+                Einreichen galt.
               </p>
               <ul class="versionen-liste">
                 {#each versionen as v (v.revision)}
@@ -772,7 +772,7 @@
     letter-spacing: 0.05em;
     color: var(--accent);
   }
-  .lead {
+  .erklaerung {
     margin: 0 0 var(--sp-2);
     color: var(--fg-dim);
     font-size: var(--fs-xs);
@@ -829,14 +829,14 @@
     font-size: var(--fs-xs);
   }
 
-  .test-zeile {
+  .testfall-zeile {
     display: grid;
     grid-template-columns: 1fr 24px 1fr 32px;
     gap: var(--sp-2);
     align-items: center;
     margin-bottom: var(--sp-1);
   }
-  .test-zeile .zeichen {
+  .testfall-zeile .zeichen {
     color: var(--fg-mute);
     text-align: center;
   }

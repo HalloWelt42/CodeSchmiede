@@ -1,11 +1,10 @@
 <script lang="ts">
   /*
-   * Rechte Spalte: Ergebnis der Pruefung.
-   * Bei Bestanden zeigt eine Erfolgs-Zeile mit Punkten und einem
-   * Weiter-Button zur nächsten Aufgabe.
-   * Stdout vom Nutzer-Code wird oben angezeigt, wenn nicht leer.
+   * Ergebnis der Prüfung: Rahmen mit Bestanden und Trefferzahl, je
+   * sichtbarem Test eine Zeile, die versteckten nur als Anzahl, dazu
+   * Ausgaben, Kennzahlen und der Vergleich mit den Musterlösungen.
    */
-  import type { SubmissionAntwort, TestErgebnis } from '../types/Submission';
+  import type { SubmissionAntwort } from '../types/Submission';
 
   interface Props {
     ergebnis: SubmissionAntwort | null;
@@ -18,448 +17,155 @@
 
   let { ergebnis, fehler, laeuft, anzahl_versteckt, schwierigkeit_score, onWeiter }: Props = $props();
 
-  function formatiereWert(wert: unknown): string {
-    return JSON.stringify(wert);
-  }
+  const wert = (w: unknown): string => JSON.stringify(w);
 </script>
 
-<div class="output">
-  <header class="kopf">
-    <span class="label">Ergebnis</span>
-    {#if ergebnis}
-      <span class="status" class:bestanden={ergebnis.bestanden}>
-        <i class="fa-solid {ergebnis.bestanden ? 'fa-check' : 'fa-xmark'}" aria-hidden="true"></i>
-        {ergebnis.bestanden ? 'Bestanden' : 'Noch nicht bestanden'}
+{#if laeuft}
+  <p class="leer"><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span>Code läuft in der Sandbox ...</span></p>
+{:else if fehler}
+  <p class="leer fehlertext"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span>{fehler}</span></p>
+{:else if !ergebnis}
+  <p class="leer"><i class="fa-solid fa-flask" aria-hidden="true"></i><span>Noch nicht geprüft. <strong>Prüfen</strong> startet den Lauf in der Sandbox.</span></p>
+{:else}
+  {@const p = ergebnis.pruefung}
+  {@const bestandenSichtbar = p.sichtbar.filter((t) => t.bestanden).length}
+  <div class="ergebnis-kopf" class:nein={!ergebnis.bestanden}>
+    <i class="fa-solid {ergebnis.bestanden ? 'fa-circle-check' : 'fa-circle-xmark'}" aria-hidden="true"></i>
+    {ergebnis.bestanden ? 'Bestanden' : 'Noch nicht bestanden'}
+    <span class="num">{bestandenSichtbar + p.versteckt_pass} / {p.sichtbar.length + anzahl_versteckt}</span>
+  </div>
+
+  {#each p.sichtbar as t (t.index)}
+    <div class="test-zeile">
+      <i class="fa-solid {t.bestanden ? 'fa-check ok' : 'fa-xmark nein'}" aria-hidden="true"></i>
+      <span class="aufruf">
+        {t.eingabe.map(wert).join(', ')}
+        {#if t.bestanden}
+          -&gt; {wert(t.tatsaechlich)}
+        {:else if t.fehler}
+          <span class="fehlertext">{t.fehler}</span>
+        {:else}
+          -&gt; {wert(t.tatsaechlich)} <span class="fehlertext">statt {wert(t.erwartet)}</span>
+        {/if}
       </span>
-    {/if}
-  </header>
-
-  {#if laeuft}
-    <div class="leer">
-      <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
-      Code läuft im Container ...
     </div>
-  {:else if fehler}
-    <div class="leer fehler">
-      <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
-      {fehler}
+  {/each}
+  {#if anzahl_versteckt > 0}
+    <div class="test-zeile">
+      <i class="fa-solid {p.versteckt_fail === 0 ? 'fa-check ok' : 'fa-xmark nein'}" aria-hidden="true"></i>
+      {p.versteckt_fail === 0
+        ? `${anzahl_versteckt} versteckte Tests bestanden`
+        : `${p.versteckt_pass} von ${anzahl_versteckt} versteckten Tests bestanden`}
     </div>
-  {:else if !ergebnis}
-    <div class="leer">
-      <i class="fa-solid fa-flask" aria-hidden="true"></i>
-      Noch nicht geprüft. Klick auf <strong>Prüfen</strong> startet den Sandbox-Lauf.
-    </div>
-  {:else}
-    {@const p = ergebnis.pruefung}
-
-    {#if ergebnis.bestanden}
-      <section class="erfolg">
-        <div class="erfolg-info">
-          <span class="punkte num">+{ergebnis.progress.punkte_erreicht}</span>
-          <span class="punkte-text">von {schwierigkeit_score} Punkten</span>
-        </div>
-        <button type="button" class="weiter" onclick={onWeiter}>
-          Weiter
-          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-        </button>
-      </section>
-    {/if}
-
-    {#if p.stdout}
-      <section class="block stdout-block">
-        <h3>Standardausgabe</h3>
-        <pre class="konsole">{p.stdout}</pre>
-      </section>
-    {/if}
-
-    <section class="block">
-      <h3>Sichtbare Tests</h3>
-      <ul class="test-liste">
-        {#each p.sichtbar as t (t.index)}
-          <li class:bestanden={t.bestanden} class:fail={!t.bestanden}>
-            <i class="fa-solid {t.bestanden ? 'fa-check' : 'fa-xmark'}" aria-hidden="true"></i>
-            <code class="aufruf">f({t.eingabe.map(formatiereWert).join(', ')})</code>
-            {#if t.bestanden}
-              <span class="zeichen">=</span>
-              <code class="wert">{formatiereWert(t.tatsaechlich)}</code>
-            {:else if t.fehler}
-              <span class="fehlertext">{t.fehler}</span>
-            {:else}
-              <span class="zeichen">→</span>
-              <code class="wert ist">{formatiereWert(t.tatsaechlich)}</code>
-              <span class="zeichen">≠</span>
-              <code class="wert soll">{formatiereWert(t.erwartet)}</code>
-            {/if}
-          </li>
-        {/each}
-      </ul>
-    </section>
-
-    {#if anzahl_versteckt > 0}
-      <section class="block">
-        <h3>Versteckte Tests</h3>
-        <div class="versteckt-zeile">
-          <span class="versteckt-balken">
-            {#each Array(anzahl_versteckt) as _, i}
-              <span
-                class="punkt"
-                class:pass={i < p.versteckt_pass}
-                class:fail={i >= p.versteckt_pass && i < p.versteckt_pass + p.versteckt_fail}
-                title={i < p.versteckt_pass ? 'bestanden' : 'fehlgeschlagen'}
-              ></span>
-            {/each}
-          </span>
-          <span class="versteckt-stats num">
-            {p.versteckt_pass} / {anzahl_versteckt}
-          </span>
-        </div>
-      </section>
-    {/if}
-
-    {#if p.timeout}
-      <section class="block warn">
-        <i class="fa-solid fa-clock" aria-hidden="true"></i>
-        Timeout -- der Code lief länger als erlaubt.
-      </section>
-    {/if}
-
-    {#if p.stderr}
-      <section class="block">
-        <h3>Fehlerausgabe</h3>
-        <pre class="konsole stderr">{p.stderr}</pre>
-      </section>
-    {/if}
-
-    <section class="block performance">
-      <h3>Performance</h3>
-      <dl class="metrik">
-        <div>
-          <dt>Laufzeit</dt>
-          <dd class="num">{p.laufzeit_ms.toFixed(0)} ms</dd>
-        </div>
-        <div>
-          <dt>Codelänge</dt>
-          <dd class="num">{ergebnis.codelaenge_zeichen} Zeichen</dd>
-        </div>
-        <div>
-          <dt>Versuche</dt>
-          <dd class="num">{ergebnis.progress.versuche}</dd>
-        </div>
-      </dl>
-    </section>
-
-    {#if ergebnis.vergleich.length > 0}
-      {@const max_zeit = Math.max(p.laufzeit_ms, ...ergebnis.vergleich.map((v) => v.laufzeit_ms))}
-      {@const max_laenge = Math.max(ergebnis.codelaenge_zeichen, ...ergebnis.vergleich.map((v) => v.codelaenge_zeichen))}
-      <section class="block vergleich">
-        <h3>Vergleich mit Musterlösungen</h3>
-
-        <div class="vergleich-gruppe">
-          <span class="gruppe-label">Laufzeit</span>
-          <ul class="vergleich-liste">
-            <li class="eigene">
-              <span class="variante">deine Lösung</span>
-              <span class="balken-rahmen">
-                <span class="balken eigen-balken" style="width: {max_zeit > 0 ? (p.laufzeit_ms / max_zeit) * 100 : 0}%"></span>
-              </span>
-              <span class="wert num">{p.laufzeit_ms.toFixed(0)} ms</span>
-            </li>
-            {#each ergebnis.vergleich as v}
-              <li>
-                <span class="variante">{v.variante}</span>
-                <span class="balken-rahmen">
-                  <span class="balken muster-balken" style="width: {max_zeit > 0 ? (v.laufzeit_ms / max_zeit) * 100 : 0}%"></span>
-                </span>
-                <span class="wert num">{v.laufzeit_ms.toFixed(0)} ms</span>
-              </li>
-            {/each}
-          </ul>
-        </div>
-
-        <div class="vergleich-gruppe">
-          <span class="gruppe-label">Codelänge</span>
-          <ul class="vergleich-liste">
-            <li class="eigene">
-              <span class="variante">deine Lösung</span>
-              <span class="balken-rahmen">
-                <span class="balken eigen-balken" style="width: {max_laenge > 0 ? (ergebnis.codelaenge_zeichen / max_laenge) * 100 : 0}%"></span>
-              </span>
-              <span class="wert num">{ergebnis.codelaenge_zeichen} Z.</span>
-            </li>
-            {#each ergebnis.vergleich as v}
-              <li>
-                <span class="variante">{v.variante}</span>
-                <span class="balken-rahmen">
-                  <span class="balken muster-balken" style="width: {max_laenge > 0 ? (v.codelaenge_zeichen / max_laenge) * 100 : 0}%"></span>
-                </span>
-                <span class="wert num">{v.codelaenge_zeichen} Z.</span>
-              </li>
-            {/each}
-          </ul>
-        </div>
-      </section>
-    {/if}
   {/if}
-</div>
+
+  {#if p.timeout}
+    <p class="hinweis-box abstand"><i class="fa-solid fa-clock" aria-hidden="true"></i>Zeit überschritten: der Code lief länger als erlaubt.</p>
+  {/if}
+  {#if p.stdout}
+    <div class="gruppe abstand">Standardausgabe</div>
+    <pre class="konsole">{p.stdout}</pre>
+  {/if}
+  {#if p.stderr}
+    <div class="gruppe abstand">Fehlerausgabe</div>
+    <pre class="konsole fehlertext">{p.stderr}</pre>
+  {/if}
+
+  <p class="dim kennzahlen-text">
+    Laufzeit {p.laufzeit_ms.toFixed(0)} ms, {ergebnis.codelaenge_zeichen} Zeichen, {ergebnis.progress.versuche}. Versuch{#if ergebnis.bestanden}, +{ergebnis.progress.punkte_erreicht} von {schwierigkeit_score} Punkten{/if}
+  </p>
+  {#if ergebnis.bestanden}
+    <button class="knopf primaer" onclick={onWeiter}>
+      <i class="fa-solid fa-forward" aria-hidden="true"></i>Nächste Aufgabe
+    </button>
+  {/if}
+
+  {#if ergebnis.vergleich.length > 0}
+    {@const maxZeit = Math.max(p.laufzeit_ms, ...ergebnis.vergleich.map((v) => v.laufzeit_ms))}
+    {@const maxLaenge = Math.max(ergebnis.codelaenge_zeichen, ...ergebnis.vergleich.map((v) => v.codelaenge_zeichen))}
+    {@const zeilen = [
+      { name: 'deine Lösung', zeit: p.laufzeit_ms, laenge: ergebnis.codelaenge_zeichen, eigen: true },
+      ...ergebnis.vergleich.map((v) => ({ name: v.variante, zeit: v.laufzeit_ms, laenge: v.codelaenge_zeichen, eigen: false })),
+    ]}
+    <div class="gruppe abstand">Vergleich mit den Musterlösungen</div>
+    <div class="vergleich">
+      <span class="spalte-titel"></span><span class="spalte-titel">Laufzeit</span><span class="spalte-titel">Zeichen</span>
+      {#each zeilen as z (z.name)}
+        <span class="name" class:eigen={z.eigen}>{z.name}</span>
+        <span class="wert-zelle">
+          <span class="balken"><span style:width="{maxZeit ? (z.zeit / maxZeit) * 100 : 0}%"></span></span>
+          <span class="num">{z.zeit.toFixed(0)} ms</span>
+        </span>
+        <span class="wert-zelle">
+          <span class="balken"><span style:width="{maxLaenge ? (z.laenge / maxLaenge) * 100 : 0}%"></span></span>
+          <span class="num">{z.laenge}</span>
+        </span>
+      {/each}
+    </div>
+  {/if}
+{/if}
 
 <style>
-  .output {
-    display: block;
-  }
-  .kopf {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--sp-2) var(--sp-3);
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-card);
-  }
-  .label {
-    color: var(--fg-dim);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .status {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-2);
-    color: var(--red);
-    font-size: var(--fs-sm);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .status.bestanden { color: var(--green); }
-
   .leer {
-    padding: var(--sp-5);
+    margin: var(--sp-4) 0;
     color: var(--fg-dim);
-    text-align: center;
     font-family: var(--quick);
     font-size: var(--fs-sm);
     display: flex;
-    flex-direction: column;
-    gap: var(--sp-3);
-    align-items: center;
-  }
-  .leer i { font-size: var(--fs-xl); color: var(--fg-mute); }
-  .leer.fehler { color: var(--red); }
-  .leer.fehler i { color: var(--red); }
-
-  .erfolg {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--sp-3);
-    background: color-mix(in srgb, var(--green) 10%, transparent);
-    border-bottom: 1px solid var(--green);
-  }
-  .erfolg-info {
-    display: flex;
+    gap: var(--sp-2);
     align-items: baseline;
-    gap: var(--sp-2);
   }
-  .punkte {
-    color: var(--green);
-    font-size: var(--fs-xl);
+  .leer i { color: var(--fg-mute); }
+  .fehlertext { color: var(--red); }
+  .aufruf {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
-  .punkte-text {
-    color: var(--fg-dim);
-    font-size: var(--fs-sm);
-  }
-  .weiter {
-    background: var(--green);
-    border: 1px solid var(--green);
-    color: var(--bg);
-    padding: 8px 14px;
-    font-size: var(--fs-sm);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-2);
-  }
-  .weiter:hover {
-    filter: brightness(1.1);
-  }
-
-  .block {
-    padding: var(--sp-3);
-    border-bottom: 1px solid var(--border);
-  }
-  .block.stdout-block {
-    background: var(--bg-card-2);
-  }
-  .block.warn {
-    background: color-mix(in srgb, var(--orange) 10%, transparent);
-    color: var(--orange);
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-  }
-  h3 {
-    font-family: var(--sans);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--fg-dim);
-    margin: 0 0 var(--sp-2);
-  }
-
-  .test-liste {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-1);
-  }
-  .test-liste li {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-    padding: 4px var(--sp-2);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    font-size: var(--fs-xs);
-    flex-wrap: wrap;
-  }
-  .test-liste li.bestanden i { color: var(--green); }
-  .test-liste li.fail i { color: var(--red); }
-  .test-liste code {
-    font-family: var(--mono);
-    background: transparent;
-    border: none;
-    padding: 0;
-    color: var(--fg);
-  }
-  .aufruf { color: var(--fg-dim) !important; }
-  .wert.ist { color: var(--red) !important; }
-  .wert.soll { color: var(--green) !important; }
-  .zeichen { color: var(--fg-mute); }
-  .fehlertext {
-    color: var(--red);
-    font-family: var(--mono);
-    font-size: var(--fs-xs);
-  }
-
-  .versteckt-zeile {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-3);
-  }
-  .versteckt-balken {
-    display: inline-flex;
-    gap: 4px;
-    flex: 1;
-  }
-  .punkt {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border-radius: 2px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-  }
-  .punkt.pass { background: var(--green); border-color: var(--green); }
-  .punkt.fail { background: var(--red); border-color: var(--red); }
-  .versteckt-stats {
-    color: var(--fg-dim);
-    font-size: var(--fs-sm);
-  }
-
+  .abstand { margin-top: var(--sp-3); }
   .konsole {
     margin: 0;
-    padding: var(--sp-2) var(--sp-3);
+    padding: var(--sp-2);
     background: var(--bg);
     border: 1px solid var(--border);
     font-family: var(--mono);
-    font-size: var(--fs-xs);
-    color: var(--fg);
-    overflow-x: auto;
+    font-size: 12px;
     white-space: pre-wrap;
-    max-height: 200px;
+    overflow-wrap: anywhere;
+    max-height: 180px;
     overflow-y: auto;
   }
-  .konsole.stderr { color: var(--red); }
-
-  .performance .metrik {
+  .kennzahlen-text {
+    font-size: var(--fs-sm);
+    margin: var(--sp-2) 0;
+  }
+  .vergleich {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--sp-2);
-    margin: 0;
-  }
-  .performance dt {
-    color: var(--fg-mute);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .performance dd {
-    margin: 2px 0 0;
-    color: var(--fg);
-    font-size: var(--fs-md);
-  }
-
-  .vergleich-gruppe {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-1);
-  }
-  .vergleich-gruppe + .vergleich-gruppe {
-    margin-top: var(--sp-3);
-  }
-  .gruppe-label {
-    color: var(--fg-mute);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .vergleich-liste {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .vergleich-liste li {
-    display: grid;
-    grid-template-columns: 110px 1fr 70px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4px var(--sp-2);
     align-items: center;
-    gap: var(--sp-2);
     font-size: var(--fs-xs);
   }
-  .variante {
+  .spalte-titel {
+    color: var(--fg-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .name {
     color: var(--fg-dim);
-    font-family: var(--quick);
-    text-overflow: ellipsis;
     overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .vergleich-liste li.eigene .variante {
-    color: var(--accent);
-    font-weight: 600;
+  .name.eigen { color: var(--accent); }
+  .wert-zelle {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px;
+    align-items: center;
   }
-  .balken-rahmen {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    height: 14px;
-    position: relative;
-  }
-  .balken {
-    display: block;
-    height: 100%;
-    transition: width 0.3s ease;
-  }
-  .eigen-balken { background: var(--accent); }
-  .muster-balken { background: var(--fg-mute); }
-  .vergleich-liste .wert {
-    color: var(--fg);
+  .wert-zelle .num {
+    font-weight: 500;
+    min-width: 44px;
     text-align: right;
   }
 </style>
