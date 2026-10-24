@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 212-ziffern-zu-zahl
-revision: 2
+revision: 3
 titel: Ziffern-Liste zur Zahl zusammensetzen
 sprache: python
 task_type: code_schreiben
@@ -39,21 +39,21 @@ tests_sichtbar:
   - input: [[5]]
     expected: 5
 tests_versteckt:
-  - input: [[1, 0, 0]]
-    expected: 100
+  - input: [[4, 0, 0]]
+    expected: 400
   - input: [[9, 9, 9]]
     expected: 999
   - input: [[1, 2, 3, 4, 5]]
     expected: 12345
-  - input: [[0, 5]]
-    expected: 5
+  - input: [[0, 8]]
+    expected: 8
   - input: [[1, 0, 0, 0, 0, 0, 0]]
     expected: 1000000
-  - input: [[9, 8, 7, 6, 5, 4, 3, 2, 1]]
-    expected: 987654321
+  - input: [[8, 6, 4, 2, 9, 7, 5, 3, 1]]
+    expected: 864297531
 starter_code: |
   def aus_ziffern(ziffern: list[int]) -> int:
-      # Deine Lösung hier -- Horner ist elegant
+      # Deine Lösung hier - Horner ist elegant
       pass
 ---
 

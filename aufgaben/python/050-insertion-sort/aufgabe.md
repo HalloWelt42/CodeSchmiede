@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 050-insertion-sort
-revision: 2
+revision: 3
 titel: Insertion-Sort
 sprache: python
 task_type: code_schreiben
@@ -49,7 +49,7 @@ tests_versteckt:
     expected: [42]
 starter_code: |
   def insertion_sort(liste: list[int]) -> list[int]:
-      # Deine Lösung hier -- ohne sorted() / list.sort().
+      # Deine Lösung hier - ohne sorted() / list.sort().
       pass
 ---
 

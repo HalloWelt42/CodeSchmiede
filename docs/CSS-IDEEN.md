@@ -455,6 +455,34 @@ Der Bewerter erzwingt den Zustand (Überfahren, Fokus, Auswahl) über die Fernst
 
 ---
 
+## Bausteine aus eigenen Projekten
+
+Neben den Spielereien oben werden echte Bausteine aus den eigenen Projekten nachgebaut: Knöpfe, Karten, Leisten, Anzeigen, Rohstoff- und Fortschrittsbalken, Reiter, Abzeichen. Erste Quelle ist die Gestaltung von Orbit, weitere eigene Apps folgen. Ziel ist Lernen und Besserwerden, nicht Frust. Die Ideen unten sind vorläufig und werden vor dem Bau an den echten Bausteinen abgeglichen.
+
+### Fairnessregeln
+
+- **Grafik wird mitgegeben**: Komplexe Bildteile (Pixelgrafik, Planeten, Hintergrundbilder, Kopfbilder, aufwendige Symbole) liegen der Aufgabe als Bild bei und stehen in Ziel und Vorlage gleich. Sie verfälschen die Deckung nicht, und niemand muss ein Foto aus Verläufen nachmalen.
+- **Halbfertige Vorlage**: HTML-Gerüst, eingebundene Bilder, Schriften und Grundmaße sind vorgegeben. Ergänzt wird der fachliche Rest, um den es in der Aufgabe geht (Verlaufsrahmen, Leuchten, Raster, Zustände, Abstände).
+- **Kürze nur für den eigenen Teil**: Gezählt werden nur die Zeichen, die der Lernende hinzufügt; die Vorlage zählt nicht mit.
+- **Eingebundene Bilder nur aus der Aufgabe**: Mitgegebene Bilder stehen unter festen Namen bereit; eigene `url()` mit Daten oder Adressen bleiben in der strengen Klasse gesperrt (siehe Fallstrick 11).
+- **Schriften der Vorlage**: Die Schriften des Originals werden in der Prüfumgebung mitgeliefert, sonst ist volle Deckung unmöglich.
+- **In Stufen statt am Stück**: Erst ein Einzelteil (ein Knopf in einem Zustand), dann die Karte, dann der Bereich. Jede Stufe ist eine eigene Aufgabe mit eigener Bestehensgrenze.
+- **Bestehensgrenze passend zur Stufe**: Bei Bausteinen mit Bildern, Schatten und Glättung eine erreichbare Grenze wählen und mit der Musterlösung messen (siehe Fallstrick 10); volle Punkte erst bei hoher Deckung.
+- **Hilfen**: Das Abweichungsbild zeigt, wo es noch hakt; gestufte Hinweise nennen erst die Eigenschaft, dann den Wertebereich, nie die Lösung.
+
+### Ideen
+
+| # | Titel | Zielbild | Lehrt | Stufe | Wenig Code |
+|---|---|---|---|---|---|
+| 1 | Leuchtknopf | Ein Knopf mit Verlaufsrand und weichem Leuchten, Symbol und Schrift vorgegeben | `border-image` oder Verlauf im Hintergrund, mehrere `box-shadow` | Mittel | gut |
+| 2 | Knopf in drei Zuständen | Derselbe Knopf normal, überfahren und gesperrt nebeneinander | Zustandsklassen, `opacity`, `filter`, gemeinsame Variablen | Mittel | gut |
+| 3 | Rohstoffleiste | Eine Zeile mit drei Rohstoffen: Symbol (vorgegeben), Menge, Füllbalken | Flexbox, `tabular-nums`, Balken mit Verlauf und Breite in Prozent | Mittel | mäßig |
+| 4 | Planetenkarte | Karte mit Planetenbild (vorgegeben), Name, Werteliste und Eckenschnitt | `clip-path` für schräge Ecken, Grid für Bild und Werte | Fortgeschritten | mäßig |
+| 5 | Reiterleiste | Reiter mit aktiver Markierung und feiner Trennlinie | `::after` als Markierung, `gap`, Rahmen nur unten | Mittel | gut |
+| 6 | Kopfbild mit Auslauf | Breites Kopfbild (vorgegeben), das nach unten in den Hintergrund ausläuft, Karten darüber | `mask-image` mit Verlauf, Überlappung mit negativem Rand oder Grid | Fortgeschritten | gut |
+| 7 | Abzeichen und Stufenziffer | Rundes Abzeichen mit Ring, Ziffer in der Zahlenschrift | `aspect-ratio`, `outline-offset`, Schrift der Vorlage | Anfänger | sehr gut |
+| 8 | Bauauftrag mit Restzeit | Zeile mit Fortschrittsbalken, Restzeit und Abbrechen-Knopf | Grid mit festen und freien Spalten, Balken als Hintergrundverlauf | Fortgeschritten | mäßig |
+
 ## Spielmechaniken aus der Recherche
 
 ### Vergleich von Ziel und Ergebnis

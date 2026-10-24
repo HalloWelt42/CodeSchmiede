@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 053-two-sum
-revision: 2
+revision: 3
 titel: Two-Sum
 sprache: python
 task_type: code_schreiben
@@ -61,7 +61,7 @@ tests_versteckt:
     expected: [0, 3]
 starter_code: |
   def two_sum(zahlen: list[int], ziel: int) -> list[int]:
-      # Deine Lösung hier -- gibt zwei Indizes [i, j] mit i<j zurück,
+      # Deine Lösung hier - gibt zwei Indizes [i, j] mit i<j zurück,
       # oder [] falls kein Paar existiert.
       pass
 ---

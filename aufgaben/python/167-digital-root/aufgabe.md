@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 167-digital-root
-revision: 2
+revision: 3
 titel: Digitale Wurzel
 sprache: python
 task_type: code_schreiben
@@ -43,10 +43,10 @@ tests_versteckt:
     expected: 1
   - input: [10]
     expected: 1
-  - input: [99]
-    expected: 9
-  - input: [12345]
-    expected: 6
+  - input: [77]
+    expected: 5
+  - input: [24680]
+    expected: 2
   - input: [123456789]
     expected: 9
   - input: [999999999]
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: 1
 starter_code: |
   def digitale_wurzel(n: int) -> int:
-      # Deine Lösung hier -- 0-9
+      # Deine Lösung hier - 0-9
       pass
 ---
 

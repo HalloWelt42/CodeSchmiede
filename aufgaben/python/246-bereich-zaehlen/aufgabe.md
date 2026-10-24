@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 246-bereich-zaehlen
-revision: 2
+revision: 3
 titel: Zahlen im Bereich [a, b] zählen
 sprache: python
 task_type: code_schreiben
@@ -38,27 +38,27 @@ tests_sichtbar:
   - input: [[1, 2, 3], 10, 20]
     expected: 0
 tests_versteckt:
-  - input: [[5, 5, 5], 5, 5]
+  - input: [[7, 7, 7], 7, 7]
     expected: 3
   - input: [[1, 2, 3, 4, 5], 5, 1]
     expected: 0
-  - input: [[1, 2, 3, 4, 5], 1, 1]
+  - input: [[6, 7, 8, 9], 6, 6]
     expected: 1
-  - input: [[1, 2, 3, 4, 5], 5, 5]
+  - input: [[6, 7, 8, 9], 9, 9]
     expected: 1
-  - input: [[-3, -1, 0, 1, 3], -2, 2]
+  - input: [[-4, -2, 0, 2, 4], -3, 3]
     expected: 3
   - input: [[10, 20, 30, 40, 50, 60], 25, 45]
     expected: 2
 starter_code: |
   def im_bereich_zaehlen(zahlen: list, a, b) -> int:
-      # Deine Lösung hier -- inklusive [a, b]
+      # Deine Lösung hier - inklusive [a, b]
       pass
 ---
 
 # Zahlen im Bereich [a, b] zählen
 
-Schreibe `im_bereich_zählen(zahlen, a, b)`, die zählt, wie viele
+Schreibe `im_bereich_zaehlen(zahlen, a, b)`, die zählt, wie viele
 Zahlen aus der Liste im **inklusiven** Bereich `[a, b]` liegen.
 
 Bei `a > b` → `0`.

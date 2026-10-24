@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 295-csv-zeile
-revision: 2
+revision: 3
 titel: CSV-Zeile mit Quoting parsen
 sprache: python
 task_type: code_schreiben
@@ -40,18 +40,18 @@ tests_sichtbar:
   - input: ['"einzeln"']
     expected: ["einzeln"]
 tests_versteckt:
-  - input: ['a,"b,c",d']
-    expected: ["a", "b,c", "d"]
+  - input: ["x,\"y,z\",w"]
+    expected: ["x", "y,z", "w"]
   - input: ["1,2,3,4,5"]
     expected: ["1", "2", "3", "4", "5"]
-  - input: ['"a","b","c"']
-    expected: ["a", "b", "c"]
-  - input: ["solo"]
-    expected: ["solo"]
+  - input: ["\"p\",\"q\",\"r\""]
+    expected: ["p", "q", "r"]
+  - input: ["allein"]
+    expected: ["allein"]
   - input: ['"mit, drei, kommas"']
     expected: ["mit, drei, kommas"]
-  - input: ["a,,b"]
-    expected: ["a", "", "b"]
+  - input: ["x,,y"]
+    expected: ["x", "", "y"]
   - input: [",,"]
     expected: ["", "", ""]
 starter_code: |

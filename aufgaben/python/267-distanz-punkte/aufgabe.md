@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 267-distanz-punkte
-revision: 2
+revision: 3
 titel: Distanz zwischen zwei Punkten
 sprache: python
 task_type: code_schreiben
@@ -38,8 +38,8 @@ tests_sichtbar:
   - input: [[0, 0], [1, 1]]
     expected: 1.4142
 tests_versteckt:
-  - input: [[5, 12], [0, 0]]
-    expected: 13.0
+  - input: [[0, 3], [8, 18]]
+    expected: 17.0
   - input: [[-3, -4], [0, 0]]
     expected: 5.0
   - input: [[1, 1], [4, 5]]
@@ -48,13 +48,13 @@ tests_versteckt:
     expected: 5.0
   - input: [[10, 10], [10, 20]]
     expected: 10.0
-  - input: [[1.5, 2.5], [4.5, 6.5]]
-    expected: 5.0
+  - input: [[0.5, 1.5], [6.5, 9.5]]
+    expected: 10.0
 starter_code: |
   import math
 
   def distanz(p1: list, p2: list) -> float:
-      # Deine Lösung hier -- 4 Nachkommastellen
+      # Deine Lösung hier - 4 Nachkommastellen
       pass
 ---
 

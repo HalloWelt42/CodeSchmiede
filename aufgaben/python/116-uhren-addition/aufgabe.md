@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 116-uhren-addition
-revision: 2
+revision: 3
 titel: Uhrzeit + Minuten
 sprache: python
 task_type: code_schreiben
@@ -40,21 +40,21 @@ tests_sichtbar:
   - input: [0, 0, 1440]
     expected: "00:00"
 tests_versteckt:
-  - input: [0, 0, 0]
-    expected: "00:00"
-  - input: [0, 0, -1]
-    expected: "23:59"
+  - input: [0, 25, 0]
+    expected: "00:25"
+  - input: [0, 0, -15]
+    expected: "23:45"
   - input: [9, 45, 5]
     expected: "09:50"
   - input: [9, 45, 75]
     expected: "11:00"
-  - input: [12, 0, -720]
+  - input: [6, 0, -360]
     expected: "00:00"
   - input: [10, 30, -2940]
     expected: "09:30"
 starter_code: |
   def uhrzeit_plus(stunde: int, minute: int, zusatz_minuten: int) -> str:
-      # Deine Lösung hier -- Format "HH:MM", auch bei negativen Eingaben.
+      # Deine Lösung hier - Format "HH:MM", auch bei negativen Eingaben.
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 123-listen-merge
-revision: 1
+revision: 2
 titel: Zwei sortierte Listen mergen
 sprache: python
 task_type: code_schreiben
@@ -39,15 +39,15 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 1, 1], [1, 1, 1]]
     expected: [1, 1, 1, 1, 1, 1]
-  - input: [[5], [1, 2, 3, 4]]
-    expected: [1, 2, 3, 4, 5]
+  - input: [[9], [2, 4, 6, 8]]
+    expected: [2, 4, 6, 8, 9]
   - input: [[-3, -1, 0], [-2, 1, 2]]
     expected: [-3, -2, -1, 0, 1, 2]
   - input: [[1, 5, 9], [2, 6, 10, 11, 12]]
     expected: [1, 2, 5, 6, 9, 10, 11, 12]
 starter_code: |
   def merge(a: list[int], b: list[int]) -> list[int]:
-      # Deine Lösung hier -- ohne sorted(). Zwei Zeiger.
+      # Deine Lösung hier - ohne sorted(). Zwei Zeiger.
       pass
 ---
 

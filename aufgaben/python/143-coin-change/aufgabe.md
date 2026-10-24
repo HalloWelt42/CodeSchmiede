@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 143-coin-change
-revision: 2
+revision: 3
 titel: Münz-Wechsel (Coin Change)
 sprache: python
 task_type: code_schreiben
@@ -45,15 +45,15 @@ tests_versteckt:
     expected: 4
   - input: [[186, 419, 83, 408], 6249]
     expected: 20
-  - input: [[1, 2, 5], 1]
+  - input: [[1, 3, 7], 1]
     expected: 1
-  - input: [[7, 11], 23]
+  - input: [[6, 9], 20]
     expected: -1
-  - input: [[1, 5, 10, 25], 30]
+  - input: [[1, 2, 5, 10, 20, 50], 70]
     expected: 2
 starter_code: |
   def muenz_wechsel(muenzen: list[int], betrag: int) -> int:
-      # Deine Lösung hier -- DP, -1 bei unmoeglich
+      # Deine Lösung hier - DP, -1 bei unmöglich
       pass
 ---
 

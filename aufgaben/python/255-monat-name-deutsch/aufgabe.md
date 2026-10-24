@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 255-monat-name-deutsch
-revision: 2
+revision: 3
 titel: Deutscher Monatsname aus Nummer
 sprache: python
 task_type: code_schreiben
@@ -31,19 +31,14 @@ hints:
 tests_sichtbar:
   - input: [1]
     expected: "Januar"
-  - input: [12]
-    expected: "Dezember"
-  - input: [5]
-    expected: "Mai"
-  - input: [0]
-    expected: ""
-tests_versteckt:
   - input: [2]
     expected: "Februar"
   - input: [3]
-    expected: "Maerz"
+    expected: "März"
   - input: [4]
     expected: "April"
+  - input: [5]
+    expected: "Mai"
   - input: [6]
     expected: "Juni"
   - input: [7]
@@ -56,13 +51,24 @@ tests_versteckt:
     expected: "Oktober"
   - input: [11]
     expected: "November"
+  - input: [12]
+    expected: "Dezember"
+  - input: [0]
+    expected: ""
+tests_versteckt:
   - input: [13]
     expected: ""
   - input: [-1]
     expected: ""
+  - input: [24]
+    expected: ""
+  - input: [-12]
+    expected: ""
+  - input: [100]
+    expected: ""
 starter_code: |
   def monatsname(monat: int) -> str:
-      # Deine Lösung hier -- 1..12 → Name, sonst ""
+      # Deine Lösung hier - 1..12 → Name, sonst ""
       pass
 ---
 
@@ -90,13 +96,6 @@ Namen liefert. Ungültige Eingaben → `""`.
 
 Liste-Lookup mit Index 0 als Füller - damit `monat == 1`
 direkt `NAMEN[1]` ist.
-
-## Hinweis - März ohne Umlaut
-
-In den Tests verwenden wir `"März"` statt `"März"` - der Test-
-String wird durch JSON serialisiert und Umlaute können in manchen
-Test-Engines Ärger machen. In echten UIs natürlich `März`
-schreiben.
 
 ## Verwandt
 

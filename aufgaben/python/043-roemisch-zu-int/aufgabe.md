@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 043-roemisch-zu-int
-revision: 2
+revision: 3
 titel: Römisch zu Integer
 sprache: python
 task_type: code_schreiben
@@ -41,27 +41,27 @@ tests_sichtbar:
 tests_versteckt:
   - input: ["I"]
     expected: 1
-  - input: ["MMMCMXCIX"]
-    expected: 3999
-  - input: ["XL"]
-    expected: 40
-  - input: ["XC"]
-    expected: 90
-  - input: ["CD"]
-    expected: 400
-  - input: ["CM"]
-    expected: 900
+  - input: ["MMMCDXCIX"]
+    expected: 3499
+  - input: ["XLII"]
+    expected: 42
+  - input: ["XCII"]
+    expected: 92
+  - input: ["CDLX"]
+    expected: 460
+  - input: ["CMLX"]
+    expected: 960
   - input: [""]
     expected: 0
 starter_code: |
   def roemisch_zu_int(s: str) -> int:
-      # Deine Lösung hier -- I=1, V=5, X=10, L=50, C=100, D=500, M=1000
+      # Deine Lösung hier - I=1, V=5, X=10, L=50, C=100, D=500, M=1000
       pass
 ---
 
 # Römisch zu Integer
 
-Schreibe eine Funktion `römisch_zu_int(s)`, die eine römische Zahl
+Schreibe eine Funktion `roemisch_zu_int(s)`, die eine römische Zahl
 in eine Dezimalzahl umwandelt.
 
 | Zeichen | Wert |

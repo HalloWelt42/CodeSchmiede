@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 031-zip-listen
-revision: 2
+revision: 3
 titel: Zwei Listen verzahnen
 sprache: python
 task_type: code_schreiben
@@ -50,7 +50,7 @@ tests_versteckt:
     expected: [1, 2, 1, 2, 1, 2]
 starter_code: |
   def verzahne(a: list, b: list) -> list:
-      # Deine Lösung hier -- abwechselnd aus a und b, Reste anhaengen.
+      # Deine Lösung hier - abwechselnd aus a und b, Reste anhängen.
       pass
 ---
 

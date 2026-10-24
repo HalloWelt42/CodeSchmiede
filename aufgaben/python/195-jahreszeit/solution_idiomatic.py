@@ -1,7 +1,7 @@
 _JAHRESZEITEN = [
-    "ungueltig",
-    "winter", "winter", "fruehling",
-    "fruehling", "fruehling", "sommer",
+    "ungültig",
+    "winter", "winter", "frühling",
+    "frühling", "frühling", "sommer",
     "sommer", "sommer", "herbst",
     "herbst", "herbst", "winter",
 ]
@@ -10,4 +10,4 @@ _JAHRESZEITEN = [
 def jahreszeit(monat: int) -> str:
     if 1 <= monat <= 12:
         return _JAHRESZEITEN[monat]
-    return "ungueltig"
+    return "ungültig"

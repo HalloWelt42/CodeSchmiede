@@ -1,5 +1,5 @@
 """
-Mit itertools.groupby -- kompakt und ausdrucksstark.
+Mit itertools.groupby - kompakt und ausdrucksstark.
 """
 
 from itertools import groupby

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 253-floor-zu-vielfache
-revision: 2
+revision: 3
 titel: Abrunden zum nächsten Vielfachen von k
 sprache: python
 task_type: code_schreiben
@@ -39,14 +39,14 @@ tests_sichtbar:
   - input: [9, 10]
     expected: 0
 tests_versteckt:
-  - input: [25, 7]
-    expected: 21
-  - input: [100, 100]
-    expected: 100
-  - input: [199, 100]
-    expected: 100
-  - input: [-13, 5]
-    expected: -15
+  - input: [30, 8]
+    expected: 24
+  - input: [300, 300]
+    expected: 300
+  - input: [399, 100]
+    expected: 300
+  - input: [-17, 5]
+    expected: -20
   - input: [-10, 5]
     expected: -10
   - input: [-1, 5]
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: 50
 starter_code: |
   def floor_vielfache(n: int, k: int) -> int:
-      # Deine Lösung hier -- abwaerts (Richtung -unendlich)
+      # Deine Lösung hier - abwärts (Richtung -unendlich)
       pass
 ---
 

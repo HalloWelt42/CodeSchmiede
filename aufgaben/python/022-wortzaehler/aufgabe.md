@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 022-wortzaehler
-revision: 2
+revision: 3
 titel: Wortzähler aus Satz
 sprache: python
 task_type: code_schreiben
@@ -56,7 +56,7 @@ starter_code: |
 
 # Wortzähler aus Satz
 
-Schreibe eine Funktion `wortzähler(text)`, die zählt, wie oft jedes
+Schreibe eine Funktion `wortzaehler(text)`, die zählt, wie oft jedes
 Wort im Text vorkommt, und das Ergebnis als **Dictionary** zurückgibt.
 
 Die Worte werden an Whitespace getrennt; Groß-/Kleinschreibung wird

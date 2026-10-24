@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 332-js-range-expansion
-revision: 2
+revision: 3
 titel: JavaScript - Bereichs-Notation entpacken
 sprache: javascript
 task_type: code_schreiben
@@ -39,7 +39,7 @@ tests_sichtbar:
     expected: [1, 2, 3, 4, 5]
 starter_code: |
   function bereichEntpacken(s) {
-      // Tipp: split(",") + indexOf("-", 1) fuer negative Untergrenzen
+      // Tipp: split(",") + indexOf("-", 1) für negative Untergrenzen
   }
 ---
 

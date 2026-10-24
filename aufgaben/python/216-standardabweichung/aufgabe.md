@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 216-standardabweichung
-revision: 2
+revision: 3
 titel: Standardabweichung (Population)
 sprache: python
 task_type: code_schreiben
@@ -44,21 +44,21 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 2, 3, 4, 5]]
     expected: 1.4142
-  - input: [[10, 10, 10, 10, 10]]
+  - input: [[20, 20, 20, 20, 20]]
     expected: 0.0
-  - input: [[1, 5, 9]]
-    expected: 3.266
-  - input: [[100, 200, 300]]
-    expected: 81.6497
-  - input: [[-2, 0, 2]]
-    expected: 1.633
+  - input: [[2, 7, 12]]
+    expected: 4.0825
+  - input: [[200, 400, 600]]
+    expected: 163.2993
+  - input: [[-3, 0, 3]]
+    expected: 2.4495
   - input: [[7, 8, 9, 10, 11, 12, 13]]
     expected: 2.0
 starter_code: |
   import math
 
   def stdabw(zahlen: list[float]) -> float:
-      # Deine Lösung hier -- Population (durch n), 4 Nachkommastellen
+      # Deine Lösung hier - Population (durch n), 4 Nachkommastellen
       pass
 ---
 

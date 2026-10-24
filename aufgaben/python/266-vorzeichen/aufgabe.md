@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 266-vorzeichen
-revision: 2
+revision: 3
 titel: Vorzeichen-Funktion (sign)
 sprache: python
 task_type: code_schreiben
@@ -50,13 +50,13 @@ tests_versteckt:
     expected: 1
   - input: [-0.5]
     expected: -1
-  - input: [1000000000]
+  - input: [2000000000]
     expected: 1
   - input: [-1000000000]
     expected: -1
 starter_code: |
   def sign(x) -> int:
-      # Deine Lösung hier -- -1, 0, oder 1
+      # Deine Lösung hier - -1, 0, oder 1
       pass
 ---
 

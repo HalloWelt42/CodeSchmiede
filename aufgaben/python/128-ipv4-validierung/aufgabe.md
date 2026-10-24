@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 128-ipv4-validierung
-revision: 2
+revision: 3
 titel: IPv4-Adresse validieren
 sprache: python
 task_type: code_schreiben
@@ -39,25 +39,25 @@ tests_sichtbar:
   - input: ["256.1.1.1"]
     expected: false
 tests_versteckt:
-  - input: ["192.168.1"]
+  - input: ["10.0.42"]
     expected: false
   - input: ["192.168.1.1.1"]
     expected: false
   - input: [""]
     expected: false
-  - input: ["192.168.01.1"]
+  - input: ["172.16.05.3"]
     expected: false
   - input: ["192.168.-1.1"]
     expected: false
-  - input: ["a.b.c.d"]
+  - input: ["w.x.y.z"]
     expected: false
-  - input: [" 192.168.1.1 "]
+  - input: [" 10.20.30.40 "]
     expected: false
   - input: ["192.168.1.1\n"]
     expected: false
 starter_code: |
   def ist_ipv4(text: str) -> bool:
-      # Deine Lösung hier -- 4 Zahlen 0-255, keine fuehrenden Nullen.
+      # Deine Lösung hier - 4 Zahlen 0-255, keine führenden Nullen.
       pass
 ---
 

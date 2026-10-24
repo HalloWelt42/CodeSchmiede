@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 313-accumulate-summe
-revision: 2
+revision: 3
 titel: Laufende Summen (accumulate)
 sprache: python
 task_type: code_schreiben
@@ -41,10 +41,10 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[10]]
     expected: [10]
-  - input: [[1, -1, 1, -1]]
-    expected: [1, 0, 1, 0]
-  - input: [[100, 200, 300]]
-    expected: [100, 300, 600]
+  - input: [[2, -2, 2, -2]]
+    expected: [2, 0, 2, 0]
+  - input: [[150, 250, 350]]
+    expected: [150, 400, 750]
   - input: [[0, 0, 0, 0]]
     expected: [0, 0, 0, 0]
   - input: [[-5, -3, -1]]

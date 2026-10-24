@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 225-produkt-elemente
-revision: 2
+revision: 3
 titel: Produkt aller Listen-Elemente
 sprache: python
 task_type: code_schreiben
@@ -42,17 +42,17 @@ tests_versteckt:
     expected: 1
   - input: [[10, 10]]
     expected: 100
-  - input: [[-2, -3]]
-    expected: 6
+  - input: [[-4, -5]]
+    expected: 20
   - input: [[-1, 2, -3]]
     expected: 6
-  - input: [[1, 2, 3, 4, 5, 6, 7]]
-    expected: 5040
-  - input: [[2, 2, 2, 2, 2, 2, 2, 2, 2, 2]]
-    expected: 1024
+  - input: [[2, 3, 4, 5, 6, 7, 8]]
+    expected: 40320
+  - input: [[3, 3, 3, 3, 3, 3, 3, 3, 3, 3]]
+    expected: 59049
 starter_code: |
   def produkt(liste: list) -> int:
-      # Deine Lösung hier -- math.prod oder reduce
+      # Deine Lösung hier - math.prod oder reduce
       pass
 ---
 

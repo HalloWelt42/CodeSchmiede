@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 238-gerade-filter
-revision: 2
+revision: 3
 titel: Nur gerade Zahlen behalten
 sprache: python
 task_type: code_schreiben
@@ -38,12 +38,12 @@ tests_sichtbar:
   - input: [[2, 4, 6]]
     expected: [2, 4, 6]
 tests_versteckt:
-  - input: [[0]]
-    expected: [0]
+  - input: [[0, 0]]
+    expected: [0, 0]
   - input: [[0, 1, 2, 3]]
     expected: [0, 2]
-  - input: [[-2, -1, 0, 1, 2]]
-    expected: [-2, 0, 2]
+  - input: [[-4, -3, 0, 3, 4]]
+    expected: [-4, 0, 4]
   - input: [[10, 20, 30, 40, 50]]
     expected: [10, 20, 30, 40, 50]
   - input: [[7]]

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 273-polyline-laenge
-revision: 2
+revision: 3
 titel: Gesamtlänge eines Polygonzugs
 sprache: python
 task_type: code_schreiben
@@ -39,12 +39,12 @@ tests_sichtbar:
   - input: [[[0, 0], [3, 4], [3, 0]]]
     expected: 9.0
 tests_versteckt:
-  - input: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]
-    expected: 4.0
+  - input: [[[0, 0], [2, 0], [2, 2], [0, 2], [0, 0]]]
+    expected: 8.0
   - input: [[[0, 0], [10, 0]]]
     expected: 10.0
-  - input: [[[0, 0], [3, 4], [6, 8]]]
-    expected: 10.0
+  - input: [[[0, 0], [6, 8], [12, 16]]]
+    expected: 20.0
   - input: [[[1, 1], [1, 1]]]
     expected: 0.0
   - input: [[[0, 0], [1, 1], [2, 0], [3, 1]]]
@@ -55,7 +55,7 @@ starter_code: |
   import math
 
   def polyline(punkte: list[list]) -> float:
-      # Deine Lösung hier -- 4 Nachkommastellen
+      # Deine Lösung hier - 4 Nachkommastellen
       pass
 ---
 

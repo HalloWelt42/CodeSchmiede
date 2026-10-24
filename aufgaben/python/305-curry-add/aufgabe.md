@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 305-curry-add
-revision: 2
+revision: 3
 titel: Curry-artige partielle Anwendung
 sprache: python
 task_type: code_schreiben
@@ -40,8 +40,8 @@ tests_sichtbar:
   - input: [-1, [10, 20, 30]]
     expected: [9, 19, 29]
 tests_versteckt:
-  - input: [100, [1, 2, 3, 4, 5]]
-    expected: [101, 102, 103, 104, 105]
+  - input: [50, [2, 4, 6, 8, 10]]
+    expected: [52, 54, 56, 58, 60]
   - input: [0, []]
     expected: []
   - input: [3, [3]]

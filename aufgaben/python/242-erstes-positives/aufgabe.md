@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 242-erstes-positives
-revision: 2
+revision: 3
 titel: Erstes positives Element
 sprache: python
 task_type: code_schreiben
@@ -47,15 +47,15 @@ tests_versteckt:
     expected: 100
   - input: [[-100]]
     expected: null
-  - input: [[0]]
+  - input: [[0, 0]]
     expected: null
   - input: [[-5, -3, -1, 1, 3, 5]]
     expected: 1
-  - input: [[10, 20, 30, -1, -2]]
-    expected: 10
+  - input: [[40, 50, 60, -3, -4]]
+    expected: 40
 starter_code: |
   def erstes_positiv(zahlen: list):
-      # Deine Lösung hier -- next mit Default ist elegant
+      # Deine Lösung hier - next mit Default ist elegant
       pass
 ---
 

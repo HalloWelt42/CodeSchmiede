@@ -1,10 +1,12 @@
 """Lecksuche -- findet versteckte Tests, die der Aufgabentext verrät.
 
 Ein versteckter Test gilt als verraten, wenn eine Zeile aus Beschreibung
-oder Hinweisen (Beispieltabelle, Aufzählung) alle seine Eingaben und
-seine Erwartung zeigt. Dann ließe sich das Ergebnis abschreiben statt
+oder kostenlosen Hinweisen (Beispieltabelle, Aufzählung) alle seine
+Eingaben und seine Erwartung zeigt. Dann ließe sich das Ergebnis abschreiben statt
 berechnen. Kleine Zahlen, leere Werte und Wahrheitswerte allein zählen
-nicht, die stehen in jedem Text.
+nicht, die stehen in jedem Text. Tests, deren Eingaben nur aus None,
+Wahrheitswerten oder leeren Werten ("", [], {}) bestehen, lassen sich
+nicht anders formulieren und gelten nie als verraten.
 """
 
 import json
@@ -49,6 +51,8 @@ def _belanglos(wert: Any) -> bool:
 def ist_verraten(test: TestFall, text: str) -> bool:
     if all(_belanglos(a) for a in test.input) and _belanglos(test.expected):
         return False
+    if test.input and all(a is None or isinstance(a, bool) or a in ("", [], {}) for a in test.input):
+        return False
     return any(
         all(_steht_in(a, zeile) for a in test.input) and _steht_in(test.expected, zeile)
         for zeile in text.splitlines()
@@ -57,7 +61,10 @@ def ist_verraten(test: TestFall, text: str) -> bool:
 
 
 def aufgabentext(aufgabe: Aufgabe) -> str:
-    return aufgabe.beschreibung_md + "\n" + "\n".join(h.text for h in aufgabe.hints)
+    """Was man ohne Punktabzug sieht: Beschreibung und kostenlose Hinweise.
+    Ein bezahlter Hinweis darf ein Beispiel zeigen; wer ihn öffnet, zahlt dafür."""
+    frei = [h.text for h in aufgabe.hints if h.kosten == 0]
+    return aufgabe.beschreibung_md + "\n" + "\n".join(frei)
 
 
 def verratene_tests(aufgabe: Aufgabe) -> list[int]:

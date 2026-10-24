@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 108-permutationen
-revision: 2
+revision: 3
 titel: Alle Permutationen
 sprache: python
 task_type: code_schreiben
@@ -42,15 +42,15 @@ tests_sichtbar:
 tests_versteckt:
   - input: ["aa"]
     expected: ["aa"]
-  - input: ["aab"]
-    expected: ["aab", "aba", "baa"]
+  - input: ["abb"]
+    expected: ["abb", "bab", "bba"]
   - input: ["abcd"]
     expected: ["abcd", "abdc", "acbd", "acdb", "adbc", "adcb", "bacd", "badc", "bcad", "bcda", "bdac", "bdca", "cabd", "cadb", "cbad", "cbda", "cdab", "cdba", "dabc", "dacb", "dbac", "dbca", "dcab", "dcba"]
   - input: ["xy"]
     expected: ["xy", "yx"]
 starter_code: |
   def permutationen(text: str) -> list[str]:
-      # Deine Lösung hier -- alle eindeutigen Permutationen, sortiert.
+      # Deine Lösung hier - alle eindeutigen Permutationen, sortiert.
       pass
 ---
 

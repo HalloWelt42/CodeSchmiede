@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 300-eigenes-filter
-revision: 2
+revision: 3
 titel: Eigenes filter mit Predicate-String
 sprache: python
 task_type: code_schreiben
@@ -40,12 +40,12 @@ tests_sichtbar:
   - input: [[1, 2, 3], "unknown"]
     expected: [1, 2, 3]
 tests_versteckt:
-  - input: [[-1, 0, 1, 2], "negative"]
-    expected: [-1]
-  - input: [[1, 2, 3, 4, 5], "odd"]
-    expected: [1, 3, 5]
-  - input: [[-1, 0, 1, 2, 0], "nonzero"]
-    expected: [-1, 1, 2]
+  - input: [[-4, 0, 3, -2], "negative"]
+    expected: [-4, -2]
+  - input: [[6, 7, 8, 9, 10], "odd"]
+    expected: [7, 9]
+  - input: [[0, -3, 0, 4, 5], "nonzero"]
+    expected: [-3, 4, 5]
   - input: [[0, 0, 0], "positive"]
     expected: []
   - input: [[10], "even"]

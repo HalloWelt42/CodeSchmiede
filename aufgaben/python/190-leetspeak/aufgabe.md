@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 190-leetspeak
-revision: 2
+revision: 3
 titel: Leetspeak-Konvertierung
 sprache: python
 task_type: code_schreiben
@@ -39,21 +39,21 @@ tests_sichtbar:
   - input: ["abc"]
     expected: "4bc"
 tests_versteckt:
-  - input: ["TEST"]
-    expected: "7357"
-  - input: ["Hello World"]
-    expected: "h3ll0 w0rld"
-  - input: ["Python"]
-    expected: "py7h0n"
+  - input: ["STOLZ"]
+    expected: "570lz"
+  - input: ["Guten Tag"]
+    expected: "gu73n 74g"
+  - input: ["Kaffee"]
+    expected: "k4ff33"
   - input: ["1234"]
     expected: "1234"
   - input: ["xyz"]
     expected: "xyz"
-  - input: ["AEIOST"]
-    expected: "431057"
+  - input: ["TOSIEA"]
+    expected: "705134"
 starter_code: |
   def leetspeak(text: str) -> str:
-      # Deine Lösung hier -- klein-Ausgabe, Mapping a→4, e→3, ...
+      # Deine Lösung hier - klein-Ausgabe, Mapping a→4, e→3, ...
       pass
 ---
 

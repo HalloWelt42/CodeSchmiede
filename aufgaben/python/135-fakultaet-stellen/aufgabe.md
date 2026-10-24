@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 135-fakultaet-stellen
-revision: 2
+revision: 3
 titel: Anzahl Stellen von n!
 sprache: python
 task_type: code_schreiben
@@ -42,17 +42,17 @@ tests_versteckt:
     expected: 0
   - input: [5]
     expected: 3
-  - input: [20]
-    expected: 19
+  - input: [25]
+    expected: 26
   - input: [50]
     expected: 65
   - input: [200]
     expected: 375
-  - input: [1000]
-    expected: 2568
+  - input: [1500]
+    expected: 4115
 starter_code: |
   def stellen_von_fakultaet(n: int) -> int:
-      # Deine Lösung hier -- Anzahl Dezimalstellen von n!. Bei n<0 → 0.
+      # Deine Lösung hier - Anzahl Dezimalstellen von n!. Bei n<0 → 0.
       pass
 ---
 

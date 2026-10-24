@@ -1,5 +1,5 @@
 """
-Idiomatische Lösung: dict.fromkeys() nutzt aus, dass dict-Schluessel
+Idiomatische Lösung: dict.fromkeys() nutzt aus, dass dict-Schlüssel
 seit Python 3.7 in Insertion-Reihenfolge stehen und automatisch
 eindeutig sind.
 """

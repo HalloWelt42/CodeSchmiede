@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 211-zahl-zu-ziffern
-revision: 2
+revision: 3
 titel: Zahl in Ziffern-Liste zerlegen
 sprache: python
 task_type: code_schreiben
@@ -45,15 +45,15 @@ tests_versteckt:
     expected: [1, 0]
   - input: [99]
     expected: [9, 9]
-  - input: [-123]
-    expected: [1, 2, 3]
+  - input: [-456]
+    expected: [4, 5, 6]
   - input: [1000000000]
     expected: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  - input: [987654321]
-    expected: [9, 8, 7, 6, 5, 4, 3, 2, 1]
+  - input: [864297531]
+    expected: [8, 6, 4, 2, 9, 7, 5, 3, 1]
 starter_code: |
   def zu_ziffern(n: int) -> list[int]:
-      # Deine Lösung hier -- hoechstwertige Stelle zuerst
+      # Deine Lösung hier - höchstwertige Stelle zuerst
       pass
 ---
 

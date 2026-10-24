@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 262-dauer-hms-text
-revision: 2
+revision: 3
 titel: Dauer als "Xh Ym Zs" formatieren
 sprache: python
 task_type: code_schreiben
@@ -40,25 +40,25 @@ tests_sichtbar:
   - input: [3661]
     expected: "1h 1m 1s"
 tests_versteckt:
-  - input: [59]
-    expected: "59s"
-  - input: [3601]
-    expected: "1h 1s"
-  - input: [3660]
-    expected: "1h 1m"
-  - input: [86400]
-    expected: "24h"
-  - input: [-5]
+  - input: [47]
+    expected: "47s"
+  - input: [7205]
+    expected: "2h 5s"
+  - input: [7320]
+    expected: "2h 2m"
+  - input: [90000]
+    expected: "25h"
+  - input: [-30]
     expected: "0s"
-  - input: [125]
-    expected: "2m 5s"
-  - input: [3725]
-    expected: "1h 2m 5s"
+  - input: [250]
+    expected: "4m 10s"
+  - input: [7384]
+    expected: "2h 3m 4s"
   - input: [359999]
     expected: "99h 59m 59s"
 starter_code: |
   def dauer_text(sekunden: int) -> str:
-      # Deine Lösung hier -- Nullen weglassen, "0s" wenn alles 0
+      # Deine Lösung hier - Nullen weglassen, "0s" wenn alles 0
       pass
 ---
 

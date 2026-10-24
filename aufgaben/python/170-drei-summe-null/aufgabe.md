@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 170-drei-summe-null
-revision: 2
+revision: 3
 titel: Drei-Summe gleich Null
 sprache: python
 task_type: code_schreiben
@@ -40,7 +40,7 @@ tests_sichtbar:
   - input: [[1, 2, 3]]
     expected: []
 tests_versteckt:
-  - input: [[0, 0, 0, 0]]
+  - input: [[0, 0, 0, 0, 0]]
     expected: [[0, 0, 0]]
   - input: [[-2, 0, 1, 1, 2]]
     expected: [[-2, 0, 2], [-2, 1, 1]]
@@ -48,13 +48,13 @@ tests_versteckt:
     expected: [[-2, -1, 3], [-2, 0, 2], [-1, 0, 1]]
   - input: [[1, -1, -1, 0]]
     expected: [[-1, 0, 1]]
-  - input: [[-1, -1, -1]]
+  - input: [[-2, -2, -2, -2]]
     expected: []
   - input: [[-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6]]
     expected: [[-4, -2, 6], [-4, 0, 4], [-4, 1, 3], [-4, 2, 2], [-2, -2, 4], [-2, 0, 2]]
 starter_code: |
   def drei_summe(zahlen: list[int]) -> list[list[int]]:
-      # Deine Lösung hier -- alle eindeutigen Tripel mit Summe 0
+      # Deine Lösung hier - alle eindeutigen Tripel mit Summe 0
       pass
 ---
 

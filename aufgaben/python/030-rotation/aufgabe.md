@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 030-rotation
-revision: 2
+revision: 3
 titel: Liste rotieren
 sprache: python
 task_type: code_schreiben
@@ -52,7 +52,7 @@ tests_versteckt:
     expected: [8, 9, 10, 1, 2, 3, 4, 5, 6, 7]
 starter_code: |
   def rotiere(liste: list, k: int) -> list:
-      # Deine Lösung hier -- k Positionen nach links.
+      # Deine Lösung hier - k Positionen nach links.
       pass
 ---
 

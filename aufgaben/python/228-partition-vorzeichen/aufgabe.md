@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 228-partition-vorzeichen
-revision: 2
+revision: 3
 titel: Liste nach Vorzeichen partitionieren
 sprache: python
 task_type: code_schreiben
@@ -39,21 +39,21 @@ tests_sichtbar:
   - input: [[-1, -2, -3]]
     expected: [[-1, -2, -3], [], []]
 tests_versteckt:
-  - input: [[0, 0, 0]]
-    expected: [[], [0, 0, 0], []]
+  - input: [[0, 0, 0, 0]]
+    expected: [[], [0, 0, 0, 0], []]
   - input: [[1, 0, -1, 0, 1]]
     expected: [[-1], [0, 0], [1, 1]]
   - input: [[5]]
     expected: [[], [], [5]]
-  - input: [[-5]]
-    expected: [[-5], [], []]
+  - input: [[-7]]
+    expected: [[-7], [], []]
   - input: [[0]]
     expected: [[], [0], []]
   - input: [[10, -10, 0, 5, -5, 0]]
     expected: [[-10, -5], [0, 0], [10, 5]]
 starter_code: |
   def partition_vorzeichen(zahlen: list[int]) -> list[list[int]]:
-      # Deine Lösung hier -- [neg, null, pos]
+      # Deine Lösung hier - [neg, null, pos]
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 002-palindrom
-revision: 3
+revision: 4
 titel: Palindrom-Prüfung
 sprache: python
 task_type: code_schreiben
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: true
 starter_code: |
   def ist_palindrom(text: str) -> bool:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 

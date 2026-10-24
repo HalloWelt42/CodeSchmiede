@@ -1,5 +1,5 @@
 """
-Idiomatisch mit dict.get() -- liefert 0 als Default und vermeidet
+Idiomatisch mit dict.get() - liefert 0 als Default und vermeidet
 die Sonderfall-Verzweigung.
 """
 

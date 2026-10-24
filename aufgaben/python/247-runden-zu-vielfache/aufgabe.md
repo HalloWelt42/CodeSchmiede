@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 247-runden-zu-vielfache
-revision: 2
+revision: 3
 titel: Auf Vielfaches von k runden
 sprache: python
 task_type: code_schreiben
@@ -41,18 +41,18 @@ tests_sichtbar:
 tests_versteckt:
   - input: [7, 3]
     expected: 6
-  - input: [-13, 5]
-    expected: -15
-  - input: [25, 10]
-    expected: 20
+  - input: [-18, 5]
+    expected: -20
+  - input: [45, 10]
+    expected: 40
   - input: [123, 25]
     expected: 125
   - input: [0, 0]
     expected: 0
   - input: [50, -10]
     expected: 50
-  - input: [99, 100]
-    expected: 100
+  - input: [180, 200]
+    expected: 200
 starter_code: |
   def runde_zu_vielfache(n: int, k: int) -> int:
       # Deine Lösung hier

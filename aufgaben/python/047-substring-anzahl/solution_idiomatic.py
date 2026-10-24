@@ -1,6 +1,6 @@
 """
 Mit str.find() in Schleife: bei jedem Treffer nur eine Position weiter
-suchen, statt um die Substring-Laenge zu springen.
+suchen, statt um die Substring-Länge zu springen.
 """
 
 

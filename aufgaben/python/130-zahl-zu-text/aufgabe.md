@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 130-zahl-zu-text
-revision: 2
+revision: 3
 titel: Zahl 0-99 als Wort
 sprache: python
 task_type: code_schreiben
@@ -40,31 +40,32 @@ tests_sichtbar:
   - input: [20]
     expected: "zwanzig"
 tests_versteckt:
-  - input: [21]
-    expected: "einundzwanzig"
-  - input: [42]
-    expected: "zweiundvierzig"
-  - input: [99]
-    expected: "neunundneunzig"
-  - input: [11]
-    expected: "elf"
-  - input: [12]
-    expected: "zwoelf"
-  - input: [30]
-    expected: "dreissig"
-  - input: [60]
-    expected: "sechzig"
-  - input: [70]
-    expected: "siebzig"
+  - input: [81]
+    expected: "einundachtzig"
+  - input: [84]
+    expected: "vierundachtzig"
+  - input: [98]
+    expected: "achtundneunzig"
+  - input: [17]
+    expected: "siebzehn"
+  - input: [16]
+    expected: "sechzehn"
+  - input: [34]
+    expected: "vierunddreißig"
+  - input: [66]
+    expected: "sechsundsechzig"
+  - input: [77]
+    expected: "siebenundsiebzig"
   - input: [-1]
     expected: ""
   - input: [100]
     expected: ""
 starter_code: |
   def zahl_zu_wort(n: int) -> str:
-      # Deine Lösung hier -- 0-99 als deutsches Wort.
-      # Sonderschreibung: "zwoelf" (nicht "zwölf"), "dreissig", "sechzig"
-      # (nicht "sechszig"), "siebzig" (nicht "siebenzig").
+      # Deine Lösung hier - 0-99 als deutsches Wort.
+      # Sonderschreibung: "zwölf", "dreißig", "sechzehn" und "sechzig"
+      # (nicht "sechszehn", "sechszig"), "siebzehn" und "siebzig"
+      # (nicht "siebenzehn", "siebenzig").
       pass
 ---
 
@@ -78,8 +79,9 @@ Bei `n < 0` oder `n > 99` → `""`.
 ## Sonderfälle
 
 - **0**: `"null"`
-- **11, 12**: `"elf"`, `"zwölf"` (ohne Umlaut für ASCII-Tests)
-- **30, 60, 70**: `"dreissig"`, `"sechzig"`, `"siebzig"` (ASCII-Schreibweisen)
+- **11, 12**: `"elf"`, `"zwölf"`
+- **30**: `"dreißig"` mit ß
+- **sechs und sieben** verlieren vor "zehn" und "zig" das "s" bzw. das "en": `"sechzehn"`, `"siebzehn"`, `"sechzig"`, `"siebzig"`
 - **Einer-Stelle 1** in zusammengesetzten Zahlen: `"ein"` (nicht `"eins"`):
   `"einundzwanzig"`, `"einundvierzig"`
 
@@ -90,15 +92,9 @@ Bei `n < 0` oder `n > 99` → `""`.
 | `0`  | `"null"`            |
 | `7`  | `"sieben"`          |
 | `11` | `"elf"`             |
-| `12` | `"zwölf"`          |
+| `12` | `"zwölf"`           |
 | `13` | `"dreizehn"`        |
 | `20` | `"zwanzig"`         |
 | `21` | `"einundzwanzig"`   |
 | `42` | `"zweiundvierzig"`  |
 | `99` | `"neunundneunzig"`  |
-
-## Hinweis zur Schreibweise
-
-Wir nutzen ASCII-Schreibweisen (`zwölf`, `dreissig`), damit die
-Tests einfach bleiben und Identifier-Vergleiche zuverlässig sind.
-Echte Lokalisierung würde "zwölf", "dreißig" verwenden.

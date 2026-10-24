@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 131-gauss-summe
-revision: 2
+revision: 3
 titel: Gauß-Summe
 sprache: python
 task_type: code_schreiben
@@ -46,11 +46,11 @@ tests_versteckt:
     expected: 6
   - input: [50]
     expected: 1275
-  - input: [1000000]
-    expected: 500000500000
+  - input: [2500000]
+    expected: 3125001250000
 starter_code: |
   def gauss_summe(n: int) -> int:
-      # Deine Lösung hier -- 1+2+...+n. Mit Formel in O(1).
+      # Deine Lösung hier - 1+2+...+n. Mit Formel in O(1).
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 096-groesstes-produkt
-revision: 2
+revision: 3
 titel: Größtes Produkt aufeinanderfolgender Ziffern
 sprache: python
 task_type: code_schreiben
@@ -38,28 +38,28 @@ tests_sichtbar:
   - input: ["0000", 2]
     expected: 0
 tests_versteckt:
-  - input: ["12345", 5]
-    expected: 120
+  - input: ["31415", 5]
+    expected: 60
   - input: ["12345", 6]
     expected: -1
   - input: ["", 1]
     expected: -1
-  - input: ["123", 0]
+  - input: ["4567", 0]
     expected: 1
   - input: ["987654321", 3]
     expected: 504
-  - input: ["a12", 2]
+  - input: ["3x45", 2]
     expected: -1
 starter_code: |
   def groesstes_produkt(text: str, n: int) -> int:
-      # Deine Lösung hier -- ungültige Eingaben (Nicht-Ziffern, n > len)
+      # Deine Lösung hier - ungültige Eingaben (Nicht-Ziffern, n > len)
       # → -1. n=0 liefert 1 (leeres Produkt).
       pass
 ---
 
 # Größtes Produkt aufeinanderfolgender Ziffern
 
-Schreibe eine Funktion `größtes_produkt(text, n)`, die in einem
+Schreibe eine Funktion `groesstes_produkt(text, n)`, die in einem
 Ziffern-String das **größte Produkt** von $n$ aufeinanderfolgenden
 Ziffern findet.
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 016-quersumme
-revision: 2
+revision: 3
 titel: Quersumme einer Zahl
 sprache: python
 task_type: code_schreiben
@@ -48,8 +48,8 @@ tests_versteckt:
     expected: 1
   - input: [10]
     expected: 1
-  - input: [4711]
-    expected: 13
+  - input: [5823]
+    expected: 18
   - input: [987654321]
     expected: 45
 starter_code: |

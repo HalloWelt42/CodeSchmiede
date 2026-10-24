@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 219-vereinigung
-revision: 2
+revision: 3
 titel: Vereinigung zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -43,13 +43,13 @@ tests_versteckt:
     expected: [10, 20, 30, 40, 50, 60]
   - input: [[-3, -1, 0], [-2, 0, 1]]
     expected: [-3, -2, -1, 0, 1]
-  - input: [[1, 2, 3], [1, 2, 3]]
-    expected: [1, 2, 3]
+  - input: [[7, 8, 9], [7, 8, 9]]
+    expected: [7, 8, 9]
   - input: [[100], [200]]
     expected: [100, 200]
 starter_code: |
   def vereinigung(a: list, b: list) -> list:
-      # Deine Lösung hier -- aufsteigend sortiert, eindeutig
+      # Deine Lösung hier - aufsteigend sortiert, eindeutig
       pass
 ---
 

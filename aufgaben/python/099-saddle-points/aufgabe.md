@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 099-saddle-points
-revision: 2
+revision: 3
 titel: Sattel-Punkte einer Matrix
 sprache: python
 task_type: code_schreiben
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: [[2, 2]]
 starter_code: |
   def sattel_punkte(matrix: list[list[int]]) -> list[list[int]]:
-      # Deine Lösung hier -- (zeile, spalte) wo Element max in Zeile UND
+      # Deine Lösung hier - (zeile, spalte) wo Element max in Zeile UND
       # min in Spalte ist. 0-basiert, sortiert.
       pass
 ---

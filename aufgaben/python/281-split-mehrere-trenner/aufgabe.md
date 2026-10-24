@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 281-split-mehrere-trenner
-revision: 2
+revision: 3
 titel: Text an mehreren Trennzeichen splitten
 sprache: python
 task_type: code_schreiben
@@ -39,25 +39,25 @@ tests_sichtbar:
   - input: ["a,b,c"]
     expected: ["a", "b", "c"]
 tests_versteckt:
-  - input: ["a;;;b"]
-    expected: ["a", "b"]
-  - input: [",,,a"]
-    expected: ["a"]
+  - input: ["p;;;q"]
+    expected: ["p", "q"]
+  - input: [",,,q"]
+    expected: ["q"]
   - input: ["a,,,"]
     expected: ["a"]
-  - input: ["  viel    Whitespace  "]
-    expected: ["viel", "Whitespace"]
+  - input: ["   Mehr   Leerraum   "]
+    expected: ["Mehr", "Leerraum"]
   - input: ["a|b;c,d e"]
     expected: ["a", "b", "c", "d", "e"]
-  - input: ["1;2,3|4 5"]
-    expected: ["1", "2", "3", "4", "5"]
-  - input: [",;|"]
+  - input: ["6|7;8,9 0"]
+    expected: ["6", "7", "8", "9", "0"]
+  - input: ["|;,"]
     expected: []
 starter_code: |
   import re
 
   def split_alles(text: str) -> list[str]:
-      # Deine Lösung hier -- splitte an , ; | oder Whitespace
+      # Deine Lösung hier - splitte an , ; | oder Whitespace
       pass
 ---
 

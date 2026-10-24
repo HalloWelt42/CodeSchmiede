@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 296-ini-parsen
-revision: 2
+revision: 3
 titel: INI-Datei zu verschachteltem Dict
 sprache: python
 task_type: code_schreiben
@@ -42,11 +42,11 @@ tests_sichtbar:
 tests_versteckt:
   - input: ["[server]\nhost=localhost\nport=8080"]
     expected: {"server": {"host": "localhost", "port": "8080"}}
-  - input: ["[a]\nx = 1\n[b]\ny = 2"]
-    expected: {"a": {"x": "1"}, "b": {"y": "2"}}
-  - input: ["; comment\n[s]\n# auch comment\nk=v"]
-    expected: {"s": {"k": "v"}}
-  - input: ["k=v"]
+  - input: ["[p]\nm = 7\n[q]\nn = 8"]
+    expected: {"p": {"m": "7"}, "q": {"n": "8"}}
+  - input: ["; notiz\n[t]\n# noch eine notiz\nschluessel=wert"]
+    expected: {"t": {"schluessel": "wert"}}
+  - input: ["name=wert"]
     expected: {}
   - input: ["[s]\nleer=\nklasse=test"]
     expected: {"s": {"leer": "", "klasse": "test"}}
@@ -54,7 +54,7 @@ tests_versteckt:
     expected: {"db": {"host": "db.example", "user": "admin", "pass": "secret"}, "cache": {"ttl": "300"}}
 starter_code: |
   def ini_parse(s: str) -> dict:
-      # Deine Lösung hier -- per Hand parsen
+      # Deine Lösung hier - per Hand parsen
       pass
 ---
 

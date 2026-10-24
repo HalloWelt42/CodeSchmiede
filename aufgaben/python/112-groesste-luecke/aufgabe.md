@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 112-groesste-luecke
-revision: 2
+revision: 3
 titel: Größte Lücke in sortierter Liste
 sprache: python
 task_type: code_schreiben
@@ -37,9 +37,9 @@ tests_sichtbar:
   - input: [[]]
     expected: 0
 tests_versteckt:
-  - input: [[10, 1, 100]]
-    expected: 90
-  - input: [[5, 5, 5, 5]]
+  - input: [[20, 2, 200]]
+    expected: 180
+  - input: [[7, 7, 7, 7]]
     expected: 0
   - input: [[-10, 0, 10]]
     expected: 10
@@ -49,13 +49,13 @@ tests_versteckt:
     expected: 900
 starter_code: |
   def groesste_luecke(zahlen: list[int]) -> int:
-      # Deine Lösung hier -- nach Sortierung größter Abstand zweier Nachbarn.
+      # Deine Lösung hier - nach Sortierung größter Abstand zweier Nachbarn.
       pass
 ---
 
 # Größte Lücke in sortierter Liste
 
-Schreibe eine Funktion `größte_lücke(zahlen)`, die die **größte
+Schreibe eine Funktion `groesste_luecke(zahlen)`, die die **größte
 Lücke** zwischen zwei aufeinanderfolgenden Werten in der **sortierten**
 Liste zurückgibt.
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 120-trennzeichen-akronym
-revision: 2
+revision: 3
 titel: Akronym mit gemischten Trennzeichen
 sprache: python
 task_type: code_schreiben
@@ -48,13 +48,13 @@ tests_versteckt:
     expected: "G"
   - input: ["Complementary metal-oxide semiconductor"]
     expected: "CMOS"
-  - input: ["the_quick_brown fox"]
-    expected: "TQBF"
-  - input: ["camelCase rocks"]
-    expected: "CCR"
+  - input: ["lazy_dog_jumps high"]
+    expected: "LDJH"
+  - input: ["bigData tools"]
+    expected: "BDT"
 starter_code: |
   def akronym_plus(text: str) -> str:
-      # Deine Lösung hier -- Trennzeichen: Whitespace, '-', '_'.
+      # Deine Lösung hier - Trennzeichen: Whitespace, '-', '_'.
       # Auch camelCase splitten.
       pass
 ---

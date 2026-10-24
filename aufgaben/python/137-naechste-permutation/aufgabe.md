@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 137-naechste-permutation
-revision: 2
+revision: 3
 titel: Nächste Permutation
 sprache: python
 task_type: code_schreiben
@@ -50,21 +50,21 @@ tests_versteckt:
     expected: [2, 1]
   - input: [[2, 1]]
     expected: [1, 2]
-  - input: [[1, 2, 3, 4]]
-    expected: [1, 2, 4, 3]
+  - input: [[5, 6, 7, 8]]
+    expected: [5, 6, 8, 7]
   - input: [[4, 3, 2, 1]]
     expected: [1, 2, 3, 4]
   - input: [[1, 5, 1]]
     expected: [5, 1, 1]
 starter_code: |
   def naechste_permutation(a: list[int]) -> list[int]:
-      # Deine Lösung hier -- naechste lex. Permutation, sonst sortiert.
+      # Deine Lösung hier - nächste lex. Permutation, sonst sortiert.
       pass
 ---
 
 # Nächste Permutation
 
-Schreibe eine Funktion `nächste_permutation(a)`, die die nächste
+Schreibe eine Funktion `naechste_permutation(a)`, die die nächste
 Permutation in **lexikographischer Reihenfolge** zurückgibt.
 Wenn die Eingabe bereits die letzte (absteigend sortierte) ist,
 liefere sie aufsteigend sortiert.

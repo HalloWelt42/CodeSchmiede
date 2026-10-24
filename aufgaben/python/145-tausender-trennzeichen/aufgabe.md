@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 145-tausender-trennzeichen
-revision: 2
+revision: 3
 titel: Tausender-Trennzeichen (deutsch)
 sprache: python
 task_type: code_schreiben
@@ -43,8 +43,8 @@ tests_versteckt:
     expected: "999"
   - input: [1000]
     expected: "1.000"
-  - input: [1234567890]
-    expected: "1.234.567.890"
+  - input: [9876543210]
+    expected: "9.876.543.210"
   - input: [-1000000000]
     expected: "-1.000.000.000"
   - input: [42]
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: "100.000"
 starter_code: |
   def mit_punkten(n: int) -> str:
-      # Deine Lösung hier -- Punkt-Trenner alle 3 Stellen von rechts
+      # Deine Lösung hier - Punkt-Trenner alle 3 Stellen von rechts
       pass
 ---
 

@@ -1,5 +1,5 @@
 """
-Mit zip + chain.from_iterable -- die Standard-Bibliothek erledigt fast
+Mit zip + chain.from_iterable - die Standard-Bibliothek erledigt fast
 alles.
 """
 

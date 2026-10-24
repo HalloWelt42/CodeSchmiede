@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 286-queue-ops
-revision: 2
+revision: 3
 titel: Queue (FIFO) mit Operations-Liste
 sprache: python
 task_type: code_schreiben
@@ -44,8 +44,8 @@ tests_versteckt:
     expected: []
   - input: [[["enqueue", "a"], ["enqueue", "b"], ["enqueue", "c"], ["dequeue"], ["dequeue"]]]
     expected: ["c"]
-  - input: [[["enqueue", 1], ["enqueue", 2], ["enqueue", 3], ["dequeue"], ["enqueue", 4]]]
-    expected: [2, 3, 4]
+  - input: [[["enqueue", 6], ["enqueue", 7], ["enqueue", 8], ["dequeue"], ["enqueue", 9]]]
+    expected: [7, 8, 9]
   - input: [[["enqueue", 5], ["dequeue"], ["enqueue", 10], ["dequeue"]]]
     expected: []
   - input: [[["enqueue", 1], ["enqueue", 2], ["enqueue", 3], ["dequeue"], ["dequeue"], ["dequeue"], ["dequeue"]]]

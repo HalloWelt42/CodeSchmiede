@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 308-fibonacci-bis-n-gen
-revision: 2
+revision: 3
 titel: Fibonacci-Generator bis Maximum
 sprache: python
 task_type: code_schreiben
@@ -39,8 +39,8 @@ tests_sichtbar:
   - input: [1]
     expected: [0, 1, 1]
 tests_versteckt:
-  - input: [100]
-    expected: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+  - input: [75]
+    expected: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
   - input: [2]
     expected: [0, 1, 1, 2]
   - input: [50]
@@ -49,8 +49,8 @@ tests_versteckt:
     expected: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
   - input: [4]
     expected: [0, 1, 1, 2, 3]
-  - input: [21]
-    expected: [0, 1, 1, 2, 3, 5, 8, 13, 21]
+  - input: [233]
+    expected: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233]
 starter_code: |
   def fibs_bis(max_wert: int) -> list[int]:
       # Tipp: while-Generator mit a, b = 0, 1

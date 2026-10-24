@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 139-levenshtein
-revision: 2
+revision: 3
 titel: Levenshtein-Distanz
 sprache: python
 task_type: code_schreiben
@@ -40,11 +40,11 @@ tests_sichtbar:
   - input: ["abc", ""]
     expected: 3
 tests_versteckt:
-  - input: ["", "abc"]
-    expected: 3
-  - input: ["sonntag", "samstag"]
-    expected: 3
-  - input: ["haus", "maus"]
+  - input: ["", "hund"]
+    expected: 4
+  - input: ["dienstag", "freitag"]
+    expected: 4
+  - input: ["baum", "raum"]
     expected: 1
   - input: ["abcdef", "azced"]
     expected: 3

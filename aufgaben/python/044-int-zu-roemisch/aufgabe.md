@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 044-int-zu-roemisch
-revision: 2
+revision: 3
 titel: Integer zu Römisch
 sprache: python
 task_type: code_schreiben
@@ -41,27 +41,27 @@ tests_sichtbar:
 tests_versteckt:
   - input: [1]
     expected: "I"
-  - input: [3999]
-    expected: "MMMCMXCIX"
-  - input: [40]
-    expected: "XL"
-  - input: [58]
-    expected: "LVIII"
-  - input: [400]
-    expected: "CD"
-  - input: [900]
-    expected: "CM"
-  - input: [3888]
-    expected: "MMMDCCCLXXXVIII"
+  - input: [3998]
+    expected: "MMMCMXCVIII"
+  - input: [42]
+    expected: "XLII"
+  - input: [67]
+    expected: "LXVII"
+  - input: [450]
+    expected: "CDL"
+  - input: [960]
+    expected: "CMLX"
+  - input: [2888]
+    expected: "MMDCCCLXXXVIII"
 starter_code: |
   def int_zu_roemisch(n: int) -> str:
-      # Deine Lösung hier -- Eingabe 1 bis 3999.
+      # Deine Lösung hier - Eingabe 1 bis 3999.
       pass
 ---
 
 # Integer zu Römisch
 
-Schreibe eine Funktion `int_zu_römisch(n)`, die eine Dezimalzahl
+Schreibe eine Funktion `int_zu_roemisch(n)`, die eine Dezimalzahl
 zwischen `1` und `3999` als römische Zahl zurückgibt.
 
 ## Symbole + Sonderfälle

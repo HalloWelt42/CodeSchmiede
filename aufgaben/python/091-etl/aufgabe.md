@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 091-etl
-revision: 2
+revision: 3
 titel: ETL - Punkte-Tabelle umbauen
 sprache: python
 task_type: code_schreiben
@@ -49,7 +49,7 @@ tests_versteckt:
     expected: { "b": 3, "c": 3, "m": 3, "p": 3 }
 starter_code: |
   def transformiere(alt: dict) -> dict:
-      # Deine Lösung hier -- Schluessel sind als String-Punkte da, Werte
+      # Deine Lösung hier - Schlüssel sind als String-Punkte da, Werte
       # sind Listen von Großbuchstaben. Ergebnis: {kleinbuchstabe: punkte}.
       pass
 ---

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 092-fibonacci-folge
-revision: 2
+revision: 3
 titel: Fibonacci-Folge bis n
 sprache: python
 task_type: code_schreiben
@@ -48,7 +48,7 @@ tests_versteckt:
     expected: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181]
 starter_code: |
   def fibonacci_folge(n: int) -> list[int]:
-      # Deine Lösung hier -- erste n Zahlen der Fibonacci-Folge.
+      # Deine Lösung hier - erste n Zahlen der Fibonacci-Folge.
       pass
 ---
 

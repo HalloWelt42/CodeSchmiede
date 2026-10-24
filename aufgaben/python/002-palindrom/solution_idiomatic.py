@@ -1,5 +1,5 @@
 """
-Idiomatische Loesung: String-Slicing mit Schrittweite -1 kehrt den
+Idiomatische Lösung: String-Slicing mit Schrittweite -1 kehrt den
 String um. Vergleich mit Originalstring liefert das Ergebnis direkt.
 """
 

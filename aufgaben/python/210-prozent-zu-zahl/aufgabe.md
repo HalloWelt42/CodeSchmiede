@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 210-prozent-zu-zahl
-revision: 2
+revision: 3
 titel: Prozent-String zur Zahl
 sprache: python
 task_type: code_schreiben
@@ -40,23 +40,23 @@ tests_sichtbar:
   - input: ["12.5%"]
     expected: 0.125
 tests_versteckt:
-  - input: ["12,5%"]
-    expected: 0.125
-  - input: ["-50%"]
-    expected: -0.5
+  - input: ["37,5%"]
+    expected: 0.375
+  - input: ["-25%"]
+    expected: -0.25
   - input: ["150%"]
     expected: 1.5
   - input: [""]
     expected: 0.0
-  - input: ["abc"]
+  - input: ["xyz"]
     expected: 0.0
-  - input: ["  75% "]
-    expected: 0.75
+  - input: ["  40% "]
+    expected: 0.4
   - input: ["33.33%"]
     expected: 0.3333
 starter_code: |
   def aus_prozent(s: str) -> float:
-      # Deine Lösung hier -- mit/ohne %, Komma oder Punkt
+      # Deine Lösung hier - mit/ohne %, Komma oder Punkt
       pass
 ---
 

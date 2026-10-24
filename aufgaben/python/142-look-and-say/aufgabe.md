@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 142-look-and-say
-revision: 2
+revision: 3
 titel: Look-and-Say-Folge
 sprache: python
 task_type: code_schreiben
@@ -40,19 +40,19 @@ tests_sichtbar:
   - input: [4]
     expected: "1211"
 tests_versteckt:
-  - input: [5]
-    expected: "111221"
-  - input: [6]
-    expected: "312211"
-  - input: [7]
-    expected: "13112221"
+  - input: [9]
+    expected: "31131211131221"
+  - input: [12]
+    expected: "3113112221232112111312211312113211"
+  - input: [13]
+    expected: "1321132132111213122112311311222113111221131221"
   - input: [8]
     expected: "1113213211"
   - input: [10]
     expected: "13211311123113112211"
 starter_code: |
   def look_and_say(n: int) -> str:
-      # Deine Lösung hier -- start "1", n Iterationen
+      # Deine Lösung hier - start "1", n Iterationen
       pass
 ---
 

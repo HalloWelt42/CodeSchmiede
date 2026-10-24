@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 109-anagramm-gruppen
-revision: 2
+revision: 3
 titel: Wörter nach Anagramm gruppieren
 sprache: python
 task_type: code_schreiben
@@ -40,23 +40,23 @@ tests_sichtbar:
   - input: [["", ""]]
     expected: [["", ""]]
 tests_versteckt:
-  - input: [["listen", "silent", "enlist"]]
-    expected: [["enlist", "listen", "silent"]]
+  - input: [["below", "elbow", "bowel"]]
+    expected: [["below", "bowel", "elbow"]]
   - input: [["a", "b", "c"]]
     expected: [["a"], ["b"], ["c"]]
   - input: [["abc", "cba", "bca", "xyz", "zyx"]]
     expected: [["abc", "bca", "cba"], ["xyz", "zyx"]]
-  - input: [["Eat", "TEA", "ate"]]
-    expected: [["Eat", "TEA", "ate"]]
+  - input: [["Rat", "TAR", "art"]]
+    expected: [["Rat", "TAR", "art"]]
 starter_code: |
   def gruppiere(woerter: list[str]) -> list[list[str]]:
-      # Deine Lösung hier -- pro Gruppe alphabetisch, Gruppen alphabetisch.
+      # Deine Lösung hier - pro Gruppe alphabetisch, Gruppen alphabetisch.
       pass
 ---
 
 # Wörter nach Anagramm gruppieren
 
-Schreibe eine Funktion `gruppiere(wörter)`, die eine Liste von
+Schreibe eine Funktion `gruppiere(woerter)`, die eine Liste von
 Wörtern nach **Anagramm-Klassen** gruppiert.
 
 Zwei Wörter sind Anagramme, wenn sie die gleichen Buchstaben in

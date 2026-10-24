@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 101-zwei-eimer
-revision: 2
+revision: 3
 titel: Zwei-Eimer-Problem
 sprache: python
 task_type: code_schreiben
@@ -50,7 +50,7 @@ tests_sichtbar:
 tests_versteckt:
   - input: [7, 11, 2, "b"]
     expected: [18, "b", 7]
-  - input: [1, 3, 3, "b"]
+  - input: [5, 13, 13, "b"]
     expected: [1, "b", 0]
   - input: [2, 3, 1, "a"]
     expected: [4, "a", 3]
@@ -58,9 +58,9 @@ tests_versteckt:
     expected: [2, "b", 2]
 starter_code: |
   def zwei_eimer(a: int, b: int, ziel: int, start: str) -> list:
-      # Deine Lösung hier -- BFS auf Zustaenden (inhalt_a, inhalt_b).
+      # Deine Lösung hier - BFS auf Zuständen (inhalt_a, inhalt_b).
       # Antwort: [zugzahl, gewinner_eimer, inhalt_anderer_eimer] oder
-      # [] wenn unloesbar.
+      # [] wenn unlösbar.
       pass
 ---
 

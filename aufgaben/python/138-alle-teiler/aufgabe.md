@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 138-alle-teiler
-revision: 2
+revision: 3
 titel: Alle Teiler einer Zahl
 sprache: python
 task_type: code_schreiben
@@ -42,17 +42,17 @@ tests_versteckt:
     expected: []
   - input: [2]
     expected: [1, 2]
-  - input: [25]
-    expected: [1, 5, 25]
-  - input: [36]
-    expected: [1, 2, 3, 4, 6, 9, 12, 18, 36]
+  - input: [49]
+    expected: [1, 7, 49]
+  - input: [64]
+    expected: [1, 2, 4, 8, 16, 32, 64]
   - input: [100]
     expected: [1, 2, 4, 5, 10, 20, 25, 50, 100]
-  - input: [97]
-    expected: [1, 97]
+  - input: [89]
+    expected: [1, 89]
 starter_code: |
   def alle_teiler(n: int) -> list[int]:
-      # Deine Lösung hier -- aufsteigend, inkl. 1 und n. n<1 → [].
+      # Deine Lösung hier - aufsteigend, inkl. 1 und n. n<1 → [].
       pass
 ---
 

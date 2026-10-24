@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 331-range-expansion
-revision: 2
+revision: 3
 titel: Bereichs-Notation entpacken
 sprache: python
 task_type: code_schreiben
@@ -41,14 +41,14 @@ tests_sichtbar:
   - input: ["1-5"]
     expected: [1, 2, 3, 4, 5]
 tests_versteckt:
-  - input: ["-3--1,2,4-6"]
-    expected: [-3, -2, -1, 2, 4, 5, 6]
+  - input: ["-5--2,0,3-4"]
+    expected: [-5, -4, -3, -2, 0, 3, 4]
   - input: ["10-12"]
     expected: [10, 11, 12]
   - input: ["1,2,3"]
     expected: [1, 2, 3]
-  - input: ["-5"]
-    expected: [-5]
+  - input: ["-8"]
+    expected: [-8]
   - input: ["0-0"]
     expected: [0]
   - input: ["1-3,7-9,15"]
@@ -57,7 +57,7 @@ tests_versteckt:
     expected: [100, 101, 102, 103]
 starter_code: |
   def bereich_entpacken(s: str) -> list[int]:
-      # Tipp: split an Komma, pro Stueck Bindestrich-Trenner finden
+      # Tipp: split an Komma, pro Stück Bindestrich-Trenner finden
       pass
 ---
 

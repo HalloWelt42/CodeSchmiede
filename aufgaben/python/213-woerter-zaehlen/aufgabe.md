@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 213-woerter-zaehlen
-revision: 2
+revision: 3
 titel: Anzahl Wörter im Text
 sprache: python
 task_type: code_schreiben
@@ -39,11 +39,11 @@ tests_sichtbar:
   - input: ["eins zwei drei vier"]
     expected: 4
 tests_versteckt:
-  - input: ["    "]
+  - input: ["   "]
     expected: 0
   - input: ["  viele   Leerzeichen   hier  "]
     expected: 3
-  - input: ["a b c d e f g h i j"]
+  - input: ["k l m n o p q r s t"]
     expected: 10
   - input: ["der schnelle braune Fuchs"]
     expected: 4
@@ -61,7 +61,7 @@ starter_code: |
 
 # Anzahl Wörter im Text
 
-Schreibe `wörter_zählen(text)`, die die **Anzahl der Wörter** in
+Schreibe `woerter_zaehlen(text)`, die die **Anzahl der Wörter** in
 einem Text zurückgibt. Mehrfache Whitespaces zählen als ein
 Trenner; führende/nachfolgende Leerzeichen werden ignoriert.
 

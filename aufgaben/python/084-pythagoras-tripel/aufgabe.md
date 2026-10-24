@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 084-pythagoras-tripel
-revision: 2
+revision: 3
 titel: Pythagoreisches Tripel
 sprache: python
 task_type: code_schreiben
@@ -39,8 +39,8 @@ tests_sichtbar:
   - input: [1000]
     expected: [[200, 375, 425]]
 tests_versteckt:
-  - input: [30]
-    expected: [[5, 12, 13]]
+  - input: [40]
+    expected: [[8, 15, 17]]
   - input: [90]
     expected: [[9, 40, 41], [15, 36, 39]]
   - input: [840]
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: []
 starter_code: |
   def pythagoras_tripel(n: int) -> list[list[int]]:
-      # Deine Lösung hier -- alle Tripel (a,b,c) mit a<b<c, a²+b²=c² und a+b+c=n.
+      # Deine Lösung hier - alle Tripel (a,b,c) mit a<b<c, a²+b²=c² und a+b+c=n.
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 287-bibliothek
-revision: 2
+revision: 3
 titel: Bibliothek mit Buchausleihen
 sprache: python
 task_type: code_schreiben
@@ -42,8 +42,8 @@ tests_sichtbar:
   - input: [["A"], [["leihen", "A"], ["zurueck", "A"]]]
     expected: ["A"]
 tests_versteckt:
-  - input: [["A", "B", "C"], [["leihen", "Z"]]]
-    expected: ["A", "B", "C"]
+  - input: [["D", "E", "F"], [["leihen", "Q"]]]
+    expected: ["D", "E", "F"]
   - input: [["A", "B", "C"], [["zurueck", "A"]]]
     expected: ["A", "B", "C"]
   - input: [["B", "A"], [["pruefen", "A"]]]

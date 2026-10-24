@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 227-zip-mit-fuellwert
-revision: 2
+revision: 3
 titel: Zip mit Füllwert
 sprache: python
 task_type: code_schreiben
@@ -54,7 +54,7 @@ starter_code: |
   from itertools import zip_longest
 
   def zip_fuell(a: list, b: list, fuell) -> list[list]:
-      # Deine Lösung hier -- zip_longest mit fillvalue
+      # Deine Lösung hier - zip_longest mit fillvalue
       pass
 ---
 

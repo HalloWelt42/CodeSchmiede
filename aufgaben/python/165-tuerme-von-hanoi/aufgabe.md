@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 165-tuerme-von-hanoi
-revision: 2
+revision: 3
 titel: Türme von Hanoi (Zugfolge)
 sprache: python
 task_type: code_schreiben
@@ -29,10 +29,10 @@ hints:
   - kosten: 15
     text: |
       Klassische Rekursion:
-      hanoi(n, von, über, nach) =
-        hanoi(n-1, von, nach, über)
+      hanoi(n, von, ueber, nach) =
+        hanoi(n-1, von, nach, ueber)
         + [(von, nach)]
-        + hanoi(n-1, über, von, nach)
+        + hanoi(n-1, ueber, von, nach)
 tests_sichtbar:
   - input: [0]
     expected: []
@@ -49,7 +49,7 @@ tests_versteckt:
     expected: [["A", "C"], ["A", "B"], ["C", "B"], ["A", "C"], ["B", "A"], ["B", "C"], ["A", "C"], ["A", "B"], ["C", "B"], ["C", "A"], ["B", "A"], ["C", "B"], ["A", "C"], ["A", "B"], ["C", "B"], ["A", "C"], ["B", "A"], ["B", "C"], ["A", "C"], ["B", "A"], ["C", "B"], ["C", "A"], ["B", "A"], ["B", "C"], ["A", "C"], ["A", "B"], ["C", "B"], ["A", "C"], ["B", "A"], ["B", "C"], ["A", "C"]]
 starter_code: |
   def hanoi(n: int, von: str = "A", ueber: str = "B", nach: str = "C") -> list:
-      # Deine Lösung hier -- Liste von [von, nach]-Paaren
+      # Deine Lösung hier - Liste von [von, nach]-Paaren
       pass
 ---
 

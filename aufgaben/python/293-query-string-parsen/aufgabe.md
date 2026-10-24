@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 293-query-string-parsen
-revision: 2
+revision: 3
 titel: URL-Query-String parsen
 sprache: python
 task_type: code_schreiben
@@ -42,21 +42,21 @@ tests_sichtbar:
 tests_versteckt:
   - input: ["?a=1&b=2&c=3"]
     expected: {"a": "1", "b": "2", "c": "3"}
-  - input: ["nur_key"]
-    expected: {"nur_key": ""}
-  - input: ["a=hallo welt"]
-    expected: {"a": "hallo welt"}
+  - input: ["ohne_wert"]
+    expected: {"ohne_wert": ""}
+  - input: ["q=guten morgen"]
+    expected: {"q": "guten morgen"}
   - input: ["x=1&y=2&z="]
     expected: {"x": "1", "y": "2", "z": ""}
   - input: ["?"]
     expected: {}
-  - input: ["a=b=c"]
-    expected: {"a": "b=c"}
+  - input: ["x=y=z"]
+    expected: {"x": "y=z"}
   - input: ["foo=bar&baz=quux&hello=world"]
     expected: {"foo": "bar", "baz": "quux", "hello": "world"}
 starter_code: |
   def query_parse(s: str) -> dict:
-      # Deine Lösung hier -- ohne urllib.parse
+      # Deine Lösung hier - ohne urllib.parse
       pass
 ---
 

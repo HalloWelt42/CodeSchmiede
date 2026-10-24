@@ -1,11 +1,11 @@
 _EINER = [
-    "null", "eins", "zwei", "drei", "vier", "fuenf", "sechs", "sieben",
-    "acht", "neun", "zehn", "elf", "zwoelf", "dreizehn", "vierzehn",
-    "fuenfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn",
+    "null", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben",
+    "acht", "neun", "zehn", "elf", "zwölf", "dreizehn", "vierzehn",
+    "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn",
 ]
 
 _ZEHNER = {
-    20: "zwanzig", 30: "dreissig", 40: "vierzig", 50: "fuenfzig",
+    20: "zwanzig", 30: "dreißig", 40: "vierzig", 50: "fünfzig",
     60: "sechzig", 70: "siebzig", 80: "achtzig", 90: "neunzig",
 }
 

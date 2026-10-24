@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 023-dict-invertieren
-revision: 2
+revision: 3
 titel: Dictionary invertieren
 sprache: python
 task_type: code_schreiben
@@ -39,13 +39,13 @@ tests_sichtbar:
   - input: [{ "x": 42 }]
     expected: { "42": "x" }
 tests_versteckt:
-  - input: [{ "rot": 1, "gruen": 2, "blau": 3 }]
-    expected: { "1": "rot", "2": "gruen", "3": "blau" }
+  - input: [{ "rot": 1, "grün": 2, "blau": 3 }]
+    expected: { "1": "rot", "2": "grün", "3": "blau" }
   - input: [{ "eins": 1 }]
     expected: { "1": "eins" }
 starter_code: |
   def invertiere(d: dict) -> dict:
-      # Deine Lösung hier -- Schluessel und Werte tauschen.
+      # Deine Lösung hier - Schlüssel und Werte tauschen.
       # Werte werden im Ergebnis als Strings verwendet (str(wert)).
       pass
 ---

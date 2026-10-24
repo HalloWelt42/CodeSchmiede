@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 155-spiralmatrix
-revision: 2
+revision: 3
 titel: Matrix als Spirale lesen
 sprache: python
 task_type: code_schreiben
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: [7, 8, 10, 12, 11, 9]
 starter_code: |
   def spirale_lesen(matrix: list[list[int]]) -> list[int]:
-      # Deine Lösung hier -- schichtweise abarbeiten
+      # Deine Lösung hier - schichtweise abarbeiten
       pass
 ---
 

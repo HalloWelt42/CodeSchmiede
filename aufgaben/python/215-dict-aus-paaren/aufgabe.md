@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 215-dict-aus-paaren
-revision: 2
+revision: 3
 titel: Dict aus Schlüssel-Wert-Paaren bauen
 sprache: python
 task_type: code_schreiben
@@ -47,11 +47,11 @@ tests_versteckt:
     expected: {"a": 99, "b": 2}
   - input: [[["leer", null]]]
     expected: {"leer": null}
-  - input: [[["x", 1], ["x", 2], ["x", 3]]]
-    expected: {"x": 3}
+  - input: [[["y", 5], ["y", 6], ["y", 7]]]
+    expected: {"y": 7}
 starter_code: |
   def paare_zu_dict(paare: list[list]) -> dict:
-      # Deine Lösung hier -- bei doppelten Keys gewinnt der letzte Wert
+      # Deine Lösung hier - bei doppelten Keys gewinnt der letzte Wert
       pass
 ---
 

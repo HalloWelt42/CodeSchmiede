@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 033-grossbuchstaben
-revision: 2
+revision: 3
 titel: Großbuchstaben zählen
 sprache: python
 task_type: code_schreiben
@@ -55,7 +55,7 @@ starter_code: |
 
 # Großbuchstaben zählen
 
-Schreibe eine Funktion `zähle_groß(text)`, die zählt, wie viele
+Schreibe eine Funktion `zaehle_gross(text)`, die zählt, wie viele
 **Großbuchstaben** im String vorkommen.
 
 ## Beispiele

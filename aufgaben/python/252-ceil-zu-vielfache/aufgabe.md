@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 252-ceil-zu-vielfache
-revision: 2
+revision: 3
 titel: Aufrunden zum nächsten Vielfachen von k
 sprache: python
 task_type: code_schreiben
@@ -41,16 +41,16 @@ tests_sichtbar:
   - input: [1, 10]
     expected: 10
 tests_versteckt:
-  - input: [25, 7]
-    expected: 28
-  - input: [100, 100]
-    expected: 100
-  - input: [101, 100]
-    expected: 200
-  - input: [-13, 5]
-    expected: -10
-  - input: [-10, 5]
-    expected: -10
+  - input: [30, 8]
+    expected: 32
+  - input: [300, 300]
+    expected: 300
+  - input: [301, 100]
+    expected: 400
+  - input: [-17, 5]
+    expected: -15
+  - input: [-20, 5]
+    expected: -20
   - input: [-1, 5]
     expected: 0
   - input: [50, 0]
@@ -59,7 +59,7 @@ starter_code: |
   import math
 
   def ceil_vielfache(n: int, k: int) -> int:
-      # Deine Lösung hier -- aufwaerts (Richtung +unendlich)
+      # Deine Lösung hier - aufwärts (Richtung +unendlich)
       pass
 ---
 

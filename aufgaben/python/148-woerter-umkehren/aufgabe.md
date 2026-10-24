@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 148-woerter-umkehren
-revision: 2
+revision: 3
 titel: Reihenfolge der Wörter umkehren
 sprache: python
 task_type: code_schreiben
@@ -43,7 +43,7 @@ tests_versteckt:
     expected: "hier Leerzeichen viele"
   - input: ["a b c d e"]
     expected: "e d c b a"
-  - input: ["    "]
+  - input: ["   "]
     expected: ""
   - input: ["Der schnelle braune Fuchs"]
     expected: "Fuchs braune schnelle Der"
@@ -57,7 +57,7 @@ starter_code: |
 
 # Reihenfolge der Wörter umkehren
 
-Schreibe eine Funktion `wörter_umkehren(text)`, die die Reihenfolge
+Schreibe eine Funktion `woerter_umkehren(text)`, die die Reihenfolge
 der Wörter im String **umdreht**. Mehrfache Leerzeichen werden
 dabei zu einem einzelnen Leerzeichen reduziert; führende und
 nachfolgende Leerzeichen entfallen.

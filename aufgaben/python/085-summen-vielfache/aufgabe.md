@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 085-summen-vielfache
-revision: 2
+revision: 3
 titel: Summe der Vielfachen
 sprache: python
 task_type: code_schreiben
@@ -38,10 +38,10 @@ tests_sichtbar:
   - input: [10, [7]]
     expected: 7
 tests_versteckt:
-  - input: [100, [3, 5]]
-    expected: 2318
-  - input: [1000, [3, 5]]
-    expected: 233168
+  - input: [200, [3, 7]]
+    expected: 8530
+  - input: [2000, [5, 7]]
+    expected: 626430
   - input: [20, [4]]
     expected: 40
   - input: [15, [3, 5]]
@@ -52,7 +52,7 @@ tests_versteckt:
     expected: 0
 starter_code: |
   def summe_vielfache(n: int, teiler: list[int]) -> int:
-      # Deine Lösung hier -- Summe aller Zahlen < n, die Vielfaches
+      # Deine Lösung hier - Summe aller Zahlen < n, die Vielfaches
       # von mindestens einem Teiler sind.
       pass
 ---

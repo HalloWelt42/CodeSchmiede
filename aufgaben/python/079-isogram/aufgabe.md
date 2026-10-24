@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 079-isogram
-revision: 2
+revision: 3
 titel: Isogramm-Test
 sprache: python
 task_type: code_schreiben
@@ -43,11 +43,11 @@ tests_versteckt:
     expected: false
   - input: ["zzyzx"]
     expected: false
-  - input: ["subdermatoglyphic"]
+  - input: ["uncopyrightable"]
     expected: true
-  - input: ["Emily Jung Schwartzkopf"]
+  - input: ["Dirk Hagen Wolfstum"]
     expected: true
-  - input: ["accentor"]
+  - input: ["barrique"]
     expected: false
 starter_code: |
   def ist_isogramm(text: str) -> bool:

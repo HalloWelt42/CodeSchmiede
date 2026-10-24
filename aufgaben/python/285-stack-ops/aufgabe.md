@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 285-stack-ops
-revision: 2
+revision: 3
 titel: Stack mit Operations-Liste
 sprache: python
 task_type: code_schreiben
@@ -41,12 +41,12 @@ tests_sichtbar:
   - input: [[["push", 1], ["push", 2], ["pop"]]]
     expected: [1]
 tests_versteckt:
-  - input: [[["pop"]]]
-    expected: []
+  - input: [[["pop"], ["push", 4]]]
+    expected: [4]
   - input: [[["pop"], ["pop"], ["pop"]]]
     expected: []
-  - input: [[["push", 5], ["push", 10], ["push", 15], ["pop"], ["pop"]]]
-    expected: [5]
+  - input: [[["push", 7], ["push", 14], ["push", 21], ["pop"], ["pop"]]]
+    expected: [7]
   - input: [[["push", "a"], ["push", "b"]]]
     expected: ["a", "b"]
   - input: [[["push", 1], ["push", 2], ["push", 3], ["push", 4], ["push", 5]]]
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: [3]
 starter_code: |
   def stack_lauf(operationen: list) -> list:
-      # Tipp: Stack als Klasse mit push/pop, dann Liste zurueckgeben
+      # Tipp: Stack als Klasse mit push/pop, dann Liste zurückgeben
       pass
 ---
 

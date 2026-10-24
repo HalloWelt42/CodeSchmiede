@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 297-nested-dict-pfad
-revision: 2
+revision: 3
 titel: Nested-Dict via dotted path lesen
 sprache: python
 task_type: code_schreiben
@@ -42,17 +42,17 @@ tests_sichtbar:
 tests_versteckt:
   - input: [{"a": {"b": {"c": {"d": "tief"}}}}, "a.b.c.d", null]
     expected: "tief"
-  - input: [{"a": {"b": 1}}, "a.b.c", null]
+  - input: [{"x": {"y": 5}}, "x.y.z", null]
     expected: null
   - input: [{"a": {"b": 1}}, "a.x", "fallback"]
     expected: "fallback"
   - input: [{"a": [1, 2, 3]}, "a.0", null]
     expected: null
-  - input: [{"a": null}, "a.b", "weg"]
-    expected: "weg"
-  - input: [{"server": {"port": 8080}}, "server.port", 0]
-    expected: 8080
-  - input: [{"a": {"b": false}}, "a.b", "default"]
+  - input: [{"k": null}, "k.m", "fehlt"]
+    expected: "fehlt"
+  - input: [{"db": {"timeout": 30}}, "db.timeout", 0]
+    expected: 30
+  - input: [{"flags": {"aktiv": false}}, "flags.aktiv", "ersatz"]
     expected: false
 starter_code: |
   def dict_pfad(d: dict, pfad: str, default):

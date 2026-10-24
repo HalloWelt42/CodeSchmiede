@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 182-trinkgeld-aufteilen
-revision: 2
+revision: 3
 titel: Rechnung mit Trinkgeld aufteilen
 sprache: python
 task_type: code_schreiben
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: 50.0
 starter_code: |
   def pro_person(rechnung: float, tip_prozent: float, personen: int) -> float:
-      # Deine Lösung hier -- auf 2 Stellen gerundet
+      # Deine Lösung hier - auf 2 Stellen gerundet
       pass
 ---
 

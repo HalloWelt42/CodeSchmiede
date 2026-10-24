@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 244-gleitender-mittelwert
-revision: 2
+revision: 3
 titel: Gleitender Mittelwert (Sliding Mean)
 sprache: python
 task_type: code_schreiben
@@ -40,10 +40,10 @@ tests_sichtbar:
   - input: [[1, 2, 3], 5]
     expected: []
 tests_versteckt:
-  - input: [[1, 2, 3, 4, 5], 5]
-    expected: [3.0]
-  - input: [[10, 20, 30, 40], 2]
-    expected: [15.0, 25.0, 35.0]
+  - input: [[2, 4, 6, 8, 10], 5]
+    expected: [6.0]
+  - input: [[12, 18, 24, 30], 2]
+    expected: [15.0, 21.0, 27.0]
   - input: [[1, 1, 1, 1, 1], 3]
     expected: [1.0, 1.0, 1.0]
   - input: [[1, 2, 3, 4, 5], 0]
@@ -54,7 +54,7 @@ tests_versteckt:
     expected: [100.0]
 starter_code: |
   def gleitend(zahlen: list[float], k: int) -> list[float]:
-      # Deine Lösung hier -- Fenstergroesse k, jedes Fenster Mittelwert
+      # Deine Lösung hier - Fenstergröße k, jedes Fenster Mittelwert
       pass
 ---
 

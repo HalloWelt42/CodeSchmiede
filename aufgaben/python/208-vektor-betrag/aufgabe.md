@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 208-vektor-betrag
-revision: 2
+revision: 3
 titel: Vektor-Betrag (euklidische Norm)
 sprache: python
 task_type: code_schreiben
@@ -38,23 +38,23 @@ tests_sichtbar:
   - input: [[0, 0, 0]]
     expected: 0.0
 tests_versteckt:
-  - input: [[1, 1]]
-    expected: 1.4142
-  - input: [[1, 1, 1]]
-    expected: 1.7321
-  - input: [[5, 12]]
-    expected: 13.0
-  - input: [[-3, -4]]
-    expected: 5.0
-  - input: [[6, 8, 10]]
-    expected: 14.1421
+  - input: [[1, 2]]
+    expected: 2.2361
+  - input: [[1, 2, 3]]
+    expected: 3.7417
+  - input: [[7, 24]]
+    expected: 25.0
+  - input: [[-6, -8]]
+    expected: 10.0
+  - input: [[3, 5, 9]]
+    expected: 10.7238
   - input: [[2.5, 6]]
     expected: 6.5
 starter_code: |
   import math
 
   def betrag(v: list) -> float:
-      # Deine Lösung hier -- euklidische Norm, 4 Nachkommastellen
+      # Deine Lösung hier - euklidische Norm, 4 Nachkommastellen
       pass
 ---
 

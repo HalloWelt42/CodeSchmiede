@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 189-html-escape
-revision: 2
+revision: 3
 titel: HTML-Sonderzeichen escapen
 sprache: python
 task_type: code_schreiben
@@ -49,15 +49,15 @@ tests_versteckt:
     expected: "it&#39;s"
   - input: ["1 < 2 && 2 > 1"]
     expected: "1 &lt; 2 &amp;&amp; 2 &gt; 1"
-  - input: ["<script>alert(1)</script>"]
-    expected: "&lt;script&gt;alert(1)&lt;/script&gt;"
+  - input: ["<script>prompt(42)</script>"]
+    expected: "&lt;script&gt;prompt(42)&lt;/script&gt;"
   - input: ["&amp;"]
     expected: "&amp;amp;"
   - input: ["<a href=\"x\">y</a>"]
     expected: "&lt;a href=&quot;x&quot;&gt;y&lt;/a&gt;"
 starter_code: |
   def html_escape(s: str) -> str:
-      # Deine Lösung hier -- & zuerst!
+      # Deine Lösung hier - & zuerst!
       pass
 ---
 

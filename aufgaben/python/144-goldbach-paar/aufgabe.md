@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 144-goldbach-paar
-revision: 1
+revision: 2
 titel: Goldbach-Paar
 sprache: python
 task_type: code_schreiben
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: null
 starter_code: |
   def goldbach_paar(n: int):
-      # Deine Lösung hier -- (p, q) oder None
+      # Deine Lösung hier - (p, q) oder None
       pass
 ---
 

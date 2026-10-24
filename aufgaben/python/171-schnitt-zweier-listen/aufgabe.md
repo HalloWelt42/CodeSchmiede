@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 171-schnitt-zweier-listen
-revision: 2
+revision: 3
 titel: Schnitt zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -50,7 +50,7 @@ tests_versteckt:
     expected: [1]
 starter_code: |
   def schnitt(a: list, b: list) -> list:
-      # Deine Lösung hier -- aufsteigend sortiert, eindeutig
+      # Deine Lösung hier - aufsteigend sortiert, eindeutig
       pass
 ---
 

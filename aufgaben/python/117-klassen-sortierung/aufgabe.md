@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 117-klassen-sortierung
-revision: 1
+revision: 2
 titel: Schüler in Klassen sortieren
 sprache: python
 task_type: code_schreiben
@@ -46,13 +46,13 @@ tests_versteckt:
     expected: { "1": ["A", "B", "C"] }
 starter_code: |
   def sortiere_schueler(eintraege: list[dict]) -> dict[str, list[str]]:
-      # Deine Lösung hier -- pro Klasse Namen alphabetisch.
+      # Deine Lösung hier - pro Klasse Namen alphabetisch.
       pass
 ---
 
 # Schüler in Klassen sortieren
 
-Schreibe eine Funktion `sortiere_schüler(eintraege)`, die eine
+Schreibe eine Funktion `sortiere_schueler(eintraege)`, die eine
 Liste von Schüler-Records nach Klasse gruppiert und die Namen pro
 Klasse alphabetisch sortiert.
 

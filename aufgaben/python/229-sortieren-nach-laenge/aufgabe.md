@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 229-sortieren-nach-laenge
-revision: 2
+revision: 3
 titel: Strings nach Länge sortieren
 sprache: python
 task_type: code_schreiben
@@ -39,19 +39,19 @@ tests_sichtbar:
   - input: [["aa", "bb", "ccc"]]
     expected: ["aa", "bb", "ccc"]
 tests_versteckt:
-  - input: [["abc", "ab", "a"]]
-    expected: ["a", "ab", "abc"]
+  - input: [["pqr", "pq", "p"]]
+    expected: ["p", "pq", "pqr"]
   - input: [["xx", "x", "xxx", "xxxx"]]
     expected: ["x", "xx", "xxx", "xxxx"]
-  - input: [["banane", "apfel", "birne"]]
-    expected: ["apfel", "birne", "banane"]
+  - input: [["zitrone", "pflaume", "mango"]]
+    expected: ["mango", "pflaume", "zitrone"]
   - input: [["", "a", "ab"]]
     expected: ["", "a", "ab"]
-  - input: [["zzz", "aaa", "yy", "bb"]]
-    expected: ["bb", "yy", "aaa", "zzz"]
+  - input: [["www", "ccc", "vv", "dd"]]
+    expected: ["dd", "vv", "ccc", "www"]
 starter_code: |
   def nach_laenge(strings: list[str]) -> list[str]:
-      # Deine Lösung hier -- bei gleicher Laenge alphabetisch
+      # Deine Lösung hier - bei gleicher Länge alphabetisch
       pass
 ---
 

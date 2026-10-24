@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 090-strain-filter
-revision: 2
+revision: 3
 titel: Eigene filter-Funktion
 sprache: python
 task_type: code_schreiben
@@ -51,7 +51,7 @@ starter_code: |
   def behalte(liste, funktion_text):
       # `funktion_text` ist ein lambda-Ausdruck als String, etwa
       # "lambda x: x > 0". Mit `eval(funktion_text)` machst du daraus
-      # eine Funktion. Dann filter selbst nachbauen -- ohne filter() zu
+      # eine Funktion. Dann filter selbst nachbauen - ohne filter() zu
       # nutzen.
       pass
 ---

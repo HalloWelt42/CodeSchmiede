@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 124-ggt-multi
-revision: 2
+revision: 3
 titel: ggT mehrerer Zahlen
 sprache: python
 task_type: code_schreiben
@@ -38,9 +38,9 @@ tests_sichtbar:
   - input: [[]]
     expected: 0
 tests_versteckt:
-  - input: [[100, 200, 300, 400]]
-    expected: 100
-  - input: [[17, 19, 23]]
+  - input: [[40, 80, 120, 160]]
+    expected: 40
+  - input: [[11, 13, 29]]
     expected: 1
   - input: [[1071, 462, 105]]
     expected: 21
@@ -50,7 +50,7 @@ tests_versteckt:
     expected: 30
 starter_code: |
   def ggt_liste(zahlen: list[int]) -> int:
-      # Deine Lösung hier -- ggT aller Zahlen, leere Liste → 0.
+      # Deine Lösung hier - ggT aller Zahlen, leere Liste → 0.
       pass
 ---
 

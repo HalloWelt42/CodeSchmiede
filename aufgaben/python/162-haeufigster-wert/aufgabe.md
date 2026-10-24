@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 162-haeufigster-wert
-revision: 2
+revision: 3
 titel: Häufigster Wert (Modus)
 sprache: python
 task_type: code_schreiben
@@ -42,10 +42,10 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[7, 7, 7, 1, 1]]
     expected: 7
-  - input: [[3, 3, 1, 1, 2]]
-    expected: 1
-  - input: [[1, 2, 3, 4, 5]]
-    expected: 1
+  - input: [[8, 8, 4, 4, 6]]
+    expected: 4
+  - input: [[6, 4, 9, 8, 5]]
+    expected: 4
   - input: [[-1, -1, 0, 0, 1]]
     expected: -1
   - input: [[42, 42, 42, 42]]
@@ -54,13 +54,13 @@ tests_versteckt:
     expected: 20
 starter_code: |
   def haeufigster(zahlen: list):
-      # Deine Lösung hier -- bei Gleichstand: kleinster Wert
+      # Deine Lösung hier - bei Gleichstand: kleinster Wert
       pass
 ---
 
 # Häufigster Wert (Modus)
 
-Schreibe eine Funktion `häufigster(zahlen)`, die den **häufigsten
+Schreibe eine Funktion `haeufigster(zahlen)`, die den **häufigsten
 Wert** einer Liste zurückgibt.
 
 - Bei mehreren Werten mit gleicher Spitzenhäufigkeit: **kleinster**

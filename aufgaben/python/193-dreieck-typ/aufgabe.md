@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 193-dreieck-typ
-revision: 2
+revision: 3
 titel: Dreieck-Typ aus drei Seiten
 sprache: python
 task_type: code_schreiben
@@ -39,14 +39,14 @@ tests_sichtbar:
   - input: [5, 5, 8]
     expected: "gleichschenklig"
   - input: [1, 2, 5]
-    expected: "ungueltig"
+    expected: "ungültig"
 tests_versteckt:
-  - input: [0, 1, 1]
-    expected: "ungueltig"
+  - input: [0, 4, 4]
+    expected: "ungültig"
   - input: [-3, 4, 5]
-    expected: "ungueltig"
-  - input: [2, 2, 4]
-    expected: "ungueltig"
+    expected: "ungültig"
+  - input: [3, 3, 6]
+    expected: "ungültig"
   - input: [1, 1, 1]
     expected: "gleichseitig"
   - input: [10, 10, 10]
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: "gleichschenklig"
   - input: [6, 7, 8]
     expected: "ungleichseitig"
-  - input: [5, 5, 5]
+  - input: [7, 7, 7]
     expected: "gleichseitig"
 starter_code: |
   def dreieck_typ(a: float, b: float, c: float) -> str:

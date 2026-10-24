@@ -1,6 +1,6 @@
 """
-Naive Lösung: jede Zahl einzeln auf Primalitaet prüfen.
-Korrekt, aber langsam fuer grosse n.
+Naive Lösung: jede Zahl einzeln auf Primalität prüfen.
+Korrekt, aber langsam für große n.
 """
 
 

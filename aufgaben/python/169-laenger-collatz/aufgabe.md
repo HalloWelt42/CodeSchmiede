@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 169-laenger-collatz
-revision: 2
+revision: 3
 titel: Collatz-Rekord unter n
 sprache: python
 task_type: code_schreiben
@@ -40,10 +40,10 @@ tests_sichtbar:
   - input: [100]
     expected: 97
 tests_versteckt:
-  - input: [1000]
-    expected: 871
-  - input: [10000]
-    expected: 6171
+  - input: [1200]
+    expected: 1161
+  - input: [15000]
+    expected: 13255
   - input: [3]
     expected: 2
   - input: [5]
@@ -54,7 +54,7 @@ tests_versteckt:
     expected: 0
 starter_code: |
   def laengster_collatz(n: int) -> int:
-      # Deine Lösung hier -- Startwert mit laengster Collatz-Folge unter n
+      # Deine Lösung hier - Startwert mit längster Collatz-Folge unter n
       pass
 ---
 

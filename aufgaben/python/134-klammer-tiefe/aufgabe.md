@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 134-klammer-tiefe
-revision: 2
+revision: 3
 titel: Maximale Klammer-Tiefe
 sprache: python
 task_type: code_schreiben
@@ -38,19 +38,19 @@ tests_sichtbar:
   - input: ["((()))"]
     expected: 3
 tests_versteckt:
-  - input: ["()()()"]
+  - input: ["()()()()"]
     expected: 1
   - input: ["(()(()()))"]
     expected: 3
-  - input: ["abc"]
+  - input: ["hallo"]
     expected: 0
-  - input: ["(a + (b * (c - d)))"]
+  - input: ["(x - (y + (z * w)))"]
     expected: 3
   - input: ["((((((1))))))"]
     expected: 6
 starter_code: |
   def max_tiefe(text: str) -> int:
-      # Deine Lösung hier -- nur ( und ) zaehlen.
+      # Deine Lösung hier - nur ( und ) zählen.
       pass
 ---
 

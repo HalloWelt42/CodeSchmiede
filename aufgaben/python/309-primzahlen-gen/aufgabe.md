@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 309-primzahlen-gen
-revision: 2
+revision: 3
 titel: Primzahl-Generator bis n
 sprache: python
 task_type: code_schreiben
@@ -45,14 +45,14 @@ tests_versteckt:
     expected: []
   - input: [3]
     expected: [2, 3]
-  - input: [30]
-    expected: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
-  - input: [50]
-    expected: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+  - input: [40]
+    expected: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
+  - input: [70]
+    expected: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67]
   - input: [100]
     expected: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
-  - input: [7]
-    expected: [2, 3, 5, 7]
+  - input: [53]
+    expected: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]
 starter_code: |
   def primzahlen_bis(n: int) -> list[int]:
       # Tipp: Sieb des Eratosthenes ODER Trial-Division im Generator

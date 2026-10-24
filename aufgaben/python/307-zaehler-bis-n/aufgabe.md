@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 307-zaehler-bis-n
-revision: 2
+revision: 3
 titel: Eigener Zähler-Generator (Liste)
 sprache: python
 task_type: code_schreiben
@@ -39,8 +39,8 @@ tests_sichtbar:
   - input: [-5]
     expected: []
 tests_versteckt:
-  - input: [5]
-    expected: [1, 2, 3, 4, 5]
+  - input: [7]
+    expected: [1, 2, 3, 4, 5, 6, 7]
   - input: [10]
     expected: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   - input: [2]
@@ -57,7 +57,7 @@ starter_code: |
 
 # Eigener Zähler-Generator (Liste)
 
-Schreibe `zähler_bis(n)`, die die Zahlen `1, 2, ..., n` als Liste
+Schreibe `zaehler_bis(n)`, die die Zahlen `1, 2, ..., n` als Liste
 liefert. **Implementiere intern einen Generator** mit `yield` -
 auch wenn die finale Form eine Liste ist.
 

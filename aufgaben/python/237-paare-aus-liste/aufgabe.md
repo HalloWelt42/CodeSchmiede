@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 237-paare-aus-liste
-revision: 2
+revision: 3
 titel: Liste in nicht-überlappende Paare
 sprache: python
 task_type: code_schreiben
@@ -40,19 +40,19 @@ tests_sichtbar:
   - input: [[1]]
     expected: []
 tests_versteckt:
-  - input: [[1, 2, 3, 4, 5, 6]]
-    expected: [[1, 2], [3, 4], [5, 6]]
+  - input: [[4, 8, 15, 16, 23, 42]]
+    expected: [[4, 8], [15, 16], [23, 42]]
   - input: [["a", "b", "c", "d"]]
     expected: [["a", "b"], ["c", "d"]]
-  - input: [[1, 2]]
-    expected: [[1, 2]]
+  - input: [[7, 9]]
+    expected: [[7, 9]]
   - input: [[1, 2, 3, 4, 5]]
     expected: [[1, 2], [3, 4]]
   - input: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
     expected: [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]
 starter_code: |
   def paare(liste: list) -> list[list]:
-      # Deine Lösung hier -- ungerade Anzahl: letztes Element ignorieren
+      # Deine Lösung hier - ungerade Anzahl: letztes Element ignorieren
       pass
 ---
 

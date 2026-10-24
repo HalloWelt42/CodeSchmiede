@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 275-postleitzahl-de
-revision: 2
+revision: 3
 titel: Deutsche Postleitzahl validieren
 sprache: python
 task_type: code_schreiben
@@ -39,27 +39,27 @@ tests_sichtbar:
   - input: [""]
     expected: false
 tests_versteckt:
-  - input: ["00000"]
+  - input: ["00042"]
     expected: true
   - input: ["99999"]
     expected: true
-  - input: ["123456"]
+  - input: ["987654"]
     expected: false
   - input: ["12 45"]
     expected: false
-  - input: [" 12345"]
+  - input: [" 54321"]
     expected: false
   - input: ["12345 "]
     expected: false
-  - input: ["1a345"]
+  - input: ["98b76"]
     expected: false
-  - input: ["10115"]
+  - input: ["80331"]
     expected: true
 starter_code: |
   import re
 
   def ist_plz(s: str) -> bool:
-      # Deine Lösung hier -- genau 5 Ziffern
+      # Deine Lösung hier - genau 5 Ziffern
       pass
 ---
 

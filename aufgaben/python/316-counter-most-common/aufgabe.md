@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 316-counter-most-common
-revision: 2
+revision: 3
 titel: Top-N häufigste Werte
 sprache: python
 task_type: code_schreiben
@@ -41,16 +41,16 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 2, 3, 4, 5], 3]
     expected: [[1, 1], [2, 1], [3, 1]]
-  - input: [["a", "b", "a", "c", "a"], 2]
-    expected: [["a", 3], ["b", 1]]
-  - input: [[1, 1, 2, 2, 3, 3], 3]
-    expected: [[1, 2], [2, 2], [3, 2]]
-  - input: [[7, 7, 7, 7, 7], 5]
-    expected: [[7, 5]]
+  - input: [["q", "r", "q", "p", "q"], 2]
+    expected: [["q", 3], ["p", 1]]
+  - input: [[4, 4, 5, 5, 6, 6], 3]
+    expected: [[4, 2], [5, 2], [6, 2]]
+  - input: [[9, 9, 9, 9], 4]
+    expected: [[9, 4]]
   - input: [[1], 1]
     expected: [[1, 1]]
-  - input: [[5, 5, 5, 1, 1], 10]
-    expected: [[5, 3], [1, 2]]
+  - input: [[8, 8, 8, 2, 2], 12]
+    expected: [[8, 3], [2, 2]]
 starter_code: |
   from collections import Counter
 

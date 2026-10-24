@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 325-summe-quadrate
-revision: 2
+revision: 3
 titel: Summe der Quadrate 1 bis n
 sprache: python
 task_type: code_schreiben
@@ -46,8 +46,8 @@ tests_versteckt:
     expected: 30
   - input: [5]
     expected: 55
-  - input: [100]
-    expected: 338350
+  - input: [200]
+    expected: 2686700
   - input: [1000]
     expected: 333833500
 starter_code: |

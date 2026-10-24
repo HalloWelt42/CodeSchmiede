@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 274-dreieck-winkel-typ
-revision: 2
+revision: 3
 titel: Dreieck-Typ nach Winkel
 sprache: python
 task_type: code_schreiben
@@ -38,29 +38,29 @@ tests_sichtbar:
   - input: [3, 3, 5]
     expected: "stumpf"
   - input: [1, 2, 5]
-    expected: "ungueltig"
+    expected: "ungültig"
 tests_versteckt:
   - input: [6, 8, 10]
     expected: "recht"
-  - input: [5, 12, 13]
+  - input: [8, 15, 17]
     expected: "recht"
-  - input: [4, 5, 6]
+  - input: [5, 6, 7]
     expected: "spitz"
   - input: [2, 2, 3]
     expected: "stumpf"
   - input: [-1, 4, 5]
-    expected: "ungueltig"
+    expected: "ungültig"
   - input: [1, 1, 1]
     expected: "spitz"
-  - input: [7, 24, 25]
+  - input: [20, 21, 29]
     expected: "recht"
-  - input: [3, 4, 6]
+  - input: [4, 5, 8]
     expected: "stumpf"
 starter_code: |
   import math
 
   def dreieck_winkel(a: float, b: float, c: float) -> str:
-      # Deine Lösung hier -- "spitz"/"recht"/"stumpf"/"ungueltig"
+      # Deine Lösung hier - "spitz"/"recht"/"stumpf"/"ungültig"
       pass
 ---
 

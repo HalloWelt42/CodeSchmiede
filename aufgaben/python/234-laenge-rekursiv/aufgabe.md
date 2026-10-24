@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 234-laenge-rekursiv
-revision: 2
+revision: 3
 titel: Listenlänge rekursiv ohne len
 sprache: python
 task_type: code_schreiben
@@ -24,13 +24,13 @@ hints:
     text: |
       Berechne die Länge einer Liste OHNE len() oder __len__.
       Klassische Rekursion: leere Liste → 0,
-      sonst → 1 + länge(rest).
+      sonst → 1 + laenge(rest).
   - kosten: 12
     text: |
-      def länge(liste):
+      def laenge(liste):
           if not liste:
               return 0
-          return 1 + länge(liste[1:])
+          return 1 + laenge(liste[1:])
 tests_sichtbar:
   - input: [[]]
     expected: 0
@@ -45,17 +45,17 @@ tests_versteckt:
     expected: 1
   - input: [["a", "b", "c"]]
     expected: 3
-  - input: [[null, null, null]]
-    expected: 3
+  - input: [[null, null, null, null]]
+    expected: 4
   - input: [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
     expected: 10
-  - input: [[[1, 2], [3], []]]
+  - input: [[[4], [], [5, 6, 7]]]
     expected: 3
   - input: [[true, false, true]]
     expected: 3
 starter_code: |
   def laenge(liste: list) -> int:
-      # Deine Lösung hier -- OHNE len() / __len__, REKURSIV
+      # Deine Lösung hier - OHNE len() / __len__, REKURSIV
       pass
 ---
 

@@ -1,5 +1,5 @@
 """
-Klassische Schleife mit min-Laenge plus Slicing fuer den Rest.
+Klassische Schleife mit min-Länge plus Slicing für den Rest.
 """
 
 

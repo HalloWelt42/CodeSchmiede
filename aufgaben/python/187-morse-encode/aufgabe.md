@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 187-morse-encode
-revision: 2
+revision: 3
 titel: Morse-Code - Text codieren
 sprache: python
 task_type: code_schreiben
@@ -46,15 +46,15 @@ tests_versteckt:
     expected: "-"
   - input: ["sos"]
     expected: "... --- ..."
-  - input: ["123"]
-    expected: ".---- ..--- ...--"
+  - input: ["4590"]
+    expected: "....- ..... ----. -----"
   - input: ["WIE GEHTS"]
     expected: ".-- .. . / --. . .... - ..."
   - input: ["Hallo, Welt!"]
     expected: ".... .- .-.. .-.. --- / .-- . .-.. -"
 starter_code: |
   def morse_encode(text: str) -> str:
-      # Deine Lösung hier -- A-Z + 0-9, Worttrenner " / "
+      # Deine Lösung hier - A-Z + 0-9, Worttrenner " / "
       pass
 ---
 

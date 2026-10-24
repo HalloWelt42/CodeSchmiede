@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 008-anagramm-pruefen
-revision: 2
+revision: 3
 titel: Anagramm-Prüfung
 sprache: python
 task_type: code_schreiben
@@ -41,9 +41,9 @@ tests_sichtbar:
   - input: ["a", "a"]
     expected: true
 tests_versteckt:
-  - input: ["lager", "regal"]
+  - input: ["ampel", "lampe"]
     expected: true
-  - input: ["mond", "demo"]
+  - input: ["ziel", "teil"]
     expected: false
   - input: ["abc", "cb"]
     expected: false

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 192-rechteck
-revision: 2
+revision: 3
 titel: Rechteck-Eigenschaften
 sprache: python
 task_type: code_schreiben
@@ -57,7 +57,7 @@ starter_code: |
   import math
 
   def rechteck(b: float, h: float) -> list[float]:
-      # Deine Lösung hier -- [flaeche, umfang, diagonale]
+      # Deine Lösung hier - [fläche, umfang, diagonale]
       pass
 ---
 

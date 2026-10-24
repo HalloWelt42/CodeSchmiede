@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 226-zentrieren-padchar
-revision: 2
+revision: 3
 titel: Text zentrieren mit beliebigem Padding-Zeichen
 sprache: python
 task_type: code_schreiben
@@ -42,21 +42,21 @@ tests_sichtbar:
 tests_versteckt:
   - input: ["test", 10, "."]
     expected: "...test..."
-  - input: ["", 4, "_"]
-    expected: "____"
+  - input: ["", 6, "+"]
+    expected: "++++++"
   - input: ["WORT", 4, "x"]
     expected: "WORT"
   - input: ["WORT", 6, " "]
     expected: " WORT "
-  - input: ["A", 4, "*"]
-    expected: "*A**"
+  - input: ["Z", 6, "@"]
+    expected: "@@Z@@@"
   - input: ["xx", 7, "-"]
     expected: "---xx--"
   - input: ["abc", 5, "ab"]
     expected: "abc"
 starter_code: |
   def zentrieren(text: str, breite: int, pad: str) -> str:
-      # Deine Lösung hier -- pad MUSS ein Zeichen sein, sonst text unverändert
+      # Deine Lösung hier - pad MUSS ein Zeichen sein, sonst text unverändert
       pass
 ---
 

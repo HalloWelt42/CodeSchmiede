@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 233-zwei-tausch
-revision: 2
+revision: 3
 titel: Zwei Werte tauschen
 sprache: python
 task_type: code_schreiben
@@ -43,8 +43,8 @@ tests_versteckt:
     expected: [1, null]
   - input: [true, false]
     expected: [false, true]
-  - input: [[1, 2], [3, 4]]
-    expected: [[3, 4], [1, 2]]
+  - input: [[5, 6], [7, 8]]
+    expected: [[7, 8], [5, 6]]
   - input: ["x", "x"]
     expected: ["x", "x"]
   - input: [3.14, 2.71]

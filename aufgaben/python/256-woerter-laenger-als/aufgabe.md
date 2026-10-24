@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 256-woerter-laenger-als
-revision: 2
+revision: 3
 titel: Wörter länger als n
 sprache: python
 task_type: code_schreiben
@@ -39,10 +39,10 @@ tests_sichtbar:
   - input: ["nur kurz", 10]
     expected: []
 tests_versteckt:
-  - input: ["der schnelle braune Fuchs", 5]
-    expected: ["schnelle", "braune"]
-  - input: ["ABC AB A", 1]
-    expected: ["ABC", "AB"]
+  - input: ["ein kleiner grauer Hund", 5]
+    expected: ["kleiner", "grauer"]
+  - input: ["XYZ XY X", 1]
+    expected: ["XYZ", "XY"]
   - input: ["Hallo Welt", 0]
     expected: ["Hallo", "Welt"]
   - input: ["python", 5]

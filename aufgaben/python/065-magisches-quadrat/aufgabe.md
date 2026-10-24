@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 065-magisches-quadrat
-revision: 2
+revision: 3
 titel: Magisches Quadrat prüfen
 sprache: python
 task_type: code_schreiben
@@ -45,8 +45,8 @@ tests_versteckt:
     expected: true
 starter_code: |
   def ist_magisch(matrix: list[list[int]]) -> bool:
-      # Deine Lösung hier -- alle Zeilen-, Spalten- und Diagonal-
-      # summen muessen gleich sein.
+      # Deine Lösung hier - alle Zeilen-, Spalten- und Diagonal-
+      # summen müssen gleich sein.
       pass
 ---
 

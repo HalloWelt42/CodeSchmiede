@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 218-harmonisches-mittel
-revision: 2
+revision: 3
 titel: Harmonisches Mittel
 sprache: python
 task_type: code_schreiben
@@ -41,19 +41,19 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 1, 1]]
     expected: 1.0
-  - input: [[60, 30]]
-    expected: 40.0
+  - input: [[80, 20]]
+    expected: 32.0
   - input: [[1, 2, 3, 4, 5]]
     expected: 2.1898
-  - input: [[10, 20, 30, 40]]
-    expected: 19.2
-  - input: [[1, 0, 5]]
+  - input: [[15, 25, 35, 45]]
+    expected: 25.4032
+  - input: [[2, 0, 6]]
     expected: 0.0
   - input: [[-2, 4, 6]]
     expected: 0.0
 starter_code: |
   def harmonisches_mittel(zahlen: list[float]) -> float:
-      # Deine Lösung hier -- alle > 0 noetig
+      # Deine Lösung hier - alle > 0 nötig
       pass
 ---
 

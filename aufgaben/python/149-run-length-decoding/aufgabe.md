@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 149-run-length-decoding
-revision: 2
+revision: 3
 titel: Run-Length-Decoding
 sprache: python
 task_type: code_schreiben
@@ -40,19 +40,19 @@ tests_sichtbar:
   - input: ["5x"]
     expected: "xxxxx"
 tests_versteckt:
-  - input: ["10a"]
-    expected: "aaaaaaaaaa"
+  - input: ["12k"]
+    expected: "kkkkkkkkkkkk"
   - input: ["2a3b4c"]
     expected: "aabbbcccc"
   - input: ["1a1b1c"]
     expected: "abc"
-  - input: ["3 2!"]
-    expected: "   !!"
+  - input: ["2 4?"]
+    expected: "  ????"
   - input: ["100z"]
     expected: "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
 starter_code: |
   def rle_decode(s: str) -> str:
-      # Deine Lösung hier -- mehrstellige Zahlen unterstuetzen
+      # Deine Lösung hier - mehrstellige Zahlen unterstützen
       pass
 ---
 

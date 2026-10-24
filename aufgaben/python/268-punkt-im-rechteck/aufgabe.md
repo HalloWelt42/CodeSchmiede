@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 268-punkt-im-rechteck
-revision: 2
+revision: 3
 titel: Punkt im Rechteck?
 sprache: python
 task_type: code_schreiben
@@ -40,7 +40,7 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[-1, 5], [0, 0, 10, 10]]
     expected: false
-  - input: [[5, -1], [0, 0, 10, 10]]
+  - input: [[4, -2], [0, 0, 8, 6]]
     expected: false
   - input: [[5, 11], [0, 0, 10, 10]]
     expected: false
@@ -54,7 +54,7 @@ tests_versteckt:
     expected: true
 starter_code: |
   def im_rechteck(punkt: list, rect: list) -> bool:
-      # Deine Lösung hier -- inklusiver Rand
+      # Deine Lösung hier - inklusiver Rand
       pass
 ---
 

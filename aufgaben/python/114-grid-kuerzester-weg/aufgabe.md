@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 114-grid-kuerzester-weg
-revision: 2
+revision: 3
 titel: Kürzester Weg im Raster (BFS)
 sprache: python
 task_type: code_schreiben
@@ -42,7 +42,7 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[[0, 0, 0, 0], [1, 1, 1, 0], [0, 0, 0, 0], [0, 1, 1, 1], [0, 0, 0, 0]]]
     expected: 13
-  - input: [[[1, 0], [0, 0]]]
+  - input: [[[1, 0, 0], [0, 0, 0]]]
     expected: -1
   - input: [[[0, 0], [0, 1]]]
     expected: -1
@@ -52,14 +52,14 @@ tests_versteckt:
     expected: -1
 starter_code: |
   def kuerzester_weg(grid: list[list[int]]) -> int:
-      # Deine Lösung hier -- 0=frei, 1=Wand. Start (0,0), Ziel
+      # Deine Lösung hier - 0=frei, 1=Wand. Start (0,0), Ziel
       # (n-1, m-1). 4er-Bewegung. -1 wenn unerreichbar.
       pass
 ---
 
 # Kürzester Weg im Raster (BFS)
 
-Schreibe eine Funktion `kürzester_weg(grid)`, die im 2D-Raster
+Schreibe eine Funktion `kuerzester_weg(grid)`, die im 2D-Raster
 die **minimale Schrittzahl** vom oben-links nach unten-rechts findet.
 
 - `0` ist begehbar

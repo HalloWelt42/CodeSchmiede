@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 153-matrix-rotieren
-revision: 2
+revision: 3
 titel: Matrix 90 Grad rotieren
 sprache: python
 task_type: code_schreiben
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: [[0, 0], [1, 0]]
 starter_code: |
   def rotieren(matrix: list[list]) -> list[list]:
-      # Deine Lösung hier -- 90 Grad im Uhrzeigersinn
+      # Deine Lösung hier - 90 Grad im Uhrzeigersinn
       pass
 ---
 

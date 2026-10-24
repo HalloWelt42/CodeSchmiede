@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 160-zinseszins
-revision: 2
+revision: 3
 titel: Zinseszins-Berechnung
 sprache: python
 task_type: code_schreiben
@@ -54,7 +54,7 @@ tests_versteckt:
     expected: 902.5
 starter_code: |
   def zinseszins(kapital: float, zinssatz_prozent: float, jahre: int) -> float:
-      # Deine Lösung hier -- auf 2 Nachkommastellen runden
+      # Deine Lösung hier - auf 2 Nachkommastellen runden
       pass
 ---
 

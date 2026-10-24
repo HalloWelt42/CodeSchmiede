@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 322-js-buchstaben-zaehlen
-revision: 2
+revision: 3
 titel: JavaScript - Buchstaben im Text zählen
 sprache: javascript
 task_type: code_schreiben
@@ -45,13 +45,13 @@ tests_sichtbar:
     expected: {"a": 1, "e": 1, "h": 1, "l": 3, "o": 1, "t": 1, "w": 1}
 starter_code: |
   function zaehleBuchstaben(text) {
-      // Tipp: spread + reduce, nur a-z zaehlen
+      // Tipp: spread + reduce, nur a-z zählen
   }
 ---
 
 # JavaScript - Buchstaben im Text zählen
 
-Schreibe `zähleBuchstaben(text)`, die ein Object liefert, das jeden
+Schreibe `zaehleBuchstaben(text)`, die ein Object liefert, das jeden
 **Buchstaben (a-z, lowercased)** im Text zählt.
 
 - Whitespace, Ziffern, Sonderzeichen → ignorieren

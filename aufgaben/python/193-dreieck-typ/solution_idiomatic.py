@@ -1,9 +1,9 @@
 def dreieck_typ(a: float, b: float, c: float) -> str:
     if min(a, b, c) <= 0:
-        return "ungueltig"
+        return "ungültig"
     seiten = sorted([a, b, c])
     if seiten[0] + seiten[1] <= seiten[2]:
-        return "ungueltig"
+        return "ungültig"
     eindeutig = len({a, b, c})
     if eindeutig == 1:
         return "gleichseitig"

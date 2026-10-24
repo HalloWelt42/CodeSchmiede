@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 179-zweierpotenz
-revision: 2
+revision: 3
 titel: Ist die Zahl eine Zweierpotenz?
 sprache: python
 task_type: code_schreiben
@@ -44,7 +44,7 @@ tests_versteckt:
     expected: true
   - input: [4]
     expected: true
-  - input: [1024]
+  - input: [4096]
     expected: true
   - input: [-4]
     expected: false
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: true
 starter_code: |
   def ist_zweierpotenz(n: int) -> bool:
-      # Deine Lösung hier -- O(1) mit Bit-Trick
+      # Deine Lösung hier - O(1) mit Bit-Trick
       pass
 ---
 

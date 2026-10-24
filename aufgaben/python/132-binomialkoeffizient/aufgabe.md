@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 132-binomialkoeffizient
-revision: 1
+revision: 2
 titel: Binomialkoeffizient n über k
 sprache: python
 task_type: code_schreiben
@@ -38,21 +38,21 @@ tests_sichtbar:
   - input: [10, 10]
     expected: 1
 tests_versteckt:
-  - input: [10, 5]
-    expected: 252
-  - input: [49, 6]
-    expected: 13983816
+  - input: [14, 7]
+    expected: 3432
+  - input: [52, 5]
+    expected: 2598960
   - input: [5, -1]
     expected: 0
   - input: [5, 6]
     expected: 0
   - input: [20, 10]
     expected: 184756
-  - input: [100, 50]
-    expected: 100891344545564193334812497256
+  - input: [80, 40]
+    expected: 107507208733336176461620
 starter_code: |
   def binomial(n: int, k: int) -> int:
-      # Deine Lösung hier -- n über k. Bei ungültiger Eingabe → 0.
+      # Deine Lösung hier - n über k. Bei ungültiger Eingabe → 0.
       pass
 ---
 

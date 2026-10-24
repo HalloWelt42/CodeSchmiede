@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 151-schnapszahl
-revision: 2
+revision: 3
 titel: Schnapszahl-Prüfung
 sprache: python
 task_type: code_schreiben
@@ -41,13 +41,13 @@ tests_sichtbar:
 tests_versteckt:
   - input: [22222]
     expected: true
-  - input: [1111111]
+  - input: [5555555]
     expected: true
-  - input: [122]
+  - input: [344]
     expected: false
   - input: [0]
     expected: false
-  - input: [-44]
+  - input: [-77]
     expected: true
   - input: [99]
     expected: true
@@ -57,7 +57,7 @@ tests_versteckt:
     expected: false
 starter_code: |
   def ist_schnapszahl(n: int) -> bool:
-      # Deine Lösung hier -- mind. 2 Stellen, alle gleich
+      # Deine Lösung hier - mind. 2 Stellen, alle gleich
       pass
 ---
 

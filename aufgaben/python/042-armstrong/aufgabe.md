@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 042-armstrong
-revision: 2
+revision: 3
 titel: Armstrong-Zahl
 sprache: python
 task_type: code_schreiben
@@ -47,7 +47,7 @@ tests_versteckt:
     expected: true
   - input: [8208]
     expected: true
-  - input: [9474]
+  - input: [1634]
     expected: true
   - input: [9475]
     expected: false

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 245-ackermann
-revision: 2
+revision: 3
 titel: Ackermann-Funktion
 sprache: python
 task_type: code_schreiben
@@ -53,10 +53,10 @@ tests_versteckt:
     expected: 11
   - input: [3, 0]
     expected: 5
-  - input: [3, 4]
-    expected: 125
-  - input: [3, 5]
-    expected: 253
+  - input: [3, 2]
+    expected: 29
+  - input: [3, 1]
+    expected: 13
 starter_code: |
   def ackermann(m: int, n: int) -> int:
       # Deine Lösung hier

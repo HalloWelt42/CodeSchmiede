@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 040-perfekte-zahl
-revision: 2
+revision: 3
 titel: Perfekte Zahl prüfen
 sprache: python
 task_type: code_schreiben
@@ -41,14 +41,14 @@ tests_sichtbar:
   - input: [1]
     expected: false
 tests_versteckt:
-  - input: [496]
-    expected: true
+  - input: [945]
+    expected: false
   - input: [8128]
     expected: true
   - input: [12]
     expected: false
-  - input: [496]
-    expected: true
+  - input: [512]
+    expected: false
   - input: [27]
     expected: false
   - input: [2]

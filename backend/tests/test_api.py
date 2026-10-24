@@ -120,3 +120,35 @@ def test_pfade_im_aufgabenkopf_abgelehnt(client):
           "schwierigkeit_score": 1, "schaetz_minuten": 1, "pfade": ["start"]}
     antwort = client.post("/api/admin/aufgaben", json={"frontmatter": fm})
     assert antwort.status_code == 400 and "aufgaben/pfade" in antwort.json()["detail"]
+
+
+def test_lecksuche():
+    from codeschmiede.aufgaben.lecksuche import ist_verraten
+    from codeschmiede.models.aufgabe import TestFall
+
+    text = "| `[3, 4]` | `7` |\n| leer | `0` |"
+    assert ist_verraten(TestFall(input=[[3, 4]], expected=7), text)
+    assert not ist_verraten(TestFall(input=[[3, 5]], expected=8), text)
+    # 12 steckt nicht in 120
+    assert not ist_verraten(TestFall(input=[12], expected="zwölf"), "| 120 | zwölf |")
+    # nur leere Werte oder None lassen sich nicht anders formulieren
+    assert not ist_verraten(TestFall(input=[[]], expected="leer"), "| `[]` | `\"leer\"` |")
+    assert not ist_verraten(TestFall(input=[None], expected="null"), "None -> \"null\"")
+
+
+def test_bezahlte_hinweise_zaehlen_nicht(bestand):
+    from codeschmiede.aufgaben.lecksuche import verratene_tests
+    from codeschmiede.aufgaben.loader import AufgabenLoader
+
+    from .conftest import schreibe_aufgabe
+
+    ordner = schreibe_aufgabe(bestand, "python", "015-hinweis", "code_schreiben", """\
+        funktion: f
+        hints:
+          - {kosten: 0, text: "Tipp ohne Werte"}
+          - {kosten: 3, text: "f(21) ergibt 42"}
+        tests_versteckt:
+          - {input: [21], expected: 42}
+        """)
+    aufgabe = AufgabenLoader(bestand).lade_aufgabe(ordner / "aufgabe.md")
+    assert verratene_tests(aufgabe) == []

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 183-bingo-karte
-revision: 2
+revision: 3
 titel: Bingo-Karte prüfen
 sprache: python
 task_type: code_schreiben
@@ -54,7 +54,7 @@ tests_versteckt:
     expected: true
 starter_code: |
   def hat_bingo(karte: list[list[int]], gezogen: list[int]) -> bool:
-      # Deine Lösung hier -- pruefe Zeilen, Spalten, Diagonalen
+      # Deine Lösung hier - prüfe Zeilen, Spalten, Diagonalen
       pass
 ---
 

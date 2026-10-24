@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 199-kebab-case
-revision: 2
+revision: 3
 titel: kebab-case-Konvertierung
 sprache: python
 task_type: code_schreiben
@@ -44,19 +44,19 @@ tests_versteckt:
     expected: "camelcasetext"
   - input: ["already-kebab-case"]
     expected: "already-kebab-case"
-  - input: ["  trim  me  "]
-    expected: "trim-me"
+  - input: ["   cut   this  "]
+    expected: "cut-this"
   - input: ["A B C"]
     expected: "a-b-c"
-  - input: ["100% Erfolg in 2026!"]
-    expected: "100-erfolg-in-2026"
-  - input: ["___underscores___"]
-    expected: "underscores"
+  - input: ["50% Rabatt ab 2027?"]
+    expected: "50-rabatt-ab-2027"
+  - input: ["___unterstriche___"]
+    expected: "unterstriche"
   - input: ["a"]
     expected: "a"
 starter_code: |
   def kebab_case(text: str) -> str:
-      # Deine Lösung hier -- regex oder per Hand
+      # Deine Lösung hier - regex oder per Hand
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 136-rindex-eigen
-revision: 2
+revision: 3
 titel: Letztes Vorkommen finden
 sprache: python
 task_type: code_schreiben
@@ -38,8 +38,8 @@ tests_sichtbar:
   - input: [[5], 5]
     expected: 0
 tests_versteckt:
-  - input: [[1, 1, 1, 1, 1], 1]
-    expected: 4
+  - input: [[7, 7, 7, 7], 7]
+    expected: 3
   - input: [["a", "b", "a", "c"], "a"]
     expected: 2
   - input: [[True, False, True], False]
@@ -50,7 +50,7 @@ tests_versteckt:
     expected: 1
 starter_code: |
   def letztes_vorkommen(liste: list, ziel) -> int:
-      # Deine Lösung hier -- letzter Index, sonst -1.
+      # Deine Lösung hier - letzter Index, sonst -1.
       pass
 ---
 

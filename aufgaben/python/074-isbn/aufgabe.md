@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 074-isbn
-revision: 2
+revision: 3
 titel: ISBN-10 prüfen
 sprache: python
 task_type: code_schreiben
@@ -38,11 +38,11 @@ tests_sichtbar:
   - input: ["3598215088"]
     expected: true
 tests_versteckt:
-  - input: ["3-598-2X507-9"]
+  - input: ["0-306-4X615-7"]
     expected: false
   - input: [""]
     expected: false
-  - input: ["3-598-21508"]
+  - input: ["0-306-40615"]
     expected: false
   - input: ["3-598-21508-88"]
     expected: false
@@ -52,13 +52,13 @@ tests_versteckt:
     expected: true
 starter_code: |
   def ist_isbn_gueltig(isbn: str) -> bool:
-      # Deine Lösung hier -- ISBN-10 Format, 'X' nur am Ende.
+      # Deine Lösung hier - ISBN-10 Format, 'X' nur am Ende.
       pass
 ---
 
 # ISBN-10 prüfen
 
-Schreibe eine Funktion `ist_isbn_gültig(isbn)`, die prüft, ob ein
+Schreibe eine Funktion `ist_isbn_gueltig(isbn)`, die prüft, ob ein
 String eine **gültige ISBN-10** ist.
 
 ## Format

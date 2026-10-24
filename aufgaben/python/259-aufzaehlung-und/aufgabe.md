@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 259-aufzaehlung-und
-revision: 2
+revision: 3
 titel: Aufzählung mit Komma und "und"
 sprache: python
 task_type: code_schreiben
@@ -42,10 +42,10 @@ tests_sichtbar:
   - input: [["a"]]
     expected: "a"
 tests_versteckt:
-  - input: [["Hans", "Maria", "Klaus"]]
-    expected: "Hans, Maria und Klaus"
-  - input: [["Apfel", "Birne", "Orange", "Banane"]]
-    expected: "Apfel, Birne, Orange und Banane"
+  - input: [["Peter", "Anna", "Jonas"]]
+    expected: "Peter, Anna und Jonas"
+  - input: [["Kirsche", "Pflaume", "Mango", "Traube"]]
+    expected: "Kirsche, Pflaume, Mango und Traube"
   - input: [["nur", "zwei"]]
     expected: "nur und zwei"
   - input: [["allein"]]
@@ -60,7 +60,7 @@ starter_code: |
 
 # Aufzählung mit Komma und "und"
 
-Schreibe `aufzählung(wörter)`, die eine Liste von Strings zu einer
+Schreibe `aufzaehlung(woerter)`, die eine Liste von Strings zu einer
 **deutschen Aufzählung** zusammenfügt - mit Kommas zwischen
 allen Elementen und " und " vor dem letzten.
 

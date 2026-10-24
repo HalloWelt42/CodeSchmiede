@@ -1,5 +1,5 @@
 """
-Eine Zeile -- nutzt aus, dass dict seit Python 3.7 die Insertion-Order
+Eine Zeile - nutzt aus, dass dict seit Python 3.7 die Insertion-Order
 garantiert.
 """
 

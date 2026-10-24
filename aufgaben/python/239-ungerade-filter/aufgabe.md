@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 239-ungerade-filter
-revision: 2
+revision: 3
 titel: Nur ungerade Zahlen behalten
 sprache: python
 task_type: code_schreiben
@@ -39,12 +39,12 @@ tests_sichtbar:
   - input: [[1, 3, 5]]
     expected: [1, 3, 5]
 tests_versteckt:
-  - input: [[0]]
+  - input: [[0, 0]]
     expected: []
   - input: [[0, 1, 2, 3]]
     expected: [1, 3]
-  - input: [[-3, -2, -1, 0, 1]]
-    expected: [-3, -1, 1]
+  - input: [[-5, -4, -1, 0, 3]]
+    expected: [-5, -1, 3]
   - input: [[7]]
     expected: [7]
   - input: [[100, 99, 98, 97]]

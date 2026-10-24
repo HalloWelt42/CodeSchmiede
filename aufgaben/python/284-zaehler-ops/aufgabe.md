@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 284-zaehler-ops
-revision: 2
+revision: 3
 titel: Zähler mit Operations-Liste
 sprache: python
 task_type: code_schreiben
@@ -51,19 +51,19 @@ tests_versteckt:
     expected: [0]
   - input: [["inc", "dec", "inc", "dec"]]
     expected: [1, 0, 1, 0]
-  - input: [["double"]]
-    expected: [0]
-  - input: [["inc", "double", "double", "double", "double"]]
-    expected: [1, 2, 4, 8, 16]
+  - input: [["double", "double"]]
+    expected: [0, 0]
+  - input: [["inc", "inc", "inc", "double", "double", "double"]]
+    expected: [1, 2, 3, 6, 12, 24]
 starter_code: |
   def zaehler_lauf(operationen: list[str]) -> list[int]:
-      # Tipp: nutze intern eine Zaehler-Klasse
+      # Tipp: nutze intern eine Zähler-Klasse
       pass
 ---
 
 # Zähler mit Operations-Liste
 
-Implementiere `zähler_lauf(operationen)` - ein Zähler startet bei
+Implementiere `zaehler_lauf(operationen)` - ein Zähler startet bei
 **0**, eine Liste von Operationen wird nacheinander angewendet, und
 nach **jeder** Operation wird der aktuelle Wert in die Ausgabe-Liste
 geschrieben.

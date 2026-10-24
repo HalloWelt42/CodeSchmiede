@@ -1,5 +1,5 @@
 """
-Idiomatische Loesung: Whitespace strippen, prüfen ob nur Ziffern,
+Idiomatische Lösung: Whitespace strippen, prüfen ob nur Ziffern,
 dann Luhn-Summe.
 """
 

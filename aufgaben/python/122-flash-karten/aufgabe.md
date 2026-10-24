@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 122-flash-karten
-revision: 2
+revision: 3
 titel: Flash-Karten - SM-2 Update
 sprache: python
 task_type: code_schreiben
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: { "ease": 2.5, "intervall_tage": 6, "wiederholungen": 2 }
 starter_code: |
   def sm2_update(ease: float, intervall_tage: int, wiederholungen: int, bewertung: int) -> dict:
-      # Deine Lösung hier -- SM-2-Algorithmus.
+      # Deine Lösung hier - SM-2-Algorithmus.
       # Ease >= 1.3. Bewertung < 3: Reset. Sonst: Folgeformel.
       pass
 ---

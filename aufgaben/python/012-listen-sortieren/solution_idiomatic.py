@@ -1,5 +1,5 @@
 """
-Idiomatische Lösung: `sorted()` mit `reverse=True` -- ein Aufruf,
+Idiomatische Lösung: `sorted()` mit `reverse=True` - ein Aufruf,
 ein neues sortiertes Ergebnis, Originalliste unverändert.
 """
 

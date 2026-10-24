@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 081-scrabble
-revision: 2
+revision: 3
 titel: Scrabble-Punktzahl
 sprache: python
 task_type: code_schreiben
@@ -37,21 +37,21 @@ tests_sichtbar:
   - input: ["at"]
     expected: 2
 tests_versteckt:
-  - input: ["zoo"]
-    expected: 12
-  - input: ["street"]
+  - input: ["fox"]
+    expected: 13
+  - input: ["tunnel"]
     expected: 6
-  - input: ["quirky"]
-    expected: 22
-  - input: ["OxyphenButazone"]
-    expected: 41
+  - input: ["zephyr"]
+    expected: 23
+  - input: ["QuixoticJukebox"]
+    expected: 53
   - input: [""]
     expected: 0
   - input: ["pinata"]
     expected: 8
 starter_code: |
   def scrabble_punkte(wort: str) -> int:
-      # Deine Lösung hier -- englisches Scrabble.
+      # Deine Lösung hier - englisches Scrabble.
       pass
 ---
 

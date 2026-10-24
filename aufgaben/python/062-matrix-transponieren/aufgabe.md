@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 062-matrix-transponieren
-revision: 2
+revision: 3
 titel: Matrix transponieren
 sprache: python
 task_type: code_schreiben
@@ -38,13 +38,13 @@ tests_sichtbar:
   - input: [[[1, 2, 3]]]
     expected: [[1], [2], [3]]
 tests_versteckt:
-  - input: [[[1], [2], [3]]]
-    expected: [[1, 2, 3]]
+  - input: [[[4], [5], [6]]]
+    expected: [[4, 5, 6]]
   - input: [[[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]]
     expected: [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
 starter_code: |
   def transponieren(matrix: list[list]) -> list[list]:
-      # Deine Lösung hier -- m x n -> n x m
+      # Deine Lösung hier - m x n -> n x m
       pass
 ---
 

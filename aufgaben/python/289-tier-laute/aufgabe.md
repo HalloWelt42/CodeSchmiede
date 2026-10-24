@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 289-tier-laute
-revision: 2
+revision: 3
 titel: Tier-Hierarchie mit Vererbung
 sprache: python
 task_type: code_schreiben
@@ -44,8 +44,8 @@ tests_sichtbar:
 tests_versteckt:
   - input: [["Hund", "Hund", "Hund"]]
     expected: ["Wuff", "Wuff", "Wuff"]
-  - input: [["Katze", "Drachen", "Hahn"]]
-    expected: ["Miau", "?", "Kikeriki"]
+  - input: [["Kuh", "Einhorn", "Hund"]]
+    expected: ["Muh", "?", "Wuff"]
   - input: [["Hahn", "Hund", "Katze", "Kuh"]]
     expected: ["Kikeriki", "Wuff", "Miau", "Muh"]
   - input: [["Maus"]]

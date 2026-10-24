@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 248-alle-rotationen
-revision: 2
+revision: 3
 titel: Alle Rotationen einer Liste
 sprache: python
 task_type: code_schreiben
@@ -49,7 +49,7 @@ tests_versteckt:
     expected: [[1, 2, 3, 4], [2, 3, 4, 1], [3, 4, 1, 2], [4, 1, 2, 3]]
 starter_code: |
   def alle_rotationen(liste: list) -> list[list]:
-      # Deine Lösung hier -- erste ist Original, dann je 1 weiter
+      # Deine Lösung hier - erste ist Original, dann je 1 weiter
       pass
 ---
 

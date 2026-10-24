@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 204-ascii-rahmen
-revision: 2
+revision: 3
 titel: ASCII-Rahmen um Text
 sprache: python
 task_type: code_schreiben
@@ -54,7 +54,7 @@ tests_versteckt:
     expected: ["+-----+", "| 123 |", "+-----+"]
 starter_code: |
   def rahmen(zeilen: list[str]) -> list[str]:
-      # Deine Lösung hier -- Liste von Strings, jede Zeile ein Element
+      # Deine Lösung hier - Liste von Strings, jede Zeile ein Element
       pass
 ---
 

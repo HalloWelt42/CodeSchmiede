@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 198-rgb-zu-hex
-revision: 2
+revision: 3
 titel: RGB-Tripel zu Hex-Farbe
 sprache: python
 task_type: code_schreiben
@@ -38,23 +38,23 @@ tests_sichtbar:
   - input: [[255, 255, 255]]
     expected: "#ffffff"
 tests_versteckt:
-  - input: [[0, 0, 0]]
-    expected: "#000000"
-  - input: [[128, 128, 128]]
-    expected: "#808080"
+  - input: [[0, 0, 10]]
+    expected: "#00000a"
+  - input: [[64, 64, 64]]
+    expected: "#404040"
   - input: [[255, 128, 0]]
     expected: "#ff8000"
-  - input: [[26, 43, 60]]
-    expected: "#1a2b3c"
-  - input: [[300, 0, 0]]
-    expected: "#ff0000"
-  - input: [[-50, 100, 200]]
-    expected: "#0064c8"
+  - input: [[77, 94, 111]]
+    expected: "#4d5e6f"
+  - input: [[0, 400, 0]]
+    expected: "#00ff00"
+  - input: [[-20, 150, 30]]
+    expected: "#00961e"
   - input: [[1, 2, 3]]
     expected: "#010203"
 starter_code: |
   def rgb_zu_hex(rgb: list[int]) -> str:
-      # Deine Lösung hier -- "#rrggbb" klein, mit Clamping
+      # Deine Lösung hier - "#rrggbb" klein, mit Clamping
       pass
 ---
 

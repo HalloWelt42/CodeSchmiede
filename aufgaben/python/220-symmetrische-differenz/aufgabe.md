@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 220-symmetrische-differenz
-revision: 2
+revision: 3
 titel: Symmetrische Differenz zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -41,11 +41,11 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 1, 2, 2], [2, 2, 3, 3]]
     expected: [1, 3]
-  - input: [[10, 20, 30], [20, 30, 40]]
-    expected: [10, 40]
+  - input: [[15, 25, 35], [25, 35, 45]]
+    expected: [15, 45]
   - input: [[-1, 0, 1], [0]]
     expected: [-1, 1]
-  - input: [[5, 5, 5], [5]]
+  - input: [[7, 7, 7], [7]]
     expected: []
   - input: [[1, 2, 3], [4, 5, 6]]
     expected: [1, 2, 3, 4, 5, 6]

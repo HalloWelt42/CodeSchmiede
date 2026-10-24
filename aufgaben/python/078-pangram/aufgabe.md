@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 078-pangram
-revision: 2
+revision: 3
 titel: Pangramm-Test
 sprache: python
 task_type: code_schreiben
@@ -42,7 +42,7 @@ tests_versteckt:
     expected: true
   - input: ["pack my box with five dozen liquor jugs"]
     expected: true
-  - input: ["the quick brown fish jumps over the lazy dog"]
+  - input: ["sphinx of black quartz judge my cow"]
     expected: false
   - input: ["abcdefghijklm"]
     expected: false

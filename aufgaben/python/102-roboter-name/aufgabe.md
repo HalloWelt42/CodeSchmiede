@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 102-roboter-name
-revision: 2
+revision: 3
 titel: Roboter-Name generieren
 sprache: python
 task_type: code_schreiben
@@ -42,11 +42,11 @@ tests_versteckt:
     expected: "EO726"
   - input: [123456]
     expected: "ZZ402"
-  - input: [42]
-    expected: "UD043"
+  - input: [314]
+    expected: "GO120"
 starter_code: |
   def roboter_name(seed: int) -> str:
-      # Deine Lösung hier -- Format AANNN, deterministisch via random.Random(seed).
+      # Deine Lösung hier - Format AANNN, deterministisch via random.Random(seed).
       pass
 ---
 

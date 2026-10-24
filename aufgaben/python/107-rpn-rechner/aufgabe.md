@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 107-rpn-rechner
-revision: 2
+revision: 3
 titel: Reverse Polish Notation
 sprache: python
 task_type: code_schreiben
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: 20
 starter_code: |
   def rpn_auswerten(ausdruck: str) -> int | None:
-      # Deine Lösung hier -- bei ungültiger Eingabe None.
+      # Deine Lösung hier - bei ungültiger Eingabe None.
       # Division ist Ganzzahl-Division.
       pass
 ---

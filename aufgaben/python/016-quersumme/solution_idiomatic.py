@@ -1,7 +1,7 @@
 """
 Idiomatische Lösung: rein numerisch mit Modulo und ganzzahliger
 Division. Vermeidet die Konvertierung nach String und ist daher
-unabhaengig von der Stringdarstellung.
+unabhängig von der Stringdarstellung.
 """
 
 

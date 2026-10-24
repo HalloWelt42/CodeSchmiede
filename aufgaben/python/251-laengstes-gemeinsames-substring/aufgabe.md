@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 251-laengstes-gemeinsames-substring
-revision: 2
+revision: 3
 titel: Längster gemeinsamer Substring (LCS)
 sprache: python
 task_type: code_schreiben
@@ -40,23 +40,23 @@ tests_sichtbar:
   - input: ["abc", "xyz"]
     expected: ""
 tests_versteckt:
-  - input: ["abcdef", "abcdef"]
-    expected: "abcdef"
+  - input: ["mnopqr", "mnopqr"]
+    expected: "mnopqr"
   - input: ["aaa", "aaaa"]
     expected: "aaa"
-  - input: ["GeeksforGeeks", "GeeksQuiz"]
-    expected: "Geeks"
-  - input: ["abcdxyz", "xyzabcd"]
-    expected: "abcd"
-  - input: ["zxabcdezy", "yzabcdezx"]
-    expected: "abcdez"
+  - input: ["HausbootHaus", "HausTier"]
+    expected: "Haus"
+  - input: ["pqrsuvw", "uvwpqrs"]
+    expected: "pqrs"
+  - input: ["hgmnopqhf", "fhmnopqhg"]
+    expected: "mnopqh"
   - input: ["a", "a"]
     expected: "a"
   - input: ["a", "b"]
     expected: ""
 starter_code: |
   def lcs(a: str, b: str) -> str:
-      # Deine Lösung hier -- DP, bei Gleichstand erster Treffer in a
+      # Deine Lösung hier - DP, bei Gleichstand erster Treffer in a
       pass
 ---
 

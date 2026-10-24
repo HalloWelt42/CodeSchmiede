@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 098-diamond-muster
-revision: 2
+revision: 3
 titel: Diamant aus Buchstaben
 sprache: python
 task_type: code_schreiben
@@ -47,7 +47,7 @@ tests_versteckt:
     expected: ["A"]
 starter_code: |
   def diamant(buchstabe: str) -> list[str]:
-      # Deine Lösung hier -- Diamond-Muster, Eingabe ist ein einzelner
+      # Deine Lösung hier - Diamond-Muster, Eingabe ist ein einzelner
       # Großbuchstabe A-Z.
       pass
 ---

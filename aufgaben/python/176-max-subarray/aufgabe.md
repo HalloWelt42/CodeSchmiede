@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 176-max-subarray
-revision: 2
+revision: 3
 titel: Maximale Teilfolgen-Summe (Kadane)
 sprache: python
 task_type: code_schreiben
@@ -49,7 +49,7 @@ tests_versteckt:
     expected: 0
   - input: [[1, -1, 1, -1, 1, -1]]
     expected: 1
-  - input: [[10, -3, 4, -1, 5]]
+  - input: [[8, -2, 6, -4, 7]]
     expected: 15
   - input: [[-2, -3, 4, -1, -2, 1, 5, -3]]
     expected: 7
@@ -57,7 +57,7 @@ tests_versteckt:
     expected: 100
 starter_code: |
   def max_summe(zahlen: list[int]) -> int:
-      # Deine Lösung hier -- Kadane in O(n)
+      # Deine Lösung hier - Kadane in O(n)
       pass
 ---
 

@@ -5,6 +5,7 @@ Liest aufgaben/ nur; Datenbank im Temp-Ordner.
 """
 
 import os
+import threading
 from concurrent.futures import ThreadPoolExecutor
 
 import pytest
@@ -46,7 +47,20 @@ def test_musterloesungen_bestehen(state):
         for ml in state.loader.lade_musterloesungen(a.id)
     ]
 
+    fertig = 0
+    zaehler = threading.Lock()
+
     def lauf(auftrag):
+        nonlocal fertig
+        try:
+            return pruefe_eine(auftrag)
+        finally:
+            with zaehler:
+                fertig += 1
+                # sichtbar mit pytest -s: Fortschritt für lange Läufe
+                print(f"fortschritt {fertig}/{len(auftraege)}", flush=True)
+
+    def pruefe_eine(auftrag):
         a, ml = auftrag
         erg = pruefe(a, ml["code"], state.runner)
         if not erg.bestanden and erg.timeout:

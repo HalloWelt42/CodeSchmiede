@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 037-binaere-suche
-revision: 2
+revision: 3
 titel: Binäre Suche
 sprache: python
 task_type: code_schreiben
@@ -68,7 +68,7 @@ tests_versteckt:
     expected: 1
 starter_code: |
   def binaere_suche(liste: list[int], ziel: int) -> int:
-      # Deine Lösung hier -- Index zurueckgeben oder -1 falls nicht gefunden.
+      # Deine Lösung hier - Index zurückgeben oder -1 falls nicht gefunden.
       pass
 ---
 

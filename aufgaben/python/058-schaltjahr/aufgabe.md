@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 058-schaltjahr
-revision: 2
+revision: 3
 titel: Schaltjahr prüfen
 sprache: python
 task_type: code_schreiben
@@ -43,17 +43,17 @@ tests_versteckt:
     expected: false
   - input: [4]
     expected: true
-  - input: [100]
+  - input: [300]
     expected: false
-  - input: [400]
+  - input: [800]
     expected: true
-  - input: [2400]
+  - input: [2800]
     expected: true
-  - input: [2100]
+  - input: [2200]
     expected: false
 starter_code: |
   def ist_schaltjahr(jahr: int) -> bool:
-      # Deine Lösung hier -- Gregorianischer Kalender.
+      # Deine Lösung hier - Gregorianischer Kalender.
       pass
 ---
 

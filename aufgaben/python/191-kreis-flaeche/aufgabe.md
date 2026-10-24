@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 191-kreis-flaeche
-revision: 2
+revision: 3
 titel: Kreis-Fläche und Umfang
 sprache: python
 task_type: code_schreiben
@@ -53,7 +53,7 @@ starter_code: |
   import math
 
   def kreis(r: float) -> list[float]:
-      # Deine Lösung hier -- [flaeche, umfang] auf 2 Stellen
+      # Deine Lösung hier - [fläche, umfang] auf 2 Stellen
       pass
 ---
 

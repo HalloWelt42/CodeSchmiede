@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 181-sudoku-zeile
-revision: 2
+revision: 3
 titel: Sudoku-Zeile gültig?
 sprache: python
 task_type: code_schreiben
@@ -39,9 +39,9 @@ tests_sichtbar:
   - input: [[1, 2, 3, 4, 5, 6, 7, 8]]
     expected: false
 tests_versteckt:
-  - input: [[2, 4, 1, 6, 3, 8, 5, 7, 9]]
+  - input: [[5, 3, 9, 1, 7, 2, 8, 4, 6]]
     expected: true
-  - input: [[1, 2, 3, 4, 5, 6, 7, 8, 0]]
+  - input: [[3, 6, 0, 2, 9, 1, 4, 8, 5]]
     expected: false
   - input: [[]]
     expected: false
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: false
 starter_code: |
   def sudoku_zeile(zeile: list[int]) -> bool:
-      # Deine Lösung hier -- exakt 1..9, jede einmal
+      # Deine Lösung hier - exakt 1..9, jede einmal
       pass
 ---
 

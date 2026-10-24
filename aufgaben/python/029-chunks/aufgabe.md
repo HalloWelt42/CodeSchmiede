@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 029-chunks
-revision: 2
+revision: 3
 titel: Liste in n-große Stücke teilen
 sprache: python
 task_type: code_schreiben
@@ -43,15 +43,15 @@ tests_sichtbar:
   - input: [[1, 2, 3], 5]
     expected: [[1, 2, 3]]
 tests_versteckt:
-  - input: [[1, 2, 3, 4, 5, 6, 7], 1]
-    expected: [[1], [2], [3], [4], [5], [6], [7]]
+  - input: [[9, 8, 7, 6, 5, 4, 3], 1]
+    expected: [[9], [8], [7], [6], [5], [4], [3]]
   - input: [["a", "b", "c", "d"], 2]
     expected: [["a", "b"], ["c", "d"]]
   - input: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4]
     expected: [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]]
 starter_code: |
   def chunks(liste: list, n: int) -> list[list]:
-      # Deine Lösung hier -- letzter Block darf kürzer sein.
+      # Deine Lösung hier - letzter Block darf kürzer sein.
       pass
 ---
 

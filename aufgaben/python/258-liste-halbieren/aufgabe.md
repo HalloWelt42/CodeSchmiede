@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 258-liste-halbieren
-revision: 2
+revision: 3
 titel: Liste in zwei Hälften aufteilen
 sprache: python
 task_type: code_schreiben
@@ -42,8 +42,8 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 2]]
     expected: [[1], [2]]
-  - input: [[1, 2, 3]]
-    expected: [[1], [2, 3]]
+  - input: [[7, 8, 9]]
+    expected: [[7], [8, 9]]
   - input: [[1, 2, 3, 4, 5, 6]]
     expected: [[1, 2, 3], [4, 5, 6]]
   - input: [["a", "b", "c", "d", "e", "f", "g"]]
@@ -52,7 +52,7 @@ tests_versteckt:
     expected: [[10, 20, 30, 40], [50, 60, 70, 80]]
 starter_code: |
   def halbieren(liste: list) -> list[list]:
-      # Deine Lösung hier -- bei ungerader Anzahl: mid in zweite Haelfte
+      # Deine Lösung hier - bei ungerader Anzahl: mid in zweite Hälfte
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 094-decimal-zu-binary
-revision: 2
+revision: 3
 titel: Dezimal zu Binär
 sprache: python
 task_type: code_schreiben
@@ -43,15 +43,15 @@ tests_versteckt:
     expected: "100"
   - input: [9]
     expected: "1001"
-  - input: [1024]
-    expected: "10000000000"
+  - input: [2048]
+    expected: "100000000000"
   - input: [1128]
     expected: "10001101000"
   - input: [65535]
     expected: "1111111111111111"
 starter_code: |
   def dezimal_zu_binaer(n: int) -> str:
-      # Deine Lösung hier -- ohne bin() zu verwenden.
+      # Deine Lösung hier - ohne bin() zu verwenden.
       pass
 ---
 

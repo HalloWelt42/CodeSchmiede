@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 064-diagonale-summe
-revision: 2
+revision: 3
 titel: Diagonal-Summe einer Matrix
 sprache: python
 task_type: code_schreiben
@@ -44,7 +44,7 @@ tests_versteckt:
     expected: [10, 0]
 starter_code: |
   def diagonal_summen(matrix: list[list[int]]) -> list[int]:
-      # Deine Lösung hier -- gibt [haupt, neben] zurück.
+      # Deine Lösung hier - gibt [haupt, neben] zurück.
       pass
 ---
 

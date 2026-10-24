@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 173-kartesisches-produkt
-revision: 2
+revision: 3
 titel: Kartesisches Produkt zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: [[1, 4], [1, 5], [1, 6], [2, 4], [2, 5], [2, 6], [3, 4], [3, 5], [3, 6]]
 starter_code: |
   def kartesisch(a: list, b: list) -> list[list]:
-      # Deine Lösung hier -- alle Paare als List-of-Lists
+      # Deine Lösung hier - alle Paare als List-of-Lists
       pass
 ---
 

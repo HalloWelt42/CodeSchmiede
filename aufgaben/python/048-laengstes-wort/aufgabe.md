@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 048-laengstes-wort
-revision: 2
+revision: 3
 titel: Längstes Wort eines Satzes
 sprache: python
 task_type: code_schreiben
@@ -47,7 +47,7 @@ tests_versteckt:
     expected: "leerzeichen"
 starter_code: |
   def laengstes_wort(text: str) -> str:
-      # Deine Lösung hier -- bei Gleichstand das erste.
+      # Deine Lösung hier - bei Gleichstand das erste.
       pass
 ---
 

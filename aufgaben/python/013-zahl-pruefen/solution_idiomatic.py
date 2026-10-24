@@ -1,6 +1,6 @@
 """
 Idiomatische Lösung: nur bis sqrt(n) prüfen + 2 als Sonderfall.
-O(sqrt(n)) -- für n=997 nur 30 Iterationen statt 995.
+O(sqrt(n)) - für n=997 nur 30 Iterationen statt 995.
 """
 
 from math import isqrt

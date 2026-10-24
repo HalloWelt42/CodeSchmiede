@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 282-markdown-links
-revision: 2
+revision: 3
 titel: Markdown-Links extrahieren
 sprache: python
 task_type: code_schreiben
@@ -47,19 +47,19 @@ tests_versteckt:
     expected: [["a", "1"], ["b", "2"], ["c", "3"]]
   - input: ["[Text mit Leerzeichen](https://lange.url/mit/segmenten)"]
     expected: [["Text mit Leerzeichen", "https://lange.url/mit/segmenten"]]
-  - input: ["nur [text] ohne URL"]
+  - input: ["Ein [Titel] ganz ohne Link"]
     expected: []
   - input: ["nur (url) ohne Text"]
     expected: []
-  - input: ["![bild](pic.png)"]
-    expected: [["bild", "pic.png"]]
+  - input: ["![foto](img.jpg)"]
+    expected: [["foto", "img.jpg"]]
   - input: ["[a](b) text [c](d)"]
     expected: [["a", "b"], ["c", "d"]]
 starter_code: |
   import re
 
   def markdown_links(text: str) -> list[list[str]]:
-      # Deine Lösung hier -- [text, url] pro Link
+      # Deine Lösung hier - [text, url] pro Link
       pass
 ---
 

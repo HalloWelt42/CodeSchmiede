@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 261-zahlen-zu-ip
-revision: 2
+revision: 3
 titel: Vier Zahlen zur IPv4 zusammensetzen
 sprache: python
 task_type: code_schreiben
@@ -42,19 +42,19 @@ tests_versteckt:
     expected: "8.8.8.8"
   - input: [[10, 20, 30, 40]]
     expected: "10.20.30.40"
-  - input: [[256, 0, 0, 0]]
+  - input: [[0, 0, 0, 256]]
     expected: ""
-  - input: [[1, 2, 3]]
+  - input: [[10, 20, 30]]
     expected: ""
   - input: [[1, 2, 3, 4, 5]]
     expected: ""
   - input: [[-1, 0, 0, 0]]
     expected: ""
-  - input: [[127, 0, 0, 1]]
-    expected: "127.0.0.1"
+  - input: [[172, 16, 0, 1]]
+    expected: "172.16.0.1"
 starter_code: |
   def ip_zusammen(zahlen: list[int]) -> str:
-      # Deine Lösung hier -- ungueltig → ""
+      # Deine Lösung hier - ungültig → ""
       pass
 ---
 

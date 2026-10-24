@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 041-befreundet
-revision: 2
+revision: 3
 titel: Befreundete Zahlen
 sprache: python
 task_type: code_schreiben
@@ -38,7 +38,7 @@ tests_sichtbar:
   - input: [6, 6]
     expected: false
 tests_versteckt:
-  - input: [1184, 1210]
+  - input: [5020, 5564]
     expected: true
   - input: [2620, 2924]
     expected: true
@@ -50,7 +50,7 @@ tests_versteckt:
     expected: false
 starter_code: |
   def sind_befreundet(a: int, b: int) -> bool:
-      # Deine Lösung hier -- Hilfsfunktion fuer Teilersumme erlaubt.
+      # Deine Lösung hier - Hilfsfunktion für Teilersumme erlaubt.
       pass
 ---
 

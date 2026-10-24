@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 012-listen-sortieren
-revision: 2
+revision: 3
 titel: Liste absteigend sortieren
 sprache: python
 task_type: code_schreiben
@@ -41,8 +41,8 @@ tests_sichtbar:
   - input: [[-1, -3, -2]]
     expected: [-1, -2, -3]
 tests_versteckt:
-  - input: [[10, 20, 30]]
-    expected: [30, 20, 10]
+  - input: [[15, 25, 35]]
+    expected: [35, 25, 15]
   - input: [[5, 5, 5]]
     expected: [5, 5, 5]
   - input: [[100, -100, 0]]

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 260-ip-zu-zahlen
-revision: 2
+revision: 3
 titel: IPv4-String in vier Zahlen zerlegen
 sprache: python
 task_type: code_schreiben
@@ -41,21 +41,21 @@ tests_sichtbar:
 tests_versteckt:
   - input: ["10.20.30.40"]
     expected: [10, 20, 30, 40]
-  - input: ["256.0.0.0"]
+  - input: ["10.256.20.30"]
     expected: []
-  - input: ["1.2.3"]
+  - input: ["10.20.30"]
     expected: []
-  - input: ["1.2.3.4.5"]
+  - input: ["10.20.30.40.50"]
     expected: []
-  - input: ["abc.def.ghi.jkl"]
+  - input: ["mno.pqr.stu.vwx"]
     expected: []
   - input: ["-1.0.0.0"]
     expected: []
-  - input: ["8.8.8.8"]
-    expected: [8, 8, 8, 8]
+  - input: ["9.9.9.9"]
+    expected: [9, 9, 9, 9]
 starter_code: |
   def ip_zerlegen(s: str) -> list[int]:
-      # Deine Lösung hier -- ungueltig → []
+      # Deine Lösung hier - ungültig → []
       pass
 ---
 

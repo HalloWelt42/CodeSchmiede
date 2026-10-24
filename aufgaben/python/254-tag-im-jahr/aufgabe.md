@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 254-tag-im-jahr
-revision: 2
+revision: 3
 titel: Tag-Nummer im Jahr aus Datum
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ starter_code: |
   from datetime import date
 
   def tag_im_jahr(jahr: int, monat: int, tag: int) -> int:
-      # Deine Lösung hier -- ungueltig → 0
+      # Deine Lösung hier - ungültig → 0
       pass
 ---
 

@@ -1,5 +1,5 @@
 """
-Mit re.sub -- so wuerden viele Linter / Naming-Helfer es machen.
+Mit re.sub - so würden viele Linter / Naming-Helfer es machen.
 """
 
 import re

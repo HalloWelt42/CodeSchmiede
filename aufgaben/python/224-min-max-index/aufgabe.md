@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 224-min-max-index
-revision: 2
+revision: 3
 titel: Index von Minimum und Maximum
 sprache: python
 task_type: code_schreiben
@@ -40,7 +40,7 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 2, 3, 4, 5]]
     expected: [0, 4]
-  - input: [[5, 4, 3, 2, 1]]
+  - input: [[9, 7, 5, 3, 1]]
     expected: [4, 0]
   - input: [[-3, -1, -5, -2]]
     expected: [2, 1]
@@ -52,7 +52,7 @@ tests_versteckt:
     expected: [1, 0]
 starter_code: |
   def min_max_index(liste: list) -> list[int]:
-      # Deine Lösung hier -- bei Gleichstand erster Treffer
+      # Deine Lösung hier - bei Gleichstand erster Treffer
       pass
 ---
 

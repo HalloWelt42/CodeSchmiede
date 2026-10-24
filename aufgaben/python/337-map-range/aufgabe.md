@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 337-map-range
-revision: 2
+revision: 3
 titel: Wert linear in anderen Bereich übersetzen
 sprache: python
 task_type: code_schreiben
@@ -44,14 +44,14 @@ tests_versteckt:
     expected: 30.0
   - input: [50, 0, 100, 0, 1]
     expected: 0.5
-  - input: [25, 0, 100, -50, 50]
-    expected: -25.0
+  - input: [30, 0, 80, -40, 40]
+    expected: -10.0
   - input: [0, -10, 10, 0, 100]
     expected: 50.0
   - input: [212, 32, 212, 0, 100]
     expected: 100.0
-  - input: [98.6, 32, 212, 0, 100]
-    expected: 37.0
+  - input: [71.6, 14, 230, 0, 120]
+    expected: 32.0
   - input: [0, 0, 1, 100, 200]
     expected: 100.0
 starter_code: |

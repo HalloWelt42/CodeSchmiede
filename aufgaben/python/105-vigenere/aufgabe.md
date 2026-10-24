@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 105-vigenere
-revision: 2
+revision: 3
 titel: Vigenère-Verschlüsselung
 sprache: python
 task_type: code_schreiben
@@ -50,13 +50,13 @@ tests_versteckt:
     expected: "riiieanp"
 starter_code: |
   def vigenere(text: str, schluessel: str) -> str:
-      # Deine Lösung hier -- pro Position andere Verschiebung.
+      # Deine Lösung hier - pro Position andere Verschiebung.
       pass
 ---
 
 # Vigenère-Verschlüsselung
 
-Schreibe eine Funktion `vigenere(text, schlüssel)`, die einen Text
+Schreibe eine Funktion `vigenere(text, schluessel)`, die einen Text
 mit der **Vigenère-Chiffre** verschlüsselt.
 
 Im Unterschied zu Caesar/ROT-N variiert die Verschiebung pro Position -

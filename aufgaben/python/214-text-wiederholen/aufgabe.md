@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 214-text-wiederholen
-revision: 2
+revision: 3
 titel: Text wiederholen bis Ziel-Länge
 sprache: python
 task_type: code_schreiben
@@ -39,14 +39,14 @@ tests_sichtbar:
   - input: ["abc", 0]
     expected: ""
 tests_versteckt:
-  - input: ["abc", 7]
-    expected: "abcabca"
+  - input: ["uvw", 8]
+    expected: "uvwuvwuv"
   - input: ["a", 100]
     expected: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-  - input: ["abcd", 3]
-    expected: "abc"
-  - input: ["xyz", 9]
-    expected: "xyzxyzxyz"
+  - input: ["mnop", 3]
+    expected: "mno"
+  - input: ["klm", 12]
+    expected: "klmklmklmklm"
   - input: ["hi", 1]
     expected: "h"
   - input: ["abc", -1]

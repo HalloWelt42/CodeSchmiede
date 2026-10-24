@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 168-kassen-wechsel
-revision: 2
+revision: 3
 titel: Wechselgeld in EUR-Stückelung
 sprache: python
 task_type: code_schreiben
@@ -40,12 +40,12 @@ tests_sichtbar:
   - input: [388]
     expected: [1, 1, 1, 1, 1, 1, 1, 1]
 tests_versteckt:
-  - input: [99]
-    expected: [0, 0, 1, 2, 0, 1, 2, 0]
+  - input: [98]
+    expected: [0, 0, 1, 2, 0, 1, 1, 1]
   - input: [555]
     expected: [2, 1, 1, 0, 0, 1, 0, 0]
-  - input: [1000]
-    expected: [5, 0, 0, 0, 0, 0, 0, 0]
+  - input: [1400]
+    expected: [7, 0, 0, 0, 0, 0, 0, 0]
   - input: [3]
     expected: [0, 0, 0, 0, 0, 0, 1, 1]
   - input: [7]
@@ -54,7 +54,7 @@ tests_versteckt:
     expected: [0, 1, 1, 2, 0, 1, 2, 0]
 starter_code: |
   def wechselgeld(cent: int) -> list[int]:
-      # Deine Lösung hier -- 8 Werte fuer [200,100,50,20,10,5,2,1]
+      # Deine Lösung hier - 8 Werte für [200,100,50,20,10,5,2,1]
       pass
 ---
 

@@ -26,9 +26,11 @@ Geklärt am 24.10.2026 (Analyse plus Frage-für-Frage-Klärung). Entwürfe der O
 | Gamifizierung | Alles gamifizieren, in bester Qualität (Nutzer 24.10.2026); Ausgestaltung mit Entwürfen vor dem Bau, zusammen mit den Spielen |
 | Lokale KI | Nur als Hilfe im Lernhelfer (Nachschlagewerk mit Wissenspool), gerechnet auf dem Mac über die Leitstelle; Wissenspool und Einzelheiten vor dem Bau klären |
 | Lernhelfer | Die lokale KI ist nur Hilfe: Assistent und Nachschlagewerk, das man nach Befehlen und Anweisungen fragt und das dafür in einem Wissenspool sucht (Nutzer 24.10.2026). Schwebendes, verschiebbares Hilfefenster mit diesem Lernhelfer (über die Leitstelle, Anwendung "Codeschmiede" ist angemeldet): löst nie die Aufgabe, gibt Rückfragen, kleine korrekte Bausteine (einzelne Befehle mit neutralem Mini-Beispiel), erklärt Fehler, schlägt den nächsten kleinen Schritt vor; minimalistisch. Der Server gibt ihm nur Aufgabentext, eigenen Code und letztes Ergebnis, nie Musterlösung oder versteckte Tests (Nutzer 24.10.2026). Einzelheiten vor dem Bau klären |
+| Literaturhinweise | Passende Stellen aus den eigenen Büchern als Literaturhinweise (zur Aufgabe und im Lernhelfer), gefunden über den Wissenspool. Nur für die eigene Installation: öffentlich hat kaum jemand diese Bücher (Nutzer 25.10.2026). Darum abschaltbar und ab Werk aus; Titel, Fundstellen und Zugang liegen nicht im öffentlichen Repo, sondern kommen zur Laufzeit aus dem privaten Wissenspool. Einzelheiten vor dem Bau klären |
 | CSS-Bewertung | Nach dem Bild, nicht nach Eigenschaften: Deckung mit dem Ziel in Prozent und Kürze des Codes entscheiden; die Deckung wird grafisch gezeigt (Überblenden, eingefärbte Abweichung), das ist spannender als eine Liste (Nutzer 24.10.2026) |
 | CSS-Ansicht | Beim Lösen stehen Ziel und eigenes Ergebnis untereinander in der rechten Spalte, Zoom mit dem Mausrad auf beiden zugleich, gedämpft für Trackpad und Mac-Maus (Stärke nach Scrollweite, ein Schritt je Bildschirmbild, höchstens 8 %); Ergebnis und Verlauf wandern aus der rechten Spalte in die Reiter links (Entwurf `mockups/rechner-css.html`) |
 | CSS-Vielfalt | Sehr große Vielfalt an CSS-Aufgaben; Ideensammlung aus einer Recherche in `docs/CSS-IDEEN.md` (229 Ideen in 28 Kategorien, eigene Worte, keine fremden Aufgaben übernommen) |
+| Bausteine aus eigenen Projekten | Neben den CSS-Spielereien werden Knöpfe, Karten, Leisten und andere Bausteine aus den eigenen Projekten zu Herausforderungen, etwa die Gestaltung von Orbit. Fair bleiben: komplexe Grafik (Pixelgrafik, Bilder) wird als Bild mitgegeben, dazu eine halbfertige Vorlage, ergänzt wird der fachliche Rest. Ziel ist Lernen und Besserwerden, der Lernende soll nicht frustriert werden (Nutzer 25.10.2026); Regeln in `docs/CSS-IDEEN.md` |
 
 ## Reihenfolge des Baus
 
@@ -44,7 +46,7 @@ Jeder Schritt einzeln committet und gepusht.
    - doppelte Logik zusammenführen, Migrationen atomar
    - Backend-Tests aufbauen
 2. **Abhängigkeiten** auf den neuesten Stand, Image nach Sperrdatei. (erledigt mit 0.73.0)
-3. **Aufgabenbestand**
+3. **Aufgabenbestand** (erledigt mit 0.74.0)
    - Pfad-Datei als einzige Wahrheit
    - neue versteckte Tests für die 134 verratenen Aufgaben
    - Umlaute und einfache Bindestriche in Texten und Titeln (IDs bleiben ASCII)
@@ -82,6 +84,17 @@ Jeder Schritt einzeln committet und gepusht.
 - Musterlösungen und Verlauf als gemeinsame Bausteine in allen Aufgabenansichten (CSS und SQL hatten keinen Verlauf und kein Aufgeben)
 - Dateibeobachter abschaltbar, im Compose aus (das Einrichten blockierte im Container das Backend minutenlang)
 
+## Ergebnis Schritt 3
+
+- Pfad-Dateien unter `aufgaben/pfade/` sind die einzige Wahrheit; ein `pfade`-Feld in einer Aufgabe ist ein Ladefehler
+- Lecksuche in der Bestandsprüfung: ein versteckter Test gilt als verraten, wenn eine Zeile des Aufgabentexts oder eines kostenlosen Hinweises alle Eingaben samt Erwartung zeigt; bezahlte Hinweise zählen nicht, Fälle nur aus leeren Werten, `None` oder Wahrheitswerten lassen sich nicht anders formulieren und sind ausgenommen
+- 537 neue versteckte Tests in 231 Aufgaben (die genauere Suche fand mehr als die anfangs 134 Aufgaben); jeder neue Wert hat dieselbe Art und dieselben Merkmale (Null, negativ, Kommazahl, leer, Großbuchstaben, Sonderzeichen ...) wie der alte, alle Musterlösungen bestehen ihn, keiner steht im Text
+- Aufgaben 147, 195 und 255 umgebaut: gültige Fälle sichtbar, ungültige versteckt
+- Ausgaben mit echten Umlauten in 11 Aufgaben samt Musterlösungen (etwa "ungültig", "fünfzehn", "Äpfel"), Kommentare in Vorlagen und Lösungen bereinigt (287 Zeilen), Funktions- und Parameternamen bleiben ASCII
+- Revision jeder geänderten Aufgabe um eins erhöht
+- Werkzeug `scripts/verratene-tests-ersetzen.py`: prüft Vorschläge aus einer Datei (Art, Merkmale, Doppelte, Sandbox-Lauf aller Musterlösungen, Lecksuche) und schreibt sie erst danach
+- Bestandsprüfung: 644 Aufgaben, 0 Ladefehler, 0 Befunde
+
 ## Offen
 
 - Freigabe der Entwürfe in `mockups/` (vor Schritt 4).
@@ -89,3 +102,5 @@ Jeder Schritt einzeln committet und gepusht.
 - Port und Adresse auf dem Pi werden beim Ausrollen nach den Regeln des Unterbaus vergeben.
 - Startreserve der Sandbox auf dem Pi messen (am Mac braucht Docker Desktop gerade 6 bis 13 s je Container).
 - Bis zur Anmeldung (Schritt 5) ist die Verwaltung samt Musterlösungen ohne Schutz erreichbar.
+- Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
+- Literaturhinweise aus den eigenen Büchern: Schalter, Quelle im Wissenspool und Anzeige vor dem Bau klären.

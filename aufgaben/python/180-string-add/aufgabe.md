@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 180-string-add
-revision: 2
+revision: 3
 titel: Große Zahlen als Strings addieren
 sprache: python
 task_type: code_schreiben
@@ -41,8 +41,8 @@ tests_sichtbar:
   - input: ["999", "1"]
     expected: "1000"
 tests_versteckt:
-  - input: ["123456789", "987654321"]
-    expected: "1111111110"
+  - input: ["246813579", "864197532"]
+    expected: "1111011111"
   - input: ["0", "12345"]
     expected: "12345"
   - input: ["99", "99"]
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: "10"
 starter_code: |
   def zahl_addieren(a: str, b: str) -> str:
-      # Deine Lösung hier -- ohne int(), Stelle fuer Stelle
+      # Deine Lösung hier - ohne int(), Stelle für Stelle
       pass
 ---
 

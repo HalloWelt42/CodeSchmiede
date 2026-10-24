@@ -1,5 +1,5 @@
 """
-Mit Set-Lookup und Set-Tracking fuer Duplikate.
+Mit Set-Lookup und Set-Tracking für Duplikate.
 """
 
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 113-baum-aus-eltern
-revision: 2
+revision: 3
 titel: Baum aus Eltern-IDs aufbauen
 sprache: python
 task_type: code_schreiben
@@ -49,7 +49,7 @@ tests_versteckt:
     expected: {}
 starter_code: |
   def baue_baum(records: list[dict]) -> dict:
-      # Deine Lösung hier -- Records mit "id" + "parent", Ergebnis
+      # Deine Lösung hier - Records mit "id" + "parent", Ergebnis
       # ist Dict-Baum mit "id" + "kinder" (Liste).
       pass
 ---

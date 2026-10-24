@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 032-mittelwert
-revision: 2
+revision: 3
 titel: Mittelwert einer Liste
 sprache: python
 task_type: code_schreiben
@@ -50,7 +50,7 @@ tests_versteckt:
     expected: 7.0
 starter_code: |
   def mittelwert(zahlen: list[float]) -> float:
-      # Deine Lösung hier -- leere Liste liefert 0.0
+      # Deine Lösung hier - leere Liste liefert 0.0
       pass
 ---
 

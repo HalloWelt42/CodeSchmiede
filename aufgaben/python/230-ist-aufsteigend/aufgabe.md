@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 230-ist-aufsteigend
-revision: 2
+revision: 3
 titel: Ist die Liste aufsteigend sortiert?
 sprache: python
 task_type: code_schreiben
@@ -38,11 +38,11 @@ tests_sichtbar:
   - input: [[5]]
     expected: true
 tests_versteckt:
-  - input: [[1, 1, 2, 2, 3]]
+  - input: [[2, 2, 4, 4, 7]]
     expected: true
-  - input: [[5, 4, 3, 2, 1]]
+  - input: [[9, 7, 5, 3, 1]]
     expected: false
-  - input: [[1, 2, 3, 3, 2]]
+  - input: [[2, 4, 6, 6, 5]]
     expected: false
   - input: [[1, 2]]
     expected: true
@@ -54,7 +54,7 @@ tests_versteckt:
     expected: true
 starter_code: |
   def ist_aufsteigend(liste: list) -> bool:
-      # Deine Lösung hier -- a[i] <= a[i+1] erlaubt (nicht-fallend)
+      # Deine Lösung hier - a[i] <= a[i+1] erlaubt (nicht-fallend)
       pass
 ---
 

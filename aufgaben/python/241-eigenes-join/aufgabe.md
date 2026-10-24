@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 241-eigenes-join
-revision: 2
+revision: 3
 titel: Eigenes join ohne str.join
 sprache: python
 task_type: code_schreiben
@@ -41,21 +41,21 @@ tests_sichtbar:
   - input: [["a", "b"], "-"]
     expected: "a-b"
 tests_versteckt:
-  - input: [["1", "2", "3"], ""]
-    expected: "123"
+  - input: [["4", "5", "6"], ""]
+    expected: "456"
   - input: [["x"], "abc"]
     expected: "x"
-  - input: [["", "", ""], "-"]
-    expected: "--"
+  - input: [["", "", "", ""], "+"]
+    expected: "+++"
   - input: [["Hallo", "Welt"], " "]
     expected: "Hallo Welt"
   - input: [["a", "b", "c", "d", "e"], "/"]
     expected: "a/b/c/d/e"
-  - input: [["A", "B"], " und "]
-    expected: "A und B"
+  - input: [["X", "Y"], " sowie "]
+    expected: "X sowie Y"
 starter_code: |
   def verbinden(strings: list[str], trenner: str) -> str:
-      # Deine Lösung hier -- OHNE str.join
+      # Deine Lösung hier - OHNE str.join
       pass
 ---
 

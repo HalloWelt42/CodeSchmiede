@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 086-quadrat-summen-differenz
-revision: 2
+revision: 3
 titel: Differenz Quadrat-Summen
 sprache: python
 task_type: code_schreiben
@@ -48,7 +48,7 @@ tests_versteckt:
     expected: 250166416500
 starter_code: |
   def differenz(n: int) -> int:
-      # Deine Lösung hier -- (Summe der ersten n)² - (Summe der Quadrate).
+      # Deine Lösung hier - (Summe der ersten n)² - (Summe der Quadrate).
       pass
 ---
 

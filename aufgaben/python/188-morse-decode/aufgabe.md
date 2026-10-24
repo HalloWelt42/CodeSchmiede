@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 188-morse-decode
-revision: 2
+revision: 3
 titel: Morse-Code - zurück in Text
 sprache: python
 task_type: code_schreiben
@@ -43,10 +43,10 @@ tests_versteckt:
     expected: "E"
   - input: ["-"]
     expected: "T"
-  - input: [".---- ..--- ...--"]
-    expected: "123"
-  - input: [".-- .. . / --. . .... - ..."]
-    expected: "WIE GEHTS"
+  - input: ["....- ..... -...."]
+    expected: "456"
+  - input: ["--. ..- - / -. .- -.-. .... -"]
+    expected: "GUT NACHT"
   - input: ["-.-. --- -.. . / .-- ..- -. -.. . .-."]
     expected: "CODE WUNDER"
   - input: ["...---..."]

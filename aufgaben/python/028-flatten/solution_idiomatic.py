@@ -1,5 +1,5 @@
 """
-List-Comprehension -- die Pythonic-Version.
+List-Comprehension - die Pythonic-Version.
 """
 
 

@@ -1,5 +1,5 @@
 """
-Optimierte Lösung: Counter-Vergleich, O(n) -- linear statt sortiert.
+Optimierte Lösung: Counter-Vergleich, O(n) - linear statt sortiert.
 Bei sehr langen Strings spürbar schneller.
 """
 

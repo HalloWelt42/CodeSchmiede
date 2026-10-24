@@ -1,5 +1,5 @@
 """
-Klassische Schleife mit zwei Zaehlern.
+Klassische Schleife mit zwei Zählern.
 """
 
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 028-flatten
-revision: 2
+revision: 3
 titel: Verschachtelte Liste flachklopfen
 sprache: python
 task_type: code_schreiben
@@ -49,7 +49,7 @@ tests_versteckt:
     expected: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 starter_code: |
   def flatten(liste: list[list]) -> list:
-      # Deine Lösung hier -- nur eine Ebene Verschachtelung.
+      # Deine Lösung hier - nur eine Ebene Verschachtelung.
       pass
 ---
 

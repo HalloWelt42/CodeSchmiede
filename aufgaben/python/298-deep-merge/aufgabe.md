@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 298-deep-merge
-revision: 2
+revision: 3
 titel: Deep-Merge zweier Dicts
 sprache: python
 task_type: code_schreiben
@@ -40,21 +40,21 @@ tests_sichtbar:
   - input: [{"a": {"x": 1}}, {"a": {"y": 2}}]
     expected: {"a": {"x": 1, "y": 2}}
 tests_versteckt:
-  - input: [{"a": {"x": 1, "y": 2}}, {"a": {"y": 99, "z": 3}}]
-    expected: {"a": {"x": 1, "y": 99, "z": 3}}
-  - input: [{"a": [1, 2]}, {"a": [3, 4]}]
-    expected: {"a": [3, 4]}
+  - input: [{"k": {"p": 5, "q": 6}}, {"k": {"q": 70, "r": 8}}]
+    expected: {"k": {"p": 5, "q": 70, "r": 8}}
+  - input: [{"liste": [5, 6, 7]}, {"liste": [8]}]
+    expected: {"liste": [8]}
   - input: [{"a": {"b": {"c": 1}}}, {"a": {"b": {"d": 2}}}]
     expected: {"a": {"b": {"c": 1, "d": 2}}}
-  - input: [{"a": 1}, {"a": {"b": 2}}]
-    expected: {"a": {"b": 2}}
-  - input: [{"a": {"b": 1}}, {"a": "ueberschrieben"}]
-    expected: {"a": "ueberschrieben"}
+  - input: [{"m": 7}, {"m": {"n": 8}}]
+    expected: {"m": {"n": 8}}
+  - input: [{"x": {"y": 2}}, {"x": "überholt"}]
+    expected: {"x": "überholt"}
   - input: [{"shared": "a", "only_a": 1}, {"shared": "b", "only_b": 2}]
     expected: {"shared": "b", "only_a": 1, "only_b": 2}
 starter_code: |
   def deep_merge(a: dict, b: dict) -> dict:
-      # Deine Lösung hier -- rekursiv, b gewinnt bei Konflikt
+      # Deine Lösung hier - rekursiv, b gewinnt bei Konflikt
       pass
 ---
 

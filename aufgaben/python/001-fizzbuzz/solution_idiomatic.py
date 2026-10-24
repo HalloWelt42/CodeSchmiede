@@ -1,5 +1,5 @@
 """
-Idiomatische Loesung: String-Komposition vermeidet doppelte Modulo-Pruefung
+Idiomatische Lösung: String-Komposition vermeidet doppelte Modulo-Prüfung
 und Redundanz. Der Else-Fall ergibt sich automatisch durch den leeren String.
 """
 

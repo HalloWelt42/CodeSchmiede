@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 278-telefon-de
-revision: 2
+revision: 3
 titel: Deutsche Telefonnummer prüfen
 sprache: python
 task_type: code_schreiben
@@ -44,19 +44,19 @@ tests_sichtbar:
   - input: ["12345"]
     expected: false
 tests_versteckt:
-  - input: ["+49 89 7654321"]
+  - input: ["+49 40 9876543"]
     expected: true
-  - input: ["089/7654321"]
+  - input: ["040/9876543"]
     expected: true
-  - input: ["+1 555 1234567"]
+  - input: ["+44 207 9460183"]
     expected: false
   - input: [""]
     expected: false
-  - input: ["030 12"]
+  - input: ["0221 987"]
     expected: false
   - input: ["abc 123 4567"]
     expected: false
-  - input: ["+49 0 1234"]
+  - input: ["+49 7 98765"]
     expected: false
   - input: ["0 1234 5678"]
     expected: false
@@ -64,7 +64,7 @@ starter_code: |
   import re
 
   def ist_telefon_de(s: str) -> bool:
-      # Deine Lösung hier -- vereinfachte deutsche Format-Pruefung
+      # Deine Lösung hier - vereinfachte deutsche Format-Prüfung
       pass
 ---
 

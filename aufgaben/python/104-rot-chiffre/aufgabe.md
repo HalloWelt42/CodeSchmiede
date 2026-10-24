@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 104-rot-chiffre
-revision: 2
+revision: 3
 titel: ROT-N Chiffre
 sprache: python
 task_type: code_schreiben
@@ -43,15 +43,15 @@ tests_versteckt:
     expected: "Cool"
   - input: ["Cool", 26]
     expected: "Cool"
-  - input: ["Cool", -3]
-    expected: "Zlli"
+  - input: ["Baum", -4]
+    expected: "Xwqi"
   - input: ["Same string can be read backwards.", 13]
     expected: "Fnzr fgevat pna or ernq onpxjneqf."
-  - input: ["abc", 1000]
-    expected: "mno"
+  - input: ["xyz", 2000]
+    expected: "vwx"
 starter_code: |
   def rot(text: str, n: int) -> str:
-      # Deine Lösung hier -- ROT-N (verallgemeinerte Caesar-Chiffre).
+      # Deine Lösung hier - ROT-N (verallgemeinerte Caesar-Chiffre).
       # Anders als 034-caesar: Sonderzeichen + Leerzeichen bleiben drin.
       pass
 ---

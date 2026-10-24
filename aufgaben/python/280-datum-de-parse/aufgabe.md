@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 280-datum-de-parse
-revision: 2
+revision: 3
 titel: Deutsches Datum DD.MM.YYYY parsen
 sprache: python
 task_type: code_schreiben
@@ -42,27 +42,27 @@ tests_sichtbar:
   - input: [""]
     expected: []
 tests_versteckt:
-  - input: ["31.12.1999"]
-    expected: [31, 12, 1999]
+  - input: ["30.11.1988"]
+    expected: [30, 11, 1988]
   - input: ["01.01.2026"]
     expected: [1, 1, 2026]
-  - input: ["32.13.2026"]
-    expected: [32, 13, 2026]
-  - input: ["11/05/2026"]
+  - input: ["40.14.2027"]
+    expected: [40, 14, 2027]
+  - input: ["24/08/2019"]
     expected: []
-  - input: ["11.5.26"]
+  - input: ["7.9.19"]
     expected: []
   - input: ["1.1.20000"]
     expected: []
   - input: ["1..2026"]
     expected: []
-  - input: [" 1.1.2026"]
+  - input: [" 3.4.2021"]
     expected: []
 starter_code: |
   import re
 
   def datum_parse(s: str) -> list[int]:
-      # Deine Lösung hier -- [tag, monat, jahr] oder []
+      # Deine Lösung hier - [tag, monat, jahr] oder []
       pass
 ---
 

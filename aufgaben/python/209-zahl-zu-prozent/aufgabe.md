@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 209-zahl-zu-prozent
-revision: 2
+revision: 3
 titel: Zahl in Prozent-String
 sprache: python
 task_type: code_schreiben
@@ -39,21 +39,21 @@ tests_sichtbar:
   - input: [0.1234]
     expected: "12.34%"
 tests_versteckt:
-  - input: [0.001]
-    expected: "0.10%"
-  - input: [-0.5]
-    expected: "-50.00%"
-  - input: [1.5]
-    expected: "150.00%"
+  - input: [0.003]
+    expected: "0.30%"
+  - input: [-0.25]
+    expected: "-25.00%"
+  - input: [1.25]
+    expected: "125.00%"
   - input: [0.999]
     expected: "99.90%"
-  - input: [0.6666666]
-    expected: "66.67%"
+  - input: [0.8888888]
+    expected: "88.89%"
   - input: [2]
     expected: "200.00%"
 starter_code: |
   def zu_prozent(anteil: float) -> str:
-      # Deine Lösung hier -- "XX.YY%" mit 2 Nachkommastellen
+      # Deine Lösung hier - "XX.YY%" mit 2 Nachkommastellen
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 007-buchstaben-haeufigkeit
-revision: 2
+revision: 3
 titel: Buchstaben-Häufigkeit
 sprache: python
 task_type: code_schreiben
@@ -46,8 +46,8 @@ tests_versteckt:
     expected: {"a": 4}
   - input: ["abcabc"]
     expected: {"a": 2, "b": 2, "c": 2}
-  - input: ["Hallo"]
-    expected: {"H": 1, "a": 1, "l": 2, "o": 1}
+  - input: ["Kekse"]
+    expected: {"K": 1, "e": 2, "k": 1, "s": 1}
   - input: ["a a"]
     expected: {"a": 2, " ": 1}
 starter_code: |
@@ -58,7 +58,7 @@ starter_code: |
 
 # Buchstaben-Häufigkeit
 
-Schreibe eine Funktion `buchstaben_häufigkeit(text)`, die ein
+Schreibe eine Funktion `buchstaben_haeufigkeit(text)`, die ein
 Dictionary zurückgibt, in dem jedem im Text vorkommenden Zeichen seine
 Häufigkeit zugeordnet ist.
 

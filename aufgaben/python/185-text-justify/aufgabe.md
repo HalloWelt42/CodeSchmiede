@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 185-text-justify
-revision: 2
+revision: 3
 titel: Text auf feste Breite ausrichten (links, rechts, Block)
 sprache: python
 task_type: code_schreiben
@@ -39,8 +39,8 @@ tests_sichtbar:
   - input: ["Hallo", 3, "links"]
     expected: "Hallo"
 tests_versteckt:
-  - input: ["a", 7, "zentriert"]
-    expected: "   a   "
+  - input: ["ok", 8, "zentriert"]
+    expected: "   ok   "
   - input: ["", 4, "links"]
     expected: "    "
   - input: ["", 4, "rechts"]
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: "      Wort"
 starter_code: |
   def ausrichten(text: str, breite: int, modus: str) -> str:
-      # Deine Lösung hier -- "links" / "rechts" / "zentriert"
+      # Deine Lösung hier - "links" / "rechts" / "zentriert"
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 299-eigenes-map
-revision: 2
+revision: 3
 titel: Eigenes map mit Operations-String
 sprache: python
 task_type: code_schreiben
@@ -41,12 +41,12 @@ tests_sichtbar:
   - input: [[1, 2, 3], "unknown"]
     expected: [1, 2, 3]
 tests_versteckt:
-  - input: [[1, -2, 3], "negate"]
-    expected: [-1, 2, -3]
-  - input: [[0, 1, 2], "increment"]
-    expected: [1, 2, 3]
-  - input: [[-3, -2, 5], "absolute"]
-    expected: [3, 2, 5]
+  - input: [[4, -5, 6], "negate"]
+    expected: [-4, 5, -6]
+  - input: [[0, 5, 9], "increment"]
+    expected: [1, 6, 10]
+  - input: [[-7, -1, 4], "absolute"]
+    expected: [7, 1, 4]
   - input: [[5], "double"]
     expected: [10]
   - input: [[1, 2, 3, 4, 5], "square"]
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: [-100]
 starter_code: |
   def map_op(liste: list, op: str) -> list:
-      # Tipp: Dict {op_name: lambda x: ...} fuer Dispatch
+      # Tipp: Dict {op_name: lambda x: ...} für Dispatch
       pass
 ---
 

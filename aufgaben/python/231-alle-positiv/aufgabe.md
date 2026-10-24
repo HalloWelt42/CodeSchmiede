@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 231-alle-positiv
-revision: 2
+revision: 3
 titel: Alle Zahlen positiv?
 sprache: python
 task_type: code_schreiben
@@ -44,17 +44,17 @@ tests_versteckt:
     expected: false
   - input: [[-1]]
     expected: false
-  - input: [[100, 200, 300]]
+  - input: [[150, 250, 350]]
     expected: true
   - input: [[1, 2, 3, 4, 5, -1]]
     expected: false
-  - input: [[0.5, 1.5, 2.5]]
+  - input: [[0.25, 3.5, 7.75]]
     expected: true
   - input: [[1, 2, 0.0, 3]]
     expected: false
 starter_code: |
   def alle_positiv(zahlen: list) -> bool:
-      # Deine Lösung hier -- strikt > 0
+      # Deine Lösung hier - strikt > 0
       pass
 ---
 

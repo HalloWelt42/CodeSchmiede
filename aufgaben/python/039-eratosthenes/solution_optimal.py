@@ -1,5 +1,5 @@
 """
-Klassisches Sieb des Eratosthenes -- O(n log log n).
+Klassisches Sieb des Eratosthenes - O(n log log n).
 """
 
 

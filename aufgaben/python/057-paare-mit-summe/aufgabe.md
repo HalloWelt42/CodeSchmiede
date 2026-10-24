@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 057-paare-mit-summe
-revision: 2
+revision: 3
 titel: Anzahl Paare mit Zielsumme
 sprache: python
 task_type: code_schreiben
@@ -39,15 +39,15 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 2, 3], 100]
     expected: 0
-  - input: [[3, 3, 3, 3], 6]
+  - input: [[4, 4, 4, 4], 8]
     expected: 6
   - input: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 11]
     expected: 5
-  - input: [[0, 0, 0], 0]
-    expected: 3
+  - input: [[0, 0, 0, 0], 0]
+    expected: 6
 starter_code: |
   def paare_anzahl(zahlen: list[int], ziel: int) -> int:
-      # Deine Lösung hier -- ungeordnete Paare (i,j) mit i<j zählen,
+      # Deine Lösung hier - ungeordnete Paare (i,j) mit i<j zählen,
       # bei denen zahlen[i] + zahlen[j] == ziel.
       pass
 ---

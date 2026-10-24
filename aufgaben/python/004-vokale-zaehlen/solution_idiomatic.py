@@ -1,6 +1,6 @@
 """
 Idiomatische Lösung: Generator-Ausdruck mit `sum()`. Lesbar, kurz,
-schnell -- so schreibt man das in Python.
+schnell - so schreibt man das in Python.
 """
 
 

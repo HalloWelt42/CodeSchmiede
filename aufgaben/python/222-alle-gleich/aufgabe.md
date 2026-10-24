@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 222-alle-gleich
-revision: 2
+revision: 3
 titel: Alle Elemente gleich?
 sprache: python
 task_type: code_schreiben
@@ -41,7 +41,7 @@ tests_sichtbar:
 tests_versteckt:
   - input: [["a", "a", "a", "a"]]
     expected: true
-  - input: [["a", "A"]]
+  - input: [["b", "B"]]
     expected: false
   - input: [[true, true, true]]
     expected: true
@@ -51,11 +51,11 @@ tests_versteckt:
     expected: true
   - input: [[1.0, 1.0, 1.0]]
     expected: true
-  - input: [[0, 0.0]]
+  - input: [[0.0, 0, 0]]
     expected: true
 starter_code: |
   def alle_gleich(liste: list) -> bool:
-      # Deine Lösung hier -- leere Liste -> True
+      # Deine Lösung hier - leere Liste -> True
       pass
 ---
 

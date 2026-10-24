@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 166-subset-sum
-revision: 2
+revision: 3
 titel: Teilmengen-Summe (Subset-Sum, Existenz)
 sprache: python
 task_type: code_schreiben
@@ -48,9 +48,9 @@ tests_versteckt:
     expected: true
   - input: [[7], 8]
     expected: false
-  - input: [[1, 5, 11, 5], 11]
+  - input: [[3, 6, 15, 6], 15]
     expected: true
-  - input: [[2, 4, 6, 8], 1]
+  - input: [[4, 10, 12, 16], 3]
     expected: false
   - input: [[5, 5, 5, 5], 20]
     expected: true
@@ -58,7 +58,7 @@ tests_versteckt:
     expected: true
 starter_code: |
   def subset_sum(zahlen: list[int], ziel: int) -> bool:
-      # Deine Lösung hier -- Set-Trick oder DP
+      # Deine Lösung hier - Set-Trick oder DP
       pass
 ---
 

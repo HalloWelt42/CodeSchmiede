@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 125-kgv
-revision: 2
+revision: 3
 titel: Kleinstes gemeinsames Vielfaches
 sprache: python
 task_type: code_schreiben
@@ -40,15 +40,15 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
     expected: 2520
-  - input: [[3, 5, 7]]
-    expected: 105
-  - input: [[6, 8, 12]]
-    expected: 24
+  - input: [[3, 7, 11]]
+    expected: 231
+  - input: [[9, 15, 21]]
+    expected: 315
   - input: [[100]]
     expected: 100
 starter_code: |
   def kgv_liste(zahlen: list[int]) -> int:
-      # Deine Lösung hier -- kgV aller Zahlen, leere Liste → 0.
+      # Deine Lösung hier - kgV aller Zahlen, leere Liste → 0.
       pass
 ---
 

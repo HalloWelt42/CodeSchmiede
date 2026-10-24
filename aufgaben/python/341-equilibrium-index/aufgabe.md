@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 341-equilibrium-index
-revision: 2
+revision: 3
 titel: Gleichgewichts-Index in Liste
 sprache: python
 task_type: code_schreiben
@@ -41,19 +41,19 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, -1, 1, -1]]
     expected: []
-  - input: [[0, 0, 0]]
-    expected: [0, 1, 2]
+  - input: [[0, 0, 0, 0]]
+    expected: [0, 1, 2, 3]
   - input: [[1, 2, 0, 3]]
     expected: [2]
   - input: [[10, -10, 10]]
     expected: [0, 1, 2]
-  - input: [[1, 2, 3, 4, 6]]
+  - input: [[2, 3, 4, 5, 9]]
     expected: [3]
   - input: [[2, 4, 6]]
     expected: []
 starter_code: |
   def gleichgewicht(liste: list[int]) -> list[int]:
-      # Tipp: Praefix-Summe + laufende Differenz, O(n)
+      # Tipp: Präfix-Summe + laufende Differenz, O(n)
       pass
 ---
 

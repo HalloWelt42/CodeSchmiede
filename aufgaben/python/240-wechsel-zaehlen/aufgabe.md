@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 240-wechsel-zaehlen
-revision: 2
+revision: 3
 titel: Wechsel zum Vorgänger zählen
 sprache: python
 task_type: code_schreiben
@@ -41,7 +41,7 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[5]]
     expected: 0
-  - input: [[1, 2, 1, 2, 1]]
+  - input: [[3, 4, 3, 4, 3]]
     expected: 4
   - input: [["a", "a", "b", "b", "a", "a"]]
     expected: 2

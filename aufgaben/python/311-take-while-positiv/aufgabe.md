@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 311-take-while-positiv
-revision: 2
+revision: 3
 titel: Take-While positiv
 sprache: python
 task_type: code_schreiben
@@ -38,12 +38,12 @@ tests_sichtbar:
   - input: [[1, 2, 3]]
     expected: [1, 2, 3]
 tests_versteckt:
-  - input: [[5, 4, 3, 2, 1]]
-    expected: [5, 4, 3, 2, 1]
-  - input: [[0, 1, 2]]
+  - input: [[8, 6, 4, 2, 1]]
+    expected: [8, 6, 4, 2, 1]
+  - input: [[0, 3, 4]]
     expected: []
-  - input: [[10, 0, 5]]
-    expected: [10]
+  - input: [[7, 0, 9]]
+    expected: [7]
   - input: [[1]]
     expected: [1]
   - input: [[-5]]

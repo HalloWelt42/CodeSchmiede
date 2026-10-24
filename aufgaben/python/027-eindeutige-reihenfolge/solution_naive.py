@@ -1,5 +1,5 @@
 """
-Schleife mit gesehen-Set fuer schnellen Lookup.
+Schleife mit gesehen-Set für schnellen Lookup.
 """
 
 

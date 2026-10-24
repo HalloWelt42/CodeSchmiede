@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 205-matrix-mal-skalar
-revision: 2
+revision: 3
 titel: Matrix mal Skalar
 sprache: python
 task_type: code_schreiben
@@ -40,10 +40,10 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[[1, 2, 3], [4, 5, 6], [7, 8, 9]], 3]
     expected: [[3, 6, 9], [12, 15, 18], [21, 24, 27]]
-  - input: [[[1, -2], [-3, 4]], -1]
-    expected: [[-1, 2], [3, -4]]
-  - input: [[[1.5, 2.5]], 2]
-    expected: [[3.0, 5.0]]
+  - input: [[[2, -5], [-7, 3]], -2]
+    expected: [[-4, 10], [14, -6]]
+  - input: [[[0.5, 3.5]], 4]
+    expected: [[2.0, 14.0]]
   - input: [[[10, 20], [30, 40]], 0]
     expected: [[0, 0], [0, 0]]
   - input: [[[100]], 100]

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 061-tictactoe
-revision: 2
+revision: 3
 titel: TicTacToe-Gewinner
 sprache: python
 task_type: code_schreiben
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: "."
 starter_code: |
   def gewinner(brett: list[list[str]]) -> str:
-      # Deine Lösung hier -- "X", "O" oder "." (kein Gewinner / unentschieden)
+      # Deine Lösung hier - "X", "O" oder "." (kein Gewinner / unentschieden)
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 263-zahlen-aus-text
-revision: 2
+revision: 3
 titel: Alle Ganzzahlen aus Text extrahieren
 sprache: python
 task_type: code_schreiben
@@ -43,19 +43,19 @@ tests_versteckt:
     expected: [-1, -2]
   - input: ["1 2 3 4 5"]
     expected: [1, 2, 3, 4, 5]
-  - input: ["Preis: 12.99 Euro"]
-    expected: [12, 99]
-  - input: ["IP 192.168.1.1"]
-    expected: [192, 168, 1, 1]
+  - input: ["Summe: 45.50 Euro"]
+    expected: [45, 50]
+  - input: ["Host 172.16.5.4"]
+    expected: [172, 16, 5, 4]
   - input: ["Telefon: 0123/4567890"]
     expected: [123, 4567890]
-  - input: ["Score: -10 vs +5"]
-    expected: [-10, 5]
+  - input: ["Stand: -12 vs +8"]
+    expected: [-12, 8]
 starter_code: |
   import re
 
   def zahlen_extrahieren(text: str) -> list[int]:
-      # Deine Lösung hier -- inkl. negative Zahlen
+      # Deine Lösung hier - inkl. negative Zahlen
       pass
 ---
 

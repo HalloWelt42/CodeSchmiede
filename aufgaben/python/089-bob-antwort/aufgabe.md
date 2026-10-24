@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 089-bob-antwort
-revision: 1
+revision: 2
 titel: Bob antwortet
 sprache: python
 task_type: code_schreiben
@@ -44,11 +44,11 @@ tests_sichtbar:
 tests_versteckt:
   - input: [""]
     expected: "Manno, sag was."
-  - input: ["         "]
+  - input: ["    \t    "]
     expected: "Manno, sag was."
   - input: ["1, 2, 3"]
     expected: "Naja."
-  - input: ["4?"]
+  - input: ["12?"]
     expected: "Klar."
   - input: ["ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"]
     expected: "Schrei mich nicht an!"
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: "Naja."
 starter_code: |
   def bob_antwort(text: str) -> str:
-      # Deine Lösung hier -- 5 mögliche Antworten.
+      # Deine Lösung hier - 5 mögliche Antworten.
       pass
 ---
 

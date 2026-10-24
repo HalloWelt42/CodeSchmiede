@@ -1,5 +1,5 @@
 """
-Wert-Symbol-Tupel + divmod -- so kompakt wie elegant.
+Wert-Symbol-Tupel + divmod - so kompakt wie elegant.
 """
 
 

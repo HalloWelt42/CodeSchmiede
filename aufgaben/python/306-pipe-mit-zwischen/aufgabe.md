@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 306-pipe-mit-zwischen
-revision: 2
+revision: 3
 titel: Pipe mit Zwischen-Ergebnissen
 sprache: python
 task_type: code_schreiben
@@ -44,14 +44,14 @@ tests_sichtbar:
 tests_versteckt:
   - input: [2, ["double", "double", "double"]]
     expected: [4, 8, 16]
-  - input: [-5, ["absolute", "increment", "square"]]
-    expected: [5, 6, 36]
-  - input: [10, ["negate", "absolute"]]
-    expected: [-10, 10]
+  - input: [-8, ["absolute", "increment", "square"]]
+    expected: [8, 9, 81]
+  - input: [7, ["negate", "absolute"]]
+    expected: [-7, 7]
   - input: [0, ["increment", "increment", "increment"]]
     expected: [1, 2, 3]
-  - input: [4, ["square", "negate", "absolute"]]
-    expected: [16, -16, 16]
+  - input: [6, ["square", "negate", "absolute"]]
+    expected: [36, -36, 36]
   - input: [3, ["double", "unknown", "increment"]]
     expected: [6, 6, 7]
 starter_code: |

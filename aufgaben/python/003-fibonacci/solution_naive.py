@@ -1,7 +1,7 @@
 """
-Naive Loesung: rekursiv. Exponentielle Laufzeit O(2^n) durch
+Naive Lösung: rekursiv. Exponentielle Laufzeit O(2^n) durch
 mehrfaches Neuberechnen derselben Teilergebnisse.
-Funktioniert, ist aber für n > 30 schon spuerbar langsam.
+Funktioniert, ist aber für n > 30 schon spürbar langsam.
 """
 
 

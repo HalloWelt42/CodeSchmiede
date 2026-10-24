@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 100-yacht-wurf
-revision: 2
+revision: 3
 titel: Yacht-Würfel-Wurf bewerten
 sprache: python
 task_type: code_schreiben
@@ -46,27 +46,27 @@ tests_sichtbar:
   - input: [[3, 3, 5, 3, 3], "fives"]
     expected: 5
 tests_versteckt:
-  - input: [[1, 2, 3, 4, 5], "little_straight"]
+  - input: [[3, 5, 1, 4, 2], "little_straight"]
     expected: 30
   - input: [[2, 3, 4, 5, 6], "big_straight"]
     expected: 30
   - input: [[1, 3, 4, 5, 6], "little_straight"]
     expected: 0
-  - input: [[5, 6, 5, 6, 5], "full_house"]
-    expected: 27
+  - input: [[2, 4, 4, 2, 2], "full_house"]
+    expected: 14
   - input: [[2, 2, 4, 4, 4], "four_of_a_kind"]
     expected: 0
-  - input: [[3, 3, 3, 3, 1], "four_of_a_kind"]
-    expected: 12
-  - input: [[1, 2, 3, 4, 5], "choice"]
-    expected: 15
+  - input: [[6, 2, 6, 6, 6], "four_of_a_kind"]
+    expected: 24
+  - input: [[2, 6, 3, 1, 4], "choice"]
+    expected: 16
   - input: [[3, 3, 3, 3, 3], "fours"]
     expected: 0
   - input: [[5, 5, 5, 5, 5], "full_house"]
     expected: 0
 starter_code: |
   def yacht_punkte(wurf: list[int], kategorie: str) -> int:
-      # Deine Lösung hier -- Kategorien: ones, twos, threes, fours,
+      # Deine Lösung hier - Kategorien: ones, twos, threes, fours,
       # fives, sixes, full_house, four_of_a_kind, little_straight,
       # big_straight, choice, yacht.
       pass

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 194-bmi
-revision: 2
+revision: 3
 titel: Body-Mass-Index (BMI) und Kategorie
 sprache: python
 task_type: code_schreiben
@@ -38,24 +38,24 @@ tests_sichtbar:
   - input: [50, 1.75]
     expected: "untergewicht"
   - input: [85, 1.75]
-    expected: "uebergewicht"
+    expected: "übergewicht"
   - input: [100, 1.75]
     expected: "adipositas"
 tests_versteckt:
   - input: [56, 1.7]
     expected: "normal"
   - input: [70, 1.6]
-    expected: "uebergewicht"
+    expected: "übergewicht"
   - input: [120, 1.8]
     expected: "adipositas"
   - input: [40, 1.7]
     expected: "untergewicht"
   - input: [70, 0]
-    expected: "ungueltig"
+    expected: "ungültig"
   - input: [-50, 1.7]
-    expected: "ungueltig"
+    expected: "ungültig"
   - input: [60, 1.5]
-    expected: "uebergewicht"
+    expected: "übergewicht"
   - input: [76.5, 1.8]
     expected: "normal"
 starter_code: |
@@ -66,7 +66,7 @@ starter_code: |
 
 # Body-Mass-Index (BMI) und Kategorie
 
-Schreibe `bmi_klasse(gewicht_kg, größe_m)`, die den Body-Mass-Index
+Schreibe `bmi_klasse(gewicht_kg, groesse_m)`, die den Body-Mass-Index
 berechnet und einer Kategorie zuordnet.
 
 ## Formel

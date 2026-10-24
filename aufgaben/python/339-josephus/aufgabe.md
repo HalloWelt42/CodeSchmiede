@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 339-josephus
-revision: 2
+revision: 3
 titel: Josephus-Problem - letzter Überlebender
 sprache: python
 task_type: code_schreiben
@@ -48,12 +48,12 @@ tests_sichtbar:
   - input: [7, 3]
     expected: 3
 tests_versteckt:
-  - input: [10, 1]
-    expected: 9
+  - input: [12, 1]
+    expected: 11
   - input: [10, 2]
     expected: 4
-  - input: [41, 3]
-    expected: 30
+  - input: [43, 4]
+    expected: 18
   - input: [100, 7]
     expected: 49
   - input: [2, 5]

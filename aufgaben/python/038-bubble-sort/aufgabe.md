@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 038-bubble-sort
-revision: 2
+revision: 3
 titel: Bubble-Sort von Hand
 sprache: python
 task_type: code_schreiben
@@ -41,15 +41,15 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[2, 2, 1, 1]]
     expected: [1, 1, 2, 2]
-  - input: [[1, 2, 3, 4, 5]]
-    expected: [1, 2, 3, 4, 5]
+  - input: [[2, 3, 5, 7, 11]]
+    expected: [2, 3, 5, 7, 11]
   - input: [[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]]
     expected: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  - input: [[42]]
-    expected: [42]
+  - input: [[17]]
+    expected: [17]
 starter_code: |
   def bubble_sort(liste: list[int]) -> list[int]:
-      # Deine Lösung hier -- ohne sorted() oder list.sort().
+      # Deine Lösung hier - ohne sorted() oder list.sort().
       pass
 ---
 

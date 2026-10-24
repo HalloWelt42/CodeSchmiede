@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 250-einzigartige-werte
-revision: 2
+revision: 3
 titel: Werte die nur einmal vorkommen
 sprache: python
 task_type: code_schreiben
@@ -44,15 +44,15 @@ tests_versteckt:
     expected: ["b", "c"]
   - input: [[1, 2, 3, 1, 2, 3, 1]]
     expected: []
-  - input: [[10, 20, 30, 20, 10, 40]]
-    expected: [30, 40]
+  - input: [[15, 25, 35, 25, 15, 45]]
+    expected: [35, 45]
   - input: [[1, 2, 1, 3, 1, 4, 1, 5]]
     expected: [2, 3, 4, 5]
-  - input: [[7, 7, 7, 7, 7, 1]]
-    expected: [1]
+  - input: [[8, 8, 8, 8, 8, 3]]
+    expected: [3]
 starter_code: |
   def einzigartig(liste: list) -> list:
-      # Deine Lösung hier -- nur Werte mit Anzahl == 1, sortiert
+      # Deine Lösung hier - nur Werte mit Anzahl == 1, sortiert
       pass
 ---
 

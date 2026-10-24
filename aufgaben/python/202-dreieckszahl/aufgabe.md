@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 202-dreieckszahl
-revision: 2
+revision: 3
 titel: n-te Dreieckszahl
 sprache: python
 task_type: code_schreiben
@@ -44,17 +44,17 @@ tests_versteckt:
     expected: 3
   - input: [3]
     expected: 6
-  - input: [4]
-    expected: 10
-  - input: [100]
-    expected: 5050
-  - input: [1000]
-    expected: 500500
+  - input: [7]
+    expected: 28
+  - input: [200]
+    expected: 20100
+  - input: [2000]
+    expected: 2001000
   - input: [50]
     expected: 1275
 starter_code: |
   def dreieckszahl(n: int) -> int:
-      # Deine Lösung hier -- Gauss-Formel
+      # Deine Lösung hier - Gauß-Formel
       pass
 ---
 

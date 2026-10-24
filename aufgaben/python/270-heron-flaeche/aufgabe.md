@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 270-heron-flaeche
-revision: 2
+revision: 3
 titel: Dreiecks-Fläche nach Heron
 sprache: python
 task_type: code_schreiben
@@ -42,10 +42,10 @@ tests_sichtbar:
   - input: [1, 2, 5]
     expected: 0.0
 tests_versteckt:
-  - input: [6, 8, 10]
-    expected: 24.0
-  - input: [5, 12, 13]
-    expected: 30.0
+  - input: [15, 20, 25]
+    expected: 150.0
+  - input: [8, 15, 17]
+    expected: 60.0
   - input: [7, 24, 25]
     expected: 84.0
   - input: [1, 1, 1]
@@ -60,7 +60,7 @@ starter_code: |
   import math
 
   def dreieck_flaeche(a: float, b: float, c: float) -> float:
-      # Deine Lösung hier -- Heron, ungueltig → 0.0
+      # Deine Lösung hier - Heron, ungültig → 0.0
       pass
 ---
 

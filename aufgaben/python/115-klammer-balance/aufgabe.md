@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 115-klammer-balance
-revision: 1
+revision: 2
 titel: Klammern balanciert?
 sprache: python
 task_type: code_schreiben
@@ -41,9 +41,9 @@ tests_sichtbar:
 tests_versteckt:
   - input: [""]
     expected: true
-  - input: ["((()))"]
+  - input: ["[[[]]]"]
     expected: true
-  - input: ["(("]
+  - input: ["[["]
     expected: false
   - input: ["))"]
     expected: false
@@ -53,11 +53,11 @@ tests_versteckt:
     expected: true
   - input: ["a + b * (c - d)"]
     expected: true
-  - input: ["a + b * (c - d"]
+  - input: ["p * (q + r"]
     expected: false
 starter_code: |
   def balanciert(text: str) -> bool:
-      # Deine Lösung hier -- nur (), [], {} pruefen, Rest ignorieren.
+      # Deine Lösung hier - nur (), [], {} prüfen, Rest ignorieren.
       pass
 ---
 

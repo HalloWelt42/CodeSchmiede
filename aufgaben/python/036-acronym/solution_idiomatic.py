@@ -1,5 +1,5 @@
 """
-Generator + join -- Pythonic.
+Generator + join - Pythonic.
 """
 
 

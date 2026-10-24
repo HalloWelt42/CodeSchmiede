@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 203-plural
-revision: 2
+revision: 3
 titel: Singular oder Plural wählen
 sprache: python
 task_type: code_schreiben
@@ -33,12 +33,12 @@ hints:
       Prüfe abs(n) == 1, dann singular, sonst plural.
       Format-String f"{n} {wort}".
 tests_sichtbar:
-  - input: [1, "Apfel", "Aepfel"]
+  - input: [1, "Apfel", "Äpfel"]
     expected: "1 Apfel"
-  - input: [2, "Apfel", "Aepfel"]
-    expected: "2 Aepfel"
-  - input: [0, "Apfel", "Aepfel"]
-    expected: "0 Aepfel"
+  - input: [2, "Apfel", "Äpfel"]
+    expected: "2 Äpfel"
+  - input: [0, "Apfel", "Äpfel"]
+    expected: "0 Äpfel"
   - input: [-1, "Tag", "Tage"]
     expected: "-1 Tag"
 tests_versteckt:
@@ -50,13 +50,13 @@ tests_versteckt:
     expected: "10 Kinder"
   - input: [-5, "Stunde", "Stunden"]
     expected: "-5 Stunden"
-  - input: [100, "Buch", "Buecher"]
-    expected: "100 Buecher"
-  - input: [1, "Stueck", "Stuecke"]
-    expected: "1 Stueck"
+  - input: [100, "Haus", "Häuser"]
+    expected: "100 Häuser"
+  - input: [1, "Stück", "Stücke"]
+    expected: "1 Stück"
 starter_code: |
   def plural(n: int, singular: str, plural: str) -> str:
-      # Deine Lösung hier -- "n form" ; abs(n) == 1 -> singular
+      # Deine Lösung hier - "n form" ; abs(n) == 1 -> singular
       pass
 ---
 
@@ -74,9 +74,9 @@ Negativzahlen verhalten sich wie ihr Betrag, das Vorzeichen bleibt.
 
 | `n`   | Singular | Plural   | Ergebnis        |
 |-------|----------|----------|-----------------|
-| `1`   | `Apfel`  | `Aepfel` | `"1 Apfel"`     |
-| `2`   | `Apfel`  | `Aepfel` | `"2 Aepfel"`    |
-| `0`   | `Apfel`  | `Aepfel` | `"0 Aepfel"`    |
+| `1`   | `Apfel`  | `Äpfel` | `"1 Apfel"`     |
+| `2`   | `Apfel`  | `Äpfel` | `"2 Äpfel"`    |
+| `0`   | `Apfel`  | `Äpfel` | `"0 Äpfel"`    |
 | `-1`  | `Tag`    | `Tage`   | `"-1 Tag"`      |
 | `100` | `Buch`   | `Bücher`| `"100 Bücher"` |
 

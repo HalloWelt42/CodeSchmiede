@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 020-collatz
-revision: 2
+revision: 3
 titel: Collatz-Folge Länge
 sprache: python
 task_type: code_schreiben
@@ -40,8 +40,8 @@ tests_sichtbar:
 tests_versteckt:
   - input: [3]
     expected: 7
-  - input: [16]
-    expected: 4
+  - input: [32]
+    expected: 5
   - input: [97]
     expected: 118
   - input: [871]

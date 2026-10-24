@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 047-substring-anzahl
-revision: 2
+revision: 3
 titel: Substring zählen (mit Überlappung)
 sprache: python
 task_type: code_schreiben
@@ -40,7 +40,7 @@ tests_sichtbar:
 tests_versteckt:
   - input: ["", "a"]
     expected: 0
-  - input: ["aaa", ""]
+  - input: ["bbb", ""]
     expected: 0
   - input: ["abc", "abc"]
     expected: 1
@@ -50,13 +50,13 @@ tests_versteckt:
     expected: 3
 starter_code: |
   def zaehle_vorkommen(text: str, sub: str) -> int:
-      # Deine Lösung hier -- mit Ueberlappung. Leerer sub liefert 0.
+      # Deine Lösung hier - mit Überlappung. Leerer sub liefert 0.
       pass
 ---
 
 # Substring zählen (mit Überlappung)
 
-Schreibe eine Funktion `zähle_vorkommen(text, sub)`, die zählt, wie
+Schreibe eine Funktion `zaehle_vorkommen(text, sub)`, die zählt, wie
 oft `sub` in `text` vorkommt - inklusive **überlappender** Treffer.
 
 `"aaaa"` enthält den Substring `"aa"` an Position 0, 1 und 2 -

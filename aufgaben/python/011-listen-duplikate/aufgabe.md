@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 011-listen-duplikate
-revision: 2
+revision: 3
 titel: Duplikate aus Liste entfernen
 sprache: python
 task_type: code_schreiben
@@ -43,8 +43,8 @@ tests_sichtbar:
   - input: [[1, 2, 3]]
     expected: [1, 2, 3]
 tests_versteckt:
-  - input: [[3, 1, 4, 1, 5, 9, 2, 6, 5, 3]]
-    expected: [3, 1, 4, 5, 9, 2, 6]
+  - input: [[2, 7, 1, 8, 2, 8, 1, 8, 2, 8]]
+    expected: [2, 7, 1, 8]
   - input: [["a", "b", "a", "c"]]
     expected: ["a", "b", "c"]
   - input: [[42]]

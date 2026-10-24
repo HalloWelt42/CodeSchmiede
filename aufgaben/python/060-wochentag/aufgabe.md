@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 060-wochentag
-revision: 2
+revision: 3
 titel: Wochentag mit Zeller-Formel
 sprache: python
 task_type: code_schreiben
@@ -60,7 +60,7 @@ tests_versteckt:
     expected: 5
 starter_code: |
   def wochentag(jahr: int, monat: int, tag: int) -> int:
-      # Deine Lösung hier -- 0=Sonntag, 1=Montag, ..., 6=Samstag.
+      # Deine Lösung hier - 0=Sonntag, 1=Montag, ..., 6=Samstag.
       pass
 ---
 

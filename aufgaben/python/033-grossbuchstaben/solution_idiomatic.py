@@ -1,5 +1,5 @@
 """
-sum() ueber Generator -- Pythonic.
+sum() über Generator - Pythonic.
 """
 
 

@@ -1,5 +1,5 @@
 """
-Naive Lösung -- k mal jeweils das erste Element ans Ende verschieben.
+Naive Lösung - k mal jeweils das erste Element ans Ende verschieben.
 """
 
 

@@ -1,5 +1,5 @@
 """
-Idiomatisch mit min() + index() -- nutzt die Standardbibliothek.
+Idiomatisch mit min() + index() - nutzt die Standardbibliothek.
 """
 
 

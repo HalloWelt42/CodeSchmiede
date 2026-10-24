@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 039-eratosthenes
-revision: 2
+revision: 3
 titel: Sieb des Eratosthenes
 sprache: python
 task_type: code_schreiben
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 starter_code: |
   def primzahlen_bis(n: int) -> list[int]:
-      # Deine Lösung hier -- alle Primzahlen <= n, aufsteigend.
+      # Deine Lösung hier - alle Primzahlen <= n, aufsteigend.
       pass
 ---
 

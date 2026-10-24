@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 019-primfaktoren
-revision: 2
+revision: 3
 titel: Primfaktorzerlegung
 sprache: python
 task_type: code_schreiben
@@ -45,8 +45,8 @@ tests_versteckt:
     expected: [2]
   - input: [97]
     expected: [97]
-  - input: [100]
-    expected: [2, 2, 5, 5]
+  - input: [196]
+    expected: [2, 2, 7, 7]
   - input: [1024]
     expected: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
   - input: [999983]

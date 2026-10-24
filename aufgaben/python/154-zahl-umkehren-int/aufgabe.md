@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 154-zahl-umkehren-int
-revision: 2
+revision: 3
 titel: Ganze Zahl umdrehen
 sprache: python
 task_type: code_schreiben
@@ -45,15 +45,15 @@ tests_versteckt:
     expected: -1
   - input: [12345]
     expected: 54321
-  - input: [-100]
-    expected: -1
-  - input: [1000000]
-    expected: 1
-  - input: [9876543210]
-    expected: 123456789
+  - input: [-4500]
+    expected: -54
+  - input: [5000000]
+    expected: 5
+  - input: [5432109870]
+    expected: 789012345
 starter_code: |
   def zahl_umdrehen(n: int) -> int:
-      # Deine Lösung hier -- Vorzeichen halten, fuehrende Nullen weg
+      # Deine Lösung hier - Vorzeichen halten, führende Nullen weg
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 054-sliding-summe
-revision: 2
+revision: 3
 titel: Maximum-Summe in Sliding-Window
 sprache: python
 task_type: code_schreiben
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: 0
 starter_code: |
   def max_fenster_summe(zahlen: list[int], k: int) -> int:
-      # Deine Lösung hier -- groesste Summe ueber k aufeinander-
+      # Deine Lösung hier - größte Summe über k aufeinander-
       # folgenden Elementen. Bei leerer Liste oder k > len(zahlen)
       # liefere 0.
       pass

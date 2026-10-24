@@ -1,6 +1,6 @@
 """
-Optimierte Loesung: rekursiv mit Memoisierung via functools.lru_cache.
-Behaelt die lesbare rekursive Definition, gewinnt aber lineare Laufzeit
+Optimierte Lösung: rekursiv mit Memoisierung via functools.lru_cache.
+Behält die lesbare rekursive Definition, gewinnt aber lineare Laufzeit
 durch Caching der Zwischenergebnisse.
 """
 

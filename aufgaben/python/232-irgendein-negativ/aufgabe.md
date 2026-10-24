@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 232-irgendein-negativ
-revision: 2
+revision: 3
 titel: Gibt es eine negative Zahl?
 sprache: python
 task_type: code_schreiben
@@ -37,13 +37,13 @@ tests_sichtbar:
   - input: [[0]]
     expected: false
 tests_versteckt:
-  - input: [[-1]]
+  - input: [[-7]]
     expected: true
   - input: [[1]]
     expected: false
   - input: [[-100, 200, 300]]
     expected: true
-  - input: [[100, 200, -1]]
+  - input: [[400, 500, -2]]
     expected: true
   - input: [[0, 0, 0, 0]]
     expected: false
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: false
 starter_code: |
   def irgendein_negativ(zahlen: list) -> bool:
-      # Deine Lösung hier -- any mit < 0
+      # Deine Lösung hier - any mit < 0
       pass
 ---
 

@@ -1,5 +1,5 @@
 """
-Mit max + default fuer den leeren Fall.
+Mit max + default für den leeren Fall.
 """
 
 

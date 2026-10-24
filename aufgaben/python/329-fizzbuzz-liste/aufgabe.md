@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 329-fizzbuzz-liste
-revision: 2
+revision: 3
 titel: FizzBuzz als Liste 1 bis n
 sprache: python
 task_type: code_schreiben
@@ -43,8 +43,8 @@ tests_sichtbar:
   - input: [15]
     expected: ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"]
 tests_versteckt:
-  - input: [1]
-    expected: ["1"]
+  - input: [2]
+    expected: ["1", "2"]
   - input: [-3]
     expected: []
   - input: [6]

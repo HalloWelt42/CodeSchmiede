@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 201-quadratzahl-pruefen
-revision: 2
+revision: 3
 titel: Ist die Zahl ein Quadrat?
 sprache: python
 task_type: code_schreiben
@@ -45,21 +45,21 @@ tests_versteckt:
     expected: true
   - input: [25]
     expected: true
-  - input: [99]
+  - input: [143]
     expected: false
-  - input: [100]
+  - input: [144]
     expected: true
   - input: [-4]
     expected: false
-  - input: [10000]
+  - input: [12321]
     expected: true
   - input: [10001]
     expected: false
-  - input: [99980001]
+  - input: [99940009]
     expected: true
 starter_code: |
   def ist_quadratzahl(n: int) -> bool:
-      # Deine Lösung hier -- math.isqrt fuer exakte Pruefung
+      # Deine Lösung hier - math.isqrt für exakte Prüfung
       pass
 ---
 

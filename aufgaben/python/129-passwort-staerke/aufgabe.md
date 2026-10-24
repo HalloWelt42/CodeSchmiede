@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 129-passwort-staerke
-revision: 2
+revision: 3
 titel: Passwort-Stärke bewerten
 sprache: python
 task_type: code_schreiben
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: 1
   - input: ["!"]
     expected: 1
-  - input: ["P@ssw0rd"]
+  - input: ["Tr0ub#le"]
     expected: 5
   - input: ["aB3!xY9$"]
     expected: 5
@@ -61,13 +61,13 @@ tests_versteckt:
     expected: 2
 starter_code: |
   def passwort_staerke(passwort: str) -> int:
-      # Deine Lösung hier -- 0-5 Punkte nach Regeln im Hint.
+      # Deine Lösung hier - 0-5 Punkte nach Regeln im Hint.
       pass
 ---
 
 # Passwort-Stärke bewerten
 
-Schreibe eine Funktion `passwort_stärke(passwort)`, die ein Passwort
+Schreibe eine Funktion `passwort_staerke(passwort)`, die ein Passwort
 mit **0 bis 5 Punkten** bewertet.
 
 ## Punkte-Regeln (jede +1)

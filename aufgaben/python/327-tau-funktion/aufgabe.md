@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 327-tau-funktion
-revision: 2
+revision: 3
 titel: Tau-Funktion - Anzahl der Teiler
 sprache: python
 task_type: code_schreiben
@@ -44,14 +44,14 @@ tests_versteckt:
     expected: 2
   - input: [6]
     expected: 4
-  - input: [36]
-    expected: 9
+  - input: [144]
+    expected: 15
   - input: [100]
     expected: 9
-  - input: [97]
+  - input: [89]
     expected: 2
-  - input: [1024]
-    expected: 11
+  - input: [2048]
+    expected: 12
   - input: [10000]
     expected: 25
 starter_code: |

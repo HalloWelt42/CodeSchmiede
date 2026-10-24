@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 141-happy-number
-revision: 2
+revision: 3
 titel: Glückliche Zahl (Happy Number)
 sprache: python
 task_type: code_schreiben
@@ -49,11 +49,11 @@ tests_versteckt:
     expected: false
   - input: [100]
     expected: true
-  - input: [99]
+  - input: [98]
     expected: false
 starter_code: |
   def glueckszahl(n: int) -> bool:
-      # Deine Lösung hier -- Quadratsummen-Iteration mit Zyklus-Erkennung
+      # Deine Lösung hier - Quadratsummen-Iteration mit Zyklus-Erkennung
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 186-zahl-zu-bisexagesimal
-revision: 2
+revision: 3
 titel: Sekunden in Stunden:Minuten:Sekunden
 sprache: python
 task_type: code_schreiben
@@ -43,17 +43,17 @@ tests_versteckt:
     expected: "00:00:59"
   - input: [3599]
     expected: "00:59:59"
-  - input: [86400]
-    expected: "24:00:00"
-  - input: [-5]
+  - input: [172800]
+    expected: "48:00:00"
+  - input: [-90]
     expected: "00:00:00"
-  - input: [359999]
-    expected: "99:59:59"
+  - input: [356399]
+    expected: "98:59:59"
   - input: [3725]
     expected: "01:02:05"
 starter_code: |
   def zeit_format(sekunden: int) -> str:
-      # Deine Lösung hier -- HH:MM:SS, h kann > 24 sein
+      # Deine Lösung hier - HH:MM:SS, h kann > 24 sein
       pass
 ---
 

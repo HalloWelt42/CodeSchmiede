@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 027-eindeutige-reihenfolge
-revision: 2
+revision: 3
 titel: Doppelte raus, Reihenfolge bleibt
 sprache: python
 task_type: code_schreiben
@@ -42,15 +42,15 @@ tests_sichtbar:
   - input: [["a", "b", "a", "c", "b"]]
     expected: ["a", "b", "c"]
 tests_versteckt:
-  - input: [[1]]
-    expected: [1]
+  - input: [[7]]
+    expected: [7]
   - input: [[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]]
     expected: [3, 1, 4, 5, 9, 2, 6]
   - input: [["x", "x", "x"]]
     expected: ["x"]
 starter_code: |
   def eindeutige(a: list) -> list:
-      # Deine Lösung hier -- Doppelte raus, Reihenfolge wie in a.
+      # Deine Lösung hier - Doppelte raus, Reihenfolge wie in a.
       pass
 ---
 

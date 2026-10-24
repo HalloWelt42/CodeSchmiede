@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 118-sublist
-revision: 1
+revision: 2
 titel: Listen-Beziehung
 sprache: python
 task_type: code_schreiben
@@ -44,7 +44,7 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[], []]
     expected: "gleich"
-  - input: [[], [1, 2, 3]]
+  - input: [[], [4, 9, 6]]
     expected: "sublist"
   - input: [[1, 2, 3], []]
     expected: "superlist"
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: "superlist"
 starter_code: |
   def vergleiche(a: list, b: list) -> str:
-      # Deine Lösung hier -- liefert "gleich", "sublist", "superlist", "ungleich".
+      # Deine Lösung hier - liefert "gleich", "sublist", "superlist", "ungleich".
       pass
 ---
 

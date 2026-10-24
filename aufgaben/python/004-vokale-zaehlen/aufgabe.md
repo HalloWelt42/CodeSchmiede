@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 004-vokale-zaehlen
-revision: 2
+revision: 3
 titel: Vokale zählen
 sprache: python
 task_type: code_schreiben
@@ -41,7 +41,7 @@ tests_sichtbar:
   - input: ["xyz"]
     expected: 0
 tests_versteckt:
-  - input: ["AEIOU"]
+  - input: ["UOIEA"]
     expected: 5
   - input: ["python"]
     expected: 1
@@ -59,7 +59,7 @@ starter_code: |
 
 # Vokale zählen
 
-Schreibe eine Funktion `vokale_zählen(text)`, die zählt, wie viele
+Schreibe eine Funktion `vokale_zaehlen(text)`, die zählt, wie viele
 Vokale (`a`, `e`, `i`, `o`, `u`) im übergebenen String vorkommen -
 unabhängig von Groß- oder Kleinschreibung.
 

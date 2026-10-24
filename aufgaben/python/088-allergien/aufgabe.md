@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 088-allergien
-revision: 2
+revision: 3
 titel: Allergien aus Bitfeld lesen
 sprache: python
 task_type: code_schreiben
@@ -38,22 +38,22 @@ tests_sichtbar:
   - input: [5]
     expected: ["eier", "schalentiere"]
   - input: [255]
-    expected: ["eier", "erdnuesse", "schalentiere", "erdbeeren", "tomaten", "schokolade", "pollen", "katzen"]
+    expected: ["eier", "erdnüsse", "schalentiere", "erdbeeren", "tomaten", "schokolade", "pollen", "katzen"]
 tests_versteckt:
   - input: [256]
     expected: []
-  - input: [257]
-    expected: ["eier"]
+  - input: [258]
+    expected: ["erdnüsse"]
   - input: [509]
     expected: ["eier", "schalentiere", "erdbeeren", "tomaten", "schokolade", "pollen", "katzen"]
   - input: [11]
-    expected: ["eier", "erdnuesse", "erdbeeren"]
+    expected: ["eier", "erdnüsse", "erdbeeren"]
   - input: [128]
     expected: ["katzen"]
 starter_code: |
   def allergien(score: int) -> list[str]:
-      # Deine Lösung hier -- Bit-Felder dekodieren.
-      # Reihenfolge: eier, erdnuesse, schalentiere, erdbeeren,
+      # Deine Lösung hier - Bit-Felder dekodieren.
+      # Reihenfolge: eier, erdnüsse, schalentiere, erdbeeren,
       # tomaten, schokolade, pollen, katzen.
       pass
 ---
@@ -69,7 +69,7 @@ als **einzelne Zahl** kodiert - ein Bitfeld. Schreibe eine Funktion
 | Bit | Wert | Allergie       |
 |-----|------|----------------|
 | 0   | 1    | `eier`         |
-| 1   | 2    | `erdnuesse`    |
+| 1   | 2    | `erdnüsse`    |
 | 2   | 4    | `schalentiere` |
 | 3   | 8    | `erdbeeren`    |
 | 4   | 16   | `tomaten`      |

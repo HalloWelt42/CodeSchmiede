@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 059-monatstage
-revision: 1
+revision: 2
 titel: Tage im Monat
 sprache: python
 task_type: code_schreiben
@@ -45,13 +45,13 @@ tests_versteckt:
     expected: 29
   - input: [1900, 2]
     expected: 28
-  - input: [2026, 0]
+  - input: [2019, 0]
     expected: 0
-  - input: [2026, 13]
+  - input: [2031, 13]
     expected: 0
 starter_code: |
   def tage_im_monat(jahr: int, monat: int) -> int:
-      # Deine Lösung hier -- 0 bei ungueltigem Monat.
+      # Deine Lösung hier - 0 bei ungültigem Monat.
       pass
 ---
 

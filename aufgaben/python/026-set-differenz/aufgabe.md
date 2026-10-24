@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 026-set-differenz
-revision: 2
+revision: 3
 titel: A ohne B
 sprache: python
 task_type: code_schreiben
@@ -38,13 +38,13 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[], [1, 2]]
     expected: []
-  - input: [[1, 2, 3], [1, 2, 3]]
+  - input: [[4, 5, 6], [4, 5, 6]]
     expected: []
   - input: [[5, 4, 3, 2, 1], [3, 1]]
     expected: [5, 4, 2]
 starter_code: |
   def ohne(a: list, b: list) -> list:
-      # Deine Lösung hier -- a in seiner Reihenfolge, ohne b und ohne Doppelte.
+      # Deine Lösung hier - a in seiner Reihenfolge, ohne b und ohne Doppelte.
       pass
 ---
 

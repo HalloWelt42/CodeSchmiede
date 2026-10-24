@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 279-passwort-regex
-revision: 2
+revision: 3
 titel: Passwort-Prüfung mit Lookahead-Regex
 sprache: python
 task_type: code_schreiben
@@ -43,17 +43,17 @@ tests_sichtbar:
   - input: ["pass1"]
     expected: false
 tests_versteckt:
-  - input: ["Abcdefg1"]
+  - input: ["Qwertzu5"]
     expected: true
   - input: ["abcdefgh"]
     expected: false
   - input: ["ABCDEFGH"]
     expected: false
-  - input: ["12345678"]
+  - input: ["87654321"]
     expected: false
-  - input: ["Aa1Aa1Aa1"]
+  - input: ["Bb2Bb2Bb2"]
     expected: true
-  - input: ["Aa1"]
+  - input: ["Bb7"]
     expected: false
   - input: [""]
     expected: false
@@ -63,7 +63,7 @@ starter_code: |
   import re
 
   def passwort_ok(p: str) -> bool:
-      # Deine Lösung hier -- Regex mit Lookahead
+      # Deine Lösung hier - Regex mit Lookahead
       pass
 ---
 

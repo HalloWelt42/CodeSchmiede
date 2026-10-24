@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 159-bit-zaehlen
-revision: 2
+revision: 3
 titel: Gesetzte Bits zählen (Hamming-Gewicht)
 sprache: python
 task_type: code_schreiben
@@ -49,13 +49,13 @@ tests_versteckt:
     expected: 1
   - input: [1023]
     expected: 10
-  - input: [4294967295]
-    expected: 32
+  - input: [68719476735]
+    expected: 36
   - input: [42]
     expected: 3
 starter_code: |
   def bit_anzahl(n: int) -> int:
-      # Deine Lösung hier -- ohne bin().count("1")
+      # Deine Lösung hier - ohne bin().count("1")
       pass
 ---
 

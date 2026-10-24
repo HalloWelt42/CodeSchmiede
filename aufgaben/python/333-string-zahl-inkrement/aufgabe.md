@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 333-string-zahl-inkrement
-revision: 2
+revision: 3
 titel: Numerischen String inkrementieren
 sprache: python
 task_type: code_schreiben
@@ -39,23 +39,23 @@ tests_sichtbar:
   - input: ["abc"]
     expected: ""
 tests_versteckt:
-  - input: ["9999"]
-    expected: "10000"
-  - input: ["-100"]
-    expected: "-99"
+  - input: ["999"]
+    expected: "1000"
+  - input: ["-1000"]
+    expected: "-999"
   - input: ["1"]
     expected: "2"
-  - input: ["999999999999999999"]
-    expected: "1000000000000000000"
+  - input: ["5999999999999999999"]
+    expected: "6000000000000000000"
   - input: [""]
     expected: ""
-  - input: ["+5"]
-    expected: "6"
-  - input: ["12.5"]
+  - input: ["+41"]
+    expected: "42"
+  - input: ["7.25"]
     expected: ""
 starter_code: |
   def inkrement(s: str) -> str:
-      # Tipp: int konvertieren, +1, dann zurueck zu str
+      # Tipp: int konvertieren, +1, dann zurück zu str
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 052-quicksort
-revision: 2
+revision: 3
 titel: Quicksort
 sprache: python
 task_type: code_schreiben
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: [3, 3, 3, 3]
 starter_code: |
   def quicksort(liste: list[int]) -> list[int]:
-      # Deine Lösung hier -- ohne sorted() / list.sort().
+      # Deine Lösung hier - ohne sorted() / list.sort().
       pass
 ---
 

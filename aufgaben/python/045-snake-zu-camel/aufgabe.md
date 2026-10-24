@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 045-snake-zu-camel
-revision: 2
+revision: 3
 titel: snake_case zu camelCase
 sprache: python
 task_type: code_schreiben
@@ -40,8 +40,8 @@ tests_sichtbar:
   - input: [""]
     expected: ""
 tests_versteckt:
-  - input: ["a_b_c_d"]
-    expected: "aBCD"
+  - input: ["p_q_r_s"]
+    expected: "pQRS"
   - input: ["snake_case_to_camel"]
     expected: "snakeCaseToCamel"
   - input: ["x"]

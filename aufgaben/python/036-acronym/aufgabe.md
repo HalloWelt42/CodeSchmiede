@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 036-acronym
-revision: 2
+revision: 3
 titel: Akronym aus Satz
 sprache: python
 task_type: code_schreiben
@@ -41,8 +41,8 @@ tests_sichtbar:
   - input: ["Hallo"]
     expected: "H"
 tests_versteckt:
-  - input: ["new York city"]
-    expected: "NYC"
+  - input: ["guten Morgen welt"]
+    expected: "GMW"
   - input: ["    leerzeichen   am   rand   "]
     expected: "LAR"
   - input: ["Just In Time"]

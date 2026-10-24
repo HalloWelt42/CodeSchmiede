@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 217-geometrisches-mittel
-revision: 2
+revision: 3
 titel: Geometrisches Mittel
 sprache: python
 task_type: code_schreiben
@@ -43,21 +43,21 @@ tests_versteckt:
     expected: 1.0
   - input: [[2, 4, 8]]
     expected: 4.0
-  - input: [[3, 12, 48]]
-    expected: 12.0
+  - input: [[2, 10, 50]]
+    expected: 10.0
   - input: [[1, 2, 3, 4, 5]]
     expected: 2.6052
-  - input: [[10, 100, 1000]]
-    expected: 100.0
-  - input: [[1, 0, 5]]
+  - input: [[100, 1000, 10000]]
+    expected: 1000.0
+  - input: [[3, 0, 7]]
     expected: 0.0
-  - input: [[-1, 2, 3]]
+  - input: [[-2, 4, 5]]
     expected: 0.0
 starter_code: |
   import math
 
   def geometrisches_mittel(zahlen: list[float]) -> float:
-      # Deine Lösung hier -- alle > 0 noetig, sonst 0.0
+      # Deine Lösung hier - alle > 0 nötig, sonst 0.0
       pass
 ---
 

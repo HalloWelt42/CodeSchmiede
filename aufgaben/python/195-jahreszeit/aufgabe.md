@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 195-jahreszeit
-revision: 2
+revision: 3
 titel: Jahreszeit aus Monatsnummer
 sprache: python
 task_type: code_schreiben
@@ -35,34 +35,48 @@ hints:
 tests_sichtbar:
   - input: [1]
     expected: "winter"
-  - input: [4]
-    expected: "fruehling"
-  - input: [7]
-    expected: "sommer"
-  - input: [10]
-    expected: "herbst"
-tests_versteckt:
-  - input: [12]
-    expected: "winter"
   - input: [2]
     expected: "winter"
   - input: [3]
-    expected: "fruehling"
+    expected: "frühling"
+  - input: [4]
+    expected: "frühling"
   - input: [5]
-    expected: "fruehling"
+    expected: "frühling"
+  - input: [6]
+    expected: "sommer"
+  - input: [7]
+    expected: "sommer"
   - input: [8]
     expected: "sommer"
+  - input: [9]
+    expected: "herbst"
+  - input: [10]
+    expected: "herbst"
   - input: [11]
     expected: "herbst"
+  - input: [12]
+    expected: "winter"
   - input: [0]
-    expected: "ungueltig"
+    expected: "ungültig"
   - input: [13]
-    expected: "ungueltig"
+    expected: "ungültig"
+tests_versteckt:
   - input: [-1]
-    expected: "ungueltig"
+    expected: "ungültig"
+  - input: [14]
+    expected: "ungültig"
+  - input: [20]
+    expected: "ungültig"
+  - input: [-7]
+    expected: "ungültig"
+  - input: [100]
+    expected: "ungültig"
+  - input: [-12]
+    expected: "ungültig"
 starter_code: |
   def jahreszeit(monat: int) -> str:
-      # Deine Lösung hier -- meteorologische Definition (Dez/Jan/Feb = Winter)
+      # Deine Lösung hier - meteorologische Definition (Dez/Jan/Feb = Winter)
       pass
 ---
 

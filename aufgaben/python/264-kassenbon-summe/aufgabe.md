@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 264-kassenbon-summe
-revision: 2
+revision: 3
 titel: Kassenbon-Summe berechnen
 sprache: python
 task_type: code_schreiben
@@ -41,10 +41,10 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[["A", 1, 1.0], ["B", 2, 2.0], ["C", 3, 3.0]]]
     expected: 14.0
-  - input: [[["Milch", 1, 1.29], ["Brot", 1, 2.49], ["Butter", 1, 2.79]]]
-    expected: 6.57
-  - input: [[["Sale", 5, 9.99]]]
-    expected: 49.95
+  - input: [[["Tee", 1, 3.19], ["Wurst", 1, 2.59], ["Saft", 1, 1.89]]]
+    expected: 7.67
+  - input: [[["Angebot", 4, 7.99]]]
+    expected: 31.96
   - input: [[["Free", 0, 100.0]]]
     expected: 0.0
   - input: [[["Bug", 1, -10.0], ["Pay", 1, 20.0]]]
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: 1.0
 starter_code: |
   def bon_summe(posten: list[list]) -> float:
-      # Deine Lösung hier -- 2 Nachkommastellen
+      # Deine Lösung hier - 2 Nachkommastellen
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 197-hex-zu-rgb
-revision: 2
+revision: 3
 titel: Hex-Farbe zu RGB-Tripel
 sprache: python
 task_type: code_schreiben
@@ -41,21 +41,21 @@ tests_sichtbar:
 tests_versteckt:
   - input: ["#000000"]
     expected: [0, 0, 0]
-  - input: ["#808080"]
-    expected: [128, 128, 128]
-  - input: ["FF8000"]
-    expected: [255, 128, 0]
-  - input: ["#abc"]
+  - input: ["#404040"]
+    expected: [64, 64, 64]
+  - input: ["C0FF33"]
+    expected: [192, 255, 51]
+  - input: ["#fed"]
     expected: [0, 0, 0]
   - input: [""]
     expected: [0, 0, 0]
   - input: ["#xyz123"]
     expected: [0, 0, 0]
-  - input: ["#1A2B3C"]
-    expected: [26, 43, 60]
+  - input: ["#4D5E6F"]
+    expected: [77, 94, 111]
 starter_code: |
   def hex_zu_rgb(s: str) -> list[int]:
-      # Deine Lösung hier -- 6-stelliger Hex (mit/ohne #), invalid -> [0,0,0]
+      # Deine Lösung hier - 6-stelliger Hex (mit/ohne #), invalid -> [0,0,0]
       pass
 ---
 

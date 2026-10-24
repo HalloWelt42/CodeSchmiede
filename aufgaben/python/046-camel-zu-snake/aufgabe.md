@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 046-camel-zu-snake
-revision: 2
+revision: 3
 titel: camelCase zu snake_case
 sprache: python
 task_type: code_schreiben
@@ -38,16 +38,16 @@ tests_sichtbar:
   - input: [""]
     expected: ""
 tests_versteckt:
-  - input: ["aBCD"]
-    expected: "a_b_c_d"
+  - input: ["pQRS"]
+    expected: "p_q_r_s"
   - input: ["camelCaseToSnake"]
     expected: "camel_case_to_snake"
   - input: ["x"]
     expected: "x"
   - input: ["X"]
     expected: "x"
-  - input: ["XmlHttpRequest"]
-    expected: "xml_http_request"
+  - input: ["HtmlSeiteLaden"]
+    expected: "html_seite_laden"
 starter_code: |
   def camel_zu_snake(text: str) -> str:
       # Deine Lösung hier

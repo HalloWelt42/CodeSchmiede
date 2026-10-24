@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 277-emails-extrahieren
-revision: 2
+revision: 3
 titel: Email-Adressen aus Text extrahieren
 sprache: python
 task_type: code_schreiben
@@ -41,25 +41,25 @@ tests_sichtbar:
   - input: ["a@b.de und c@d.com"]
     expected: ["a@b.de", "c@d.com"]
 tests_versteckt:
-  - input: ["test.user+tag@firma-name.co.uk"]
-    expected: ["test.user+tag@firma-name.co.uk"]
+  - input: ["max.muster+news@mein-shop.co.at"]
+    expected: ["max.muster+news@mein-shop.co.at"]
   - input: ["info@codeschmiede.example"]
     expected: ["info@codeschmiede.example"]
   - input: ["ungueltig@.com"]
     expected: []
-  - input: ["@nichts.de"]
+  - input: ["@leer.com"]
     expected: []
-  - input: ["nichts@.de"]
+  - input: ["jemand@.org"]
     expected: []
-  - input: ["my@jobmagnetix.de"]
-    expected: ["my@jobmagnetix.de"]
+  - input: ["hallo@werkstatt.de"]
+    expected: ["hallo@werkstatt.de"]
   - input: ["x@y.zz und a@b.cd."]
     expected: ["x@y.zz", "a@b.cd"]
 starter_code: |
   import re
 
   def emails(text: str) -> list[str]:
-      # Deine Lösung hier -- vereinfachtes Email-Pattern
+      # Deine Lösung hier - vereinfachtes Email-Pattern
       pass
 ---
 

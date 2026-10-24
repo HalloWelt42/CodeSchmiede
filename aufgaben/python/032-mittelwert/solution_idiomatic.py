@@ -1,5 +1,5 @@
 """
-Idiomatisch mit sum() -- ein Einzeiler.
+Idiomatisch mit sum() - ein Einzeiler.
 """
 
 

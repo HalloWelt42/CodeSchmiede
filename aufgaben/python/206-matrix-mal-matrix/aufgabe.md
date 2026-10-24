@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 206-matrix-mal-matrix
-revision: 2
+revision: 3
 titel: Matrix mal Matrix
 sprache: python
 task_type: code_schreiben
@@ -52,7 +52,7 @@ tests_versteckt:
     expected: []
 starter_code: |
   def matmul(a: list[list], b: list[list]) -> list[list]:
-      # Deine Lösung hier -- Standard-Matrix-Multiplikation
+      # Deine Lösung hier - Standard-Matrix-Multiplikation
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 334-js-string-zahl-inkrement
-revision: 2
+revision: 3
 titel: JavaScript - Numerischen String inkrementieren
 sprache: javascript
 task_type: code_schreiben
@@ -40,7 +40,7 @@ tests_sichtbar:
     expected: ""
 starter_code: |
   function inkrement(s) {
-      // Tipp: BigInt fuer beliebig grosse Zahlen
+      // Tipp: BigInt für beliebig große Zahlen
   }
 ---
 

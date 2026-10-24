@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 055-prefix-summe
-revision: 2
+revision: 3
 titel: Prefix-Summen-Liste
 sprache: python
 task_type: code_schreiben
@@ -49,8 +49,8 @@ tests_sichtbar:
   - input: [[1, -1, 1, -1]]
     expected: [1, 0, 1, 0]
 tests_versteckt:
-  - input: [[10, 20, 30]]
-    expected: [10, 30, 60]
+  - input: [[15, 25, 35]]
+    expected: [15, 40, 75]
   - input: [[0, 0, 0, 0]]
     expected: [0, 0, 0, 0]
   - input: [[1, 1, 1, 1, 1, 1]]

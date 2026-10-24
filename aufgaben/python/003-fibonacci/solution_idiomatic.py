@@ -1,5 +1,5 @@
 """
-Idiomatische Loesung: iterativ mit Tuple-Swap. Lineare Laufzeit O(n),
+Idiomatische Lösung: iterativ mit Tuple-Swap. Lineare Laufzeit O(n),
 konstanter Speicher. Klassischer Python-Stil.
 """
 

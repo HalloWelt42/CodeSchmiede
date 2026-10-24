@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 303-memoization
-revision: 2
+revision: 3
 titel: Memoization-Demo mit Cache-Verlauf
 sprache: python
 task_type: code_schreiben
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: [[49, false], [64, false], [49, true], [64, true], [49, true]]
 starter_code: |
   def memoize_lauf(eingaben: list[int]) -> list:
-      # Tipp: Dict-Cache, pro Eingabe pruefen + ggf. eintragen
+      # Tipp: Dict-Cache, pro Eingabe prüfen + ggf. eintragen
       pass
 ---
 

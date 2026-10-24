@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 003-fibonacci
-revision: 2
+revision: 3
 titel: Fibonacci-Zahl
 sprache: python
 task_type: code_schreiben
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: 832040
 starter_code: |
   def fibonacci(n: int) -> int:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 

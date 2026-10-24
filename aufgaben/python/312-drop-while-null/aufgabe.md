@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 312-drop-while-null
-revision: 2
+revision: 3
 titel: Drop-While null
 sprache: python
 task_type: code_schreiben
@@ -50,13 +50,13 @@ tests_versteckt:
     expected: [1, 2, 3]
   - input: [[0, 0, 0, 0, 7]]
     expected: [7]
-  - input: [[0, 0, 0, 1, 2, 3, 0, 0, 0]]
-    expected: [1, 2, 3, 0, 0, 0]
-  - input: [[-1, 0, 1]]
-    expected: [-1, 0, 1]
+  - input: [[0, 0, 0, 6, 7, 8, 0, 0, 0]]
+    expected: [6, 7, 8, 0, 0, 0]
+  - input: [[-2, 0, 3]]
+    expected: [-2, 0, 3]
 starter_code: |
   def drop_while_null(liste: list[int]) -> list[int]:
-      # Tipp: Generator mit Flag fuer "noch im Drop-Modus"
+      # Tipp: Generator mit Flag für "noch im Drop-Modus"
       pass
 ---
 

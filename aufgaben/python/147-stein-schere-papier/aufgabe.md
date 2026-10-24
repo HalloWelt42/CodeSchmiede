@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 147-stein-schere-papier
-revision: 2
+revision: 3
 titel: Stein, Schere, Papier
 sprache: python
 task_type: code_schreiben
@@ -30,32 +30,38 @@ hints:
       Dictionary "schlägt" abbilden: stein→schere, schere→papier,
       papier→stein. Prüfen ob z2 == schlägt[z1] → spieler1 gewinnt.
 tests_sichtbar:
-  - input: ["stein", "schere"]
-    expected: "spieler1"
-  - input: ["schere", "stein"]
-    expected: "spieler2"
   - input: ["stein", "stein"]
     expected: "unentschieden"
-  - input: ["papier", "stein"]
+  - input: ["stein", "schere"]
     expected: "spieler1"
-tests_versteckt:
-  - input: ["schere", "papier"]
-    expected: "spieler1"
-  - input: ["papier", "schere"]
-    expected: "spieler2"
   - input: ["stein", "papier"]
+    expected: "spieler2"
+  - input: ["schere", "stein"]
     expected: "spieler2"
   - input: ["schere", "schere"]
     expected: "unentschieden"
+  - input: ["schere", "papier"]
+    expected: "spieler1"
+  - input: ["papier", "stein"]
+    expected: "spieler1"
+  - input: ["papier", "schere"]
+    expected: "spieler2"
   - input: ["papier", "papier"]
     expected: "unentschieden"
-  - input: ["stein", "feuer"]
-    expected: "ungueltig"
+tests_versteckt:
+  - input: ["stein", "wasser"]
+    expected: "ungültig"
   - input: ["", "stein"]
-    expected: "ungueltig"
+    expected: "ungültig"
+  - input: ["brunnen", "papier"]
+    expected: "ungültig"
+  - input: ["schere", ""]
+    expected: "ungültig"
+  - input: ["echse", "stein"]
+    expected: "ungültig"
 starter_code: |
   def gewinner(zug1: str, zug2: str) -> str:
-      # Deine Lösung hier -- "spieler1"/"spieler2"/"unentschieden"/"ungueltig"
+      # Deine Lösung hier - "spieler1"/"spieler2"/"unentschieden"/"ungültig"
       pass
 ---
 

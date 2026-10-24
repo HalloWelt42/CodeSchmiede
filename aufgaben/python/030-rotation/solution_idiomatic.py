@@ -1,5 +1,5 @@
 """
-Slicing -- O(n) und liest sich klar.
+Slicing - O(n) und liest sich klar.
 """
 
 

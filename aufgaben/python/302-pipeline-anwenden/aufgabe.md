@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 302-pipeline-anwenden
-revision: 2
+revision: 3
 titel: Pipeline mehrerer Operationen
 sprache: python
 task_type: code_schreiben
@@ -43,14 +43,14 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 2, 3], ["double", "double"]]
     expected: [4, 8, 12]
-  - input: [[5], ["increment", "square"]]
-    expected: [36]
+  - input: [[7], ["increment", "square"]]
+    expected: [64]
   - input: [[-3, 2, -1], ["absolute", "double"]]
     expected: [6, 4, 2]
   - input: [[], ["double"]]
     expected: []
-  - input: [[10], ["square", "negate"]]
-    expected: [-100]
+  - input: [[6], ["square", "negate"]]
+    expected: [-36]
   - input: [[2, 3], ["increment", "increment", "increment"]]
     expected: [5, 6]
 starter_code: |

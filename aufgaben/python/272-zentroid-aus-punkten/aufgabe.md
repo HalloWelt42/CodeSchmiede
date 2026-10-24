@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 272-zentroid-aus-punkten
-revision: 2
+revision: 3
 titel: Zentroid (Schwerpunkt) aus Punktwolke
 sprache: python
 task_type: code_schreiben
@@ -39,21 +39,21 @@ tests_sichtbar:
   - input: [[[0, 0], [4, 0], [4, 3]]]
     expected: [2.6667, 1.0]
 tests_versteckt:
-  - input: [[[1, 1], [2, 2], [3, 3]]]
-    expected: [2.0, 2.0]
-  - input: [[[-1, -1], [1, 1]]]
+  - input: [[[2, 4], [4, 6], [6, 8]]]
+    expected: [4.0, 6.0]
+  - input: [[[-3, -2], [3, 2]]]
     expected: [0.0, 0.0]
   - input: [[[0, 0], [0, 0], [0, 0], [0, 0]]]
     expected: [0.0, 0.0]
-  - input: [[[10, 0], [0, 10]]]
-    expected: [5.0, 5.0]
+  - input: [[[8, 0], [0, 8]]]
+    expected: [4.0, 4.0]
   - input: [[[1, 0], [0, 1], [1, 1], [0, 0]]]
     expected: [0.5, 0.5]
   - input: [[[100, 200]]]
     expected: [100.0, 200.0]
 starter_code: |
   def zentroid(punkte: list[list]) -> list[float]:
-      # Deine Lösung hier -- [mean_x, mean_y], 4 Nachkommastellen
+      # Deine Lösung hier - [mean_x, mean_y], 4 Nachkommastellen
       pass
 ---
 

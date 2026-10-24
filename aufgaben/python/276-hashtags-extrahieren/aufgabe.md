@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 276-hashtags-extrahieren
-revision: 2
+revision: 3
 titel: Hashtags aus Text extrahieren
 sprache: python
 task_type: code_schreiben
@@ -40,25 +40,25 @@ tests_sichtbar:
   - input: ["#solo"]
     expected: ["solo"]
 tests_versteckt:
-  - input: ["#a #b #c"]
-    expected: ["a", "b", "c"]
+  - input: ["#x #y #z"]
+    expected: ["x", "y", "z"]
   - input: ["#hashtag mit Text und #wieder_einer"]
     expected: ["hashtag", "wieder_einer"]
   - input: ["#123 #abc123"]
     expected: ["123", "abc123"]
   - input: ["text # leerer hashtag"]
     expected: []
-  - input: ["##doppelt"]
-    expected: ["doppelt"]
-  - input: ["mitten#im#wort"]
-    expected: ["im", "wort"]
+  - input: ["##zweifach"]
+    expected: ["zweifach"]
+  - input: ["wort#mitten#drin"]
+    expected: ["mitten", "drin"]
   - input: ["#a #a #a"]
     expected: ["a", "a", "a"]
 starter_code: |
   import re
 
   def hashtags(text: str) -> list[str]:
-      # Deine Lösung hier -- Hashtags ohne #
+      # Deine Lösung hier - Hashtags ohne #
       pass
 ---
 

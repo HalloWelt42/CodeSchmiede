@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 172-differenz-zweier-listen
-revision: 2
+revision: 3
 titel: Differenz zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -49,7 +49,7 @@ tests_versteckt:
     expected: [1, 3]
 starter_code: |
   def differenz(a: list, b: list) -> list:
-      # Deine Lösung hier -- a \ b, eindeutig sortiert
+      # Deine Lösung hier - a \ b, eindeutig sortiert
       pass
 ---
 

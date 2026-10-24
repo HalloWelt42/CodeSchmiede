@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 235-erste-n
-revision: 2
+revision: 3
 titel: Erste n Elemente einer Liste
 sprache: python
 task_type: code_schreiben
@@ -40,19 +40,19 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 2, 3], 1]
     expected: [1]
-  - input: [[1, 2, 3], -1]
+  - input: [[4, 5, 6], -2]
     expected: []
   - input: [["a", "b", "c", "d"], 2]
     expected: ["a", "b"]
-  - input: [[1, 2, 3, 4, 5], 5]
-    expected: [1, 2, 3, 4, 5]
+  - input: [[6, 7, 8, 9, 10], 5]
+    expected: [6, 7, 8, 9, 10]
   - input: [[42], 100]
     expected: [42]
   - input: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4]
     expected: [1, 2, 3, 4]
 starter_code: |
   def erste_n(liste: list, n: int) -> list:
-      # Deine Lösung hier -- Slicing
+      # Deine Lösung hier - Slicing
       pass
 ---
 

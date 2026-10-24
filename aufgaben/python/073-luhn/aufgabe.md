@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 073-luhn
-revision: 2
+revision: 3
 titel: Luhn-Prüfziffer
 sprache: python
 task_type: code_schreiben
@@ -38,7 +38,7 @@ tests_sichtbar:
   - input: ["059"]
     expected: true
 tests_versteckt:
-  - input: ["059a"]
+  - input: ["091b"]
     expected: false
   - input: ["055 444 285"]
     expected: true
@@ -56,7 +56,7 @@ starter_code: |
 
 # Luhn-Prüfziffer
 
-Schreibe eine Funktion `ist_luhn_gültig(kandidat)`, die prüft, ob ein
+Schreibe eine Funktion `ist_luhn_gueltig(kandidat)`, die prüft, ob ein
 String die **Luhn-Prüfziffer-Regel** erfüllt - der Klassiker für
 Kreditkartennummern, IMEI und viele andere Identifikatoren.
 

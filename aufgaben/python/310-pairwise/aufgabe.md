@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 310-pairwise
-revision: 2
+revision: 3
 titel: Pairwise - aufeinanderfolgende Paare
 sprache: python
 task_type: code_schreiben
@@ -39,8 +39,8 @@ tests_sichtbar:
   - input: [[1, 2]]
     expected: [[1, 2]]
 tests_versteckt:
-  - input: [["a", "b", "c"]]
-    expected: [["a", "b"], ["b", "c"]]
+  - input: [["x", "y", "z"]]
+    expected: [["x", "y"], ["y", "z"]]
   - input: [[1, 1, 1, 1]]
     expected: [[1, 1], [1, 1], [1, 1]]
   - input: [[5, 10, 15, 20, 25]]

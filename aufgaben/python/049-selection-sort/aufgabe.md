@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 049-selection-sort
-revision: 2
+revision: 3
 titel: Selection-Sort
 sprache: python
 task_type: code_schreiben
@@ -40,15 +40,15 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[2, 2, 1, 1]]
     expected: [1, 1, 2, 2]
-  - input: [[1, 2, 3, 4, 5]]
-    expected: [1, 2, 3, 4, 5]
+  - input: [[2, 4, 6, 8, 10]]
+    expected: [2, 4, 6, 8, 10]
   - input: [[10, -1, 5, 0, -100, 42]]
     expected: [-100, -1, 0, 5, 10, 42]
   - input: [[42]]
     expected: [42]
 starter_code: |
   def selection_sort(liste: list[int]) -> list[int]:
-      # Deine Lösung hier -- ohne sorted() / list.sort().
+      # Deine Lösung hier - ohne sorted() / list.sort().
       pass
 ---
 

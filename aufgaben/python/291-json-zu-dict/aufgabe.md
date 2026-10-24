@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 291-json-zu-dict
-revision: 2
+revision: 3
 titel: JSON-String zu Dict parsen
 sprache: python
 task_type: code_schreiben
@@ -38,16 +38,16 @@ tests_sichtbar:
   - input: ['nicht-json']
     expected: null
 tests_versteckt:
-  - input: ['{}']
+  - input: ["{ }"]
     expected: {}
-  - input: ['"hallo"']
-    expected: "hallo"
-  - input: ['42']
-    expected: 42
-  - input: ['true']
-    expected: true
-  - input: ['[1, 2, 3]']
-    expected: [1, 2, 3]
+  - input: ["\"welt\""]
+    expected: "welt"
+  - input: ["137"]
+    expected: 137
+  - input: ["false"]
+    expected: false
+  - input: ["[4, 5, 6]"]
+    expected: [4, 5, 6]
   - input: ['{"verschachtelt": {"x": [1, 2]}}']
     expected: {"verschachtelt": {"x": [1, 2]}}
   - input: ['{ungueltig}']
@@ -56,7 +56,7 @@ starter_code: |
   import json
 
   def json_parse(s: str):
-      # Deine Lösung hier -- ungueltig → None
+      # Deine Lösung hier - ungültig → None
       pass
 ---
 

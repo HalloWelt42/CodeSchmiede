@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 093-binary-zu-decimal
-revision: 2
+revision: 3
 titel: Binär zu Dezimal
 sprache: python
 task_type: code_schreiben
@@ -42,13 +42,13 @@ tests_versteckt:
     expected: 4
   - input: ["1001"]
     expected: 9
-  - input: ["11111111"]
-    expected: 255
+  - input: ["111111111"]
+    expected: 511
   - input: ["10000000000"]
     expected: 1024
   - input: [""]
     expected: -1
-  - input: ["12"]
+  - input: ["1012"]
     expected: -1
   - input: ["1A"]
     expected: -1
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: -1
 starter_code: |
   def binaer_zu_dezimal(text: str) -> int:
-      # Deine Lösung hier -- ungültige Zeichen oder leerer String → -1.
+      # Deine Lösung hier - ungültige Zeichen oder leerer String → -1.
       pass
 ---
 

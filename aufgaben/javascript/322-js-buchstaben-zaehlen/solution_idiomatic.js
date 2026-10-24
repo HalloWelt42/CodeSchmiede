@@ -5,6 +5,6 @@ function zaehleBuchstaben(text) {
         }
         return akk;
     }, {});
-    // Keys alphabetisch -- damit JSON-Vergleich deterministisch ist.
+    // Keys alphabetisch - damit JSON-Vergleich deterministisch ist.
     return Object.fromEntries(Object.entries(z).sort());
 }

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 163-zwei-summe-sortiert
-revision: 2
+revision: 3
 titel: Zwei-Summe in sortierter Liste (Two Pointers)
 sprache: python
 task_type: code_schreiben
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: []
 starter_code: |
   def zwei_summe_sortiert(zahlen: list[int], ziel: int) -> list[int]:
-      # Deine Lösung hier -- Two Pointers in O(n)
+      # Deine Lösung hier - Two Pointers in O(n)
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 304-compose-zwei
-revision: 2
+revision: 3
 titel: Zwei Operationen verschachteln (compose)
 sprache: python
 task_type: code_schreiben
@@ -39,10 +39,10 @@ tests_sichtbar:
   - input: [5, "unknown", "double"]
     expected: 10
 tests_versteckt:
-  - input: [-3, "absolute", "square"]
-    expected: 9
-  - input: [4, "negate", "absolute"]
-    expected: 4
+  - input: [-6, "absolute", "square"]
+    expected: 36
+  - input: [8, "negate", "absolute"]
+    expected: 8
   - input: [2, "square", "square"]
     expected: 16
   - input: [10, "increment", "increment"]
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: 9
 starter_code: |
   def compose_anwenden(x, f: str, g: str):
-      # Tipp: g(f(x)) -- erst f, dann g
+      # Tipp: g(f(x)) - erst f, dann g
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 035-run-length
-revision: 2
+revision: 3
 titel: Run-Length-Encoding
 sprache: python
 task_type: code_schreiben
@@ -43,13 +43,13 @@ tests_versteckt:
     expected: "a2b2c2"
   - input: ["a"]
     expected: "a"
-  - input: ["xxxxxxxxxx"]
-    expected: "x10"
+  - input: ["yyyyyyyyyyyy"]
+    expected: "y12"
   - input: ["abbbbcccddde"]
     expected: "ab4c3d3e"
 starter_code: |
   def rle(text: str) -> str:
-      # Deine Lösung hier -- einzelne Zeichen ohne 1, Mehrfache mit Zahl.
+      # Deine Lösung hier - einzelne Zeichen ohne 1, Mehrfache mit Zahl.
       pass
 ---
 

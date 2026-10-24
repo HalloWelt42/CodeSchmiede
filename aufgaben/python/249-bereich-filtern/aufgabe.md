@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 249-bereich-filtern
-revision: 2
+revision: 3
 titel: Zahlen im Bereich [a, b] filtern
 sprache: python
 task_type: code_schreiben
@@ -38,8 +38,8 @@ tests_sichtbar:
   - input: [[1, 2, 3], 5, 1]
     expected: []
 tests_versteckt:
-  - input: [[5, 5, 5], 5, 5]
-    expected: [5, 5, 5]
+  - input: [[8, 8, 8], 8, 8]
+    expected: [8, 8, 8]
   - input: [[1, 2, 3, 4, 5], 1, 1]
     expected: [1]
   - input: [[1, 2, 3, 4, 5], 5, 5]

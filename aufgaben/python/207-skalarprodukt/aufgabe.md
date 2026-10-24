@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 207-skalarprodukt
-revision: 2
+revision: 3
 titel: Skalarprodukt zweier Vektoren
 sprache: python
 task_type: code_schreiben
@@ -41,19 +41,19 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[1, 1, 1], [1, 1, 1]]
     expected: 3
-  - input: [[2, 3], [4, 5]]
-    expected: 23
-  - input: [[-1, 2], [3, -4]]
-    expected: -11
+  - input: [[3, 7], [2, 6]]
+    expected: 48
+  - input: [[-2, 5], [4, -3]]
+    expected: -23
   - input: [[10, 20, 30], [1, 2, 3]]
     expected: 140
   - input: [[5], [6]]
     expected: 30
-  - input: [[1.5, 2.5], [2, 4]]
-    expected: 13.0
+  - input: [[0.5, 3.5], [4, 2]]
+    expected: 9.0
 starter_code: |
   def skalarprodukt(a: list, b: list):
-      # Deine Lösung hier -- bei verschiedener Laenge → 0
+      # Deine Lösung hier - bei verschiedener Länge → 0
       pass
 ---
 

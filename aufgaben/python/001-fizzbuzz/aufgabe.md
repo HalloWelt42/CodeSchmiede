@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 001-fizzbuzz
-revision: 2
+revision: 3
 titel: FizzBuzz
 sprache: python
 task_type: code_schreiben
@@ -56,7 +56,7 @@ tests_versteckt:
     expected: "FizzBuzz"
 starter_code: |
   def fizzbuzz(n: int) -> str:
-      # Deine Loesung hier
+      # Deine Lösung hier
       pass
 ---
 

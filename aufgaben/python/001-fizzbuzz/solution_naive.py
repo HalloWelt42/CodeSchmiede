@@ -1,5 +1,5 @@
 """
-Naive Loesung: lange if-elif-else-Kette mit redundanter Logik.
+Naive Lösung: lange if-elif-else-Kette mit redundanter Logik.
 """
 
 

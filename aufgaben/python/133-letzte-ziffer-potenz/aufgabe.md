@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 133-letzte-ziffer-potenz
-revision: 2
+revision: 3
 titel: Letzte Ziffer von a hoch b
 sprache: python
 task_type: code_schreiben
@@ -46,13 +46,13 @@ tests_versteckt:
     expected: 0
   - input: [9, 9]
     expected: 9
-  - input: [999, 999]
-    expected: 9
+  - input: [888, 777]
+    expected: 8
   - input: [123, 4567]
     expected: 7
 starter_code: |
   def letzte_ziffer(a: int, b: int) -> int:
-      # Deine Lösung hier -- letzte Ziffer von a^b. Schnell mit pow(a, b, 10).
+      # Deine Lösung hier - letzte Ziffer von a^b. Schnell mit pow(a, b, 10).
       pass
 ---
 

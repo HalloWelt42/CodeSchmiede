@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 077-hamming-distanz
-revision: 2
+revision: 3
 titel: Hamming-Distanz
 sprache: python
 task_type: code_schreiben
@@ -39,7 +39,7 @@ tests_sichtbar:
   - input: ["", ""]
     expected: 0
 tests_versteckt:
-  - input: ["AT", "ATG"]
+  - input: ["CG", "CGT"]
     expected: -1
   - input: ["AAAA", "TTTT"]
     expected: 4
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: 0
 starter_code: |
   def hamming_distanz(a: str, b: str) -> int:
-      # Deine Lösung hier -- Strings müssen gleich lang sein, sonst -1.
+      # Deine Lösung hier - Strings müssen gleich lang sein, sonst -1.
       pass
 ---
 

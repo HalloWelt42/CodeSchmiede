@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 335-general-fizzbuzz
-revision: 2
+revision: 3
 titel: Verallgemeinertes FizzBuzz
 sprache: python
 task_type: code_schreiben
@@ -44,17 +44,17 @@ tests_versteckt:
     expected: ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"]
   - input: [10, [[2, "Bing"]]]
     expected: ["1", "Bing", "3", "Bing", "5", "Bing", "7", "Bing", "9", "Bing"]
-  - input: [6, [[2, "Hi"], [3, "Ho"]]]
-    expected: ["1", "Hi", "Ho", "Hi", "5", "HiHo"]
-  - input: [4, [[2, "A"], [3, "B"], [4, "C"]]]
-    expected: ["1", "A", "B", "AC"]
+  - input: [7, [[2, "Tik"], [3, "Tak"]]]
+    expected: ["1", "Tik", "Tak", "Tik", "5", "TikTak", "7"]
+  - input: [6, [[2, "P"], [3, "Q"], [6, "R"]]]
+    expected: ["1", "P", "Q", "P", "5", "PQR"]
   - input: [1, [[1, "X"]]]
     expected: ["X"]
   - input: [-3, [[3, "Fizz"]]]
     expected: []
 starter_code: |
   def general_fizzbuzz(n: int, regeln: list[list]) -> list[str]:
-      # Tipp: pro Zahl alle passenden Woerter konkatenieren
+      # Tipp: pro Zahl alle passenden Wörter konkatenieren
       pass
 ---
 

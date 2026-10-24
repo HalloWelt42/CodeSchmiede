@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 127-primzahlen-bis-n-zahl
-revision: 2
+revision: 3
 titel: Primzahlen bis n zählen
 sprache: python
 task_type: code_schreiben
@@ -44,13 +44,13 @@ tests_versteckt:
     expected: 2
   - input: [50]
     expected: 15
-  - input: [1000]
-    expected: 168
-  - input: [10000]
-    expected: 1229
+  - input: [1200]
+    expected: 196
+  - input: [15000]
+    expected: 1754
 starter_code: |
   def anzahl_primzahlen(n: int) -> int:
-      # Deine Lösung hier -- Anzahl Primzahlen <= n.
+      # Deine Lösung hier - Anzahl Primzahlen <= n.
       pass
 ---
 

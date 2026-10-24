@@ -1,5 +1,5 @@
 """
-Klassische Schleife: vergleiche aktuelles Zeichen mit dem naechsten,
+Klassische Schleife: vergleiche aktuelles Zeichen mit dem nächsten,
 ziehe ab oder addiere entsprechend.
 """
 

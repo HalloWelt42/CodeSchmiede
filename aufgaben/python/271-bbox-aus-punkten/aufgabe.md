@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 271-bbox-aus-punkten
-revision: 2
+revision: 3
 titel: Bounding-Box um Punkte
 sprache: python
 task_type: code_schreiben
@@ -41,8 +41,8 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[[0, 0], [0, 0], [0, 0]]]
     expected: [0, 0, 0, 0]
-  - input: [[[10, 20], [-5, 30], [50, -10]]]
-    expected: [-5, -10, 50, 30]
+  - input: [[[12, 25], [-8, 40], [60, -15]]]
+    expected: [-8, -15, 60, 40]
   - input: [[[1, 1], [2, 2], [3, 3], [4, 4]]]
     expected: [1, 1, 4, 4]
   - input: [[[0, 100], [100, 0]]]
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: [-3, -3, -1, -1]
 starter_code: |
   def bbox(punkte: list[list]) -> list:
-      # Deine Lösung hier -- [xmin, ymin, xmax, ymax]
+      # Deine Lösung hier - [xmin, ymin, xmax, ymax]
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 292-dict-zu-json
-revision: 2
+revision: 3
 titel: Dict zu JSON-String
 sprache: python
 task_type: code_schreiben
@@ -40,23 +40,23 @@ tests_sichtbar:
 tests_versteckt:
   - input: [{"x": "wert"}]
     expected: '{"x":"wert"}'
-  - input: [42]
-    expected: "42"
+  - input: [73]
+    expected: "73"
   - input: [null]
     expected: "null"
   - input: [true]
     expected: "true"
-  - input: [{"name": "Hans", "alter": 30}]
-    expected: '{"alter":30,"name":"Hans"}'
+  - input: [{"vorname": "Erika", "jahr": 1985}]
+    expected: "{\"jahr\":1985,\"vorname\":\"Erika\"}"
   - input: [{"verschachtelt": {"y": 2, "x": 1}}]
     expected: '{"verschachtelt":{"x":1,"y":2}}'
-  - input: ["hallo"]
-    expected: '"hallo"'
+  - input: ["moin"]
+    expected: "\"moin\""
 starter_code: |
   import json
 
   def json_dump(obj) -> str:
-      # Deine Lösung hier -- sortiert, kompakt
+      # Deine Lösung hier - sortiert, kompakt
       pass
 ---
 

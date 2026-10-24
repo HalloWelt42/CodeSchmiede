@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 257-woerter-kuerzer-als
-revision: 2
+revision: 3
 titel: Wörter kürzer als n
 sprache: python
 task_type: code_schreiben
@@ -37,10 +37,10 @@ tests_sichtbar:
   - input: ["zu lang", 0]
     expected: []
 tests_versteckt:
-  - input: ["der schnelle braune Fuchs", 6]
-    expected: ["der", "Fuchs"]
-  - input: ["ABC AB A", 3]
-    expected: ["AB", "A"]
+  - input: ["ein kleiner grauer Hund", 6]
+    expected: ["ein", "Hund"]
+  - input: ["XYZ XY X", 3]
+    expected: ["XY", "X"]
   - input: ["Hallo Welt", 100]
     expected: ["Hallo", "Welt"]
   - input: ["python", 10]
@@ -57,7 +57,7 @@ starter_code: |
 
 # Wörter kürzer als n
 
-Schreibe `kürzer_als(text, n)`, die alle Wörter aus dem Text
+Schreibe `kuerzer_als(text, n)`, die alle Wörter aus dem Text
 zurückgibt, die **kürzer als n Zeichen** sind.
 
 ## Beispiele

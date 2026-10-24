@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 034-caesar
-revision: 2
+revision: 3
 titel: Caesar-Verschlüsselung
 sprache: python
 task_type: code_schreiben
@@ -48,8 +48,8 @@ tests_sichtbar:
 tests_versteckt:
   - input: ["ABC", 25]
     expected: "ZAB"
-  - input: ["Python 3.11!", 5]
-    expected: "Udymts 3.11!"
+  - input: ["Zeile 42.7?", 8]
+    expected: "Hmqtm 42.7?"
   - input: ["abc", 0]
     expected: "abc"
   - input: ["abc", 26]
@@ -58,7 +58,7 @@ tests_versteckt:
     expected: "Gur dhvpx oebja sbk"
 starter_code: |
   def caesar(text: str, k: int) -> str:
-      # Deine Lösung hier -- nur a-z und A-Z verschieben, Rest unverändert.
+      # Deine Lösung hier - nur a-z und A-Z verschieben, Rest unverändert.
       pass
 ---
 

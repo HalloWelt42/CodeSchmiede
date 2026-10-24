@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 119-anagramm-finder
-revision: 2
+revision: 3
 titel: Anagramme aus Liste finden
 sprache: python
 task_type: code_schreiben
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: []
 starter_code: |
   def finde_anagramme(wort: str, kandidaten: list[str]) -> list[str]:
-      # Deine Lösung hier -- Reihenfolge wie in `kandidaten`. Selbes Wort
+      # Deine Lösung hier - Reihenfolge wie in `kandidaten`. Selbes Wort
       # (case-insensitive) zählt nicht als Anagramm.
       pass
 ---

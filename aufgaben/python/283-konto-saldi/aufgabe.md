@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 283-konto-saldi
-revision: 2
+revision: 3
 titel: Konto-Saldi nach jeder Buchung
 sprache: python
 task_type: code_schreiben
@@ -41,12 +41,12 @@ tests_sichtbar:
   - input: [0, [100]]
     expected: [100]
 tests_versteckt:
-  - input: [1000, [100, 100, 100]]
-    expected: [1100, 1200, 1300]
+  - input: [2000, [250, 250, 250]]
+    expected: [2250, 2500, 2750]
   - input: [-50, [100]]
     expected: [50]
-  - input: [0, [1, 2, 3, 4, 5]]
-    expected: [1, 3, 6, 10, 15]
+  - input: [0, [2, 4, 6, 8, 10]]
+    expected: [2, 6, 12, 20, 30]
   - input: [500, [-100, -100, -100, -100, -100]]
     expected: [400, 300, 200, 100, 0]
   - input: [1000000, [-1]]

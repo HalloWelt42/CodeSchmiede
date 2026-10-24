@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 290-shapes-flaeche
-revision: 2
+revision: 3
 titel: Shapes mit Flächen-Polymorphismus
 sprache: python
 task_type: code_schreiben
@@ -42,13 +42,13 @@ tests_sichtbar:
   - input: [[["dreieck", 3, 4, 5]]]
     expected: 6.0
 tests_versteckt:
-  - input: [[["kreis", 2], ["rechteck", 2, 2]]]
-    expected: 16.57
+  - input: [[["kreis", 3], ["rechteck", 4, 5]]]
+    expected: 48.27
   - input: [[["kreis", 1], ["kreis", 1], ["kreis", 1]]]
     expected: 9.42
-  - input: [[["dreieck", 5, 12, 13], ["rechteck", 10, 5]]]
-    expected: 80.0
-  - input: [[["kreis", -5]]]
+  - input: [[["dreieck", 6, 8, 10], ["rechteck", 7, 3]]]
+    expected: 45.0
+  - input: [[["kreis", -3]]]
     expected: 0.0
   - input: [[["rechteck", 0, 5]]]
     expected: 0.0

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 103-bier-lied
-revision: 2
+revision: 3
 titel: Bier-Lied generieren
 sprache: python
 task_type: code_schreiben
@@ -47,8 +47,8 @@ tests_versteckt:
     expected: "10 Flaschen Bier auf der Wand, 10 Flaschen Bier.\nNimm eine runter, gib sie rum, 9 Flaschen Bier auf der Wand."
 starter_code: |
   def bier_strophe(n: int) -> str:
-      # Deine Lösung hier -- 2 Zeilen, getrennt durch \n.
-      # Singular bei 1, Sonderfaelle bei 0 und 1.
+      # Deine Lösung hier - 2 Zeilen, getrennt durch \n.
+      # Singular bei 1, Sonderfälle bei 0 und 1.
       pass
 ---
 

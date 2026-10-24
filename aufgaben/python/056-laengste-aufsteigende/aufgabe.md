@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 056-laengste-aufsteigende
-revision: 2
+revision: 3
 titel: Längste aufsteigende Teilfolge
 sprache: python
 task_type: code_schreiben
@@ -43,13 +43,13 @@ tests_versteckt:
     expected: 1
   - input: [[1, 2, 3, 4, 5, 6, 7, 8]]
     expected: 8
-  - input: [[3, 1, 4, 1, 5, 9, 2, 6]]
+  - input: [[4, 2, 6, 9, 3, 1, 7, 5]]
     expected: 3
-  - input: [[10, 20, 1, 2, 3, 4, 5]]
+  - input: [[50, 60, 3, 4, 6, 7, 9]]
     expected: 5
 starter_code: |
   def laengste_aufsteigend(liste: list[int]) -> int:
-      # Deine Lösung hier -- streng monoton, zusammenhaengend.
+      # Deine Lösung hier - streng monoton, zusammenhängend.
       pass
 ---
 

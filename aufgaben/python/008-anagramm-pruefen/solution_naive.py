@@ -1,6 +1,6 @@
 """
 Naive Lösung: für jedes Zeichen in `a` das Vorkommen in `b` prüfen
-und entfernen. Wenn `b` leer endet und gleiche Länge -- Anagramm.
+und entfernen. Wenn `b` leer endet und gleiche Länge - Anagramm.
 """
 
 

@@ -55,7 +55,7 @@ def test_erwartungen_gelangen_nicht_in_die_sandbox(client):
         "    return 42 if '42' in quelle else 2 * x\n"
     )
     erg = submit(client, "001-verdoppeln", code)
-    assert erg["bestanden"]  # richtig gerechnet; die 42 stand nirgends
+    assert erg["bestanden"], erg  # richtig gerechnet; die 42 stand nirgends
 
 
 def test_tupel_ist_nicht_liste(client):

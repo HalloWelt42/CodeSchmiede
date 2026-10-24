@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 323-power-set
-revision: 2
+revision: 3
 titel: Potenzmenge - alle Teilmengen
 sprache: python
 task_type: code_schreiben
@@ -54,7 +54,7 @@ starter_code: |
   from itertools import combinations
 
   def potenzmenge(liste: list) -> list[list]:
-      # Tipp: combinations(liste, k) fuer k = 0..len
+      # Tipp: combinations(liste, k) für k = 0..len
       pass
 ---
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 265-xor-tausch
-revision: 2
+revision: 3
 titel: XOR-Tausch ohne Hilfsvariable
 sprache: python
 task_type: code_schreiben
@@ -40,8 +40,8 @@ tests_sichtbar:
   - input: [-1, 7]
     expected: [7, -1]
 tests_versteckt:
-  - input: [42, 99]
-    expected: [99, 42]
+  - input: [37, 81]
+    expected: [81, 37]
   - input: [100, 200]
     expected: [200, 100]
   - input: [-5, -3]
@@ -52,11 +52,11 @@ tests_versteckt:
     expected: [0, 1024]
   - input: [-100, 100]
     expected: [100, -100]
-  - input: [7, 7]
-    expected: [7, 7]
+  - input: [13, 13]
+    expected: [13, 13]
 starter_code: |
   def xor_tausch(a: int, b: int) -> list[int]:
-      # Deine Lösung hier -- 3 XOR-Operationen, KEINE Hilfsvariable
+      # Deine Lösung hier - 3 XOR-Operationen, KEINE Hilfsvariable
       pass
 ---
 

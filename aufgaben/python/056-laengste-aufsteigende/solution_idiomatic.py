@@ -1,5 +1,5 @@
 """
-Kompakter mit max() ueber laufenden Werten.
+Kompakter mit max() über laufenden Werten.
 """
 
 

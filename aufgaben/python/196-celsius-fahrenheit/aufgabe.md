@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 196-celsius-fahrenheit
-revision: 2
+revision: 3
 titel: Celsius nach Fahrenheit umrechnen
 sprache: python
 task_type: code_schreiben
@@ -37,10 +37,10 @@ tests_sichtbar:
   - input: [37]
     expected: 98.6
 tests_versteckt:
-  - input: [-273.15]
-    expected: -459.7
-  - input: [25]
-    expected: 77.0
+  - input: [-195.8]
+    expected: -320.4
+  - input: [30]
+    expected: 86.0
   - input: [98.6]
     expected: 209.5
   - input: [-17.78]
@@ -51,7 +51,7 @@ tests_versteckt:
     expected: 50.9
 starter_code: |
   def celsius_zu_fahrenheit(c: float) -> float:
-      # Deine Lösung hier -- 1 Nachkommastelle
+      # Deine Lösung hier - 1 Nachkommastelle
       pass
 ---
 

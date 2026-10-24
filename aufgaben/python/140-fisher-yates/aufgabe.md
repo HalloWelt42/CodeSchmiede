@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 140-fisher-yates
-revision: 2
+revision: 3
 titel: Fisher-Yates-Shuffle (mit Seed)
 sprache: python
 task_type: code_schreiben
@@ -54,7 +54,7 @@ starter_code: |
   import random
 
   def shuffle_seed(a: list, seed: int) -> list:
-      # Deine Lösung hier -- Fisher-Yates mit random.Random(seed).randint(0, i)
+      # Deine Lösung hier - Fisher-Yates mit random.Random(seed).randint(0, i)
       pass
 ---
 

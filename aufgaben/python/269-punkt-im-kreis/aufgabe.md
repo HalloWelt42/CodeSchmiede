@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 269-punkt-im-kreis
-revision: 2
+revision: 3
 titel: Punkt im Kreis?
 sprache: python
 task_type: code_schreiben
@@ -38,13 +38,13 @@ tests_sichtbar:
   - input: [[10, 10], [0, 0], 5]
     expected: false
 tests_versteckt:
-  - input: [[5, 0], [0, 0], 5]
+  - input: [[10, 0], [3, 0], 7]
     expected: true
   - input: [[0, 5], [0, 0], 5]
     expected: true
-  - input: [[6, 0], [0, 0], 5]
+  - input: [[11, 0], [3, 0], 7]
     expected: false
-  - input: [[1, 1], [1, 1], 0]
+  - input: [[3, 2], [3, 2], 0]
     expected: true
   - input: [[2, 1], [1, 1], 0]
     expected: false
@@ -54,7 +54,7 @@ tests_versteckt:
     expected: true
 starter_code: |
   def im_kreis(punkt: list, mittelpunkt: list, r: float) -> bool:
-      # Deine Lösung hier -- inklusiv (auf Rand = drinnen)
+      # Deine Lösung hier - inklusiv (auf Rand = drinnen)
       pass
 ---
 

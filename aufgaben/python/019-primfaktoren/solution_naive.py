@@ -1,6 +1,6 @@
 """
 Naive Lösung: Probiere alle Teiler ab 2 bis n und entferne sie so oft
-wie möglich. Korrekt, aber langsam fuer grosse Primzahlen.
+wie möglich. Korrekt, aber langsam für große Primzahlen.
 """
 
 

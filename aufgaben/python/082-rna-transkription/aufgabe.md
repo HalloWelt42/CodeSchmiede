@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 082-rna-transkription
-revision: 2
+revision: 3
 titel: DNA zu RNA umwandeln
 sprache: python
 task_type: code_schreiben
@@ -37,15 +37,15 @@ tests_sichtbar:
   - input: ["A"]
     expected: "U"
 tests_versteckt:
-  - input: ["GCTA"]
-    expected: "CGAU"
-  - input: ["ACGTGGTCTTAA"]
-    expected: "UGCACCAGAAUU"
+  - input: ["TAGC"]
+    expected: "AUCG"
+  - input: ["TTGACCAGTGCA"]
+    expected: "AACUGGUCACGU"
   - input: [""]
     expected: ""
 starter_code: |
   def zu_rna(dna: str) -> str:
-      # Deine Lösung hier -- G->C, C->G, T->A, A->U.
+      # Deine Lösung hier - G->C, C->G, T->A, A->U.
       pass
 ---
 

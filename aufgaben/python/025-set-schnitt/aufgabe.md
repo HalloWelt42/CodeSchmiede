@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 025-set-schnitt
-revision: 2
+revision: 3
 titel: Schnittmenge zweier Listen
 sprache: python
 task_type: code_schreiben
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: [2, 3]
 starter_code: |
   def schnittmenge(a: list, b: list) -> list:
-      # Deine Lösung hier -- Reihenfolge nach a, ohne Doppelte.
+      # Deine Lösung hier - Reihenfolge nach a, ohne Doppelte.
       pass
 ---
 

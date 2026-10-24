@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 184-vier-gewinnt
-revision: 2
+revision: 3
 titel: Vier-Gewinnt - gibt es einen Sieger?
 sprache: python
 task_type: code_schreiben
@@ -50,7 +50,7 @@ tests_versteckt:
     expected: "O"
 starter_code: |
   def vier_gewinnt(brett: list[list[str]]):
-      # Deine Lösung hier -- "X" / "O" / None
+      # Deine Lösung hier - "X" / "O" / None
       pass
 ---
 

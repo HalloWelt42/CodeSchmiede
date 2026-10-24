@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 083-nukleotide-zaehlen
-revision: 2
+revision: 3
 titel: Nukleotide zählen
 sprache: python
 task_type: code_schreiben
@@ -41,7 +41,7 @@ tests_sichtbar:
 tests_versteckt:
   - input: ["X"]
     expected: {}
-  - input: ["AGXX"]
+  - input: ["CTNN"]
     expected: {}
   - input: ["ACGT"]
     expected: { "A": 1, "C": 1, "G": 1, "T": 1 }
@@ -49,13 +49,13 @@ tests_versteckt:
     expected: { "A": 2, "C": 2, "G": 2, "T": 2 }
 starter_code: |
   def nukleotide_zaehlen(dna: str) -> dict[str, int]:
-      # Deine Lösung hier -- ungültige Zeichen → leeres Dict.
+      # Deine Lösung hier - ungültige Zeichen → leeres Dict.
       pass
 ---
 
 # Nukleotide zählen
 
-Schreibe eine Funktion `nukleotide_zählen(dna)`, die zählt, wie oft
+Schreibe eine Funktion `nukleotide_zaehlen(dna)`, die zählt, wie oft
 die vier DNA-Nukleotide **A, C, G, T** in einem String vorkommen.
 
 Bei **ungültigen Zeichen** (alles außer A, C, G, T) gib ein **leeres

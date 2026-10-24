@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 346-js-url-encode
-revision: 2
+revision: 3
 titel: JavaScript - URL-Prozent-Codierung
 sprache: javascript
 task_type: code_schreiben
@@ -40,7 +40,7 @@ tests_sichtbar:
     expected: "abc-_.~"
 starter_code: |
   function urlEncode(s) {
-      // Tipp: encodeURIComponent + RFC-3986-Korrektur fuer ! * ' ( )
+      // Tipp: encodeURIComponent + RFC-3986-Korrektur für ! * ' ( )
   }
 ---
 

@@ -1,5 +1,5 @@
 """
-List-Comprehension -- der gleiche Algorithmus in einer Zeile.
+List-Comprehension - der gleiche Algorithmus in einer Zeile.
 """
 
 

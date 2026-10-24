@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 161-median
-revision: 2
+revision: 3
 titel: Median einer Liste
 sprache: python
 task_type: code_schreiben
@@ -49,13 +49,13 @@ tests_versteckt:
     expected: 30
   - input: [[1, 1, 1, 1]]
     expected: 1.0
-  - input: [[-3, -1, 1, 3]]
+  - input: [[-7, -2, 2, 7]]
     expected: 0.0
   - input: [[7, 7, 7]]
     expected: 7
 starter_code: |
   def median(zahlen: list):
-      # Deine Lösung hier -- None bei leerer Liste
+      # Deine Lösung hier - None bei leerer Liste
       pass
 ---
 

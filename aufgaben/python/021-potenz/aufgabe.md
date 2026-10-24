@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 021-potenz
-revision: 2
+revision: 3
 titel: Eigene Potenzfunktion
 sprache: python
 task_type: code_schreiben
@@ -55,7 +55,7 @@ tests_versteckt:
     expected: -8
 starter_code: |
   def potenz(basis: int, exponent: int) -> int:
-      # Deine Lösung hier -- ohne ** und ohne pow()
+      # Deine Lösung hier - ohne ** und ohne pow()
       pass
 ---
 

@@ -1,5 +1,5 @@
 _ALLERGIEN = [
-    "eier", "erdnuesse", "schalentiere", "erdbeeren",
+    "eier", "erdnüsse", "schalentiere", "erdbeeren",
     "tomaten", "schokolade", "pollen", "katzen",
 ]
 

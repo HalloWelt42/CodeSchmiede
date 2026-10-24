@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 076-atbash
-revision: 2
+revision: 3
 titel: Atbash-Chiffre
 sprache: python
 task_type: code_schreiben
@@ -52,7 +52,7 @@ tests_versteckt:
     expected: "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
 starter_code: |
   def atbash_codiere(text: str) -> str:
-      # Deine Lösung hier -- alle Buchstaben spiegeln, Output in
+      # Deine Lösung hier - alle Buchstaben spiegeln, Output in
       # Fünfer-Gruppen.
       pass
 ---

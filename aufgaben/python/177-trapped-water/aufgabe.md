@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 177-trapped-water
-revision: 2
+revision: 3
 titel: Regenwasser im Histogramm
 sprache: python
 task_type: code_schreiben
@@ -49,15 +49,15 @@ tests_versteckt:
     expected: 0
   - input: [[2, 2, 2]]
     expected: 0
-  - input: [[5, 0, 0, 0, 0, 5]]
-    expected: 20
+  - input: [[4, 0, 0, 0, 4]]
+    expected: 12
   - input: [[1, 0, 1]]
     expected: 1
-  - input: [[5, 4, 3, 2, 1]]
+  - input: [[9, 7, 5, 3, 1]]
     expected: 0
 starter_code: |
   def regenwasser(hoehen: list[int]) -> int:
-      # Deine Lösung hier -- Two-Pointers in O(n)
+      # Deine Lösung hier - Two-Pointers in O(n)
       pass
 ---
 

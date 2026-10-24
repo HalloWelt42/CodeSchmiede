@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 126-laengster-praefix
-revision: 2
+revision: 3
 titel: Längster gemeinsamer Präfix
 sprache: python
 task_type: code_schreiben
@@ -45,15 +45,15 @@ tests_versteckt:
     expected: "a"
   - input: [["abc", "abcd", "abcde"]]
     expected: "abc"
-  - input: [["abc", ""]]
+  - input: [["katze", ""]]
     expected: ""
   - input: [["aaaa", "aaaaa", "aaaaaa"]]
     expected: "aaaa"
-  - input: [["interspecies", "interstellar", "interstate"]]
-    expected: "inters"
+  - input: [["transport", "transfer", "translate"]]
+    expected: "trans"
 starter_code: |
   def gemeinsamer_praefix(strings: list[str]) -> str:
-      # Deine Lösung hier -- längster Anfang, der bei allen gleich ist.
+      # Deine Lösung hier - längster Anfang, der bei allen gleich ist.
       pass
 ---
 

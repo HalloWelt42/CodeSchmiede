@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 294-query-string-bauen
-revision: 2
+revision: 3
 titel: URL-Query-String aus Dict bauen
 sprache: python
 task_type: code_schreiben
@@ -39,10 +39,10 @@ tests_sichtbar:
   - input: [{"b": 1, "a": 2}]
     expected: "a=2&b=1"
 tests_versteckt:
-  - input: [{"foo": "bar", "baz": "qux"}]
-    expected: "baz=qux&foo=bar"
-  - input: [{"leer": ""}]
-    expected: "leer="
+  - input: [{"zeta": "eins", "alpha": "zwei"}]
+    expected: "alpha=zwei&zeta=eins"
+  - input: [{"nichts": ""}]
+    expected: "nichts="
   - input: [{"k": 100}]
     expected: "k=100"
   - input: [{"name": "Hans", "alter": 30}]
@@ -53,7 +53,7 @@ tests_versteckt:
     expected: "a=2&m=3&z=1"
 starter_code: |
   def query_build(d: dict) -> str:
-      # Deine Lösung hier -- alphabetisch sortiert
+      # Deine Lösung hier - alphabetisch sortiert
       pass
 ---
 

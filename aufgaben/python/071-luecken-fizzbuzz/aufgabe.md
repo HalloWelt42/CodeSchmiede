@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 071-luecken-fizzbuzz
-revision: 2
+revision: 3
 titel: Lückentext - Mini-FizzBuzz
 sprache: python
 task_type: lueckentext
@@ -32,7 +32,7 @@ tests_sichtbar:
   - input: [9]
     expected: "drei"
   - input: [25]
-    expected: "fuenf"
+    expected: "fünf"
   - input: [7]
     expected: "keines"
 tests_versteckt:
@@ -41,7 +41,7 @@ tests_versteckt:
   - input: [21]
     expected: "drei"
   - input: [50]
-    expected: "fuenf"
+    expected: "fünf"
   - input: [11]
     expected: "keines"
   - input: [0]
@@ -54,7 +54,7 @@ lueckentext:
         if n ___1___ 3 == 0:
             return "drei"
         if n ___1___ ___2___ == 0:
-            return "fuenf"
+            return "fünf"
         return ___4___
   luecken:
     - nummer: 1
@@ -69,7 +69,7 @@ lueckentext:
 
 # Lückentext - Mini-FizzBuzz
 
-Eine vereinfachte Variante: gibt `"drei"`, `"fuenf"` oder `"beides"`
+Eine vereinfachte Variante: gibt `"drei"`, `"fünf"` oder `"beides"`
 zurück, je nachdem ob `n` durch 3, durch 5, oder durch beides
 teilbar ist. Wenn nichts passt: `"keines"`.
 
@@ -79,7 +79,7 @@ teilbar ist. Wenn nichts passt: `"keines"`.
 |-----|-----------|
 | 15  | `"beides"`|
 | 9   | `"drei"`  |
-| 25  | `"fuenf"` |
+| 25  | `"fünf"` |
 | 7   | `"keines"`|
 
 ## Hinweis

@@ -1,6 +1,6 @@
 """
-Mit "Karte herausheben + Loch verschieben" -- spart Tausche und ist
-naeher am Lehrbuch-Pseudocode.
+Mit "Karte herausheben + Loch verschieben" - spart Tausche und ist
+näher am Lehrbuch-Pseudocode.
 """
 
 

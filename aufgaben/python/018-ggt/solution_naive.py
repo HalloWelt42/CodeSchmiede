@@ -1,6 +1,6 @@
 """
-Naive Lösung: alle Teiler bis min(a, b) durchprobieren und das groesste
-gemeinsame Ergebnis merken. Funktioniert, ist aber langsam fuer grosse
+Naive Lösung: alle Teiler bis min(a, b) durchprobieren und das größte
+gemeinsame Ergebnis merken. Funktioniert, ist aber langsam für große
 Zahlen.
 """
 

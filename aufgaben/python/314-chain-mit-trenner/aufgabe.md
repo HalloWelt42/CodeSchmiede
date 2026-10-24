@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 314-chain-mit-trenner
-revision: 2
+revision: 3
 titel: Listen verketten mit Trenner-Element
 sprache: python
 task_type: code_schreiben
@@ -44,7 +44,7 @@ tests_sichtbar:
 tests_versteckt:
   - input: [[[1, 2], [3, 4], [5, 6]], 0]
     expected: [1, 2, 0, 3, 4, 0, 5, 6]
-  - input: [[[], []], 99]
+  - input: [[[], [], []], 42]
     expected: []
   - input: [[[1, 2], [], [3, 4]], 0]
     expected: [1, 2, 0, 3, 4]
@@ -52,8 +52,8 @@ tests_versteckt:
     expected: [1, 2]
   - input: [[[1, 2], []], 0]
     expected: [1, 2]
-  - input: [[["a"], ["b"], ["c"]], "-"]
-    expected: ["a", "-", "b", "-", "c"]
+  - input: [[["x"], ["y"], ["z"]], "+"]
+    expected: ["x", "+", "y", "+", "z"]
   - input: [[[1]], 0]
     expected: [1]
 starter_code: |

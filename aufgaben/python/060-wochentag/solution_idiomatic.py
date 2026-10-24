@@ -1,5 +1,5 @@
 """
-Mit datetime aus der Standardbibliothek -- robust und kurz.
+Mit datetime aus der Standardbibliothek - robust und kurz.
 """
 
 from datetime import date

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 063-spalten-summe
-revision: 2
+revision: 3
 titel: Spaltensumme einer Matrix
 sprache: python
 task_type: code_schreiben
@@ -41,8 +41,8 @@ tests_sichtbar:
   - input: [[]]
     expected: []
 tests_versteckt:
-  - input: [[[10, 20, 30]]]
-    expected: [10, 20, 30]
+  - input: [[[40, 50, 60]]]
+    expected: [40, 50, 60]
   - input: [[[1, 2], [3, 4], [5, 6]]]
     expected: [9, 12]
   - input: [[[-1, 1], [-1, 1]]]

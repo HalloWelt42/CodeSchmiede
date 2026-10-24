@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 121-nte-primzahl
-revision: 2
+revision: 3
 titel: n-te Primzahl
 sprache: python
 task_type: code_schreiben
@@ -44,17 +44,17 @@ tests_versteckt:
     expected: 7
   - input: [5]
     expected: 11
-  - input: [10]
-    expected: 29
-  - input: [100]
-    expected: 541
-  - input: [1000]
-    expected: 7919
+  - input: [11]
+    expected: 31
+  - input: [120]
+    expected: 659
+  - input: [1250]
+    expected: 10177
   - input: [-1]
     expected: -1
 starter_code: |
   def nte_primzahl(n: int) -> int:
-      # Deine Lösung hier -- 1 → 2, ungültige Eingabe → -1.
+      # Deine Lösung hier - 1 → 2, ungültige Eingabe → -1.
       pass
 ---
 

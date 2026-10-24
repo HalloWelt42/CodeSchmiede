@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 345-url-encode
-revision: 2
+revision: 3
 titel: URL-Prozent-Codierung (eigene Implementierung)
 sprache: python
 task_type: code_schreiben
@@ -42,14 +42,14 @@ tests_sichtbar:
 tests_versteckt:
   - input: ["a/b"]
     expected: "a%2Fb"
-  - input: ["100%"]
-    expected: "100%25"
-  - input: ["?key=value"]
-    expected: "%3Fkey%3Dvalue"
+  - input: ["50%"]
+    expected: "50%25"
+  - input: ["?name=wert"]
+    expected: "%3Fname%3Dwert"
   - input: ["foo bar baz"]
     expected: "foo%20bar%20baz"
-  - input: ["a+b=c"]
-    expected: "a%2Bb%3Dc"
+  - input: ["x+y=z"]
+    expected: "x%2By%3Dz"
   - input: ["#hash"]
     expected: "%23hash"
   - input: ["abc123"]

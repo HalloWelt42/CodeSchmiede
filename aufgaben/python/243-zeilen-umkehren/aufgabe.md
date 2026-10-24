@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 243-zeilen-umkehren
-revision: 2
+revision: 3
 titel: Jede Zeile zeichenweise umdrehen
 sprache: python
 task_type: code_schreiben
@@ -38,10 +38,10 @@ tests_sichtbar:
   - input: [["a"]]
     expected: ["a"]
 tests_versteckt:
-  - input: [["Hallo", "Welt"]]
-    expected: ["ollaH", "tleW"]
-  - input: [["12345"]]
-    expected: ["54321"]
+  - input: [["Guten", "Morgen"]]
+    expected: ["netuG", "negroM"]
+  - input: [["67890"]]
+    expected: ["09876"]
   - input: [["abc", "ab", "a"]]
     expected: ["cba", "ba", "a"]
   - input: [["", "x", "yz"]]

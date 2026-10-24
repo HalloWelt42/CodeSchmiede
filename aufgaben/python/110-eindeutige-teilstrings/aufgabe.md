@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 110-eindeutige-teilstrings
-revision: 2
+revision: 3
 titel: Eindeutige Teilstrings zählen
 sprache: python
 task_type: code_schreiben
@@ -38,9 +38,9 @@ tests_sichtbar:
   - input: [""]
     expected: 0
 tests_versteckt:
-  - input: ["ab"]
+  - input: ["cd"]
     expected: 3
-  - input: ["abab"]
+  - input: ["xyxy"]
     expected: 7
   - input: ["abcd"]
     expected: 10
@@ -48,7 +48,7 @@ tests_versteckt:
     expected: 53
 starter_code: |
   def anzahl_teilstrings(text: str) -> int:
-      # Deine Lösung hier -- alle eindeutigen, nicht-leeren, zusammenhängenden Teilstrings.
+      # Deine Lösung hier - alle eindeutigen, nicht-leeren, zusammenhängenden Teilstrings.
       pass
 ---
 

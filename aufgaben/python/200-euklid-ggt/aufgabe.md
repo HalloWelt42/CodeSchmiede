@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: 200-euklid-ggt
-revision: 2
+revision: 3
 titel: GgT mit Euklid (eigene Implementierung)
 sprache: python
 task_type: code_schreiben
@@ -41,14 +41,14 @@ tests_sichtbar:
 tests_versteckt:
   - input: [0, 0]
     expected: 0
-  - input: [100, 75]
-    expected: 25
-  - input: [1071, 462]
-    expected: 21
+  - input: [84, 36]
+    expected: 12
+  - input: [1989, 867]
+    expected: 51
   - input: [1, 1]
     expected: 1
-  - input: [-12, 18]
-    expected: 6
+  - input: [-20, 30]
+    expected: 10
   - input: [12, -18]
     expected: 6
   - input: [-12, -18]
@@ -57,7 +57,7 @@ tests_versteckt:
     expected: 6
 starter_code: |
   def ggt(a: int, b: int) -> int:
-      # Deine Lösung hier -- ohne math.gcd
+      # Deine Lösung hier - ohne math.gcd
       pass
 ---
 
