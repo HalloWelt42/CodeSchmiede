@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 28
 schaetz_minuten: 10
 tags: [bits, zahlen, schleifen, optimierung]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

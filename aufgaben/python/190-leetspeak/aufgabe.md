@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 5
 tags: [strings, dict, mapping, replace, fun]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

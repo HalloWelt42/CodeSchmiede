@@ -17,7 +17,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 # Schwierigkeit ist ein freier String. Welche IDs erlaubt sind, steht in
@@ -70,7 +70,6 @@ class Frontmatter(BaseModel):
     schwierigkeit_score: int = Field(ge=1, le=100)
     schaetz_minuten: int = Field(ge=1)
     tags: list[str] = Field(default_factory=list)
-    pfade: list[str] = Field(default_factory=list)
     voraussetzungen: list[str] = Field(default_factory=list)
     quelle: Quelle = Field(default_factory=Quelle)
     lizenz: str = "eigen"
@@ -82,6 +81,16 @@ class Frontmatter(BaseModel):
     tests_sichtbar: list[TestFall] = Field(default_factory=list)
     tests_versteckt: list[TestFall] = Field(default_factory=list)
     starter_code: str = ""
+
+    @model_validator(mode="before")
+    @classmethod
+    def _keine_pfade(cls, daten: Any) -> Any:
+        # Welche Aufgabe in welchem Pfad steht, legt allein aufgaben/pfade/*.yml fest.
+        if isinstance(daten, dict) and "pfade" in daten:
+            raise ValueError(
+                "Feld 'pfade' gibt es nicht mehr: die Zugehörigkeit steht in aufgaben/pfade/*.yml"
+            )
+        return daten
 
     @field_validator("id")
     @classmethod
@@ -115,7 +124,7 @@ class AufgabeKurz(BaseModel):
 
     Enthält das berechnete Feld `gesperrt` plus die offenen
     Voraussetzungen, sodass die Liste direkt anzeigen kann, was noch
-    fehlt.
+    fehlt. `pfade` ist abgeleitet aus den Pfad-Dateien.
     """
 
     id: str

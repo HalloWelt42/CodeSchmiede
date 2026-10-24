@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 22
 schaetz_minuten: 15
 tags: [listen, permutationen, algorithmus, in-place]
-pfade: [python_algorithmen2]
 voraussetzungen: [108-permutationen]
 quelle:
   url: https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order

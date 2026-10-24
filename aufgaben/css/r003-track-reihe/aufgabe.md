@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 10
 tags: [repro, lernpfad, flexbox, musik]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- CSS-Klon-Generator.

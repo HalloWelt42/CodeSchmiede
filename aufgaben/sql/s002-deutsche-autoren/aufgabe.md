@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 4
 tags: [select, where, order-by]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- WHERE + ORDER BY.

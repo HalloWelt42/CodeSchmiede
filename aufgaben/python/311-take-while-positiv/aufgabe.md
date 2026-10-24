@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 8
 tags: [generator, yield, listen, takewhile]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 3
 tags: [join, where, not-equal]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- SQL-Generator.

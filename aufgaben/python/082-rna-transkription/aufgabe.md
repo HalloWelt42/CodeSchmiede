@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 4
 tags: [strings, dict, biologie]
-pfade: [python_bio]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Transkription_(Biologie)

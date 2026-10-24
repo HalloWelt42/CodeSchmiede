@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [dict, listen, gruppierung, sortieren]
-pfade: [python_dicts]
 voraussetzungen: []
 quelle:
   url: null

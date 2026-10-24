@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 4
 tags: [flexbox, layout]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- CSS-Klon-Generator.

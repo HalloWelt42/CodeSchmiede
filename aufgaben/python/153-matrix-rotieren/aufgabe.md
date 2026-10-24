@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 30
 schaetz_minuten: 12
 tags: [matrix, listen, zip, 2d, rotation]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

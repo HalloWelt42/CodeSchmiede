@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [strings, schleifen, max, parsing]
-pfade: [python_algorithmen2]
 voraussetzungen: [115-klammer-balance]
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 12
 schaetz_minuten: 5
 tags: [group-by, substr]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- SQL-Generator.

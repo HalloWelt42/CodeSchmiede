@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 25
 schaetz_minuten: 10
 tags: [itertools, kombinatorik, listen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

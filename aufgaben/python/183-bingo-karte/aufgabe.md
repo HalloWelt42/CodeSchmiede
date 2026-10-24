@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 30
 schaetz_minuten: 15
 tags: [matrix, set, spiele, logik]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

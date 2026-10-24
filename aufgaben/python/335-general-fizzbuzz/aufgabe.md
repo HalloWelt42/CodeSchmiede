@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 22
 schaetz_minuten: 10
 tags: [zahlen, listen, dicts, modulo]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/General_FizzBuzz

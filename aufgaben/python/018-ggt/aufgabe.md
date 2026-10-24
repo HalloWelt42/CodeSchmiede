@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 8
 tags: [zahlen, schleifen, euklid, rekursion]
-pfade: [python_mathe]
 voraussetzungen: [016-quersumme]
 quelle:
   url: https://de.wikipedia.org/wiki/Euklidischer_Algorithmus

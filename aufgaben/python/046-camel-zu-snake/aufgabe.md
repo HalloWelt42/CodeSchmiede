@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 8
 tags: [strings, schleifen, comprehension]
-pfade: [python_strings3]
 voraussetzungen: [045-snake-zu-camel]
 quelle:
   url: null

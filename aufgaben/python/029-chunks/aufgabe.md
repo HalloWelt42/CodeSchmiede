@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 9
 tags: [listen, slicing, schleifen]
-pfade: [python_listen]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null

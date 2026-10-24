@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [zahlen, if-else, datum, listen]
-pfade: [python_datum]
 voraussetzungen: [058-schaltjahr]
 quelle:
   url: null

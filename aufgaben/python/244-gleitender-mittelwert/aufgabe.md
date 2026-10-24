@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 25
 schaetz_minuten: 12
 tags: [listen, statistik, sliding-window]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 8
 tags: [strings, krypto, alphabet, modulo]
-pfade: [python_codes]
 voraussetzungen: [034-caesar]
 quelle:
   url: https://de.wikipedia.org/wiki/Atbash

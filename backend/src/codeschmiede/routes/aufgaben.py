@@ -59,7 +59,7 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
         for a in state.aufgaben.alle_aufgaben():
             if sprache and a.sprache != sprache:
                 continue
-            if pfad and pfad not in a.pfade:
+            if pfad and pfad not in state.aufgaben.pfade_von(a.id):
                 continue
             if schwierigkeit and a.schwierigkeit != schwierigkeit:
                 continue
@@ -84,7 +84,7 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
                     schwierigkeit_score=a.schwierigkeit_score,
                     schaetz_minuten=a.schaetz_minuten,
                     tags=a.tags,
-                    pfade=a.pfade,
+                    pfade=state.aufgaben.pfade_von(a.id),
                     revision=a.revision,
                     voraussetzungen=a.voraussetzungen,
                     voraussetzungen_offen=offen,
@@ -119,7 +119,7 @@ def baue_aufgaben_router(state: AppState) -> APIRouter:
             schwierigkeit_score=a.schwierigkeit_score,
             schaetz_minuten=a.schaetz_minuten,
             tags=a.tags,
-            pfade=a.pfade,
+            pfade=state.aufgaben.pfade_von(a.id),
             voraussetzungen=a.voraussetzungen,
             voraussetzungen_offen=offen,
             gesperrt=len(offen) > 0,

@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 65
 schaetz_minuten: 25
 tags: [listen, two-pointers, algorithmen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

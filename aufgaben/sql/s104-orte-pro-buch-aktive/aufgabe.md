@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 18
 schaetz_minuten: 10
 tags: [group-concat, distinct, join]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- SQL-Generator.

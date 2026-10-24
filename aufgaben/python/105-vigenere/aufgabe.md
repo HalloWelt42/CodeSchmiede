@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 12
 tags: [strings, krypto, modulo, schluessel]
-pfade: [python_codes]
 voraussetzungen: [104-rot-chiffre]
 quelle:
   url: https://de.wikipedia.org/wiki/Vigen%C3%A8re-Chiffre

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [strings, dict, biologie, count]
-pfade: [python_bio]
 voraussetzungen: []
 quelle:
   url: null

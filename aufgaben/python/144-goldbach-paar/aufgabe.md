@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 40
 schaetz_minuten: 15
 tags: [primzahlen, mathematik, paare]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

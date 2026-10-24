@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 8
 tags: [javascript, object, string, reduce, modern]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

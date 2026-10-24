@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [strings, parsing, netzwerk, validierung]
-pfade: [python_codes]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/IPv4

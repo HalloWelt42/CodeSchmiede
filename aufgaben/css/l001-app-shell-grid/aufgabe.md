@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 8
 tags: [layout, lernpfad, grid, template-areas]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- CSS-Klon-Generator.

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [zahlen, fakultaet, mathematik, log]
-pfade: [python_mathe2]
 voraussetzungen: [017-fakultaet]
 quelle:
   url: null

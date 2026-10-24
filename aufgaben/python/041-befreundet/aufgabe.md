@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 9
 tags: [zahlen, teiler, hilfsfunktion]
-pfade: [python_mathe2]
 voraussetzungen: [040-perfekte-zahl]
 quelle:
   url: https://de.wikipedia.org/wiki/Befreundete_Zahlen

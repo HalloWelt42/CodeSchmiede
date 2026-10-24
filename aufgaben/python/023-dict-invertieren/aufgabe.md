@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [dict, comprehension, schleifen]
-pfade: [python_dicts]
 voraussetzungen: [022-wortzaehler]
 quelle:
   url: null

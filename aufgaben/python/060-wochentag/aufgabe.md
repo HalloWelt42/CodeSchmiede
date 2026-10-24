@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 22
 schaetz_minuten: 15
 tags: [zahlen, datum, formel]
-pfade: [python_datum]
 voraussetzungen: [059-monatstage]
 quelle:
   url: https://de.wikipedia.org/wiki/Zellers_Kongruenz

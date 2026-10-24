@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 6
 tags: [grid, lernpfad, grid-row, grid-column]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- CSS-Klon-Generator.

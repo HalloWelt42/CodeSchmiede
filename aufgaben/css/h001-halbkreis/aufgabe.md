@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 15
 schaetz_minuten: 10
 tags: [challenge, lernpfad, border-radius, trick]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- CSS-Klon-Generator.

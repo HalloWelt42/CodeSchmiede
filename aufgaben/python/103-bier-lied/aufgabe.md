@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 8
 tags: [strings, schleifen, format, gesang]
-pfade: [python_strings3]
 voraussetzungen: []
 quelle:
   url: null

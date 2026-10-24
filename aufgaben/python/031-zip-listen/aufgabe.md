@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 8
 tags: [listen, zip, schleifen]
-pfade: [python_listen]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null

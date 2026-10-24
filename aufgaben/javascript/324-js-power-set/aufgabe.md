@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 30
 schaetz_minuten: 12
 tags: [javascript, kombinatorik, array, reduce, modern]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Power_set

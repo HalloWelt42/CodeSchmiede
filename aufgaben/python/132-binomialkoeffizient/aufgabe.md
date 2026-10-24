@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 6
 tags: [zahlen, kombinatorik, fakultaet]
-pfade: [python_mathe2]
 voraussetzungen: [017-fakultaet]
 quelle:
   url: https://de.wikipedia.org/wiki/Binomialkoeffizient

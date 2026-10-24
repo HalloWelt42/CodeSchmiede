@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 15
 schaetz_minuten: 8
 tags: [listen, kombinatorik, paare]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

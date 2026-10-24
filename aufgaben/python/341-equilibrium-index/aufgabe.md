@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 22
 schaetz_minuten: 10
 tags: [listen, summe, prefix, algorithmen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Equilibrium_index

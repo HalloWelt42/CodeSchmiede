@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 10
 tags: [algorithmen, sortieren, listen]
-pfade: [python_algorithmen]
 voraussetzungen: [012-listen-sortieren]
 quelle:
   url: https://de.wikipedia.org/wiki/Bubblesort

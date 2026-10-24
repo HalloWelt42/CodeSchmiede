@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 5
 tags: [zahlen, strings, set]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

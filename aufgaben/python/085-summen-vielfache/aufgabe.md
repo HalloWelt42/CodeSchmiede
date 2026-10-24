@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [zahlen, schleifen, sets, project-euler]
-pfade: [python_mathe2]
 voraussetzungen: []
 quelle:
   url: https://projecteuler.net/problem=1

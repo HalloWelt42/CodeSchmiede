@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 6
 tags: [mathematik, geometrie, runden]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 10
 tags: [matrix, schleifen, spiel]
-pfade: [python_logik]
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [zahlen, listen, sqrt, mathematik]
-pfade: [python_mathe]
 voraussetzungen: []
 quelle:
   url: null

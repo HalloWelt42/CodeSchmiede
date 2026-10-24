@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 18
 schaetz_minuten: 8
 tags: [datum, mathematik, schaltjahr]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

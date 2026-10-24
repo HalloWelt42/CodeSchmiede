@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [strings, dict, schleifen, spiel]
-pfade: [python_strings3]
 voraussetzungen: []
 quelle:
   url: https://en.wikipedia.org/wiki/Scrabble_letter_distributions

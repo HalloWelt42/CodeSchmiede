@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [strings, dict, split, schleifen]
-pfade: [python_dicts]
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [zahlen, primzahlen, sieb, schleifen]
-pfade: [python_mathe2]
 voraussetzungen: [039-eratosthenes]
 quelle:
   url: null

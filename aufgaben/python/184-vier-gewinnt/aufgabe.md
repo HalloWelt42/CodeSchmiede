@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 45
 schaetz_minuten: 18
 tags: [matrix, spiele, logik, suche]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

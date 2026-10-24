@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 8
 tags: [zahlen, listen, kombinatorik]
-pfade: [python_mathe2]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Pascalsches_Dreieck

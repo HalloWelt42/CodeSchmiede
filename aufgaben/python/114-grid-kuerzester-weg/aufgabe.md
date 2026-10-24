@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 24
 schaetz_minuten: 16
 tags: [bfs, matrix, suche, algorithmen]
-pfade: [python_algorithmen2]
 voraussetzungen: [101-zwei-eimer]
 quelle:
   url: null

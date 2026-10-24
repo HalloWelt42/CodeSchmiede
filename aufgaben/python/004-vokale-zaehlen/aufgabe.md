@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 8
 tags: [strings, schleifen, count]
-pfade: [python_strings]
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 6
 tags: [zahlen, listen, euklid, reduce]
-pfade: [python_mathe2]
 voraussetzungen: [018-ggt]
 quelle:
   url: null

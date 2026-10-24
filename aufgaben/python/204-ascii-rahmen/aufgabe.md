@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 18
 schaetz_minuten: 10
 tags: [strings, formatierung, ascii-art]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 4
 tags: [strings, sets, alphabet]
-pfade: [python_strings3]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Pangramm

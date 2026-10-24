@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 12
 tags: [dict, baum, listen, sortieren]
-pfade: [python_algorithmen2]
 voraussetzungen: [022-wortzaehler]
 quelle:
   url: null

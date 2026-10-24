@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 38
 schaetz_minuten: 15
 tags: [listen, dp, algorithmen, kadane]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

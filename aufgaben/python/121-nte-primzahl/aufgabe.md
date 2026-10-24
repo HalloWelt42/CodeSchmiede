@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 8
 tags: [zahlen, primzahlen, schleifen]
-pfade: [python_mathe2]
 voraussetzungen: [019-primfaktoren]
 quelle:
   url: null

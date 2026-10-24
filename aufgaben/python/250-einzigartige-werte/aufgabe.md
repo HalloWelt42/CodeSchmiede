@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 6
 tags: [listen, counter, dict, eindeutig]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

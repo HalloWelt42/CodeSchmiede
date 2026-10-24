@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [strings, listen, sortieren, vergleich]
-pfade: [python_strings3]
 voraussetzungen: [008-anagramm-pruefen]
 quelle:
   url: null

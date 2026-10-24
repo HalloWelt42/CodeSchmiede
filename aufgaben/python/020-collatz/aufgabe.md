@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 8
 tags: [zahlen, schleifen, beruehmt]
-pfade: [python_mathe]
 voraussetzungen: [017-fakultaet]
 quelle:
   url: https://de.wikipedia.org/wiki/Collatz-Problem

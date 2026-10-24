@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 6
 schaetz_minuten: 3
 tags: [border-radius, kreis, farbe]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- CSS-Klon-Generator.

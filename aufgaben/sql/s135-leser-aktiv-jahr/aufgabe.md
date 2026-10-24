@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [join, where, date]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- SQL-Generator.

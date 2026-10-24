@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 6
 schaetz_minuten: 4
 tags: [mathematik, zahlen, formel]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [drop-zone, upload, border-dashed, komponente]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- CSS-Klon-Generator.

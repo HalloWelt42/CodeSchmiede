@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [strings, zufall, format]
-pfade: [python_strings3]
 voraussetzungen: []
 quelle:
   url: null

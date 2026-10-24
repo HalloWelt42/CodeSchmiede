@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [listen, schleifen, sortieren, max]
-pfade: [python_listen3]
 voraussetzungen: []
 quelle:
   url: null

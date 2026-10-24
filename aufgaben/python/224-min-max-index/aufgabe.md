@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [listen, suchen, min, max]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

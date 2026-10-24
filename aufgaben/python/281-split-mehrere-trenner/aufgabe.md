@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 35
 schaetz_minuten: 12
 tags: [strings, regex, parsing]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

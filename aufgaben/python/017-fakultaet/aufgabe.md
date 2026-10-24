@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [zahlen, schleifen, rekursion]
-pfade: [python_mathe]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Fakult%C3%A4t_(Mathematik)

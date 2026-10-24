@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 6
 schaetz_minuten: 3
 tags: [select, basics]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- SELECT-Basics.

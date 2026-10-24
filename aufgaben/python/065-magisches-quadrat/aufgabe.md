@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 12
 tags: [matrix, listen, schleifen, sum]
-pfade: [python_logik]
 voraussetzungen: [064-diagonale-summe]
 quelle:
   url: https://de.wikipedia.org/wiki/Magisches_Quadrat

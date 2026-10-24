@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 15
 schaetz_minuten: 8
 tags: [javascript, array, folgen, mathematik]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Padovan_sequence

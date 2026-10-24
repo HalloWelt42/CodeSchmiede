@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [listen, sets, schleifen]
-pfade: [python_sets]
 voraussetzungen: [025-set-schnitt]
 quelle:
   url: null

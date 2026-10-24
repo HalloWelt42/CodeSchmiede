@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [strings, krypto, modulo, alphabet]
-pfade: [python_codes]
 voraussetzungen: [034-caesar]
 quelle:
   url: https://de.wikipedia.org/wiki/ROT13

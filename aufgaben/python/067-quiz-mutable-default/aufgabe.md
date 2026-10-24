@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 5
 tags: [quiz, defaults, falle, output]
-pfade: [python_quiz]
 voraussetzungen: []
 quelle:
   url: null

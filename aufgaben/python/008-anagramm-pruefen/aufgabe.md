@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 30
 schaetz_minuten: 12
 tags: [strings, sortieren, vergleich]
-pfade: [python_strings]
 voraussetzungen: [007-buchstaben-haeufigkeit]
 quelle:
   url: https://de.wikipedia.org/wiki/Anagramm

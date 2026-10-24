@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 30
 schaetz_minuten: 12
 tags: [algorithmen, listen, modulo, klassiker]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Josephus_problem

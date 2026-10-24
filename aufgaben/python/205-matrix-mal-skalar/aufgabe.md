@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [matrix, mathematik, comprehension]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

@@ -44,7 +44,6 @@
   let zeitlimit_sekunden = $state(5);
   let funktion = $state('');
   let tags_text = $state('');
-  let pfade_text = $state('');
   let voraussetzungen_text = $state('');
   let lizenz = $state('eigen');
   let autor = $state('HalloWelt42');
@@ -119,7 +118,6 @@
       zeitlimit_sekunden = a.zeitlimit_sekunden;
       funktion = a.funktion ?? '';
       tags_text = a.tags.join(', ');
-      pfade_text = a.pfade.join(', ');
       voraussetzungen_text = a.voraussetzungen.join(', ');
       lizenz = a.lizenz;
       autor = a.autor ?? '';
@@ -162,7 +160,6 @@
       zeitlimit_sekunden = 5;
       funktion = '';
       tags_text = '';
-      pfade_text = '';
       voraussetzungen_text = '';
       lizenz = 'eigen';
       autor = 'HalloWelt42';
@@ -230,7 +227,6 @@
       schwierigkeit_score,
       schaetz_minuten,
       tags: liste_aus_text(tags_text),
-      pfade: liste_aus_text(pfade_text),
       voraussetzungen: liste_aus_text(voraussetzungen_text),
       quelle: {
         url: quelle_url.trim() || null,
@@ -451,10 +447,6 @@
             <label class="weit">
               <span>Tags <small>(Komma-getrennt)</small></span>
               <input type="text" bind:value={tags_text} placeholder="schleifen, listen" />
-            </label>
-            <label class="weit">
-              <span>Pfade <small>(Komma-getrennt, IDs)</small></span>
-              <input type="text" bind:value={pfade_text} placeholder="python_grundlagen" />
             </label>
             <label class="weit">
               <span>Voraussetzungen <small>(Aufgaben-IDs)</small></span>

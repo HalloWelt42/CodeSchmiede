@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [zahlen, summen, formel, project-euler]
-pfade: [python_mathe2]
 voraussetzungen: []
 quelle:
   url: https://projecteuler.net/problem=6

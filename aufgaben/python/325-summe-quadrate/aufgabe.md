@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 5
 tags: [zahlen, mathematik, summe, formel]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Sum_of_squares

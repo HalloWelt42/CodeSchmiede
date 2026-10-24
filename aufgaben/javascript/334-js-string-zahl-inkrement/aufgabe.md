@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 6
 tags: [javascript, strings, zahlen, bigint, modern]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Increment_a_numerical_string

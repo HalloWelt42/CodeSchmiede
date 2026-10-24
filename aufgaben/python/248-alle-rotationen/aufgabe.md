@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 18
 schaetz_minuten: 8
 tags: [listen, rotation, slicing]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

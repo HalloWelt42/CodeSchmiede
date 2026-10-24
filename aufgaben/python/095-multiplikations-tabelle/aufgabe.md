@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 5
 tags: [matrix, listen, comprehension]
-pfade: [python_logik]
 voraussetzungen: []
 quelle:
   url: null

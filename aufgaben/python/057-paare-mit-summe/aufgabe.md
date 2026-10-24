@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 9
 tags: [listen, sets, paare, hashing]
-pfade: [python_listen3]
 voraussetzungen: [053-two-sum]
 quelle:
   url: null

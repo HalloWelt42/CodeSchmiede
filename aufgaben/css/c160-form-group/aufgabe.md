@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 12
 schaetz_minuten: 6
 tags: [form, label, flex-column, komponente]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- CSS-Klon-Generator.

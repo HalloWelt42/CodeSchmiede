@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 15
 schaetz_minuten: 8
 tags: [logik, dicts, vergleich, spiele]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

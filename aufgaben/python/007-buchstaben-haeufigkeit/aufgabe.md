@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 28
 schaetz_minuten: 12
 tags: [strings, dict, count]
-pfade: [python_strings]
 voraussetzungen: [004-vokale-zaehlen]
 quelle:
   url: null

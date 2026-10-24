@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 35
 schaetz_minuten: 15
 tags: [listen, shuffle, zufall, algorithmen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

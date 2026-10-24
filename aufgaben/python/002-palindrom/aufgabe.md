@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 18
 schaetz_minuten: 10
 tags: [strings, slicing, schleifen]
-pfade: [python_grundlagen]
 voraussetzungen: [001-fizzbuzz]
 quelle:
   url: https://de.wikipedia.org/wiki/Palindrom

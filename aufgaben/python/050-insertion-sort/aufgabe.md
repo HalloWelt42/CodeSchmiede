@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 9
 tags: [algorithmen, sortieren, listen]
-pfade: [python_algorithmen2]
 voraussetzungen: [049-selection-sort]
 quelle:
   url: https://de.wikipedia.org/wiki/Insertionsort

@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 12
 tags: [zahlen, lernen, sm2, dict]
-pfade: [python_algorithmen2]
 voraussetzungen: []
 quelle:
   url: https://en.wikipedia.org/wiki/SuperMemo#Description_of_SM-2_algorithm

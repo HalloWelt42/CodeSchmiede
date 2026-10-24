@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [zahlen, listen, klassiker, modulo]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/FizzBuzz

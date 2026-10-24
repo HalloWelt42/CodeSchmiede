@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 6
 tags: [mathematik, gesundheit, runden, klassifikation]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

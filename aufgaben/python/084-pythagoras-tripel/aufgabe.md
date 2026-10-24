@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 10
 tags: [zahlen, schleifen, geometrie, project-euler]
-pfade: [python_mathe2]
 voraussetzungen: []
 quelle:
   url: https://projecteuler.net/problem=9

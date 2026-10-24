@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 10
 tags: [zahlen, schleifen, primzahlen]
-pfade: [python_mathe]
 voraussetzungen: [018-ggt]
 quelle:
   url: https://de.wikipedia.org/wiki/Primfaktorzerlegung

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [javascript, array, set, spread, modern]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

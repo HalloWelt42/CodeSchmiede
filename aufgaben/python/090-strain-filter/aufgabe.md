@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [listen, funktional, schleifen]
-pfade: [python_funktional]
 voraussetzungen: []
 quelle:
   url: null

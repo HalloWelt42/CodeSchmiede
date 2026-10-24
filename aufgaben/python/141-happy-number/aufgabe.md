@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 32
 schaetz_minuten: 12
 tags: [zahlen, zyklus, set, mathematik]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

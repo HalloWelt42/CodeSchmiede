@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 15
 schaetz_minuten: 8
 tags: [zahlen, mathematik, interpolation]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Map_range

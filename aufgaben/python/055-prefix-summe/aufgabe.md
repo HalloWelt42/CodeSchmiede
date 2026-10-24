@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [listen, schleifen, akkumulator]
-pfade: [python_listen3]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null

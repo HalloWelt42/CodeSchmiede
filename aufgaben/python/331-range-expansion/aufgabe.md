@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 25
 schaetz_minuten: 10
 tags: [strings, parsing, listen, bereiche]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Range_expansion

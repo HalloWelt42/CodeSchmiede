@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [strings, regex, parsing]
-pfade: [python_strings3]
 voraussetzungen: [036-acronym]
 quelle:
   url: null

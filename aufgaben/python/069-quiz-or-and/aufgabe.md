@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 12
 schaetz_minuten: 4
 tags: [quiz, boolean, output, lesen]
-pfade: [python_quiz]
 voraussetzungen: []
 quelle:
   url: null

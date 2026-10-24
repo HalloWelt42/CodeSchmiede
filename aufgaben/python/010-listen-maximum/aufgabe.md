@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 8
 tags: [listen, vergleich, schleifen]
-pfade: [python_listen]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null

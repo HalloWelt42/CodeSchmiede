@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 9
 tags: [zahlen, bitfeld, listen]
-pfade: [python_logik]
 voraussetzungen: []
 quelle:
   url: null

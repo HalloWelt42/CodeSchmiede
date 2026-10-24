@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [matrix, listen, comprehension, zip]
-pfade: [python_logik]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Transponierte_Matrix

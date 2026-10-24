@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [strings, if-else, dialog]
-pfade: [python_logik]
 voraussetzungen: []
 quelle:
   url: null

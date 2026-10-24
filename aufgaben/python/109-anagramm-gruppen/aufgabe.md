@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [strings, dict, sortieren, gruppierung]
-pfade: [python_dicts]
 voraussetzungen: [008-anagramm-pruefen]
 quelle:
   url: null

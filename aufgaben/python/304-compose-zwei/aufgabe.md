@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 22
 schaetz_minuten: 10
 tags: [funktional, compose, mathematik]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

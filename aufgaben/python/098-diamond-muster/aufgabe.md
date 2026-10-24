@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 10
 tags: [strings, schleifen, ascii, muster]
-pfade: [python_logik]
 voraussetzungen: []
 quelle:
   url: null

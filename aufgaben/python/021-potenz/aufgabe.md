@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [zahlen, schleifen, rekursion]
-pfade: [python_mathe]
 voraussetzungen: [017-fakultaet]
 quelle:
   url: null

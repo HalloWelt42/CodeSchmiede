@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 25
 schaetz_minuten: 10
 tags: [funktional, cache, optimierung, dict]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

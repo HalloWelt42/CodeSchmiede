@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 35
 schaetz_minuten: 15
 tags: [matrix, mathematik, comprehension, lineare-algebra]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

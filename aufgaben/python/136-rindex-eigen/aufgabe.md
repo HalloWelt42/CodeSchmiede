@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 4
 tags: [listen, schleifen, suche]
-pfade: [python_listen3]
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 6
 tags: [flexbox, zentrierung, layout]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- Flex-Center-Klassiker.

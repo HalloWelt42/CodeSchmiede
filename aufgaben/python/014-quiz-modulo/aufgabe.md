@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 6
 schaetz_minuten: 3
 tags: [quiz, modulo, output, lesen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

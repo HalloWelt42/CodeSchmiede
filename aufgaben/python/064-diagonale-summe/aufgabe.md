@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [matrix, listen, schleifen]
-pfade: [python_logik]
 voraussetzungen: [063-spalten-summe]
 quelle:
   url: null

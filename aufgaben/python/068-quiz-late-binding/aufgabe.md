@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 20
 schaetz_minuten: 6
 tags: [quiz, closures, falle, output]
-pfade: [python_quiz]
 voraussetzungen: []
 quelle:
   url: null

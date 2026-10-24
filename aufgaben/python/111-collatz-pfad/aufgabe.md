@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [zahlen, listen, schleifen, beruehmt]
-pfade: [python_mathe2]
 voraussetzungen: [020-collatz]
 quelle:
   url: https://de.wikipedia.org/wiki/Collatz-Problem

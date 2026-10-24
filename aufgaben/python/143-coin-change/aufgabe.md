@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 55
 schaetz_minuten: 20
 tags: [dp, optimierung, listen, algorithmen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

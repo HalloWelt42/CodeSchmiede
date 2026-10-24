@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 22
 schaetz_minuten: 14
 tags: [matrix, schleifen, richtung, listen]
-pfade: [python_logik]
 voraussetzungen: [062-matrix-transponieren]
 quelle:
   url: null

@@ -32,3 +32,6 @@ reihenfolge:
   - 294-query-string-bauen
   - 295-csv-zeile
   - 296-ini-parsen
+  - 102-roboter-name
+  - 103-bier-lied
+  - 129-passwort-staerke

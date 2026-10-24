@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [zahlen, listen, horner, mathematik]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

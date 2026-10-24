@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 22
 schaetz_minuten: 18
 tags: [algorithmen, sortieren, listen, divide-and-conquer, rekursion]
-pfade: [python_algorithmen2]
 voraussetzungen: [050-insertion-sort]
 quelle:
   url: https://de.wikipedia.org/wiki/Mergesort

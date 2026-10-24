@@ -141,7 +141,11 @@ def _statistik(sub: SubmissionStatistik | None, p: Progress | None) -> AufgabenS
 
 
 def _eintrag(
-    a: Aufgabe, statistik: AufgabenStatistik, musterloesungen_anzahl: int, slim: bool = False
+    a: Aufgabe,
+    pfade: list[str],
+    statistik: AufgabenStatistik,
+    musterloesungen_anzahl: int,
+    slim: bool = False,
 ) -> VerwaltungsEintrag:
     """Slim: große Felder leer, Anzahlen bleiben (die Tabelle zeigt "Hints (4)")."""
     return VerwaltungsEintrag(
@@ -156,7 +160,7 @@ def _eintrag(
         schwierigkeit_score=a.schwierigkeit_score,
         schaetz_minuten=a.schaetz_minuten,
         tags=a.tags,
-        pfade=a.pfade,
+        pfade=pfade,
         voraussetzungen=a.voraussetzungen,
         quelle=a.quelle.model_dump(),
         lizenz=a.lizenz,
@@ -261,6 +265,7 @@ def baue_admin_router(state: AppState) -> APIRouter:
         return [
             _eintrag(
                 a,
+                state.aufgaben.pfade_von(a.id),
                 _statistik(sub_stats.get(a.id), progress.get(a.id)),
                 0 if slim else len(state.loader.lade_musterloesungen(a.id)),
                 slim=slim,
@@ -273,6 +278,7 @@ def baue_admin_router(state: AppState) -> APIRouter:
         a = hole(aufgabe_id)
         return _eintrag(
             a,
+            state.aufgaben.pfade_von(a.id),
             _statistik(
                 state.submissions.statistik_je_aufgabe().get(a.id),
                 state.progress.hole_progress(a.id),

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 14
 schaetz_minuten: 9
 tags: [zahlen, strings, deutsch, sprache]
-pfade: [python_strings3]
 voraussetzungen: []
 quelle:
   url: null

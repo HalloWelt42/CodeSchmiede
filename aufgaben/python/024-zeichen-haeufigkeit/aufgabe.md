@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [strings, dict, count]
-pfade: [python_dicts]
 voraussetzungen: [022-wortzaehler]
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 22
 schaetz_minuten: 10
 tags: [funktional, listen, pipeline, dispatch]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

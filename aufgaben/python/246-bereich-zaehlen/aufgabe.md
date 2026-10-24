@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 6
 schaetz_minuten: 4
 tags: [listen, vergleich, zaehlen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

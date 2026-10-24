@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 6
 tags: [javascript, strings, codierung, url, web]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/URL_encoding

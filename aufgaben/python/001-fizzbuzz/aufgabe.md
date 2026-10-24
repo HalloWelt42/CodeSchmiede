@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 10
 tags: [if-else, modulo, schleifen, klassiker]
-pfade: [python_grundlagen]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Fizz_buzz

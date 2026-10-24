@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 8
 tags: [zahlen, runden, prozent, alltag]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

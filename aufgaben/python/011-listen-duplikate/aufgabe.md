@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 25
 schaetz_minuten: 10
 tags: [listen, set, reihenfolge]
-pfade: [python_listen]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 35
 schaetz_minuten: 12
 tags: [rekursion, mathematik, klassiker]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

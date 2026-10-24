@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 12
 tags: [matrix, listen, max-min]
-pfade: [python_logik]
 voraussetzungen: [063-spalten-summe]
 quelle:
   url: null

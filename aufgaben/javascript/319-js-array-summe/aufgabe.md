@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 5
 tags: [javascript, array, reduce, modern]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

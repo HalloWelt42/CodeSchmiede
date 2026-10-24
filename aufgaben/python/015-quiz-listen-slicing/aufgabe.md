@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 4
 tags: [quiz, slicing, listen, output]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 25
 schaetz_minuten: 18
 tags: [bfs, sets, suche, ratsel]
-pfade: [python_algorithmen2]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Krug-Problem

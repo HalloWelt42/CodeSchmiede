@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [strings, regex, social-media]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

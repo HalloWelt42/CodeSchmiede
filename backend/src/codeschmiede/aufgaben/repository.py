@@ -21,6 +21,8 @@ class AufgabenRepository:
         self.loader = loader
         self._aufgaben: dict[str, Aufgabe] = {}
         self._pfade: dict[str, Pfad] = {}
+        # Abgeleitet aus den Pfad-Dateien (einzige Wahrheit): Aufgabe -> Pfade
+        self._pfade_je_aufgabe: dict[str, list[str]] = {}
         # Cache fuer Performance-Vergleich. Wird beim Reindex geleert,
         # weil sich die Musterloesungen geaendert haben koennten.
         self._musterloesungen_metriken: dict[str, list[dict]] = {}
@@ -48,6 +50,10 @@ class AufgabenRepository:
 
         self._aufgaben = {a.id: a for a in aufgaben}
         self._pfade = {p.id: p for p in pfade}
+        self._pfade_je_aufgabe = {}
+        for p in pfade:
+            for aid in p.reihenfolge:
+                self._pfade_je_aufgabe.setdefault(aid, []).append(p.id)
 
         aktuelle_aufgaben_ids = {a.id for a in aufgaben}
 
@@ -88,7 +94,7 @@ class AufgabenRepository:
                     """,
                     (
                         a.id, a.titel, a.sprache, a.schwierigkeit, a.schwierigkeit_score,
-                        a.schaetz_minuten, json.dumps(a.tags), json.dumps(a.pfade),
+                        a.schaetz_minuten, json.dumps(a.tags), json.dumps(self.pfade_von(a.id)),
                         json.dumps(a.voraussetzungen), a.task_type, a.runner_type,
                         a.revision, str(a.dateipfad), a.hash,
                     ),
@@ -135,6 +141,10 @@ class AufgabenRepository:
                 (aufgabe_id,),
             ).fetchall()
         return [dict(r) for r in rows]
+
+    def pfade_von(self, aufgabe_id: str) -> list[str]:
+        """Pfade, in deren Reihenfolge die Aufgabe steht."""
+        return self._pfade_je_aufgabe.get(aufgabe_id, [])
 
     def alle_aufgaben(self) -> list[Aufgabe]:
         return list(self._aufgaben.values())

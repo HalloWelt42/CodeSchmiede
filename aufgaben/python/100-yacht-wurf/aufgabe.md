@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 12
 tags: [zahlen, listen, dict, spiel]
-pfade: [python_logik]
 voraussetzungen: []
 quelle:
   url: null

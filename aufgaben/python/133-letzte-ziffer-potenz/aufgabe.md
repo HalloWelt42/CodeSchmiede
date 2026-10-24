@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [zahlen, modulo, potenz, optimierung]
-pfade: [python_mathe2]
 voraussetzungen: [021-potenz]
 quelle:
   url: null

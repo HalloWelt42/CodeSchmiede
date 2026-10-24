@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 45
 schaetz_minuten: 15
 tags: [dict, recursion, nested, merge]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

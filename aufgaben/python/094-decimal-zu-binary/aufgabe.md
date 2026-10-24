@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [zahlen, strings, basis-konvertierung]
-pfade: [python_codes]
 voraussetzungen: [093-binary-zu-decimal]
 quelle:
   url: null

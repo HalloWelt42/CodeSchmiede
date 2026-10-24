@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 6
 tags: [zahlen, listen, ggt, kgv]
-pfade: [python_mathe2]
 voraussetzungen: [124-ggt-multi]
 quelle:
   url: https://de.wikipedia.org/wiki/Kleinstes_gemeinsames_Vielfaches

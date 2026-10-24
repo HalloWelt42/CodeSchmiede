@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 10
 schaetz_minuten: 4
 tags: [math, round]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- SQL-Generator.

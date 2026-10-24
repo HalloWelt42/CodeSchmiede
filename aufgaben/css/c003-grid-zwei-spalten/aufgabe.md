@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 14
 schaetz_minuten: 7
 tags: [grid, layout, gap]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- CSS-Grid-Basics.

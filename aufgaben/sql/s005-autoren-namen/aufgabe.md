@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 4
 schaetz_minuten: 2
 tags: [select, basics]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- SQL-Generator.

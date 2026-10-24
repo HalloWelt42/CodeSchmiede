@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 22
 schaetz_minuten: 10
 tags: [javascript, array, modulo, modern]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/General_FizzBuzz

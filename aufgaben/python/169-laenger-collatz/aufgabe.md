@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 35
 schaetz_minuten: 15
 tags: [collatz, mathematik, schleifen, optimierung]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

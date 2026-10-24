@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 55
 schaetz_minuten: 25
 tags: [matrix, listen, 2d, spirale, simulation]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

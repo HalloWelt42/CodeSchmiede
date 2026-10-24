@@ -78,8 +78,12 @@ Direkt danach folgt die Markdown-Beschreibung.
 | `task_type`           | string   | `code_schreiben`   | `code_schreiben`, `bug_finden`, `lueckentext`, `output_quiz`, `sql_abfrage`, `css_klon` |
 | `runner_type`         | string   | `docker_python`    | wie in `_konfig.yml` für die Sprache: `docker_python`, `docker_javascript`, `docker_sqlite`, `iframe_css` |
 | `tags`                | string[] | `[]`               | Frei wählbare Schlagworte (Kleinbuchstaben, kebab-case) |
-| `pfade`               | string[] | `[]`               | IDs von Lernpfaden, denen die Aufgabe angehört |
 | `voraussetzungen`     | string[] | `[]`               | IDs anderer Aufgaben, die vorher Sinn ergeben |
+
+Ein Feld `pfade` gibt es nicht (mehr): Welche Aufgabe in welchem Lernpfad
+steht und an welcher Stelle, legt allein die Pfad-Datei
+`aufgaben/pfade/<pfad-id>.yml` mit ihrer `reihenfolge` fest. Eine Aufgabe
+mit `pfade` im Kopf wird nicht eingelesen.
 | `quelle.url`          | string   | `null`             | Optionaler Link zur Inspirationsquelle |
 | `quelle.notiz`        | string   | `null`             | Bemerkung zur Quelle (z.B. "eigene Reformulierung") |
 | `lizenz`              | enum     | `eigen`            | `eigen`, `PD`, `CC-BY-4.0`, `BSD-3`, `MIT` |
@@ -359,7 +363,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 5
 tags: [listen, schleifen, akkumulator]
-pfade: [python_grundlagen]
 voraussetzungen: []
 quelle:
   url: null

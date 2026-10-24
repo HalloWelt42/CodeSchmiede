@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 32
 schaetz_minuten: 12
 tags: [mathematik, schleifen, modulo, primzahlen]
-pfade: [python_listen]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: https://de.wikipedia.org/wiki/Primzahl

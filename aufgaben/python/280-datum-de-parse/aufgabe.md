@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 25
 schaetz_minuten: 10
 tags: [strings, regex, capture-groups, datum]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

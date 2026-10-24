@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 22
 schaetz_minuten: 10
 tags: [namedtuple, geometrie, klassen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

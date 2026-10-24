@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 28
 schaetz_minuten: 12
 tags: [generator, yield, listen, chain]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

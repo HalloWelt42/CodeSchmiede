@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [zahlen, datum, modulo]
-pfade: [python_datum]
 voraussetzungen: []
 quelle:
   url: null

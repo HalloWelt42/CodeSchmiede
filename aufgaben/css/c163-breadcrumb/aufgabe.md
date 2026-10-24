@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [breadcrumb, nav, komponente]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- CSS-Klon-Generator.

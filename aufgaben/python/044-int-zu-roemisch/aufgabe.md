@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 12
 tags: [zahlen, schleifen, roemisch, greedy]
-pfade: [python_mathe2]
 voraussetzungen: [043-roemisch-zu-int]
 quelle:
   url: https://de.wikipedia.org/wiki/R%C3%B6mische_Zahlen

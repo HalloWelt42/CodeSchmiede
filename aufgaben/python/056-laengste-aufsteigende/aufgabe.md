@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 10
 tags: [listen, schleifen, monotone-folge]
-pfade: [python_listen3]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [strings, vergleich, zip, schleifen]
-pfade: [python_strings3]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Hamming-Abstand

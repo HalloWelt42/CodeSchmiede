@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [listen, vergleich, slicing]
-pfade: [python_listen3]
 voraussetzungen: []
 quelle:
   url: null

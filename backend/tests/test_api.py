@@ -106,3 +106,17 @@ def test_ungueltige_id_und_funktion_abgelehnt(client):
     assert client.post("/api/admin/aufgaben", json={"frontmatter": fm}).status_code == 400
     fm = {**fm, "id": "013-neu", "funktion": "f(); import os"}
     assert client.post("/api/admin/aufgaben", json={"frontmatter": fm}).status_code == 400
+
+
+def test_pfade_kommen_aus_der_pfad_datei(client):
+    assert client.get("/api/aufgaben/001-verdoppeln").json()["pfade"] == ["start"]
+    assert client.get("/api/aufgaben/003-js-summe").json()["pfade"] == []
+    ids = [a["id"] for a in client.get("/api/aufgaben?pfad=start").json()]
+    assert sorted(ids) == ["001-verdoppeln", "002-paar"]
+
+
+def test_pfade_im_aufgabenkopf_abgelehnt(client):
+    fm = {"id": "014-neu", "titel": "x", "sprache": "python", "schwierigkeit": "anfaenger",
+          "schwierigkeit_score": 1, "schaetz_minuten": 1, "pfade": ["start"]}
+    antwort = client.post("/api/admin/aufgaben", json={"frontmatter": fm})
+    assert antwort.status_code == 400 and "aufgaben/pfade" in antwort.json()["detail"]

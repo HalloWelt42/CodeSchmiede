@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 8
 tags: [strings, stack, parsing]
-pfade: [python_algorithmen2]
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 6
 tags: [matrix, listen, schleifen, sum]
-pfade: [python_logik]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null

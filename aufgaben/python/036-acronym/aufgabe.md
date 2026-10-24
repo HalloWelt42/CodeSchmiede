@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 10
 schaetz_minuten: 5
 tags: [strings, split, comprehension]
-pfade: [python_strings]
 voraussetzungen: [006-erstes-wort]
 quelle:
   url: null

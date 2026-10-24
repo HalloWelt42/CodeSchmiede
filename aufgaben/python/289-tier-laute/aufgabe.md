@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 35
 schaetz_minuten: 15
 tags: [oop, vererbung, polymorphismus, klassen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

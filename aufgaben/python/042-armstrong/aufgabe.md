@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 12
 schaetz_minuten: 7
 tags: [zahlen, ziffern, potenz]
-pfade: [python_mathe2]
 voraussetzungen: [016-quersumme, 021-potenz]
 quelle:
   url: https://de.wikipedia.org/wiki/Narzisstische_Zahl

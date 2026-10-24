@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 22
 schaetz_minuten: 10
 tags: [generator, yield, listen, paare]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

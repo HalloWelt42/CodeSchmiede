@@ -108,7 +108,7 @@ def baue_progress_router(state: AppState) -> APIRouter:
             return aid not in progress_dict or progress_dict[aid].status != "geloest"
 
         # Erstens: gleichen Pfad nehmen, nächste offene nach der aktuellen
-        for pfad_id in aktuell.pfade:
+        for pfad_id in state.aufgaben.pfade_von(aktuell.id):
             pfad = state.aufgaben.pfad(pfad_id)
             if not pfad:
                 continue

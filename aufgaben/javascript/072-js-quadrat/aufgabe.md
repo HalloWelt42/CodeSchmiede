@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 5
 schaetz_minuten: 3
 tags: [javascript, einsteiger, arithmetik]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

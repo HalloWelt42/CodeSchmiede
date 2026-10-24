@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 5
 tags: [listen, statistik, sum]
-pfade: [python_listen]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 4
 tags: [zahlen, formel, mathematik]
-pfade: [python_mathe]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Gau%C3%9Fsche_Summenformel

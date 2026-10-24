@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 5
 tags: [button, padding, border-radius, farbe]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- klassischer Pill-Button.

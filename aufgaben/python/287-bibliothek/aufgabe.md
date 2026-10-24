@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 28
 schaetz_minuten: 12
 tags: [oop, klassen, dict, set]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

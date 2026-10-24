@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 50
 schaetz_minuten: 18
 tags: [strings, dp, algorithmen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

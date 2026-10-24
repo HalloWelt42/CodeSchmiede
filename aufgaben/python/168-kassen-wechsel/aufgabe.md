@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 22
 schaetz_minuten: 10
 tags: [greedy, listen, geld, schleifen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

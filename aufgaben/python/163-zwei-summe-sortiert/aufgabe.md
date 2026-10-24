@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 30
 schaetz_minuten: 12
 tags: [listen, two-pointers, suchen, algorithmen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

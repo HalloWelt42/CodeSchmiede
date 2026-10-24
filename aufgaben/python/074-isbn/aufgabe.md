@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 8
 tags: [zahlen, strings, modulo, buchcodes]
-pfade: [python_codes]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Internationale_Standardbuchnummer

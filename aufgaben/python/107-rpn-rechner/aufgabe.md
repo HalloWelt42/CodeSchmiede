@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 12
 tags: [stack, strings, parsing, taschenrechner]
-pfade: [python_algorithmen2]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Umgekehrte_polnische_Notation

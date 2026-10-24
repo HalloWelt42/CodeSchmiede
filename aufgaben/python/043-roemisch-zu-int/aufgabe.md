@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 10
 tags: [strings, dict, roemisch, schleifen]
-pfade: [python_mathe2]
 voraussetzungen: [022-wortzaehler]
 quelle:
   url: https://de.wikipedia.org/wiki/R%C3%B6mische_Zahlen

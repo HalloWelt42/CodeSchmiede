@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 12
 schaetz_minuten: 5
 tags: [select, where, join, kategorie]
-pfade: []
 voraussetzungen: []
 quelle:
   notiz: Eigene Aufgabe -- JOIN + WHERE.

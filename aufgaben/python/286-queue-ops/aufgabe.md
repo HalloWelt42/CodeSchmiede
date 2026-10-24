@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 22
 schaetz_minuten: 10
 tags: [oop, klassen, queue, deque]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

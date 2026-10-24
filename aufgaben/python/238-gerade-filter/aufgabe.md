@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 4
 schaetz_minuten: 3
 tags: [listen, filter, modulo]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

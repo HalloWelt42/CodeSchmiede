@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 6
 tags: [javascript, zahlen, mathematik, teiler]
-pfade: []
 voraussetzungen: []
 quelle:
   url: https://rosettacode.org/wiki/Tau_function

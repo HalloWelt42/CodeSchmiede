@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 14
 schaetz_minuten: 8
 tags: [zahlen, teiler, schleifen]
-pfade: [python_mathe2]
 voraussetzungen: [018-ggt]
 quelle:
   url: https://de.wikipedia.org/wiki/Vollkommene_Zahl

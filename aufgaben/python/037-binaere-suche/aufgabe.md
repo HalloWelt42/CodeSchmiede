@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 12
 tags: [algorithmen, suche, listen, schleifen]
-pfade: [python_algorithmen]
 voraussetzungen: [012-listen-sortieren]
 quelle:
   url: https://de.wikipedia.org/wiki/Bin%C3%A4re_Suche

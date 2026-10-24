@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 6
 schaetz_minuten: 3
 tags: [bug-finden, listen, off-by-one]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

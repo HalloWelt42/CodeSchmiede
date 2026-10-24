@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 35
 schaetz_minuten: 20
 tags: [rekursion, iteration, memoisierung, performance]
-pfade: [python_grundlagen]
 voraussetzungen: [001-fizzbuzz]
 quelle:
   url: https://de.wikipedia.org/wiki/Fibonacci-Folge

@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 22
 schaetz_minuten: 15
 tags: [algorithmen, primzahlen, listen]
-pfade: [python_algorithmen]
 voraussetzungen: [019-primfaktoren]
 quelle:
   url: https://de.wikipedia.org/wiki/Sieb_des_Eratosthenes

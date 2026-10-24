@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 8
 schaetz_minuten: 4
 tags: [lueckentext, modulo, if-else]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 12
 schaetz_minuten: 6
 tags: [listen, set, mengen]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

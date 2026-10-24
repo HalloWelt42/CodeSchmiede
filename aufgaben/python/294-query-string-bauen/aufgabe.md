@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 22
 schaetz_minuten: 10
 tags: [strings, dict, url, formatierung]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

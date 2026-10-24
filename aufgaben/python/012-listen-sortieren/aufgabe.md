@@ -10,7 +10,6 @@ schwierigkeit: anfaenger
 schwierigkeit_score: 14
 schaetz_minuten: 6
 tags: [listen, sortieren]
-pfade: [python_listen]
 voraussetzungen: [009-listen-summe]
 quelle:
   url: null

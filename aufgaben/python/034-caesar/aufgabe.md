@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 18
 schaetz_minuten: 12
 tags: [strings, krypto, modulo, ord]
-pfade: [python_strings]
 voraussetzungen: [005-text-umkehren]
 quelle:
   url: https://de.wikipedia.org/wiki/Caesar-Verschl%C3%BCsselung

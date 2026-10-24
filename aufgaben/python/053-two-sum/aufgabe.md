@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 10
 tags: [listen, dict, suche, hashing]
-pfade: [python_listen3]
 voraussetzungen: [022-wortzaehler]
 quelle:
   url: null

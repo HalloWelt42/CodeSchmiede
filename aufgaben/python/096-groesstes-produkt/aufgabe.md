@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 9
 tags: [zahlen, strings, sliding-window, project-euler]
-pfade: [python_mathe2]
 voraussetzungen: [054-sliding-summe]
 quelle:
   url: https://projecteuler.net/problem=8

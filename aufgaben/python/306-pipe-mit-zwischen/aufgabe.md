@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 30
 schaetz_minuten: 12
 tags: [funktional, pipe, listen, debug]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

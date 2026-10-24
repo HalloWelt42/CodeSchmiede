@@ -10,7 +10,6 @@ schwierigkeit: fortgeschritten
 schwierigkeit_score: 40
 schaetz_minuten: 15
 tags: [dict, parsing, nested, recursion]
-pfade: []
 voraussetzungen: []
 quelle:
   url: null

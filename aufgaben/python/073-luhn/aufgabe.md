@@ -10,7 +10,6 @@ schwierigkeit: mittel
 schwierigkeit_score: 16
 schaetz_minuten: 10
 tags: [zahlen, strings, modulo, kreditkarten]
-pfade: [python_codes]
 voraussetzungen: []
 quelle:
   url: https://de.wikipedia.org/wiki/Luhn-Algorithmus
