@@ -125,10 +125,22 @@
     if (ox !== undefined) { vergleich.style.setProperty('--ox', ox + '%'); vergleich.style.setProperty('--oy', oy + '%'); }
     document.getElementById('zoomwert').textContent = Math.round(zoom * 100) + ' %';
   }
+  // Gedämpft: Trackpad und Mac-Maus liefern viele kleine Impulse. Die Stärke
+  // folgt der Scrollweite, je Bildschirmbild wird höchstens einmal gezoomt und
+  // ein einzelner Schritt ist auf +-8 % begrenzt.
+  let gesammelt = 0, letzteLage = null, geplant = false;
   document.querySelectorAll('.buehne').forEach((b) => b.addEventListener('wheel', (e) => {
     e.preventDefault();
     const r = b.getBoundingClientRect();
-    setzeZoom(zoom * (e.deltaY < 0 ? 1.2 : 1 / 1.2), ((e.clientX - r.left) / r.width) * 100, ((e.clientY - r.top) / r.height) * 100);
+    gesammelt += e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+    letzteLage = [((e.clientX - r.left) / r.width) * 100, ((e.clientY - r.top) / r.height) * 100];
+    if (geplant) return;
+    geplant = true;
+    requestAnimationFrame(() => {
+      const faktor = Math.min(1.08, Math.max(1 / 1.08, Math.exp(-gesammelt * 0.0015)));
+      setzeZoom(zoom * faktor, ...letzteLage);
+      gesammelt = 0; geplant = false;
+    });
   }, { passive: false }));
   document.getElementById('zoom-zurueck').addEventListener('click', () => setzeZoom(1, 50, 50));
 </script>
