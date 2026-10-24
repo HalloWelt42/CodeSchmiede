@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="de" data-geraet="telefon" data-bereich="aufgaben">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entwurf Telefon: Aufgaben</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<script src="daten.js"></script>
+<script src="hilfen.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="seiten-kopf">
+      <div class="titelzeile"><h1>Aufgaben</h1><span class="treffer" style="margin-left:auto"><span class="num">644</span></span></div>
+      <label class="suche" style="height:44px"><i class="fa-solid fa-magnifying-glass"></i><input placeholder="Suchen"></label>
+      <div class="t-chips">
+        <span class="chip akz">Alle</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip"><i class="fa-solid fa-sliders"></i>Filter</span>
+      </div>
+    </header>
+    <div class="rollfeld t-liste" id="liste"></div>
+  </div>
+</template>
+<script>
+  document.getElementById('inhalt').content.getElementById('liste').innerHTML = DATEN.aufgaben.map((a) => {
+    const s = STATUS[a.id] || 'neu';
+    return `<div class="t-eintrag" onclick="location.href='telefon-aufgabe.html'">
+      <i class="fa-solid ${STATUS_ICON(s)} status-i ${s}"></i>
+      <div style="min-width:0"><b>${a.titel}</b>
+        <div class="unter"><span class="badge st-${a.schwierigkeit}">${STUFE(a.schwierigkeit)}</span><span class="badge sprache">${SPRACHE(a.sprache)}</span><span>${a.schaetz_minuten} min</span><span class="num">${s === 'geloest' ? a.schwierigkeit_score : 0}/${a.schwierigkeit_score}</span></div>
+      </div>
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>`;
+  }).join('');
+</script>
+<script src="gemeinsam.js"></script>
+</body>
+</html>

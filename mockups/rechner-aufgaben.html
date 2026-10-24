@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="aufgaben">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Aufgaben</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<script src="daten.js"></script>
+<script src="hilfen.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="seiten-kopf">
+      <div class="titelzeile">
+        <h1>Aufgaben</h1>
+        <span class="lead">644 Aufgaben in 4 Sprachen, 1 gelöst, 1 in Arbeit</span>
+      </div>
+      <div class="filter">
+        <label class="suche"><i class="fa-solid fa-magnifying-glass"></i><input placeholder="Suchen (Titel, ID, Tag)"></label>
+        <select class="wahl"><option>Alle Sprachen</option></select>
+        <select class="wahl"><option>Alle Stufen</option></select>
+        <select class="wahl"><option>Alle Status</option></select>
+        <select class="wahl"><option>Alle Pfade</option></select>
+        <span class="treffer"><span class="num">644</span> Treffer</span>
+      </div>
+    </header>
+    <div class="rollfeld ohne-rand">
+      <div class="tabelle" id="tabelle">
+        <div class="t-kopf cols-aufgaben"><span></span><span>Aufgabe</span><span>Stufe</span><span>Sprache</span><span class="rechts-b">Zeit</span><span class="rechts-b">Punkte</span><span>Tags</span></div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  const t = document.getElementById('inhalt').content.getElementById('tabelle');
+  t.insertAdjacentHTML('beforeend', DATEN.aufgaben.map((a) => {
+    const s = STATUS[a.id] || 'neu';
+    return `<div class="t-zeile cols-aufgaben ${s}">
+      <i class="fa-solid ${STATUS_ICON(s)} status-i ${s}"></i>
+      <span class="zelle-titel"><b>${a.titel}</b><span>${a.id}</span></span>
+      <span><span class="badge st-${a.schwierigkeit}">${STUFE(a.schwierigkeit)}</span></span>
+      <span><span class="badge sprache">${SPRACHE(a.sprache)}</span></span>
+      <span class="rechts-b dim">${a.schaetz_minuten} min</span>
+      <span class="rechts-b num">${s === 'geloest' ? a.schwierigkeit_score : 0}/${a.schwierigkeit_score}</span>
+      <span class="zelle-tags">${a.tags.map((x) => `<span class="tag">#${x}</span>`).join('')}</span>
+    </div>`;
+  }).join(''));
+</script>
+<script src="gemeinsam.js"></script>
+</body>
+</html>

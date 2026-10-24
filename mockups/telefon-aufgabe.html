@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de" data-geraet="telefon" data-bereich="aufgaben">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entwurf Telefon: Aufgabe</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<script src="daten.js"></script>
+<script src="hilfen.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="seiten-kopf">
+      <div class="titelzeile">
+        <button class="ikon" onclick="location.href='telefon-aufgaben.html'"><i class="fa-solid fa-arrow-left"></i></button>
+        <span class="zelle-titel"><b style="font-size:var(--fs-lg)">Nur gerade Zahlen behalten</b><span>Anfänger, Python, 3 min, 0 / 4 Punkte</span></span>
+      </div>
+      <div class="segment">
+        <button data-gruppe="a" data-ziel="p-aufgabe" class="aktiv"><i class="fa-solid fa-file-lines"></i>Aufgabe</button>
+        <button data-gruppe="a" data-ziel="p-code"><i class="fa-solid fa-code"></i>Code</button>
+        <button data-gruppe="a" data-ziel="p-ergebnis"><i class="fa-solid fa-flask"></i>Ergebnis</button>
+      </div>
+    </header>
+    <div class="t-pane aktiv" data-pane="a" id="p-aufgabe">
+      <div class="rollfeld md">
+        <p>Schreibe <code>nur_gerade(zahlen)</code>, die alle <b>geraden Zahlen</b> aus der Liste liefert, in der <b>ursprünglichen Reihenfolge</b>.</p>
+        <p>Null zählt als gerade. Negative gerade Zahlen ebenso.</p>
+        <h2>Beispiele</h2>
+        <table><tr><th>Liste</th><th>Ergebnis</th></tr><tr><td><code>[1, 2, 3, 4, 5]</code></td><td><code>[2, 4]</code></td></tr><tr><td><code>[1, 3, 5]</code></td><td><code>[]</code></td></tr></table>
+        <h2>Hints</h2>
+        <p style="font-family:var(--sans)"><button class="knopf"><i class="fa-solid fa-lock-open"></i>Hint 1 kostenlos</button></p>
+      </div>
+      <div class="t-unten"><button class="knopf voll" data-gruppe="a" data-ziel="p-code"><i class="fa-solid fa-code"></i>Zum Code</button></div>
+    </div>
+    <div class="t-pane" data-pane="a" id="p-code">
+      <div class="rollfeld" style="padding:0;background:var(--bg)">
+        <div class="editor" style="font-size:15px">
+          <div><span class="ln">1</span><span><span class="kw">def</span> nur_gerade(zahlen):</span></div>
+          <div><span class="ln">2</span><span>    <span class="kw">return</span> [x <span class="kw">for</span> x</span></div>
+          <div><span class="ln">3</span><span>        <span class="kw">in</span> zahlen <span class="kw">if</span> x % 2 == 0]</span></div>
+        </div>
+      </div>
+      <div class="t-unten"><button class="knopf voll" data-gruppe="a" data-ziel="p-ergebnis"><i class="fa-solid fa-play"></i>Prüfen</button></div>
+    </div>
+    <div class="t-pane" data-pane="a" id="p-ergebnis">
+      <div class="rollfeld">
+        <div class="ergebnis-kopf"><i class="fa-solid fa-circle-check"></i>Bestanden<span class="num">10 / 10</span></div>
+        <div class="test-zeile"><i class="fa-solid fa-check ok"></i>[1, 2, 3, 4, 5] -&gt; [2, 4]</div>
+        <div class="test-zeile"><i class="fa-solid fa-check ok"></i>[] -&gt; []</div>
+        <div class="test-zeile"><i class="fa-solid fa-check ok"></i>6 versteckte Tests</div>
+        <p class="dim">Laufzeit 41 ms, +4 Punkte</p>
+      </div>
+      <div class="t-unten"><button class="knopf voll"><i class="fa-solid fa-forward"></i>Nächste Aufgabe</button></div>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+</body>
+</html>

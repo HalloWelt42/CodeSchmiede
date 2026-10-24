@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="verwaltung">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Verwaltung</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<script src="daten.js"></script>
+<script src="hilfen.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="seiten-kopf">
+      <div class="titelzeile">
+        <h1>Verwaltung</h1>
+        <span class="lead">Alle indizierten Aufgaben mit versteckten Tests, nur hier sichtbar</span>
+        <div class="aktionen">
+          <button class="knopf primaer"><i class="fa-solid fa-plus"></i>Neue Aufgabe</button>
+          <button class="knopf"><i class="fa-solid fa-rotate"></i>Neu laden</button>
+          <button class="knopf gefahr"><i class="fa-solid fa-trash-can"></i>Alles zurücksetzen</button>
+        </div>
+      </div>
+      <nav class="reiter">
+        <button class="aktiv"><i class="fa-solid fa-list-check"></i>Aufgaben <span class="num">644</span></button>
+        <button><i class="fa-solid fa-route"></i>Pfade <span class="num">34</span></button>
+      </nav>
+      <div class="kennzahlen">
+        <div class="kennzahl"><span class="num">644</span><small>Aufgaben</small></div>
+        <div class="kennzahl"><span class="num">4</span><small>Sprachen</small></div>
+        <div class="kennzahl"><span class="num">34</span><small>Pfade</small></div>
+        <div class="kennzahl"><span class="num">3</span><small>Submissions</small></div>
+        <div class="kennzahl"><span class="num">1</span><small>gelöst</small></div>
+      </div>
+      <div class="filter">
+        <label class="suche"><i class="fa-solid fa-magnifying-glass"></i><input placeholder="Suchen (ID, Titel, Tag, Pfad)"></label>
+        <select class="wahl"><option>Alle Sprachen</option></select>
+        <select class="wahl"><option>Alle Stufen</option></select>
+        <select class="wahl"><option>Alle Pfade</option></select>
+        <span class="treffer"><span class="num">644</span> Aufgaben</span>
+      </div>
+    </header>
+    <div class="rollfeld ohne-rand">
+      <div class="tabelle" id="tabelle">
+        <div class="t-kopf cols-verwaltung"><span>Aufgabe</span><span>Stufe</span><span>Sprache</span><span class="rechts-b">Rev</span><span class="rechts-b">Tests</span><span class="rechts-b">Hints</span><span class="rechts-b">Muster</span><span class="rechts-b">Versuche</span><span></span></div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  const t = document.getElementById('inhalt').content.getElementById('tabelle');
+  const d = DATEN.detail;
+  const ausklapp = `<div class="ausklapp">
+    <nav>
+      <button data-gruppe="v" data-ziel="v-tests" class="aktiv">Tests <span class="num">${d.tests_sichtbar.length} + ${d.anzahl_versteckte_tests}</span></button>
+      <button data-gruppe="v" data-ziel="v-text">Beschreibung</button>
+      <button data-gruppe="v" data-ziel="v-hints">Hints <span class="num">${d.hints.length}</span></button>
+      <button data-gruppe="v" data-ziel="v-start">Starter-Code</button>
+      <button data-gruppe="v" data-ziel="v-technik">Technische Daten</button>
+    </nav>
+    <div class="inhalt">
+      <div class="t-pane aktiv" data-pane="v" id="v-tests">
+        <table class="testtab"><thead><tr><th>Art</th><th>Eingabe</th><th>Erwartet</th></tr></thead><tbody>
+        ${d.tests_sichtbar.map((x) => `<tr><td class="dim">sichtbar</td><td>${JSON.stringify(x.input)}</td><td>${JSON.stringify(x.expected)}</td></tr>`).join('')}
+        <tr><td class="warnmarke">versteckt</td><td>[[0]]</td><td>[0]</td></tr>
+        <tr><td class="warnmarke">versteckt</td><td>[[-2, -1, 0, 1, 2]]</td><td>[-2, 0, 2]</td></tr>
+        </tbody></table>
+      </div>
+      <div class="t-pane" data-pane="v" id="v-text"><div class="md"><p>Schreibe <code>nur_gerade(zahlen)</code>, die alle geraden Zahlen aus der Liste liefert, in der ursprünglichen Reihenfolge.</p></div></div>
+      <div class="t-pane" data-pane="v" id="v-hints">${d.hints.map((h) => `<p class="md"><span class="badge">${h.kosten} Punkte</span> ${h.text}</p>`).join('')}</div>
+      <div class="t-pane" data-pane="v" id="v-start"><pre class="editor">${d.starter_code}</pre></div>
+      <div class="t-pane" data-pane="v" id="v-technik"><p class="dim">schema_version 1, revision 1, task_type code_schreiben, runner_type docker_python, zeitlimit 5 s</p></div>
+    </div>
+  </div>`;
+  t.insertAdjacentHTML('beforeend', DATEN.aufgaben.slice(0, 30).map((a, i) => {
+    const offen = a.id === d.id;
+    return `<div class="t-zeile cols-verwaltung ${offen ? 'offen' : ''}">
+      <span class="zelle-titel"><b>${a.titel}</b><span>${a.id}</span></span>
+      <span><span class="badge st-${a.schwierigkeit}">${STUFE(a.schwierigkeit)}</span></span>
+      <span><span class="badge sprache">${SPRACHE(a.sprache)}</span></span>
+      <span class="rechts-b num">1</span>
+      <span class="rechts-b num">4+6</span>
+      <span class="rechts-b num">2</span>
+      <span class="rechts-b num">${i % 3}</span>
+      <span class="rechts-b num">${STATUS[a.id] ? 2 : 0}</span>
+      <span class="zeilen-aktionen"><button class="ikon" title="Bearbeiten"><i class="fa-solid fa-pen"></i></button><button class="ikon" title="Duplizieren"><i class="fa-solid fa-copy"></i></button><button class="ikon" title="Löschen"><i class="fa-solid fa-trash-can"></i></button><button class="ikon" title="Öffnen"><i class="fa-solid fa-arrow-right"></i></button></span>
+    </div>${offen ? ausklapp : ''}`;
+  }).join(''));
+</script>
+<script src="gemeinsam.js"></script>
+</body>
+</html>

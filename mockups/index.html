@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwürfe Codeschmiede</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<style>
+  html, body { overflow: auto; height: auto; }
+  main { padding: 16px 20px 40px; max-width: 1500px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--fg-dim); margin: 22px 0 8px; }
+  p { color: var(--fg-dim); margin: 0 0 6px; max-width: 900px; font-size: 14px; }
+  .reihe { display: flex; flex-wrap: wrap; gap: 14px; }
+  .rahmen { display: flex; flex-direction: column; gap: 6px; }
+  .rahmen a { color: var(--accent); font-size: 13px; text-decoration: none; }
+  iframe { border: 1px solid var(--border-strong); background: var(--bg); }
+  .rechner iframe { width: 640px; height: 380px; zoom: 1; transform: none; }
+  .rechner .skal { width: 640px; height: 380px; overflow: hidden; border: 1px solid var(--border-strong); }
+  .rechner .skal iframe { width: 1280px; height: 760px; transform: scale(.5); transform-origin: 0 0; border: 0; }
+  .telefon-r iframe { width: 390px; height: 760px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Entwürfe Codeschmiede</h1>
+  <p>Fester Kopf je Seite (Titel, Reiter, Kennzahlen, Filter), nur der Inhalt rollt. Engere Abstände, Kennzahlen als schmale Leiste, Listen als Tabellen mit fester Kopfzeile. Am Telefon eine eigene Schale mit Reitern unten und der Aufgabe in drei Schritten (Aufgabe, Code, Ergebnis). Die Verwaltung bleibt am Rechner.</p>
+  <p>Echte Daten aus der laufenden Codeschmiede. Seiten anklicken öffnet sie in voller Größe.</p>
+  <h2>Rechner (1280 x 760, halb verkleinert)</h2>
+  <div class="reihe rechner">
+    <div class="rahmen"><a href="rechner-start.html">Dashboard</a><div class="skal"><iframe src="rechner-start.html"></iframe></div></div>
+    <div class="rahmen"><a href="rechner-aufgaben.html">Aufgaben</a><div class="skal"><iframe src="rechner-aufgaben.html"></iframe></div></div>
+    <div class="rahmen"><a href="rechner-aufgabe.html">Aufgabe</a><div class="skal"><iframe src="rechner-aufgabe.html"></iframe></div></div>
+    <div class="rahmen"><a href="rechner-pfade.html">Pfade</a><div class="skal"><iframe src="rechner-pfade.html"></iframe></div></div>
+    <div class="rahmen"><a href="rechner-verwaltung.html">Verwaltung</a><div class="skal"><iframe src="rechner-verwaltung.html"></iframe></div></div>
+  </div>
+  <h2>Telefon (390 breit)</h2>
+  <div class="reihe telefon-r">
+    <div class="rahmen"><a href="telefon-start.html">Dashboard</a><iframe src="telefon-start.html"></iframe></div>
+    <div class="rahmen"><a href="telefon-aufgaben.html">Aufgaben</a><iframe src="telefon-aufgaben.html"></iframe></div>
+    <div class="rahmen"><a href="telefon-aufgabe.html">Aufgabe</a><iframe src="telefon-aufgabe.html"></iframe></div>
+    <div class="rahmen"><a href="telefon-pfade.html">Pfade</a><iframe src="telefon-pfade.html"></iframe></div>
+  </div>
+</main>
+</body>
+</html>

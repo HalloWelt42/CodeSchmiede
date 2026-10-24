@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="de" data-geraet="telefon" data-bereich="dashboard">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entwurf Telefon: Dashboard</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<script src="daten.js"></script>
+<script src="hilfen.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="seiten-kopf">
+      <div class="titelzeile"><h1>Willkommen zurück</h1></div>
+      <span class="lead">1 von 3 Submissions bestanden</span>
+    </header>
+    <div class="rollfeld">
+      <div class="t-karten">
+        <div class="karte"><i class="fa-solid fa-bullseye"></i><div style="min-width:0;flex:1"><span class="k-titel">Tagesziel</span><div class="k-wert">1 fällig</div><span class="k-unter">Zwei Werte tauschen</span></div><i class="fa-solid fa-chevron-right mute" style="font-size:14px;width:auto"></i></div>
+        <div class="karte"><i class="fa-solid fa-clock-rotate-left"></i><div style="min-width:0;flex:1"><span class="k-titel">Weitermachen</span><div class="k-wert">Erste n Elemente einer Liste</div><span class="k-unter">In Arbeit, 1 Versuch</span></div><i class="fa-solid fa-chevron-right mute" style="font-size:14px;width:auto"></i></div>
+        <div class="karte"><i class="fa-solid fa-fire"></i><div style="min-width:0;flex:1"><span class="k-titel">Streak</span><div class="k-wert">1 Tag</div><span class="k-unter">Persönliche Bestmarke</span></div></div>
+      </div>
+      <div class="block">
+        <div class="block-kopf"><span>Fortschritt</span><span class="num">1 / 644</span></div>
+        <div class="balken"><span style="width:.4%"></span></div>
+        <div class="chips">
+          <span class="chip gruen">1 gelöst</span><span class="chip orange">1 in Arbeit</span><span class="chip akz">4 Punkte</span>
+        </div>
+      </div>
+      <div class="block">
+        <div class="block-kopf"><span>Letzte 12 Wochen</span><span>2 aktive Tage</span></div>
+        <div class="heat" id="heat"></div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  document.getElementById('inhalt').content.getElementById('heat').innerHTML =
+    Array.from({ length: 12 * 7 }, (_, i) => `<span class="${i === 40 ? 'h2' : ''}"></span>`).join('');
+</script>
+<script src="gemeinsam.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de" data-geraet="telefon" data-bereich="pfade">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entwurf Telefon: Pfade</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<script src="daten.js"></script>
+<script src="hilfen.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="seiten-kopf">
+      <div class="titelzeile"><h1>Pfade</h1><span class="treffer" style="margin-left:auto"><span class="num">34</span></span></div>
+      <div class="t-chips"><span class="chip akz">Alle</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
+    </header>
+    <div class="rollfeld t-liste" id="liste"></div>
+  </div>
+</template>
+<script>
+  document.getElementById('inhalt').content.getElementById('liste').innerHTML = DATEN.pfade.map((p) => {
+    const g = p.schritte.filter(([id]) => STATUS[id] === 'geloest').length;
+    return `<div class="t-eintrag">
+      <i class="fa-solid fa-route" style="color:var(--accent)"></i>
+      <div style="min-width:0"><b>${p.titel}</b>
+        <div class="unter"><span class="badge sprache">${SPRACHE(p.sprache)}</span><span class="num">${g} / ${p.schritte.length}</span><span class="balken" style="flex:1;min-width:60px"><span style="width:${(g / Math.max(1, p.schritte.length)) * 100}%"></span></span></div>
+      </div>
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>`;
+  }).join('');
+</script>
+<script src="gemeinsam.js"></script>
+</body>
+</html>

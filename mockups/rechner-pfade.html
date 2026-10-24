@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="pfade">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Pfade</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<script src="daten.js"></script>
+<script src="hilfen.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="seiten-kopf">
+      <div class="titelzeile">
+        <h1>Pfade</h1>
+        <span class="lead">34 didaktisch geordnete Reihen, nach Sprache gruppiert</span>
+      </div>
+      <div class="filter">
+        <label class="suche"><i class="fa-solid fa-magnifying-glass"></i><input placeholder="Pfad suchen"></label>
+        <select class="wahl"><option>Alle Sprachen</option></select>
+        <select class="wahl"><option>Alle Stände</option></select>
+      </div>
+    </header>
+    <div class="rollfeld" id="liste"></div>
+  </div>
+</template>
+<script>
+  const l = document.getElementById('inhalt').content.getElementById('liste');
+  const gruppen = {};
+  DATEN.pfade.forEach((p) => (gruppen[p.sprache || 'sonstige'] ||= []).push(p));
+  let erster = true;
+  l.innerHTML = Object.entries(gruppen).map(([sp, liste]) => `
+    <div class="gruppe">${SPRACHE(sp)} <span class="num">${liste.length}</span></div>
+    ${liste.map((p) => {
+      const offen = erster && sp === 'python' && (erster = false, true);
+      const geloest = p.schritte.filter(([id]) => STATUS[id] === 'geloest').length;
+      return `<div class="pfad ${offen ? 'offen' : ''}">
+        <div class="pfad-zeile">
+          <i class="fa-solid ${offen ? 'fa-chevron-down' : 'fa-chevron-right'} chev"></i>
+          <b>${p.titel}</b>
+          <span class="dim num" style="font-weight:500">${p.schritte.length} Aufgaben</span>
+          <span class="balken"><span style="width:${(geloest / Math.max(1, p.schritte.length)) * 100}%"></span></span>
+          <span class="dim num rechts-b">${geloest} / ${p.schritte.length}</span>
+        </div>
+        ${offen ? `<div class="schritte"><div class="pfad-text">${p.beschreibung}</div>${p.schritte.map(([id, t], i) => `<div class="schritt ${STATUS[id] || ''}"><span class="nr">${i + 1}</span><span class="t">${t}</span><i class="fa-solid ${STATUS_ICON(STATUS[id])}"></i></div>`).join('')}</div>` : ''}
+      </div>`;
+    }).join('')}`).join('');
+</script>
+<script src="gemeinsam.js"></script>
+</body>
+</html>
