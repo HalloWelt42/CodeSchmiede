@@ -88,6 +88,8 @@ class BeispielSicht(BaseModel):
     id: str
     code: str
     vorhersage: VorhersageSicht | None = None
+    eingabe: list[str] = []
+    """Was input() liest; die Oberfläche zeigt es neben der Ausgabe."""
     ablauf: bool = True
 
 

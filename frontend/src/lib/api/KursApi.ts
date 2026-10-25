@@ -43,7 +43,7 @@ export type TeilSicht =
   | { art: 'augenzwinkern'; text: string }
   | { art: 'zeichnung'; url: string; unterschrift: string }
   | { art: 'diagramm'; url: string | null; titel: string }
-  | { art: 'beispiel'; id: string; code: string; vorhersage: VorhersageSicht | null; ablauf: boolean }
+  | { art: 'beispiel'; id: string; code: string; vorhersage: VorhersageSicht | null; eingabe: string[]; ablauf: boolean }
   | { art: 'frage'; frage: FrageSicht };
 
 export type BeispielTeil = Extract<TeilSicht, { art: 'beispiel' }>;

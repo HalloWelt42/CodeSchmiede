@@ -17,3 +17,6 @@ bloecke:
       - einfuehrung: py-text
         uebungen: [k041-zusammenkleben, k042-fstring-luecke, k043-wie-lang, k044-erster-letzter, k045-ausschnitt, k046-schreihals, k047-umtaufen]
         projekt: [k049-notenbuch-kopfzeile]
+      - einfuehrung: py-umwandeln
+        uebungen: [k051-aus-text-wird-zahl, k052-verwandeln, k053-begruessung, k054-doppelt-so-alt, k055-kommapreis, k056-zwei-zahlen, k057-verteilen-mit-eingabe]
+        projekt: [k059-notenbuch-eingabe]

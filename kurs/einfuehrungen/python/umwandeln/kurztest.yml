@@ -1,0 +1,41 @@
+# Kurztest zu Kapitel 5: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-abschneiden
+    text: Was gibt `print(int(7.99))` aus?
+    als_code: true
+    optionen:
+      - text: '7'
+        richtig: true
+        erklaerung: Richtig, int schneidet ab, ohne zu runden.
+      - text: '8'
+        erklaerung: int rundet nicht, es schneidet den Teil hinter dem Punkt ab.
+      - text: '7.99'
+        erklaerung: int macht eine ganze Zahl daraus.
+  - frageart: luecke
+    id: kt-luecke-input
+    text: Ergänze so, dass die eingetippte Zahl verdreifacht wird.
+    code: zahl = ___(input())
+    antworten: [["int", "float"]]
+    erklaerung: Richtig, erst umwandeln, dann lässt sich rechnen.
+    hinweis: input liefert Text. Was macht daraus eine Zahl?
+  - frageart: fehlerstelle
+    id: kt-fehler-valueerror
+    text: Dieses Programm meldet ValueError. Welche Zeile?
+    code: |
+      a = int("12")
+      b = int("drei")
+      print(a + b)
+    zeile: 2
+    erklaerung: Genau, "drei" ist ein Wort und keine Ziffernfolge.
+    hinweis: Welcher Text lässt sich nicht in eine Zahl verwandeln?
+  - frageart: ordnen
+    id: kt-ordnen-eingabe
+    text: Erst fragen, dann umwandeln, dann rechnen und ausgeben. Bring die Zeilen in Reihenfolge.
+    zeilen:
+      - antwort = input("Wie viele Fische? ")
+      - anzahl = int(antwort)
+      - print(anzahl * 3)
+    erklaerung: Richtig. Ohne die Umwandlung würde print den Text dreimal hintereinander ausgeben.
+    hinweis: Was du umwandeln willst, musst du vorher eingelesen haben.
+uebung: k058-geburtstag

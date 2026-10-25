@@ -66,3 +66,9 @@ def test_endlosschleife_bricht_mit_zeit_ab(docker_runner):
 def test_keine_namen_des_aufzeichners_sichtbar(docker_runner):
     a = aufzeichnen(docker_runner, "import math\nx = math.pi\n", GENUG)
     assert set(a.schritte[-1].rahmen[0].variablen) == {"x"}
+
+
+def test_eingabe_fuer_input(docker_runner):
+    a = aufzeichnen(docker_runner, 'name = input("Name? ")\nalter = int(input())\nprint(name, alter + 1)\n', GENUG, ["Pia", "4"])
+    assert a.fehler is None and a.ausgabe == "Name? Pia 5\n"
+    assert _namen(a.schritte[1])["alter"] == "4"

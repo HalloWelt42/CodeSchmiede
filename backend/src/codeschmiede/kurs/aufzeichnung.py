@@ -76,6 +76,7 @@ import json as _j, sys as _s, io as _io, types as _t
 _BEISPIEL = __BEISPIEL__
 _MAX_SCHRITTE, _MAX_TIEFE, _MAX_ELEMENTE, _MAX_ZEICHEN = __GRENZEN__
 _code = _j.loads(__CODE__)
+_eingabe = _j.loads(__EINGABE__)
 
 class _Mitschrift(_io.TextIOBase):
     def __init__(self):
@@ -171,6 +172,7 @@ def _verfolgen(frame, ereignis, arg):
 _ergebnis = {"fehler": None, "fehlerzeile": None}
 _echt = _s.stdout
 _s.stdout = _mitschrift
+_s.stdin = _io.StringIO("".join(z + "\n" for z in _eingabe))
 _namen = {"__name__": "__main__"}
 try:
     _uebersetzt = compile(_code, _BEISPIEL, "exec")
@@ -201,20 +203,22 @@ print(_j.dumps({"schritte": _schritte, "ausgabe": "".join(_mitschrift.alles), "g
 '''
 
 
-def skript(code: str, marke: str) -> str:
-    """Das Python-Skript für die Sandbox: Aufzeichner mit dem Nutzercode als Zeichenkette."""
+def skript(code: str, marke: str, eingabe: list[str] | None = None) -> str:
+    """Das Python-Skript für die Sandbox: Aufzeichner mit dem Nutzercode als Zeichenkette und den Zeilen für input()."""
     return (
         _AUFZEICHNER.replace("__BEISPIEL__", repr(BEISPIEL))
+        .replace("__EINGABE__", repr(json.dumps(eingabe or [])))
         .replace("__GRENZEN__", repr((MAX_SCHRITTE, MAX_TIEFE, MAX_ELEMENTE, MAX_ZEICHEN)))
         .replace("__MARKE__", repr(marke))
         .replace("__CODE__", repr(json.dumps(code)))
     )
 
 
-def aufzeichnen(runner: Runner, code: str, limits: RunLimits | None = None) -> Aufzeichnung:
-    """Führt Python-Code in der Sandbox aus und liefert Ausgabe, Fehler und die Schritte mit dem Speicher."""
+def aufzeichnen(runner: Runner, code: str, limits: RunLimits | None = None, eingabe: list[str] | None = None) -> Aufzeichnung:
+    """Führt Python-Code in der Sandbox aus und liefert Ausgabe, Fehler und die Schritte mit dem Speicher; input()
+    liest die Zeilen aus `eingabe`."""
     marke = neue_marke()
-    erg = runner.run_code(skript(code, marke), "python", limits or RunLimits())
+    erg = runner.run_code(skript(code, marke, eingabe), "python", limits or RunLimits())
     _, block = lies_block(erg, marke)
     if block is None:
         # Der Aufzeichner kam nicht bis zum Ende: Zeit, Speicher oder Ausgabeflut

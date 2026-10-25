@@ -128,7 +128,7 @@ def test_beispiele_laufen_und_vorhersagen_stimmen(state):
             for t in a.teile:
                 if not isinstance(t, Beispiel):
                     continue
-                lauf = aufzeichnen(state.runner, t.code, RunLimits(timeout_sekunden=15))
+                lauf = aufzeichnen(state.runner, t.code, RunLimits(timeout_sekunden=15), t.eingabe)
                 if lauf.fehler:
                     falsch.append(f"{e.id}/{t.id}: {lauf.fehler}")
                     continue

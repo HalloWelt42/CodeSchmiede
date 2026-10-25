@@ -197,6 +197,8 @@ class Beispiel(Streng):
     id: str = Field(pattern=KENNUNG)
     code: str
     vorhersage: Vorhersage | None = None
+    eingabe: list[str] = Field(default_factory=list)
+    """Zeilen, die input() der Reihe nach liest."""
     ablauf: bool = True
     """Ablauf und Speicherbild aus der Aufzeichnung anbieten (nur Python)."""
 

@@ -105,6 +105,9 @@
     <div class="sperre"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i><span>Erst vorhersagen, dann ausführen.</span></div>
   {/if}
 
+  {#if beispiel.eingabe.length}
+    <div class="eingabe-zeile"><span class="dim">Eingabe für input():</span>{#each beispiel.eingabe as z, i (i)}<code>{z}</code>{/each}</div>
+  {/if}
   {#if lauf}
     <pre class="ausgabe">{#if ausgabeBisher}{ausgabeBisher}{:else}<span class="leer">Noch keine Ausgabe</span>{/if}</pre>
     {#if lauf.fehler && schritt === schritte.length}
@@ -131,4 +134,5 @@
   .werkbank-inhalt > * { flex-shrink: 0; }
   .werkbank-editor { height: 220px; border: 1px solid var(--border); }
   .rechts { margin-left: auto; }
+  .eingabe-zeile { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--fs-sm); }
 </style>

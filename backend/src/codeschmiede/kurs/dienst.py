@@ -243,7 +243,7 @@ class Kursdienst:
             return DiagrammSicht(url=f"/api/kurs/diagramme/{t.pruefsumme}.svg" if datei else None, titel=t.titel)
         if isinstance(t, Beispiel):
             v = t.vorhersage
-            return BeispielSicht(id=t.id, code=t.code, ablauf=t.ablauf and e.kopf.sprache == "python", vorhersage=None if v is None else VorhersageSicht(
+            return BeispielSicht(id=t.id, code=t.code, eingabe=t.eingabe, ablauf=t.ablauf and e.kopf.sprache == "python", vorhersage=None if v is None else VorhersageSicht(
                 art=v.art, optionen=[o.text for o in v.optionen] or None,
                 beantwortet=stand.beantwortet("vorhersage", e.id, t.id), richtig=stand.richtig("vorhersage", e.id, t.id)))
         if isinstance(t, FrageTeil):
@@ -339,10 +339,10 @@ class Kursdienst:
     def lauf(self, e: Einfuehrung, b: Beispiel, code: str | None = None) -> Aufzeichnung:
         """Aufzeichnung eines Beispiels; das Original wird je Inhalt nur einmal gerechnet."""
         quelltext = b.code if code is None else code
-        schluessel = hashlib.sha256(quelltext.encode()).hexdigest()
+        schluessel = hashlib.sha256((quelltext + "\0" + "\n".join(b.eingabe)).encode()).hexdigest()
         if code is None and schluessel in self._laeufe:
             return self._laeufe[schluessel]
-        ergebnis = aufzeichnen(self._runner(), quelltext, LAUF)
+        ergebnis = aufzeichnen(self._runner(), quelltext, LAUF, b.eingabe)
         if code is None and not ergebnis.zeitueberschreitung:
             self._laeufe[schluessel] = ergebnis
         return ergebnis
