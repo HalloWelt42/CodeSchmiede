@@ -201,6 +201,8 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .spalte.mitte { background: var(--bg); }
 .spalten-kopf { flex: none; height: 34px; display: flex; align-items: center; gap: var(--sp-2); padding: 0 var(--sp-3); border-bottom: 1px solid var(--border); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .06em; color: var(--fg-dim); }
 .spalten-kopf .knopf { margin-left: auto; height: 26px; }
+.spalten-kopf .knopf + .knopf { margin-left: var(--sp-2); }
+.spalten-kopf .kopf-titel { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .spalte .rollfeld { padding: var(--sp-3); }
 .md { font-family: var(--quick); font-size: var(--fs-md); }
 .md h2 { font-family: var(--sans); font-size: var(--fs-lg); margin: var(--sp-3) 0 var(--sp-1); }
@@ -301,7 +303,7 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .auftrag-ziel span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* Meisterschaft je Bereich */
 .meister { display: grid; grid-template-columns: 22px 92px minmax(0, 1fr) 72px; gap: 6px var(--sp-2); align-items: center; font-size: var(--fs-sm); }
-.medaille { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; color: var(--bg); background: var(--fg-mute); }
+.medaille { width: 20px; height: 20px; flex: none; overflow: hidden; border-radius: 50%; display: grid; place-items: center; font-size: 10px; color: var(--bg); background: var(--fg-mute); }
 .medaille.gold { background: var(--gold); } .medaille.silber { background: var(--silber); } .medaille.bronze { background: var(--bronze); }
 .medaille.keine { background: transparent; border: 1px dashed var(--border-strong); color: var(--fg-mute); }
 .meister .num { text-align: right; font-weight: 500; color: var(--fg-dim); }
@@ -324,6 +326,10 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .belohnung .zeile i { width: 16px; text-align: center; color: var(--accent); }
 .belohnung .zeile .medaille { width: 16px; height: 16px; font-size: 8px; }
 .belohnung .balken span { transition: width .9s ease-out; }
+
+/* CSS-Aufgabe: Punkte in zwei Teilen (Deckung, Kürze ab 99 %) */
+.punkte-teile { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: var(--sp-2); align-items: center; font-size: var(--fs-xs); color: var(--fg-dim); }
+.punkte-teile .num { color: var(--fg); font-weight: 600; }
 
 /* ----- Spiele ----- */
 .spiel-raster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-2); }
@@ -357,7 +363,7 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .befehle { display: flex; flex-wrap: wrap; gap: 4px; }
 .befehle code { font-size: 12px; }
 .ablauf { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
-.welten { display: flex; gap: 4px; }
+.welten { display: flex; flex-wrap: wrap; gap: 4px; }
 .welten .chip.ok { color: var(--green); border-color: var(--green); }
 .welten .chip.nein { color: var(--red); border-color: var(--red); }
 /* SQL-Krimi */

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="spiele">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: SQL-Krimi</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<style>
+  .krimi-seite { flex: 1; min-height: 0; display: grid; grid-template-columns: clamp(220px, 24vw, 360px) minmax(0, 1fr) clamp(240px, 24vw, 340px); }
+  .krimi-seite > .spalte + .spalte { border-left: 1px solid var(--border); }
+  .ergebnis-feld { flex: 1; min-height: 0; overflow: auto; border-top: 1px solid var(--border); background: var(--bg-card); }
+  .editor-feld { flex: none; height: 46%; overflow: auto; }
+</style>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="a-kopf">
+      <button class="ikon"><i class="fa-solid fa-arrow-left"></i></button>
+      <span class="zelle-titel"><b>Fall 1: Der verschwundene Pokal</b><span>SQL-Krimi, Kapitel 4 von 8: Der Schlüsseldienst</span></span>
+      <div class="meta">
+        <div class="level-leiste"><span class="level-punkt fertig">1</span><span class="level-punkt fertig">2</span><span class="level-punkt fertig">3</span><span class="level-punkt aktuell">4</span><span class="level-punkt zu">5</span><span class="level-punkt zu">6</span><span class="level-punkt zu">7</span><span class="level-punkt zu">8</span></div>
+        <span class="num" style="color:var(--accent)"><i class="fa-solid fa-coins"></i> 0 / 15</span>
+      </div>
+    </header>
+    <div class="krimi-seite">
+      <section class="spalte">
+        <nav class="reiter-klein"><button class="aktiv">Akte</button><button>Tabellen</button><button>Hinweise</button></nav>
+        <div class="rollfeld akte md">
+          <div class="kapitel">Kapitel 4</div>
+          <p>Der Pokal stand in der Vitrine im ersten Stock, und die Vitrine war abgeschlossen. Wer sie geöffnet hat, brauchte einen Schlüssel oder jemanden, der einen machen kann.</p>
+          <blockquote>"Am Abend war noch ein Handwerker im Haus", sagt der Hausmeister. "Kam mit einem blauen Lieferwagen."</blockquote>
+          <p>Die Stadt führt ein Register der Schlüsseldienste, und jede Fahrt in die Innenstadt steht in der Tabelle der Durchfahrten.</p>
+          <div class="frage"><i class="fa-solid fa-circle-question"></i> Welcher Schlüsseldienst war am Tatabend mit einem blauen Wagen in der Innenstadt? Gesucht ist sein Name.</div>
+          <div class="gruppe">Pinnwand</div>
+          <div class="pinnwand">
+            <div class="notiz"><b>Kapitel 1</b>Tatzeit 21:40 bis 22:10</div>
+            <div class="notiz"><b>Kapitel 2</b>Zeugin: Frau Brenner, Hausnummer 14</div>
+            <div class="notiz"><b>Kapitel 3</b>Vitrine ohne Spuren aufgeschlossen</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte mitte">
+        <div class="spalten-kopf"><span class="kopf-titel">Abfrage, Datensatz Altstadt</span><button class="knopf" style="margin-left:auto"><i class="fa-solid fa-play"></i>Ausführen</button><button class="knopf voll"><i class="fa-solid fa-gavel"></i>Prüfen</button></div>
+        <div class="editor-feld">
+          <div class="editor">
+            <div><span class="ln">1</span><span><span class="kw">SELECT</span> s.name, d.kennzeichen, d.zeit</span></div>
+            <div><span class="ln">2</span><span><span class="kw">FROM</span> schluesseldienste s</span></div>
+            <div><span class="ln">3</span><span><span class="kw">JOIN</span> fahrzeuge f <span class="kw">ON</span> f.halter_id = s.id</span></div>
+            <div><span class="ln">4</span><span><span class="kw">JOIN</span> durchfahrten d <span class="kw">ON</span> d.kennzeichen = f.kennzeichen</span></div>
+            <div><span class="ln">5</span><span><span class="kw">WHERE</span> f.farbe = <span class="str">'blau'</span></span></div>
+            <div><span class="ln">6</span><span>  <span class="kw">AND</span> d.zeit <span class="kw">BETWEEN</span> <span class="str">'2026-03-14 21:00'</span> <span class="kw">AND</span> <span class="str">'2026-03-14 22:30'</span>;</span></div>
+          </div>
+        </div>
+        <div class="ergebnis-feld">
+          <div class="spalten-kopf"><span>Ergebnis</span><span class="dim" style="margin-left:auto;text-transform:none;letter-spacing:0">2 Zeilen, 14 ms</span></div>
+          <div style="padding:var(--sp-3)">
+            <table class="daten">
+              <thead><tr><th>name</th><th>kennzeichen</th><th>zeit</th></tr></thead>
+              <tbody>
+                <tr><td>Schlüssel Sommer</td><td>LK-447-B</td><td>2026-03-14 21:22</td></tr>
+                <tr><td>Fix und Fertig</td><td>LK-102-F</td><td>2026-03-14 22:41</td></tr>
+              </tbody>
+            </table>
+            <p class="dim" style="font-size:var(--fs-sm)">Ausführen zeigt nur das Ergebnis; erst "Antwort prüfen" zählt als Versuch.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte">
+        <div class="spalten-kopf"><span>Ermittlung</span></div>
+        <div class="rollfeld">
+          <div class="belohnung">
+            <div class="belohnung-kopf"><span class="plus">+10</span><span>Kapitel 4 gelöst, 2 von 3 Sternen</span></div>
+            <div class="zeile"><i class="fa-solid fa-thumbtack"></i>Neue Notiz: <b>Schlüssel Sommer, LK-447-B</b></div>
+            <div class="zeile"><span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star aus"></i></span>3 Abfragen, Musterlösung braucht 2</div>
+          </div>
+          <div class="test-zeile"><i class="fa-solid fa-check ok"></i>Tatort-Datenbank: Antwort im Ergebnis</div>
+          <div class="test-zeile"><i class="fa-solid fa-check ok"></i>Gegenprobe (andere Befüllung): Antwort im Ergebnis</div>
+          <p class="dim" style="font-size:var(--fs-sm)">Die zweite Zeile fuhr erst 22:41 ein, nach der Tatzeit. Wer die Zeit nicht eingrenzt, bekommt beide Namen und die Gegenprobe schlägt fehl.</p>
+          <button class="knopf primaer"><i class="fa-solid fa-book-open"></i>Kapitel 5 aufschlagen</button>
+          <div class="gruppe" style="margin-top:var(--sp-4)"><i class="fa-solid fa-chevron-right"></i>Verlauf (3)</div>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+</body>
+</html>

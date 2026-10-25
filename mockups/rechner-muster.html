@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="spiele">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Muster-Jagd</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<style>
+  .muster-seite { flex: 1; min-height: 0; display: grid; grid-template-columns: clamp(232px, 22vw, 300px) minmax(0, 1fr) clamp(220px, 22vw, 320px); }
+  .muster-seite > .spalte + .spalte { border-left: 1px solid var(--border); }
+  .zwei-listen { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
+</style>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="a-kopf">
+      <button class="ikon"><i class="fa-solid fa-arrow-left"></i></button>
+      <span class="zelle-titel"><b>Level 3: Datumsangaben</b><span>Muster-Jagd, reguläre Ausdrücke (JavaScript)</span></span>
+      <div class="meta">
+        <span class="badge" style="color:var(--green)">Anfänger</span>
+        <span class="sterne gross" id="sterne-kopf"><i class="fa-regular fa-star aus"></i><i class="fa-regular fa-star aus"></i><i class="fa-regular fa-star aus"></i></span>
+        <span class="num" style="color:var(--accent)"><i class="fa-solid fa-coins"></i> 0 / 9</span>
+      </div>
+    </header>
+    <div class="muster-seite">
+      <section class="spalte">
+        <nav class="reiter-klein"><button class="aktiv">Aufgabe</button><button>Spickzettel</button><button>Verlauf</button></nav>
+        <div class="rollfeld md">
+          <p>Fang alle Datumsangaben in der deutschen Schreibweise <b>Tag.Monat.Jahr</b>. Daten in anderer Schreibweise und Zahlen, die nur so ähnlich aussehen, sind Nieten.</p>
+          <h2>Spickzettel</h2>
+          <div class="spickzettel" style="font-family:var(--sans)">
+            <code>\d</code><span>eine Ziffer</span>
+            <code>{2}</code><span>genau zweimal</span>
+            <code>\.</code><span>ein echter Punkt</span>
+            <code>^ $</code><span>Anfang und Ende</span>
+            <code>[0-3]</code><span>eine Ziffer von 0 bis 3</span>
+          </div>
+          <h2>Sterne</h2>
+          <div class="spickzettel" style="font-family:var(--sans)">
+            <span class="sterne"><i class="fa-solid fa-star"></i></span><span>alle Treffer, keine Niete, auch versteckte</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>höchstens 24 Zeichen</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>höchstens 18 Zeichen</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte mitte">
+        <div class="spalten-kopf"><span>Muster</span><span class="num" id="laenge" style="margin-left:auto;color:var(--fg);text-transform:none;letter-spacing:0">0 Zeichen</span><button class="knopf voll" style="margin-left:var(--sp-2)"><i class="fa-solid fa-play"></i>Prüfen</button></div>
+        <div class="rollfeld" style="display:flex;flex-direction:column;gap:var(--sp-3)">
+          <label class="muster-eingabe"><span>/</span><input id="muster" value="\d{2}\.\d{2}\.\d{4}" spellcheck="false" autocomplete="off"><span>/</span></label>
+          <div class="zwei-listen">
+            <div>
+              <div class="gruppe"><i class="fa-solid fa-bullseye" style="color:var(--green)"></i>Treffer, müssen passen <span class="num" id="z-treffer"></span></div>
+              <div class="zeilen-liste" id="treffer"></div>
+            </div>
+            <div>
+              <div class="gruppe"><i class="fa-solid fa-ban" style="color:var(--red)"></i>Nieten, dürfen nicht passen <span class="num" id="z-nieten"></span></div>
+              <div class="zeilen-liste" id="nieten"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte">
+        <div class="spalten-kopf"><span>Wertung</span></div>
+        <div class="rollfeld">
+          <div class="wertung-leiste" style="grid-template-columns:auto minmax(0,1fr)">
+            <div class="ring" id="ring" style="--wert:0"><span id="ring-wert">0</span></div>
+            <div class="wertung-text"><b id="urteil">Noch nicht geprüft</b><span id="unter"></span></div>
+          </div>
+          <div class="gruppe" style="margin-top:var(--sp-3)">Live markiert</div>
+          <p class="dim" style="font-size:var(--fs-sm);margin:0">Beim Tippen zeigt jede Zeile sofort, ob sie stimmt. Prüfen läuft zusätzlich gegen versteckte Zeilen.</p>
+          <div class="gruppe" style="margin-top:var(--sp-3)">Dein Bestwert</div>
+          <p style="margin:0;font-size:var(--fs-sm)"><span class="num">21</span> Zeichen, <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star aus"></i></span></p>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  // nur Entwurf: echte Markierung mit RegExp im Browser
+  const TREFFER = ['Termin am 24.10.2026', '01.01.2000', 'Geboren 31.12.1999 in Ulm', 'bis 07.03.2027', 'Am 15.08.2026 und 16.08.2026'];
+  const NIETEN = ['2026-10-24', '24/10/2026', '1.1.2000', 'Version 12.34.5678.9', 'Telefon 0711.12.3456'];
+  const eingabe = document.getElementById('muster');
+  function markieren(text, re) {
+    if (!re) return { html: text.replace(/</g, '&lt;'), passt: false };
+    let html = '', letzte = 0, passt = false;
+    for (const m of text.matchAll(re)) {
+      if (m[0] === '') break;
+      passt = true;
+      html += text.slice(letzte, m.index).replace(/</g, '&lt;') + '<mark>' + m[0].replace(/</g, '&lt;') + '</mark>';
+      letzte = m.index + m[0].length;
+    }
+    return { html: html + text.slice(letzte).replace(/</g, '&lt;'), passt };
+  }
+  function aktualisieren() {
+    let re = null;
+    try { re = new RegExp(eingabe.value, 'g'); } catch { re = null; }
+    const leer = !eingabe.value;
+    let gut = 0;
+    const zeile = (text, sollPassen) => {
+      const { html, passt } = markieren(text, leer ? null : re);
+      const ok = !leer && re && passt === sollPassen;
+      if (ok) gut++;
+      return `<div class="ziel-zeile ${leer ? '' : ok ? 'gut' : 'schlecht'}"><i class="fa-solid ${leer ? 'fa-circle' : ok ? 'fa-check' : 'fa-xmark'}"></i><span>${html}</span></div>`;
+    };
+    document.getElementById('treffer').innerHTML = TREFFER.map((t) => zeile(t, true)).join('');
+    const gutTreffer = gut;
+    document.getElementById('nieten').innerHTML = NIETEN.map((t) => zeile(t, false)).join('');
+    document.getElementById('z-treffer').textContent = `${gutTreffer} / ${TREFFER.length}`;
+    document.getElementById('z-nieten').textContent = `${gut - gutTreffer} / ${NIETEN.length}`;
+    const anteil = Math.round((gut / (TREFFER.length + NIETEN.length)) * 100);
+    document.getElementById('ring').style.setProperty('--wert', anteil);
+    document.getElementById('ring-wert').textContent = anteil;
+    document.getElementById('laenge').textContent = `${eingabe.value.length} Zeichen`;
+    document.getElementById('urteil').textContent = !re && !leer ? 'Muster unvollständig' : anteil === 100 ? 'Alle sichtbaren Zeilen stimmen' : `${gut} von ${TREFFER.length + NIETEN.length} stimmen`;
+    document.getElementById('unter').textContent = anteil === 100 ? (eingabe.value.length <= 18 ? 'kurz genug für drei Sterne' : `für drei Sterne ${eingabe.value.length - 18} Zeichen kürzer`) : 'rot markierte Zeilen ansehen';
+  }
+  eingabe.addEventListener('input', aktualisieren);
+  aktualisieren();
+</script>
+</body>
+</html>

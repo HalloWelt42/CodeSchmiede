@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="dashboard">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Erfolge</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="seiten-kopf">
+      <div class="titelzeile">
+        <h1>Erfolge</h1>
+        <span class="lead">7 von 24 erreicht; Meilensteine haben drei Stufen</span>
+      </div>
+      <div class="kennzahlen">
+        <div class="kennzahl"><span class="num" style="color:var(--gold)">2</span><small>Gold</small></div>
+        <div class="kennzahl"><span class="num" style="color:var(--silber)">2</span><small>Silber</small></div>
+        <div class="kennzahl"><span class="num" style="color:var(--bronze)">3</span><small>Bronze</small></div>
+        <div class="kennzahl"><span class="num">17</span><small>offen</small></div>
+      </div>
+    </header>
+    <div class="rollfeld">
+      <div class="gruppe">Meilensteine</div>
+      <div class="kachel-raster">
+        <div class="erfolg-kachel"><span class="gross-medaille silber"><i class="fa-solid fa-flag-checkered"></i></span><div><b>Fünfzig gelöst</b><small>Silber: 50 Aufgaben gelöst; Gold bei 200</small><div class="balken"><span style="width:28%"></span></div></div></div>
+        <div class="erfolg-kachel"><span class="gross-medaille bronze"><i class="fa-solid fa-feather"></i></span><div><b>Ohne Hilfe</b><small>Bronze: 10 Aufgaben ohne Hinweis; Silber bei 50</small><div class="balken"><span style="width:44%"></span></div></div></div>
+        <div class="erfolg-kachel gesperrt"><span class="gross-medaille"><i class="fa-solid fa-language"></i></span><div><b>Viersprachig</b><small>in jeder Sprache eine Aufgabe gelöst (3 / 4)</small><div class="balken"><span style="width:75%"></span></div></div></div>
+        <div class="erfolg-kachel gesperrt"><span class="gross-medaille"><i class="fa-solid fa-route"></i></span><div><b>Pfad gegangen</b><small>einen Pfad vollständig gelöst</small><div class="balken"><span style="width:61%"></span></div></div></div>
+      </div>
+      <div class="gruppe">Serie</div>
+      <div class="kachel-raster">
+        <div class="erfolg-kachel"><span class="gross-medaille bronze"><i class="fa-solid fa-fire"></i></span><div><b>Eine Woche am Stück</b><small>Bronze: 7 Tage; Silber bei 30, Gold bei 100</small><div class="balken"><span style="width:40%"></span></div></div></div>
+        <div class="erfolg-kachel gesperrt"><span class="gross-medaille"><i class="fa-solid fa-calendar-check"></i></span><div><b>Tagesaufträge</b><small>10 Tagesaufträge ganz erledigt (6 / 10)</small><div class="balken"><span style="width:60%"></span></div></div></div>
+      </div>
+      <div class="gruppe">Technik</div>
+      <div class="kachel-raster">
+        <div class="erfolg-kachel gesperrt"><span class="gross-medaille"><i class="fa-solid fa-crop-simple"></i></span><div><b>Volle Deckung</b><small>eine CSS-Aufgabe mit 100 % Deckung</small></div></div>
+        <div class="erfolg-kachel gesperrt"><span class="gross-medaille"><i class="fa-solid fa-compress"></i></span><div><b>Kürzer als die Musterlösung</b><small>eine Aufgabe mit weniger Zeichen als die Musterlösung bestanden</small></div></div>
+        <div class="erfolg-kachel"><span class="gross-medaille gold"><i class="fa-solid fa-bolt"></i></span><div><b>Erster Versuch</b><small>Gold: 25 Aufgaben im ersten Versuch bestanden</small></div></div>
+      </div>
+      <div class="gruppe">Spiele</div>
+      <div class="kachel-raster">
+        <div class="erfolg-kachel"><span class="gross-medaille gold"><i class="fa-solid fa-user-secret"></i></span><div><b>Fall gelöst: Der Wasserturm</b><small>alle Kapitel eines Falls, Gold mit allen drei Sternen</small></div></div>
+        <div class="erfolg-kachel gesperrt"><span class="gross-medaille"><i class="fa-solid fa-robot"></i></span><div><b>Roboter in drei Zeilen</b><small>ein Level mit höchstens drei Zeilen Code</small></div></div>
+        <div class="erfolg-kachel gesperrt"><span class="gross-medaille"><i class="fa-solid fa-stopwatch"></i></span><div><b>Fehlerfreier Sprint</b><small>eine Runde mit 10 von 10</small></div></div>
+        <div class="erfolg-kachel gesperrt"><span class="gross-medaille"><i class="fa-solid fa-crosshairs"></i></span><div><b>Scharfschütze</b><small>fünf Muster mit drei Sternen</small><div class="balken"><span style="width:20%"></span></div></div></div>
+      </div>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="schriften.css">
 <link rel="stylesheet" href="stil.css">
 <style>
-  .roboter-seite { flex: 1; min-height: 0; display: grid; grid-template-columns: clamp(250px, 22vw, 300px) minmax(0, 1fr) clamp(320px, 32vw, 460px); }
+  .roboter-seite { flex: 1; min-height: 0; display: grid; grid-template-columns: clamp(220px, 22vw, 300px) minmax(0, 1fr) clamp(260px, 28vw, 440px); }
   .roboter-seite > .spalte + .spalte { border-left: 1px solid var(--border); }
   .editor div.aktiv { background: color-mix(in srgb, var(--accent) 16%, transparent); }
   .welt-rahmen { padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); }
@@ -46,7 +46,7 @@
       </section>
 
       <section class="spalte mitte">
-        <div class="spalten-kopf"><span>Programm, Python</span><span class="num" style="margin-left:auto;color:var(--fg);text-transform:none;letter-spacing:0">131 Zeichen</span><button class="knopf" style="margin-left:var(--sp-2)" id="laufen"><i class="fa-solid fa-person-walking"></i>Laufen lassen</button><button class="knopf voll"><i class="fa-solid fa-play"></i>Prüfen</button></div>
+        <div class="spalten-kopf"><span class="kopf-titel">Programm, 131 Zeichen</span><button class="knopf" style="margin-left:auto" id="laufen"><i class="fa-solid fa-person-walking"></i>Lauf</button><button class="knopf voll"><i class="fa-solid fa-play"></i>Prüfen</button></div>
         <div class="rollfeld" style="padding:0">
           <div class="editor" id="code">
             <div data-z="1"><span class="ln">1</span><span><span class="kw">def</span> bis_zur_wand():</span></div>
@@ -111,7 +111,7 @@
   // Aktionen mit Zeile im Programm
   const schritte = [];
   const g = (n) => { for (let i = 0; i < n; i++) schritte.push(['gehe', 5]); };
-  g(3); schritte.push(['links', 8]); g(1); schritte.push(['nimm', 4]); g(2); schritte.push(['rechts', 10]); g(4); schritte.push(['links', 12]); g(4);
+  g(3); schritte.push(['links', 8]); g(2); schritte.push(['nimm', 4]); g(1); schritte.push(['rechts', 10]); g(4); schritte.push(['links', 12]); g(4);
   const R = [[1, 0], [0, -1], [-1, 0], [0, 1]]; // Osten, Norden, Westen, Süden
   let lage;
   function anfang() {

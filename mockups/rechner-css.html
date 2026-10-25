@@ -73,6 +73,12 @@
           <div class="wert-kachel"><span class="num">64</span><small>Zeichen</small></div>
           <div class="wert-kachel"><span class="num" style="color:var(--fg-dim)">52</span><small>Bestwert</small></div>
         </div>
+        <div class="punkte-teile">
+          <span><span class="num">7</span> / 9 Deckung</span>
+          <span class="balken"><span style="width:78%"></span></span>
+          <span><span class="num">0</span> / 6 Kürze <span class="dim">ab 99 %</span></span>
+          <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star aus"></i><i class="fa-solid fa-star aus"></i></span>
+        </div>
         <div class="vergleich-kopf">
           <button class="knopf-klein aktiv" data-modus="getrennt">Getrennt</button>
           <button class="knopf-klein" data-modus="blenden">Überblenden</button>
@@ -89,6 +95,7 @@
             <div class="flaeche">
               <div class="ebene" id="e-ziel" hidden><div class="motiv"></div></div>
               <div class="ebene" id="e-eigen"><div class="motiv eigen"></div></div>
+              <canvas class="ebene" id="e-diff" width="400" height="300" hidden style="width:100%;height:100%"></canvas>
             </div>
             <div class="schnittlinie" id="schnitt" hidden></div>
           </div>
@@ -110,13 +117,43 @@
   const titel = document.getElementById('unten-titel');
   function modus(m) {
     document.querySelectorAll('[data-modus]').forEach((b) => b.classList.toggle('aktiv', b.dataset.modus === m));
-    eZiel.hidden = m === 'getrennt';
     eEigen.classList.toggle('oben', m === 'blenden');
-    eEigen.classList.toggle('diff', m === 'abweichung');
+    document.getElementById('e-diff').hidden = m !== 'abweichung';
+    eZiel.hidden = m !== 'blenden';
+    eEigen.hidden = m === 'abweichung';
     schnitt.hidden = regler.hidden = m !== 'blenden';
-    titel.textContent = { getrennt: 'Deine Lösung', blenden: 'Ziel | Deine Lösung', abweichung: 'Abweichung (hell = verschieden)' }[m];
+    titel.textContent = { getrennt: 'Deine Lösung', blenden: 'Ziel | Deine Lösung', abweichung: 'Abweichung: Blau fehlt, Rot zu viel' }[m];
   }
   document.querySelectorAll('[data-modus]').forEach((b) => b.addEventListener('click', () => modus(b.dataset.modus)));
+  // Abweichungsbild wie beim Bau: je Bildpunkt gleich (gedämpft), fehlt (blau) oder zu viel bzw. falsche Farbe (rot)
+  (function abweichung() {
+    const GRUND = [15, 42, 58], KREIS = [45, 212, 191], RAUTE = [245, 158, 11];
+    const farbe = (x, y, f) => {
+      const qx = x - f.qx, qy = y - f.qy, w = (-f.dreh * Math.PI) / 180;
+      const rx = qx * Math.cos(w) - qy * Math.sin(w), ry = qx * Math.sin(w) + qy * Math.cos(w);
+      if (Math.abs(rx) <= 55 && Math.abs(ry) <= 55) return RAUTE;
+      if ((x - f.kx) ** 2 + (y - 150) ** 2 <= 75 * 75) return KREIS;
+      return GRUND;
+    };
+    const ziel = { kx: 175, qx: 255, qy: 163, dreh: 45 }, eigen = { kx: 183, qx: 255, qy: 166, dreh: 40 };
+    const c = document.getElementById('e-diff').getContext('2d');
+    const bild = c.createImageData(400, 300);
+    let gleich = 0;
+    for (let y = 0; y < 300; y++) for (let x = 0; x < 400; x++) {
+      const a = farbe(x, y, ziel), b = farbe(x, y, eigen), i = (y * 400 + x) * 4;
+      let f;
+      if (a === b) { gleich++; f = a.map((k) => k * 0.35); }
+      else if (b === GRUND) f = [96, 165, 250];
+      else f = [248, 81, 73];
+      bild.data.set([...f, 255], i);
+    }
+    c.putImageData(bild, 0, 0);
+    const deckung = gleich / 1200;
+    const ring = document.querySelector('.wertung-leiste .ring');
+    ring.style.setProperty('--wert', deckung);
+    ring.querySelector('span').textContent = deckung.toFixed(1).replace('.', ',');
+    document.querySelector('.wertung-text span').textContent = `noch ${(100 - deckung).toFixed(1).replace('.', ',')} % Abweichung`;
+  })();
   regler.addEventListener('input', () => unten.style.setProperty('--schnitt', regler.value + '%'));
   let zoom = 1;
   function setzeZoom(z, ox, oy) {
