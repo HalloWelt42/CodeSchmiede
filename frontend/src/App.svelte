@@ -20,6 +20,7 @@
   import TelefonSchale from './lib/components/telefon/TelefonSchale.svelte';
   import ZugangSeite from './lib/components/ZugangSeite.svelte';
   import { zugang } from './lib/stores/ZugangStore.svelte';
+  import { progressStore } from './lib/stores/ProgressStore.svelte';
 
   onMount(() => {
     theme.init();
@@ -35,9 +36,12 @@
     };
   });
 
-  // die Konfiguration braucht eine Anmeldung
+  // Konfiguration und Fortschritt brauchen eine Anmeldung; der Fortschritt
+  // bringt den Spielstand für den Kopf mit, auch beim Einstieg mitten in der App
   $effect(() => {
-    if (zugang.stand === 'bereit' && !konfig.geladen) void konfig.init();
+    if (zugang.stand !== 'bereit') return;
+    if (!konfig.geladen) void konfig.init();
+    if (!progressStore.gesamt && !progressStore.laden) void progressStore.ladeAlles();
   });
 </script>
 

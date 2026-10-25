@@ -1,7 +1,7 @@
 <script lang="ts">
   /* Die fünf auffälligsten Erfolge: erreichte nach Rang, dann die nächsten. */
   import type { ErfolgsListe } from '../../api/SpielApi';
-  import { route } from '../../stores/RouteStore.svelte';
+  import { pfadVon, route } from '../../stores/RouteStore.svelte';
   import { erfolgeNachStand, medaille, RANG_NAME } from '../../spielanzeige';
 
   let { erfolge, anzahl = 5 }: { erfolge: ErfolgsListe; anzahl?: number } = $props();
@@ -11,7 +11,7 @@
 <div class="block">
   <div class="block-kopf">
     <span>Erfolge</span>
-    <span><span class="num">{erfolge.erreicht} / {erfolge.gesamt}</span> <a href="#erfolge" onclick={(e) => { e.preventDefault(); route.setze('erfolge'); }}>alle</a></span>
+    <span><span class="num">{erfolge.erreicht} / {erfolge.gesamt}</span> <a href={pfadVon('erfolge')} onclick={(e) => { e.preventDefault(); route.setze('erfolge'); }}>alle</a></span>
   </div>
   {#each auswahl as e (e.id)}
     <div class="erfolg" class:da={e.erreicht} title={e.beschreibung}>
