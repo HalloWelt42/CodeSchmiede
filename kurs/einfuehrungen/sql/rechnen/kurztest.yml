@@ -1,0 +1,45 @@
+# Kurztest zu Kapitel 2: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-ganzzahl
+    text: Was liefert `SELECT 9 / 4;`?
+    als_code: true
+    optionen:
+      - text: "2"
+        richtig: true
+        erklaerung: Richtig, zwei ganze Zahlen ergeben eine ganze Zahl, der Rest fällt weg.
+      - text: "2.25"
+        erklaerung: Dafür müsste eine der Zahlen eine Kommazahl sein, etwa 9 / 4.0.
+      - text: "3"
+        erklaerung: Es wird nicht gerundet, sondern abgeschnitten.
+  - frageart: luecke
+    id: kt-verbinden
+    text: Ergänze, damit aus Fisch und Menge ein Text wie "Hering x 6" wird.
+    code: SELECT fisch ___ ' x ' ___ menge FROM fuetterungen;
+    antworten: [["||"], ["||"]]
+    erklaerung: Richtig, zweimal || klebt drei Teile zusammen.
+    hinweis: Zwei senkrechte Striche.
+  - frageart: auswahl
+    id: kt-as
+    text: 'Was ändert `SELECT gewicht_kg AS kilo FROM pinguine` an der Tabelle pinguine?'
+    optionen:
+      - text: Nichts, nur das Ergebnis hat eine Spalte kilo
+        richtig: true
+        erklaerung: Richtig, AS gilt nur für das Ergebnis dieser Abfrage.
+      - text: Die Spalte heißt danach dauerhaft kilo
+        erklaerung: Abfragen ändern keine Tabellen.
+      - text: Die Gewichte werden in Kilo umgerechnet
+        erklaerung: AS benennt um, rechnet aber nicht.
+  - frageart: auswahl
+    id: kt-runden
+    text: Was liefert `SELECT ROUND(2 / 3.0, 1);`?
+    als_code: true
+    optionen:
+      - text: "0.7"
+        richtig: true
+        erklaerung: Richtig, 0.666... auf eine Stelle gerundet.
+      - text: "0"
+        erklaerung: Mit 3.0 ist eine Kommazahl dabei, da wird genau gerechnet.
+      - text: "0.6"
+        erklaerung: ROUND rundet, es schneidet nicht ab.
+uebung: q028-besuchertafel

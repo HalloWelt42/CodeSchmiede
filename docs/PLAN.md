@@ -236,6 +236,16 @@ Offen für den Bau:
 - Erzeugte Bilder ruhen (Nutzer 25.10.2026): Stilprobe im Medienpool angelegt, acht Bilder erzeugt, Erzeugung gestoppt;
   weiter erst nach Klärung
 
+## Ergebnis Schritt 7, Teil 2: SQL-Kurs (0.82.0)
+
+- Unterbau: Einführungen zu SQL laufen auf einem Datensatz (`datensatz` im Kopf, Datensatz pinguinzoo); Beispiele zeigen
+  das Ergebnis und je Klausel die Zwischentabelle in der Reihenfolge der Abarbeitung (FROM, JOIN, WHERE, GROUP BY,
+  HAVING, SELECT, DISTINCT, ORDER BY, LIMIT), zerlegt mit dem SQL-Parser sqlglot und ausgeführt in der Sandbox;
+  Begriffserkennung und Vorgriffsprüfung über denselben Parser; Vorhersagen mit eigener Frage und Vergleich der
+  Zeilenzahl; Vertiefung auch aus den SQL-Aufgaben des Bestands
+- SQL-Kurs Kapitel 1 bis 3 (Die erste Abfrage, Rechnen und umbenennen, Zeilen filtern mit WHERE) mit eigenen
+  Zeichnungen, Diagrammen, Kurztest, je sieben Übungen und dem Kapitelprojekt Pinguinsteckbrief
+
 ## Offen
 
 - Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) zur Freigabe; Bau danach als eigener Abschnitt.
@@ -249,7 +259,9 @@ Offen für den Bau:
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
   Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.
-- Aufbaukurs weiter: die Kurse der nächsten Sprachen; Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
+- Aufbaukurs SQL weiter: Kapitel ab 4 (AND/OR/IN, LIKE und NULL, Sortieren, Zusammenfassen, Gruppen, JOIN, Unterabfragen,
+  CASE); Daten ändern (INSERT, UPDATE, DELETE, CREATE TABLE) braucht Beispiele aus mehreren Anweisungen und ihre
+  Zwischenstände; danach JavaScript und CSS; Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
 - Aufbaukurs mit Lehreinführungen: geklärt am 25.10.2026; Entwürfe liegen zur Freigabe in `mockups/` (Übersicht
   `mockups/index.html`, Abschnitt Aufbaukurs): Kursübersicht, Einführung für Python, SQL und CSS, Kurztest, Merkblatt,
   Kapitelende mit Sammelkarte, Telefon; freigegeben 25.10.2026 (der Bildbogen entfällt, Bilder kommen aus dem Medienpool).

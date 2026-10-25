@@ -1,0 +1,32 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin an einer alten Rechenmaschine mit Kurbel, aus der ein Papierstreifen kommt">
+  <ellipse cx="130" cy="168" rx="108" ry="7" fill="rgba(0,0,0,.12)"/>
+  <!-- Papierstreifen -->
+  <path d="M150 52 q6 -26 30 -30 q20 -2 26 14 q4 10 -8 16" fill="#fbf4e2" stroke="#2b3442" stroke-width="2"/>
+  <g stroke="#c9b48a" stroke-width="2" stroke-linecap="round"><path d="M160 40 l16 -6"/><path d="M166 46 l18 -8"/></g>
+  <!-- Maschine -->
+  <g stroke="#2b3442" stroke-width="2.5" stroke-linejoin="round">
+    <path d="M96 64 h112 l12 92 h-136 Z" fill="#5bb36a"/>
+    <rect x="116" y="56" width="72" height="12" rx="3" fill="#3f8a4d"/>
+    <rect x="112" y="74" width="80" height="22" rx="3" fill="#1e2b22"/>
+  </g>
+  <g fill="#f2c14e"><rect x="120" y="80" width="10" height="10" rx="1.5"/><rect x="134" y="80" width="10" height="10" rx="1.5"/><rect x="148" y="80" width="10" height="10" rx="1.5"/><rect x="162" y="80" width="10" height="10" rx="1.5"/></g>
+  <g fill="#f4f1ea" stroke="#2b3442" stroke-width="1.6">
+    <circle cx="118" cy="112" r="6"/><circle cx="136" cy="112" r="6"/><circle cx="154" cy="112" r="6"/><circle cx="172" cy="112" r="6"/>
+    <circle cx="118" cy="132" r="6"/><circle cx="136" cy="132" r="6"/><circle cx="154" cy="132" r="6"/><circle cx="172" cy="132" r="6" fill="#e2574c"/>
+  </g>
+  <!-- Kurbel -->
+  <g stroke="#2b3442" stroke-width="2.5" stroke-linecap="round">
+    <path d="M214 100 h18 v-22"/><circle cx="232" cy="74" r="5" fill="#e2574c"/>
+  </g>
+  <!-- Pinguin -->
+  <g transform="translate(52 128)">
+    <ellipse cx="0" cy="8" rx="20" ry="28" fill="#2b3442"/>
+    <ellipse cx="0" cy="13" rx="13" ry="20" fill="#f4f1ea"/>
+    <circle cx="0" cy="-26" r="15" fill="#2b3442"/>
+    <circle cx="-5" cy="-29" r="3.8" fill="#fff"/><circle cx="5" cy="-29" r="3.8" fill="#fff"/>
+    <circle cx="-3.6" cy="-28.5" r="1.9" fill="#111"/><circle cx="6.4" cy="-28.5" r="1.9" fill="#111"/>
+    <path d="M-6 -21 h12 l-6 7 Z" fill="#f2a13b"/>
+    <path d="M-8 36 h-7 M8 36 h7" stroke="#f2a13b" stroke-width="4" stroke-linecap="round"/>
+    <path d="M17 -4 q24 -10 44 -14" fill="none" stroke="#2b3442" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>

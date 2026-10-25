@@ -1,0 +1,44 @@
+# Kurztest zu Kapitel 1: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-stern
+    text: Was bedeutet der Stern in `SELECT * FROM pfleger`?
+    optionen:
+      - text: Alle Spalten der Tabelle
+        richtig: true
+        erklaerung: Richtig, * steht für jede Spalte.
+      - text: Alle Tabellen der Datenbank
+        erklaerung: Die Tabelle steht hinter FROM, hier nur pfleger.
+      - text: Nur die erste Zeile
+        erklaerung: Ohne Filter kommen alle Zeilen; * betrifft die Spalten.
+  - frageart: auswahl
+    id: kt-spalten-zahl
+    text: Wie viele Spalten hat das Ergebnis?
+    code: |
+      SELECT name, name, lage
+      FROM kolonien;
+    optionen:
+      - text: "3"
+        richtig: true
+        erklaerung: Richtig, jede Angabe hinter SELECT wird eine Spalte, auch eine doppelte.
+      - text: "2"
+        erklaerung: Doppelte Spalten fallen nicht weg, name erscheint zweimal.
+      - text: "4"
+        erklaerung: Gezählt wird, was hinter SELECT steht, nicht die Spalten der Tabelle.
+  - frageart: luecke
+    id: kt-from
+    text: Ergänze, damit alle Pfleger kommen.
+    code: SELECT name ___ pfleger;
+    antworten: [["FROM", "from"]]
+    erklaerung: Richtig, FROM nennt die Tabelle.
+    hinweis: Das Wort, das sagt, aus welcher Tabelle.
+  - frageart: ordnen
+    id: kt-ordnen
+    text: Bring die Abfrage in Reihenfolge.
+    zeilen:
+      - SELECT fisch,
+      - "       menge"
+      - FROM fuetterungen;
+    erklaerung: Richtig, erst SELECT mit den Spalten, durch Komma getrennt, dann FROM.
+    hinweis: Geschrieben wird SELECT zuerst, auch wenn die Datenbank mit FROM beginnt.
+uebung: q018-pflegerliste

@@ -1,0 +1,51 @@
+# Kurztest zu Kapitel 3: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-gleich
+    text: 'Welche Bedingung findet alle Pinguine, die nicht in der Nordkolonie wohnen?'
+    als_code: true
+    optionen:
+      - text: WHERE kolonie <> 'Nord'
+        richtig: true
+        erklaerung: Richtig, <> heißt ungleich.
+      - text: WHERE kolonie = 'Süd'
+        erklaerung: Damit fehlt die Ostkolonie.
+      - text: WHERE kolonie > 'Nord'
+        erklaerung: Größer als ein Text vergleicht nach dem Alphabet, nicht nach ungleich.
+  - frageart: auswahl
+    id: kt-schreibweise
+    text: Wie viele Zeilen liefert die Abfrage?
+    code: |
+      SELECT name
+      FROM pinguine
+      WHERE lieblingsfisch = 'lachs';
+    optionen:
+      - text: "0"
+        richtig: true
+        erklaerung: Richtig. In der Tabelle steht Lachs mit großem L; bei Texten zählt die Schreibweise.
+      - text: "2"
+        erklaerung: Pia und Polly mögen Lachs, aber mit großem L geschrieben.
+      - text: Fehler
+        erklaerung: Die Abfrage ist richtig geschrieben, sie findet nur nichts.
+  - frageart: luecke
+    id: kt-mindestens
+    text: Ergänze, damit alle Fütterungen mit mindestens fünf Fischen kommen.
+    code: |
+      SELECT *
+      FROM fuetterungen
+      WHERE menge ___ 5;
+    antworten: [[">="]]
+    erklaerung: Richtig, größer oder gleich.
+    hinweis: Mindestens fünf heißt fünf oder mehr.
+  - frageart: auswahl
+    id: kt-reihenfolge
+    text: Warum darf WHERE eine Spalte benutzen, die nicht hinter SELECT steht?
+    optionen:
+      - text: Weil WHERE abgearbeitet wird, bevor SELECT die Spalten wählt
+        richtig: true
+        erklaerung: Richtig, beim Aussieben sind noch alle Spalten da.
+      - text: Weil die Datenbank fehlende Spalten selbst ergänzt
+        erklaerung: Sie ergänzt nichts; die Spalte ist beim Aussieben einfach noch da.
+      - text: Das darf es gar nicht
+        erklaerung: Doch, das ist ganz üblich.
+uebung: q038-futtertag

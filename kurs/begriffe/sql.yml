@@ -1,0 +1,64 @@
+# Begriffskatalog SQL: woran der SQL-Parser einen Begriff erkennt. knoten sind Ausdrucksarten des Parsers (LeftJoin und
+# RightJoin für äußere Verbindungen), aufrufe Funktionen in Großbuchstaben.
+sprache: sql
+begriffe:
+  - id: select
+    titel: SELECT und FROM
+    erkennung: {knoten: [Select, From]}
+  - id: alias
+    titel: Spalten umbenennen mit AS
+    erkennung: {knoten: [Alias]}
+  - id: rechnen
+    titel: Rechnen in Spalten
+    erkennung: {knoten: [Add, Sub, Mul, Div, Mod], aufrufe: [ROUND, ABS]}
+  - id: text_verbinden
+    titel: Text verbinden mit ||
+    erkennung: {knoten: [DPipe]}
+  - id: where
+    titel: Zeilen filtern mit WHERE
+    erkennung: {knoten: [Where, EQ, NEQ, GT, LT, GTE, LTE]}
+  - id: logik
+    titel: AND, OR und NOT
+    erkennung: {knoten: [And, Or, Not]}
+  - id: in_between
+    titel: IN und BETWEEN
+    erkennung: {knoten: [In, Between]}
+  - id: like
+    titel: Muster mit LIKE
+    erkennung: {knoten: [Like]}
+  - id: null_werte
+    titel: NULL, IS NULL und COALESCE
+    erkennung: {knoten: ["Null", Is, Coalesce]}
+  - id: order_by
+    titel: Sortieren mit ORDER BY
+    erkennung: {knoten: [Order]}
+  - id: limit
+    titel: LIMIT und OFFSET
+    erkennung: {knoten: [Limit, Offset]}
+  - id: distinct
+    titel: Doppelte weglassen mit DISTINCT
+    erkennung: {knoten: [Distinct]}
+  - id: aggregat
+    titel: Zusammenfassen mit COUNT, SUM, AVG, MIN, MAX
+    erkennung: {knoten: [Count, Sum, Avg, Min, Max]}
+  - id: group_by
+    titel: Gruppieren mit GROUP BY
+    erkennung: {knoten: [Group]}
+  - id: having
+    titel: Gruppen filtern mit HAVING
+    erkennung: {knoten: [Having]}
+  - id: join
+    titel: Tabellen verbinden mit JOIN
+    erkennung: {knoten: [Join]}
+  - id: left_join
+    titel: Auch ohne Partner mit LEFT JOIN
+    erkennung: {knoten: [LeftJoin, RightJoin]}
+  - id: unterabfrage
+    titel: Abfragen in Abfragen
+    erkennung: {knoten: [Subquery]}
+  - id: case
+    titel: Fallunterscheidung mit CASE
+    erkennung: {knoten: [Case]}
+  - id: textfunktionen
+    titel: Textfunktionen
+    erkennung: {aufrufe: [UPPER, LOWER, LENGTH, SUBSTR, SUBSTRING, REPLACE, TRIM, INSTR]}
