@@ -1,0 +1,46 @@
+# Kurztest zu Kapitel 9: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-range-schritt
+    text: Was liefert `range(1, 8, 3)`?
+    als_code: true
+    optionen:
+      - text: 1, 4, 7
+        richtig: true
+        erklaerung: Richtig, ab 1 in Dreierschritten, die 8 ist nicht mehr dabei.
+      - text: 1, 4, 7, 10
+        erklaerung: Das Ende 8 wird nie erreicht oder überschritten.
+      - text: 1, 3, 5, 7
+        erklaerung: Die dritte Zahl ist die Schrittweite, also 3.
+  - frageart: fehlerstelle
+    id: kt-summe-in-schleife
+    text: Die Summe von 1 bis 4 soll 10 sein, heraus kommt 4. Welche Zeile?
+    code: |
+      for i in range(1, 5):
+          summe = 0
+          summe += i
+      print(summe)
+    zeile: 2
+    erklaerung: Genau. Die Summe wird in jeder Runde neu auf 0 gesetzt; sie gehört vor die Schleife.
+    hinweis: Wann soll der Sammler bei 0 anfangen, einmal oder in jeder Runde?
+  - frageart: luecke
+    id: kt-for-in
+    text: Ergänze, damit jedes Zeichen von wort ausgegeben wird.
+    code: |
+      for zeichen ___ wort:
+          print(zeichen)
+    antworten: [["in"]]
+    erklaerung: Richtig, for name in text.
+    hinweis: Zwischen Name und Text steht ein kurzes Wort.
+  - frageart: auswahl
+    id: kt-for-while
+    text: Welche Aufgabe löst man besser mit while als mit for?
+    optionen:
+      - text: Würfeln, bis eine 6 kommt
+        richtig: true
+        erklaerung: Richtig, niemand weiß vorher, wie oft gewürfelt wird.
+      - text: Die Zahlen von 1 bis 20 ausgeben
+        erklaerung: Hier steht fest, was durchgegangen wird; das ist ein Fall für for mit range.
+      - text: Jeden Buchstaben eines Namens prüfen
+        erklaerung: Auch hier ist klar, was durchgegangen wird; for passt.
+uebung: k098-fakultaet

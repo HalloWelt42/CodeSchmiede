@@ -1,0 +1,38 @@
+<svg viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pinguine fahren auf einem Förderband an der Fischausgabe vorbei">
+  <defs>
+    <g id="pinguin">
+      <ellipse cx="0" cy="34" rx="15" ry="4" fill="rgba(0,0,0,.18)"/>
+      <ellipse cx="0" cy="12" rx="14" ry="20" fill="#2b3442"/>
+      <ellipse cx="0" cy="16" rx="9" ry="14" fill="#f4f1ea"/>
+      <circle cx="0" cy="-10" r="10" fill="#2b3442"/>
+      <circle cx="-3.5" cy="-12" r="2.4" fill="#fff"/><circle cx="3.5" cy="-12" r="2.4" fill="#fff"/>
+      <circle cx="-3" cy="-11.6" r="1.2" fill="#111"/><circle cx="4" cy="-11.6" r="1.2" fill="#111"/>
+      <path d="M -4 -6 L 4 -6 L 0 -1 Z" fill="#f2a13b"/>
+      <path d="M -13 6 Q -20 16 -14 24" stroke="#2b3442" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M 13 6 Q 20 16 14 24" stroke="#2b3442" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="-6" cy="32" rx="5" ry="2.5" fill="#f2a13b"/><ellipse cx="6" cy="32" rx="5" ry="2.5" fill="#f2a13b"/>
+    </g>
+    <g id="fisch">
+      <ellipse cx="0" cy="0" rx="10" ry="5" fill="#7cc4e8"/>
+      <path d="M 8 0 L 16 -6 L 16 6 Z" fill="#5aa9d4"/>
+      <circle cx="-5" cy="-1" r="1.2" fill="#123"/>
+    </g>
+  </defs>
+  <rect x="10" y="118" width="200" height="22" rx="11" fill="#48505c"/>
+  <rect x="16" y="122" width="188" height="14" rx="7" fill="#5e6774"/>
+  <g fill="#3a414b">
+    <circle cx="24" cy="129" r="5"/><circle cx="52" cy="129" r="5"/><circle cx="80" cy="129" r="5"/><circle cx="108" cy="129" r="5"/>
+    <circle cx="136" cy="129" r="5"/><circle cx="164" cy="129" r="5"/><circle cx="192" cy="129" r="5"/>
+  </g>
+  <path d="M 30 152 L 190 152" stroke="#4f8fd6" stroke-width="3" stroke-dasharray="7 6"/>
+  <path d="M 190 152 l -9 -5 v 10 Z" fill="#4f8fd6"/>
+  <use href="#pinguin" transform="translate(42 80)"/>
+  <use href="#pinguin" transform="translate(96 80)"/>
+  <use href="#pinguin" transform="translate(150 80)"/>
+  <rect x="200" y="40" width="50" height="78" rx="6" fill="#f2b84b" stroke="#2b3442" stroke-width="2"/>
+  <rect x="207" y="48" width="36" height="22" rx="3" fill="#fff6dd"/>
+  <use href="#fisch" transform="translate(225 59) scale(.8)"/>
+  <path d="M 200 92 L 178 92" stroke="#6b5520" stroke-width="4" stroke-linecap="round"/>
+  <use href="#fisch" transform="translate(170 96) rotate(-20) scale(.7)"/>
+  <circle cx="225" cy="98" r="7" fill="#e5484d"/><circle cx="225" cy="98" r="3" fill="#ffb3b5"/>
+</svg>

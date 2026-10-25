@@ -28,3 +28,9 @@ bloecke:
       - einfuehrung: py-verzweigungen
         uebungen: [k071-erster-if, k072-else-ergaenzen, k073-tuersteher, k074-gerade-ungerade, k075-ampel, k076-eisgroesse, k077-groesste-zahl]
         projekt: [k079-notenbuch-urteil]
+      - einfuehrung: py-while
+        uebungen: [k081-countdown, k082-hochzaehlen, k083-bis-n, k084-summe-bis-n, k085-einkaufsliste, k086-ohne-dreier, k087-zahlenraten]
+        projekt: [k089-notenbuch-viele-noten]
+      - einfuehrung: py-for
+        uebungen: [k091-buchstabieren, k092-range-luecke, k093-einmaleins, k094-gerade-bis, k095-vokale, k096-umgedreht, k097-treppe]
+        projekt: [k099-notenbuch-sterne]
