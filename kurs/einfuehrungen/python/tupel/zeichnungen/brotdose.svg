@@ -1,0 +1,32 @@
+<svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eine Brotdose mit zwei festen Fächern, links ein Fisch, rechts ein Apfel, der Deckel mit Klebeband festgeklebt">
+  <ellipse cx="140" cy="158" rx="112" ry="8" fill="rgba(0,0,0,.15)"/>
+  <!-- Deckel hochgeklappt -->
+  <path d="M40 58 L60 18 L222 18 L240 58 Z" fill="#4fd1a5" stroke="#2b3442" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M74 30 h132" stroke="#2f9e7a" stroke-width="3" stroke-linecap="round"/>
+  <!-- Klebeband -->
+  <rect x="124" y="14" width="30" height="58" rx="3" fill="#f2b84b" stroke="#2b3442" stroke-width="2" opacity=".95" transform="rotate(4 139 43)"/>
+  <!-- Dose -->
+  <rect x="32" y="58" width="216" height="92" rx="12" fill="#4fd1a5" stroke="#2b3442" stroke-width="2.5"/>
+  <rect x="44" y="70" width="94" height="68" rx="7" fill="#e7fbf3" stroke="#2b3442" stroke-width="2"/>
+  <rect x="142" y="70" width="94" height="68" rx="7" fill="#e7fbf3" stroke="#2b3442" stroke-width="2"/>
+  <!-- Fisch links -->
+  <g transform="translate(88 104)">
+    <ellipse cx="0" cy="0" rx="26" ry="13" fill="#7cc4e8" stroke="#2b3442" stroke-width="2"/>
+    <path d="M22 0 L38 -12 L38 12 Z" fill="#5aa9d4" stroke="#2b3442" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="-13" cy="-3" r="2.6" fill="#123"/>
+    <path d="M-4 -10 q4 10 0 20" fill="none" stroke="#5aa9d4" stroke-width="2"/>
+  </g>
+  <!-- Apfel rechts -->
+  <g transform="translate(189 106)">
+    <circle cx="-8" cy="0" r="18" fill="#e5484d" stroke="#2b3442" stroke-width="2"/>
+    <circle cx="8" cy="0" r="18" fill="#e5484d" stroke="#2b3442" stroke-width="2"/>
+    <path d="M-10 0 a18 18 0 0 0 20 0" fill="#e5484d"/>
+    <path d="M0 -16 q2 -10 8 -12" fill="none" stroke="#6b4423" stroke-width="3" stroke-linecap="round"/>
+    <path d="M6 -24 q12 -4 14 6 q-10 2 -14 -6 Z" fill="#3fbf6f" stroke="#2b3442" stroke-width="1.6"/>
+    <circle cx="-12" cy="-6" r="4" fill="#fff" opacity=".45"/>
+  </g>
+  <!-- Fachnummern -->
+  <g font-family="'Chakra Petch', Barlow, monospace" font-weight="700" font-size="14" fill="#2b3442" text-anchor="middle">
+    <text x="91" y="134">0</text><text x="189" y="134">1</text>
+  </g>
+</svg>

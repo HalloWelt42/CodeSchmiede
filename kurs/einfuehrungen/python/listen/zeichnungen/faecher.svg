@@ -1,0 +1,49 @@
+<svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Regal mit vier nummerierten Fächern, darin ein Pinguin, ein Fisch, eine Robbe und eine Möwe">
+  <defs>
+    <g id="pinguin">
+      <ellipse cx="0" cy="12" rx="11" ry="15" fill="#2b3442"/><ellipse cx="0" cy="15" rx="7" ry="10.5" fill="#f4f1ea"/>
+      <circle cx="0" cy="-6" r="8" fill="#2b3442"/>
+      <circle cx="-2.8" cy="-7.5" r="1.9" fill="#fff"/><circle cx="2.8" cy="-7.5" r="1.9" fill="#fff"/>
+      <circle cx="-2.4" cy="-7.2" r="1" fill="#111"/><circle cx="3.2" cy="-7.2" r="1" fill="#111"/>
+      <path d="M-3 -3.5 h6 l-3 4 Z" fill="#f2a13b"/>
+      <ellipse cx="-4.5" cy="26" rx="4" ry="2" fill="#f2a13b"/><ellipse cx="4.5" cy="26" rx="4" ry="2" fill="#f2a13b"/>
+    </g>
+  </defs>
+  <!-- Regal -->
+  <rect x="12" y="34" width="276" height="100" rx="6" fill="#c38a55" stroke="#2b3442" stroke-width="2.5"/>
+  <g fill="#f4e4cc" stroke="#2b3442" stroke-width="2">
+    <rect x="22" y="44" width="58" height="80" rx="3"/><rect x="88" y="44" width="58" height="80" rx="3"/>
+    <rect x="154" y="44" width="58" height="80" rx="3"/><rect x="220" y="44" width="58" height="80" rx="3"/>
+  </g>
+  <!-- Inhalte -->
+  <use href="#pinguin" transform="translate(51 88)"/>
+  <g transform="translate(117 98)">
+    <ellipse cx="0" cy="0" rx="18" ry="9" fill="#7cc4e8" stroke="#2b3442" stroke-width="2"/>
+    <path d="M14 0 L26 -9 L26 9 Z" fill="#5aa9d4" stroke="#2b3442" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="-9" cy="-2" r="2" fill="#123"/>
+  </g>
+  <g transform="translate(183 100)">
+    <ellipse cx="0" cy="6" rx="20" ry="13" fill="#8a93a0" stroke="#2b3442" stroke-width="2"/>
+    <circle cx="10" cy="-6" r="10" fill="#8a93a0" stroke="#2b3442" stroke-width="2"/>
+    <circle cx="13" cy="-8" r="1.8" fill="#111"/><circle cx="18" cy="-4" r="1.6" fill="#2b3442"/>
+    <path d="M14 -2 h8 M14 0 h8" stroke="#2b3442" stroke-width="1"/>
+    <path d="M-20 10 l-6 6" stroke="#2b3442" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(249 96)">
+    <ellipse cx="0" cy="6" rx="14" ry="11" fill="#f4f1ea" stroke="#2b3442" stroke-width="2"/>
+    <circle cx="8" cy="-8" r="8" fill="#f4f1ea" stroke="#2b3442" stroke-width="2"/>
+    <path d="M15 -9 l9 2 l-9 3 Z" fill="#f2b84b" stroke="#2b3442" stroke-width="1.5"/>
+    <circle cx="10" cy="-10" r="1.5" fill="#111"/>
+    <path d="M-12 2 q-10 -6 -2 -12" fill="#8a93a0" stroke="#2b3442" stroke-width="2"/>
+    <path d="M-4 17 v6 M4 17 v6" stroke="#f2a13b" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <!-- Fachnummern -->
+  <g font-family="'Chakra Petch', Barlow, monospace" font-weight="700" font-size="16" fill="#2b3442" text-anchor="middle">
+    <rect x="41" y="138" width="20" height="18" rx="3" fill="#f2b84b"/><text x="51" y="152">0</text>
+    <rect x="107" y="138" width="20" height="18" rx="3" fill="#f2b84b"/><text x="117" y="152">1</text>
+    <rect x="173" y="138" width="20" height="18" rx="3" fill="#f2b84b"/><text x="183" y="152">2</text>
+    <rect x="239" y="138" width="20" height="18" rx="3" fill="#f2b84b"/><text x="249" y="152">3</text>
+  </g>
+  <!-- Krone des Regals -->
+  <path d="M12 34 h276" stroke="#8a5a3c" stroke-width="6" stroke-linecap="round"/>
+</svg>

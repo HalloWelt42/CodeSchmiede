@@ -34,3 +34,17 @@ bloecke:
       - einfuehrung: py-for
         uebungen: [k091-buchstabieren, k092-range-luecke, k093-einmaleins, k094-gerade-bis, k095-vokale, k096-umgedreht, k097-treppe]
         projekt: [k099-notenbuch-sterne]
+  - titel: Sammeln und ordnen
+    kapitel:
+      - einfuehrung: py-listen
+        uebungen: [k101-erste-liste, k102-fach-tauschen, k103-jeden-gruessen, k104-summe-liste, k105-dabei, k106-groesster-fang, k107-erste-drei]
+        projekt: [k109-notenbuch-liste]
+      - einfuehrung: py-listen-bearbeiten
+        uebungen: [k111-anhaengen, k112-vordraengeln, k113-einsammeln, k114-statistik, k115-rangliste, k116-verdoppeln, k117-nur-lange]
+        projekt: [k119-notenbuch-auswerten]
+      - einfuehrung: py-tupel
+        uebungen: [k121-ort, k122-tauschen-kurz, k123-abstand, k124-platzierung, k125-paare, k126-bester-eintrag, k127-eingaben-paare]
+        projekt: [k129-notenbuch-nummern]
+      - einfuehrung: py-woerterbuecher
+        uebungen: [k131-nachschlagen, k132-eintragen, k133-telefonbuch, k134-alle-zeigen, k135-woerter-zaehlen, k136-umdrehen, k137-bester-bewohner]
+        projekt: [k139-notenbuch-faecher]

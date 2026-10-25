@@ -226,8 +226,9 @@ Offen für den Bau:
 - Oberfläche: Bereich Kurs am Rechner (Übersicht, Einführung mit Werkbank, Ablauf und Speicherbild, alle Fragearten,
   Kapitelende, Kurztest, Merkblatt) und am Telefon (Kurs, Einführung lesen, Fragen, Ausführen, Ablauf); Startseiten
   führen zum aktuellen Kapitel; Programm-Aufgaben mit Ausgabevergleich und Probelauf mit Eingaben
-- Python-Kurs Kapitel 1 bis 3 (Ausgabe, Variablen, Rechnen): Einführungen mit eigenen Zeichnungen und Diagrammen,
-  je sieben Übungen, Kurztest und ein Stück des Kapitelprojekts Notenbuch; Bestandsprüfung lässt jedes Beispiel laufen
+- Python-Kurs Kapitel 1 bis 13 in drei Blöcken (Erste Schritte; Entscheiden und wiederholen; Sammeln und ordnen, mit
+  Listen, Listen bearbeiten, Tupel, Wörterbüchern): Einführungen mit eigenen Zeichnungen und Diagrammen, je sieben
+  Übungen, Kurztest mit eigener Übung und ein Stück des Kapitelprojekts Notenbuch; Bestandsprüfung lässt jedes Beispiel laufen
   und vergleicht die richtige Vorhersage mit dem echten Lauf
 - Erzeugte Bilder ruhen (Nutzer 25.10.2026): Stilprobe im Medienpool angelegt, acht Bilder erzeugt, Erzeugung gestoppt;
   weiter erst nach Klärung

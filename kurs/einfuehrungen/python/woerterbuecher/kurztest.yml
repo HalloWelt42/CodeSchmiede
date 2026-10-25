@@ -1,0 +1,51 @@
+# Kurztest zu Kapitel 13: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-lesen
+    text: Was gibt das Programm aus?
+    code: |
+      preis = {"Hering": 3, "Eis": 2}
+      preis["Eis"] = 4
+      print(preis["Eis"] + preis["Hering"])
+    optionen:
+      - text: "7"
+        richtig: true
+        erklaerung: Richtig, Eis kostet jetzt 4, dazu 3 für den Hering.
+      - text: "5"
+        erklaerung: Die zweite Zeile ändert den Preis von Eis auf 4.
+      - text: KeyError
+        erklaerung: Beide Schlüssel gibt es, also klappt das Lesen.
+    als_code: true
+  - frageart: luecke
+    id: kt-get
+    text: Ergänze, damit für unbekannte Fische 0 herauskommt statt eines Fehlers.
+    code: |
+      fang = {"Hering": 5}
+      print(fang.___("Wal", 0))
+    antworten: [["get"]]
+    erklaerung: Richtig, get liefert den Ersatzwert, wenn der Schlüssel fehlt.
+    hinweis: Das englische Wort für "holen".
+  - frageart: fehlerstelle
+    id: kt-keyerror
+    text: Dieses Programm meldet KeyError. Welche Zeile?
+    code: |
+      zimmer = {"Pia": 1, "Pit": 2}
+      zimmer["Paul"] = 3
+      print(zimmer["Pia"])
+      print(zimmer["Bodo"])
+    zeile: 4
+    erklaerung: Genau. Bodo wurde nie eingetragen; Paul dagegen schon in Zeile 2.
+    hinweis: Welcher Schlüssel wird gelesen, aber nie angelegt?
+  - frageart: auswahl
+    id: kt-items
+    text: 'Was liefert `list({"a": 1, "b": 2}.items())`?'
+    als_code: true
+    optionen:
+      - text: "[('a', 1), ('b', 2)]"
+        richtig: true
+        erklaerung: Richtig, items liefert Paare aus Schlüssel und Wert.
+      - text: "['a', 'b']"
+        erklaerung: Das wären die Schlüssel, also keys.
+      - text: "[1, 2]"
+        erklaerung: Das wären die Werte, also values.
+uebung: k138-einkaufskorb

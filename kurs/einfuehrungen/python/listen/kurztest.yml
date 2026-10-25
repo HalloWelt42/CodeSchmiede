@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 10: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-letztes
+    text: Was gibt das Programm aus?
+    code: |
+      tiere = ["Robbe", "Möwe", "Wal"]
+      tiere[0] = "Pinguin"
+      print(tiere[0], tiere[-1])
+    optionen:
+      - text: Pinguin Wal
+        richtig: true
+        erklaerung: Richtig. Fach 0 wurde neu belegt, -1 ist das letzte Fach.
+      - text: Robbe Wal
+        erklaerung: Die zweite Zeile ersetzt das Element in Fach 0.
+      - text: Pinguin Möwe
+        erklaerung: -1 zählt von hinten, das ist der Wal.
+    als_code: true
+  - frageart: luecke
+    id: kt-anhaengen
+    text: Ergänze, damit "Lachs" hinten an die Liste kommt.
+    code: vorrat = vorrat + ___
+    antworten: [['["Lachs"]', "['Lachs']"]]
+    erklaerung: Richtig. + verbindet zwei Listen, darum braucht Lachs eigene eckige Klammern.
+    hinweis: Liste plus Liste; auch ein einzelnes Element kommt in eckige Klammern.
+  - frageart: fehlerstelle
+    id: kt-falscher-index
+    text: Das Programm soll alle Elemente ausgeben, bricht aber mit IndexError ab. Welche Zeile?
+    code: |
+      fische = ["Hering", "Lachs"]
+      i = 0
+      while i <= len(fische):
+          print(fische[i])
+          i += 1
+    zeile: 3
+    erklaerung: Genau. Bei zwei Elementen ist der letzte Index 1; die Bedingung muss i < len(fische) heißen.
+    hinweis: Wie weit darf i höchstens laufen, wenn der letzte Index len - 1 ist?
+  - frageart: ordnen
+    id: kt-ordnen-liste
+    text: Erst die Liste, dann jedes Element mit seiner Länge ausgeben. Bring die Zeilen in Reihenfolge.
+    zeilen:
+      - worte = ["Eis", "Pinguin"]
+      - "for w in worte:"
+      - "    print(w, len(w))"
+    erklaerung: Richtig.
+    hinweis: Die Liste muss da sein, bevor die Schleife sie durchgeht.
+uebung: k108-ueber-schnitt

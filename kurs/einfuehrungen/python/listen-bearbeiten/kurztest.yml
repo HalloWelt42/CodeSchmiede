@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 11: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-pop
+    text: Was gibt das Programm aus?
+    code: |
+      stapel = ["Teller", "Tasse", "Glas"]
+      oben = stapel.pop()
+      print(oben, len(stapel))
+    optionen:
+      - text: Glas 2
+        richtig: true
+        erklaerung: Richtig. pop nimmt das letzte Element heraus, danach sind es zwei.
+      - text: Glas 3
+        erklaerung: pop entfernt das Element aus der Liste.
+      - text: Teller 2
+        erklaerung: Ohne Angabe nimmt pop das letzte Element, nicht das erste.
+    als_code: true
+  - frageart: luecke
+    id: kt-abstraktion
+    text: Ergänze, sodass die Liste der Quadrate entsteht.
+    code: quadrate = [z * z ___ z in range(1, 4)]
+    antworten: [["for"]]
+    erklaerung: Richtig, [ausdruck for name in folge].
+    hinweis: Dasselbe Wort wie bei der Schleife.
+  - frageart: fehlerstelle
+    id: kt-sort-none
+    text: Das Programm soll die sortierte Liste ausgeben, gibt aber None aus. Welche Zeile?
+    code: |
+      zahlen = [3, 1, 2]
+      sortiert = zahlen.sort()
+      print(sortiert)
+    zeile: 2
+    erklaerung: Genau. sort ordnet die Liste selbst und liefert None; für eine sortierte Kopie nimmt man sorted(zahlen).
+    hinweis: Was liefert sort zurück, und was sorted?
+  - frageart: auswahl
+    id: kt-auswerten
+    text: Was ergibt `max([4, 11, 7]) - min([4, 11, 7])`?
+    als_code: true
+    optionen:
+      - text: '7'
+        richtig: true
+        erklaerung: Richtig, 11 - 4.
+      - text: '22'
+        erklaerung: Das wäre die Summe. max holt das Größte, min das Kleinste.
+      - text: '4'
+        erklaerung: 4 ist das Kleinste; gefragt ist der Abstand zwischen Größtem und Kleinstem.
+uebung: k118-ohne-doppelte

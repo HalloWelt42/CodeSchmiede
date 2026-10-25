@@ -1,0 +1,51 @@
+# Kurztest zu Kapitel 12: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-entpacken
+    text: Was gibt das Programm aus?
+    code: |
+      a, b, c = 1, 2, 3
+      a, c = c, a
+      print(a, b, c)
+    optionen:
+      - text: 3 2 1
+        richtig: true
+        erklaerung: Richtig, a und c tauschen, b bleibt.
+      - text: 1 2 3
+        erklaerung: Die zweite Zeile tauscht a und c.
+      - text: 3 2 3
+        erklaerung: Beim Tauschen werden beide Werte zuerst gelesen, dann zugewiesen; keiner geht verloren.
+    als_code: true
+  - frageart: luecke
+    id: kt-enumerate
+    text: Ergänze, damit jede Zeile mit ihrer Nummer ab 1 ausgegeben wird.
+    code: |
+      for nr, zeile in ___(zeilen, 1):
+          print(nr, zeile)
+    antworten: [["enumerate"]]
+    erklaerung: Richtig, enumerate liefert Nummer und Element.
+    hinweis: Das englische Wort für "durchnummerieren".
+  - frageart: fehlerstelle
+    id: kt-tupel-aendern
+    text: Dieses Programm meldet TypeError. Welche Zeile?
+    code: |
+      punkt = (2, 5)
+      liste = [2, 5]
+      liste[0] = 9
+      punkt[0] = 9
+    zeile: 4
+    erklaerung: Genau. Ein Tupel lässt sich nicht verändern; bei der Liste klappt es.
+    hinweis: Welche der beiden Sammlungen lässt sich verändern?
+  - frageart: auswahl
+    id: kt-zip
+    text: Was liefert `list(zip([1, 2], ["a", "b"]))`?
+    als_code: true
+    optionen:
+      - text: "[(1, 'a'), (2, 'b')]"
+        richtig: true
+        erklaerung: Richtig, Paare aus beiden Listen.
+      - text: "[1, 2, 'a', 'b']"
+        erklaerung: zip hängt nicht aneinander, es bildet Paare.
+      - text: "[(1, 2), ('a', 'b')]"
+        erklaerung: "Gepaart wird Stelle für Stelle, das erste mit dem ersten."
+uebung: k128-tabelle
