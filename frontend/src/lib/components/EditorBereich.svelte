@@ -1,6 +1,6 @@
 <script lang="ts">
   /*
-   * Mittelspalte: CodeMirror 6 mit Petrol-Theme. Bidirektional an
+   * Mittelspalte: CodeMirror 6 (Ausstattung in editor/EditorFactory). Bidirektional an
    * `code` gebunden, damit der Parent (`AufgabenDetail`) den aktuellen
    * Inhalt kennt und an POST /api/submissions schicken kann.
    */
@@ -14,8 +14,10 @@
     code: string;
     /** hervorgehobene Zeile (ab 1), etwa beim Abspielen eines Laufs */
     markierteZeile?: number | null;
+    /** Befehle der Aufgabe für die Vervollständigung, etwa gehe() */
+    befehle?: readonly string[];
   }
-  let { sprache, code = $bindable(), markierteZeile = null }: Props = $props();
+  let { sprache, code = $bindable(), markierteZeile = null, befehle = [] }: Props = $props();
 
   let host: HTMLDivElement | undefined = $state();
   let view: EditorView | null = null;
@@ -26,6 +28,7 @@
       parent: host,
       sprache,
       initialerCode: code,
+      befehle,
       beiAenderung: (neuerCode) => {
         code = neuerCode;
       },

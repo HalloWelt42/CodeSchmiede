@@ -57,16 +57,6 @@
   --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
   --karo-a: #20242b;
   --karo-b: #1c2026;
-
-  --code-keyword:  #5eead4;
-  --code-name:     #e7ecf1;
-  --code-string:   #a6e3d0;
-  --code-number:   #d29922;
-  --code-comment:  #6a737e;
-  --code-operator: #5eead4;
-  --code-function: #a6e3d0;
-  --code-property: #a6e3d0;
-  --code-invalid:  #f85149;
 }
 
 /* ========== Hell ========== */
@@ -89,16 +79,6 @@
   --shadow-lg: 0 8px 24px rgba(31,35,40,0.12);
   --karo-a: #e9ebee;
   --karo-b: #f3f4f6;
-
-  --code-keyword:  #cf222e;
-  --code-name:     #1f2328;
-  --code-string:   #0a3069;
-  --code-number:   #953800;
-  --code-comment:  #6e7781;
-  --code-operator: #0550ae;
-  --code-function: #6639ba;
-  --code-property: #116329;
-  --code-invalid:  #cf222e;
 }
 
 /* ========== Telefon ==========
@@ -116,17 +96,6 @@
   font-size: 17px;
 }
 
-/* CodeMirror-Hervorhebung: Klassen aus PetrolTheme, Farben je Theme */
-.cm-cs-keyword  { color: var(--code-keyword); font-weight: 600; }
-.cm-cs-name     { color: var(--code-name); }
-.cm-cs-string   { color: var(--code-string); }
-.cm-cs-number   { color: var(--code-number); }
-.cm-cs-comment  { color: var(--code-comment); font-style: italic; }
-.cm-cs-operator { color: var(--code-operator); }
-.cm-cs-function { color: var(--code-function); }
-.cm-cs-property { color: var(--code-property); }
-.cm-cs-invalid  { color: var(--code-invalid); }
-
 /* ========== Grundlage ========== */
 * { box-sizing: border-box; }
 
@@ -141,6 +110,8 @@ html, body {
   overflow: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  /* keine zusammengezogenen Zeichen: in der Code-Schrift würde aus -> ein Pfeil, aus != ein Ungleich */
+  font-variant-ligatures: none;
   -moz-osx-font-smoothing: grayscale;
 }
 

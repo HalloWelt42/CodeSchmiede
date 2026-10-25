@@ -239,7 +239,7 @@
 
   {#snippet mitte()}
     <div class="editor-host">
-      <EditorBereich sprache="python" bind:code {markierteZeile} />
+      <EditorBereich sprache="python" bind:code {markierteZeile} befehle={BEFEHLE} />
     </div>
   {/snippet}
 
