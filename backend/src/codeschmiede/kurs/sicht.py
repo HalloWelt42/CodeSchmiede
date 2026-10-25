@@ -51,7 +51,8 @@ class TextSicht(BaseModel):
 class AlltagSicht(BaseModel):
     art: Literal["alltag"] = "alltag"
     text: str
-    bild: BildVerweis | None = None
+    zeichnung: str | None = None
+    """Adresse der eigenen Zeichnung (SVG)."""
 
 
 class MerkeSicht(BaseModel):
@@ -70,9 +71,9 @@ class AugenzwinkernSicht(BaseModel):
     text: str
 
 
-class BildSicht(BaseModel):
-    art: Literal["bild"] = "bild"
-    bild: BildVerweis
+class ZeichnungSicht(BaseModel):
+    art: Literal["zeichnung"] = "zeichnung"
+    url: str
     unterschrift: str = ""
 
 
@@ -95,7 +96,7 @@ class FrageTeilSicht(BaseModel):
     frage: FrageSicht
 
 
-TeilSicht = Annotated[TextSicht | AlltagSicht | MerkeSicht | FalleSicht | AugenzwinkernSicht | BildSicht | DiagrammSicht
+TeilSicht = Annotated[TextSicht | AlltagSicht | MerkeSicht | FalleSicht | AugenzwinkernSicht | ZeichnungSicht | DiagrammSicht
                       | BeispielSicht | FrageTeilSicht, Field(discriminator="art")]
 
 

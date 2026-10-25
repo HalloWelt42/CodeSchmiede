@@ -15,8 +15,8 @@ from ..aufgaben.bestandspruefung import Befund
 from ..models.aufgabe import Aufgabe
 from .begriffe import erkenne
 from .einlesen import Kursinhalt
-from .modelle import (Alltag, Auswahlfrage, Beispiel, Bild, Diagramm, Einfuehrung, Fehlerstellenfrage, FrageTeil,
-                      Lueckenfrage, Ordnungsfrage)
+from .modelle import (Alltag, Auswahlfrage, Beispiel, Diagramm, Einfuehrung, Fehlerstellenfrage, FrageTeil,
+                      Lueckenfrage, Ordnungsfrage, Zeichnung)
 
 
 def frage_code(f: Auswahlfrage | Lueckenfrage | Ordnungsfrage | Fehlerstellenfrage) -> str | None:
@@ -53,12 +53,11 @@ def pruefe_kurs(inhalt: Kursinhalt, aufgaben: dict[str, Aufgabe], musterloesunge
     # Bilder und Diagramme je Einführung
     for e in inhalt.einfuehrungen.values():
         ort = f"kurs/{e.pfad}"
-        erklaert = {b.schluessel for b in e.kopf.bilder}
         for a in e.abschnitte:
             for t in a.teile:
-                schluessel = t.schluessel if isinstance(t, Bild) else t.bild if isinstance(t, Alltag) else None
-                if schluessel and schluessel not in erklaert:
-                    befund(ort, f"Abschnitt {a.nummer}: Bild {schluessel} steht nicht unter bilder im Kopf")
+                name = t.datei if isinstance(t, Zeichnung) else t.zeichnung if isinstance(t, Alltag) else None
+                if name and not (wurzel / e.pfad / "zeichnungen" / f"{name}.svg").is_file():
+                    befund(ort, f"Abschnitt {a.nummer}: Zeichnung zeichnungen/{name}.svg fehlt")
                 if isinstance(t, Diagramm) and not (wurzel / "diagramme" / f"{t.pruefsumme}.svg").exists():
                     befund(ort, f"Abschnitt {a.nummer}: Diagramm noch nicht gebaut (tools/diagramme.py)")
 

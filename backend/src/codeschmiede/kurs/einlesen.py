@@ -6,11 +6,12 @@ Verzeichnislayout (Format in docs/KURS-FORMAT.md):
     begriffe/<sprache>.yml                         Begriffskatalog
     einfuehrungen/<sprache>/<thema>/einfuehrung.md Kopf (YAML) und Abschnitte (## Titel) mit Blöcken
     einfuehrungen/<sprache>/<thema>/kurztest.yml   eigene Fragen und eine Übung
+    einfuehrungen/<sprache>/<thema>/zeichnungen/   eigene Zeichnungen (SVG)
     bilder/<satz>/<schluessel>.webp                Export des Medienpools
     diagramme/<pruefsumme>.svg                     aus den Mermaid-Blöcken gebaut
 
 Ein Abschnitt besteht aus Markdown und Blöcken in Zaunzeilen: ```beispiel, ```frage, ```alltag, ```merke, ```falle,
-```bild, ```augenzwinkern (YAML) und ```mermaid (Diagramm). Eine kaputte Datei hält das Einlesen nicht auf: sie fehlt im
+```zeichnung, ```augenzwinkern (YAML) und ```mermaid (Diagramm). Eine kaputte Datei hält das Einlesen nicht auf: sie fehlt im
 Ergebnis und steht mit Grund in `ladefehler`.
 """
 
@@ -26,7 +27,7 @@ from pydantic import TypeAdapter, ValidationError
 from .modelle import (Abschnitt, Begriffskatalog, Einfuehrung, Frage, FrageTeil, Kopf, Kurs, Kurssprache, Kurztest,
                       Teil)
 
-YAML_BLOECKE = {"beispiel", "frage", "alltag", "merke", "falle", "bild", "augenzwinkern"}
+YAML_BLOECKE = {"beispiel", "frage", "alltag", "merke", "falle", "zeichnung", "augenzwinkern"}
 ZAUN = re.compile(r"^```([a-z]+)\s*$")
 _teil = TypeAdapter(Teil)
 _frage = TypeAdapter(Frage)

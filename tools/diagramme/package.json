@@ -1,0 +1,8 @@
+{
+  "name": "codeschmiede-diagramme",
+  "private": true,
+  "description": "Mermaid-Diagramme der Kurseinführungen als SVG bauen (tools/diagramme.py)",
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "12.0.0"
+  }
+}

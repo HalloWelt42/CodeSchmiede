@@ -84,6 +84,13 @@ def baue_kurs_router(state: AppState) -> APIRouter:
             raise HTTPException(status_code=404, detail="Bild gibt es nicht")
         return FileResponse(datei, media_type="image/webp", headers={"Cache-Control": "public, max-age=86400"})
 
+    @router.get("/zeichnungen/{eid}/{name}.svg")
+    def zeichnung(eid: str, name: str) -> FileResponse:
+        datei = state.kurs.zeichnungsdatei(eid, name)
+        if datei is None:
+            raise HTTPException(status_code=404, detail="Zeichnung gibt es nicht")
+        return FileResponse(datei, media_type="image/svg+xml", headers={"Cache-Control": "public, max-age=3600"})
+
     @router.get("/diagramme/{pruefsumme}.svg")
     def diagramm(pruefsumme: str) -> FileResponse:
         datei = state.kurs.diagrammdatei(pruefsumme)

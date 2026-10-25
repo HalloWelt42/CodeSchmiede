@@ -3,7 +3,7 @@
 
 Die Codeschmiede kennt je Zeichnung nur Schlüssel, Art, Sprache, Motiv (deutsch) und Seitenverhältnis. Prompts,
 Stil, Erzeugung, Auswahl und Freistellen gehören dem Medienpool (~/Entwicklung/medienpool, Projekt codeschmiede);
-der Export legt die gewählten Bilder als WebP nach kurs/bilder/<satz>/<schluessel>.webp.
+der Export legt die gewählten Bilder als WebP nach kurs/bilder/kurs/<schluessel>.webp (vorerst nur Karten).
 
 Quellen der Aufträge: kurs/stilprobe.yml und die Bildaufträge der Einführungen (kurs/einfuehrungen/**).
 

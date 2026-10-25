@@ -21,14 +21,14 @@ from .aufzeichnung import Aufzeichnung, aufzeichnen
 from .begriffe import erkenne
 from .einlesen import Kursinhalt, lade
 from .fortschritt import KursfortschrittRepository, Stand
-from .modelle import (Alltag, Augenzwinkern, Auswahlfrage, Beispiel, Bild, Diagramm, Einfuehrung, Falle,
+from .modelle import (Alltag, Augenzwinkern, Auswahlfrage, Beispiel, Diagramm, Einfuehrung, Falle,
                       Fehlerstellenfrage, FrageTeil, Kapitel, Lueckenfrage, Merke, Option, Ordnungsfrage, Text,
-                      Vorhersage)
+                      Vorhersage, Zeichnung)
 from .pruefung import pruefe_kurs
-from .sicht import (AbschnittSicht, AlltagSicht, Antwort, AugenzwinkernSicht, BeispielSicht, BildSicht, BildVerweis,
+from .sicht import (AbschnittSicht, AlltagSicht, Antwort, AugenzwinkernSicht, BeispielSicht, BildVerweis,
                     BlockSicht, DiagrammSicht, EinfuehrungSicht, FalleSicht, FrageSicht, FrageTeilSicht, KapitelSicht,
                     KursSicht, KurztestSicht, MerkBeispiel, MerkblattSicht, MerkeSicht, TextSicht, UebungSicht, Urteil,
-                    VorhersageSicht)
+                    VorhersageSicht, ZeichnungSicht)
 
 BILDSATZ = "kurs"
 """Satz des Medienpools, dessen Export die Kurszeichnungen liefert (kurs/bilder/<satz>/<schluessel>.webp)."""
@@ -122,6 +122,17 @@ class Kursdienst:
         datei = self.wurzel / "bilder" / BILDSATZ / f"{schluessel}.webp"
         return datei if datei.is_file() and datei.parent == self.wurzel / "bilder" / BILDSATZ else None
 
+    @staticmethod
+    def _zeichnung_url(e: Einfuehrung, name: str) -> str:
+        return f"/api/kurs/zeichnungen/{e.id}/{name}.svg"
+
+    def zeichnungsdatei(self, eid: str, name: str) -> Path | None:
+        e = self.inhalt.einfuehrungen.get(eid)
+        if e is None or not name.replace("-", "").isalnum():
+            return None
+        datei = self.wurzel / e.pfad / "zeichnungen" / f"{name}.svg"
+        return datei if datei.is_file() else None
+
     def diagrammdatei(self, pruefsumme: str) -> Path | None:
         if not pruefsumme.isalnum():
             return None
@@ -200,15 +211,15 @@ class Kursdienst:
         if isinstance(t, Text):
             return TextSicht(markdown=t.markdown)
         if isinstance(t, Alltag):
-            return AlltagSicht(text=t.text, bild=self.bild(e, t.bild))
+            return AlltagSicht(text=t.text, zeichnung=self._zeichnung_url(e, t.zeichnung) if t.zeichnung else None)
         if isinstance(t, Merke):
             return MerkeSicht(text=t.text)
         if isinstance(t, Falle):
             return FalleSicht(titel=t.titel, text=t.text)
         if isinstance(t, Augenzwinkern):
             return AugenzwinkernSicht(text=t.text)
-        if isinstance(t, Bild):
-            return BildSicht(bild=self.bild(e, t.schluessel), unterschrift=t.unterschrift)
+        if isinstance(t, Zeichnung):
+            return ZeichnungSicht(url=self._zeichnung_url(e, t.datei), unterschrift=t.unterschrift)
         if isinstance(t, Diagramm):
             datei = self.diagrammdatei(t.pruefsumme)
             return DiagrammSicht(url=f"/api/kurs/diagramme/{t.pruefsumme}.svg" if datei else None, titel=t.titel)

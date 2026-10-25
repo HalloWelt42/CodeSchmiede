@@ -26,7 +26,8 @@ class Streng(BaseModel):
 
 
 class Bildauftrag(Streng):
-    """Was eine Zeichnung zeigen soll; Prompt, Stil und Auswahl gehören dem Medienpool (tools/bildschluessel.py)."""
+    """Was ein erzeugtes Bild zeigen soll; Prompt, Stil und Auswahl gehören dem Medienpool (tools/bildschluessel.py).
+    Vorerst nur für Karten (Sammelkarte, Bereich); Zeichnungen in den Einführungen sind eigene SVG-Dateien."""
 
     schluessel: str = Field(pattern=r"^[a-z0-9_]{1,60}$")
     art: Literal["sinnbild", "alltag", "sammelkarte", "bereich"]
@@ -150,7 +151,8 @@ class Text(Streng):
 class Alltag(Streng):
     art: Literal["alltag"] = "alltag"
     text: str
-    bild: str | None = None
+    zeichnung: str | None = Field(default=None, pattern=r"^[a-z0-9-]{1,60}$")
+    """Eigene Zeichnung zeichnungen/<name>.svg neben der Einführung."""
 
 
 class Merke(Streng):
@@ -171,9 +173,11 @@ class Augenzwinkern(Streng):
     text: str
 
 
-class Bild(Streng):
-    art: Literal["bild"] = "bild"
-    schluessel: str
+class Zeichnung(Streng):
+    """Eigene Zeichnung (SVG im Ordner zeichnungen/ der Einführung); erzeugte Bilder gibt es vorerst nur auf Karten."""
+
+    art: Literal["zeichnung"] = "zeichnung"
+    datei: str = Field(pattern=r"^[a-z0-9-]{1,60}$")
     unterschrift: str = ""
 
 
@@ -202,7 +206,7 @@ class FrageTeil(Streng):
     frage: Frage
 
 
-Teil = Annotated[Text | Alltag | Merke | Falle | Augenzwinkern | Bild | Diagramm | Beispiel | FrageTeil, Field(discriminator="art")]
+Teil = Annotated[Text | Alltag | Merke | Falle | Augenzwinkern | Zeichnung | Diagramm | Beispiel | FrageTeil, Field(discriminator="art")]
 
 
 class Abschnitt(Streng):
