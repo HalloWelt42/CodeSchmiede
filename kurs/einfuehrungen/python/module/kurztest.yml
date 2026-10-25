@@ -1,0 +1,51 @@
+# Kurztest zu Kapitel 18: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-runden
+    text: Was gibt das Programm aus?
+    code: |
+      import math
+
+      print(math.ceil(7 / 2), math.floor(7 / 2))
+    als_code: true
+    optionen:
+      - text: 4 3
+        richtig: true
+        erklaerung: Richtig, 3.5 aufgerundet ist 4, abgerundet 3.
+      - text: 3 4
+        erklaerung: ceil rundet auf, floor ab.
+      - text: 3.5 3.5
+        erklaerung: Beide Werkzeuge liefern ganze Zahlen.
+  - frageart: luecke
+    id: kt-from
+    text: Ergänze, damit median ohne Modulnamen benutzt werden kann.
+    code: |
+      ___ statistics import median
+      print(median([1, 5, 3]))
+    antworten: [["from"]]
+    erklaerung: Richtig, from holt einzelne Werkzeuge direkt.
+    hinweis: Das englische Wort für "aus".
+  - frageart: auswahl
+    id: kt-randint
+    text: Welche Werte kann `random.randint(1, 3)` liefern?
+    optionen:
+      - text: 1, 2 und 3
+        richtig: true
+        erklaerung: Richtig, beide Grenzen sind eingeschlossen.
+      - text: 1 und 2
+        erklaerung: Anders als bei range ist die obere Grenze bei randint dabei.
+      - text: Jede Kommazahl zwischen 1 und 3
+        erklaerung: randint liefert nur ganze Zahlen.
+  - frageart: fehlerstelle
+    id: kt-ohne-punkt
+    text: Dieses Programm meldet NameError. Welche Zeile?
+    code: |
+      import math
+
+      r = 2
+      print(math.pi * r * r)
+      print(sqrt(r))
+    zeile: 5
+    erklaerung: Genau. Nach import math heißt es math.sqrt.
+    hinweis: Welche Zeile benutzt ein Werkzeug ohne den Kasten davor?
+uebung: k188-klassenfahrt
