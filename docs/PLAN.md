@@ -226,9 +226,10 @@ Offen für den Bau:
 - Oberfläche: Bereich Kurs am Rechner (Übersicht, Einführung mit Werkbank, Ablauf und Speicherbild, alle Fragearten,
   Kapitelende, Kurztest, Merkblatt) und am Telefon (Kurs, Einführung lesen, Fragen, Ausführen, Ablauf); Startseiten
   führen zum aktuellen Kapitel; Programm-Aufgaben mit Ausgabevergleich und Probelauf mit Eingaben
-- Python-Kurs Kapitel 1 bis 13 in drei Blöcken (Erste Schritte; Entscheiden und wiederholen; Sammeln und ordnen, mit
-  Listen, Listen bearbeiten, Tupel, Wörterbüchern): Einführungen mit eigenen Zeichnungen und Diagrammen, je sieben
-  Übungen, Kurztest mit eigener Übung und ein Stück des Kapitelprojekts Notenbuch; Bestandsprüfung lässt jedes Beispiel laufen
+- Python-Kurs vollständig, Kapitel 1 bis 20 in fünf Blöcken (Erste Schritte; Entscheiden und wiederholen; Sammeln
+  und ordnen mit Listen, Tupeln, Wörterbüchern und Mengen; Eigene Funktionen mit Sichtbarkeit und Fehlerbehandlung;
+  Größere Programme mit Modulen, Dateien und Klassen): Einführungen mit eigenen Zeichnungen und Diagrammen, je sieben
+  Übungen, Kurztest mit eigener Übung und ein Stück des Kapitelprojekts Notenbuch, das am Ende eine eigene Klasse ist; Bestandsprüfung lässt jedes Beispiel laufen
   und vergleicht die richtige Vorhersage mit dem echten Lauf
 - Erzeugte Bilder ruhen (Nutzer 25.10.2026): Stilprobe im Medienpool angelegt, acht Bilder erzeugt, Erzeugung gestoppt;
   weiter erst nach Klärung
@@ -246,6 +247,8 @@ Offen für den Bau:
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
   Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.
+- Aufbaukurs weiter: Zusatzthemen für Python (etwa Datum und Zeit, reguläre Ausdrücke, Algorithmen), danach die Kurse
+  der nächsten Sprachen; Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
 - Aufbaukurs mit Lehreinführungen: geklärt am 25.10.2026; Entwürfe liegen zur Freigabe in `mockups/` (Übersicht
   `mockups/index.html`, Abschnitt Aufbaukurs): Kursübersicht, Einführung für Python, SQL und CSS, Kurztest, Merkblatt,
   Kapitelende mit Sammelkarte, Telefon; freigegeben 25.10.2026 (der Bildbogen entfällt, Bilder kommen aus dem Medienpool).
