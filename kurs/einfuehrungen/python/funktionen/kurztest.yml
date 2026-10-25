@@ -1,0 +1,63 @@
+# Kurztest zu Kapitel 15: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-rueckgabe
+    text: Was gibt das Programm aus?
+    code: |
+      def plus_zwei(x):
+          return x + 2
+
+      print(plus_zwei(3) * 2)
+    als_code: true
+    optionen:
+      - text: "10"
+        richtig: true
+        erklaerung: Richtig, plus_zwei(3) ist 5, mal 2 macht 10.
+      - text: "7"
+        erklaerung: Erst kommt der Aufruf, dann wird mit seinem Ergebnis gerechnet.
+      - text: "8"
+        erklaerung: Das wäre 3 * 2 + 2. Der Aufruf wird zuerst ausgewertet.
+  - frageart: luecke
+    id: kt-return
+    text: Ergänze, damit die Funktion die Summe zurückgibt.
+    code: |
+      def summe(a, b):
+          ___ a + b
+    antworten: [["return"]]
+    erklaerung: Richtig, return gibt das Ergebnis an den Aufrufer zurück.
+    hinweis: Das Wort für "zurückgeben".
+  - frageart: auswahl
+    id: kt-none
+    text: Was gibt das Programm aus?
+    code: |
+      def sagen():
+          print("Mau")
+
+      x = sagen()
+      print(x)
+    als_code: true
+    optionen:
+      - text: |-
+          Mau
+          None
+        richtig: true
+        erklaerung: Richtig. sagen gibt Mau aus und liefert None zurück.
+      - text: |-
+          Mau
+          Mau
+        erklaerung: print gibt aus, gibt aber nichts zurück.
+      - text: None
+        erklaerung: Beim Aufruf in Zeile 4 läuft print und gibt Mau aus.
+  - frageart: fehlerstelle
+    id: kt-zu-wenig
+    text: Dieses Programm meldet TypeError. Welche Zeile?
+    code: |
+      def flaeche(breite, hoehe):
+          return breite * hoehe
+
+      print(flaeche(3, 4))
+      print(flaeche(5))
+    zeile: 5
+    erklaerung: Genau. Die Funktion braucht zwei Werte, bekommt aber nur einen.
+    hinweis: Zähle die Parameter und die Werte im Aufruf.
+uebung: k158-sparschwein

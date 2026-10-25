@@ -51,3 +51,8 @@ bloecke:
       - einfuehrung: py-mengen
         uebungen: [k141-einmalig, k142-verschiedene-gaeste, k143-buchstaben, k144-schon-gesehen, k145-gemeinsam, k146-nur-bei-pit, k147-alle-sorten]
         projekt: [k149-notenbuch-verschiedene]
+  - titel: Eigene Funktionen
+    kapitel:
+      - einfuehrung: py-funktionen
+        uebungen: [k151-jubelruf, k152-quadrat, k153-begruessen, k154-eisscholle, k155-groessere, k156-gerade-pruefen, k157-suchen]
+        projekt: [k159-notenbuch-funktionen]
