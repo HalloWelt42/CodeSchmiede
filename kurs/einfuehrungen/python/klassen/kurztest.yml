@@ -1,0 +1,62 @@
+# Kurztest zu Kapitel 20: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-eigene-werte
+    text: Was gibt das Programm aus?
+    code: |
+      class Topf:
+          def __init__(self):
+              self.suppe = 1
+
+          def nachfuellen(self):
+              self.suppe += 2
+
+      a = Topf()
+      b = Topf()
+      a.nachfuellen()
+      print(a.suppe, b.suppe)
+    als_code: true
+    optionen:
+      - text: 3 1
+        richtig: true
+        erklaerung: Richtig, nur a wurde nachgefüllt.
+      - text: 3 3
+        erklaerung: Jedes Objekt hat seine eigene suppe.
+      - text: 1 1
+        erklaerung: nachfuellen ändert die Suppe von a.
+  - frageart: luecke
+    id: kt-init
+    text: Ergänze den Namen der Methode, die beim Bauen eines Objekts läuft.
+    code: |
+      class Boot:
+          def ___(self, name):
+              self.name = name
+    antworten: [["__init__"]]
+    erklaerung: Richtig, __init__ richtet jedes neue Objekt ein.
+    hinweis: Mit je zwei Unterstrichen vorn und hinten, kurz für "initialisieren".
+  - frageart: auswahl
+    id: kt-str
+    text: Wozu dient die Methode `__str__`?
+    optionen:
+      - text: Sie bestimmt den Text, den print für das Objekt zeigt
+        richtig: true
+        erklaerung: Richtig, print und f-Strings fragen sie.
+      - text: Sie wandelt das Objekt in eine Zahl um
+        erklaerung: Es geht um Text, str steht für string.
+      - text: Sie baut ein neues Objekt
+        erklaerung: Das macht __init__.
+  - frageart: fehlerstelle
+    id: kt-ohne-name
+    text: Dieses Programm meldet TypeError. Welche Zeile?
+    code: |
+      class Hund:
+          def __init__(self, name):
+              self.name = name
+
+      bello = Hund("Bello")
+      rex = Hund()
+      print(bello.name)
+    zeile: 6
+    erklaerung: Genau. __init__ braucht außer self noch einen Namen, beim Bauen von rex fehlt er.
+    hinweis: Welcher Bau bekommt weniger Werte, als __init__ verlangt?
+uebung: k208-lager

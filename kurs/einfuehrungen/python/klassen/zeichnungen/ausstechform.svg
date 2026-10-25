@@ -1,0 +1,30 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eine Ausstechform in Pinguingestalt, daneben drei verschieden verzierte Plätzchen">
+  <ellipse cx="130" cy="168" rx="112" ry="7" fill="rgba(0,0,0,.12)"/>
+  <!-- Ausstechform -->
+  <g transform="translate(56 90)">
+    <path d="M0 -58 q20 0 20 20 q0 8 -4 12 q22 16 22 46 q0 34 -38 36 q-38 -2 -38 -36 q0 -30 22 -46 q-4 -4 -4 -12 q0 -20 20 -20 Z"
+          fill="none" stroke="#8a93a0" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M0 -58 q20 0 20 20 q0 8 -4 12 q22 16 22 46 q0 34 -38 36 q-38 -2 -38 -36 q0 -30 22 -46 q-4 -4 -4 -12 q0 -20 20 -20 Z"
+          fill="none" stroke="#2b3442" stroke-width="2"/>
+  </g>
+  <!-- Plätzchen -->
+  <g transform="translate(140 130)">
+    <path d="M0 -26 q10 0 10 10 q0 4 -2 6 q11 8 11 23 q0 17 -19 18 q-19 -1 -19 -18 q0 -15 11 -23 q-2 -2 -2 -6 q0 -10 10 -10 Z"
+          fill="#e0b070" stroke="#2b3442" stroke-width="2"/>
+    <ellipse cx="0" cy="12" rx="10" ry="12" fill="#ffffff"/>
+    <circle cx="-3" cy="-16" r="2" fill="#2b3442"/><circle cx="3" cy="-16" r="2" fill="#2b3442"/>
+  </g>
+  <g transform="translate(186 130)">
+    <path d="M0 -26 q10 0 10 10 q0 4 -2 6 q11 8 11 23 q0 17 -19 18 q-19 -1 -19 -18 q0 -15 11 -23 q-2 -2 -2 -6 q0 -10 10 -10 Z"
+          fill="#e0b070" stroke="#2b3442" stroke-width="2"/>
+    <g fill="#e2574c"><circle cx="-5" cy="4" r="2.5"/><circle cx="4" cy="10" r="2.5"/><circle cx="-2" cy="18" r="2.5"/></g>
+    <g fill="#5bb36a"><circle cx="5" cy="0" r="2.5"/><circle cx="-6" cy="14" r="2.5"/></g>
+    <path d="M-8 -14 h16" stroke="#e2574c" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(232 130)">
+    <path d="M0 -26 q10 0 10 10 q0 4 -2 6 q11 8 11 23 q0 17 -19 18 q-19 -1 -19 -18 q0 -15 11 -23 q-2 -2 -2 -6 q0 -10 10 -10 Z"
+          fill="#7a4a24" stroke="#2b3442" stroke-width="2"/>
+    <path d="M-10 6 q10 -8 20 0 M-10 14 q10 -8 20 0" fill="none" stroke="#f4f1ea" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M-3 -18 l3 -6 l3 6" fill="#f2c14e" stroke="#2b3442" stroke-width="1.4"/>
+  </g>
+</svg>
