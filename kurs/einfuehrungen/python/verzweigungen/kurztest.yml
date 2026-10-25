@@ -1,0 +1,56 @@
+# Kurztest zu Kapitel 7: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-erster-gewinnt
+    text: Was gibt das Programm aus?
+    code: |
+      punkte = 80
+      if punkte >= 50:
+          print("bestanden")
+      elif punkte >= 75:
+          print("gut")
+      else:
+          print("nochmal")
+    optionen:
+      - text: bestanden
+        richtig: true
+        erklaerung: Richtig. Der erste wahre Fall gewinnt; die Reihenfolge der Fälle ist hier eigentlich ungeschickt.
+      - text: gut
+        erklaerung: Python prüft von oben; schon punkte >= 50 ist wahr, danach wird nichts mehr geprüft.
+      - text: |-
+          bestanden
+          gut
+        erklaerung: Nach dem ersten wahren Fall ist Schluss.
+    als_code: true
+  - frageart: fehlerstelle
+    id: kt-doppelpunkt
+    text: Hier fehlt etwas. Welche Zeile?
+    code: |
+      zahl = 3
+      if zahl > 2
+          print("groß")
+    zeile: 2
+    erklaerung: Genau, der Doppelpunkt am Ende der if-Zeile fehlt.
+    hinweis: Was steht am Ende jeder if-Zeile?
+  - frageart: luecke
+    id: kt-elif
+    text: Ergänze das Wort für einen weiteren Fall.
+    code: |
+      if farbe == "rot":
+          print("Stehen")
+      ___ farbe == "gruen":
+          print("Gehen")
+    antworten: [["elif"]]
+    erklaerung: Richtig, elif prüft einen weiteren Fall.
+    hinweis: Eine Kurzform von else if.
+  - frageart: ordnen
+    id: kt-ordnen-if
+    text: Bring die Zeilen in Ordnung, sodass "kalt" nur unter 10 Grad erscheint und "Ende" immer.
+    zeilen:
+      - grad = int(input())
+      - "if grad < 10:"
+      - '    print("kalt")'
+      - print("Ende")
+    erklaerung: Richtig. Nur die eingerückte Zeile gehört zum if.
+    hinweis: Was immer laufen soll, ist nicht eingerückt und steht am Schluss.
+uebung: k078-taschenrechner

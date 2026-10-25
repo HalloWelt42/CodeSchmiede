@@ -25,3 +25,6 @@ bloecke:
       - einfuehrung: py-wahrheit
         uebungen: [k061-groesser, k062-gleich, k063-volljaehrig, k064-gerade, k065-eis-kaufen, k066-wochenende, k067-fisch-im-satz]
         projekt: [k069-notenbuch-bestanden]
+      - einfuehrung: py-verzweigungen
+        uebungen: [k071-erster-if, k072-else-ergaenzen, k073-tuersteher, k074-gerade-ungerade, k075-ampel, k076-eisgroesse, k077-groesste-zahl]
+        projekt: [k079-notenbuch-urteil]
