@@ -11,6 +11,8 @@ from .aufgaben.loader import AufgabenLoader
 from .aufgaben.repository import AufgabenRepository
 from .aufgaben.schreiber import AufgabenSchreiber
 from .config import Settings
+from .kurs.dienst import Kursdienst
+from .kurs.fortschritt import KursfortschrittRepository
 from .db.connection import Datenbank
 from .models.konfig import Konfiguration
 from .progress.repository import ProgressRepository
@@ -38,6 +40,7 @@ class AppState:
         self.loader = AufgabenLoader(settings.aufgaben_pfad)
         self.aufgaben = AufgabenRepository(self.db, self.loader)
         self.befunde: list[Befund] = []
+        self.kurs = Kursdienst(settings.kurs_pfad, KursfortschrittRepository(self.db), lambda: self.runner)
         self.neu_einlesen()
 
         self.schreiber = AufgabenSchreiber(settings.aufgaben_pfad, self.loader)
@@ -69,3 +72,5 @@ class AppState:
             self.loader.ladefehler,
             self.konfig,
         )
+        self.kurs.neu_einlesen({a.id: a for a in self.aufgaben.alle_aufgaben()}, self.loader.lade_musterloesungen)
+        self.befunde += self.kurs.befunde

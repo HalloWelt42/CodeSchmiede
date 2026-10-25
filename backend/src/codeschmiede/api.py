@@ -34,6 +34,7 @@ from .routes.aufgaben import baue_aufgaben_router
 from .routes.pfade import baue_pfade_router
 from .routes.progress import baue_progress_router
 from .routes.spiel import baue_spiel_router
+from .routes.kurs import baue_kurs_router
 from .routes.sql_dataset import baue_sql_dataset_router
 from .routes.submissions import baue_submissions_router
 from .routes.zugang import baue_zugangs_router
@@ -141,6 +142,7 @@ def app_bauen(
     app.include_router(baue_sql_dataset_router(state), dependencies=schutz)
     app.include_router(baue_progress_router(state), dependencies=schutz)
     app.include_router(baue_spiel_router(state), dependencies=schutz)
+    app.include_router(baue_kurs_router(state), dependencies=schutz)
     app.include_router(baue_admin_router(state), dependencies=schutz)
     app.include_router(anmeldungs_router(zugang.anmeldung))
     app.include_router(baue_zugangs_router(

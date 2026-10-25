@@ -20,6 +20,7 @@ services:
       - "8200"
     environment:
       CODESCHMIEDE_AUFGABEN_PFAD: /app/aufgaben
+      CODESCHMIEDE_KURS_PFAD: /app/kurs
       CODESCHMIEDE_DATEN_PFAD: /app/daten
       CODESCHMIEDE_DB_DATEI: /app/daten/codeschmiede.sqlite
       # nächtliche Kopie der Datenbank; dort liegen auch die Kopien vor jedem Ausrollen
@@ -33,6 +34,7 @@ services:
       CODESCHMIEDE_EINRICHTUNGSCODE_ORT: ${EINRICHTUNGSCODE_ORT:-}
     volumes:
       - ./aufgaben:/app/aufgaben:ro
+      - ./kurs:/app/kurs:ro
       - ./daten:/app/daten
       - ./sicherungen:/app/sicherungen
       - ./zertifikate:/zertifikate:ro

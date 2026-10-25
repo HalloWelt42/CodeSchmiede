@@ -25,10 +25,12 @@ services:
     volumes:
       # Aufgaben nur lesend: bearbeitet wird am Mac, ausgerollt über das Repo
       - ./aufgaben:/app/aufgaben:ro
+      - ./kurs:/app/kurs:ro
       - ./data:/app/data
       - sandbox-schluessel:/schluessel
     environment:
       CODESCHMIEDE_AUFGABEN_PFAD: /app/aufgaben
+      CODESCHMIEDE_KURS_PFAD: /app/kurs
       CODESCHMIEDE_DATEN_PFAD: /app/data
       CODESCHMIEDE_DB_DATEI: /app/data/codeschmiede.db
       CODESCHMIEDE_AUFGABEN_SCHREIBBAR: "false"

@@ -19,6 +19,8 @@ class Settings(BaseSettings):
     )
 
     aufgaben_pfad: Path = PROJEKT_WURZEL / "aufgaben"
+    # Aufbaukurs: Einführungen, Kurse, Begriffe, Bilder (nur lesend, Wahrheit im Repo)
+    kurs_pfad: Path = PROJEKT_WURZEL / "kurs"
     daten_pfad: Path = PROJEKT_WURZEL / "data"
     db_datei: Path = PROJEKT_WURZEL / "data" / "codeschmiede.db"
     # Dürfen Verwaltung und Editor Aufgabendateien schreiben? Auf dem Pi

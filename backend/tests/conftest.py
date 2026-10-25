@@ -45,6 +45,7 @@ sprachen:
   - {id: sql, titel: SQL, editor_lang: sql, endung: sql, runner_type: docker_sqlite}
 aufgabentypen:
   - {id: code_schreiben, titel: Code schreiben, view: code_aufgabe}
+  - {id: programm, titel: Programm, view: code_aufgabe}
   - {id: output_quiz, titel: Quiz, view: output_quiz}
   - {id: css_klon, titel: CSS, view: css_klon}
   - {id: sql_abfrage, titel: SQL, view: sql_abfrage}
@@ -145,6 +146,7 @@ def bestand(tmp_path: Path) -> Path:
 def settings(tmp_path: Path, bestand: Path) -> Settings:
     return Settings(
         aufgaben_pfad=bestand,
+        kurs_pfad=tmp_path / "kurs",
         daten_pfad=tmp_path / "data",
         db_datei=tmp_path / "data" / "test.db",
         # Anmeldung prüft test_zugang.py mit einer Schein-Kellerwolke

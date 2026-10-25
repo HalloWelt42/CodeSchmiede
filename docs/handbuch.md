@@ -4,16 +4,16 @@ geraet: [pi]
 abhaengigkeiten: [kellerwolke, appkern]
 daten:
   - "Pi: `{{wurzel}}/daten/codeschmiede.sqlite` (Lernfortschritt, Abgaben, Punkte, Tagesaufträge, Zugang zur Kellerwolke) und `daten/einrichtungscode`, solange die App uneingerichtet ist"
-  - "Pi: die Aufgaben kommen nur lesend aus dem Stand des Repos in `{{wurzel}}/aufgaben`; bearbeitet wird am Mac, ausgerollt über das Repo"
+  - "Pi: Aufgaben und Kurs kommen nur lesend aus dem Stand des Repos in `{{wurzel}}/aufgaben` und `{{wurzel}}/kurs`; bearbeitet wird am Mac, ausgerollt über das Repo"
 sicherung:
   - "nachts um 3 Uhr eine Kopie der Datenbank nach `{{wurzel}}/sicherungen/nachts-*.sqlite` (die letzten 14 bleiben), dazu vor jedem Ausrollen `codeschmiede-*.sqlite` (die letzten zehn bleiben); das Werkzeug Sicherungen holt sie täglich nach `~/Sicherungen/codeschmiede/pi`"
-  - "die Aufgaben sind Dateien im Repo auf GitHub und brauchen keine eigene Sicherung"
+  - "Aufgaben und Kurs (Einführungen, Bilder) sind Dateien im Repo auf GitHub und brauchen keine eigene Sicherung"
 schluessel_orte:
   - "Pi: App-Schlüssel der Kellerwolke in der Tabelle `einstellungen` von `codeschmiede.sqlite` (eingetragen in der ersten Einrichtung im Browser)"
   - "Pi: `{{wurzel}}/.env` (Modus 0600): gemeinsamer Schlüssel von Backend und Sandbox-Dienst, vom Ausrollen einmal erzeugt"
   - "Pi: `{{wurzel}}/zertifikate/`, Blattzertifikat mit Schlüssel aus der Hausstelle (vom Ausrollen)"
 einrichten: einrichten.sh
-stand: 4ee288f
+stand: 1afcbf7
 ---
 
 # Codeschmiede

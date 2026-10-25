@@ -1,0 +1,129 @@
+# Begriffskatalog Python: woran die Prüfung erkennt, dass Code einen Baustein benutzt.
+#
+# Jede Einführung nennt unter fuehrt_ein die Begriffe, die sie erklärt. Benutzt Code in einem Kapitel einen Begriff,
+# den weder dieses noch ein früheres Kapitel einführt, meldet die Prüfung einen Vorgriff.
+# Erkennung (Python-Syntaxbaum): knoten, operatoren (Knotennamen), aufrufe (Funktionen), methoden, literale (Typen
+# fester Werte: str, int, float, bool, NoneType).
+
+sprache: python
+begriffe:
+  - id: ausgabe
+    titel: Ausgabe mit print
+    erkennung: {aufrufe: [print]}
+  - id: text
+    titel: Text in Anführungszeichen
+    erkennung: {literale: [str]}
+  - id: zahl
+    titel: Ganze Zahlen und Kommazahlen
+    erkennung: {literale: [int, float]}
+  - id: variable
+    titel: Variablen und Zuweisung
+    erkennung: {knoten: [Assign]}
+  - id: grundrechnen
+    titel: Plus, minus, mal, geteilt
+    erkennung: {operatoren: [Add, Sub, Mult, Div, USub]}
+  - id: ganzzahlig_teilen
+    titel: Ganzzahlig teilen und Rest
+    erkennung: {operatoren: [FloorDiv, Mod]}
+  - id: potenz
+    titel: Hochrechnen
+    erkennung: {operatoren: [Pow]}
+  - id: erweiterte_zuweisung
+    titel: Kurzschreibweise wie +=
+    erkennung: {knoten: [AugAssign]}
+  - id: fstring
+    titel: Werte in Text einsetzen (f-String)
+    erkennung: {knoten: [JoinedStr]}
+  - id: laenge
+    titel: Länge mit len
+    erkennung: {aufrufe: [len]}
+  - id: index
+    titel: Zugriff über Index
+    erkennung: {knoten: [Subscript]}
+  - id: scheiben
+    titel: Ausschnitte mit Doppelpunkt
+    erkennung: {knoten: [Slice]}
+  - id: textmethoden
+    titel: Methoden für Text
+    erkennung: {methoden: [upper, lower, strip, replace, split, join, startswith, endswith, find, title, capitalize, isdigit]}
+  - id: umwandeln
+    titel: Werte umwandeln mit int, float, str
+    erkennung: {aufrufe: [int, float, str, bool]}
+  - id: eingabe
+    titel: Eingabe mit input
+    erkennung: {aufrufe: [input]}
+  - id: wahrheitswert
+    titel: True und False
+    erkennung: {literale: [bool]}
+  - id: vergleich
+    titel: Vergleichen
+    erkennung: {operatoren: [Eq, NotEq, Lt, LtE, Gt, GtE]}
+  - id: logik
+    titel: and, or, not
+    erkennung: {operatoren: [And, Or, Not]}
+  - id: verzweigung
+    titel: if, elif, else
+    erkennung: {knoten: [If, IfExp]}
+  - id: while_schleife
+    titel: Schleifen mit while
+    erkennung: {knoten: [While]}
+  - id: abbruch
+    titel: break und continue
+    erkennung: {knoten: [Break, Continue]}
+  - id: for_schleife
+    titel: Schleifen mit for
+    erkennung: {knoten: [For]}
+  - id: range
+    titel: Zählen mit range
+    erkennung: {aufrufe: [range]}
+  - id: enthalten
+    titel: Enthaltensein mit in
+    erkennung: {operatoren: [In, NotIn]}
+  - id: liste
+    titel: Listen
+    erkennung: {knoten: [List]}
+  - id: listenmethoden
+    titel: Listen verändern
+    erkennung: {methoden: [append, insert, pop, remove, sort, reverse, extend, index, count, clear]}
+  - id: auswerten
+    titel: sum, min, max, sorted
+    erkennung: {aufrufe: [sum, min, max, sorted]}
+  - id: aufzaehlen
+    titel: enumerate und zip
+    erkennung: {aufrufe: [enumerate, zip]}
+  - id: tupel
+    titel: Tupel und Entpacken
+    erkennung: {knoten: [Tuple]}
+  - id: woerterbuch
+    titel: Wörterbücher
+    erkennung: {knoten: [Dict], methoden: [keys, values, items, get]}
+  - id: menge
+    titel: Mengen
+    erkennung: {knoten: [Set], aufrufe: [set], methoden: [add, union, intersection, difference]}
+  - id: abstraktion
+    titel: Listen in einer Zeile bauen
+    erkennung: {knoten: [ListComp, DictComp, SetComp, GeneratorExp]}
+  - id: funktion
+    titel: Eigene Funktionen
+    erkennung: {knoten: [FunctionDef]}
+  - id: rueckgabe
+    titel: Rückgabe mit return
+    erkennung: {knoten: [Return]}
+  - id: nichts
+    titel: None
+    erkennung: {literale: [NoneType]}
+  - id: sichtbarkeit
+    titel: global und nonlocal
+    erkennung: {knoten: [Global, Nonlocal]}
+  - id: ausnahme
+    titel: Fehler abfangen und auslösen
+    erkennung: {knoten: [Try, Raise]}
+  - id: modul
+    titel: Module importieren
+    erkennung: {knoten: [Import, ImportFrom]}
+  - id: datei
+    titel: Dateien lesen und schreiben
+    erkennung: {aufrufe: [open], knoten: [With]}
+  - id: klasse
+    titel: Eigene Klassen
+    erkennung: {knoten: [ClassDef]}
