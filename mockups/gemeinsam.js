@@ -9,6 +9,7 @@
 
   const BEREICHE = [
     { id: 'dashboard', titel: 'Dashboard', icon: 'fa-house', telefon: true },
+    { id: 'kurs', titel: 'Kurs', icon: 'fa-graduation-cap', telefon: true },
     { id: 'aufgaben', titel: 'Aufgaben', icon: 'fa-list-check', telefon: true },
     { id: 'pfade', titel: 'Pfade', icon: 'fa-route', telefon: true },
     { id: 'spiele', titel: 'Spiele', icon: 'fa-gamepad', telefon: true },

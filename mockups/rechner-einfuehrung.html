@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="kurs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Einführung</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="kurs.css">
+<script src="kurs.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite" data-sprache="python">
+    <header class="a-kopf">
+      <a class="ikon" href="rechner-kurs.html" title="Zur Kursübersicht"><i class="fa-solid fa-arrow-left"></i></a>
+      <span class="zelle-titel"><b>Schleifen mit for</b><span>Python-Kurs, Kapitel 9: Einführung, Abschnitt 3 von 6</span></span>
+      <div class="meta">
+        <div class="t-abschnitte" style="width:150px"><span class="fertig"></span><span class="fertig"></span><span class="jetzt"></span><span></span><span></span><span></span></div>
+        <span class="num" style="color:var(--accent)" title="Erfahrung je fertigem Abschnitt">+5</span>
+        <a class="knopf" href="rechner-merkblatt.html"><i class="fa-solid fa-note-sticky"></i>Merkblatt</a>
+      </div>
+    </header>
+    <div class="lehr-seite">
+      <section class="spalte gliederung-spalte">
+        <div class="spalten-kopf"><span>Einführung</span></div>
+        <div class="rollfeld">
+          <div class="gliederung">
+            <button class="fertig"><i class="fa-solid fa-circle-check"></i><span>Wozu Schleifen?</span></button>
+            <button class="fertig"><i class="fa-solid fa-circle-check"></i><span>Die for-Schleife liest eine Liste</span></button>
+            <button class="jetzt"><i class="fa-solid fa-circle-play"></i><span>Der Schleifenname wechselt jede Runde</span></button>
+            <button class="zu"><i class="fa-regular fa-circle"></i><span>Einrückung: was gehört dazu?</span></button>
+            <button class="zu"><i class="fa-regular fa-circle"></i><span>Zählen mit range</span></button>
+            <button class="zu"><i class="fa-regular fa-circle"></i><span>Summen sammeln</span></button>
+          </div>
+          <div class="gruppe" style="margin-top:var(--sp-4)">Danach</div>
+          <div class="gliederung">
+            <a class="knopf" href="rechner-sammelkarten.html" style="justify-content:flex-start"><i class="fa-solid fa-id-card"></i>Kann ich jetzt</a>
+            <button class="zu"><i class="fa-solid fa-lock"></i><span>7 Übungen</span></button>
+            <a class="knopf" href="rechner-kurztest.html" style="justify-content:flex-start;margin-top:4px"><i class="fa-solid fa-forward"></i>Kurztest</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte">
+        <div class="rollfeld lesen">
+          <div class="lesen-innen">
+            <div><div class="dachzeile">Abschnitt 3 von 6</div><h2>Der Schleifenname wechselt jede Runde</h2></div>
+
+            <div class="alltag">
+              <div class="zeichnung" id="alltag-bild"><span class="auftrag-hinweis">Platzhalter bis zur Stilprobe</span></div>
+              <div><span class="marke-klein">Aus dem Leben</span>In der Pinguin-Kantine fährt die Kolonie auf einem Förderband an der Fischausgabe vorbei. Der Automat ruft jeden einzeln: Pit, Fisch. Pia, Fisch. Paul, Fisch. Er kennt dafür nur eine einzige Anweisung, die er für jeden Pinguin wiederholt.</div>
+            </div>
+
+            <p>Genau das macht <code>for pinguin in kolonie:</code>. In jeder Runde steckt im Namen <code>pinguin</code> ein anderes Element der Liste, der Reihe nach von vorn nach hinten. Der eingerückte Block darunter läuft einmal je Element.</p>
+
+            <div class="merksatz"><b>Merke:</b> Der Name hinter <code>for</code> ist eine ganz normale Variable. Python legt in jeder Runde das nächste Element hinein, bis die Liste zu Ende ist.</div>
+
+            <div class="schema">
+              <div class="schema-titel"><span>So läuft die Schleife</span><span>Diagramm, beim Einlesen zu SVG</span></div>
+              <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg">
+                <defs><marker id="spitze" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="var(--fg-dim)"/></marker></defs>
+                <g fill="none" stroke="var(--fg-dim)" stroke-width="1.6" marker-end="url(#spitze)">
+                  <path d="M120 110 L158 110"/><path d="M300 110 L338 110"/><path d="M490 110 L528 110"/>
+                  <path d="M605 88 L605 34 L230 34 L230 62"/><path d="M230 158 L230 186"/>
+                </g>
+                <rect x="10" y="88" width="110" height="44" rx="8" fill="var(--bg-card-2)" stroke="var(--s-a)" stroke-width="1.6"/>
+                <text x="65" y="115" text-anchor="middle" fill="var(--fg)" font-size="14">Liste kolonie</text>
+                <path d="M230 62 L300 110 L230 158 L160 110 Z" fill="var(--bg-card-2)" stroke="var(--s-b)" stroke-width="1.6"/>
+                <text x="230" y="106" text-anchor="middle" fill="var(--fg)" font-size="13">noch ein</text>
+                <text x="230" y="123" text-anchor="middle" fill="var(--fg)" font-size="13">Element?</text>
+                <rect x="340" y="88" width="150" height="44" rx="8" fill="var(--bg-card-2)" stroke="var(--s-a)" stroke-width="1.6"/>
+                <text x="415" y="108" text-anchor="middle" fill="var(--fg)" font-size="13">pinguin = nächstes</text>
+                <text x="415" y="124" text-anchor="middle" fill="var(--fg)" font-size="13">Element</text>
+                <rect x="530" y="88" width="150" height="44" rx="8" fill="var(--bg-card-2)" stroke="var(--s-a)" stroke-width="1.6"/>
+                <text x="605" y="108" text-anchor="middle" fill="var(--fg)" font-size="13">eingerückten Block</text>
+                <text x="605" y="124" text-anchor="middle" fill="var(--fg)" font-size="13">ausführen</text>
+                <rect x="160" y="188" width="140" height="44" rx="8" fill="var(--bg-card-2)" stroke="var(--fg-mute)" stroke-width="1.6"/>
+                <text x="230" y="215" text-anchor="middle" fill="var(--fg)" font-size="13">nach der Schleife</text>
+                <text x="318" y="102" fill="var(--green)" font-size="12">ja</text>
+                <text x="240" y="178" fill="var(--red)" font-size="12">nein</text>
+                <text x="420" y="27" text-anchor="middle" fill="var(--fg-dim)" font-size="12">nächste Runde</text>
+              </svg>
+            </div>
+
+            <p>Rechts steht das Beispiel aus der Kantine. Bevor es läuft, bist du dran.</p>
+
+            <div class="frage-block vorhersage" id="vorhersage">
+              <div class="frage-kopf"><i class="fa-solid fa-wand-magic-sparkles"></i>Vorhersage</div>
+              <div class="frage-text">Was gibt das Beispiel aus?</div>
+              <div class="wahl-liste" id="v-wahl"></div>
+              <div id="v-erklaerung"></div>
+            </div>
+
+            <div class="frage-block" id="frage" hidden>
+              <div class="frage-kopf"><i class="fa-solid fa-circle-question"></i>Kurze Frage</div>
+              <div class="frage-text">Wie oft läuft der eingerückte Block bei <code>for zahl in [3, 1, 4, 1, 5]:</code>?</div>
+              <div class="wahl-liste" id="f-wahl"></div>
+              <div id="f-erklaerung"></div>
+            </div>
+
+            <div class="augenzwinkern"><i class="fa-solid fa-face-smile-wink"></i><span>Kein Pinguin musste für dieses Beispiel hungern. Paul hat sogar zweimal gefragt.</span></div>
+
+            <div class="weiter-zeile">
+              <button class="knopf"><i class="fa-solid fa-arrow-left"></i>Abschnitt 2</button>
+              <button class="knopf voll" id="weiter" disabled style="opacity:.5"><i class="fa-solid fa-arrow-right"></i>Weiter: Einrückung</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte werkbank">
+        <div class="spalten-kopf"><span>Beispiel</span><span class="zustand-hinweis" id="zustand" style="margin-left:auto;text-transform:none;letter-spacing:0"><i class="fa-solid fa-circle-check"></i>Original</span></div>
+        <div class="rollfeld">
+          <div class="werkbank-zeile">
+            <button class="knopf voll" id="ausfuehren" disabled style="opacity:.45"><i class="fa-solid fa-play"></i>Ausführen</button>
+            <button class="knopf" id="veraendern"><i class="fa-solid fa-pen"></i>Verändern</button>
+            <button class="knopf" id="original" hidden><i class="fa-solid fa-rotate-left"></i>Original</button>
+          </div>
+          <div id="code-ort"></div>
+          <pre class="ausgabe" id="ausgabe"><span class="leer">Noch nicht ausgeführt</span></pre>
+          <div class="sperre" id="sperre"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Erst vorhersagen, dann ausführen: wähle links, was du erwartest.</span></div>
+
+          <div id="ablauf-bereich" hidden>
+            <div class="block-kopf"><span>Ablauf Schritt für Schritt</span><span class="dim" style="text-transform:none;letter-spacing:0">aus dem echten Lauf aufgezeichnet</span></div>
+            <div class="abspieler">
+              <button class="ikon" id="a-zurueck" title="Schritt zurück"><i class="fa-solid fa-backward-step"></i></button>
+              <button class="ikon" id="a-spielen" title="Abspielen"><i class="fa-solid fa-play"></i></button>
+              <button class="ikon" id="a-vor" title="Schritt vor"><i class="fa-solid fa-forward-step"></i></button>
+              <input class="regler" type="range" min="0" max="9" value="0" id="a-regler">
+              <span class="num" id="a-stand">0 / 9</span>
+            </div>
+            <p class="dim" id="a-text" style="margin:var(--sp-2) 0 0;font-family:var(--quick);font-size:var(--fs-md);min-height:44px"></p>
+            <div class="speicher" style="margin-top:var(--sp-2)">
+              <div class="speicher-titel"><span>Speicher</span><span>nach Zeile <b class="num" id="a-zeile">-</b></span></div>
+              <div class="speicher-zeile"><span class="speicher-name">kolonie</span><div id="s-kolonie"></div></div>
+              <div class="speicher-zeile"><span class="speicher-name">pinguin</span><div id="s-pinguin"></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  const ORIGINAL = ['kolonie = ["Pit", "Pia", "Paul"]', 'for pinguin in kolonie:', '    print(pinguin, "bekommt einen Fisch")', 'print("Alle satt!")'];
+  const KOLONIE = ['Pit', 'Pia', 'Paul'];
+  // Aufzeichnung: Zeile, Zustand danach, neue Ausgabe; die App bekommt sie aus der Sandbox
+  const SCHRITTE = [
+    { zeile: 1, kolonie: true, pinguin: null, text: 'Die Liste kolonie entsteht mit drei Namen in drei Fächern, gezählt ab 0.' },
+    { zeile: 2, kolonie: true, pinguin: 0, text: 'Erste Runde: pinguin bekommt das Element aus Fach 0, also "Pit".' },
+    { zeile: 3, kolonie: true, pinguin: 0, aus: 'Pit bekommt einen Fisch', text: 'Der eingerückte Block läuft mit pinguin = "Pit".' },
+    { zeile: 2, kolonie: true, pinguin: 1, text: 'Zweite Runde: derselbe Name, neuer Inhalt. pinguin ist jetzt "Pia".' },
+    { zeile: 3, kolonie: true, pinguin: 1, aus: 'Pia bekommt einen Fisch', text: 'Gleicher Block, anderer Pinguin.' },
+    { zeile: 2, kolonie: true, pinguin: 2, text: 'Dritte Runde: pinguin ist "Paul".' },
+    { zeile: 3, kolonie: true, pinguin: 2, aus: 'Paul bekommt einen Fisch', text: 'Paul ist versorgt.' },
+    { zeile: 2, kolonie: true, pinguin: 2, ende: true, text: 'Kein Element mehr übrig: die Schleife endet. pinguin behält den letzten Wert.' },
+    { zeile: 4, kolonie: true, pinguin: 2, aus: 'Alle satt!', text: 'Diese Zeile ist nicht eingerückt und läuft genau einmal, nach der Schleife.' },
+  ];
+  const VORHERSAGE = [
+    { aus: 'Pit bekommt einen Fisch\nPia bekommt einen Fisch\nPaul bekommt einen Fisch\nAlle satt!', richtig: true, erkl: 'Genau. Drei Runden, in jeder ein anderer Name, und "Alle satt!" kommt einmal am Ende.' },
+    { aus: 'Pit bekommt einen Fisch\nAlle satt!\nPia bekommt einen Fisch\nAlle satt!\nPaul ...', erkl: 'Dann wären die Pinguine nach jedem Fisch satt, verdächtig schnell. Die letzte Zeile ist nicht eingerückt, sie gehört nicht zur Schleife.' },
+    { aus: 'kolonie bekommt einen Fisch\nAlle satt!', erkl: 'Die Schleife füttert nicht die ganze Kolonie auf einmal. pinguin ist in jeder Runde ein einzelner Name aus der Liste.' },
+    { aus: 'Pit bekommt einen Fisch\nAlle satt!', erkl: 'Pia und Paul gehen leer aus? Die Schleife läuft für jedes Element, nicht nur für das erste.' },
+  ];
+  const FRAGE = [
+    { t: '5 Mal', richtig: true, erkl: 'Richtig: einmal je Element, auch die doppelte 1 bekommt ihre eigene Runde.' },
+    { t: '4 Mal', erkl: 'Knapp daneben. Die 1 kommt zweimal vor, und jedes Vorkommen ist ein eigenes Element.' },
+    { t: '14 Mal', erkl: 'Das ist die Summe der Zahlen. Die Schleife zählt aber Elemente, nicht deren Werte.' },
+    { t: '1 Mal', erkl: 'Dann wäre es keine Schleife, sondern ein Einzelauftritt. Der Block läuft für jedes Element.' },
+  ];
+
+  const $ = (id) => document.getElementById(id);
+  let vorhergesagt = false;
+  let veraendert = false;
+  let schritt = 0;
+  let laeuft = null;
+
+  function zeigeCode(klassen = {}) {
+    $('code-ort').innerHTML = codeBlock(ORIGINAL, { id: 'beispiel', klassen });
+  }
+  function wahlListe(ort, eintraege, mitPre, beiWahl) {
+    $(ort).innerHTML = eintraege.map((e, i) => `<button class="wahlknopf" data-i="${i}"><kbd>${'ABCD'[i]}</kbd>${mitPre ? `<pre>${e.aus}</pre>` : `<span>${e.t}</span>`}</button>`).join('');
+    $(ort).querySelectorAll('.wahlknopf').forEach((b) => b.addEventListener('click', () => beiWahl(Number(b.dataset.i), b)));
+  }
+  function erklaere(ort, e) {
+    $(ort).innerHTML = `<div class="erklaerung ${e.richtig ? 'gut' : 'schlecht'}"><i class="fa-solid ${e.richtig ? 'fa-circle-check' : 'fa-lightbulb'}"></i><span>${e.erkl}</span></div>`;
+  }
+
+  wahlListe('v-wahl', VORHERSAGE, true, (i, knopf) => {
+    document.querySelectorAll('#v-wahl .wahlknopf').forEach((b) => b.classList.remove('richtig', 'falsch'));
+    knopf.classList.add(VORHERSAGE[i].richtig ? 'richtig' : 'falsch');
+    erklaere('v-erklaerung', VORHERSAGE[i]);
+    vorhergesagt = true;
+    $('ausfuehren').disabled = false; $('ausfuehren').style.opacity = 1;
+    $('sperre').hidden = true;
+    $('frage').hidden = false;
+  });
+  wahlListe('f-wahl', FRAGE, false, (i, knopf) => {
+    document.querySelectorAll('#f-wahl .wahlknopf').forEach((b) => b.classList.remove('richtig', 'falsch'));
+    knopf.classList.add(FRAGE[i].richtig ? 'richtig' : 'falsch');
+    erklaere('f-erklaerung', FRAGE[i]);
+    if (FRAGE[i].richtig) { $('weiter').disabled = false; $('weiter').style.opacity = 1; }
+  });
+
+  function zeigeSchritt(n) {
+    schritt = n;
+    $('a-regler').value = n;
+    $('a-stand').textContent = `${n} / ${SCHRITTE.length}`;
+    if (n === 0) {
+      zeigeCode(); $('a-text').textContent = 'Abspielen zeigt den Lauf Zeile für Zeile.'; $('a-zeile').textContent = '-';
+      $('s-kolonie').innerHTML = '<span class="kasten-wert leer">noch nicht da</span>'; $('s-pinguin').innerHTML = '<span class="kasten-wert leer">noch nicht da</span>';
+      $('ausgabe').innerHTML = '<span class="leer">Noch keine Ausgabe</span>';
+      return;
+    }
+    const s = SCHRITTE[n - 1];
+    zeigeCode({ [s.zeile]: 'jetzt' });
+    $('a-text').textContent = s.text;
+    $('a-zeile').textContent = s.zeile;
+    const zeigt = s.pinguin != null && !s.ende && s.zeile === 2 ? s.pinguin : (s.pinguin != null && s.zeile === 3 ? s.pinguin : -1);
+    $('s-kolonie').innerHTML = `<div class="faecher">${KOLONIE.map((k, i) => `<div class="fach ${i === zeigt ? 'zeigt' : ''}"><span>"${k}"</span><small>${i}</small></div>`).join('')}</div>`;
+    const neu = s.zeile === 2 && !s.ende && s.pinguin != null;
+    $('s-pinguin').innerHTML = s.pinguin == null ? '<span class="kasten-wert leer">noch nicht da</span>' : `<span class="kasten-wert ${neu ? 'neu' : ''}">"${KOLONIE[s.pinguin]}"</span>`;
+    const aus = SCHRITTE.slice(0, n).filter((x) => x.aus).map((x) => x.aus);
+    $('ausgabe').textContent = aus.join('\n');
+    if (!aus.length) $('ausgabe').innerHTML = '<span class="leer">Noch keine Ausgabe</span>';
+  }
+
+  $('ausfuehren').addEventListener('click', () => {
+    if (veraendert) {
+      $('ausgabe').innerHTML = '<span class="leer">Im Entwurf läuft nur das Original. In der App läuft der veränderte Code in der Sandbox, Ablauf und Speicherbild entstehen aus diesem Lauf neu.</span>';
+      return;
+    }
+    $('ablauf-bereich').hidden = false;
+    zeigeSchritt(SCHRITTE.length);
+    $('a-text').textContent = 'Fertig gelaufen. Spiele den Ablauf ab oder gehe mit dem Regler zu einem Schritt.';
+  });
+  $('veraendern').addEventListener('click', () => {
+    const ta = document.createElement('textarea');
+    ta.value = ORIGINAL.join('\n');
+    ta.spellcheck = false;
+    ta.style.cssText = 'width:100%;min-height:120px;background:var(--ed-grund);color:var(--ed-text);font-family:var(--mono);font-size:14px;line-height:1.6;border:1px solid var(--accent);padding:8px 12px;font-variant-ligatures:none;resize:vertical';
+    $('code-ort').replaceChildren(ta);
+    ta.focus();
+    ta.addEventListener('input', () => {
+      veraendert = ta.value !== ORIGINAL.join('\n');
+      $('zustand').className = `zustand-hinweis ${veraendert ? 'veraendert' : ''}`;
+      $('zustand').innerHTML = veraendert ? '<i class="fa-solid fa-pen"></i>verändert, nur zum Ausprobieren' : '<i class="fa-solid fa-circle-check"></i>Original';
+    });
+    $('original').hidden = false;
+  });
+  $('original').addEventListener('click', () => {
+    veraendert = false; zeigeCode(); $('original').hidden = true;
+    $('zustand').className = 'zustand-hinweis'; $('zustand').innerHTML = '<i class="fa-solid fa-circle-check"></i>Original';
+  });
+  $('a-regler').addEventListener('input', (e) => zeigeSchritt(Number(e.target.value)));
+  $('a-vor').addEventListener('click', () => zeigeSchritt(Math.min(SCHRITTE.length, schritt + 1)));
+  $('a-zurueck').addEventListener('click', () => zeigeSchritt(Math.max(0, schritt - 1)));
+  $('a-spielen').addEventListener('click', () => {
+    if (laeuft) { clearInterval(laeuft); laeuft = null; $('a-spielen').innerHTML = '<i class="fa-solid fa-play"></i>'; return; }
+    if (schritt >= SCHRITTE.length) zeigeSchritt(0);
+    $('a-spielen').innerHTML = '<i class="fa-solid fa-pause"></i>';
+    laeuft = setInterval(() => {
+      if (schritt >= SCHRITTE.length) { clearInterval(laeuft); laeuft = null; $('a-spielen').innerHTML = '<i class="fa-solid fa-play"></i>'; return; }
+      zeigeSchritt(schritt + 1);
+    }, 1100);
+  });
+  zeigeCode();
+  $('alltag-bild').insertAdjacentHTML('afterbegin', pinguinBand());
+</script>
+</body>
+</html>

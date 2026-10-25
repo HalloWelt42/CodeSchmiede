@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="kurs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Kapitelende und Sammelkarten</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="kurs.css">
+<script src="kurs.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite" data-sprache="python">
+    <header class="a-kopf">
+      <a class="ikon" href="rechner-kurs.html" title="Zur Kursübersicht"><i class="fa-solid fa-arrow-left"></i></a>
+      <span class="zelle-titel"><b>Kapitel 9 geschafft</b><span>Python-Kurs: Schleifen mit for</span></span>
+    </header>
+    <div class="ende-seite">
+      <section class="spalte">
+        <div class="rollfeld">
+          <div class="belohnung">
+            <div class="belohnung-kopf"><span class="plus">+40</span><span>Einführung, 7 Übungen und Kapitelprojekt fertig</span></div>
+            <div class="zeile"><i class="fa-solid fa-id-card"></i>Neue Sammelkarte: <b>Schleifen mit for</b></div>
+            <div class="zeile"><span class="medaille bronze"><i class="fa-solid fa-graduation-cap"></i></span>Erfolg "Halbe Strecke": 10 von 20 Kapiteln</div>
+            <div class="zeile"><i class="fa-solid fa-rotate"></i>6 Fragen kommen in die Wiederholung, die erste in 2 Tagen</div>
+            <div class="balken"><span style="width:45%"></span></div>
+            <small class="dim">Python-Kurs: 9 von 20 Kapiteln</small>
+          </div>
+
+          <div class="block">
+            <div class="block-kopf"><span>Das kannst du jetzt</span></div>
+            <ul class="lernziele">
+              <li><i class="fa-solid fa-check"></i><span>eine for-Schleife über eine Liste schreiben</span></li>
+              <li><i class="fa-solid fa-check"></i><span>sagen, welcher Wert in jeder Runde im Schleifennamen steckt</span></li>
+              <li><i class="fa-solid fa-check"></i><span>mit range zählen, auch rückwärts</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Summen und Zähler in einer Schleife sammeln</span></li>
+            </ul>
+          </div>
+
+          <div class="block">
+            <div class="block-kopf"><span>Kapitelprojekt Notenbuch</span><span class="num">Stück 4 von 9</span></div>
+            <p style="margin:0;font-family:var(--quick)">Dein Notenbuch rechnet jetzt den Durchschnitt aller Noten aus. In Kapitel 10 bekommt es eine richtige Liste der Fächer.</p>
+          </div>
+
+          <div class="block">
+            <div class="block-kopf"><span>Vertiefung, freiwillig</span></div>
+            <div class="chips"><span class="chip">FizzBuzz</span><span class="chip">Vokale zählen</span><span class="chip">Quadratzahlen bis n</span></div>
+          </div>
+
+          <div class="detail-aktionen" style="margin-top:var(--sp-3)">
+            <a class="knopf voll" href="rechner-kurs.html"><i class="fa-solid fa-arrow-right"></i>Weiter: Kapitel 10, Listen</a>
+            <a class="knopf" href="rechner-merkblatt.html"><i class="fa-solid fa-note-sticky"></i>Merkblatt</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte">
+        <div class="rollfeld ohne-rand" style="display:flex;flex-direction:column">
+          <div class="karten-buehne" id="buehne"></div>
+          <div style="padding:var(--sp-3) var(--sp-4)">
+            <div class="gruppe">Deine Sammlung <span class="num">9 / 20</span></div>
+            <div class="album" id="album"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  const liste = KAPITEL_LISTE('python').map((k) => (k[0] === 9 ? [...k.slice(0, 3), 'fertig', k[4]] : k));
+  document.getElementById('buehne').innerHTML = sammelkarte('python', liste[8], 'durch jede Liste laufen, ohne eine Zeile zu kopieren');
+  document.getElementById('album').innerHTML = liste.map((k) => sammelkarte('python', k)).join('');
+</script>
+</body>
+</html>

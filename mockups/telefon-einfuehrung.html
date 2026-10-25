@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de" data-geraet="telefon" data-bereich="kurs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entwurf Telefon: Einführung</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="kurs.css">
+<script src="kurs.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite" data-sprache="python">
+    <header class="seiten-kopf">
+      <div class="titelzeile"><a class="ikon" href="telefon-kurs.html"><i class="fa-solid fa-arrow-left"></i></a><span class="zelle-titel"><b>Schleifen mit for</b><span>Kapitel 9, Abschnitt 3 von 6</span></span><a class="ikon" href="rechner-merkblatt.html" title="Merkblatt" style="margin-left:auto"><i class="fa-solid fa-note-sticky"></i></a></div>
+      <div class="t-abschnitte"><span class="fertig"></span><span class="fertig"></span><span class="jetzt"></span><span></span><span></span><span></span></div>
+    </header>
+    <div class="rollfeld lesen">
+      <div class="lesen-innen">
+        <h2>Der Schleifenname wechselt jede Runde</h2>
+        <div class="alltag">
+          <div class="zeichnung" id="bild"></div>
+          <div><span class="marke-klein">Aus dem Leben</span>In der Pinguin-Kantine fährt die Kolonie auf einem Förderband an der Fischausgabe vorbei. Der Automat ruft jeden einzeln: Pit, Fisch. Pia, Fisch. Paul, Fisch.</div>
+        </div>
+        <p>Genau das macht <code>for pinguin in kolonie:</code>. In jeder Runde steckt in <code>pinguin</code> ein anderes Element der Liste. Der eingerückte Block läuft einmal je Element.</p>
+        <div class="merksatz"><b>Merke:</b> Der Name hinter <code>for</code> ist eine normale Variable, in jeder Runde mit dem nächsten Element.</div>
+        <div id="code"></div>
+        <div class="frage-block vorhersage">
+          <div class="frage-kopf"><i class="fa-solid fa-wand-magic-sparkles"></i>Vorhersage</div>
+          <div class="frage-text">Was gibt das Beispiel aus?</div>
+          <div class="wahl-liste" id="v-wahl"></div><div id="v-erkl"></div>
+        </div>
+        <div id="lauf" class="lauf-stapel" hidden>
+          <pre class="ausgabe" id="ausgabe" style="border-top:1px solid var(--border)"></pre>
+          <div class="abspieler">
+            <button class="ikon" id="zurueck"><i class="fa-solid fa-backward-step"></i></button>
+            <button class="ikon" id="vor"><i class="fa-solid fa-forward-step"></i></button>
+            <span class="dim" id="a-text" style="font-size:var(--fs-sm);flex:1;min-width:0"></span>
+            <span class="num" id="a-stand">0 / 9</span>
+          </div>
+          <div class="speicher">
+            <div class="speicher-zeile"><span class="speicher-name">kolonie</span><div id="s-kolonie"></div></div>
+            <div class="speicher-zeile"><span class="speicher-name">pinguin</span><div id="s-pinguin"></div></div>
+          </div>
+          <span class="zustand-hinweis"><i class="fa-solid fa-display"></i>Beispiele verändern geht am Rechner</span>
+        </div>
+        <div class="frage-block" id="frage" hidden>
+          <div class="frage-kopf"><i class="fa-solid fa-circle-question"></i>Kurze Frage</div>
+          <div class="frage-text">Wie oft läuft der Block bei <code>for zahl in [3, 1, 4, 1, 5]:</code>?</div>
+          <div class="wahl-liste" id="f-wahl"></div><div id="f-erkl"></div>
+        </div>
+      </div>
+    </div>
+    <div class="t-unten">
+      <button class="knopf"><i class="fa-solid fa-arrow-left"></i>Zurück</button>
+      <button class="knopf voll" id="weiter" disabled><i class="fa-solid fa-arrow-right"></i>Weiter</button>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const ORIGINAL = ['kolonie = ["Pit", "Pia", "Paul"]', 'for pinguin in kolonie:', '    print(pinguin, "bekommt einen Fisch")', 'print("Alle satt!")'];
+  const KOLONIE = ['Pit', 'Pia', 'Paul'];
+  const SCHRITTE = [[1, null, null, 'kolonie entsteht'], [2, 0, null, 'Runde 1: "Pit"'], [3, 0, 'Pit bekommt einen Fisch', 'Block läuft'], [2, 1, null, 'Runde 2: "Pia"'], [3, 1, 'Pia bekommt einen Fisch', 'Block läuft'], [2, 2, null, 'Runde 3: "Paul"'], [3, 2, 'Paul bekommt einen Fisch', 'Block läuft'], [2, 2, null, 'Liste zu Ende'], [4, 2, 'Alle satt!', 'nach der Schleife']];
+  let n = 0;
+  function zeige(k) {
+    n = k;
+    const [zeile, p, , text] = k ? SCHRITTE[k - 1] : [0, null, null, 'Vor dem Lauf'];
+    $('code').innerHTML = codeBlock(ORIGINAL, { klassen: { [zeile]: 'jetzt' } });
+    $('a-text').textContent = text;
+    $('a-stand').textContent = `${k} / 9`;
+    $('ausgabe').textContent = SCHRITTE.slice(0, k).filter((s) => s[2]).map((s) => s[2]).join('\n');
+    $('s-kolonie').innerHTML = k ? `<div class="faecher">${KOLONIE.map((x, i) => `<div class="fach ${i === p && zeile !== 4 && text !== 'Liste zu Ende' ? 'zeigt' : ''}"><span>"${x}"</span><small>${i}</small></div>`).join('')}</div>` : '<span class="kasten-wert leer">noch nicht da</span>';
+    $('s-pinguin').innerHTML = p == null ? '<span class="kasten-wert leer">noch nicht da</span>' : `<span class="kasten-wert">"${KOLONIE[p]}"</span>`;
+  }
+  wahlFrage('v-wahl', 'v-erkl', [
+    { t: 'Pit bekommt einen Fisch\nPia bekommt einen Fisch\nPaul bekommt einen Fisch\nAlle satt!', richtig: true, erkl: 'Genau. Drei Runden, und "Alle satt!" einmal am Ende.' },
+    { t: 'kolonie bekommt einen Fisch\nAlle satt!', erkl: 'pinguin ist in jeder Runde ein einzelner Name, nicht die ganze Liste.' },
+    { t: 'Pit bekommt einen Fisch\nAlle satt!', erkl: 'Pia und Paul gehen leer aus? Die Schleife läuft für jedes Element.' },
+  ], () => { $('lauf').hidden = false; $('frage').hidden = false; zeige(9); }, true);
+  wahlFrage('f-wahl', 'f-erkl', [
+    { t: '5 Mal', richtig: true, erkl: 'Richtig: einmal je Element, auch die doppelte 1.' },
+    { t: '4 Mal', erkl: 'Die 1 kommt zweimal vor, jedes Vorkommen ist ein eigenes Element.' },
+    { t: '14 Mal', erkl: 'Das ist die Summe. Gezählt werden Elemente, nicht Werte.' },
+  ], (e) => { if (e.richtig) $('weiter').disabled = false; });
+  $('vor').addEventListener('click', () => zeige(Math.min(9, n + 1)));
+  $('zurueck').addEventListener('click', () => zeige(Math.max(0, n - 1)));
+  $('bild').innerHTML = pinguinBand();
+  $('code').innerHTML = codeBlock(ORIGINAL);
+</script>
+</body>
+</html>

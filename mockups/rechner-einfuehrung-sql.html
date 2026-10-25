@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="kurs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Einführung SQL</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="kurs.css">
+<script src="kurs.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite" data-sprache="sql">
+    <header class="a-kopf">
+      <a class="ikon" href="rechner-kurs.html" title="Zur Kursübersicht"><i class="fa-solid fa-arrow-left"></i></a>
+      <span class="zelle-titel"><b>Zeilen filtern mit WHERE</b><span>SQL-Kurs, Kapitel 3: Einführung, Abschnitt 4 von 5</span></span>
+      <div class="meta">
+        <div class="t-abschnitte" style="width:150px"><span class="fertig"></span><span class="fertig"></span><span class="fertig"></span><span class="jetzt"></span><span></span></div>
+        <a class="knopf" href="rechner-merkblatt.html"><i class="fa-solid fa-note-sticky"></i>Merkblatt</a>
+      </div>
+    </header>
+    <div class="lehr-seite">
+      <section class="spalte gliederung-spalte">
+        <div class="spalten-kopf"><span>Einführung</span></div>
+        <div class="rollfeld"><div class="gliederung">
+          <button class="fertig"><i class="fa-solid fa-circle-check"></i><span>Nicht alle Zeilen, bitte</span></button>
+          <button class="fertig"><i class="fa-solid fa-circle-check"></i><span>Vergleichen mit =, &lt; und &gt;</span></button>
+          <button class="fertig"><i class="fa-solid fa-circle-check"></i><span>Text in Hochkommas</span></button>
+          <button class="jetzt"><i class="fa-solid fa-circle-play"></i><span>Die Datenbank liest anders, als du schreibst</span></button>
+          <button class="zu"><i class="fa-regular fa-circle"></i><span>Mehrere Bedingungen mit AND und OR</span></button>
+        </div></div>
+      </section>
+
+      <section class="spalte">
+        <div class="rollfeld lesen"><div class="lesen-innen">
+          <div><div class="dachzeile">Abschnitt 4 von 5</div><h2>Die Datenbank liest anders, als du schreibst</h2></div>
+          <div class="alltag">
+            <div class="zeichnung" style="aspect-ratio:4/3;background:radial-gradient(circle,color-mix(in srgb,var(--s-c) 25%,var(--bg)),var(--bg) 70%)"><i class="fa-solid fa-filter" style="font-size:64px;color:var(--s-a)"></i><span class="auftrag-hinweis">Bildauftrag: Ein Sieb, durch das nur passende Karteikarten fallen</span></div>
+            <div><span class="marke-klein">Aus dem Leben</span>Beim Pizzabestellen sagst du zuerst, was du willst: "Eine große Margherita". Der Pizzabäcker fängt aber nicht beim Wort "groß" an, sondern holt erst den Teig, belegt, backt und schneidet ganz am Ende.</div>
+          </div>
+          <p>Mit SQL ist es genauso. Du schreibst <code>SELECT</code> nach vorn, die Datenbank arbeitet die Abfrage aber in einer festen anderen Reihenfolge ab: erst <code>FROM</code>, dann <code>WHERE</code>, dann <code>SELECT</code>, zuletzt <code>ORDER BY</code>.</p>
+          <div class="merksatz"><b>Merke:</b> <code>WHERE</code> sortiert Zeilen aus, bevor <code>SELECT</code> die Spalten auswählt. Darum darfst du in <code>WHERE</code> auch Spalten benutzen, die am Ende gar nicht im Ergebnis stehen.</div>
+          <p>Rechts sucht die Abfrage die Nordkolonie heraus, die schwersten Pinguine zuerst.</p>
+          <div class="frage-block vorhersage">
+            <div class="frage-kopf"><i class="fa-solid fa-wand-magic-sparkles"></i>Vorhersage</div>
+            <div class="frage-text">Wie viele Zeilen hat das Ergebnis?</div>
+            <div class="wahl-liste" id="v-wahl"></div><div id="v-erkl"></div>
+          </div>
+          <div class="augenzwinkern"><i class="fa-solid fa-face-smile-wink"></i><span>Die Südkolonie ist nicht beleidigt. Sie hat ihre eigene Abfrage.</span></div>
+        </div></div>
+      </section>
+
+      <section class="spalte werkbank">
+        <div class="spalten-kopf"><span>Beispiel, Datensatz Kantine</span></div>
+        <div class="rollfeld">
+          <div class="werkbank-zeile"><button class="knopf voll" id="ausfuehren" disabled><i class="fa-solid fa-play"></i>Ausführen</button><button class="knopf"><i class="fa-solid fa-pen"></i>Verändern</button></div>
+          <div class="code" id="sql-code"></div>
+          <div class="sperre" id="sperre"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Erst vorhersagen, dann ausführen.</span></div>
+          <div id="ablauf" hidden>
+            <div class="block-kopf"><span>So arbeitet die Datenbank</span><span class="dim" style="text-transform:none;letter-spacing:0">Zwischentabelle je Schritt</span></div>
+            <div class="klausel-leiste" id="klauseln"></div>
+            <p class="dim" id="k-text" style="margin:var(--sp-2) 0;font-family:var(--quick);font-size:var(--fs-md);min-height:44px"></p>
+            <div id="tabelle"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const SPALTEN = ['id', 'name', 'kolonie', 'gewicht_kg'];
+  const ZEILEN = [[1, 'Pit', 'Nord', 4.2], [2, 'Pia', 'Süd', 3.8], [3, 'Paul', 'Nord', 5.1], [4, 'Pina', 'Nord', 3.5], [5, 'Pepe', 'Süd', 4.9], [6, 'Polly', 'Nord', 4.6]];
+  const CODE = [
+    '<span class="ck">SELECT</span> name, gewicht_kg',
+    '<span class="ck">FROM</span> pinguine',
+    '<span class="ck">WHERE</span> kolonie = <span class="cs">\'Nord\'</span>',
+    '<span class="ck">ORDER BY</span> gewicht_kg <span class="ck">DESC</span>;',
+  ];
+  const SCHRITTE = [
+    { k: 'FROM', zeile: 2, text: 'Zuerst holt die Datenbank die ganze Tabelle pinguine, alle sechs Zeilen.' },
+    { k: 'WHERE', zeile: 3, text: 'Dann prüft sie jede Zeile: nur kolonie = \'Nord\' bleibt, die Südkolonie fällt durchs Sieb.' },
+    { k: 'SELECT', zeile: 1, text: 'Jetzt erst wählt SELECT die Spalten. id und kolonie verschwinden aus dem Ergebnis.' },
+    { k: 'ORDER BY', zeile: 4, text: 'Zum Schluss wird sortiert, DESC heißt absteigend: der Schwerste zuerst.' },
+  ];
+  let schritt = 0;
+  function zeigeCode(zeile) {
+    $('sql-code').innerHTML = CODE.map((z, i) => `<div class="${i + 1 === zeile ? 'jetzt' : ''}"><span class="ln">${i + 1}</span><span>${z}</span></div>`).join('');
+  }
+  function zeige(n) {
+    schritt = n;
+    const s = SCHRITTE[n];
+    zeigeCode(s.zeile);
+    $('klauseln').innerHTML = SCHRITTE.map((x, i) => `<button class="klausel ${i === n ? 'jetzt' : i < n ? 'erledigt' : ''}" onclick="zeige(${i})"><small>${i + 1}</small>${x.k}<small>Zeile ${x.zeile}</small></button>`).join('');
+    $('k-text').textContent = s.text;
+    const nord = (z) => z[2] === 'Nord';
+    let zeilen = ZEILEN;
+    if (n >= 3) zeilen = ZEILEN.filter(nord).sort((a, b) => b[3] - a[3]);
+    const weg = (sp) => n >= 2 && (sp === 'id' || sp === 'kolonie');
+    const zeilenKlasse = (z) => (n === 0 ? 'neu' : n === 1 ? (nord(z) ? 'bleibt' : 'raus') : n >= 2 && !nord(z) ? 'versteckt' : '');
+    $('tabelle').innerHTML = `<table class="daten"><thead><tr>${SPALTEN.map((sp) => `<th class="${weg(sp) ? 'weg' : ''}">${sp}</th>`).join('')}</tr></thead><tbody>${zeilen.filter((z) => zeilenKlasse(z) !== 'versteckt').map((z) => `<tr class="${zeilenKlasse(z)}">${z.map((w, i) => `<td class="${weg(SPALTEN[i]) ? 'weg' : ''}">${typeof w === 'number' && i === 3 ? w.toFixed(1) : w}</td>`).join('')}</tr>`).join('')}</tbody></table>
+      <p class="dim" style="font-size:var(--fs-xs);margin:6px 0 0">${n === 3 ? 'Ergebnis: 4 Zeilen, 2 Spalten' : `Zwischentabelle nach Schritt ${n + 1}`}</p>`;
+  }
+  window.zeige = zeige;
+  wahlFrage('v-wahl', 'v-erkl', [
+    { t: '6 Zeilen', erkl: 'So viele hat die ganze Tabelle. WHERE lässt aber nur die Nordkolonie durch.' },
+    { t: '4 Zeilen', richtig: true, erkl: 'Genau: Pit, Paul, Pina und Polly wohnen im Norden.' },
+    { t: '2 Zeilen', erkl: 'Zwei sind es bei den Spalten (name, gewicht_kg). Gefragt waren die Zeilen.' },
+    { t: '1 Zeile', erkl: 'ORDER BY sortiert nur, es schneidet nichts ab. Dafür gibt es später LIMIT.' },
+  ], () => { $('ausfuehren').disabled = false; $('sperre').hidden = true; });
+  $('ausfuehren').addEventListener('click', () => { $('ablauf').hidden = false; zeige(0); });
+  zeigeCode(0);
+</script>
+</body>
+</html>

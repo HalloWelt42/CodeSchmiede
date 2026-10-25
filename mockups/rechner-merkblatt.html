@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="kurs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Merkblatt</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="kurs.css">
+<script src="kurs.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite" data-sprache="python">
+    <header class="seiten-kopf">
+      <div class="titelzeile">
+        <a class="ikon" href="rechner-kurs.html" title="Zur Kursübersicht"><i class="fa-solid fa-arrow-left"></i></a>
+        <h1>Merkblatt</h1>
+        <span class="lead">Kapitel 9 auf einer Seite: zum Nachschlagen, beim Üben im Hilfefenster und zum Ausdrucken</span>
+        <div class="aktionen"><button class="knopf" onclick="window.print()"><i class="fa-solid fa-print"></i>Drucken</button></div>
+      </div>
+    </header>
+    <div class="merk-seite">
+      <article class="blatt">
+        <header class="blatt-kopf">
+          <div class="zeichnung" id="blatt-bild"></div>
+          <div><small>Python-Kurs, Kapitel 9</small><h1>Schleifen mit for</h1></div>
+          <span class="marke"><i class="fa-solid fa-hammer"></i> Codeschmiede</span>
+        </header>
+
+        <section class="feld-merk">
+          <h3>Grundform</h3>
+          <div id="c-grund"></div>
+          <pre class="ausgabe">Pit bekommt einen Fisch
+Pia bekommt einen Fisch
+Paul bekommt einen Fisch</pre>
+          <p style="margin:6px 0 0">Der Name hinter <code>for</code> bekommt in jeder Runde das nächste Element. Alles Eingerückte gehört zur Schleife.</p>
+        </section>
+
+        <section class="feld-merk">
+          <h3>Zählen mit range</h3>
+          <table>
+            <tr><td>range(4)</td><td>0, 1, 2, 3 (die 4 nicht)</td></tr>
+            <tr><td>range(2, 5)</td><td>2, 3, 4</td></tr>
+            <tr><td>range(0, 10, 3)</td><td>0, 3, 6, 9</td></tr>
+            <tr><td>range(3, 0, -1)</td><td>3, 2, 1, rückwärts</td></tr>
+          </table>
+        </section>
+
+        <section class="feld-merk">
+          <h3>Summe sammeln</h3>
+          <div id="c-summe"></div>
+          <p style="margin:6px 0 0">Der Sammler startet <b>vor</b> der Schleife, ausgegeben wird <b>nach</b> der Schleife.</p>
+        </section>
+
+        <section class="feld-merk">
+          <h3>Typische Fallen</h3>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="falle"><b>Doppelpunkt vergessen:</b> <code>for x in liste</code> ohne <code>:</code> ist ein Syntaxfehler.</div>
+            <div class="falle"><b>Falsch eingerückt:</b> was nicht eingerückt ist, läuft nur einmal, nach der Schleife.</div>
+            <div class="falle"><b>range zählt bis kurz davor:</b> <code>range(1, 10)</code> endet bei 9.</div>
+          </div>
+        </section>
+
+        <section class="feld-merk ganz">
+          <h3>Begriffe</h3>
+          <table>
+            <tr><td>Schleife</td><td>Ein Block, der mehrmals läuft.</td></tr>
+            <tr><td>Durchlauf, Runde</td><td>Ein einzelnes Ausführen des Blocks.</td></tr>
+            <tr><td>Schleifenvariable</td><td>Der Name hinter for, in jeder Runde mit neuem Wert.</td></tr>
+          </table>
+        </section>
+      </article>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  document.getElementById('blatt-bild').innerHTML = pinguinBand();
+  document.getElementById('c-grund').innerHTML = codeBlock(['for pinguin in ["Pit", "Pia", "Paul"]:', '    print(pinguin, "bekommt einen Fisch")']);
+  document.getElementById('c-summe').innerHTML = codeBlock(['summe = 0', 'for preis in [3, 5, 2]:', '    summe = summe + preis', 'print(summe)   # 10']);
+</script>
+</body>
+</html>

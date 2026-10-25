@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de" data-geraet="telefon" data-bereich="kurs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entwurf Telefon: Kurs</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="kurs.css">
+<script src="kurs.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite" id="kurs" data-sprache="python">
+    <header class="seiten-kopf">
+      <div class="titelzeile"><h1>Kurs</h1><span class="treffer" style="margin-left:auto"><span class="num">8</span> / 20 Kapitel</span></div>
+      <div class="t-chips" id="sprachen"></div>
+    </header>
+    <div class="rollfeld" id="liste"></div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  let sprache = 'python';
+  function zeichne() {
+    document.getElementById('kurs').dataset.sprache = sprache;
+    document.getElementById('sprachen').innerHTML = Object.entries(KURSE).map(([id, k]) => `<span class="chip ${id === sprache ? 'akz' : ''}" onclick="sprache='${id}';zeichne()">${k.titel}</span>`).join('');
+    const alle = KAPITEL_LISTE(sprache);
+    const aktuell = alle.find((k) => k[3] === 'aktuell');
+    document.getElementById('liste').innerHTML = (aktuell ? `
+      <a class="weiter-karte" href="telefon-einfuehrung.html" style="color:var(--fg);text-decoration:none;margin-bottom:var(--sp-3)">
+        ${miniKarte(aktuell[2], 'aktuell')}
+        <div style="min-width:0"><small>Weiter hier, Kapitel ${aktuell[0]}</small><b>${aktuell[1]}</b><small>Einführung, Abschnitt 3 von 6</small></div>
+      </a>` : '')
+      + KURSE[sprache].bloecke.map((b) => `<div class="gruppe">${b.titel}</div>${b.kapitel.map(([nr, titel, icon, stand]) => `
+        <div class="kapitel ${stand === 'zu' ? 'zu' : ''}">
+          ${miniKarte(icon, stand)}
+          <div class="kapitel-text"><b><span class="nr">${nr}</span>${titel}</b>
+            <div class="kapitel-stand"><span class="kapitel-marke ${stand}"><i class="fa-solid ${MARKE[stand][0]}"></i>${MARKE[stand][1]}</span></div></div>
+          <i class="fa-solid fa-chevron-right" style="color:var(--fg-mute)"></i>
+        </div>`).join('')}`).join('');
+  }
+  zeichne();
+</script>
+</body>
+</html>

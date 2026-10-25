@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="kurs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Kurs</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="kurs.css">
+<script src="kurs.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite" id="kurs" data-sprache="python">
+    <header class="seiten-kopf">
+      <div class="titelzeile">
+        <h1>Kurs</h1>
+        <span class="lead">Von null an, eine neue Sache nach der anderen: erst die Einführung, dann üben</span>
+        <div class="aktionen"><a class="knopf voll kuerzbar" href="rechner-einfuehrung.html"><i class="fa-solid fa-play"></i><span>Weiter: Schleifen mit for, Abschnitt 3</span></a></div>
+      </div>
+      <div class="titelzeile" style="flex-wrap:wrap;gap:var(--sp-2)">
+        <div class="sprach-reiter" id="sprachen"></div>
+        <div class="kennzahlen" style="margin-left:auto">
+          <div class="kennzahl"><span class="num" id="k-fertig">8</span><small>Kapitel fertig</small></div>
+          <div class="kennzahl"><span class="num" id="k-alle">20</span><small>Kapitel</small></div>
+          <div class="kennzahl"><span class="num">8</span><small>Sammelkarten</small></div>
+        </div>
+      </div>
+    </header>
+    <div class="kurs-seite">
+      <section class="spalte"><div class="rollfeld" id="kapitel-liste"></div></section>
+      <section class="spalte"><div class="rollfeld" id="detail"></div></section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  // Einzelheiten je Kapitel; im Entwurf voll ausgearbeitet nur Python Kapitel 9, die übrigen mit gleichem Aufbau
+  const DETAIL = {
+    'python-9': {
+      text: 'Eine Liste Element für Element abarbeiten, ohne jede Zeile zu kopieren. Die Pinguin-Kantine zeigt, wie das geht.',
+      ziele: ['eine for-Schleife über eine Liste schreiben', 'sagen, welcher Wert in jeder Runde im Schleifennamen steckt', 'mit range zählen, auch rückwärts', 'Summen und Zähler in einer Schleife sammeln'],
+      schritte: [
+        ['fertig', 'Einführung, Abschnitt 1: Wozu Schleifen?', 'Lesen'],
+        ['fertig', 'Einführung, Abschnitt 2: Die for-Schleife liest eine Liste', 'Lesen'],
+        ['jetzt', 'Einführung, Abschnitt 3: Der Schleifenname wechselt jede Runde', 'Lesen'],
+        ['zu', 'Einführung, Abschnitte 4 bis 6', 'Lesen'],
+        ['zu', 'Übung 1: Fischausgabe nachvollziehen', 'gelöst vorgegeben'],
+        ['zu', 'Übung 2: Fischausgabe mit Lücken', 'Lücken'],
+        ['zu', 'Übung 3: Fischausgabe selbst schreiben', 'leer'],
+        ['zu', 'Übung 4 bis 7: Countdown, Summe, Zähler, Teilschritte', 'eine neue Sache je Übung'],
+        ['zu', 'Kapitelprojekt: Notenbuch, Durchschnitt aller Noten', 'Projekt wächst'],
+      ],
+      vertiefung: ['FizzBuzz', 'Vokale zählen', 'Quadratzahlen bis n'],
+    },
+  };
+  let sprache = 'python';
+  let gewaehlt = 9;
+  const liste = document.getElementById('kapitel-liste');
+  const detail = document.getElementById('detail');
+  const sprachen = document.getElementById('sprachen');
+
+  function zeichneSprachen() {
+    sprachen.innerHTML = Object.entries(KURSE).map(([id, k]) => `<button data-sprache="${id}" class="${id === sprache ? 'aktiv' : ''}" onclick="waehleSprache('${id}')"><span class="punkt"></span>${k.titel}</button>`).join('');
+  }
+  function zeichneListe() {
+    liste.innerHTML = KURSE[sprache].bloecke.map((b) => `
+      <div class="kapitel-block">
+        <div class="gruppe">${b.titel} <span class="num">${b.kapitel.length}</span></div>
+        ${b.kapitel.map(([nr, titel, icon, stand]) => {
+          const [mi, mt] = MARKE[stand];
+          const anteil = stand === 'fertig' || stand === 'uebersprungen' ? 100 : stand === 'aktuell' ? 22 : 0;
+          return `<div class="kapitel ${nr === gewaehlt ? 'gewaehlt' : ''} ${stand === 'zu' ? 'zu' : ''}" onclick="waehle(${nr})">
+            ${miniKarte(icon, stand)}
+            <div class="kapitel-text"><b><span class="nr">${nr}</span>${titel}</b>
+              <div class="kapitel-stand"><span class="balken"><span style="width:${anteil}%"></span></span>${stand === 'aktuell' ? 'Einführung 2 von 6, Übungen 0 von 7' : stand === 'zu' ? 'Einführung, 7 Übungen, Kurztest' : stand === 'uebersprungen' ? 'per Kurztest übersprungen, Einführung lesbar' : 'Einführung, 7 Übungen'}</div>
+            </div>
+            <span class="kapitel-marke ${stand}"><i class="fa-solid ${mi}"></i>${mt}</span>
+          </div>`;
+        }).join('')}
+      </div>`).join('');
+    const alle = KAPITEL_LISTE(sprache);
+    document.getElementById('k-fertig').textContent = alle.filter((k) => k[3] === 'fertig' || k[3] === 'uebersprungen').length;
+    document.getElementById('k-alle').textContent = alle.length;
+  }
+  function zeichneDetail() {
+    const k = KAPITEL_LISTE(sprache).find((x) => x[0] === gewaehlt);
+    const [nr, titel, icon, stand, motiv] = k;
+    const d = DETAIL[`${sprache}-${nr}`] || {
+      text: `Gleicher Aufbau wie jedes Kapitel: Einführung in kurzen Abschnitten, Übungen von gelöst bis leer, Kurztest zum Überspringen, Merkblatt und Sammelkarte.`,
+      ziele: ['Lernziele des Kapitels als "kann ich"-Sätze'],
+      schritte: [[stand === 'zu' ? 'zu' : 'fertig', 'Einführung', 'Lesen'], [stand === 'zu' ? 'zu' : 'fertig', 'Übungen', 'von gelöst bis leer'], ['zu', 'Kapitelprojekt', 'Projekt wächst']],
+      vertiefung: [],
+    };
+    const gesperrt = stand === 'zu';
+    detail.innerHTML = `
+      <div class="detail-kopf">
+        <div class="kapitel-bild zeichnung">${sprache === 'python' && nr === 9 ? pinguinBand() : platzhalter(gesperrt ? 'fa-lock' : icon)}</div>
+        <div><div class="kapitel-marke ${stand}"><i class="fa-solid ${MARKE[stand][0]}"></i>Kapitel ${nr}, ${MARKE[stand][1]}</div><h2>${titel}</h2><p>${d.text}</p></div>
+      </div>
+      <div class="block"><div class="block-kopf"><span>Danach kannst du</span></div><ul class="lernziele">${d.ziele.map((z) => `<li><i class="fa-solid fa-check"></i><span>${z}</span></li>`).join('')}</ul></div>
+      <div class="block"><div class="block-kopf"><span>Ablauf des Kapitels</span><span class="num">${d.schritte.filter((s) => s[0] === 'fertig').length} / ${d.schritte.length}</span></div>
+        <div class="schritt-liste">${d.schritte.map(([s, t, art]) => `<div class="schritt ${s}"><span class="t">${t}</span><span class="art">${art}</span><i class="fa-solid ${s === 'fertig' ? 'fa-circle-check' : s === 'jetzt' ? 'fa-circle-play' : 'fa-lock'}" style="${s === 'fertig' ? 'color:var(--green)' : s === 'jetzt' ? 'color:var(--accent)' : ''}"></i></div>`).join('')}</div>
+      </div>
+      ${d.vertiefung.length ? `<div class="block"><div class="block-kopf"><span>Vertiefung aus dem Bestand, freiwillig</span></div><div class="chips">${d.vertiefung.map((v) => `<span class="chip">${v}</span>`).join('')}</div><p class="dim" style="font-size:var(--fs-xs);margin:6px 0 0">Nur Aufgaben, die ausschließlich Eingeführtes brauchen; der Begriffskatalog sucht sie aus.</p></div>` : ''}
+      <div class="block"><div class="block-kopf"><span>Bildauftrag der Sammelkarte</span></div><p class="dim" style="margin:0;font-size:var(--fs-sm);font-family:var(--quick)">${motiv}</p></div>
+      <div class="detail-aktionen" style="margin-top:var(--sp-3)">
+        ${gesperrt ? `<a class="knopf primaer" href="rechner-kurztest.html"><i class="fa-solid fa-forward"></i>Kann ich schon: Kurztest</a><span class="dim" style="font-size:var(--fs-sm);align-self:center">Einführung öffnet sich nach Kapitel ${nr - 1}</span>`
+          : `<a class="knopf voll" href="rechner-einfuehrung.html"><i class="fa-solid fa-book-open"></i>Einführung</a><a class="knopf" href="rechner-aufgabe.html"><i class="fa-solid fa-code"></i>Üben</a><a class="knopf" href="rechner-merkblatt.html"><i class="fa-solid fa-note-sticky"></i>Merkblatt</a>${stand === 'aktuell' ? '<a class="knopf" href="rechner-kurztest.html"><i class="fa-solid fa-forward"></i>Kurztest</a>' : ''}`}
+      </div>`;
+  }
+  window.waehle = (nr) => { gewaehlt = nr; zeichneListe(); zeichneDetail(); };
+  window.waehleSprache = (id) => {
+    sprache = id;
+    document.getElementById('kurs').dataset.sprache = id;
+    const alle = KAPITEL_LISTE(id);
+    gewaehlt = (alle.find((k) => k[3] === 'aktuell') || alle[0])[0];
+    zeichneSprachen(); zeichneListe(); zeichneDetail();
+  };
+  waehleSprache('python');
+</script>
+</body>
+</html>

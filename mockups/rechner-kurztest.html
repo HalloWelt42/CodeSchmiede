@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="kurs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Kurztest</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="kurs.css">
+<script src="kurs.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite" data-sprache="python">
+    <header class="a-kopf">
+      <a class="ikon" href="rechner-kurs.html" title="Zur Kursübersicht"><i class="fa-solid fa-arrow-left"></i></a>
+      <span class="zelle-titel"><b>Kurztest: Schleifen mit for</b><span>Python-Kurs, Kapitel 9: wer alles richtig hat, überspringt das Kapitel</span></span>
+      <div class="meta"><div class="test-fortschritt" id="fortschritt" style="width:200px"></div></div>
+    </header>
+    <div class="test-seite">
+      <section class="spalte">
+        <div class="rollfeld lesen"><div class="lesen-innen" id="teil"></div></div>
+      </section>
+      <section class="spalte">
+        <div class="spalten-kopf"><span>Fünf Teile</span></div>
+        <div class="rollfeld">
+          <div class="test-teile" id="teile"></div>
+          <p class="dim" style="font-size:var(--fs-sm);font-family:var(--quick);margin-top:var(--sp-3)">Eigene Fragen, nicht die aus der Einführung, und eine kleine Übung, die alles aus dem Kapitel braucht. Bestanden nur, wenn alles stimmt; die Einführung bleibt danach trotzdem lesbar.</p>
+          <div class="block" id="ergebnis" hidden></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const TEILE = [
+    { art: 'Lücke im Code', icon: 'fa-i-cursor' },
+    { art: 'Zeilen ordnen', icon: 'fa-arrow-down-short-wide' },
+    { art: 'Fehlerstelle zeigen', icon: 'fa-bug' },
+    { art: 'Auswahl', icon: 'fa-list-check' },
+    { art: 'Kleine Übung', icon: 'fa-code' },
+  ];
+  const stand = ['offen', 'offen', 'offen', 'offen', 'offen'];
+  let jetzt = 0;
+
+  const ORDNEN_RICHTIG = ['summe = 0', 'for preis in [3, 5, 2]:', '    summe = summe + preis', 'print(summe)'];
+  let ordnen = [ORDNEN_RICHTIG[2], ORDNEN_RICHTIG[0], ORDNEN_RICHTIG[3], ORDNEN_RICHTIG[1]];
+
+  const kopf = (t, frage) => `<div><div class="dachzeile">Teil ${jetzt + 1} von 5: ${TEILE[jetzt].art}</div><h2>${t}</h2></div>${frage ? `<p>${frage}</p>` : ''}`;
+  const weiter = () => `<div class="weiter-zeile"><button class="knopf voll" onclick="pruefe()"><i class="fa-solid fa-check"></i>Prüfen</button></div><div id="t-erkl"></div>`;
+
+  const ANSICHT = [
+    () => `${kopf('Was fehlt?', 'Die Schleife soll jede Sorte einzeln ausgeben. Ergänze die Lücke.')}
+      <div class="code"><div><span class="ln">1</span><span>sorten = [<span class="cs">"Hering"</span>, <span class="cs">"Sprotte"</span>, <span class="cs">"Makrele"</span>]</span></div>
+      <div><span class="ln">2</span><span><span class="ck">for</span> sorte <input class="luecke" id="luecke" placeholder="?" spellcheck="false"> sorten:</span></div>
+      <div><span class="ln">3</span><span>    <span class="cf">print</span>(sorte)</span></div></div>${weiter()}`,
+    () => `${kopf('Bring die Zeilen in Ordnung', 'Die Kasse soll alle Preise zusammenzählen und am Ende die Summe zeigen. Verschiebe die Zeilen mit den Pfeilen.')}
+      <div class="ordnen" id="ordnen">${ordnen.map((z, i) => `<div class="ordnen-zeile"><i class="fa-solid fa-grip-vertical"></i><span>${pyZeile(z)}</span><span class="pfeile"><button onclick="schiebe(${i},-1)" title="nach oben"><i class="fa-solid fa-arrow-up"></i></button><button onclick="schiebe(${i},1)" title="nach unten"><i class="fa-solid fa-arrow-down"></i></button></span></div>`).join('')}</div>${weiter()}`,
+    () => `${kopf('Wo steckt der Fehler?', 'Paul will von 3 rückwärts zählen und dann "Start!" rufen. Es kommt aber nur "Start!". Klicke die Zeile mit dem Fehler an.')}
+      ${codeBlock(['for zahl in range(3, 0):', '    print(zahl)', 'print("Start!")'], { id: 'fehlercode', klassen: { 1: 'fehlerzeile', 2: 'fehlerzeile', 3: 'fehlerzeile' } })}<div id="t-erkl"></div>`,
+    () => `${kopf('Was steht danach in zaehler?')}
+      ${codeBlock(['zaehler = 0', 'for wort in ["Eis", "Fisch", "Eisberg"]:', '    if "Eis" in wort:', '        zaehler = zaehler + 1'])}
+      <div class="wahl-liste" id="t-wahl"></div><div id="t-erkl"></div>`,
+    () => `${kopf('Die Fischwaage', 'Schreibe eine Funktion gesamtgewicht(fische), die alle Gewichte der Liste zusammenzählt und die Summe zurückgibt. Teilschritte: erst die Schleife, dann die Summe.')}
+      <div class="teilschritte" style="font-family:var(--sans)">
+        <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>Jedes Gewicht einmal anfassen</b><small>Die Schleife läuft über alle Fische.</small></div></div>
+        <div class="teilschritt aktuell"><i class="fa-solid fa-circle-play"></i><div><b>Summe sammeln und zurückgeben</b><small>gesamtgewicht([2, 3, 4]) gibt 9.</small></div></div>
+      </div>
+      ${codeBlock(['def gesamtgewicht(fische):', '    summe = 0', '    for gewicht in fische:', '        summe = summe + gewicht', '    return summe'])}
+      <div class="weiter-zeile"><button class="knopf"><i class="fa-solid fa-play"></i>Probelauf</button><button class="knopf voll" onclick="loese()"><i class="fa-solid fa-gavel"></i>Prüfen</button></div><div id="t-erkl"></div>`,
+  ];
+
+  function zeichneSeite() {
+    $('fortschritt').innerHTML = stand.map((s, i) => `<span class="${s === 'ok' ? 'ok' : i === jetzt ? 'jetzt' : ''}"></span>`).join('');
+    $('teile').innerHTML = TEILE.map((t, i) => `<div class="test-teil ${stand[i] === 'ok' ? 'ok' : i === jetzt ? 'jetzt' : ''}" onclick="gehe(${i})" style="cursor:pointer"><i class="fa-solid ${stand[i] === 'ok' ? 'fa-circle-check' : t.icon}"></i><span>${t.art}</span><small>${stand[i] === 'ok' ? 'richtig' : i === jetzt ? 'jetzt' : ''}</small></div>`).join('');
+    $('teil').innerHTML = ANSICHT[jetzt]();
+    if (jetzt === 2) document.querySelectorAll('#fehlercode > div').forEach((z) => z.addEventListener('click', () => fehlerWahl(Number(z.dataset.zeile), z)));
+    if (jetzt === 3) wahlFrage('t-wahl', 't-erkl', [
+      { t: '0', erkl: 'Dann hätte keine Bedingung gepasst. "Eis" steckt aber in mehreren Wörtern.' },
+      { t: '1', erkl: 'Nur "Eis" selbst? Auch "Eisberg" enthält "Eis".' },
+      { t: '2', richtig: true, erkl: 'Richtig: "Eis" und "Eisberg". "Fisch" enthält kein "Eis", auch wenn es kalt ist.' },
+      { t: '3', erkl: 'Nicht jedes Wort zählt. Der Zähler wächst nur, wenn die Bedingung passt.' },
+    ], (e) => { if (e.richtig) erledigt(); });
+    const erg = $('ergebnis');
+    erg.hidden = !stand.every((s) => s === 'ok');
+    if (!erg.hidden) erg.innerHTML = `<div class="belohnung" style="margin:0"><div class="belohnung-kopf"><span class="plus"><i class="fa-solid fa-forward"></i></span><span>Bestanden: Kapitel 9 gilt als erledigt</span></div>
+      <div class="zeile"><i class="fa-solid fa-id-card"></i>Sammelkarte "Schleifen mit for" freigeschaltet</div>
+      <div class="zeile"><i class="fa-solid fa-unlock"></i>Kapitel 10 "Listen" ist offen</div>
+      <a class="knopf primaer" href="rechner-sammelkarten.html"><i class="fa-solid fa-arrow-right"></i>Weiter</a></div>`;
+  }
+  function erklaere(gut, text) {
+    $('t-erkl').innerHTML = `<div class="erklaerung ${gut ? 'gut' : 'schlecht'}" style="margin-top:var(--sp-2)"><i class="fa-solid ${gut ? 'fa-circle-check' : 'fa-lightbulb'}"></i><span>${text}</span></div>`;
+  }
+  function erledigt() {
+    stand[jetzt] = 'ok';
+    setTimeout(() => { if (jetzt < 4) jetzt++; zeichneSeite(); }, 1200);
+  }
+  window.gehe = (i) => { jetzt = i; zeichneSeite(); };
+  window.schiebe = (i, d) => {
+    const j = i + d;
+    if (j < 0 || j >= ordnen.length) return;
+    [ordnen[i], ordnen[j]] = [ordnen[j], ordnen[i]];
+    zeichneSeite();
+  };
+  function fehlerWahl(zeile, el) {
+    document.querySelectorAll('#fehlercode > div').forEach((z) => z.classList.remove('gewaehlt', 'richtig'));
+    if (zeile === 1) {
+      el.classList.add('richtig');
+      erklaere(true, 'Gefunden: range(3, 0) zählt aufwärts und ist darum sofort leer. Rückwärts geht es mit Schrittweite: range(3, 0, -1).');
+      erledigt();
+    } else {
+      el.classList.add('gewaehlt');
+      erklaere(false, zeile === 2 ? 'print(zahl) ist in Ordnung, es kommt nur nie dran. Warum läuft die Schleife kein einziges Mal?' : '"Start!" kommt ja an. Das Problem liegt davor.');
+    }
+  }
+  window.pruefe = () => {
+    if (jetzt === 0) {
+      const w = ($('luecke').value || '').trim();
+      if (w === 'in') { erklaere(true, 'Genau: for name in liste.'); erledigt(); } else erklaere(false, w ? `"${w}" kennt Python an dieser Stelle nicht. Zwischen Name und Liste steht ein kurzes Wort.` : 'Die Lücke ist noch leer.');
+    }
+    if (jetzt === 1) {
+      const ok = ordnen.every((z, i) => z === ORDNEN_RICHTIG[i]);
+      document.getElementById('ordnen').classList.add('geprueft');
+      document.querySelectorAll('.ordnen-zeile').forEach((z, i) => z.classList.add(ordnen[i] === ORDNEN_RICHTIG[i] ? 'ok' : 'nein'));
+      if (ok) { erklaere(true, 'Richtig: erst die Summe auf 0, dann in der Schleife addieren, ausgeben erst nach der Schleife.'); erledigt(); } else erklaere(false, 'Noch nicht. Tipp: die Summe muss vor der Schleife bei 0 anfangen, und ausgegeben wird erst ganz am Ende.');
+    }
+  };
+  window.loese = () => { erklaere(true, 'Alle versteckten Tests bestanden, auch mit leerer Liste.'); erledigt(); };
+  zeichneSeite();
+</script>
+</body>
+</html>

@@ -225,9 +225,9 @@ Offen für den Bau:
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
   Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.
-- Aufbaukurs mit Lehreinführungen: geklärt am 25.10.2026; als Nächstes die Entwürfe zur Freigabe (Kursübersicht,
-  Einführung mit Abschnitt, Beispiel, Frage, Speicherbild und Ablauf, Kurztest, Merkblatt, Sammelkarte, Bildbogen zur
-  Abnahme, Telefon).
+- Aufbaukurs mit Lehreinführungen: geklärt am 25.10.2026; Entwürfe liegen zur Freigabe in `mockups/` (Übersicht
+  `mockups/index.html`, Abschnitt Aufbaukurs): Kursübersicht, Einführung für Python, SQL und CSS, Kurztest, Merkblatt,
+  Kapitelende mit Sammelkarte, Bildbogen, Telefon.
 - Spielerische Grundlagenübungen zu Flexbox und Grid (Nutzer 25.10.2026): eigene Bildwelt, je Level eine neue
   Eigenschaft, Teil der CSS-Übungen vor den Herausforderungen; Skizze in `docs/CSS-IDEEN.md`, vor dem Bau Entwürfe.
 - CSS-Bestand automatisch messen: die Prüfung beim Bau (Musterlösung deckt voll, Startcode besteht nicht) lief

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="kurs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Einführung CSS</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="kurs.css">
+<script src="kurs.js"></script>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite" data-sprache="css">
+    <header class="a-kopf">
+      <a class="ikon" href="rechner-kurs.html" title="Zur Kursübersicht"><i class="fa-solid fa-arrow-left"></i></a>
+      <span class="zelle-titel"><b>Das Kastenmodell</b><span>CSS-Kurs, Kapitel 5: Einführung, Abschnitt 2 von 5</span></span>
+      <div class="meta">
+        <div class="t-abschnitte" style="width:150px"><span class="fertig"></span><span class="jetzt"></span><span></span><span></span><span></span></div>
+        <a class="knopf" href="rechner-merkblatt.html"><i class="fa-solid fa-note-sticky"></i>Merkblatt</a>
+      </div>
+    </header>
+    <div class="lehr-seite">
+      <section class="spalte gliederung-spalte">
+        <div class="spalten-kopf"><span>Einführung</span></div>
+        <div class="rollfeld"><div class="gliederung">
+          <button class="fertig"><i class="fa-solid fa-circle-check"></i><span>Jedes Element ist ein Kasten</span></button>
+          <button class="jetzt"><i class="fa-solid fa-circle-play"></i><span>Innen, Rand, außen</span></button>
+          <button class="zu"><i class="fa-regular fa-circle"></i><span>Wie breit ist der Kasten wirklich?</span></button>
+          <button class="zu"><i class="fa-regular fa-circle"></i><span>box-sizing rettet den Tag</span></button>
+          <button class="zu"><i class="fa-regular fa-circle"></i><span>Außenabstände, die sich schlucken</span></button>
+        </div></div>
+      </section>
+
+      <section class="spalte">
+        <div class="rollfeld lesen"><div class="lesen-innen">
+          <div><div class="dachzeile">Abschnitt 2 von 5</div><h2>Innen, Rand, außen</h2></div>
+          <div class="alltag">
+            <div class="zeichnung" style="aspect-ratio:4/3;background:radial-gradient(circle,color-mix(in srgb,var(--s-c) 22%,var(--bg)),var(--bg) 70%)"><i class="fa-solid fa-image" style="font-size:60px;color:var(--s-a)"></i><span class="auftrag-hinweis">Bildauftrag: Bild im Rahmen mit Passepartout, mit Abstand an der Wand</span></div>
+            <div><span class="marke-klein">Aus dem Leben</span>Ein Foto im Bilderrahmen: um das Foto liegt ein weißer Karton, das Passepartout. Dann kommt der Rahmen. Und damit es nicht am Nachbarbild klebt, hängt es mit etwas Abstand an der Wand.</div>
+          </div>
+          <p>Jedes HTML-Element ist so ein Bild im Rahmen. Der Inhalt in der Mitte, darum der Innenabstand <code>padding</code>, dann der Rand <code>border</code>, ganz außen der Außenabstand <code>margin</code>.</p>
+          <div class="merksatz"><b>Merke:</b> <code>padding</code> gehört zum Kasten und bekommt seine Hintergrundfarbe. <code>margin</code> ist Abstand nach draußen und bleibt immer durchsichtig.</div>
+          <p>Das HTML rechts kennst du aus Kapitel 1: ein <code>div</code> mit der Klasse <code>karte</code>. Schalte die Regeln einzeln zu und sieh zu, wie der Kasten wächst.</p>
+          <div class="frage-block vorhersage">
+            <div class="frage-kopf"><i class="fa-solid fa-wand-magic-sparkles"></i>Vorhersage</div>
+            <div class="frage-text">Der Inhalt ist 200px breit. Wie breit ist der Kasten von Rand zu Rand, mit padding 16px und border 6px?</div>
+            <div class="wahl-liste" id="v-wahl"></div><div id="v-erkl"></div>
+          </div>
+          <div class="augenzwinkern"><i class="fa-solid fa-face-smile-wink"></i><span>Rechnen in CSS: die einzige Mathematik, bei der man links und rechts doppelt zählt.</span></div>
+        </div></div>
+      </section>
+
+      <section class="spalte werkbank">
+        <div class="spalten-kopf"><span>Beispiel</span></div>
+        <div class="rollfeld">
+          <div class="code"><div><span class="ln">1</span><span><span class="ck">&lt;div</span> <span class="cv">class</span>=<span class="cs">"karte"</span><span class="ck">&gt;</span>Pinguin-Ausweis<span class="ck">&lt;/div&gt;</span></span></div></div>
+          <div class="regel-liste" id="regeln"></div>
+          <div class="abspieler">
+            <button class="ikon" id="zurueck" title="Regel zurück"><i class="fa-solid fa-backward-step"></i></button>
+            <button class="ikon" id="vor" title="Nächste Regel zuschalten"><i class="fa-solid fa-forward-step"></i></button>
+            <span class="dim" style="font-size:var(--fs-sm)">Regel für Regel zuschalten</span>
+            <span class="num" id="stand" style="margin-left:auto">0 / 3</span>
+          </div>
+          <div class="css-buehne"><div class="kastenmodell km-aussen" id="aussen"><div class="km-rand" id="rand"><div class="km-innen" id="innen"><div class="km-inhalt" style="width:200px;text-align:center">Pinguin-Ausweis</div></div></div></div></div>
+          <div class="legende"><span><b style="background:#38bdf8"></b>Inhalt</span><span><b style="background:#4fd1a5"></b>padding</span><span><b style="background:#ec6aa8"></b>border</span><span><b style="background:#f59e0b;opacity:.6"></b>margin</span></div>
+          <p class="dim" id="mass" style="margin:0;font-family:var(--mono);font-size:13px"></p>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const REGELN = [
+    { name: 'padding', wert: 16, text: 'padding: 16px;' },
+    { name: 'border', wert: 6, text: 'border: 6px solid #ec6aa8;' },
+    { name: 'margin', wert: 24, text: 'margin: 24px;' },
+  ];
+  const an = [false, false, false];
+  function zeichne() {
+    $('regeln').innerHTML = `<div class="regel"><span class="ln">1</span><span><span class="cf">.karte</span> {</span></div>`
+      + REGELN.map((r, i) => `<div class="regel ${an[i] ? '' : 'aus'}"><span class="ln">${i + 2}</span><span>  <span class="cv">${r.text.split(':')[0]}</span>:${r.text.split(':')[1]}</span><button class="schalter" onclick="schalte(${i})" title="Regel ein oder aus"></button></div>`).join('')
+      + `<div class="regel"><span class="ln">5</span><span>}</span></div>`;
+    const p = an[0] ? 16 : 0; const b = an[1] ? 6 : 0; const m = an[2] ? 24 : 0;
+    $('innen').style.padding = `${p}px`;
+    $('rand').style.borderWidth = `${b}px`;
+    $('aussen').style.padding = `${m}px`;
+    $('aussen').style.outlineColor = m ? '#f59e0b' : 'transparent';
+    $('stand').textContent = `${an.filter(Boolean).length} / 3`;
+    $('mass').textContent = `Rand zu Rand: 200 + 2 × ${p} + 2 × ${b} = ${200 + 2 * p + 2 * b} px, mit Außenabstand ${200 + 2 * (p + b + m)} px`;
+  }
+  window.schalte = (i) => { an[i] = !an[i]; zeichne(); };
+  $('vor').addEventListener('click', () => { const i = an.indexOf(false); if (i >= 0) { an[i] = true; zeichne(); } });
+  $('zurueck').addEventListener('click', () => { const i = an.lastIndexOf(true); if (i >= 0) { an[i] = false; zeichne(); } });
+  wahlFrage('v-wahl', 'v-erkl', [
+    { t: '200px', erkl: 'Das ist nur der Inhalt. padding und border legen sich außen herum.' },
+    { t: '222px', erkl: 'Fast: 200 + 16 + 6. Aber padding und border gibt es links und rechts, also je doppelt.' },
+    { t: '244px', richtig: true, erkl: 'Richtig: 200 + 2 × 16 + 2 × 6. Links und rechts zählen beide.' },
+    { t: '292px', erkl: 'Da ist der Außenabstand schon mitgezählt. Der liegt aber außerhalb des Randes.' },
+  ]);
+  zeichne();
+</script>
+</body>
+</html>
