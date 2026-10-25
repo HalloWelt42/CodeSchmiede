@@ -65,7 +65,7 @@ Jeder Schritt einzeln committet und gepusht.
    - Daten unter `/mnt/data`
    - Verwaltung nur lesend
    - Sicherung, Handbuchseite, Einrichtungsskript
-6. **Spiele und Gamifizierung**: erst Entwürfe (Spiele, Spielmechanik über die ganze App, neue CSS-Bewertung nach Deckung und Kürze), nach Freigabe Bau.
+6. **Spiele und Gamifizierung**: erst Entwürfe (Spiele, Spielmechanik über die ganze App, neue CSS-Bewertung nach Deckung und Kürze), nach Freigabe Bau (erledigt mit 0.77.0).
 7. **Neue Aufgaben** in den vier Bereichen und viele neue CSS-Nachbauten, mit automatischer Prüfung.
    - zweiter, eigener Lauf: Aufbaukurs von null an (siehe Entscheidung "Aufbaukurs")
 
@@ -125,6 +125,26 @@ Jeder Schritt einzeln committet und gepusht.
 - Sandbox auf dem Pi gemessen: Containerstart warm unter 1 s, kalt rund 5 s (schneller als Docker am Mac); ohne Netz bestätigt
 - Speicher-cgroup ist auf dem Pi aus (`cgroup_disable=memory`): der Sandbox-Dienst erkennt das und begrenzt über die Datengrenze je Prozess
 - Zwei zufällig rote Tests behoben (die gesuchte 42 stand in Laufzeiten und Laufkennungen)
+
+## Ergebnis Schritt 6
+
+- Spielmechanik über die ganze App, alles abgeleitet aus Abgaben: Stufen mit Titeln, Serie mit Schutzschilden,
+  Tagesauftrag, Meisterschaft je Sprache und für die Spiele, Erfolge in drei Rängen, Belohnungsband nach dem Bestehen,
+  eigene Bestwerte; Startseite, Kopf und eigene Seite Erfolge nach den Entwürfen
+- Spielebereich mit vier Spielen, Level aus Pfaden, Sterne aus Ergebnis und Verlauf:
+  Muster-Jagd (12 Level, reguläre Ausdrücke mit Live-Markierung), Ausgabe-Sprint (Runden auf dem Server mit Frist,
+  Antwort erst nach der Wahl), Roboter-Parcours (10 Level, Lauf vom Server nachgerechnet und abgespielt, versteckte
+  Welten), SQL-Krimi (Fall 1 mit acht Kapiteln, Gegenprobe mit anderer Befüllung, Pinnwand)
+- CSS nach Bild: Deckung im Motiv im Browser gemessen, Wertung auf dem Server, Abweichungsbild, Punkte aus Deckung und
+  Kürze; Eigenschafts-Prüfpunkte entfernt, alle 111 Musterlösungen decken voll, kein Startcode besteht; Aufgaben in
+  abwechslungsreichen Farben
+- Editor wie in einer Entwicklungsumgebung: klassisches dunkles Farbschema, fette Schlüsselwörter, keine Ligaturen,
+  Vervollständigung einzelner Befehle, Syntaxprüfung beim Tippen, Suchen und Ersetzen
+- Saubere Pfade statt `#` in den Adressen
+- Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) mit Teilschritten und Klängen aus dem Medienpool
+  liegen zur Freigabe
+- Breiten 1920, 1440, 1280, 1100, 900, 430, 390 und 360 automatisch geprüft, mit Gegentest (abgeschnittene Elemente
+  zählen mit); gefunden und behoben: abgeschnittener Reiter im Krimi, zu langes Schlagwort in der Aufgabenliste
 
 ## Offen
 

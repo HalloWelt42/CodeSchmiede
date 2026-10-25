@@ -228,10 +228,12 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .reiter button.aktiv { color: var(--accent); border-bottom-color: var(--accent); }
 .reiter .num { font-size: var(--fs-xs); color: var(--fg-mute); }
 .reiter button.aktiv .num { color: var(--accent); }
-.reiter-klein { display: flex; border-bottom: 1px solid var(--border); flex: none; }
-.reiter-klein button { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 34px; padding: 0 6px; border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: transparent; color: var(--fg-dim); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .04em; cursor: pointer; white-space: nowrap; }
+.reiter-klein { display: flex; border-bottom: 1px solid var(--border); flex: none; container-type: inline-size; }
+.reiter-klein button { flex: 1; min-width: 0; display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 34px; padding: 0 6px; border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: transparent; color: var(--fg-dim); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .04em; cursor: pointer; white-space: nowrap; }
 .reiter-klein button:hover:not(:disabled) { color: var(--fg); background: transparent; }
 .reiter-klein button.aktiv { color: var(--accent); border-bottom-color: var(--accent); }
+/* in schmalen Spalten tragen die Reiter nur ihren Text, damit keiner abgeschnitten wird */
+@container (max-width: 380px) { .reiter-klein button i { display: none; } }
 
 /* ========== Kennzahlenleiste: eine schmale Zeile statt großer Kacheln ========== */
 .kennzahlen { display: flex; flex-wrap: wrap; border: 1px solid var(--border); background: var(--bg-card-2); }
@@ -256,7 +258,7 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 /* ========== Abzeichen und Schlagworte ========== */
 .badge { display: inline-flex; align-items: center; height: 20px; padding: 0 6px; border: 1px solid currentColor; border-radius: var(--radius-sm); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; color: var(--fg-dim); }
 .badge.sprache { color: var(--accent); }
-.tag { font-family: var(--mono); font-size: 11px; color: var(--fg-mute); white-space: nowrap; }
+.tag { display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; vertical-align: bottom; font-family: var(--mono); font-size: 11px; color: var(--fg-mute); white-space: nowrap; }
 .dim { color: var(--fg-dim); }
 .mute { color: var(--fg-mute); }
 .rechts-b { text-align: right; }
