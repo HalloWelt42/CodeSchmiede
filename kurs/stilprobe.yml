@@ -1,0 +1,70 @@
+# Stilprobe der Kurszeichnungen: quer durch alle Arten und Sprachen.
+#
+# Erst wenn der Nutzer die Bildwelt dieser Probe freigegeben hat, entstehen die Bilder der Kapitel. Die Aufträge
+# der Kapitel stehen später in ihren Einführungen; diese Datei hält nur die Probe. Prompts, Stil und Auswahl
+# gehören dem Medienpool (Projekt codeschmiede), abgeglichen mit tools/bildschluessel.py.
+#
+# Felder: schluessel (a-z, 0-9, _), art (sinnbild, alltag, sammelkarte, bereich), sprache (Farbfamilie),
+# motiv (deutsch, ohne Schrift im Bild), groesse (Seitenverhältnis).
+
+auftraege:
+  - schluessel: probe_py_for_foerderband
+    art: sinnbild
+    sprache: python
+    motiv: Drei Pinguine stehen hintereinander auf einem Förderband und fahren an einem Fischautomaten vorbei; der vorderste bekommt gerade einen Fisch
+    groesse: 4 x 3
+  - schluessel: probe_py_variable_kartons
+    art: sinnbild
+    sprache: python
+    motiv: Drei Umzugskartons mit leeren Etiketten; aus einem quellen bunte Murmeln über den Rand
+    groesse: 4 x 3
+  - schluessel: probe_py_woerterbuch_schubladen
+    art: sinnbild
+    sprache: python
+    motiv: Ein Schubladenschrank aus Holz mit leeren Etikettenrahmen, eine Schublade steht offen, darin sitzt ein kleiner Pinguin
+    groesse: 4 x 3
+  - schluessel: probe_py_while_hamster
+    art: alltag
+    sprache: python
+    motiv: Ein Hamster rennt in einem Laufrad und schielt dabei auf einen großen Wecker, der gleich klingelt
+    groesse: 4 x 3
+  - schluessel: probe_sql_where_sieb
+    art: sinnbild
+    sprache: sql
+    motiv: Ein großes Küchensieb über einem Karteikasten; nur Karteikarten mit einem Stern fallen hindurch, die übrigen bleiben im Sieb liegen
+    groesse: 4 x 3
+  - schluessel: probe_sql_pizzabaecker
+    art: alltag
+    sprache: sql
+    motiv: Ein fröhlicher Pinguin als Pizzabäcker mit Mütze rollt Teig aus, daneben stehen Schüsseln mit Belag und ein Steinofen
+    groesse: 4 x 3
+  - schluessel: probe_js_const_karton
+    art: sinnbild
+    sprache: javascript
+    motiv: Zwei Kartons nebeneinander, einer mit offenem Deckel, der andere mit einem dicken Vorhängeschloss verschlossen
+    groesse: 4 x 3
+  - schluessel: probe_js_vergleich_waagen
+    art: alltag
+    sprache: javascript
+    motiv: Zwei Balkenwaagen nebeneinander mit Gesichtern, eine streng mit runder Brille, die andere gemütlich mit Sonnenhut
+    groesse: 4 x 3
+  - schluessel: probe_css_kasten_bilderrahmen
+    art: sinnbild
+    sprache: css
+    motiv: Ein gerahmtes Bild eines Pinguins mit breitem hellem Passepartout, das mit Abstand zu den Nachbarbildern an einer Wand hängt
+    groesse: 4 x 3
+  - schluessel: probe_css_html_puppen
+    art: sinnbild
+    sprache: css
+    motiv: Bunte russische Holzpuppen in absteigender Größe nebeneinander, die kleinste schaut aus der geöffneten größten heraus
+    groesse: 4 x 3
+  - schluessel: probe_karte_py_verzweigung
+    art: sammelkarte
+    sprache: python
+    motiv: Eine Spielzeugeisenbahn an einer Weiche, ein Zug voller Pinguine biegt nach links ab
+    groesse: 5 x 7
+  - schluessel: probe_bereich_sql_krimi
+    art: bereich
+    sprache: sql
+    motiv: Ein Detektiv-Pinguin mit Hut und Lupe beugt sich über einen Stapel Akten
+    groesse: 4 x 3
