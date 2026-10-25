@@ -1,9 +1,21 @@
 <script lang="ts">
   /* Bild auf der Karte eines Spiels, aus Bausteinen der Oberfläche statt aus Bilddateien. */
   let { id }: { id: string } = $props();
+
+  // kleines Raster wie im Entwurf: Wände, Spur, Kristall, Ziel
+  const ROBOTER_BILD = ['.#..Z', '*#.#.', '***#.', '.#*K.', '#...#'].join('').split('');
 </script>
 
-{#if id === 'ausgabe-sprint'}
+{#if id === 'roboter-parcours'}
+  <div class="welt mini" style:--zellen="5">
+    {#each ROBOTER_BILD as z, i (i)}
+      <div class="zelle" class:wand={z === '#'} class:spur={z === '*'}>
+        {#if z === 'Z'}<div class="ziel"></div>{/if}
+        {#if z === 'K'}<div class="kristall"></div>{/if}
+      </div>
+    {/each}
+  </div>
+{:else if id === 'ausgabe-sprint'}
   <div class="sprint-bild">
     <div class="num uhrzeit">0:42</div>
     <div class="code">print(3 * "ab")</div>
@@ -34,6 +46,7 @@
     background: color-mix(in srgb, var(--accent) 35%, transparent);
     color: var(--fg);
   }
+  .mini { width: 96px; }
   .sprint-bild { text-align: center; }
   .uhrzeit {
     font-size: 34px;

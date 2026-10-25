@@ -1,0 +1,17 @@
+id: roboter-parcours
+titel: Roboter-Parcours
+beschreibung: |
+  Einen Roboter mit Python durchs Raster steuern: erst Befehle der Reihe
+  nach, dann Schleifen, Bedingungen und eigene Funktionen, am Ende ein
+  Labyrinth. Versteckte Welten prüfen, ob das Programm allgemein gilt.
+reihenfolge:
+  - r001-geradeaus
+  - r002-um-die-ecke
+  - r003-bis-zum-ziel
+  - r004-ein-kristall
+  - r005-der-lange-gang
+  - r006-treppe
+  - r007-kurvenreich
+  - r008-kristalle-sammeln
+  - r009-rechte-hand
+  - r010-schatz-im-labyrinth

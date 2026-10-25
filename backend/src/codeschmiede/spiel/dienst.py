@@ -250,6 +250,9 @@ class Spieldienst:
             volle_runden=sum(
                 1 for a in abgaben if a.kennwerte.treffer is not None and a.kennwerte.treffer == a.kennwerte.fragen
             ),
+            roboter_kurz=len({
+                a.aufgabe_id for a in abgaben if a.kennwerte.zeilen is not None and a.kennwerte.zeilen <= 3
+            }),
         )
 
     @staticmethod

@@ -34,6 +34,7 @@
   import SqlAbfrageView from './SqlAbfrageView.svelte';
   import MusterJagdView from './MusterJagdView.svelte';
   import SprintView from './SprintView.svelte';
+  import RoboterView from './RoboterView.svelte';
   import { spielStore } from '../stores/SpielStore.svelte';
 
   let { aufgabeId }: { aufgabeId: string } = $props();
@@ -239,6 +240,8 @@
       <MusterJagdView detail={aktuell} />
     {:else if aktuell.task_type === 'ausgabe_sprint'}
       <SprintView detail={aktuell} />
+    {:else if aktuell.task_type === 'roboter'}
+      <RoboterView detail={aktuell} />
     {:else}
       {#if aktuell.task_type === 'bug_finden'}
         <div class="hinweis-box band fehler">

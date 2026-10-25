@@ -17,6 +17,7 @@ import { EditorState } from '@codemirror/state';
 import { EditorView, highlightActiveLine, keymap, lineNumbers } from '@codemirror/view';
 
 import { petrolTheme } from './PetrolTheme';
+import { zeilenMarke } from './ZeilenMarke';
 
 export type Sprache = 'python' | 'javascript' | 'html' | 'css' | 'sql' | 'markdown';
 
@@ -53,6 +54,7 @@ export function erstelleEditor(opts: EditorOptionen): EditorView {
       keymap.of([...defaultKeymap, ...historyKeymap, ...foldKeymap, indentWithTab]),
       spracheExtension(opts.sprache),
       petrolTheme,
+      zeilenMarke,
       EditorView.lineWrapping,
       EditorView.updateListener.of((upd) => {
         if (upd.docChanged) {

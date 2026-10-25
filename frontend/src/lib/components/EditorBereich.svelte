@@ -7,8 +7,15 @@
   import { onDestroy, onMount } from 'svelte';
   import type { EditorView } from '@codemirror/view';
   import { erstelleEditor } from '../editor/EditorFactory';
+  import { setzeZeilenMarke } from '../editor/ZeilenMarke';
 
-  let { sprache, code = $bindable() }: { sprache: string; code: string } = $props();
+  interface Props {
+    sprache: string;
+    code: string;
+    /** hervorgehobene Zeile (ab 1), etwa beim Abspielen eines Laufs */
+    markierteZeile?: number | null;
+  }
+  let { sprache, code = $bindable(), markierteZeile = null }: Props = $props();
 
   let host: HTMLDivElement | undefined = $state();
   let view: EditorView | null = null;
@@ -37,6 +44,10 @@
     }
   });
 
+  $effect(() => {
+    if (view) setzeZeilenMarke(view, markierteZeile);
+  });
+
   onDestroy(() => {
     view?.destroy();
   });
@@ -56,5 +67,8 @@
   }
   .editor :global(.cm-editor.cm-focused) {
     outline: none;
+  }
+  .editor :global(.cm-zeilen-marke) {
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
   }
 </style>

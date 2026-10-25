@@ -130,6 +130,33 @@ export interface Belohnung {
   auftrag: Tagesauftrag;
 }
 
+export interface RoboterSchritt {
+  befehl: 'gehe' | 'links' | 'rechts' | 'nimm';
+  zeile: number;
+  x: number;
+  y: number;
+  /** 0 Osten, 1 Norden, 2 Westen, 3 Süden */
+  richtung: number;
+}
+
+/** Ein vom Server nachgespielter Lauf in einer Welt */
+export interface RoboterLauf {
+  schritte: RoboterSchritt[];
+  am_ziel: boolean;
+  kristalle_offen: number;
+  fehler: string | null;
+  geschafft: boolean;
+}
+
+export interface RoboterLaeufe {
+  /** null: das Programm lief nicht bis zum Ende */
+  laeufe: RoboterLauf[] | null;
+  stdout: string;
+  stderr: string;
+  laufzeit_ms: number;
+  timeout: boolean;
+}
+
 export interface SprintFrage {
   code: string;
   optionen: string[];
@@ -180,6 +207,9 @@ export class SpielApi extends HttpBase {
   }
   spiele(): Promise<SpielUebersicht[]> {
     return this.get<SpielUebersicht[]>('/spiele');
+  }
+  roboterLauf(aufgabeId: string, code: string): Promise<RoboterLaeufe> {
+    return this.post<RoboterLaeufe>(`/roboter/${aufgabeId}/lauf`, { code });
   }
   sprintRunde(aufgabeId: string): Promise<SprintRunde> {
     return this.post<SprintRunde>(`/sprint/${aufgabeId}/runde`, {});

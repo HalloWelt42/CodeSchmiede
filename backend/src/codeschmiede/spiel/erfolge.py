@@ -38,6 +38,8 @@ class Kennzahlen(BaseModel):
     drei_sterne_je_typ: dict[str, int] = Field(default_factory=dict)
     # Sprint: Runden ohne Fehler
     volle_runden: int = 0
+    # Roboter: Levels mit höchstens drei Zeilen Code gelöst
+    roboter_kurz: int = 0
 
 
 @dataclass(frozen=True)
@@ -120,6 +122,12 @@ def katalog(k: Kennzahlen) -> list[ErfolgDefinition]:
             bis_hoechstens((5,), k.levels_je_typ["muster_jagd"]),
             ("Scharfschütze",),
             lambda n: f"{anzahl(n, 'ein Muster', 'Muster')} mit drei Sternen",
+        ))
+    if k.levels_je_typ.get("roboter"):
+        eintraege.append(ErfolgDefinition(
+            "roboter_drei_zeilen", "spiele", "fa-robot", k.roboter_kurz, (1, 3, 5),
+            ("Roboter in drei Zeilen",),
+            lambda n: f"{anzahl(n, 'ein Level', 'Levels')} mit höchstens drei Zeilen Code",
         ))
     if k.levels_je_typ.get("ausgabe_sprint"):
         eintraege.append(ErfolgDefinition(

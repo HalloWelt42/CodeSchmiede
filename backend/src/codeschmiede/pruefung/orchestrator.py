@@ -17,6 +17,7 @@ from . import sql_pruefer  # noqa: F401  registriert "sql_abfrage"
 from . import css_klon_pruefer  # noqa: F401  registriert "css_klon"
 from . import muster_pruefer  # noqa: F401  registriert "muster_jagd"
 from . import sprint_pruefer  # noqa: F401  registriert "ausgabe_sprint"
+from . import roboter_pruefer  # noqa: F401  registriert "roboter"
 from .ergebnis import PruefErgebnis
 from .registry import Pruefer, hole, ohne_geheimes
 

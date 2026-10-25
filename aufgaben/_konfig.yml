@@ -72,6 +72,10 @@ aufgabentypen:
     titel: SQL-Abfrage
     view: sql_abfrage
     beschreibung: Ein Datensatz ist vorgegeben -- schreibe eine SELECT-Abfrage, die das erwartete Ergebnis liefert.
+  - id: roboter
+    titel: Roboter-Parcours
+    view: roboter
+    beschreibung: Ein Roboter im Raster - steuere ihn mit Python ins Ziel, auch in versteckten Welten.
   - id: ausgabe_sprint
     titel: Ausgabe-Sprint
     view: ausgabe_sprint
@@ -85,6 +89,12 @@ aufgabentypen:
 # Aufgabentyps, die Reihenfolge geben die Pfade vor. Levels zählen in
 # Punkte, Serie und Tagesauftrag wie alle Aufgaben (docs/SPIELE.md).
 spiele:
+  - id: roboter-parcours
+    titel: Roboter-Parcours
+    icon: fa-robot
+    beschreibung: "Den Roboter mit Python durch das Raster steuern: Schleifen, Bedingungen und eigene Funktionen sehen."
+    aufgabentyp: roboter
+    pfade: [roboter-parcours]
   - id: ausgabe-sprint
     titel: Ausgabe-Sprint
     icon: fa-stopwatch

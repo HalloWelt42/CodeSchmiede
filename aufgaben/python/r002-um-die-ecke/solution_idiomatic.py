@@ -1,0 +1,5 @@
+gehe()
+gehe()
+rechts()
+gehe()
+gehe()

@@ -1,15 +1,17 @@
 """HTTP-Routen der Spielmechanik: Spielstand für Kopf und Startseite,
-Erfolge für ihre Seite, Spiele mit dem Stand ihrer Levels und die Runden
-des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
+Erfolge für ihre Seite, Spiele mit dem Stand ihrer Levels, Probeläufe des
+Roboters und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
 
 from collections.abc import Iterator
 from contextlib import contextmanager
 
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from ..models.spiel import ErfolgsListe, Spielstand, SpielUebersicht
 from ..models.sprint import SprintAbschluss, SprintRueckmeldung, SprintRunde
+from ..pruefung.roboter_pruefer import Laeufe, lauf_sichtbar
+from ..sandbox.runner import SandboxFehler
 from ..spiel.sprint import FalscheAntwort, RundeNichtGefunden, RundeVorbei
 from ..state import AppState
 
@@ -17,6 +19,10 @@ from ..state import AppState
 class SprintAntwort(BaseModel):
     frage: int
     wahl: int
+
+
+class RoboterProbe(BaseModel):
+    code: str = Field(min_length=1, max_length=50_000)
 
 
 def baue_spiel_router(state: AppState) -> APIRouter:
@@ -33,6 +39,17 @@ def baue_spiel_router(state: AppState) -> APIRouter:
     @router.get("/spiele", response_model=list[SpielUebersicht])
     def spiele() -> list[SpielUebersicht]:
         return state.spiel.spiele(state.bestand())
+
+    @router.post("/roboter/{aufgabe_id}/lauf", response_model=Laeufe)
+    def roboter_lauf(aufgabe_id: str, anfrage: RoboterProbe) -> Laeufe:
+        """Probelauf in der sichtbaren Welt, ohne Wertung und ohne Abgabe."""
+        aufgabe = state.aufgaben.aufgabe(aufgabe_id)
+        if aufgabe is None or aufgabe.task_type != "roboter":
+            raise HTTPException(status_code=404, detail="Kein Roboter-Level")
+        try:
+            return lauf_sichtbar(aufgabe, anfrage.code, state.runner)
+        except SandboxFehler as fehler:
+            raise HTTPException(status_code=503, detail=str(fehler)) from fehler
 
     @router.post("/sprint/{aufgabe_id}/runde", response_model=SprintRunde)
     def sprint_runde(aufgabe_id: str) -> SprintRunde:
