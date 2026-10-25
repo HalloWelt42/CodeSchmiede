@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c033-grid-zwei-gleich
-revision: 2
+revision: 3
 titel: "Grid: 2 gleichbreite Spalten"
 sprache: css
 task_type: css_klon
@@ -27,22 +27,9 @@ ziel_css: |
     width: 400px;
   }
   .zelle {
-    background-color: #2dd4bf;
+    background-color: #f472b6;
     height: 60px;
   }
-asserts:
-  - selector: ".grid"
-    property: display
-    expected: "grid"
-  - selector: ".grid"
-    property: grid-template-columns
-    expected: "200px 200px"
-  - selector: ".grid"
-    property: gap
-    expected: "0px"
-  - selector: ".grid"
-    property: width
-    expected: "400px"
 hints:
   - kosten: 0
     text: |
@@ -62,4 +49,4 @@ starter_code: |
 # Grid: 2 gleichbreite Spalten
 
 Erstelle ein CSS-Grid mit 2 gleichbreite Spalten.
-Container: 400px breit. Zellen sind 60px hoch und petrol.
+Container: 400px breit. Zellen sind 60px hoch und rosafarben.

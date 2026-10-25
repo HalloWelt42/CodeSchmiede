@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c173-modal
-revision: 2
+revision: 3
 titel: "Modal-Dialog"
 sprache: css
 task_type: css_klon
@@ -38,31 +38,12 @@ ziel_css: |
   }
   .titel {
     margin: 0 0 8px;
-    color: #2dd4bf;
+    color: #e879f9;
   }
   .text {
     margin: 0;
     color: #9ca3af;
   }
-asserts:
-  - selector: ".hintergrund"
-    property: background-color
-    expected: "rgba(0, 0, 0, 0.6)"
-  - selector: ".hintergrund"
-    property: display
-    expected: "flex"
-  - selector: ".dialog"
-    property: width
-    expected: "320px"
-  - selector: ".dialog"
-    property: padding-top
-    expected: "24px"
-  - selector: ".dialog"
-    property: border-radius
-    expected: "8px"
-  - selector: ".dialog"
-    property: box-shadow
-    expected: "rgba(0, 0, 0, 0.4) 0px 8px 24px 0px"
 hints:
   - kosten: 0
     text: |

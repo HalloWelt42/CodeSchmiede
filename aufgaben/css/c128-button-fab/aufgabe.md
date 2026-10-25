@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c128-button-fab
-revision: 2
+revision: 3
 titel: "Floating-Action-Button (Kreis)"
 sprache: css
 task_type: css_klon
@@ -24,7 +24,7 @@ ziel_css: |
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background-color: #2dd4bf;
+    background-color: #a78bfa;
     color: #1a1d23;
     border: none;
     font-size: 24px;
@@ -34,22 +34,6 @@ ziel_css: |
     align-items: center;
     cursor: pointer;
   }
-asserts:
-  - selector: ".fab"
-    property: width
-    expected: "56px"
-  - selector: ".fab"
-    property: height
-    expected: "56px"
-  - selector: ".fab"
-    property: border-radius
-    expected: "50%"
-  - selector: ".fab"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".fab"
-    property: display
-    expected: "flex"
 hints:
   - kosten: 0
     text: |

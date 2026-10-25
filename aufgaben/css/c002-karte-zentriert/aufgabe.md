@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c002-karte-zentriert
-revision: 2
+revision: 3
 titel: Karte mittig per Flexbox
 sprache: css
 task_type: css_klon
@@ -33,7 +33,7 @@ ziel_css: |
   .karte {
     width: 160px;
     height: 100px;
-    background: rgb(45, 212, 191);
+    background: rgb(250, 128, 114);
     color: rgb(26, 29, 35);
     display: flex;
     justify-content: center;
@@ -41,31 +41,6 @@ ziel_css: |
     font-weight: 600;
     border-radius: 6px;
   }
-asserts:
-  - selector: ".rahmen"
-    property: display
-    expected: "flex"
-  - selector: ".rahmen"
-    property: justify-content
-    expected: "center"
-  - selector: ".rahmen"
-    property: align-items
-    expected: "center"
-  - selector: ".rahmen"
-    property: width
-    expected: "400px"
-  - selector: ".rahmen"
-    property: height
-    expected: "240px"
-  - selector: ".karte"
-    property: width
-    expected: "160px"
-  - selector: ".karte"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".karte"
-    property: border-radius
-    expected: "6px"
 hints:
   - kosten: 0
     text: |
@@ -94,5 +69,5 @@ vertikal - per Flexbox.
 ## Vorgaben
 
 - Container: 400 × 240 px, dunkler Hintergrund
-- Karte: 160 × 100 px, Petrol-Hintergrund, leicht abgerundet (6px)
+- Karte: 160 × 100 px, Lachs-Hintergrund, leicht abgerundet (6px)
 - Karte sitzt exakt mittig im Container

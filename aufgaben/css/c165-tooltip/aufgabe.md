@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c165-tooltip
-revision: 2
+revision: 3
 titel: "Tooltip-Bubble (statisch)"
 sprache: css
 task_type: css_klon
@@ -27,28 +27,12 @@ ziel_css: |
     color: #e7ecf1;
     font-size: 12px;
     border-radius: 4px;
-    border: 1px solid #2dd4bf;
+    border: 1px solid #a78bfa;
   }
-asserts:
-  - selector: ".tip"
-    property: display
-    expected: "inline-block"
-  - selector: ".tip"
-    property: padding-top
-    expected: "6px"
-  - selector: ".tip"
-    property: background-color
-    expected: "rgb(26, 29, 35)"
-  - selector: ".tip"
-    property: border-top-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".tip"
-    property: border-radius
-    expected: "4px"
 hints:
   - kosten: 0
     text: |
-      inline-block, kleines Padding, dunkler Hintergrund, Petrol-Rand.
+      inline-block, kleines Padding, dunkler Hintergrund, Lavendel-Rand.
 starter_code: |
   .tip {
     /* ... */

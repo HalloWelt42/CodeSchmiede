@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r001-repo-karte
-revision: 2
+revision: 3
 titel: "Repro 01: Repository-Karte (Code-Hosting-Stil)"
 sprache: css
 task_type: css_klon
@@ -37,7 +37,7 @@ ziel_css: |
     gap: 8px;
   }
   .name {
-    color: #2dd4bf;
+    color: #a78bfa;
     font-weight: 600;
     font-size: 16px;
     margin-right: auto;
@@ -73,25 +73,6 @@ ziel_css: |
     background-color: #fbbf24;
     display: inline-block;
   }
-asserts:
-  - selector: ".repo"
-    property: display
-    expected: "flex"
-  - selector: ".repo"
-    property: flex-direction
-    expected: "column"
-  - selector: ".kopf"
-    property: display
-    expected: "flex"
-  - selector: ".name"
-    property: display
-    expected: "block"
-  - selector: ".sichtbar"
-    property: border-radius
-    expected: "999px"
-  - selector: ".punkt"
-    property: border-radius
-    expected: "50%"
 hints:
   - kosten: 0
     text: |
@@ -111,7 +92,7 @@ starter_code: |
   }
   .kopf { /* flex-Zeile, 8px gap */ }
   .name {
-    color: #2dd4bf;
+    color: #a78bfa;
     font-weight: 600;
     font-size: 16px;
     /* nach links wachsen, Folge-Items nach rechts schieben */

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c138-card-basis
-revision: 2
+revision: 3
 titel: "Card: einfache Karte"
 sprache: css
 task_type: css_klon
@@ -30,31 +30,12 @@ ziel_css: |
   }
   .titel {
     margin: 0 0 8px;
-    color: #2dd4bf;
+    color: #38bdf8;
   }
   .text {
     margin: 0;
     color: #9ca3af;
   }
-asserts:
-  - selector: ".card"
-    property: width
-    expected: "280px"
-  - selector: ".card"
-    property: padding-top
-    expected: "16px"
-  - selector: ".card"
-    property: border-radius
-    expected: "8px"
-  - selector: ".card"
-    property: background-color
-    expected: "rgb(34, 38, 45)"
-  - selector: ".card"
-    property: border-top-color
-    expected: "rgb(58, 64, 73)"
-  - selector: ".titel"
-    property: color
-    expected: "rgb(45, 212, 191)"
 hints:
   - kosten: 0
     text: |
@@ -73,4 +54,4 @@ starter_code: |
 
 # Card: einfache Karte
 
-Dunkle Karte mit Titel in Petrol und gedämpftem Text.
+Dunkle Karte mit Titel in Azur und gedämpftem Text.

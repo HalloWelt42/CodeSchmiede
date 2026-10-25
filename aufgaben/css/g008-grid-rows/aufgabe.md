@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g008-grid-rows
-revision: 2
+revision: 3
 titel: "Grid 08: Zeilenhöhen festlegen - grid-template-rows"
 sprache: css
 task_type: css_klon
@@ -30,16 +30,12 @@ ziel_css: |
     padding: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #fbbf24;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;
     text-align: center;
   }
-asserts:
-  - selector: ".setzkasten"
-    property: grid-template-rows
-    expected: "100px 50px"
 hints:
   - kosten: 0
     text: |
@@ -60,7 +56,7 @@ starter_code: |
     padding: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #fbbf24;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l005-galerie-auto-fit
-revision: 2
+revision: 3
 titel: "Layout 05: Galerie ohne Media-Query (auto-fit + minmax)"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
   }
   .bild {
     aspect-ratio: 1 / 1;
-    background-color: #2dd4bf;
+    background-color: #c0ca33;
     color: #1a1d23;
     display: flex;
     justify-content: center;
@@ -38,16 +38,6 @@ ziel_css: |
     font-weight: 700;
     border-radius: 6px;
   }
-asserts:
-  - selector: ".galerie"
-    property: display
-    expected: "grid"
-  - selector: ".galerie"
-    property: grid-template-columns
-    expected: "110px 110px 110px 110px"
-  - selector: ".bild"
-    property: aspect-ratio
-    expected: "1 / 1"
 hints:
   - kosten: 0
     text: |
@@ -66,7 +56,7 @@ starter_code: |
   }
   .bild {
     aspect-ratio: 1 / 1;
-    background-color: #2dd4bf;
+    background-color: #c0ca33;
     color: #1a1d23;
     display: flex;
     justify-content: center;

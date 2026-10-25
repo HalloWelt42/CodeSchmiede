@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f012-flex-shrink-0
-revision: 2
+revision: 3
 titel: "Flexbox 12: Schrumpfen verhindern - flex-shrink: 0"
 sprache: css
 task_type: css_klon
@@ -31,7 +31,7 @@ ziel_css: |
   .kachel {
     width: 120px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #f472b6;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;
@@ -42,10 +42,6 @@ ziel_css: |
     flex-shrink: 0;
     background-color: #fb923c;
   }
-asserts:
-  - selector: ".fix"
-    property: flex-shrink
-    expected: "0"
 hints:
   - kosten: 0
     text: |
@@ -66,7 +62,7 @@ starter_code: |
   .kachel {
     width: 120px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #f472b6;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;

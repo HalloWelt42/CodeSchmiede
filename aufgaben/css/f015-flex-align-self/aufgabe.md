@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f015-flex-align-self
-revision: 2
+revision: 3
 titel: "Flexbox 15: Ein Item anders ausrichten - align-self"
 sprache: css
 task_type: css_klon
@@ -32,7 +32,7 @@ ziel_css: |
   .kachel {
     width: 80px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #a78bfa;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;
@@ -43,13 +43,6 @@ ziel_css: |
     align-self: flex-start;
     background-color: #fb923c;
   }
-asserts:
-  - selector: ".bahn"
-    property: align-items
-    expected: "center"
-  - selector: ".oben"
-    property: align-self
-    expected: "flex-start"
 hints:
   - kosten: 0
     text: |
@@ -71,7 +64,7 @@ starter_code: |
   .kachel {
     width: 80px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #a78bfa;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;

@@ -4,10 +4,16 @@
 import type { ErfolgStand, Rang, SerienStand } from './api/SpielApi';
 
 const ZAHL = new Intl.NumberFormat('de-DE');
+const PROZENT = new Intl.NumberFormat('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
 /** Ganze Zahl mit Tausenderpunkt */
 export function zahl(n: number): string {
   return ZAHL.format(n);
+}
+
+/** Anteil von 0 bis 1 als Prozentzahl mit einer Stelle, etwa "96,4" */
+export function prozentZahl(anteil: number): string {
+  return PROZENT.format(anteil * 100);
 }
 
 export const RANG_NAME: Record<Rang, string> = { bronze: 'Bronze', silber: 'Silber', gold: 'Gold' };

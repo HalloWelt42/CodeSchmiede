@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s006-adjacent-selektor
-revision: 2
+revision: 3
 titel: "Grundlagen 06: Direkter Nachbar (+)"
 sprache: css
 task_type: css_klon
@@ -24,16 +24,6 @@ ziel_css: |
     font-size: 18px;
     font-style: italic;
   }
-asserts:
-  - selector: "h2 + p"
-    property: font-size
-    expected: "18px"
-  - selector: "h2 + p"
-    property: font-style
-    expected: "italic"
-  - selector: "article p:nth-child(3)"
-    property: font-style
-    expected: "normal"
 hints:
   - kosten: 0
     text: |

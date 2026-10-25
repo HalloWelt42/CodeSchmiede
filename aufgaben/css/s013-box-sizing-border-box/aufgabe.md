@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s013-box-sizing-border-box
-revision: 2
+revision: 3
 titel: "Grundlagen 13: box-sizing - Padding INNERHALB der Breite"
 sprache: css
 task_type: css_klon
@@ -18,22 +18,15 @@ autor: HalloWelt42
 erstellt_am: 2026-05-11
 zeitlimit_sekunden: 5
 ziel_html: |
-  <div class="bsbb">200px breit -- inkl. Padding</div>
+  <div class="bsbb">200px breit - inkl. Padding</div>
 ziel_css: |
   .bsbb {
     box-sizing: border-box;
     width: 200px;
     padding: 20px;
-    background-color: #2dd4bf;
+    background-color: #fbbf24;
     color: #1a1d23;
   }
-asserts:
-  - selector: ".bsbb"
-    property: box-sizing
-    expected: "border-box"
-  - selector: ".bsbb"
-    property: width
-    expected: "200px"
 hints:
   - kosten: 0
     text: |
@@ -46,9 +39,9 @@ starter_code: |
   .bsbb {
     width: 200px;
     padding: 20px;
-    background-color: #2dd4bf;
+    background-color: #fbbf24;
     color: #1a1d23;
-    /* Padding soll IN der Breite enthalten sein -- box-sizing setzen */
+    /* Padding soll IN der Breite enthalten sein - box-sizing setzen */
   }
 ---
 

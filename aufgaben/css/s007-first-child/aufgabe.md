@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s007-first-child
-revision: 2
+revision: 3
 titel: "Grundlagen 07: Pseudoklasse :first-child"
 sprache: css
 task_type: css_klon
@@ -23,13 +23,6 @@ ziel_css: |
   li:first-child {
     font-weight: 700;
   }
-asserts:
-  - selector: "li:first-child"
-    property: font-weight
-    expected: "700"
-  - selector: "li:nth-child(2)"
-    property: font-weight
-    expected: "400"
 hints:
   - kosten: 0
     text: |

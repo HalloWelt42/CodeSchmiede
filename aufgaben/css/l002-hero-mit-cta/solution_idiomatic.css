@@ -10,10 +10,10 @@
   gap: 16px;
   padding: 24px;
 }
-.ueberschrift { margin: 0; font-size: 32px; color: #2dd4bf; }
+.ueberschrift { margin: 0; font-size: 32px; color: #fa8072; }
 .lead { margin: 0; color: #9ca3af; font-size: 16px; }
 .cta {
-  background-color: #2dd4bf;
+  background-color: #fa8072;
   color: #1a1d23;
   border: none;
   padding: 12px 28px;

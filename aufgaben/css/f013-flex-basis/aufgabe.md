@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f013-flex-basis
-revision: 2
+revision: 3
 titel: "Flexbox 13: Start-Breite - flex-basis"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
   }
   .kachel {
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #c0ca33;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;
@@ -42,10 +42,6 @@ ziel_css: |
     flex-basis: 200px;
     background-color: #a78bfa;
   }
-asserts:
-  - selector: ".breit"
-    property: flex-basis
-    expected: "200px"
 hints:
   - kosten: 0
     text: |
@@ -66,7 +62,7 @@ starter_code: |
   }
   .kachel {
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #c0ca33;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;

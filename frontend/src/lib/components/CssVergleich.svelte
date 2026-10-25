@@ -3,25 +3,26 @@
    * Bildvergleich der CSS-Aufgabe: Ziel oben, eigenes Ergebnis darunter.
    *
    * Beide Bühnen zeigen dieselbe Fläche (BUEHNE_B x BUEHNE_H, wie die
-   * Prüfung sie rendert), passend verkleinert. Ansichten: getrennt,
-   * überblendet mit Schieberegler, Abweichung (Differenz der Farben,
-   * hell heißt verschieden). Das Mausrad zoomt beide Bühnen gemeinsam
+   * Messung sie rastert), passend verkleinert. Ansichten: getrennt,
+   * überblendet mit Schieberegler, Abweichung (das Bild der Messung:
+   * gleich gedämpft, fehlt blau, zu viel rot). Das Mausrad zoomt beide Bühnen gemeinsam
    * zum Mauszeiger hin, gedämpft für Trackpad und Mac-Maus: die Stärke
    * folgt der Scrollweite, je Bildschirmbild wird höchstens einmal
    * gezoomt, ein Schritt ist auf 8 % begrenzt.
    */
   import type { Snippet } from 'svelte';
+  import { BUEHNE_B, BUEHNE_H } from '../css/buehne';
 
   interface Props {
     zielSrcdoc: string;
     eigenSrcdoc: string;
+    /** Abweichungsbild der letzten Messung */
+    abweichung: ImageData | null;
     /** Wertungsleiste über dem Vergleich */
     wertung: Snippet;
   }
-  let { zielSrcdoc, eigenSrcdoc, wertung }: Props = $props();
+  let { zielSrcdoc, eigenSrcdoc, abweichung, wertung }: Props = $props();
 
-  const BUEHNE_B = 600;
-  const BUEHNE_H = 400;
   const ZOOM_MAX = 8;
   const SCHRITT_MAX = 1.08;
 
@@ -34,7 +35,7 @@
 
   let massstab = $derived(breite / BUEHNE_B);
   let untenTitel = $derived(
-    { getrennt: 'Deine Lösung', blenden: 'Ziel | Deine Lösung', abweichung: 'Abweichung (hell = verschieden)' }[modus],
+    { getrennt: 'Deine Lösung', blenden: 'Ziel | Deine Lösung', abweichung: 'Abweichung: Blau fehlt, Rot zu viel' }[modus],
   );
 
   function setzeZoom(z: number, x?: number, y?: number): void {
@@ -59,6 +60,17 @@
       gesammelt = 0;
       geplant = false;
     });
+  }
+
+  function zeichne(leinwand: HTMLCanvasElement, bild: ImageData | null) {
+    const male = (b: ImageData | null) => {
+      const g = leinwand.getContext('2d');
+      if (!g) return;
+      if (b) g.putImageData(b, 0, 0);
+      else g.clearRect(0, 0, leinwand.width, leinwand.height);
+    };
+    male(bild);
+    return { update: male };
   }
 
   // Mausrad nur mit passive: false abfangbar, sonst rollt die Spalte mit
@@ -102,8 +114,14 @@
     <div class="buehne-titel"><span>{untenTitel}</span>{#if modus === 'getrennt'}<span>Mausrad zoomt beide</span>{/if}</div>
     <div class="buehne">
       <div class="flaeche" style:transform-origin="{ursprung.x}% {ursprung.y}%" style:transform="scale({zoom})" style:--schnitt-pos="{schnitt}%">
-        {#if modus !== 'getrennt'}{@render rahmen(zielSrcdoc, 'Ziel darunter')}{/if}
-        {@render rahmen(eigenSrcdoc, 'Deine Lösung', modus === 'blenden' ? 'oben' : modus === 'abweichung' ? 'diff' : '')}
+        {#if modus === 'abweichung'}
+          <div class="ebene" style:width="{BUEHNE_B}px" style:height="{BUEHNE_H}px" style:transform="scale({massstab})">
+            <canvas width={BUEHNE_B} height={BUEHNE_H} use:zeichne={abweichung}></canvas>
+          </div>
+        {:else}
+          {#if modus === 'blenden'}{@render rahmen(zielSrcdoc, 'Ziel darunter')}{/if}
+          {@render rahmen(eigenSrcdoc, 'Deine Lösung', modus === 'blenden' ? 'oben' : '')}
+        {/if}
       </div>
       {#if modus === 'blenden'}<div class="schnittlinie" style:left="{schnitt}%"></div>{/if}
       <div class="fang" use:fangeRad></div>
@@ -187,7 +205,7 @@
     display: block;
   }
   .ebene.oben { clip-path: inset(0 0 0 var(--schnitt-pos, 50%)); }
-  .ebene.diff { mix-blend-mode: difference; }
+  .ebene canvas { display: block; }
   .fang {
     position: absolute;
     inset: 0;

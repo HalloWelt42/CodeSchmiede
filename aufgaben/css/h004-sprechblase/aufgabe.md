@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: h004-sprechblase
-revision: 2
+revision: 3
 titel: "Challenge 04: Sprechblase mit ::after-Spitze"
 sprache: css
 task_type: css_klon
@@ -24,7 +24,7 @@ ziel_css: |
     position: relative;
     display: inline-block;
     padding: 10px 16px;
-    background-color: #2dd4bf;
+    background-color: #fbbf24;
     color: #1a1d23;
     border-radius: 12px;
     font-weight: 600;
@@ -38,34 +38,19 @@ ziel_css: |
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-top: 8px solid #2dd4bf;
+    border-top: 8px solid #fbbf24;
   }
-asserts:
-  - selector: ".blase"
-    property: position
-    expected: "relative"
-  - selector: ".blase"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".blase"
-    property: border-radius
-    expected: "12px"
 hints:
   - kosten: 0
     text: |
       Sprechblase = abgerundete Box + Dreieck unten dran. Das Dreieck baust du mit ::after-Pseudölement (content: ''!) und dem Border-Trick aus h002. Position: absolute relativ zur Blase, top: 100% setzt es genau unter die Box.
   - kosten: 8
     text: |
-      `.blase { position: relative; }` - `.blase::after { content: ''; position: absolute; top: 100%; left: 20px; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 8px solid #2dd4bf; }`
+      `.blase { position: relative; }` - `.blase::after { content: ''; position: absolute; top: 100%; left: 20px; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 8px solid #fbbf24; }`
 starter_code: |
   .blase {
-    display: inline-block;
-    padding: 10px 16px;
-    background-color: #2dd4bf;
-    color: #1a1d23;
-    border-radius: 12px;
-    font-weight: 600;
-    /* position: relative -- damit das ::after sich daran orientieren kann */
+    /* Blase: Hintergrund #fbbf24, Schrift #1a1d23 halbfett, Innenabstand 10px 16px, Ecken 12px */
+    /* position: relative - damit das ::after sich daran orientieren kann */
   }
   .blase::after {
     content: "";
@@ -77,7 +62,7 @@ starter_code: |
 
 ## Ziel
 
-Eine petrolfarbene Sprechblase mit kleinem Dreieck am unteren Rand -
+Eine goldfarbene Sprechblase mit kleinem Dreieck am unteren Rand -
 ohne zusätzliches HTML, nur per ::after-Pseudölement.
 
 ## Aha

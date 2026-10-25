@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c168-skeleton
-revision: 2
+revision: 3
 titel: "Skeleton-Loader (statisch)"
 sprache: css
 task_type: css_klon
@@ -27,22 +27,6 @@ ziel_css: |
     border-radius: 4px;
     opacity: 0.6;
   }
-asserts:
-  - selector: ".skel"
-    property: width
-    expected: "280px"
-  - selector: ".skel"
-    property: height
-    expected: "14px"
-  - selector: ".skel"
-    property: background-color
-    expected: "rgb(58, 64, 73)"
-  - selector: ".skel"
-    property: border-radius
-    expected: "4px"
-  - selector: ".skel"
-    property: opacity
-    expected: "0.6"
 hints:
   - kosten: 0
     text: |

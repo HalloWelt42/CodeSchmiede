@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: h006-zwei-tone-kreis
-revision: 2
+revision: 3
 titel: "Challenge 06: Zweifarbiger Kreis (oben/unten halbiert)"
 sprache: css
 task_type: css_klon
@@ -24,25 +24,15 @@ ziel_css: |
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-image: linear-gradient(180deg, #2dd4bf 50%, #fb923c 50%);
+    background-image: linear-gradient(180deg, #a78bfa 50%, #fb923c 50%);
   }
-asserts:
-  - selector: ".kreis"
-    property: width
-    expected: "120px"
-  - selector: ".kreis"
-    property: border-radius
-    expected: "50%"
-  - selector: ".kreis"
-    property: background-image
-    expected: "linear-gradient(rgb(45, 212, 191) 50%, rgb(251, 146, 60) 50%)"
 hints:
   - kosten: 0
     text: |
       Trick: ein linear-gradient mit hartem Übergang (gleicher Prozent-Wert in beiden Stops) erzeugt eine scharfe Linie statt eines Verlaufs. Plus border-radius: 50% macht aus der Box einen Kreis - fertig ist die Halbierung.
   - kosten: 6
     text: |
-      `linear-gradient(180deg, #2dd4bf 50%, #fb923c 50%)` mit `border-radius: 50%`
+      `linear-gradient(180deg, #a78bfa 50%, #fb923c 50%)` mit `border-radius: 50%`
 starter_code: |
   .kreis {
     width: 120px;
@@ -56,7 +46,7 @@ starter_code: |
 
 ## Ziel
 
-Ein 120px-Kreis, dessen obere Hälfte petrol und untere orange ist. Mit
+Ein 120px-Kreis, dessen obere Hälfte lavendelfarben und untere orange ist. Mit
 scharfem Übergang (keine Verlaufs-Mischung).
 
 ## Aha

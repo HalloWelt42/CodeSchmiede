@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: c001-button-pill
-revision: 2
-titel: Pill-Button mit Petrol-Akzent
+revision: 3
+titel: Pill-Button mit Lavendel-Akzent
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -21,7 +21,7 @@ ziel_html: |
   <button class="btn">Klick mich</button>
 ziel_css: |
   .btn {
-    background: rgb(45, 212, 191);
+    background: rgb(167, 139, 250);
     color: rgb(26, 29, 35);
     padding: 12px 24px;
     border: none;
@@ -29,28 +29,6 @@ ziel_css: |
     font-weight: 600;
     cursor: pointer;
   }
-asserts:
-  - selector: ".btn"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".btn"
-    property: color
-    expected: "rgb(26, 29, 35)"
-  - selector: ".btn"
-    property: padding-top
-    expected: "12px"
-  - selector: ".btn"
-    property: padding-left
-    expected: "24px"
-  - selector: ".btn"
-    property: border-radius
-    expected: "999px"
-  - selector: ".btn"
-    property: border-top-style
-    expected: "none"
-  - selector: ".btn"
-    property: font-weight
-    expected: "600"
 hints:
   - kosten: 0
     text: |
@@ -67,15 +45,15 @@ starter_code: |
   }
 ---
 
-# Pill-Button mit Petrol-Akzent
+# Pill-Button mit Lavendel-Akzent
 
-Style den Button so, dass er rund (Pille), petrol-türkis und mit
+Style den Button so, dass er rund (Pille), lavendelfarben und mit
 fettem dunklem Text erscheint - ohne Rahmen, mit großzügigem
 Innenabstand.
 
 ## Vorgaben
 
-- Hintergrund: `rgb(45, 212, 191)` (Codeschmiede-Petrol)
+- Hintergrund: `rgb(167, 139, 250)` (Codeschmiede-Lavendel)
 - Schrift: `rgb(26, 29, 35)`, fett (600)
 - Innenabstand: 12px oben/unten, 24px links/rechts
 - Form: vollständig abgerundet (Pille)

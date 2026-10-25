@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g009-grid-zwei-dimensionen
-revision: 2
+revision: 3
 titel: "Grid 09: 2D-Positionierung - grid-row + grid-column"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
     padding: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;
@@ -44,13 +44,6 @@ ziel_css: |
     grid-column: 2;
     background-color: #fb923c;
   }
-asserts:
-  - selector: ".sidebar"
-    property: grid-row-start
-    expected: "1"
-  - selector: ".sidebar"
-    property: grid-row-end
-    expected: "3"
 hints:
   - kosten: 0
     text: |
@@ -70,7 +63,7 @@ starter_code: |
     padding: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;

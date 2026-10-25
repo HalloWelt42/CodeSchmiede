@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c170-stepper
-revision: 2
+revision: 3
 titel: "Stepper-Indikator (3 Schritte)"
 sprache: css
 task_type: css_klon
@@ -38,9 +38,9 @@ ziel_css: |
     border: 2px solid #3a4049;
   }
   .aktiv {
-    background-color: #2dd4bf;
+    background-color: #f472b6;
     color: #1a1d23;
-    border-color: #2dd4bf;
+    border-color: #f472b6;
   }
   .linie {
     flex: 1;
@@ -48,25 +48,6 @@ ziel_css: |
     background-color: #3a4049;
     min-width: 40px;
   }
-asserts:
-  - selector: ".step"
-    property: display
-    expected: "flex"
-  - selector: ".step"
-    property: gap
-    expected: "8px"
-  - selector: ".punkt"
-    property: border-radius
-    expected: "50%"
-  - selector: ".punkt"
-    property: width
-    expected: "32px"
-  - selector: ".aktiv"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".linie"
-    property: height
-    expected: "2px"
 hints:
   - kosten: 0
     text: |

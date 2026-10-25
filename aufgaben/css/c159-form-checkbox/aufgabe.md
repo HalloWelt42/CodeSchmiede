@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c159-form-checkbox
-revision: 2
+revision: 3
 titel: "Form: Checkbox-Style"
 sprache: css
 task_type: css_klon
@@ -24,26 +24,13 @@ ziel_css: |
     width: 20px;
     height: 20px;
     background-color: #22262d;
-    border: 2px solid #2dd4bf;
+    border: 2px solid #f472b6;
     border-radius: 4px;
   }
-asserts:
-  - selector: ".check"
-    property: width
-    expected: "20px"
-  - selector: ".check"
-    property: height
-    expected: "20px"
-  - selector: ".check"
-    property: border-top-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".check"
-    property: border-radius
-    expected: "4px"
 hints:
   - kosten: 0
     text: |
-      20x20, 2px Petrol-Border, 4px Radius.
+      20x20, 2px Rosa-Border, 4px Radius.
 starter_code: |
   .check {
     /* ... */

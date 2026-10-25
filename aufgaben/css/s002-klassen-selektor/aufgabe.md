@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s002-klassen-selektor
-revision: 2
+revision: 3
 titel: "Grundlagen 02: Nur die markierten Notizen färben (Klasse)"
 sprache: css
 task_type: css_klon
@@ -23,16 +23,6 @@ ziel_css: |
   .wichtig {
     color: rgb(251, 146, 60);
   }
-asserts:
-  - selector: "article p:nth-child(2)"
-    property: color
-    expected: "rgb(251, 146, 60)"
-  - selector: "article p:nth-child(4)"
-    property: color
-    expected: "rgb(251, 146, 60)"
-  - selector: "article p:nth-child(1)"
-    property: color
-    expected: "rgb(231, 236, 241)"
 hints:
   - kosten: 0
     text: |

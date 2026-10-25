@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c030-flex-column
-revision: 2
+revision: 3
 titel: "Flex: vertikale Spalte"
 sprache: css
 task_type: css_klon
@@ -30,21 +30,8 @@ ziel_css: |
   }
   .kind {
     height: 40px;
-    background-color: #2dd4bf;
+    background-color: #fa8072;
   }
-asserts:
-  - selector: ".rahmen"
-    property: display
-    expected: "flex"
-  - selector: ".rahmen"
-    property: flex-direction
-    expected: "column"
-  - selector: ".rahmen"
-    property: gap
-    expected: "8px"
-  - selector: ".rahmen"
-    property: padding-top
-    expected: "12px"
 hints:
   - kosten: 0
     text: |

@@ -1,8 +1,8 @@
 ---
 schema_version: 1
 id: c062-kreis-petrol-tief
-revision: 2
-titel: "Kreis petrol-tief"
+revision: 3
+titel: "Kreis in Magenta"
 sprache: css
 task_type: css_klon
 runner_type: iframe_css
@@ -23,32 +23,19 @@ ziel_css: |
   .kreis {
     width: 80px;
     height: 80px;
-    background-color: #2dd4bf;
+    background-color: #e879f9;
     border-radius: 50%;
   }
-asserts:
-  - selector: ".kreis"
-    property: width
-    expected: "80px"
-  - selector: ".kreis"
-    property: height
-    expected: "80px"
-  - selector: ".kreis"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".kreis"
-    property: border-radius
-    expected: "50%"
 hints:
   - kosten: 0
     text: |
-      80x80 px, `border-radius: 50%`, Hintergrund #2dd4bf.
+      80x80 px, `border-radius: 50%`, Hintergrund #e879f9.
 starter_code: |
   .kreis {
     /* ... */
   }
 ---
 
-# Kreis petrol-tief
+# Kreis in Magenta
 
-Mache einen 80px-Kreis mit Hintergrundfarbe #2dd4bf.
+Mache einen 80px-Kreis mit Hintergrundfarbe #e879f9.

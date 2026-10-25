@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l001-app-shell-grid
-revision: 2
+revision: 3
 titel: "Layout 01: App-Shell mit grid-template-areas"
 sprache: css
 task_type: css_klon
@@ -33,7 +33,7 @@ ziel_css: |
     gap: 4px;
     background-color: #1a1d23;
   }
-  .kopf { grid-area: kopf; background-color: #2dd4bf; color: #1a1d23; }
+  .kopf { grid-area: kopf; background-color: #a78bfa; color: #1a1d23; }
   .seite { grid-area: seite; background-color: #22262d; color: #e7ecf1; }
   .haupt { grid-area: haupt; background-color: #2a2f37; color: #e7ecf1; }
   .fuss { grid-area: fuss; background-color: #22262d; color: #9ca3af; }
@@ -41,19 +41,6 @@ ziel_css: |
     display: flex; align-items: center; justify-content: center;
     font-weight: 600;
   }
-asserts:
-  - selector: ".app"
-    property: display
-    expected: "grid"
-  - selector: ".app"
-    property: grid-template-rows
-    expected: "60px 212px 40px"
-  - selector: ".kopf"
-    property: grid-area
-    expected: "kopf"
-  - selector: ".haupt"
-    property: grid-area
-    expected: "haupt"
 hints:
   - kosten: 0
     text: |
@@ -76,7 +63,7 @@ starter_code: |
     gap: 4px;
     background-color: #1a1d23;
   }
-  .kopf { background-color: #2dd4bf; color: #1a1d23; /* Area */ }
+  .kopf { background-color: #a78bfa; color: #1a1d23; /* Area */ }
   .seite { background-color: #22262d; color: #e7ecf1; /* Area */ }
   .haupt { background-color: #2a2f37; color: #e7ecf1; /* Area */ }
   .fuss { background-color: #22262d; color: #9ca3af; /* Area */ }

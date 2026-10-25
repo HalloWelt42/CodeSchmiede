@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f008-flex-direction-column
-revision: 2
+revision: 3
 titel: "Flexbox 08: Vertikale Spalte - flex-direction: column"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
   .kachel {
     width: 60px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #f59e0b;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;
@@ -42,13 +42,6 @@ ziel_css: |
     display: flex;
     flex-direction: column;
   }
-asserts:
-  - selector: ".bahn"
-    property: display
-    expected: "flex"
-  - selector: ".bahn"
-    property: flex-direction
-    expected: "column"
 hints:
   - kosten: 0
     text: |

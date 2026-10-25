@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g001-grid-aktivieren
-revision: 2
+revision: 3
 titel: "Grid 01: Grid einschalten"
 sprache: css
 task_type: css_klon
@@ -29,19 +29,12 @@ ziel_css: |
     grid-template-columns: 1fr 1fr;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #f59e0b;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;
     text-align: center;
   }
-asserts:
-  - selector: ".setzkasten"
-    property: display
-    expected: "grid"
-  - selector: ".setzkasten"
-    property: grid-template-columns
-    expected: "171px 171px"
 hints:
   - kosten: 0
     text: |
@@ -60,7 +53,7 @@ starter_code: |
     /* Grid aktivieren und zwei Spalten anlegen */
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #f59e0b;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l002-hero-mit-cta
-revision: 2
+revision: 3
 titel: "Layout 02: Hero-Sektion mit Headline und CTA"
 sprache: css
 task_type: css_klon
@@ -32,10 +32,10 @@ ziel_css: |
     gap: 16px;
     padding: 24px;
   }
-  .ueberschrift { margin: 0; font-size: 32px; color: #2dd4bf; }
+  .ueberschrift { margin: 0; font-size: 32px; color: #fa8072; }
   .lead { margin: 0; color: #9ca3af; font-size: 16px; }
   .cta {
-    background-color: #2dd4bf;
+    background-color: #fa8072;
     color: #1a1d23;
     border: none;
     padding: 12px 28px;
@@ -43,25 +43,6 @@ ziel_css: |
     font-weight: 700;
     cursor: pointer;
   }
-asserts:
-  - selector: ".hero"
-    property: display
-    expected: "flex"
-  - selector: ".hero"
-    property: flex-direction
-    expected: "column"
-  - selector: ".hero"
-    property: justify-content
-    expected: "center"
-  - selector: ".hero"
-    property: align-items
-    expected: "center"
-  - selector: ".hero"
-    property: gap
-    expected: "16px"
-  - selector: ".cta"
-    property: border-radius
-    expected: "999px"
 hints:
   - kosten: 0
     text: |
@@ -78,10 +59,10 @@ starter_code: |
     padding: 24px;
     /* hier: flex-column, vertikal+horizontal zentrieren, 16px gap */
   }
-  .ueberschrift { margin: 0; font-size: 32px; color: #2dd4bf; }
+  .ueberschrift { margin: 0; font-size: 32px; color: #fa8072; }
   .lead { margin: 0; color: #9ca3af; font-size: 16px; }
   .cta {
-    background-color: #2dd4bf;
+    background-color: #fa8072;
     color: #1a1d23;
     border: none;
     padding: 12px 28px;
@@ -96,7 +77,7 @@ starter_code: |
 ## Aufgabe
 
 Vertikal gestapelt und in beiden Achsen zentriert:
-- Petrolfarbene Headline
+- Lachsfarbene Headline
 - Gedämpfter Lead-Text
 - Pill-Button (CTA) als Action
 

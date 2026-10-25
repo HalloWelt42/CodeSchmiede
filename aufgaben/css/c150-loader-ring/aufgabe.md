@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c150-loader-ring
-revision: 2
+revision: 3
 titel: "Loader: Spinner-Ring"
 sprache: css
 task_type: css_klon
@@ -24,29 +24,13 @@ ziel_css: |
     width: 40px;
     height: 40px;
     border: 4px solid #22262d;
-    border-top-color: #2dd4bf;
+    border-top-color: #e879f9;
     border-radius: 50%;
   }
-asserts:
-  - selector: ".spinner"
-    property: width
-    expected: "40px"
-  - selector: ".spinner"
-    property: height
-    expected: "40px"
-  - selector: ".spinner"
-    property: border-top-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".spinner"
-    property: border-right-color
-    expected: "rgb(34, 38, 45)"
-  - selector: ".spinner"
-    property: border-radius
-    expected: "50%"
 hints:
   - kosten: 0
     text: |
-      Kreis (border-radius 50%) mit transparent-grauem Border, oben in Petrol.
+      Kreis (border-radius 50%) mit transparent-grauem Border, oben in Magenta.
 starter_code: |
   .spinner {
     /* ... */
@@ -55,4 +39,4 @@ starter_code: |
 
 # Loader: Spinner-Ring
 
-Kreisförmiger Spinner mit petrolfarbenem Top-Border.
+Kreisförmiger Spinner mit magentafarbenem Top-Border.

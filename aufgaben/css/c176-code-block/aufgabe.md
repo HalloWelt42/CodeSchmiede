@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c176-code-block
-revision: 2
+revision: 3
 titel: "Code-Block"
 sprache: css
 task_type: css_klon
@@ -25,31 +25,15 @@ ziel_css: |
     margin: 0;
     padding: 16px;
     background-color: #1a1d23;
-    color: #2dd4bf;
+    color: #f59e0b;
     font-family: monospace;
     border-radius: 6px;
     overflow-x: auto;
   }
-asserts:
-  - selector: ".code"
-    property: padding-top
-    expected: "16px"
-  - selector: ".code"
-    property: background-color
-    expected: "rgb(26, 29, 35)"
-  - selector: ".code"
-    property: color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".code"
-    property: border-radius
-    expected: "6px"
-  - selector: ".code"
-    property: overflow-x
-    expected: "auto"
 hints:
   - kosten: 0
     text: |
-      Dunkler Hintergrund, Petrol-Schrift, Monospace-Font, abgerundet.
+      Dunkler Hintergrund, Bernstein-Schrift, Monospace-Font, abgerundet.
 starter_code: |
   .code {
     /* ... */

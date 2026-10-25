@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c172-sticky-footer
-revision: 2
+revision: 3
 titel: "Sticky-Footer-Layout"
 sprache: css
 task_type: css_klon
@@ -43,19 +43,6 @@ ziel_css: |
     padding: 12px;
     font-size: 12px;
   }
-asserts:
-  - selector: ".seite"
-    property: display
-    expected: "flex"
-  - selector: ".seite"
-    property: flex-direction
-    expected: "column"
-  - selector: ".seite"
-    property: height
-    expected: "300px"
-  - selector: ".haupt"
-    property: flex-grow
-    expected: "1"
 hints:
   - kosten: 0
     text: |

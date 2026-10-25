@@ -108,11 +108,11 @@ def baue_bestand(wurzel: Path) -> None:
           optionen: ["0", "1"]
           richtig_index: 1
         """)
-    schreibe_aufgabe(wurzel, "css", "c005-knopf", "css_klon", """\
+    ordner = schreibe_aufgabe(wurzel, "css", "c005-knopf", "css_klon", """\
         ziel_html: "<b>x</b>"
         ziel_css: "b { color: red; }"
-        asserts: []
         """)
+    (ordner / "solution_idiomatic.css").write_text("b { color: red; }\n")
     datasets = wurzel / "sql" / "datasets"
     datasets.mkdir(parents=True)
     (datasets / "zahlen.sql").write_text(

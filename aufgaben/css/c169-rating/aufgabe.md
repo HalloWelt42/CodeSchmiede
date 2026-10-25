@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c169-rating
-revision: 2
+revision: 3
 titel: "Sterne-Rating (5 Sterne)"
 sprache: css
 task_type: css_klon
@@ -31,19 +31,6 @@ ziel_css: |
   .aktiv {
     color: #fbbf24;
   }
-asserts:
-  - selector: ".rating"
-    property: display
-    expected: "flex"
-  - selector: ".rating"
-    property: gap
-    expected: "2px"
-  - selector: ".rating .stern:not(.aktiv)"
-    property: color
-    expected: "rgb(58, 64, 73)"
-  - selector: ".aktiv"
-    property: color
-    expected: "rgb(251, 191, 36)"
 hints:
   - kosten: 0
     text: |

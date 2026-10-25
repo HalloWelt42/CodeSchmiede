@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f014-flex-order
-revision: 2
+revision: 3
 titel: "Flexbox 14: Reihenfolge ändern - order"
 sprache: css
 task_type: css_klon
@@ -31,7 +31,7 @@ ziel_css: |
   .kachel {
     width: 80px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #e879f9;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;
@@ -42,10 +42,6 @@ ziel_css: |
     order: -1;
     background-color: #fb923c;
   }
-asserts:
-  - selector: ".vorne"
-    property: order
-    expected: "-1"
 hints:
   - kosten: 0
     text: |
@@ -66,7 +62,7 @@ starter_code: |
   .kachel {
     width: 80px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #e879f9;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;

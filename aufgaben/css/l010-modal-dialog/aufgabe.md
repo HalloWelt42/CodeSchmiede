@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l010-modal-dialog
-revision: 2
+revision: 3
 titel: "Layout 10: Modal-Dialog mit Backdrop"
 sprache: css
 task_type: css_klon
@@ -55,25 +55,6 @@ ziel_css: |
     color: #ffffff;
     border-color: #ef4444;
   }
-asserts:
-  - selector: ".backdrop"
-    property: background-color
-    expected: "rgba(0, 0, 0, 0.6)"
-  - selector: ".backdrop"
-    property: display
-    expected: "flex"
-  - selector: ".backdrop"
-    property: justify-content
-    expected: "center"
-  - selector: ".backdrop"
-    property: align-items
-    expected: "center"
-  - selector: ".dialog"
-    property: box-shadow
-    expected: "rgba(0, 0, 0, 0.5) 0px 12px 32px 0px"
-  - selector: ".dknopfe"
-    property: justify-content
-    expected: "flex-end"
 hints:
   - kosten: 0
     text: |

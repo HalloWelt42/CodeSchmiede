@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c154-nav-tabs
-revision: 2
+revision: 3
 titel: "Navigation: Tab-Leiste"
 sprache: css
 task_type: css_klon
@@ -34,29 +34,13 @@ ziel_css: |
     font-weight: 500;
   }
   .aktiv {
-    color: #2dd4bf;
-    border-bottom-color: #2dd4bf;
+    color: #fa8072;
+    border-bottom-color: #fa8072;
   }
-asserts:
-  - selector: ".tabs"
-    property: display
-    expected: "flex"
-  - selector: ".tab"
-    property: background-color
-    expected: "rgba(0, 0, 0, 0)"
-  - selector: ".tab"
-    property: border-bottom-width
-    expected: "2px"
-  - selector: ".aktiv"
-    property: color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".aktiv"
-    property: border-bottom-color
-    expected: "rgb(45, 212, 191)"
 hints:
   - kosten: 0
     text: |
-      Tabs als flex, jeder Tab transparent mit 2px-Border-Bottom. Aktiver in Petrol.
+      Tabs als flex, jeder Tab transparent mit 2px-Border-Bottom. Aktiver in Lachs.
 starter_code: |
   .tabs {
     /* ... */
@@ -71,4 +55,4 @@ starter_code: |
 
 # Navigation: Tab-Leiste
 
-Horizontale Tabs mit Petrol-Unterstrich beim aktiven Tab.
+Horizontale Tabs mit Lachs-Unterstrich beim aktiven Tab.

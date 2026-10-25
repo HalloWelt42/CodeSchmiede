@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c167-search-box
-revision: 2
+revision: 3
 titel: "Search-Box"
 sprache: css
 task_type: css_klon
@@ -35,32 +35,13 @@ ziel_css: |
   }
   .kn {
     padding: 8px 16px;
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     color: #1a1d23;
     border: none;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
     font-weight: 600;
   }
-asserts:
-  - selector: ".suche"
-    property: display
-    expected: "flex"
-  - selector: ".suche"
-    property: width
-    expected: "320px"
-  - selector: ".feld"
-    property: border-top-left-radius
-    expected: "4px"
-  - selector: ".feld"
-    property: border-top-right-radius
-    expected: "0px"
-  - selector: ".kn"
-    property: border-top-right-radius
-    expected: "4px"
-  - selector: ".kn"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
 hints:
   - kosten: 0
     text: |

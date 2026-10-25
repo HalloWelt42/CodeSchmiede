@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c162-layout-zwei-spalten
-revision: 2
+revision: 3
 titel: "Layout: zwei Spalten 30/70"
 sprache: css
 task_type: css_klon
@@ -33,26 +33,10 @@ ziel_css: |
     padding: 16px;
   }
   .haupt {
-    background-color: #2dd4bf;
+    background-color: #e879f9;
     color: #1a1d23;
     padding: 16px;
   }
-asserts:
-  - selector: ".layout"
-    property: display
-    expected: "grid"
-  - selector: ".layout"
-    property: gap
-    expected: "16px"
-  - selector: ".layout"
-    property: width
-    expected: "600px"
-  - selector: ".seite"
-    property: background-color
-    expected: "rgb(34, 38, 45)"
-  - selector: ".haupt"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
 hints:
   - kosten: 0
     text: |

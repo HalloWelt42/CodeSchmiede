@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s014-border-radius
-revision: 2
+revision: 3
 titel: "Grundlagen 14: Border-Radius - abgerundete Ecken"
 sprache: css
 task_type: css_klon
@@ -25,19 +25,9 @@ ziel_css: |
     padding: 16px;
     background-color: #22262d;
     color: #e7ecf1;
-    border: 2px solid #2dd4bf;
+    border: 2px solid #f59e0b;
     border-radius: 8px;
   }
-asserts:
-  - selector: ".rahmen"
-    property: border-top-width
-    expected: "2px"
-  - selector: ".rahmen"
-    property: border-top-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".rahmen"
-    property: border-radius
-    expected: "8px"
 hints:
   - kosten: 0
     text: |
@@ -45,22 +35,22 @@ hints:
       Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
-      `border: 2px solid #2dd4bf; border-radius: 8px;`
+      `border: 2px solid #f59e0b; border-radius: 8px;`
 starter_code: |
   .rahmen {
     width: 200px;
     padding: 16px;
     background-color: #22262d;
     color: #e7ecf1;
-    /* hier 2px Petrol-Rahmen und 8px abgerundete Ecken */
+    /* hier 2px Bernstein-Rahmen und 8px abgerundete Ecken */
   }
 ---
 
-# Grundlagen 14: Die Box bekommt 2px Rahmen in Petrol und 8px Radius an den Ecken
+# Grundlagen 14: Die Box bekommt 2px Rahmen in Bernstein und 8px Radius an den Ecken
 
 ## Aufgabe
 
-Die Box bekommt 2px Rahmen in Petrol und 8px Radius an den Ecken
+Die Box bekommt 2px Rahmen in Bernstein und 8px Radius an den Ecken
 
 ## Aha
 

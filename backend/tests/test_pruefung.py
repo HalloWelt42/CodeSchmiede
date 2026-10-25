@@ -119,8 +119,11 @@ def test_probelauf(client):
 
 def test_css_nur_im_browser(client):
     assert client.post("/api/submissions", json={"aufgabe_id": "c005-knopf", "code": "b{}"}).status_code == 400
-    pruefung = {"bestanden": True, "sichtbar": [], "versteckt_pass": 0, "versteckt_fail": 0, "laufzeit_ms": 1}
-    antwort = client.post("/api/submissions/lokal", json={"aufgabe_id": "c005-knopf", "code": "b{}", "pruefung": pruefung})
-    assert antwort.status_code == 200
-    antwort = client.post("/api/submissions/lokal", json={"aufgabe_id": "001-verdoppeln", "code": "x", "pruefung": pruefung})
+    messung = {"deckung": 0.97, "laufzeit_ms": 1}
+    antwort = client.post("/api/submissions/lokal", json={"aufgabe_id": "c005-knopf", "code": "b{}", "messung": messung})
+    assert antwort.status_code == 200 and antwort.json()["bestanden"]
+    antwort = client.post("/api/submissions/lokal", json={"aufgabe_id": "001-verdoppeln", "code": "x", "messung": messung})
     assert antwort.status_code == 400
+    # das Ergebnis entscheidet der Server, ein mitgeschicktes Bestehen gibt es nicht mehr
+    antwort = client.post("/api/submissions/lokal", json={"aufgabe_id": "c005-knopf", "code": "b{}", "pruefung": {"bestanden": True}})
+    assert antwort.status_code == 422

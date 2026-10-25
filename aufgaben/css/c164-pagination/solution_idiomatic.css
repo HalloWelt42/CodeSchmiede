@@ -12,8 +12,8 @@
   cursor: pointer;
 }
 .aktiv {
-  background-color: #2dd4bf;
+  background-color: #f59e0b;
   color: #1a1d23;
-  border-color: #2dd4bf;
+  border-color: #f59e0b;
   font-weight: 700;
 }

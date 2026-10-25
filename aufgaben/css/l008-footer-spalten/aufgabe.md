@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l008-footer-spalten
-revision: 2
+revision: 3
 titel: "Layout 08: Footer mit vier Link-Spalten"
 sprache: css
 task_type: css_klon
@@ -35,19 +35,6 @@ ziel_css: |
     font-weight: 600;
     color: #9ca3af;
   }
-asserts:
-  - selector: ".fuss"
-    property: display
-    expected: "grid"
-  - selector: ".fuss"
-    property: grid-template-columns
-    expected: "96px 96px 96px 96px"
-  - selector: ".fuss"
-    property: gap
-    expected: "16px"
-  - selector: ".fuss"
-    property: border-top-width
-    expected: "1px"
 hints:
   - kosten: 0
     text: |

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s001-element-selektor
-revision: 2
+revision: 3
 titel: "Grundlagen 01: Alle Notizen mit Element-Selektor färben"
 sprache: css
 task_type: css_klon
@@ -21,15 +21,8 @@ ziel_html: |
   <article><p>Erste Notiz</p><p>Zweite Notiz</p><p>Dritte Notiz</p></article>
 ziel_css: |
   p {
-    color: rgb(45, 212, 191);
+    color: rgb(244, 114, 182);
   }
-asserts:
-  - selector: "article p:nth-child(1)"
-    property: color
-    expected: "rgb(45, 212, 191)"
-  - selector: "article p:nth-child(3)"
-    property: color
-    expected: "rgb(45, 212, 191)"
 hints:
   - kosten: 0
     text: |
@@ -37,16 +30,16 @@ hints:
       Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
-      `p { color: rgb(45, 212, 191); }`
+      `p { color: rgb(244, 114, 182); }`
 starter_code: |
   /* Schreibe einen Element-Selektor fuer alle <p> */
 ---
 
-# Grundlagen 01: Alle `<p>`-Elemente sollen petrolfarben werden - ohne Klassen, nur durch Element-Auswahl
+# Grundlagen 01: Alle `<p>`-Elemente sollen rosafarben werden - ohne Klassen, nur durch Element-Auswahl
 
 ## Aufgabe
 
-Alle `<p>`-Elemente sollen petrolfarben werden - ohne Klassen, nur durch Element-Auswahl
+Alle `<p>`-Elemente sollen rosafarben werden - ohne Klassen, nur durch Element-Auswahl
 
 ## Aha
 

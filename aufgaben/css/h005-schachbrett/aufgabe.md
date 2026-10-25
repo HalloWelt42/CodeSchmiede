@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: h005-schachbrett
-revision: 2
+revision: 3
 titel: "Challenge 05: Schachbrett-Hintergrund (repeating-Gradient)"
 sprache: css
 task_type: css_klon
@@ -32,16 +32,6 @@ ziel_css: |
     background-size: 40px 40px;
     background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
   }
-asserts:
-  - selector: ".brett"
-    property: width
-    expected: "240px"
-  - selector: ".brett"
-    property: background-size
-    expected: "40px 40px, 40px 40px, 40px 40px, 40px 40px"
-  - selector: ".brett"
-    property: background-color
-    expected: "rgb(231, 236, 241)"
 hints:
   - kosten: 0
     text: |

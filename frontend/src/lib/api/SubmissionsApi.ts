@@ -1,5 +1,5 @@
 import { HttpBase } from './HttpBase';
-import type { PruefErgebnis, ProbelaufAntwort, SubmissionAntwort } from '../types/Submission';
+import type { Messung, ProbelaufAntwort, SubmissionAntwort } from '../types/Submission';
 
 export class SubmissionsApi extends HttpBase {
   constructor() {
@@ -10,17 +10,9 @@ export class SubmissionsApi extends HttpBase {
     return this.post<SubmissionAntwort>('', { aufgabe_id: aufgabeId, code });
   }
 
-  /** Speichert eine Submission mit clientseitig erstelltem Pruef-Ergebnis (z.B. JS via WebWorker). */
-  submitLokal(
-    aufgabeId: string,
-    code: string,
-    pruefung: PruefErgebnis,
-  ): Promise<SubmissionAntwort> {
-    return this.post<SubmissionAntwort>('/lokal', {
-      aufgabe_id: aufgabeId,
-      code,
-      pruefung,
-    });
+  /** Abgabe mit einer Messung des Browsers (CSS); werten tut der Server. */
+  submitLokal(aufgabeId: string, code: string, messung: Messung): Promise<SubmissionAntwort> {
+    return this.post<SubmissionAntwort>('/lokal', { aufgabe_id: aufgabeId, code, messung });
   }
 
   probelauf(aufgabeId: string, code: string, input: unknown[]): Promise<ProbelaufAntwort> {

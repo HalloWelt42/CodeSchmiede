@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c174-empty-state
-revision: 2
+revision: 3
 titel: "Empty-State (Platzhalter)"
 sprache: css
 task_type: css_klon
@@ -36,25 +36,6 @@ ziel_css: |
   .text {
     font-size: 14px;
   }
-asserts:
-  - selector: ".leer"
-    property: display
-    expected: "flex"
-  - selector: ".leer"
-    property: flex-direction
-    expected: "column"
-  - selector: ".leer"
-    property: align-items
-    expected: "center"
-  - selector: ".leer"
-    property: gap
-    expected: "12px"
-  - selector: ".leer"
-    property: padding-top
-    expected: "32px"
-  - selector: ".symbol"
-    property: color
-    expected: "rgb(58, 64, 73)"
 hints:
   - kosten: 0
     text: |

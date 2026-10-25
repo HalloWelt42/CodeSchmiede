@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r005-einstellungs-reihe
-revision: 2
+revision: 3
 titel: "Repro 05: Einstellungs-Zeile mit Toggle-Switch"
 sprache: css
 task_type: css_klon
@@ -43,7 +43,7 @@ ziel_css: |
     display: block;
     width: 44px;
     height: 24px;
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     border-radius: 999px;
     position: relative;
   }
@@ -56,25 +56,6 @@ ziel_css: |
     background-color: #ffffff;
     border-radius: 50%;
   }
-asserts:
-  - selector: ".reihe"
-    property: display
-    expected: "flex"
-  - selector: ".text"
-    property: flex-grow
-    expected: "1"
-  - selector: ".schiene"
-    property: border-radius
-    expected: "999px"
-  - selector: ".schiene"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".knopf"
-    property: border-radius
-    expected: "50%"
-  - selector: ".knopf"
-    property: left
-    expected: "22px"
 hints:
   - kosten: 0
     text: |
@@ -101,7 +82,7 @@ starter_code: |
     display: block;
     width: 44px;
     height: 24px;
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     /* pillenrund + position-Kontext fuer den Knopf */
   }
   .knopf {

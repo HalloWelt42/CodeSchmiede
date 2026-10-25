@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: h001-halbkreis
-revision: 2
+revision: 3
 titel: "Challenge 01: Halbkreis nur mit border-radius"
 sprache: css
 task_type: css_klon
@@ -23,25 +23,9 @@ ziel_css: |
   .halbkreis {
     width: 120px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #f472b6;
     border-radius: 120px 120px 0 0;
   }
-asserts:
-  - selector: ".halbkreis"
-    property: width
-    expected: "120px"
-  - selector: ".halbkreis"
-    property: height
-    expected: "60px"
-  - selector: ".halbkreis"
-    property: border-top-left-radius
-    expected: "120px"
-  - selector: ".halbkreis"
-    property: border-top-right-radius
-    expected: "120px"
-  - selector: ".halbkreis"
-    property: border-bottom-left-radius
-    expected: "0px"
 hints:
   - kosten: 0
     text: |
@@ -53,7 +37,7 @@ starter_code: |
   .halbkreis {
     width: 120px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #f472b6;
     /* oben rund, unten spitz */
   }
 ---

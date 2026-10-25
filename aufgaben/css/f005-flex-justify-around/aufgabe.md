@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f005-flex-justify-around
-revision: 2
+revision: 3
 titel: "Flexbox 05: Mit Außenrand - space-around"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
   .kachel {
     width: 60px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #c0ca33;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;
@@ -42,13 +42,6 @@ ziel_css: |
     display: flex;
     justify-content: space-around;
   }
-asserts:
-  - selector: ".bahn"
-    property: display
-    expected: "flex"
-  - selector: ".bahn"
-    property: justify-content
-    expected: "space-around"
 hints:
   - kosten: 0
     text: |

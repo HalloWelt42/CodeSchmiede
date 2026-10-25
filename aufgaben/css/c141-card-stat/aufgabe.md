@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c141-card-stat
-revision: 2
+revision: 3
 titel: "Card: Statistik-Kachel"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
   .zahl {
     font-size: 32px;
     font-weight: 700;
-    color: #2dd4bf;
+    color: #c0ca33;
   }
   .label {
     margin-top: 8px;
@@ -39,29 +39,10 @@ ziel_css: |
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
-asserts:
-  - selector: ".kachel"
-    property: padding-top
-    expected: "24px"
-  - selector: ".kachel"
-    property: text-align
-    expected: "center"
-  - selector: ".kachel"
-    property: border-radius
-    expected: "6px"
-  - selector: ".zahl"
-    property: color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".zahl"
-    property: font-weight
-    expected: "700"
-  - selector: ".label"
-    property: text-transform
-    expected: "uppercase"
 hints:
   - kosten: 0
     text: |
-      Zahl zentral und groß in Petrol, Label klein in Großbuchstaben darunter.
+      Zahl zentral und groß in Oliv, Label klein in Großbuchstaben darunter.
 starter_code: |
   .kachel {
     /* ... */

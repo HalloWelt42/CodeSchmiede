@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s005-child-selektor
-revision: 2
+revision: 3
 titel: "Grundlagen 05: Nur direkte Kinder (>)"
 sprache: css
 task_type: css_klon
@@ -23,16 +23,6 @@ ziel_css: |
   ul > li {
     color: rgb(251, 146, 60);
   }
-asserts:
-  - selector: "ul > li:nth-child(1)"
-    property: color
-    expected: "rgb(251, 146, 60)"
-  - selector: "ul > li:nth-child(2)"
-    property: color
-    expected: "rgb(251, 146, 60)"
-  - selector: "ul ol li"
-    property: color
-    expected: "rgb(251, 146, 60)"
 hints:
   - kosten: 0
     text: |

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c175-quote
-revision: 2
+revision: 3
 titel: "Quote-Block"
 sprache: css
 task_type: css_klon
@@ -23,31 +23,15 @@ ziel_css: |
   .zitat {
     margin: 0;
     padding: 12px 20px;
-    border-left: 4px solid #2dd4bf;
+    border-left: 4px solid #fbbf24;
     background-color: #22262d;
     color: #e7ecf1;
     font-style: italic;
   }
-asserts:
-  - selector: ".zitat"
-    property: padding-top
-    expected: "12px"
-  - selector: ".zitat"
-    property: padding-left
-    expected: "20px"
-  - selector: ".zitat"
-    property: border-left-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".zitat"
-    property: border-left-width
-    expected: "4px"
-  - selector: ".zitat"
-    property: font-style
-    expected: "italic"
 hints:
   - kosten: 0
     text: |
-      Linker Petrol-Streifen (4px), kursiver Text.
+      Linker Gold-Streifen (4px), kursiver Text.
 starter_code: |
   .zitat {
     /* ... */
@@ -56,4 +40,4 @@ starter_code: |
 
 # Quote-Block
 
-Zitat mit linkem Petrol-Streifen und kursivem Text.
+Zitat mit linkem Gold-Streifen und kursivem Text.

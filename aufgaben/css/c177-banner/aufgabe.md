@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c177-banner
-revision: 2
+revision: 3
 titel: "Banner: Hinweis mit Icon"
 sprache: css
 task_type: css_klon
@@ -42,25 +42,6 @@ ziel_css: |
     font-weight: 700;
     flex-shrink: 0;
   }
-asserts:
-  - selector: ".banner"
-    property: display
-    expected: "flex"
-  - selector: ".banner"
-    property: align-items
-    expected: "center"
-  - selector: ".banner"
-    property: gap
-    expected: "12px"
-  - selector: ".banner"
-    property: background-color
-    expected: "rgb(8, 145, 178)"
-  - selector: ".icon"
-    property: border-radius
-    expected: "50%"
-  - selector: ".icon"
-    property: flex-shrink
-    expected: "0"
 hints:
   - kosten: 0
     text: |

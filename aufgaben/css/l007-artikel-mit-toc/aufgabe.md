@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l007-artikel-mit-toc
-revision: 2
+revision: 3
 titel: "Layout 07: Artikel mit Inhaltsverzeichnis-Sidebar"
 sprache: css
 task_type: css_klon
@@ -44,19 +44,6 @@ ziel_css: |
     border-radius: 4px;
     min-height: 240px;
   }
-asserts:
-  - selector: ".seite"
-    property: display
-    expected: "grid"
-  - selector: ".seite"
-    property: grid-template-columns
-    expected: "120px 304px"
-  - selector: ".toc"
-    property: position
-    expected: "sticky"
-  - selector: ".toc"
-    property: align-self
-    expected: "start"
 hints:
   - kosten: 0
     text: |

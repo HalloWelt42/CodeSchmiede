@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: h002-pfeil-border
-revision: 2
+revision: 3
 titel: "Challenge 02: Pfeil aus transparenten Borders"
 sprache: css
 task_type: css_klon
@@ -25,31 +25,15 @@ ziel_css: |
     height: 0;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
-    border-left: 30px solid #2dd4bf;
+    border-left: 30px solid #c0ca33;
   }
-asserts:
-  - selector: ".pfeil"
-    property: width
-    expected: "30px"
-  - selector: ".pfeil"
-    property: border-top-color
-    expected: "rgba(0, 0, 0, 0)"
-  - selector: ".pfeil"
-    property: border-bottom-color
-    expected: "rgba(0, 0, 0, 0)"
-  - selector: ".pfeil"
-    property: border-left-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".pfeil"
-    property: border-left-width
-    expected: "30px"
 hints:
   - kosten: 0
     text: |
       Trick: Ein div mit width: 0, height: 0 und einem dicken Border ist visuell nur die Border. Wenn drei Border transparent sind und eine farbig, entsteht ein Dreieck. Hier soll der Pfeil nach rechts zeigen - also farbig links, transparent oben/unten.
   - kosten: 6
     text: |
-      `width: 0; height: 0; border-top: 20px solid transparent; border-bottom: 20px solid transparent; border-left: 30px solid #2dd4bf;`
+      `width: 0; height: 0; border-top: 20px solid transparent; border-bottom: 20px solid transparent; border-left: 30px solid #c0ca33;`
 starter_code: |
   .pfeil {
     /* width und height 0, drei transparente Borders + eine farbige links */
@@ -60,7 +44,7 @@ starter_code: |
 
 ## Ziel
 
-Erzeuge einen petrolfarbenen Pfeil, der nach **rechts** zeigt - ohne
+Erzeuge einen olivfarbenen Pfeil, der nach **rechts** zeigt - ohne
 clip-path, ohne SVG, nur mit width/height/border.
 
 ## Aha

@@ -8,6 +8,7 @@
    * Verlauf schon geladen, lädt er dann neu.
    */
   import { aufgabenApi } from '../api/AufgabenApi';
+  import { prozentZahl } from '../spielanzeige';
   import type { VerlaufEintrag } from '../types/Submission';
 
   interface Props {
@@ -70,7 +71,7 @@
         <button class="test-zeile eintrag" onclick={() => uebernehmen(v)} title="Diesen Code in den Editor übernehmen">
           <i class="fa-solid {v.bestanden ? 'fa-check ok' : 'fa-xmark nein'}" aria-hidden="true"></i>
           <span class="zeit">{formatiereDatum(v.zeitstempel)}</span>
-          <span class="num rechts">{v.laufzeit_ms === null ? '' : `${v.laufzeit_ms.toFixed(0)} ms`}</span>
+          <span class="num rechts">{v.deckung !== null ? `${prozentZahl(v.deckung)} %` : v.laufzeit_ms === null ? '' : `${v.laufzeit_ms.toFixed(0)} ms`}</span>
           <span class="dim zeichen">{v.codelaenge_zeichen ?? 0} Z.</span>
         </button>
       {/each}

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s010-inheritance
-revision: 2
+revision: 3
 titel: "Grundlagen 10: Vererbung - color erbt sich auf Kinder"
 sprache: css
 task_type: css_klon
@@ -21,21 +21,8 @@ ziel_html: |
   <article><h2>Titel</h2><p>Erster <span>Span</span> Absatz</p><ul><li>Listen-Eintrag</li></ul></article>
 ziel_css: |
   article {
-    color: rgb(45, 212, 191);
+    color: rgb(251, 191, 36);
   }
-asserts:
-  - selector: "article"
-    property: color
-    expected: "rgb(45, 212, 191)"
-  - selector: "article h2"
-    property: color
-    expected: "rgb(45, 212, 191)"
-  - selector: "article p span"
-    property: color
-    expected: "rgb(45, 212, 191)"
-  - selector: "article ul li"
-    property: color
-    expected: "rgb(45, 212, 191)"
 hints:
   - kosten: 0
     text: |
@@ -43,16 +30,16 @@ hints:
       Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
-      `article { color: rgb(45, 212, 191); }`
+      `article { color: rgb(251, 191, 36); }`
 starter_code: |
-  /* Nur article ansprechen -- alles darin erbt automatisch */
+  /* Nur article ansprechen - alles darin erbt automatisch */
 ---
 
-# Grundlagen 10: Setze color nur auf `<article>` - alle Texte darin werden automatisch petrol
+# Grundlagen 10: Setze color nur auf `<article>` - alle Texte darin werden automatisch goldfarben
 
 ## Aufgabe
 
-Setze color nur auf `<article>` - alle Texte darin werden automatisch petrol
+Setze color nur auf `<article>` - alle Texte darin werden automatisch goldfarben
 
 ## Aha
 

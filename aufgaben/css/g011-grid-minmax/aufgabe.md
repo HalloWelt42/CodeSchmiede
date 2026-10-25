@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g011-grid-minmax
-revision: 2
+revision: 3
 titel: "Grid 11: Spalte mit Mindest-/Maximalbreite - minmax()"
 sprache: css
 task_type: css_klon
@@ -30,16 +30,12 @@ ziel_css: |
     gap: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #fa8072;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;
     text-align: center;
   }
-asserts:
-  - selector: ".setzkasten"
-    property: grid-template-columns
-    expected: "200px 63px 63px"
 hints:
   - kosten: 0
     text: |
@@ -60,7 +56,7 @@ starter_code: |
     gap: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #fa8072;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;

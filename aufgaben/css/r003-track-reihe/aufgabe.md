@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r003-track-reihe
-revision: 2
+revision: 3
 titel: "Repro 03: Musik-Track-Zeile"
 sprache: css
 task_type: css_klon
@@ -34,7 +34,7 @@ ziel_css: |
     width: 48px;
     height: 48px;
     border-radius: 4px;
-    background-color: #2dd4bf;
+    background-color: #a78bfa;
     color: #1a1d23;
     display: flex;
     justify-content: center;
@@ -65,25 +65,6 @@ ziel_css: |
     color: #9ca3af;
     flex-shrink: 0;
   }
-asserts:
-  - selector: ".track"
-    property: display
-    expected: "flex"
-  - selector: ".track"
-    property: align-items
-    expected: "center"
-  - selector: ".cover"
-    property: flex-shrink
-    expected: "0"
-  - selector: ".info"
-    property: flex-grow
-    expected: "1"
-  - selector: ".titel"
-    property: white-space
-    expected: "nowrap"
-  - selector: ".titel"
-    property: text-overflow
-    expected: "ellipsis"
 hints:
   - kosten: 0
     text: |
@@ -104,7 +85,7 @@ starter_code: |
     width: 48px;
     height: 48px;
     border-radius: 4px;
-    background-color: #2dd4bf;
+    background-color: #a78bfa;
     color: #1a1d23;
     display: flex;
     justify-content: center;

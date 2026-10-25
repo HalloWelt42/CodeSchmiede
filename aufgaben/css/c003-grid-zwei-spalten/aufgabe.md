@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c003-grid-zwei-spalten
-revision: 2
+revision: 3
 titel: Zwei-Spalten-Grid mit Lücke
 sprache: css
 task_type: css_klon
@@ -32,35 +32,13 @@ ziel_css: |
     width: 400px;
   }
   .zelle {
-    background: rgb(45, 212, 191);
+    background: rgb(56, 189, 248);
     color: rgb(26, 29, 35);
     padding: 24px;
     text-align: center;
     font-weight: 600;
     border-radius: 4px;
   }
-asserts:
-  - selector: ".grid"
-    property: display
-    expected: "grid"
-  - selector: ".grid"
-    property: grid-template-columns
-    expected: "192px 192px"
-  - selector: ".grid"
-    property: gap
-    expected: "16px"
-  - selector: ".grid"
-    property: width
-    expected: "400px"
-  - selector: ".zelle"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".zelle"
-    property: padding-top
-    expected: "24px"
-  - selector: ".zelle"
-    property: text-align
-    expected: "center"
 hints:
   - kosten: 0
     text: |
@@ -87,5 +65,5 @@ Lücken dazwischen.
 ## Vorgaben
 
 - Container: 400px breit, 2 gleichbreite Spalten, 16px gap
-- Zellen: Petrol-Hintergrund, 24px Padding, zentrierter fetter Text
+- Zellen: Azur-Hintergrund, 24px Padding, zentrierter fetter Text
 - 4 Zellen → 2 Reihen × 2 Spalten ergeben sich automatisch

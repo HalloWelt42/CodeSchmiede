@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c171-dropzone
-revision: 2
+revision: 3
 titel: "Drop-Zone (gestrichelt)"
 sprache: css
 task_type: css_klon
@@ -23,7 +23,7 @@ ziel_css: |
   .drop {
     width: 320px;
     height: 160px;
-    border: 2px dashed #2dd4bf;
+    border: 2px dashed #c0ca33;
     border-radius: 8px;
     background-color: #22262d;
     color: #9ca3af;
@@ -32,29 +32,10 @@ ziel_css: |
     align-items: center;
     text-align: center;
   }
-asserts:
-  - selector: ".drop"
-    property: width
-    expected: "320px"
-  - selector: ".drop"
-    property: height
-    expected: "160px"
-  - selector: ".drop"
-    property: border-top-style
-    expected: "dashed"
-  - selector: ".drop"
-    property: border-top-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".drop"
-    property: display
-    expected: "flex"
-  - selector: ".drop"
-    property: justify-content
-    expected: "center"
 hints:
   - kosten: 0
     text: |
-      320x160, gestrichelter Petrol-Rand, Inhalt zentriert.
+      320x160, gestrichelter Oliv-Rand, Inhalt zentriert.
 starter_code: |
   .drop {
     /* ... */

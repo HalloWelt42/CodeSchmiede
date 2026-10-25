@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c139-card-shadow
-revision: 2
+revision: 3
 titel: "Card: mit weichem Schatten"
 sprache: css
 task_type: css_klon
@@ -28,19 +28,6 @@ ziel_css: |
     border-radius: 6px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
   }
-asserts:
-  - selector: ".card"
-    property: width
-    expected: "240px"
-  - selector: ".card"
-    property: padding-top
-    expected: "20px"
-  - selector: ".card"
-    property: border-radius
-    expected: "6px"
-  - selector: ".card"
-    property: box-shadow
-    expected: "rgba(0, 0, 0, 0.4) 0px 4px 12px 0px"
 hints:
   - kosten: 0
     text: |

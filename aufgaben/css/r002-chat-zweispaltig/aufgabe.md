@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r002-chat-zweispaltig
-revision: 2
+revision: 3
 titel: "Repro 02: Chat-Dialog mit eigener und fremder Nachricht"
 sprache: css
 task_type: css_klon
@@ -18,7 +18,7 @@ autor: HalloWelt42
 erstellt_am: 2026-05-11
 zeitlimit_sekunden: 5
 ziel_html: |
-  <div class="chat"><div class="zeile fremd"><div class="avatar">A</div><div class="bubble">Wie war dein Tag?</div></div><div class="zeile eigen"><div class="bubble selber">Lang -- aber gut.</div></div></div>
+  <div class="chat"><div class="zeile fremd"><div class="avatar">A</div><div class="bubble">Wie war dein Tag?</div></div><div class="zeile eigen"><div class="bubble selber">Lang - aber gut.</div></div></div>
 ziel_css: |
   .chat {
     display: flex;
@@ -55,29 +55,10 @@ ziel_css: |
     max-width: 240px;
   }
   .bubble.selber {
-    background-color: #2dd4bf;
+    background-color: #a78bfa;
     color: #1a1d23;
     border-radius: 12px 12px 4px 12px;
   }
-asserts:
-  - selector: ".chat"
-    property: flex-direction
-    expected: "column"
-  - selector: ".zeile.eigen"
-    property: justify-content
-    expected: "flex-end"
-  - selector: ".avatar"
-    property: flex-shrink
-    expected: "0"
-  - selector: ".bubble"
-    property: border-bottom-left-radius
-    expected: "4px"
-  - selector: ".bubble.selber"
-    property: border-bottom-right-radius
-    expected: "4px"
-  - selector: ".bubble.selber"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
 hints:
   - kosten: 0
     text: |
@@ -122,7 +103,7 @@ starter_code: |
     /* asymmetrischer Border-Radius: oben gerundet, unten links spitz */
   }
   .bubble.selber {
-    background-color: #2dd4bf;
+    background-color: #a78bfa;
     color: #1a1d23;
     /* spitz unten rechts */
   }
@@ -134,7 +115,7 @@ starter_code: |
 
 Zwei Nachrichten in einem Chat-Layout.
 Die fremde Nachricht (links) hat einen Avatar daneben und Bubble in Grau, die
-eigene (rechts) ist Petrol ohne Avatar. Die untere Bubble-Ecke zeigt jeweils
+eigene (rechts) ist Lavendel ohne Avatar. Die untere Bubble-Ecke zeigt jeweils
 zum Sender - bei fremd unten links spitz, bei eigen unten rechts.
 
 ## Aha

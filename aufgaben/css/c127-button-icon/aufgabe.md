@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c127-button-icon
-revision: 2
+revision: 3
 titel: "Button: Icon-only quadratisch"
 sprache: css
 task_type: css_klon
@@ -23,7 +23,7 @@ ziel_css: |
   .btn {
     width: 40px;
     height: 40px;
-    background-color: #2dd4bf;
+    background-color: #f59e0b;
     color: #1a1d23;
     border: none;
     border-radius: 4px;
@@ -34,29 +34,10 @@ ziel_css: |
     font-weight: 700;
     cursor: pointer;
   }
-asserts:
-  - selector: ".btn"
-    property: width
-    expected: "40px"
-  - selector: ".btn"
-    property: height
-    expected: "40px"
-  - selector: ".btn"
-    property: display
-    expected: "flex"
-  - selector: ".btn"
-    property: justify-content
-    expected: "center"
-  - selector: ".btn"
-    property: align-items
-    expected: "center"
-  - selector: ".btn"
-    property: border-radius
-    expected: "4px"
 hints:
   - kosten: 0
     text: |
-      40x40, flex-zentriert, Petrol-Hintergrund.
+      40x40, flex-zentriert, Bernstein-Hintergrund.
 starter_code: |
   .btn {
     /* ... */

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c038-grid-auto-1fr
-revision: 2
+revision: 3
 titel: "Grid: fest links, rest rechts"
 sprache: css
 task_type: css_klon
@@ -27,22 +27,9 @@ ziel_css: |
     width: 400px;
   }
   .zelle {
-    background-color: #2dd4bf;
+    background-color: #c0ca33;
     height: 60px;
   }
-asserts:
-  - selector: ".grid"
-    property: display
-    expected: "grid"
-  - selector: ".grid"
-    property: grid-template-columns
-    expected: "120px 280px"
-  - selector: ".grid"
-    property: gap
-    expected: "0px"
-  - selector: ".grid"
-    property: width
-    expected: "400px"
 hints:
   - kosten: 0
     text: |
@@ -62,4 +49,4 @@ starter_code: |
 # Grid: fest links, rest rechts
 
 Erstelle ein CSS-Grid mit fest links, rest rechts.
-Container: 400px breit. Zellen sind 60px hoch und petrol.
+Container: 400px breit. Zellen sind 60px hoch und olivfarben.

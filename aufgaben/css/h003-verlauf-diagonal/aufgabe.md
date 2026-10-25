@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: h003-verlauf-diagonal
-revision: 2
+revision: 3
 titel: "Challenge 03: Diagonaler Verlauf"
 sprache: css
 task_type: css_klon
@@ -23,24 +23,20 @@ ziel_css: |
   .kasten {
     width: 240px;
     height: 120px;
-    background-image: linear-gradient(135deg, #2dd4bf 0%, #6366f1 100%);
+    background-image: linear-gradient(135deg, #e879f9 0%, #6366f1 100%);
   }
-asserts:
-  - selector: ".kasten"
-    property: background-image
-    expected: "linear-gradient(135deg, rgb(45, 212, 191) 0%, rgb(99, 102, 241) 100%)"
 hints:
   - kosten: 0
     text: |
       linear-gradient(<winkel>, <farbe1>, <farbe2>) erzeugt einen Farbverlauf. Bei 135deg geht der Verlauf von oben-links nach unten-rechts (Diagonale).
   - kosten: 4
     text: |
-      `background-image: linear-gradient(135deg, #2dd4bf 0%, #6366f1 100%);`
+      `background-image: linear-gradient(135deg, #e879f9 0%, #6366f1 100%);`
 starter_code: |
   .kasten {
     width: 240px;
     height: 120px;
-    /* hier: linearer Verlauf 135deg von #2dd4bf nach #6366f1 */
+    /* hier: linearer Verlauf 135deg von #e879f9 nach #6366f1 */
   }
 ---
 
@@ -48,7 +44,7 @@ starter_code: |
 
 ## Ziel
 
-Eine 240x120-Box mit einem diagonalen Farbverlauf von Petrol (oben-links)
+Eine 240x120-Box mit einem diagonalen Farbverlauf von Magenta (oben-links)
 nach Indigo (unten-rechts).
 
 ## Aha

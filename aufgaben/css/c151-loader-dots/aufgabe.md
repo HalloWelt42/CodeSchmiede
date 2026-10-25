@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c151-loader-dots
-revision: 2
+revision: 3
 titel: "Loader: Drei Punkte"
 sprache: css
 task_type: css_klon
@@ -28,29 +28,13 @@ ziel_css: |
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #2dd4bf;
+    background-color: #fbbf24;
     display: inline-block;
   }
-asserts:
-  - selector: ".dots"
-    property: display
-    expected: "flex"
-  - selector: ".dots"
-    property: gap
-    expected: "8px"
-  - selector: ".dot"
-    property: width
-    expected: "12px"
-  - selector: ".dot"
-    property: border-radius
-    expected: "50%"
-  - selector: ".dot"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
 hints:
   - kosten: 0
     text: |
-      Drei Petrol-Punkte (12px Kreise) nebeneinander mit 8px Gap.
+      Drei Gold-Punkte (12px Kreise) nebeneinander mit 8px Gap.
 starter_code: |
   .dots {
     /* ... */
@@ -62,4 +46,4 @@ starter_code: |
 
 # Loader: Drei Punkte
 
-Drei Petrol-Punkte als Lade-Indikator.
+Drei Gold-Punkte als Lade-Indikator.

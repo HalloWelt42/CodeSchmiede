@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g012-grid-auto-fit
-revision: 2
+revision: 3
 titel: "Grid 12: Galerie ohne Media-Query - auto-fit + minmax"
 sprache: css
 task_type: css_klon
@@ -30,16 +30,12 @@ ziel_css: |
     gap: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;
     text-align: center;
   }
-asserts:
-  - selector: ".setzkasten"
-    property: grid-template-columns
-    expected: "108.664px 108.664px 108.664px"
 hints:
   - kosten: 0
     text: |
@@ -60,7 +56,7 @@ starter_code: |
     gap: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;

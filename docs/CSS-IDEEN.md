@@ -455,6 +455,26 @@ Der Bewerter erzwingt den Zustand (Überfahren, Fokus, Auswahl) über die Fernst
 
 ---
 
+## Farben der Aufgaben
+
+Jede Aufgabe hat ihre eigene, in sich stimmige Farbgebung, nicht immer denselben Akzent der App (Nutzer 25.10.2026).
+Der Grund darf dunkel bleiben, Akzente wechseln: Bernstein, Lavendel, Lachs, Azur, Rosa, Oliv, Magenta, Gold und
+mehr; Farbnamen im Text passen zum Farbwert. Die alten Aufgaben sind so umgefärbt.
+
+## Spielerische Grundlagenübungen zu Flexbox und Grid
+
+Vorschlag des Nutzers (25.10.2026): wie die bekannten Lernspiele im Netz, aber ganz eigen gebaut. Sie gehören zu den
+CSS-Übungen und kommen vor den spielerischen Herausforderungen: erst die Grundlagen üben, dann knobeln.
+
+- **Form**: eine kleine Welt mit Figuren und Zielfeldern (eigene Bildwelt, etwa Boote und Liegeplätze für Flexbox,
+  Beete und Setzlinge für Grid). Bearbeitet werden nur die Eigenschaften des Behälters bzw. der Elemente in einem
+  kleinen Feld; die Figuren rücken sofort an ihren Platz. Geschafft ist ein Level, wenn jede Figur auf ihrem Feld
+  steht; das prüft die Bilddeckung wie bei den Nachbauten.
+- **Aufbau**: je Level genau eine neue Eigenschaft (justify-content, align-items, flex-direction, order, flex-wrap,
+  align-self, align-content; bei Grid Spalten, Zeilen, Linien, span, Bereiche, fr, repeat), dann gemischte Level.
+  Aufbauend in Teilschritten wie überall.
+- **Vor dem Bau**: Entwürfe; Einordnung zwischen Lehreinführung und Herausforderungen im Aufbaukurs.
+
 ## Bausteine aus eigenen Projekten
 
 Neben den Spielereien oben werden echte Bausteine aus den eigenen Projekten nachgebaut: Knöpfe, Karten, Leisten, Anzeigen, Rohstoff- und Fortschrittsbalken, Reiter, Abzeichen. Erste Quelle ist die Gestaltung von Orbit, weitere eigene Apps folgen. Ziel ist Lernen und Besserwerden, nicht Frust. Die Ideen unten sind vorläufig und werden vor dem Bau an den echten Bausteinen abgeglichen.

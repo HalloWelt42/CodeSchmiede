@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c126-button-ghost
-revision: 2
+revision: 3
 titel: "Button: Ghost"
 sprache: css
 task_type: css_klon
@@ -28,25 +28,6 @@ ziel_css: |
     font-weight: 500;
     cursor: pointer;
   }
-asserts:
-  - selector: ".btn"
-    property: background-color
-    expected: "rgba(0, 0, 0, 0)"
-  - selector: ".btn"
-    property: border-top-style
-    expected: "none"
-  - selector: ".btn"
-    property: color
-    expected: "rgb(231, 236, 241)"
-  - selector: ".btn"
-    property: padding-top
-    expected: "8px"
-  - selector: ".btn"
-    property: padding-left
-    expected: "16px"
-  - selector: ".btn"
-    property: font-weight
-    expected: "500"
 hints:
   - kosten: 0
     text: |

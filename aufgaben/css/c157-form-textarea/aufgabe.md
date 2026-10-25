@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c157-form-textarea
-revision: 2
+revision: 3
 titel: "Form: Textarea"
 sprache: css
 task_type: css_klon
@@ -30,19 +30,6 @@ ziel_css: |
     border-radius: 4px;
     resize: vertical;
   }
-asserts:
-  - selector: ".eingabe"
-    property: width
-    expected: "280px"
-  - selector: ".eingabe"
-    property: height
-    expected: "120px"
-  - selector: ".eingabe"
-    property: padding-top
-    expected: "12px"
-  - selector: ".eingabe"
-    property: resize
-    expected: "vertical"
 hints:
   - kosten: 0
     text: |

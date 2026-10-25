@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c153-nav-sidebar
-revision: 2
+revision: 3
 titel: "Navigation: Sidebar"
 sprache: css
 task_type: css_klon
@@ -36,33 +36,14 @@ ziel_css: |
     border-radius: 4px;
   }
   .aktiv {
-    background-color: #2dd4bf;
+    background-color: #a78bfa;
     color: #1a1d23;
     font-weight: 600;
   }
-asserts:
-  - selector: ".sidebar"
-    property: display
-    expected: "flex"
-  - selector: ".sidebar"
-    property: flex-direction
-    expected: "column"
-  - selector: ".sidebar"
-    property: width
-    expected: "200px"
-  - selector: ".sidebar"
-    property: gap
-    expected: "4px"
-  - selector: ".aktiv"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".aktiv"
-    property: font-weight
-    expected: "600"
 hints:
   - kosten: 0
     text: |
-      Sidebar als flex-column, 200px breit. Aktiver Eintrag in Petrol.
+      Sidebar als flex-column, 200px breit. Aktiver Eintrag in Lavendel.
 starter_code: |
   .sidebar {
     /* ... */

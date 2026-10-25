@@ -9,7 +9,7 @@
   width: 600px;
 }
 .logo {
-  color: #2dd4bf;
+  color: #e879f9;
   font-weight: 700;
   font-size: 18px;
 }
@@ -25,7 +25,7 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: #2dd4bf;
+  background-color: #e879f9;
   color: #1a1d23;
   font-weight: 700;
   display: flex; justify-content: center; align-items: center;

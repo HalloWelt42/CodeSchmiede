@@ -182,14 +182,20 @@ Punktabzug fürs Scheitern, Zeitdruck bei normalen Aufgaben.
 
 ## CSS-Bewertung nach Bild
 
-- **Deckung**: Anteil der Bildpunkte, die mit dem Ziel innerhalb einer kleinen Farbtoleranz übereinstimmen, gemessen
-  auf der Bühne von 600 × 400. Der Ring zeigt sie in Prozent; das Abweichungsbild färbt "zu viel" und "zu wenig"
-  verschieden.
+- **Deckung**: gemessen auf der Bühne von 600 × 400 (`frontend/src/lib/css/buehne.ts`, für Anzeige und Messung
+  dieselbe). Grund ist die häufigste Randfarbe des Zielbilds; Motiv sind alle Bildpunkte, die bei Ziel oder eigenem
+  Bild nicht Grund sind. Die Deckung ist der Anteil des Motivs, der mit dem Ziel übereinstimmt (höchstens 6 Stufen je
+  Farbkanal daneben). So deckt ein leeres Blatt nichts, auch wenn das Ziel nur ein kleiner Kreis ist; eine Deckung
+  über die ganze Bühne hätte ihm 98 % gegeben. Der Ring zeigt sie in Prozent, das Abweichungsbild gleiche Punkte
+  gedämpft, fehlende blau, zu viel oder falsche Farbe rot.
 - **Punkte in zwei Teilen**: bis 60 % der Punkte für die Deckung (linear ab 80 % Deckung), die übrigen 40 % als
   Kürzebonus, aber nur ab 99 % Deckung, gemessen an der Zeichenzahl der Musterlösung (ohne Leerraum).
 - **Sterne**: Bestehen ab 95 %; 99 %; 99 % und höchstens so kurz wie die Musterlösung.
-- **Messung**: verbindlich beim Prüfen, beim Tippen als Schätzung. Wo gerechnet wird (im Browser oder als Dienst am
-  Mac), entscheidet der Bau; der Pi rendert keine Bilder.
+- **Messung**: im Browser (`frontend/src/lib/css/deckung.ts`): beide Bilder werden über SVG-foreignObject gerastert,
+  das keine Skripte ausführt und nichts nachlädt; beide Seiten laufen durch denselben Weg, Schrift und Kantenglättung
+  stimmen also überein. Gemessen wird schon beim Tippen, Prüfen schickt die Messung ab. Bestehen, Sterne und Punkte
+  leitet der Server daraus ab (`css_klon_pruefer.werte`), die Zeichen misst er selbst. Der Pi rendert keine Bilder.
+- **Bestand**: alle 111 Musterlösungen decken ihr Ziel voll, kein Startcode besteht (gemessen beim Bau, 25.10.2026).
 
 ## Offen für die Freigabe
 

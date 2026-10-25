@@ -557,3 +557,7 @@ button.level-punkt { padding: 0; cursor: pointer; }
 .wertung-text { min-width: 0; font-size: var(--fs-sm); line-height: 1.3; hyphens: auto; overflow-wrap: anywhere; }
 .wertung-text b { display: block; font-size: var(--fs-md); }
 .wertung-text span { color: var(--fg-dim); }
+.wert-kachel { text-align: right; }
+.wert-kachel .num { display: block; font-size: var(--fs-lg); }
+.wert-kachel .gedimmt { color: var(--fg-dim); }
+.wert-kachel small { font-size: var(--fs-xs); color: var(--fg-dim); text-transform: uppercase; letter-spacing: .05em; }

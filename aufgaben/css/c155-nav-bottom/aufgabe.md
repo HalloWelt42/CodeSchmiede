@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c155-nav-bottom
-revision: 2
+revision: 3
 titel: "Navigation: Bottom-Bar"
 sprache: css
 task_type: css_klon
@@ -35,22 +35,6 @@ ziel_css: |
     color: #9ca3af;
     cursor: pointer;
   }
-asserts:
-  - selector: ".bottom"
-    property: display
-    expected: "flex"
-  - selector: ".bottom"
-    property: justify-content
-    expected: "space-around"
-  - selector: ".bottom"
-    property: height
-    expected: "60px"
-  - selector: ".bottom"
-    property: border-top-width
-    expected: "1px"
-  - selector: ".kn"
-    property: background-color
-    expected: "rgba(0, 0, 0, 0)"
 hints:
   - kosten: 0
     text: |

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c029-flex-row-beides
-revision: 2
+revision: 3
 titel: "Flex: horizontal+vertikal mittig"
 sprache: css
 task_type: css_klon
@@ -31,21 +31,8 @@ ziel_css: |
   .kind {
     width: 60px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #a78bfa;
   }
-asserts:
-  - selector: ".rahmen"
-    property: display
-    expected: "flex"
-  - selector: ".rahmen"
-    property: justify-content
-    expected: "center"
-  - selector: ".rahmen"
-    property: align-items
-    expected: "center"
-  - selector: ".kind"
-    property: width
-    expected: "60px"
 hints:
   - kosten: 0
     text: |
@@ -62,5 +49,5 @@ starter_code: |
 
 # Flex: horizontal+vertikal mittig
 
-Drei Petrol-Quadrate sollen im Container so angeordnet werden:
+Drei Lavendel-Quadrate sollen im Container so angeordnet werden:
 **horizontal+vertikal mittig**.

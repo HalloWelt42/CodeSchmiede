@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l009-topbar-drei-zonen
-revision: 2
+revision: 3
 titel: "Layout 09: Topbar mit Logo, Menu und Avatar"
 sprache: css
 task_type: css_klon
@@ -31,7 +31,7 @@ ziel_css: |
     width: 600px;
   }
   .logo {
-    color: #2dd4bf;
+    color: #e879f9;
     font-weight: 700;
     font-size: 18px;
   }
@@ -47,30 +47,11 @@ ziel_css: |
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background-color: #2dd4bf;
+    background-color: #e879f9;
     color: #1a1d23;
     font-weight: 700;
     display: flex; justify-content: center; align-items: center;
   }
-asserts:
-  - selector: ".topbar"
-    property: display
-    expected: "flex"
-  - selector: ".topbar"
-    property: justify-content
-    expected: "space-between"
-  - selector: ".topbar"
-    property: align-items
-    expected: "center"
-  - selector: ".menu"
-    property: display
-    expected: "flex"
-  - selector: ".menu"
-    property: gap
-    expected: "24px"
-  - selector: ".avatar"
-    property: border-radius
-    expected: "50%"
 hints:
   - kosten: 0
     text: |
@@ -89,7 +70,7 @@ starter_code: |
     /* hier: flex mit space-between und vertikal zentriert */
   }
   .logo {
-    color: #2dd4bf;
+    color: #e879f9;
     font-weight: 700;
     font-size: 18px;
   }
@@ -104,7 +85,7 @@ starter_code: |
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background-color: #2dd4bf;
+    background-color: #e879f9;
     color: #1a1d23;
     font-weight: 700;
     display: flex; justify-content: center; align-items: center;

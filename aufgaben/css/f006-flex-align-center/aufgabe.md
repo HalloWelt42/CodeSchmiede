@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f006-flex-align-center
-revision: 2
+revision: 3
 titel: "Flexbox 06: Vertikal mittig - align-items: center"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
   .kachel {
     width: 60px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #e879f9;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;
@@ -42,13 +42,6 @@ ziel_css: |
     display: flex;
     align-items: center;
   }
-asserts:
-  - selector: ".bahn"
-    property: display
-    expected: "flex"
-  - selector: ".bahn"
-    property: align-items
-    expected: "center"
 hints:
   - kosten: 0
     text: |

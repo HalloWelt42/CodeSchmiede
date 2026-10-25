@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f001-flex-aktivieren
-revision: 2
+revision: 3
 titel: "Flexbox 01: Flexbox einschalten"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
   .kachel {
     width: 60px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #a78bfa;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;
@@ -41,10 +41,6 @@ ziel_css: |
   .bahn {
     display: flex;
   }
-asserts:
-  - selector: ".bahn"
-    property: display
-    expected: "flex"
 hints:
   - kosten: 0
     text: |

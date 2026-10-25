@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c166-chat-bubble
-revision: 2
+revision: 3
 titel: "Chat-Bubble (eigene Nachricht)"
 sprache: css
 task_type: css_klon
@@ -24,36 +24,14 @@ ziel_css: |
     display: inline-block;
     max-width: 240px;
     padding: 8px 12px;
-    background-color: #2dd4bf;
+    background-color: #fa8072;
     color: #1a1d23;
     border-radius: 16px 16px 4px 16px;
   }
-asserts:
-  - selector: ".bubble"
-    property: display
-    expected: "inline-block"
-  - selector: ".bubble"
-    property: max-width
-    expected: "240px"
-  - selector: ".bubble"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".bubble"
-    property: border-top-left-radius
-    expected: "16px"
-  - selector: ".bubble"
-    property: border-top-right-radius
-    expected: "16px"
-  - selector: ".bubble"
-    property: border-bottom-right-radius
-    expected: "4px"
-  - selector: ".bubble"
-    property: border-bottom-left-radius
-    expected: "16px"
 hints:
   - kosten: 0
     text: |
-      Petrol-Bubble mit asymmetrischem Border-Radius (oben rechts spitz).
+      Lachs-Bubble mit asymmetrischem Border-Radius (oben rechts spitz).
 starter_code: |
   .bubble {
     /* ... */

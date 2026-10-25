@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l003-pricing-trio
-revision: 2
+revision: 3
 titel: "Layout 03: Pricing-Trio mit hervorgehobener Mitte"
 sprache: css
 task_type: css_klon
@@ -39,31 +39,18 @@ ziel_css: |
     border: 1px solid #3a4049;
   }
   .empfohlen {
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     color: #1a1d23;
     transform: scale(1.08);
-    border-color: #2dd4bf;
+    border-color: #38bdf8;
   }
-asserts:
-  - selector: ".preise"
-    property: display
-    expected: "grid"
-  - selector: ".preise"
-    property: grid-template-columns
-    expected: "146.664px 146.664px 146.672px"
-  - selector: ".preise"
-    property: align-items
-    expected: "center"
-  - selector: ".empfohlen"
-    property: transform
-    expected: "matrix(1.08, 0, 0, 1.08, 0, 0)"
 hints:
   - kosten: 0
     text: |
-      Drei gleichbreite Spalten via Grid. Die mittlere Karte bekommt einen Petrol-Hintergrund und wird leicht größer skaliert - klassisches 'empfohlener Tarif'-Pattern.
+      Drei gleichbreite Spalten via Grid. Die mittlere Karte bekommt einen Azur-Hintergrund und wird leicht größer skaliert - klassisches 'empfohlener Tarif'-Pattern.
   - kosten: 5
     text: |
-      Auf .preise: `display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: center;` und auf .empfohlen: `background: #2dd4bf; transform: scale(1.08);`
+      Auf .preise: `display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: center;` und auf .empfohlen: `background: #38bdf8; transform: scale(1.08);`
 starter_code: |
   .preise {
     width: 480px;
@@ -81,8 +68,8 @@ starter_code: |
     border: 1px solid #3a4049;
   }
   .empfohlen {
-    border-color: #2dd4bf;
-    /* Petrol-Hintergrund, dunkler Text, leichte Skalierung */
+    border-color: #38bdf8;
+    /* Azur-Hintergrund, dunkler Text, leichte Skalierung */
   }
 ---
 
@@ -91,7 +78,7 @@ starter_code: |
 ## Aufgabe
 
 Drei Tarifkarten nebeneinander.
-Die mittlere ('Pro') ist hervorgehoben: Petrol-Hintergrund und 8% größer
+Die mittlere ('Pro') ist hervorgehoben: Azur-Hintergrund und 8% größer
 als die anderen (per transform: scale).
 
 ## Aha

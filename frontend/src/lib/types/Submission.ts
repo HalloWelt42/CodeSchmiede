@@ -39,10 +39,26 @@ export interface SternKriterium {
   erreicht: boolean;
 }
 
+export interface PunkteTeil {
+  text: string;
+  /** erreicht und möglich als Anteil der Aufgabenpunkte */
+  anteil: number;
+  moeglich: number;
+  bedingung: string | null;
+}
+
 export interface Wertung {
   sterne: number;
   kriterien: SternKriterium[];
   kennwerte: Kennwerte;
+  /** leer, wenn die Punkte aus den Sternen folgen */
+  teile: PunkteTeil[];
+}
+
+/** Was der Browser misst, wenn nur er rendern kann (CSS) */
+export interface Messung {
+  deckung: number;
+  laufzeit_ms: number;
 }
 
 export interface ProgressEintragLeicht {
@@ -93,4 +109,6 @@ export interface VerlaufEintrag {
   laufzeit_ms: number | null;
   codelaenge_zeichen: number | null;
   code: string;
+  /** CSS: gemessene Deckung, 0 bis 1 */
+  deckung: number | null;
 }

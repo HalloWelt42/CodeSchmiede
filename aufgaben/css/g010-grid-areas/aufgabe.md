@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g010-grid-areas
-revision: 2
+revision: 3
 titel: "Grid 10: Benannte Bereiche - grid-template-areas"
 sprache: css
 task_type: css_klon
@@ -36,7 +36,7 @@ ziel_css: |
   }
   .kopf { grid-area: kopf; background-color: #fb923c; }
   .navi { grid-area: navi; background-color: #a78bfa; }
-  .haupt { grid-area: haupt; background-color: #2dd4bf; }
+  .haupt { grid-area: haupt; background-color: #38bdf8; }
   .fuss { grid-area: fuss; background-color: #9ca3af; }
   .kopf, .navi, .haupt, .fuss {
     color: #1a1d23;
@@ -44,13 +44,6 @@ ziel_css: |
     font-weight: 700;
     text-align: center;
   }
-asserts:
-  - selector: ".kopf"
-    property: grid-area
-    expected: "kopf"
-  - selector: ".haupt"
-    property: grid-area
-    expected: "haupt"
 hints:
   - kosten: 0
     text: |
@@ -77,7 +70,7 @@ starter_code: |
   }
   .kopf { background-color: #fb923c; /* Area zuweisen */ }
   .navi { background-color: #a78bfa; /* Area zuweisen */ }
-  .haupt { background-color: #2dd4bf; /* Area zuweisen */ }
+  .haupt { background-color: #38bdf8; /* Area zuweisen */ }
   .fuss { background-color: #9ca3af; /* Area zuweisen */ }
   .kopf, .navi, .haupt, .fuss {
     color: #1a1d23;

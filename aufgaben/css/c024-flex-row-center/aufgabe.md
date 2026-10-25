@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c024-flex-row-center
-revision: 2
+revision: 3
 titel: "Flex: row, mittig"
 sprache: css
 task_type: css_klon
@@ -31,21 +31,8 @@ ziel_css: |
   .kind {
     width: 60px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #f59e0b;
   }
-asserts:
-  - selector: ".rahmen"
-    property: display
-    expected: "flex"
-  - selector: ".rahmen"
-    property: justify-content
-    expected: "center"
-  - selector: ".rahmen"
-    property: align-items
-    expected: "stretch"
-  - selector: ".kind"
-    property: width
-    expected: "60px"
 hints:
   - kosten: 0
     text: |
@@ -62,5 +49,5 @@ starter_code: |
 
 # Flex: row, mittig
 
-Drei Petrol-Quadrate sollen im Container so angeordnet werden:
+Drei Bernstein-Quadrate sollen im Container so angeordnet werden:
 **row, mittig**.

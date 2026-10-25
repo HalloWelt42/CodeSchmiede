@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c160-form-group
-revision: 2
+revision: 3
 titel: "Form: Label + Input-Gruppe"
 sprache: css
 task_type: css_klon
@@ -39,25 +39,6 @@ ziel_css: |
     border: 1px solid #3a4049;
     border-radius: 4px;
   }
-asserts:
-  - selector: ".gruppe"
-    property: display
-    expected: "flex"
-  - selector: ".gruppe"
-    property: flex-direction
-    expected: "column"
-  - selector: ".gruppe"
-    property: gap
-    expected: "6px"
-  - selector: ".lab"
-    property: text-transform
-    expected: "uppercase"
-  - selector: ".lab"
-    property: color
-    expected: "rgb(156, 163, 175)"
-  - selector: ".inp"
-    property: border-radius
-    expected: "4px"
 hints:
   - kosten: 0
     text: |

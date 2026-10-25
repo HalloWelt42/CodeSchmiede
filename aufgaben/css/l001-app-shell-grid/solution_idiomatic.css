@@ -11,7 +11,7 @@
   gap: 4px;
   background-color: #1a1d23;
 }
-.kopf { grid-area: kopf; background-color: #2dd4bf; color: #1a1d23; }
+.kopf { grid-area: kopf; background-color: #a78bfa; color: #1a1d23; }
 .seite { grid-area: seite; background-color: #22262d; color: #e7ecf1; }
 .haupt { grid-area: haupt; background-color: #2a2f37; color: #e7ecf1; }
 .fuss { grid-area: fuss; background-color: #22262d; color: #9ca3af; }

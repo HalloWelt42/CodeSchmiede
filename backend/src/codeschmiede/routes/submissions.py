@@ -7,8 +7,9 @@ Sandbox geschickt und im AufgabenRepository gecacht; ein Reindex über
 den Watcher leert den Cache.
 
 Geprüft wird auf dem Server. Aufgabentypen mit Abgabeweg "browser"
-(CSS-Nachbauten) schicken ein fertiges Ergebnis über `/lokal`, solche mit
-"runde" (Sprint) geben über ihre Spielrunde ab (routes/spiel.py).
+(CSS-Nachbauten) schicken über `/lokal` nur eine Messung; das Ergebnis
+macht daraus der Prüfer des Typs. Solche mit "runde" (Sprint) geben über
+ihre Spielrunde ab (routes/spiel.py).
 """
 
 from typing import Any
@@ -20,7 +21,7 @@ from ..models.aufgabe import Aufgabe
 from ..models.progress import Progress
 from ..models.spiel import Belohnung
 from ..progress.submissions import codelaenge
-from ..pruefung.ergebnis import PruefErgebnis
+from ..pruefung.ergebnis import Messung, PruefErgebnis
 from ..pruefung.kodierung import anzeigen
 from ..pruefung.orchestrator import UnbekannterAufgabentyp, pruefe, pruefer_fuer
 from ..pruefung.registry import Abgabeweg
@@ -60,11 +61,11 @@ class SubmissionAntwort(BaseModel):
 
 
 class LokaleSubmissionAnfrage(BaseModel):
-    """Submission eines Aufgabentyps, der im Browser geprüft wird."""
+    """Submission eines Aufgabentyps, den nur der Browser messen kann."""
 
     aufgabe_id: str
     code: str = Field(min_length=1, max_length=50_000)
-    pruefung: PruefErgebnis
+    messung: Messung
 
 
 class ProbelaufAnfrage(BaseModel):
@@ -145,11 +146,13 @@ def baue_submissions_router(state: AppState) -> APIRouter:
 
     @router.post("/lokal", response_model=SubmissionAntwort)
     def submit_lokal(anfrage: LokaleSubmissionAnfrage) -> SubmissionAntwort:
-        """Speichert das Ergebnis einer im Browser geprüften Aufgabe."""
+        """Wertet die Messung einer im Browser gerenderten Aufgabe."""
         aufgabe = hole_aufgabe(anfrage.aufgabe_id)
         verlange_weg(aufgabe, "browser")
-
-        return antwort(aufgabe, anfrage.code, anfrage.pruefung)
+        werte = pruefer_fuer(aufgabe).werte
+        assert werte is not None  # die Registry verlangt sie für "browser"
+        muster = state.aufgaben.kuerzeste_musterloesung(aufgabe.id)
+        return antwort(aufgabe, anfrage.code, werte(aufgabe, anfrage.code, anfrage.messung, muster))
 
     @router.post("/probelauf", response_model=ProbelaufAntwort)
     def probelauf(anfrage: ProbelaufAnfrage) -> ProbelaufAntwort:

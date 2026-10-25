@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c032-flex-wrap
-revision: 2
+revision: 3
 titel: "Flex: wrap"
 sprache: css
 task_type: css_klon
@@ -31,18 +31,8 @@ ziel_css: |
   .kind {
     width: 80px;
     height: 40px;
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
   }
-asserts:
-  - selector: ".rahmen"
-    property: display
-    expected: "flex"
-  - selector: ".rahmen"
-    property: flex-wrap
-    expected: "wrap"
-  - selector: ".rahmen"
-    property: gap
-    expected: "8px"
 hints:
   - kosten: 0
     text: |

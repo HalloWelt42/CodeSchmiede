@@ -233,7 +233,7 @@ def test_routen_liefern_stand_und_erfolge(settings):
     antwort = client.post("/api/submissions/lokal", json={
         "aufgabe_id": "c005-knopf",
         "code": "b{color:red}",
-        "pruefung": bestanden(sterne=3).model_dump(),
+        "messung": {"deckung": 1.0},
     })
     assert antwort.status_code == 200
     assert antwort.json()["belohnung"]["punkte"] == 10

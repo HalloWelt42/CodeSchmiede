@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s011-padding-innenabstand
-revision: 2
+revision: 3
 titel: "Grundlagen 11: Padding - Innenabstand zur Grenze"
 sprache: css
 task_type: css_klon
@@ -22,23 +22,10 @@ ziel_html: |
 ziel_css: |
   .hervor {
     padding: 24px;
-    background-color: #2dd4bf;
+    background-color: #c0ca33;
     color: #1a1d23;
     width: 200px;
   }
-asserts:
-  - selector: ".hervor"
-    property: padding-top
-    expected: "24px"
-  - selector: ".hervor"
-    property: padding-left
-    expected: "24px"
-  - selector: ".hervor"
-    property: padding-right
-    expected: "24px"
-  - selector: ".hervor"
-    property: padding-bottom
-    expected: "24px"
 hints:
   - kosten: 0
     text: |
@@ -49,7 +36,7 @@ hints:
       `padding: 24px;`
 starter_code: |
   .hervor {
-    background-color: #2dd4bf;
+    background-color: #c0ca33;
     color: #1a1d23;
     width: 200px;
     /* hier 24px Padding rundum hinzufuegen */

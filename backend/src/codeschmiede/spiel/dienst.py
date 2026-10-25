@@ -32,6 +32,7 @@ from ..progress.submissions import (
     SubmissionRepository,
     codelaenge,
 )
+from ..pruefung.css_klon_pruefer import VOLL as VOLLE_DECKUNG
 from ..pruefung.ergebnis import Kennwerte, PruefErgebnis, Wertung
 from ..pruefung.registry import hole
 from .auftrag import tagesauftrag
@@ -182,6 +183,7 @@ class Spieldienst:
             ergebnis = ergebnis.model_copy(update={"wertung": mit_verlauf(ergebnis.wertung, bisher)})
         wertung = ergebnis.wertung
         sterne = wertung.sterne if wertung else None
+        anteil = wertung.punkteanteil if wertung else None
         kennwerte = wertung.kennwerte.model_copy() if wertung else Kennwerte()
         zeichen = codelaenge(code) if vergleicht_zeichen else None
         if ergebnis.bestanden and zeichen is not None:
@@ -199,7 +201,7 @@ class Spieldienst:
             sterne=sterne,
             kennwerte=kennwerte,
         )
-        progress = self.progress.aktualisiere_nach_submission(aufgabe, ergebnis.bestanden, sterne, heute)
+        progress = self.progress.aktualisiere_nach_submission(aufgabe, ergebnis.bestanden, sterne, heute, anteil)
         if not ergebnis.bestanden:
             return Verbuchung(submission_id, progress, ergebnis, None)
 
@@ -213,7 +215,7 @@ class Spieldienst:
         belohnung = Belohnung(
             punkte=progress.punkte_erreicht - bisher.punkte_erreicht,
             punkte_versuch=0 if bisher.aufgegeben
-            else self.progress.berechne_punkte(aufgabe, bisher.hints_genutzt, sterne),
+            else self.progress.berechne_punkte(aufgabe, bisher.hints_genutzt, anteil),
             punkte_moeglich=aufgabe.schwierigkeit_score,
             hinweise=bisher.hints_genutzt,
             aufgegeben=bisher.aufgegeben,
@@ -286,6 +288,10 @@ class Spieldienst:
             faelle=self._faelle(bestand, progress),
             roboter_kurz=len({
                 a.aufgabe_id for a in abgaben if a.kennwerte.zeilen is not None and a.kennwerte.zeilen <= 3
+            }),
+            css_aufgaben=sum(1 for a in bestand.aufgaben.values() if a.task_type == "css_klon"),
+            css_deckungsgleich=len({
+                a.aufgabe_id for a in abgaben if a.kennwerte.deckung is not None and a.kennwerte.deckung >= VOLLE_DECKUNG
             }),
         )
 

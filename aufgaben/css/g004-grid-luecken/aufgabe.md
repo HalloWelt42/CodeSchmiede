@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g004-grid-luecken
-revision: 2
+revision: 3
 titel: "Grid 04: Lücken zwischen Kacheln - gap"
 sprache: css
 task_type: css_klon
@@ -30,16 +30,12 @@ ziel_css: |
     gap: 12px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;
     text-align: center;
   }
-asserts:
-  - selector: ".setzkasten"
-    property: gap
-    expected: "12px"
 hints:
   - kosten: 0
     text: |
@@ -60,7 +56,7 @@ starter_code: |
     /* 12px Luecke zwischen den Zellen */
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;

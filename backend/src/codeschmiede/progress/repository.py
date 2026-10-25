@@ -102,6 +102,7 @@ class ProgressRepository:
         bestanden: bool,
         sterne: int | None = None,
         heute: date | None = None,
+        anteil: float | None = None,
     ) -> Progress:
         heute = heute or date.today()
         jetzt = datetime.now()
@@ -130,7 +131,7 @@ class ProgressRepository:
             )
             faellig = heute + timedelta(days=sm2.intervall_tage)
             erreichte_punkte = (
-                0 if bisher.aufgegeben else self.berechne_punkte(aufgabe, bisher.hints_genutzt, sterne)
+                0 if bisher.aufgegeben else self.berechne_punkte(aufgabe, bisher.hints_genutzt, anteil)
             )
             best_of = max(bisher.punkte_erreicht, erreichte_punkte)
             beste_sterne = sterne if bisher.sterne is None else max(bisher.sterne, sterne or 0)
@@ -251,12 +252,13 @@ class ProgressRepository:
             )
 
     @staticmethod
-    def berechne_punkte(aufgabe: Aufgabe, hints_genutzt: int, sterne: int | None = None) -> int:
+    def berechne_punkte(aufgabe: Aufgabe, hints_genutzt: int, anteil: float | None = None) -> int:
         """Erreichte Punkte = Score - Summe Hint-Kosten der bereits
-        geoeffneten Hints; bei Aufgaben mit Sternen davon Sterne / 3."""
+        geoeffneten Hints; bei Aufgaben mit Wertung davon ihr Anteil
+        (Sterne / 3 oder die Punkteteile, siehe Wertung.punkteanteil)."""
         kosten = sum(h.kosten for h in aufgabe.hints[:hints_genutzt])
         grund = max(0, aufgabe.schwierigkeit_score - kosten)
-        return grund if sterne is None else round(grund * sterne / 3)
+        return grund if anteil is None else round(grund * anteil)
 
     @staticmethod
     def _row_zu_progress(row: sqlite3.Row) -> Progress:

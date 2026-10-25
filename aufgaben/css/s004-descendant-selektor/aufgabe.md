@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s004-descendant-selektor
-revision: 2
+revision: 3
 titel: "Grundlagen 04: Verschachtelte Auswahl (Descendant)"
 sprache: css
 task_type: css_klon
@@ -21,18 +21,8 @@ ziel_html: |
   <nav><a>Home</a><a>Ueber</a></nav><footer><a>Impressum</a></footer>
 ziel_css: |
   nav a {
-    color: rgb(45, 212, 191);
+    color: rgb(192, 202, 51);
   }
-asserts:
-  - selector: "nav a:nth-child(1)"
-    property: color
-    expected: "rgb(45, 212, 191)"
-  - selector: "nav a:nth-child(2)"
-    property: color
-    expected: "rgb(45, 212, 191)"
-  - selector: "footer a"
-    property: color
-    expected: "rgb(231, 236, 241)"
 hints:
   - kosten: 0
     text: |
@@ -40,16 +30,16 @@ hints:
       Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
-      `nav a { color: rgb(45, 212, 191); }`
+      `nav a { color: rgb(192, 202, 51); }`
 starter_code: |
   /* Descendant: zwei Selektoren mit Leerzeichen dazwischen */
 ---
 
-# Grundlagen 04: Nur `<a>`-Elemente innerhalb der `<nav>` sollen petrol werden - der Footer-Link bleibt grau
+# Grundlagen 04: Nur `<a>`-Elemente innerhalb der `<nav>` sollen olivfarben werden - der Footer-Link bleibt grau
 
 ## Aufgabe
 
-Nur `<a>`-Elemente innerhalb der `<nav>` sollen petrol werden - der Footer-Link bleibt grau
+Nur `<a>`-Elemente innerhalb der `<nav>` sollen olivfarben werden - der Footer-Link bleibt grau
 
 ## Aha
 

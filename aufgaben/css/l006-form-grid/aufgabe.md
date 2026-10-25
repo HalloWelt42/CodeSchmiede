@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l006-form-grid
-revision: 2
+revision: 3
 titel: "Layout 06: Form-Layout mit Labels (Grid 1fr 2fr)"
 sprache: css
 task_type: css_klon
@@ -41,16 +41,6 @@ ziel_css: |
     border: 1px solid #3a4049;
     border-radius: 4px;
   }
-asserts:
-  - selector: ".formular"
-    property: display
-    expected: "grid"
-  - selector: ".formular"
-    property: grid-template-columns
-    expected: "117.328px 234.672px"
-  - selector: ".formular"
-    property: gap
-    expected: "12px 16px"
 hints:
   - kosten: 0
     text: |

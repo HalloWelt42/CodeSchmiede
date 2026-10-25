@@ -14,7 +14,7 @@
 }
 .kopf { grid-area: kopf; background-color: #fb923c; }
 .navi { grid-area: navi; background-color: #a78bfa; }
-.haupt { grid-area: haupt; background-color: #2dd4bf; }
+.haupt { grid-area: haupt; background-color: #38bdf8; }
 .fuss { grid-area: fuss; background-color: #9ca3af; }
 .kopf, .navi, .haupt, .fuss {
   color: #1a1d23;

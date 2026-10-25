@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: l004-split-login
-revision: 2
+revision: 3
 titel: "Layout 04: Split-Screen mit Bild und Formular"
 sprache: css
 task_type: css_klon
@@ -29,7 +29,7 @@ ziel_css: |
   }
   .visual {
     flex: 1;
-    background-color: #2dd4bf;
+    background-color: #f472b6;
     color: #1a1d23;
     display: flex;
     justify-content: center;
@@ -46,19 +46,6 @@ ziel_css: |
     align-items: center;
     font-weight: 600;
   }
-asserts:
-  - selector: ".split"
-    property: display
-    expected: "flex"
-  - selector: ".split"
-    property: overflow
-    expected: "hidden"
-  - selector: ".visual"
-    property: flex-grow
-    expected: "1"
-  - selector: ".form"
-    property: flex-grow
-    expected: "1"
 hints:
   - kosten: 0
     text: |
@@ -74,7 +61,7 @@ starter_code: |
     /* hier: flex-Container, overflow versteckt damit Radius sauber schneidet */
   }
   .visual {
-    background-color: #2dd4bf;
+    background-color: #f472b6;
     color: #1a1d23;
     display: flex;
     justify-content: center;
@@ -98,7 +85,7 @@ starter_code: |
 
 ## Aufgabe
 
-Zwei gleich breite Spalten - links Petrol-Bild-Platzhalter, rechts
+Zwei gleich breite Spalten - links Rosa-Bild-Platzhalter, rechts
 die Form. Die Außen-Ecken sind abgerundet, ohne dass die inneren
 Farben überlaufen.
 

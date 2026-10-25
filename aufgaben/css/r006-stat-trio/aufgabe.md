@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r006-stat-trio
-revision: 2
+revision: 3
 titel: "Repro 06: Dashboard-KPI-Trio"
 sprache: css
 task_type: css_klon
@@ -40,7 +40,7 @@ ziel_css: |
   .kennzahl {
     font-size: 28px;
     font-weight: 700;
-    color: #2dd4bf;
+    color: #f472b6;
   }
   .klabel {
     font-size: 12px;
@@ -55,25 +55,6 @@ ziel_css: |
   }
   .ktrend.pos { color: #22c55e; }
   .ktrend.neg { color: #ef4444; }
-asserts:
-  - selector: ".kpis"
-    property: display
-    expected: "grid"
-  - selector: ".kpis"
-    property: grid-template-columns
-    expected: "186.664px 186.664px 186.672px"
-  - selector: ".kennzahl"
-    property: color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".klabel"
-    property: text-transform
-    expected: "uppercase"
-  - selector: ".ktrend.pos"
-    property: color
-    expected: "rgb(34, 197, 94)"
-  - selector: ".ktrend.neg"
-    property: color
-    expected: "rgb(239, 68, 68)"
 hints:
   - kosten: 0
     text: |
@@ -101,7 +82,7 @@ starter_code: |
   .kennzahl {
     font-size: 28px;
     font-weight: 700;
-    /* Petrol-Farbe */
+    /* Rosa-Farbe */
   }
   .klabel {
     font-size: 12px;
@@ -118,7 +99,7 @@ starter_code: |
 ## Aufgabe
 
 Drei KPI-Kacheln nebeneinander:
-große Kennzahl in Petrol, kleines Label darunter (uppercase), Trend-Anzeige
+große Kennzahl in Rosa, kleines Label darunter (uppercase), Trend-Anzeige
 darunter (grün positiv, rot negativ).
 
 ## Aha

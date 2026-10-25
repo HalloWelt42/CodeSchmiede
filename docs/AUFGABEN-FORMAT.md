@@ -174,6 +174,32 @@ starter_code: |
 Das ist der Code, der im Editor steht, sobald die Aufgabe geöffnet
 wird. Üblicherweise: Funktions-Signatur + ein TODO-Kommentar + `pass`.
 
+### CSS-Nachbauten (`task_type: css_klon`)
+
+```yaml
+ziel_html: |
+  <div class="kreis"></div>
+ziel_css: |
+  .kreis { width: 80px; height: 80px; background: #f472b6; border-radius: 50%; }
+starter_code: |
+  .kreis {
+    /* ... */
+  }
+```
+
+- `ziel_html` ist das gemeinsame Markup, `ziel_css` erzeugt das Zielbild. Die
+  Musterlösung (`solution_idiomatic.css`) muss das Zielbild voll decken.
+- Gewertet wird nach dem Bild: Ziel und eigenes Ergebnis stehen auf derselben
+  Bühne (600 × 400, dunkler Grund, 12 px Innenabstand, sonst wie ein Browser ab
+  Werk) und werden Bildpunkt für Bildpunkt verglichen. Bestehen ab 95 %
+  Deckung, Sterne bei 95 %, 99 % und 99 % mit höchstens so vielen Zeichen wie
+  die kürzeste Musterlösung. Eigenschafts-Prüfpunkte gibt es nicht.
+- Der Startcode darf das Ziel nicht schon decken: er liegt deutlich unter
+  95 %, besser unter 80 %.
+- **Farben**: abwechslungsreich und in sich stimmig, nicht immer derselbe
+  Akzent der App. Farbnamen im Text passen zum Farbwert (etwa "Lavendel" zu
+  `#a78bfa`).
+
 ---
 
 ## 4. Markdown-Konventionen für die Beschreibung

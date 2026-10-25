@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c164-pagination
-revision: 2
+revision: 3
 titel: "Pagination"
 sprache: css
 task_type: css_klon
@@ -34,34 +34,15 @@ ziel_css: |
     cursor: pointer;
   }
   .aktiv {
-    background-color: #2dd4bf;
+    background-color: #f59e0b;
     color: #1a1d23;
-    border-color: #2dd4bf;
+    border-color: #f59e0b;
     font-weight: 700;
   }
-asserts:
-  - selector: ".pg"
-    property: display
-    expected: "flex"
-  - selector: ".pg"
-    property: gap
-    expected: "4px"
-  - selector: ".seite"
-    property: width
-    expected: "32px"
-  - selector: ".seite"
-    property: border-radius
-    expected: "4px"
-  - selector: ".aktiv"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".aktiv"
-    property: font-weight
-    expected: "700"
 hints:
   - kosten: 0
     text: |
-      Flex-Reihe mit 32x32 Buttons, aktive Seite in Petrol.
+      Flex-Reihe mit 32x32 Buttons, aktive Seite in Bernstein.
 starter_code: |
   .pg {
     /* ... */

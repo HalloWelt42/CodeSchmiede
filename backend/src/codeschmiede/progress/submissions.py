@@ -21,6 +21,8 @@ class SubmissionEintrag(BaseModel):
     laufzeit_ms: float | None
     codelaenge_zeichen: int | None
     code: str
+    # CSS: gemessene Deckung, 0 bis 1
+    deckung: float | None = None
 
 
 class BestandeneAbgabe(BaseModel):
@@ -144,7 +146,7 @@ class SubmissionRepository:
             rows = conn.execute(
                 """
                 SELECT id, datetime(zeitstempel) AS zeitstempel, bestanden,
-                       laufzeit_ms, codelaenge_zeichen, code
+                       laufzeit_ms, codelaenge_zeichen, code, kennwerte
                 FROM submissions
                 WHERE aufgabe_id = ?
                 ORDER BY id DESC
@@ -160,6 +162,7 @@ class SubmissionRepository:
                 laufzeit_ms=r["laufzeit_ms"],
                 codelaenge_zeichen=r["codelaenge_zeichen"],
                 code=r["code"],
+                deckung=Kennwerte.model_validate_json(r["kennwerte"]).deckung if r["kennwerte"] else None,
             )
             for r in rows
         ]

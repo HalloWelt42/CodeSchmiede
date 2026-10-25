@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s009-specificity
-revision: 2
+revision: 3
 titel: "Grundlagen 09: Specificity-Konflikt - Klasse schlägt Element"
 sprache: css
 task_type: css_klon
@@ -24,12 +24,8 @@ ziel_css: |
     color: rgb(231, 236, 241);
   }
   .hervor {
-    color: rgb(45, 212, 191);
+    color: rgb(232, 121, 249);
   }
-asserts:
-  - selector: ".hervor"
-    property: color
-    expected: "rgb(45, 212, 191)"
 hints:
   - kosten: 0
     text: |
@@ -37,7 +33,7 @@ hints:
       Welcher Selektor zählt, regeln Spezifizität und Quellreihenfolge.
   - kosten: 3
     text: |
-      `.hervor { color: rgb(45, 212, 191); }`
+      `.hervor { color: rgb(232, 121, 249); }`
 starter_code: |
   p {
     color: rgb(231, 236, 241);

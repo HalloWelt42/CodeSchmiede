@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g007-grid-spalten-bereich
-revision: 2
+revision: 3
 titel: "Grid 07: Spalten 1 bis 4 explizit - grid-column: 1 / 4"
 sprache: css
 task_type: css_klon
@@ -29,7 +29,7 @@ ziel_css: |
     padding: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #fbbf24;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;
@@ -39,13 +39,6 @@ ziel_css: |
     grid-column: 1 / 4;
     background-color: #a78bfa;
   }
-asserts:
-  - selector: ".banner"
-    property: grid-column-start
-    expected: "1"
-  - selector: ".banner"
-    property: grid-column-end
-    expected: "4"
 hints:
   - kosten: 0
     text: |
@@ -65,7 +58,7 @@ starter_code: |
     padding: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #fbbf24;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;

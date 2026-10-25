@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: g006-grid-span-zwei
-revision: 2
+revision: 3
 titel: "Grid 06: Eine Kachel über zwei Spalten - span 2"
 sprache: css
 task_type: css_klon
@@ -29,7 +29,7 @@ ziel_css: |
     padding: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #e879f9;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;
@@ -39,10 +39,6 @@ ziel_css: |
     grid-column: span 2;
     background-color: #fb923c;
   }
-asserts:
-  - selector: ".breit"
-    property: grid-column-end
-    expected: "auto"
 hints:
   - kosten: 0
     text: |
@@ -61,7 +57,7 @@ starter_code: |
     padding: 8px;
   }
   .kachel {
-    background-color: #2dd4bf;
+    background-color: #e879f9;
     color: #1a1d23;
     padding: 12px;
     font-weight: 700;

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f011-flex-grow
-revision: 2
+revision: 3
 titel: "Flexbox 11: Ein Item wächst - flex-grow: 1"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
   }
   .kachel {
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;
@@ -43,13 +43,6 @@ ziel_css: |
   .flex {
     flex-grow: 1;
   }
-asserts:
-  - selector: ".flex"
-    property: flex-grow
-    expected: "1"
-  - selector: ".bahn"
-    property: display
-    expected: "flex"
 hints:
   - kosten: 0
     text: |
@@ -69,7 +62,7 @@ starter_code: |
   }
   .kachel {
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;

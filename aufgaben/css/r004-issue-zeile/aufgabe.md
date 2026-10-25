@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: r004-issue-zeile
-revision: 2
+revision: 3
 titel: "Repro 04: Issue-Tracker-Zeile mit Status und Labels"
 sprache: css
 task_type: css_klon
@@ -50,8 +50,8 @@ ziel_css: |
     font-size: 11px;
     padding: 2px 8px;
     border-radius: 4px;
-    background-color: rgba(45, 212, 191, 0.18);
-    color: #2dd4bf;
+    background-color: rgba(56, 189, 248, 0.18);
+    color: #38bdf8;
   }
   .prio {
     width: 28px;
@@ -65,29 +65,13 @@ ziel_css: |
     justify-content: center;
     align-items: center;
   }
-asserts:
-  - selector: ".issue"
-    property: display
-    expected: "flex"
-  - selector: ".statuspunkt"
-    property: border-radius
-    expected: "50%"
-  - selector: ".titel"
-    property: flex-grow
-    expected: "1"
-  - selector: ".label"
-    property: background-color
-    expected: "rgba(45, 212, 191, 0.18)"
-  - selector: ".prio"
-    property: background-color
-    expected: "rgb(239, 68, 68)"
 hints:
   - kosten: 0
     text: |
-      Flex-Reihe mit fünf Items. Der Titel wächst (flex: 1), die anderen behalten ihre Größe. Das Label hat einen halbtransparenten Hintergrund (rgba) damit der Petrol-Ton subtil wirkt.
+      Flex-Reihe mit fünf Items. Der Titel wächst (flex: 1), die anderen behalten ihre Größe. Das Label hat einen halbtransparenten Hintergrund (rgba) damit der Azur-Ton subtil wirkt.
   - kosten: 6
     text: |
-      `.titel { flex: 1; }` und `.label { background-color: rgba(45, 212, 191, 0.18); color: #2dd4bf; }`
+      `.titel { flex: 1; }` und `.label { background-color: rgba(56, 189, 248, 0.18); color: #38bdf8; }`
 starter_code: |
   .issue {
     /* flex-Zeile, vertikal zentriert, 10px gap */
@@ -112,8 +96,8 @@ starter_code: |
     font-size: 11px;
     padding: 2px 8px;
     border-radius: 4px;
-    color: #2dd4bf;
-    /* Petrol-Hintergrund mit Alpha 0.18 */
+    color: #38bdf8;
+    /* Azur-Hintergrund mit Alpha 0.18 */
   }
   .prio {
     width: 28px;
@@ -139,8 +123,7 @@ Prioritäts-Box.
 
 ## Aha
 
-rgba mit Alpha-Wert unter 1 erzeugt halbtransparente Farben. Bei `rgba(45,
-212, 191, 0.18)` siehst du den Petrol-Ton nur schwach - ideal für subtile
+rgba mit Alpha-Wert unter 1 erzeugt halbtransparente Farben. Bei `rgba(56, 189, 248, 0.18)` siehst du den Azur-Ton nur schwach - ideal für subtile
 Badge-Hintergründe, die nicht vom Text ablenken aber trotzdem als visuelle
 Markierung dienen.
 

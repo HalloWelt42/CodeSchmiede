@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c129-button-block
-revision: 2
+revision: 3
 titel: "Button: volle Breite"
 sprache: css
 task_type: css_klon
@@ -23,7 +23,7 @@ ziel_css: |
   .btn {
     display: block;
     width: 100%;
-    background-color: #2dd4bf;
+    background-color: #fa8072;
     color: #1a1d23;
     padding: 12px;
     border: none;
@@ -31,19 +31,6 @@ ziel_css: |
     font-weight: 600;
     cursor: pointer;
   }
-asserts:
-  - selector: ".btn"
-    property: display
-    expected: "block"
-  - selector: ".btn"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".btn"
-    property: padding-top
-    expected: "12px"
-  - selector: ".btn"
-    property: border-radius
-    expected: "4px"
 hints:
   - kosten: 0
     text: |

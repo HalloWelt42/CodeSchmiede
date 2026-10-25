@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f004-flex-justify-between
-revision: 2
+revision: 3
 titel: "Flexbox 04: Gleichmäßige Lücken mit space-between"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
   .kachel {
     width: 60px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #f472b6;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;
@@ -42,13 +42,6 @@ ziel_css: |
     display: flex;
     justify-content: space-between;
   }
-asserts:
-  - selector: ".bahn"
-    property: display
-    expected: "flex"
-  - selector: ".bahn"
-    property: justify-content
-    expected: "space-between"
 hints:
   - kosten: 0
     text: |

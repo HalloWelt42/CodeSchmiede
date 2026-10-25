@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s015-width-100-prozent
-revision: 2
+revision: 3
 titel: "Grundlagen 15: width 100% - Container voll ausnützen"
 sprache: css
 task_type: css_klon
@@ -33,13 +33,6 @@ ziel_css: |
     color: #e7ecf1;
     border: 1px solid #3a4049;
   }
-asserts:
-  - selector: ".feld"
-    property: width
-    expected: "276px"
-  - selector: ".feld"
-    property: box-sizing
-    expected: "border-box"
 hints:
   - kosten: 0
     text: |

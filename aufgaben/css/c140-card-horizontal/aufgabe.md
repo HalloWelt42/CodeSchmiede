@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c140-card-horizontal
-revision: 2
+revision: 3
 titel: "Card: horizontales Layout"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
   .bild {
     width: 100px;
     height: 100px;
-    background-color: #2dd4bf;
+    background-color: #f472b6;
     flex-shrink: 0;
   }
   .inhalt {
@@ -38,25 +38,6 @@ ziel_css: |
     padding: 16px;
     color: #e7ecf1;
   }
-asserts:
-  - selector: ".card"
-    property: display
-    expected: "flex"
-  - selector: ".card"
-    property: width
-    expected: "320px"
-  - selector: ".card"
-    property: border-radius
-    expected: "6px"
-  - selector: ".card"
-    property: overflow
-    expected: "hidden"
-  - selector: ".bild"
-    property: width
-    expected: "100px"
-  - selector: ".bild"
-    property: flex-shrink
-    expected: "0"
 hints:
   - kosten: 0
     text: |

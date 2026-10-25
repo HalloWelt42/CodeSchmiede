@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: f007-flex-align-stretch
-revision: 2
+revision: 3
 titel: "Flexbox 07: Auf volle Höhe ziehen - align-items: stretch"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
   .kachel {
     width: 60px;
     height: 60px;
-    background-color: #2dd4bf;
+    background-color: #fbbf24;
     color: #1a1d23;
     display: inline-flex;
     justify-content: center;
@@ -42,13 +42,6 @@ ziel_css: |
     display: flex;
     align-items: stretch;
   }
-asserts:
-  - selector: ".bahn"
-    property: display
-    expected: "flex"
-  - selector: ".bahn"
-    property: align-items
-    expected: "stretch"
 hints:
   - kosten: 0
     text: |

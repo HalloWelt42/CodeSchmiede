@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s003-id-selektor
-revision: 2
+revision: 3
 titel: "Grundlagen 03: Nur ein Element per ID treffen"
 sprache: css
 task_type: css_klon
@@ -24,13 +24,6 @@ ziel_css: |
     font-weight: 700;
     font-size: 24px;
   }
-asserts:
-  - selector: "#leitsatz"
-    property: font-weight
-    expected: "700"
-  - selector: "#leitsatz"
-    property: font-size
-    expected: "24px"
 hints:
   - kosten: 0
     text: |

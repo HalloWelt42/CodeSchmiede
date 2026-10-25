@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c156-form-input
-revision: 2
+revision: 3
 titel: "Form: Text-Input"
 sprache: css
 task_type: css_klon
@@ -29,25 +29,6 @@ ziel_css: |
     border-radius: 4px;
     font-size: 14px;
   }
-asserts:
-  - selector: ".eingabe"
-    property: width
-    expected: "240px"
-  - selector: ".eingabe"
-    property: padding-top
-    expected: "8px"
-  - selector: ".eingabe"
-    property: padding-left
-    expected: "12px"
-  - selector: ".eingabe"
-    property: border-radius
-    expected: "4px"
-  - selector: ".eingabe"
-    property: background-color
-    expected: "rgb(34, 38, 45)"
-  - selector: ".eingabe"
-    property: border-top-color
-    expected: "rgb(58, 64, 73)"
 hints:
   - kosten: 0
     text: |

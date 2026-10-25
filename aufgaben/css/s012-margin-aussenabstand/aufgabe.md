@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s012-margin-aussenabstand
-revision: 2
+revision: 3
 titel: "Grundlagen 12: Margin - Außenabstand zwischen Boxen"
 sprache: css
 task_type: css_klon
@@ -23,20 +23,10 @@ ziel_css: |
   .block {
     margin: 16px 0;
     padding: 12px;
-    background-color: #2dd4bf;
+    background-color: #e879f9;
     color: #1a1d23;
     width: 200px;
   }
-asserts:
-  - selector: ".block"
-    property: margin-top
-    expected: "16px"
-  - selector: ".block"
-    property: margin-bottom
-    expected: "16px"
-  - selector: ".block"
-    property: margin-left
-    expected: "0px"
 hints:
   - kosten: 0
     text: |
@@ -48,7 +38,7 @@ hints:
 starter_code: |
   .block {
     padding: 12px;
-    background-color: #2dd4bf;
+    background-color: #e879f9;
     color: #1a1d23;
     width: 200px;
     /* hier 16px Margin oben+unten, 0 links+rechts */

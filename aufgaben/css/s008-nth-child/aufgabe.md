@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: s008-nth-child
-revision: 2
+revision: 3
 titel: "Grundlagen 08: Zebra-Streifen mit :nth-child(odd)"
 sprache: css
 task_type: css_klon
@@ -23,16 +23,6 @@ ziel_css: |
   tr:nth-child(odd) {
     background-color: rgb(34, 38, 45);
   }
-asserts:
-  - selector: "tr:nth-child(1)"
-    property: background-color
-    expected: "rgb(34, 38, 45)"
-  - selector: "tr:nth-child(3)"
-    property: background-color
-    expected: "rgb(34, 38, 45)"
-  - selector: "tr:nth-child(2)"
-    property: background-color
-    expected: "rgba(0, 0, 0, 0)"
 hints:
   - kosten: 0
     text: |

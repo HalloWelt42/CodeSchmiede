@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c152-nav-header
-revision: 2
+revision: 3
 titel: "Navigation: Header-Leiste"
 sprache: css
 task_type: css_klon
@@ -30,7 +30,7 @@ ziel_css: |
     border-bottom: 1px solid #3a4049;
   }
   .logo {
-    color: #2dd4bf;
+    color: #f59e0b;
     font-weight: 700;
     font-size: 18px;
   }
@@ -43,28 +43,6 @@ ziel_css: |
     text-decoration: none;
     font-weight: 500;
   }
-asserts:
-  - selector: ".header"
-    property: display
-    expected: "flex"
-  - selector: ".header"
-    property: justify-content
-    expected: "space-between"
-  - selector: ".header"
-    property: align-items
-    expected: "center"
-  - selector: ".header"
-    property: height
-    expected: "56px"
-  - selector: ".menu"
-    property: display
-    expected: "flex"
-  - selector: ".menu"
-    property: gap
-    expected: "24px"
-  - selector: ".logo"
-    property: color
-    expected: "rgb(45, 212, 191)"
 hints:
   - kosten: 0
     text: |

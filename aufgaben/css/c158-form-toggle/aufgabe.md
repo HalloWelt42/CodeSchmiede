@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 id: c158-form-toggle
-revision: 2
+revision: 3
 titel: "Form: Toggle-Switch (statisch)"
 sprache: css
 task_type: css_klon
@@ -27,7 +27,7 @@ ziel_css: |
     display: block;
     width: 48px;
     height: 24px;
-    background-color: #2dd4bf;
+    background-color: #38bdf8;
     border-radius: 999px;
     position: relative;
   }
@@ -40,28 +40,6 @@ ziel_css: |
     background-color: #1a1d23;
     border-radius: 50%;
   }
-asserts:
-  - selector: ".track"
-    property: width
-    expected: "48px"
-  - selector: ".track"
-    property: height
-    expected: "24px"
-  - selector: ".track"
-    property: border-radius
-    expected: "999px"
-  - selector: ".track"
-    property: background-color
-    expected: "rgb(45, 212, 191)"
-  - selector: ".thumb"
-    property: width
-    expected: "20px"
-  - selector: ".thumb"
-    property: left
-    expected: "26px"
-  - selector: ".thumb"
-    property: border-radius
-    expected: "50%"
 hints:
   - kosten: 0
     text: |

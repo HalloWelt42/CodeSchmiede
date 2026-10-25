@@ -48,6 +48,9 @@ class Kennzahlen(BaseModel):
     volle_runden: int = 0
     # Roboter: Levels mit höchstens drei Zeilen Code gelöst
     roboter_kurz: int = 0
+    # CSS: Aufgaben im Bestand und davon mit voller Deckung gelöste
+    css_aufgaben: int = 0
+    css_deckungsgleich: int = 0
     faelle: list[FallStand] = Field(default_factory=list)
 
 
@@ -125,6 +128,13 @@ def katalog(k: Kennzahlen) -> list[ErfolgDefinition]:
             lambda n: f"{anzahl(n, 'eine Aufgabe', 'Aufgaben')} im ersten Versuch bestanden",
         ),
     ]
+    if k.css_aufgaben:
+        eintraege.append(ErfolgDefinition(
+            "pixelgenau", "technik", "fa-vector-square", k.css_deckungsgleich,
+            bis_hoechstens((1, 10, 25), k.css_aufgaben),
+            ("Pixelgenau",),
+            lambda n: f"{anzahl(n, 'ein CSS-Bild', 'CSS-Bilder')} mit voller Deckung",
+        ))
     if k.levels_je_typ.get("muster_jagd"):
         eintraege.append(ErfolgDefinition(
             "scharfschuetze", "spiele", "fa-crosshairs", k.drei_sterne_je_typ.get("muster_jagd", 0),
