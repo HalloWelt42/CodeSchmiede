@@ -21,7 +21,9 @@
   let art = $derived<Art>(frage ? frage.frageart : vorhersage?.art === 'eintippen' ? 'eintippen' : 'auswahl');
   let optionen = $derived(frage?.optionen ?? vorhersage?.optionen ?? []);
   let mehrere = $derived(frage?.mehrere ?? false);
-  let alsCode = $derived(!!vorhersage || (frage?.als_code ?? false));
+  // Vorhersagen zeigen Ausgaben in fester Breite, außer sie stellen eine eigene Frage (etwa nach der Zeilenzahl)
+  let alsCode = $derived(vorhersage ? !vorhersage.frage : (frage?.als_code ?? false));
+  let vorhersageText = $derived(vorhersage?.frage ?? (sprache === 'sql' ? 'Was liefert die Abfrage?' : 'Was gibt das Beispiel aus?'));
 
   let urteil = $state<Urteil | null>(null);
   let gewaehlt = $state<number[]>([]);
@@ -84,7 +86,7 @@
     {vorhersage ? 'Vorhersage' : 'Kurze Frage'}
     {#if erledigt && !urteil}<span class="erledigt"><i class="fa-solid fa-check" aria-hidden="true"></i>schon beantwortet</span>{/if}
   </div>
-  <div class="frage-text">{vorhersage ? (art === 'eintippen' ? 'Was gibt das Beispiel aus? Tippe die Ausgabe.' : 'Was gibt das Beispiel aus?') : frage?.text}</div>
+  <div class="frage-text">{vorhersage ? (art === 'eintippen' && !vorhersage.frage ? `${vorhersageText} Tippe die Ausgabe.` : vorhersageText) : frage?.text}</div>
 
   {#if frage?.code && art === 'auswahl'}<CodeBlock code={frage.code} {sprache} />{/if}
 
@@ -123,7 +125,7 @@
     <CodeBlock code={frage.code} {sprache} beiZeile={zeileWaehlen} klassen={klassenFehler} />
     <span class="dim" style="font-size:var(--fs-sm)">Klicke die Zeile mit dem Fehler an.</span>
   {:else if art === 'eintippen'}
-    <textarea class="eingetippt" rows="3" spellcheck="false" bind:value={eingetippt} placeholder="Ausgabe Zeile für Zeile"></textarea>
+    <textarea class="eingetippt" rows="3" spellcheck="false" bind:value={eingetippt} placeholder={vorhersage?.frage ? 'Deine Antwort' : 'Ausgabe Zeile für Zeile'}></textarea>
     <div class="weiter-zeile"><button class="knopf voll" disabled={sendet || !eingetippt.trim()} onclick={() => pruefe({ eingetippt })}><i class="fa-solid fa-check" aria-hidden="true"></i>Prüfen</button></div>
   {/if}
 

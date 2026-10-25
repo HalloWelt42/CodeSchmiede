@@ -130,6 +130,11 @@ class Vorhersage(Streng):
     optionen: list[Option] = Field(default_factory=list)
     erklaerung: str = ""
     """Bei `eintippen`: Erklärung nach dem Vergleich mit dem echten Ergebnis."""
+    frage: str | None = None
+    """Eigene Frage statt "Was kommt heraus?", etwa "Wie viele Zeilen hat das Ergebnis?"."""
+    vergleich: Literal["ausgabe", "zeilen"] = "ausgabe"
+    """Womit der echte Lauf verglichen wird: die ganze Ausgabe oder nur die Zahl ihrer Zeilen (bei SQL: der
+    Ergebniszeilen). Bei `zeilen` steht in der richtigen Option die Zahl als erste Zahl im Text."""
 
     @model_validator(mode="after")
     def _passend(self) -> Vorhersage:
@@ -200,7 +205,7 @@ class Beispiel(Streng):
     eingabe: list[str] = Field(default_factory=list)
     """Zeilen, die input() der Reihe nach liest."""
     ablauf: bool = True
-    """Ablauf und Speicherbild aus der Aufzeichnung anbieten (nur Python)."""
+    """Ablauf anbieten: bei Python Zeile für Zeile mit Speicherbild, bei SQL die Zwischentabelle je Klausel."""
 
 
 class FrageTeil(Streng):
@@ -236,6 +241,14 @@ class Kopf(Streng):
     karte: str
     """Kurzer Satz auf der Sammelkarte."""
     bilder: list[Bildauftrag] = Field(default_factory=list)
+    datensatz: str | None = Field(default=None, pattern=r"^[a-z0-9_]+$")
+    """SQL: Datensatz aus aufgaben/sql/datasets/, auf dem die Beispiele laufen."""
+
+    @model_validator(mode="after")
+    def _datensatz_bei_sql(self) -> Kopf:
+        if (self.sprache == "sql") != (self.datensatz is not None):
+            raise ValueError("Einführungen zu SQL brauchen einen Datensatz, andere haben keinen")
+        return self
 
 
 class Einfuehrung(Streng):
@@ -282,9 +295,10 @@ class Kurs(Streng):
 
 class Erkennung(Streng):
     knoten: list[str] = Field(default_factory=list)
-    """Python: Namen von Knoten des Syntaxbaums (For, While, ListComp ...)."""
+    """Python: Namen von Knoten des Syntaxbaums (For, While, ListComp ...); SQL: Ausdrucksarten des SQL-Parsers
+    (Select, Where, Order, Join, Like ...)."""
     aufrufe: list[str] = Field(default_factory=list)
-    """Python: aufgerufene Namen (print, range, len ...)."""
+    """Python: aufgerufene Namen (print, range, len ...); SQL: Funktionen in Großbuchstaben (COUNT, UPPER ...)."""
     methoden: list[str] = Field(default_factory=list)
     """Python: aufgerufene Methoden (append, split ...)."""
     operatoren: list[str] = Field(default_factory=list)

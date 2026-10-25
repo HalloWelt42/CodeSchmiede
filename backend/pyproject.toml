@@ -13,6 +13,7 @@ dependencies = [
     "httpx2>=2.16.0",
     # Anmeldung mit dem Kellerwolke-Konto; fester Commit, damit Docker jeden Stand neu baut (tools/appkern.sh)
     "appkern[web] @ https://github.com/HalloWelt42/appkern/archive/07ac14ace952927f733acebb044eaa65782a0fec.tar.gz",
+    "sqlglot>=30.24.0",
 ]
 
 [project.optional-dependencies]

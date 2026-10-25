@@ -31,6 +31,7 @@ class FrageSicht(BaseModel):
 
 class VorhersageSicht(BaseModel):
     art: Literal["auswahl", "eintippen"]
+    frage: str | None = None
     optionen: list[str] | None = None
     beantwortet: bool = False
     richtig: bool = False
@@ -154,6 +155,8 @@ class EinfuehrungSicht(BaseModel):
     lernziele: list[str]
     karte: str
     kapitel: int | None
+    datensatz: str | None = None
+    """SQL: Name des Datensatzes der Beispiele (Vorschau über /api/sql/datasets/<name>/vorschau)."""
     abschnitte: list[AbschnittSicht]
 
 

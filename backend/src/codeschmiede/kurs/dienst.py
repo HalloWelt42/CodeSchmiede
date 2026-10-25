@@ -25,6 +25,7 @@ from .modelle import (Alltag, Augenzwinkern, Auswahlfrage, Beispiel, Diagramm, E
                       Fehlerstellenfrage, FrageTeil, Kapitel, Lueckenfrage, Merke, Option, Ordnungsfrage, Text,
                       Vorhersage, Zeichnung)
 from .pruefung import pruefe_kurs
+from .sql_ablauf import SqlLauf, sql_lauf
 from .sicht import (AbschnittSicht, AlltagSicht, Antwort, AugenzwinkernSicht, BeispielSicht, BildVerweis,
                     BlockSicht, DiagrammSicht, EinfuehrungSicht, FalleSicht, FrageSicht, FrageTeilSicht, KapitelSicht,
                     KursSicht, KurztestSicht, MerkBeispiel, MerkblattSicht, MerkeSicht, TextSicht, UebungSicht, Urteil,
@@ -34,8 +35,13 @@ BILDSATZ = "kurs"
 """Satz des Medienpools, dessen Export die Kurszeichnungen liefert (kurs/bilder/<satz>/<schluessel>.webp)."""
 LAUF = RunLimits(timeout_sekunden=10)
 VERTIEFUNG_HOECHSTENS = 5
+VERTIEFUNG_ARTEN = {"code_schreiben", "sql_abfrage"}
+"""Aufgabenarten, aus denen die Vertiefung am Kapitelende kommt."""
 
 Frage = Auswahlfrage | Lueckenfrage | Ordnungsfrage | Fehlerstellenfrage
+Lauf = Aufzeichnung | SqlLauf
+MIT_ABLAUF = {"python", "sql"}
+"""Sprachen, deren Beispiele die Codeschmiede ausführt und abspielt."""
 
 
 class NichtGefunden(LookupError):
@@ -50,21 +56,29 @@ def normalisiert(ausgabe: str) -> str:
     return "\n".join(z.rstrip() for z in ausgabe.rstrip().split("\n"))
 
 
+def zeilenzahl(ausgabe: str) -> int:
+    """Zeilen der Ausgabe (bei SQL: Ergebniszeilen); eine leere Ausgabe hat keine."""
+    text = normalisiert(ausgabe)
+    return len(text.split("\n")) if text else 0
+
+
 class Kursdienst:
-    def __init__(self, wurzel: Path, fortschritt: KursfortschrittRepository, runner: Callable[[], Runner]):
+    def __init__(self, wurzel: Path, datensaetze: Path, fortschritt: KursfortschrittRepository, runner: Callable[[], Runner]):
         self.wurzel = wurzel
+        self.datensaetze = datensaetze
+        """Ordner der SQL-Datensätze (aufgaben/sql/datasets), auf denen SQL-Beispiele laufen."""
         self.fortschritt = fortschritt
         self._runner = runner
         self.inhalt = Kursinhalt()
         self.befunde: list[Befund] = []
         self._vertiefung: dict[str, list[str]] = {}
-        self._laeufe: dict[str, Aufzeichnung] = {}
+        self._laeufe: dict[str, Lauf] = {}
 
     # ---------- Einlesen ----------
 
     def neu_einlesen(self, aufgaben: dict[str, Aufgabe], musterloesungen: Callable[[str], list[dict[str, str]]]) -> None:
         self.inhalt = lade(self.wurzel)
-        self.befunde = pruefe_kurs(self.inhalt, aufgaben, musterloesungen, self.wurzel)
+        self.befunde = pruefe_kurs(self.inhalt, aufgaben, musterloesungen, self.wurzel, self.datensaetze)
         self._vertiefung = self._vertiefung_suchen(aufgaben, musterloesungen)
         self._laeufe.clear()
 
@@ -78,7 +92,7 @@ class Kursdienst:
                 continue
             benutzt: dict[str, set[str]] = {}
             for a in aufgaben.values():
-                if a.sprache != sprache or a.id in im_kurs or a.task_type != "code_schreiben":
+                if a.sprache != sprache or a.id in im_kurs or a.task_type not in VERTIEFUNG_ARTEN:
                     continue
                 loesungen = musterloesungen(a.id)
                 erkannt = [erkenne(katalog, m["code"]) for m in loesungen[:1]]
@@ -223,7 +237,8 @@ class Kursdienst:
                                      fertig=a.nummer in fertig) for a in e.abschnitte]
         kapitel = self._kapitelnummer(eid)
         return EinfuehrungSicht(id=e.id, sprache=e.kopf.sprache, titel=e.kopf.titel, kurz=e.kopf.kurz, lernziele=e.kopf.lernziele,
-                                karte=e.kopf.karte, kapitel=kapitel[1] if kapitel else None, abschnitte=abschnitte)
+                                karte=e.kopf.karte, kapitel=kapitel[1] if kapitel else None, datensatz=e.kopf.datensatz,
+                                abschnitte=abschnitte)
 
     def _teil(self, e: Einfuehrung, t, stand: Stand):
         if isinstance(t, Text):
@@ -243,8 +258,8 @@ class Kursdienst:
             return DiagrammSicht(url=f"/api/kurs/diagramme/{t.pruefsumme}.svg" if datei else None, titel=t.titel)
         if isinstance(t, Beispiel):
             v = t.vorhersage
-            return BeispielSicht(id=t.id, code=t.code, eingabe=t.eingabe, ablauf=t.ablauf and e.kopf.sprache == "python", vorhersage=None if v is None else VorhersageSicht(
-                art=v.art, optionen=[o.text for o in v.optionen] or None,
+            return BeispielSicht(id=t.id, code=t.code, eingabe=t.eingabe, ablauf=t.ablauf and e.kopf.sprache in MIT_ABLAUF, vorhersage=None if v is None else VorhersageSicht(
+                art=v.art, frage=v.frage, optionen=[o.text for o in v.optionen] or None,
                 beantwortet=stand.beantwortet("vorhersage", e.id, t.id), richtig=stand.richtig("vorhersage", e.id, t.id)))
         if isinstance(t, FrageTeil):
             return FrageTeilSicht(frage=self.frage_sicht(t.frage, stand.beantwortet("frage", e.id, t.frage.id),
@@ -312,7 +327,10 @@ class Kursdienst:
         if v.art == "auswahl":
             return self._auswahl(v.optionen, a)
         echt = self.lauf(e, b).ausgabe
-        ok = normalisiert(a.eingetippt or "") == normalisiert(echt)
+        if v.vergleich == "zeilen":
+            ok = (a.eingetippt or "").strip() == str(zeilenzahl(echt))
+        else:
+            ok = normalisiert(a.eingetippt or "") == normalisiert(echt)
         return ok, v.erklaerung
 
     def abschnitt_fertig(self, eid: str, nummer: int) -> None:
@@ -336,21 +354,32 @@ class Kursdienst:
                     return b
         raise NichtGefunden(f"Beispiel {bid} gibt es nicht")
 
-    def lauf(self, e: Einfuehrung, b: Beispiel, code: str | None = None) -> Aufzeichnung:
-        """Aufzeichnung eines Beispiels; das Original wird je Inhalt nur einmal gerechnet."""
+    def lauf(self, e: Einfuehrung, b: Beispiel, code: str | None = None) -> Lauf:
+        """Lauf eines Beispiels: bei Python die Aufzeichnung, bei SQL Ergebnis und Zwischentabellen auf dem Datensatz
+        der Einführung. Das Original wird je Inhalt nur einmal gerechnet."""
+        if e.kopf.sprache not in MIT_ABLAUF:
+            raise NichtErlaubt(f"Beispiele in {e.kopf.sprache} lassen sich noch nicht ausführen")
         quelltext = b.code if code is None else code
-        schluessel = hashlib.sha256((quelltext + "\0" + "\n".join(b.eingabe)).encode()).hexdigest()
+        schluessel = hashlib.sha256("\0".join([e.kopf.sprache, e.kopf.datensatz or "", quelltext, *b.eingabe]).encode()).hexdigest()
         if code is None and schluessel in self._laeufe:
             return self._laeufe[schluessel]
-        ergebnis = aufzeichnen(self._runner(), quelltext, LAUF, b.eingabe)
+        ergebnis: Lauf
+        if e.kopf.sprache == "sql":
+            ergebnis = sql_lauf(self._runner(), self.datensatz_sql(e.kopf.datensatz or ""), quelltext, LAUF)
+        else:
+            ergebnis = aufzeichnen(self._runner(), quelltext, LAUF, b.eingabe)
         if code is None and not ergebnis.zeitueberschreitung:
             self._laeufe[schluessel] = ergebnis
         return ergebnis
 
-    def ausfuehren(self, eid: str, bid: str, code: str | None) -> Aufzeichnung:
+    def datensatz_sql(self, name: str) -> str:
+        datei = self.datensaetze / f"{name}.sql"
+        if not datei.is_file():
+            raise NichtGefunden(f"Datensatz {name} gibt es nicht")
+        return datei.read_text(encoding="utf-8")
+
+    def ausfuehren(self, eid: str, bid: str, code: str | None) -> Lauf:
         e = self._einfuehrung(eid)
-        if e.kopf.sprache != "python":
-            raise NichtErlaubt("Ausführen mit Aufzeichnung gibt es bisher nur für Python")
         b = self._beispiel(e, bid)
         if b.vorhersage is not None and not Stand(self.fortschritt.alle()).beantwortet("vorhersage", eid, bid):
             raise NichtErlaubt("Erst vorhersagen, dann ausführen")
@@ -410,7 +439,7 @@ class Kursdienst:
             if erstes is None:
                 continue
             ausgabe = None
-            if e.kopf.sprache == "python":
+            if e.kopf.sprache in MIT_ABLAUF:
                 try:
                     lauf = self.lauf(e, erstes)
                     ausgabe = lauf.ausgabe if not lauf.fehler else None

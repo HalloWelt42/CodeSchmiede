@@ -113,27 +113,33 @@ def test_sprint_schnipsel_stimmen(state):
 
 
 def test_beispiele_laufen_und_vorhersagen_stimmen(state):
-    """Jedes Python-Beispiel der Einführungen läuft ohne Fehler; bei einer Vorhersage als Auswahl ist die richtige
-    Option genau die Ausgabe des echten Laufs."""
-    from codeschmiede.kurs.aufzeichnung import aufzeichnen
-    from codeschmiede.kurs.dienst import normalisiert
+    """Jedes Beispiel der Einführungen (Python und SQL) läuft ohne Fehler; bei einer Vorhersage als Auswahl ist die
+    richtige Option genau die Ausgabe des echten Laufs, oder bei `vergleich: zeilen` ihre Zeilenzahl."""
+    import re
+
+    from codeschmiede.kurs.dienst import MIT_ABLAUF, normalisiert, zeilenzahl
     from codeschmiede.kurs.modelle import Beispiel
-    from codeschmiede.sandbox.result import RunLimits
 
     falsch = []
     for e in state.kurs.inhalt.einfuehrungen.values():
-        if e.kopf.sprache != "python":
+        if e.kopf.sprache not in MIT_ABLAUF:
             continue
         for a in e.abschnitte:
             for t in a.teile:
                 if not isinstance(t, Beispiel):
                     continue
-                lauf = aufzeichnen(state.runner, t.code, RunLimits(timeout_sekunden=15), t.eingabe)
+                lauf = state.kurs.lauf(e, t)
                 if lauf.fehler:
                     falsch.append(f"{e.id}/{t.id}: {lauf.fehler}")
                     continue
-                if t.vorhersage and t.vorhersage.art == "auswahl":
-                    richtig = next(o.text for o in t.vorhersage.optionen if o.richtig)
-                    if normalisiert(richtig) != normalisiert(lauf.ausgabe):
-                        falsch.append(f"{e.id}/{t.id}: richtige Option {richtig!r}, Lauf gibt {lauf.ausgabe!r}")
+                v = t.vorhersage
+                if v is None or v.art != "auswahl":
+                    continue
+                richtig = next(o.text for o in v.optionen if o.richtig)
+                if v.vergleich == "zeilen":
+                    zahl = re.search(r"\d+", richtig)
+                    if zahl is None or int(zahl.group()) != zeilenzahl(lauf.ausgabe):
+                        falsch.append(f"{e.id}/{t.id}: richtige Option {richtig!r}, Lauf hat {zeilenzahl(lauf.ausgabe)} Zeilen")
+                elif normalisiert(richtig) != normalisiert(lauf.ausgabe):
+                    falsch.append(f"{e.id}/{t.id}: richtige Option {richtig!r}, Lauf gibt {lauf.ausgabe!r}")
     assert falsch == []

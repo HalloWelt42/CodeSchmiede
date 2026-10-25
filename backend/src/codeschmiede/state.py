@@ -40,7 +40,8 @@ class AppState:
         self.loader = AufgabenLoader(settings.aufgaben_pfad)
         self.aufgaben = AufgabenRepository(self.db, self.loader)
         self.befunde: list[Befund] = []
-        self.kurs = Kursdienst(settings.kurs_pfad, KursfortschrittRepository(self.db), lambda: self.runner)
+        self.kurs = Kursdienst(settings.kurs_pfad, settings.aufgaben_pfad / "sql" / "datasets", KursfortschrittRepository(self.db),
+                               lambda: self.runner)
         self.neu_einlesen()
 
         self.schreiber = AufgabenSchreiber(settings.aufgaben_pfad, self.loader)

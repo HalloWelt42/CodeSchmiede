@@ -1,14 +1,15 @@
 <script lang="ts">
   /*
    * Werkbank eines Beispiels: ausführen (erst nach der Vorhersage), am Rechner verändern und das Original
-   * wiederherstellen, den Lauf Zeile für Zeile abspielen und den Speicher nach jeder Zeile zeigen. Die Aufzeichnung
-   * kommt aus dem echten Lauf in der Sandbox.
+   * wiederherstellen. Der Lauf kommt aus der Sandbox; wie er sich zeigt, hängt an der Sprache: bei Python Ausgabe,
+   * Ablauf und Speicherbild, bei SQL Ergebnis und Zwischentabellen auf dem Datensatz der Einführung.
    */
-  import { onDestroy, type Snippet } from 'svelte';
-  import { kursApi, type Aufzeichnung, type BeispielTeil } from '../../api/KursApi';
+  import type { Snippet } from 'svelte';
+  import { kursApi, type BeispielTeil, type Lauf } from '../../api/KursApi';
   import EditorBereich from '../EditorBereich.svelte';
   import CodeBlock from './CodeBlock.svelte';
-  import Speicherbild from './Speicherbild.svelte';
+  import PythonAblauf from './PythonAblauf.svelte';
+  import SqlAblauf from './SqlAblauf.svelte';
 
   interface Props {
     einfuehrung: string;
@@ -24,11 +25,11 @@
   let { einfuehrung, beispiel, sprache, gesperrt, bearbeitbar = true, vorAusfuehren }: Props = $props();
 
   let code = $state('');
-  let lauf = $state<Aufzeichnung | null>(null);
-  let schritt = $state(0);
+  let lauf = $state<Lauf | null>(null);
   let laeuft = $state(false);
   let fehler = $state<string | null>(null);
-  let takt = $state<ReturnType<typeof setInterval> | null>(null);
+  /** Zeile, die der Ablauf gerade zeigt */
+  let zeile = $state<number | null>(null);
 
   // ohne Zeilenumbruch am Ende, sonst steht im Editor eine leere letzte Zeile
   let original = $derived(beispiel.code.replace(/\n$/, ''));
@@ -37,54 +38,28 @@
   $effect(() => {
     code = original;
     lauf = null;
-    schritt = 0;
     fehler = null;
+    zeile = null;
   });
 
   let veraendert = $derived(code !== original);
-  /** Speicherbild nur, wenn der Lauf überhaupt Namen anlegt */
-  let mitSpeicher = $derived(schritteMitNamen());
-  let schritte = $derived(lauf?.schritte ?? []);
-  let aktuell = $derived(schritt > 0 ? schritte[schritt - 1] : null);
-  function schritteMitNamen(): boolean {
-    return (lauf?.schritte ?? []).some((s) => s.rahmen.some((r) => Object.keys(r.variablen).length > 0));
-  }
-  let ausgabeBisher = $derived(lauf ? schritte.slice(0, schritt).map((s) => s.ausgabe).join('') : '');
 
   async function ausfuehren() {
-    anhalten();
     fehler = null;
     laeuft = true;
     try {
       lauf = await kursApi.ausfuehren(einfuehrung, beispiel.id, veraendert ? code : undefined);
-      schritt = lauf.schritte.length;
     } catch (e) {
       fehler = e instanceof Error ? e.message : String(e);
     } finally {
       laeuft = false;
     }
   }
-
-  function anhalten() {
-    if (takt) clearInterval(takt);
-    takt = null;
-  }
-
-  function abspielen() {
-    if (takt) return anhalten();
-    if (schritt >= schritte.length) schritt = 0;
-    takt = setInterval(() => {
-      if (schritt >= schritte.length) return anhalten();
-      schritt += 1;
-    }, 1000);
-  }
-
-  onDestroy(anhalten);
 </script>
 
 <div class="werkbank-inhalt">
   {#if !bearbeitbar}
-    <CodeBlock {code} {sprache} jetzt={aktuell?.zeile ?? null} />
+    <CodeBlock {code} {sprache} jetzt={zeile} />
     {#if vorAusfuehren}{@render vorAusfuehren()}{/if}
   {/if}
   <div class="werkbank-zeile">
@@ -98,7 +73,7 @@
   </div>
 
   {#if bearbeitbar}
-    <div class="werkbank-editor"><EditorBereich {sprache} bind:code markierteZeile={aktuell?.zeile ?? null} /></div>
+    <div class="werkbank-editor"><EditorBereich {sprache} bind:code markierteZeile={zeile} /></div>
   {/if}
 
   {#if gesperrt}
@@ -108,23 +83,10 @@
   {#if beispiel.eingabe.length}
     <div class="eingabe-zeile"><span class="dim">Eingabe für input():</span>{#each beispiel.eingabe as z, i (i)}<code>{z}</code>{/each}</div>
   {/if}
-  {#if lauf}
-    <pre class="ausgabe">{#if ausgabeBisher}{ausgabeBisher}{:else}<span class="leer">Noch keine Ausgabe</span>{/if}</pre>
-    {#if lauf.fehler && schritt === schritte.length}
-      <div class="erklaerung schlecht"><i class="fa-solid fa-bug" aria-hidden="true"></i><span>{lauf.fehler}{lauf.fehlerzeile ? ` (Zeile ${lauf.fehlerzeile})` : ''}</span></div>
-    {/if}
-    {#if beispiel.ablauf && schritte.length}
-      <div class="block-kopf"><span>Ablauf Schritt für Schritt</span><span class="dim">aus dem echten Lauf</span></div>
-      <div class="abspieler">
-        <button class="ikon" onclick={() => { anhalten(); schritt = Math.max(0, schritt - 1); }} aria-label="Schritt zurück"><i class="fa-solid fa-backward-step" aria-hidden="true"></i></button>
-        <button class="ikon" onclick={abspielen} aria-label={takt ? 'Anhalten' : 'Abspielen'}><i class="fa-solid {takt ? 'fa-pause' : 'fa-play'}" aria-hidden="true"></i></button>
-        <button class="ikon" onclick={() => { anhalten(); schritt = Math.min(schritte.length, schritt + 1); }} aria-label="Schritt vor"><i class="fa-solid fa-forward-step" aria-hidden="true"></i></button>
-        <input class="regler" type="range" min="0" max={schritte.length} bind:value={schritt} oninput={anhalten} aria-label="Schritt" />
-        <span class="num">{schritt} / {schritte.length}</span>
-      </div>
-      {#if lauf.gekuerzt}<span class="dim" style="font-size:var(--fs-xs)">Aufzeichnung nach {schritte.length} Schritten gekürzt; der Code lief trotzdem zu Ende.</span>{/if}
-      {#if mitSpeicher}<Speicherbild schritt={aktuell} vorher={schritt > 1 ? schritte[schritt - 2] : null} />{/if}
-    {/if}
+  {#if lauf?.art === 'sql'}
+    <SqlAblauf {lauf} ablauf={beispiel.ablauf} bind:zeile />
+  {:else if lauf}
+    <PythonAblauf {lauf} ablauf={beispiel.ablauf} bind:zeile />
   {/if}
   {#if fehler}<div class="erklaerung schlecht"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span>{fehler}</span></div>{/if}
 </div>

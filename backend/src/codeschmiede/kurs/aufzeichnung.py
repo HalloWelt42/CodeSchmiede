@@ -61,6 +61,7 @@ class Schritt(BaseModel):
 
 
 class Aufzeichnung(BaseModel):
+    art: Literal["python"] = "python"
     schritte: list[Schritt] = Field(default_factory=list)
     ausgabe: str = ""
     fehler: str | None = None

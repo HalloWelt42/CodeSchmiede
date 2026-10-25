@@ -34,6 +34,7 @@ Kopf in YAML zwischen `---`-Zeilen:
 | `lernziele` | ja | Sätze für "Danach kannst du" und "Kann ich jetzt" |
 | `karte` | ja | kurzer Satz auf der Sammelkarte |
 | `bilder` | nein | Bildaufträge an den Medienpool (vorerst nur `sammelkarte` und `bereich`) |
+| `datensatz` | bei SQL | Datensatz aus `aufgaben/sql/datasets/`, auf dem die Beispiele laufen (nur und immer bei SQL) |
 
 Ein Bildauftrag hat `schluessel` (a-z, 0-9, _), `art`, `sprache` (Farbfamilie), `motiv` (deutsch, ohne Schrift im
 Bild) und `groesse` (`4 x 3`). Prompt, Stil und Auswahl gehören dem Medienpool; `tools/bildschluessel.py --abgleich`
@@ -62,7 +63,20 @@ vorhersage:
     - {text: "Hallo", richtig: true, erklaerung: "Genau."}
     - {text: "print(Hallo)", erklaerung: "Ausgegeben wird nur der Text."}
   erklaerung: ...         # bei eintippen: nach dem Vergleich mit dem echten Ergebnis
+  frage: ...              # optional: eigene Frage statt "Was gibt das Beispiel aus?"
+  vergleich: zeilen       # optional: nur die Zahl der Zeilen vergleichen (Vorgabe: ausgabe)
 ```
+
+Bei `vergleich: zeilen` steht in der richtigen Option die Zahl als erste Zahl im Text ("4 Zeilen"); beim Eintippen
+wird die Zahl getippt. Die Ausgabe einer SQL-Abfrage ist als Text je Ergebniszeile die Werte mit ` | ` getrennt, ohne
+Kopfzeile, NULL als `NULL`.
+
+### Ablauf
+
+Python: Zeile für Zeile aus der Aufzeichnung in der Sandbox, mit Speicherbild. SQL: das Ergebnis und je Klausel die
+Zwischentabelle in der Reihenfolge der Abarbeitung (FROM, JOIN, WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY,
+LIMIT); der SQL-Parser zerlegt die Abfrage in Teilabfragen, die in der Sandbox auf dem Datensatz laufen. Zerlegt wird
+eine einzelne SELECT-Abfrage ohne WITH und UNION, sonst gibt es nur das Ergebnis.
 
 Ausführen geht erst nach der Vorhersage (der Server erzwingt es). Bei `eintippen` vergleicht der Server mit der
 Ausgabe des echten Laufs.
@@ -108,7 +122,8 @@ selbst: Aufgaben, die nur Eingeführtes brauchen und das Neue des Kapitels üben
 ## Begriffskatalog und Prüfung
 
 `begriffe/<sprache>.yml` nennt je Begriff `id`, `titel` und `erkennung` (Python: `knoten`, `operatoren`, `aufrufe`,
-`methoden`, `literale` aus dem Syntaxbaum). Für jedes Kapitel gilt als bekannt, was dieses und alle früheren
+`methoden`, `literale` aus dem Syntaxbaum; SQL: `knoten` als Ausdrucksarten des SQL-Parsers, dazu `LeftJoin` und
+`RightJoin`, und `aufrufe` als Funktionen in Großbuchstaben). Für jedes Kapitel gilt als bekannt, was dieses und alle früheren
 einführen. Benutzt Code in Beispielen, Fragen, Kurztest, Übungen oder Projekt einen Begriff, der dort noch nicht
 eingeführt ist, meldet die Prüfung einen Vorgriff. Weitere Befunde: unbekannte Begriffe, doppelt eingeführte, fehlende
 Einführungen, Aufgaben oder Zeichnungen, ungebaute Diagramme, Einführungen ohne Kurs.

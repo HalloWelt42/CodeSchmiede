@@ -44,7 +44,7 @@ def codestuecke(e: Einfuehrung) -> list[tuple[str, str]]:
 
 
 def pruefe_kurs(inhalt: Kursinhalt, aufgaben: dict[str, Aufgabe], musterloesungen: Callable[[str], list[dict[str, str]]],
-                wurzel: Path) -> list[Befund]:
+                wurzel: Path, datensaetze: Path) -> list[Befund]:
     befunde = [Befund(ort=f"kurs/{f.datei}", meldung=f.meldung) for f in inhalt.ladefehler]
 
     def befund(ort: str, meldung: str) -> None:
@@ -53,6 +53,8 @@ def pruefe_kurs(inhalt: Kursinhalt, aufgaben: dict[str, Aufgabe], musterloesunge
     # Bilder und Diagramme je Einführung
     for e in inhalt.einfuehrungen.values():
         ort = f"kurs/{e.pfad}"
+        if e.kopf.datensatz and not (datensaetze / f"{e.kopf.datensatz}.sql").is_file():
+            befund(ort, f"Datensatz {e.kopf.datensatz} fehlt in aufgaben/sql/datasets")
         for a in e.abschnitte:
             for t in a.teile:
                 name = t.datei if isinstance(t, Zeichnung) else t.zeichnung if isinstance(t, Alltag) else None

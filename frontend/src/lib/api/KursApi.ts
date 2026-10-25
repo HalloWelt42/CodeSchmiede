@@ -30,6 +30,8 @@ export interface FrageSicht {
 
 export interface VorhersageSicht {
   art: 'auswahl' | 'eintippen';
+  /** eigene Frage statt "Was kommt heraus?" */
+  frage: string | null;
   optionen: string[] | null;
   beantwortet: boolean;
   richtig: boolean;
@@ -93,6 +95,8 @@ export interface EinfuehrungSicht {
   lernziele: string[];
   karte: string;
   kapitel: number | null;
+  /** SQL: Datensatz der Beispiele */
+  datensatz: string | null;
   abschnitte: AbschnittSicht[];
 }
 
@@ -156,6 +160,7 @@ export interface Schritt {
 }
 
 export interface Aufzeichnung {
+  art: 'python';
   schritte: Schritt[];
   ausgabe: string;
   fehler: string | null;
@@ -164,6 +169,37 @@ export interface Aufzeichnung {
   zeitueberschreitung: boolean;
   laufzeit_ms: number;
 }
+
+export type Zeilenzustand = '' | 'neu' | 'bleibt' | 'raus';
+
+/** Zwischentabelle eines SQL-Schritts: je Zeile ihr Zustand und ihre Gruppe, je Spalte, ob sie wegfällt. */
+export interface Zwischentabelle {
+  spalten: string[];
+  zeilen: unknown[][];
+  zustand: Zeilenzustand[];
+  weg: boolean[];
+  gruppe: number[];
+}
+
+export interface Klauselschritt {
+  klausel: string;
+  zeile: number | null;
+  text: string;
+  tabelle: Zwischentabelle;
+}
+
+/** Lauf einer SQL-Abfrage auf dem Datensatz: Ergebnis und Zwischentabellen in der Reihenfolge der Abarbeitung. */
+export interface SqlLauf {
+  art: 'sql';
+  spalten: string[];
+  zeilen: unknown[][];
+  schritte: Klauselschritt[];
+  fehler: string | null;
+  zeitueberschreitung: boolean;
+  laufzeit_ms: number;
+}
+
+export type Lauf = Aufzeichnung | SqlLauf;
 
 class KursApi extends HttpBase {
   uebersicht() {
@@ -179,7 +215,7 @@ class KursApi extends HttpBase {
     return this.post<EinfuehrungSicht>(`/api/kurs/einfuehrung/${encodeURIComponent(id)}/abschnitt/${nummer}/fertig`, {});
   }
   ausfuehren(id: string, beispiel: string, code?: string) {
-    return this.post<Aufzeichnung>(`/api/kurs/einfuehrung/${encodeURIComponent(id)}/beispiel/${encodeURIComponent(beispiel)}/ausfuehren`, code === undefined ? {} : { code });
+    return this.post<Lauf>(`/api/kurs/einfuehrung/${encodeURIComponent(id)}/beispiel/${encodeURIComponent(beispiel)}/ausfuehren`, code === undefined ? {} : { code });
   }
   kurztest(id: string) {
     return this.get<KurztestSicht>(`/api/kurs/kurztest/${encodeURIComponent(id)}`);
