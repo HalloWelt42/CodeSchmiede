@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="spiele">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Spiele</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="seiten-kopf">
+      <div class="titelzeile">
+        <h1>Spiele</h1>
+        <span class="lead">Vier Spiele zum Üben; jedes Level zählt in Punkte, Serie und Tagesauftrag</span>
+      </div>
+      <div class="kennzahlen">
+        <div class="kennzahl"><span class="num">9 / 32</span><small>Level</small></div>
+        <div class="kennzahl"><span class="num">21 / 96</span><small>Sterne</small></div>
+        <div class="kennzahl"><span class="num">214</span><small>Punkte aus Spielen</small></div>
+        <div class="kennzahl"><span class="num">3</span><small>Runden heute</small></div>
+      </div>
+    </header>
+    <div class="rollfeld">
+      <div class="spiel-raster">
+        <a class="spiel-karte" href="rechner-krimi.html" style="text-decoration:none;color:inherit">
+          <div class="spiel-bild">
+            <div style="position:absolute;inset:14px 18px;border:1px solid var(--border);background:var(--bg-card-2);padding:8px;font-family:var(--mono);font-size:10px;color:var(--fg-dim);line-height:1.5">
+              <div style="color:var(--orange)">AKTE 1</div>SELECT ...<br>JOIN zeugen<br><span style="background:color-mix(in srgb,var(--gold) 30%,transparent);color:var(--fg)">LK-447-B</span>
+            </div>
+            <i class="fa-solid fa-magnifying-glass" style="position:absolute;right:12px;bottom:10px;font-size:26px;color:var(--orange)"></i>
+          </div>
+          <div class="spiel-text">
+            <h2><i class="fa-solid fa-user-secret"></i>SQL-Krimi</h2>
+            <p>Ein Fall in Kapiteln. Jede Antwort steckt in einer Abfrage: Filter, Joins, Gruppen, Unterabfragen.</p>
+            <div class="spiel-stand"><span class="num">3 / 8</span><span class="balken"><span style="width:37%"></span></span><span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star aus"></i></span></div>
+            <div class="level-leiste"><span class="level-punkt fertig">1</span><span class="level-punkt fertig">2</span><span class="level-punkt fertig">3</span><span class="level-punkt aktuell">4</span><span class="level-punkt zu">5</span><span class="level-punkt zu">6</span><span class="level-punkt zu">7</span><span class="level-punkt zu">8</span></div>
+            <div class="spiel-weiter"><span class="naechstes dim">Weiter: Kapitel 4, Der Schlüsseldienst</span><span class="knopf primaer" style="margin-left:auto"><i class="fa-solid fa-play"></i>Spielen</span></div>
+          </div>
+        </a>
+
+        <a class="spiel-karte" href="rechner-roboter.html" style="text-decoration:none;color:inherit">
+          <div class="spiel-bild">
+            <div class="welt" style="--zellen:5;width:96px">
+              <div class="zelle"></div><div class="zelle wand"></div><div class="zelle"></div><div class="zelle"></div><div class="zelle"><div class="ziel"></div></div>
+              <div class="zelle spur"></div><div class="zelle wand"></div><div class="zelle"></div><div class="zelle wand"></div><div class="zelle"></div>
+              <div class="zelle spur"></div><div class="zelle spur"></div><div class="zelle spur"></div><div class="zelle wand"></div><div class="zelle"></div>
+              <div class="zelle"></div><div class="zelle wand"></div><div class="zelle spur"></div><div class="zelle"><div class="kristall"></div></div><div class="zelle"></div>
+              <div class="zelle wand"></div><div class="zelle"></div><div class="zelle"></div><div class="zelle"></div><div class="zelle wand"></div>
+            </div>
+          </div>
+          <div class="spiel-text">
+            <h2><i class="fa-solid fa-robot"></i>Roboter-Parcours</h2>
+            <p>Den Roboter mit Python durch das Raster steuern: Schleifen, Bedingungen und eigene Funktionen sehen.</p>
+            <div class="spiel-stand"><span class="num">4 / 10</span><span class="balken"><span style="width:40%"></span></span><span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
+            <div class="level-leiste"><span class="level-punkt fertig">1</span><span class="level-punkt fertig">2</span><span class="level-punkt fertig">3</span><span class="level-punkt fertig">4</span><span class="level-punkt aktuell">5</span><span class="level-punkt zu">6</span><span class="level-punkt zu">7</span><span class="level-punkt zu">8</span><span class="level-punkt zu">9</span><span class="level-punkt zu">10</span></div>
+            <div class="spiel-weiter"><span class="naechstes dim">Weiter: Level 5, Der lange Gang</span><span class="knopf primaer" style="margin-left:auto"><i class="fa-solid fa-play"></i>Spielen</span></div>
+          </div>
+        </a>
+
+        <a class="spiel-karte" href="rechner-sprint.html" style="text-decoration:none;color:inherit">
+          <div class="spiel-bild">
+            <div style="text-align:center">
+              <div class="num" style="font-size:34px;color:var(--accent)">0:42</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg-dim)">print(3 * "ab")</div>
+              <div style="margin-top:6px;color:var(--orange);font-weight:600;font-size:12px"><i class="fa-solid fa-link"></i> Kette 4</div>
+            </div>
+          </div>
+          <div class="spiel-text">
+            <h2><i class="fa-solid fa-stopwatch"></i>Ausgabe-Sprint</h2>
+            <p>Zehn Schnipsel, 90 Sekunden: Ausgabe vorhersagen. Danach jede falsche Antwort mit Erklärung.</p>
+            <div class="spiel-stand"><span>Bestwert <span class="num" style="color:var(--fg)">9 / 10</span></span><span class="balken"><span style="width:90%"></span></span><span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star aus"></i></span></div>
+            <div class="chips" style="margin-top:0"><span class="chip akz">Python</span><span class="chip">JavaScript</span><span class="chip">Mittel</span></div>
+            <div class="spiel-weiter"><span class="naechstes dim">3 Runden heute, letzte 8 / 10</span><span class="knopf primaer" style="margin-left:auto"><i class="fa-solid fa-play"></i>Runde starten</span></div>
+          </div>
+        </a>
+
+        <a class="spiel-karte" href="rechner-muster.html" style="text-decoration:none;color:inherit">
+          <div class="spiel-bild">
+            <div style="font-family:var(--mono);font-size:11px;line-height:1.8;padding:8px">
+              <div style="color:var(--accent)">/\d{2}\.\d{2}/</div>
+              <div><i class="fa-solid fa-check" style="color:var(--green)"></i> <mark style="background:color-mix(in srgb,var(--accent) 35%,transparent);color:var(--fg)">24.10</mark>.2026</div>
+              <div><i class="fa-solid fa-check" style="color:var(--green)"></i> 2026-10-24</div>
+            </div>
+          </div>
+          <div class="spiel-text">
+            <h2><i class="fa-solid fa-crosshairs"></i>Muster-Jagd</h2>
+            <p>Reguläre Ausdrücke: alle Treffer fangen, keine Niete. Kürzere Muster bringen mehr Sterne.</p>
+            <div class="spiel-stand"><span class="num">2 / 12</span><span class="balken"><span style="width:16%"></span></span><span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star aus"></i><i class="fa-solid fa-star aus"></i></span></div>
+            <div class="level-leiste"><span class="level-punkt fertig">1</span><span class="level-punkt fertig">2</span><span class="level-punkt aktuell">3</span><span class="level-punkt zu">4</span><span class="level-punkt zu">5</span><span class="level-punkt zu">6</span><span class="level-punkt zu">7</span><span class="level-punkt zu">8</span><span class="level-punkt zu">9</span><span class="level-punkt zu">10</span><span class="level-punkt zu">11</span><span class="level-punkt zu">12</span></div>
+            <div class="spiel-weiter"><span class="naechstes dim">Weiter: Level 3, Datumsangaben</span><span class="knopf primaer" style="margin-left:auto"><i class="fa-solid fa-play"></i>Spielen</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+</body>
+</html>

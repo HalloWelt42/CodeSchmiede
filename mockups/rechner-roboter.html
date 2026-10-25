@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="spiele">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Roboter-Parcours</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<style>
+  .roboter-seite { flex: 1; min-height: 0; display: grid; grid-template-columns: clamp(250px, 22vw, 300px) minmax(0, 1fr) clamp(320px, 32vw, 460px); }
+  .roboter-seite > .spalte + .spalte { border-left: 1px solid var(--border); }
+  .editor div.aktiv { background: color-mix(in srgb, var(--accent) 16%, transparent); }
+  .welt-rahmen { padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); }
+  .welt-rahmen .welt { width: min(100%, calc(100vh - 330px)); align-self: center; }
+</style>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="a-kopf">
+      <button class="ikon"><i class="fa-solid fa-arrow-left"></i></button>
+      <span class="zelle-titel"><b>Level 5: Der lange Gang</b><span>Roboter-Parcours, Python</span></span>
+      <div class="meta">
+        <span class="badge" style="color:var(--orange)">Mittel</span>
+        <span class="sterne gross"><i class="fa-regular fa-star aus"></i><i class="fa-regular fa-star aus"></i><i class="fa-regular fa-star aus"></i></span>
+        <span class="num" style="color:var(--accent)"><i class="fa-solid fa-coins"></i> 0 / 12</span>
+      </div>
+    </header>
+    <div class="roboter-seite">
+      <section class="spalte">
+        <nav class="reiter-klein">
+          <button class="aktiv">Aufgabe</button><button>Befehle</button><button>Verlauf</button>
+        </nav>
+        <div class="rollfeld md">
+          <p>Bring den Roboter ins grüne Feld und nimm unterwegs den Kristall mit.</p>
+          <p>Achtung: Geprüft wird auch in zwei versteckten Welten mit längeren Gängen. Wer Schritte abzählt, scheitert dort; wer bis zur Wand läuft, nicht.</p>
+          <h2>Befehle</h2>
+          <div class="befehle"><code>gehe()</code><code>links()</code><code>rechts()</code><code>nimm()</code><code>wand_vorne()</code><code>kristall()</code><code>am_ziel()</code></div>
+          <h2>Sterne</h2>
+          <div class="spickzettel" style="font-family:var(--sans)">
+            <span class="sterne"><i class="fa-solid fa-star"></i></span><span>Ziel erreicht, Kristall genommen, in allen Welten</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>höchstens 18 Schritte in der sichtbaren Welt</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>dazu höchstens 140 Zeichen Code</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte mitte">
+        <div class="spalten-kopf"><span>Programm, Python</span><span class="num" style="margin-left:auto;color:var(--fg);text-transform:none;letter-spacing:0">131 Zeichen</span><button class="knopf" style="margin-left:var(--sp-2)" id="laufen"><i class="fa-solid fa-person-walking"></i>Laufen lassen</button><button class="knopf voll"><i class="fa-solid fa-play"></i>Prüfen</button></div>
+        <div class="rollfeld" style="padding:0">
+          <div class="editor" id="code">
+            <div data-z="1"><span class="ln">1</span><span><span class="kw">def</span> bis_zur_wand():</span></div>
+            <div data-z="2"><span class="ln">2</span><span>    <span class="kw">while not</span> wand_vorne() <span class="kw">and not</span> am_ziel():</span></div>
+            <div data-z="3"><span class="ln">3</span><span>        <span class="kw">if</span> kristall():</span></div>
+            <div data-z="4"><span class="ln">4</span><span>            nimm()</span></div>
+            <div data-z="5"><span class="ln">5</span><span>        gehe()</span></div>
+            <div data-z="6"><span class="ln">6</span><span></span></div>
+            <div data-z="7"><span class="ln">7</span><span>bis_zur_wand()</span></div>
+            <div data-z="8"><span class="ln">8</span><span>links()</span></div>
+            <div data-z="9"><span class="ln">9</span><span>bis_zur_wand()</span></div>
+            <div data-z="10"><span class="ln">10</span><span>rechts()</span></div>
+            <div data-z="11"><span class="ln">11</span><span>bis_zur_wand()</span></div>
+            <div data-z="12"><span class="ln">12</span><span>links()</span></div>
+            <div data-z="13"><span class="ln">13</span><span>bis_zur_wand()</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte">
+        <div class="spalten-kopf"><span>Welt</span><span class="num" id="zaehler" style="margin-left:auto;color:var(--fg);text-transform:none;letter-spacing:0">Schritt 0 / 18</span></div>
+        <div class="rollfeld welt-rahmen">
+          <div class="ablauf">
+            <button class="knopf-klein" id="abspielen"><i class="fa-solid fa-play"></i>Abspielen</button>
+            <button class="knopf-klein" id="schritt"><i class="fa-solid fa-forward-step"></i>Schritt</button>
+            <button class="knopf-klein" id="zurueck"><i class="fa-solid fa-rotate-left"></i>Von vorn</button>
+            <select class="wahl" id="tempo" style="height:26px;margin-left:auto"><option value="450">langsam</option><option value="250" selected>normal</option><option value="90">schnell</option></select>
+          </div>
+          <div class="welt" id="welt"></div>
+          <div class="welten">
+            <span class="chip ok"><i class="fa-solid fa-check"></i>Welt 1</span>
+            <span class="chip ok"><i class="fa-solid fa-check"></i>versteckt 1</span>
+            <span class="chip ok"><i class="fa-solid fa-check"></i>versteckt 2</span>
+          </div>
+          <p class="dim" style="margin:0;font-size:var(--fs-sm)" id="stand">Laufen lassen zeigt den Weg in der sichtbaren Welt, Prüfen läuft in allen drei.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+  // nur Entwurf: Welt 8 x 8, Weg und Zeilen sind vorberechnet
+  const N = 8;
+  const waende = new Set(['4,7', '3,3', '0,6', '1,5', '5,6', '6,2', '5,5', '1,2', '2,0', '4,1', '6,6', '0,3']);
+  const ziel = '7,0';
+  let kristall = '3,5';
+  const welt = document.getElementById('welt');
+  welt.style.setProperty('--zellen', N);
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+    const z = document.createElement('div');
+    z.className = 'zelle' + (waende.has(`${x},${y}`) ? ' wand' : '');
+    z.dataset.k = `${x},${y}`;
+    if (`${x},${y}` === ziel) z.innerHTML = '<div class="ziel"></div>';
+    welt.appendChild(z);
+  }
+  const roboter = document.createElement('div');
+  roboter.className = 'roboter';
+  roboter.innerHTML = '<i class="fa-solid fa-robot"></i>';
+  welt.appendChild(roboter);
+
+  // Aktionen mit Zeile im Programm
+  const schritte = [];
+  const g = (n) => { for (let i = 0; i < n; i++) schritte.push(['gehe', 5]); };
+  g(3); schritte.push(['links', 8]); g(1); schritte.push(['nimm', 4]); g(2); schritte.push(['rechts', 10]); g(4); schritte.push(['links', 12]); g(4);
+  const R = [[1, 0], [0, -1], [-1, 0], [0, 1]]; // Osten, Norden, Westen, Süden
+  let lage;
+  function anfang() {
+    lage = { x: 0, y: 7, r: 0, i: 0 };
+    kristall = '3,5';
+    welt.querySelectorAll('.spur').forEach((z) => z.classList.remove('spur'));
+    welt.querySelector('[data-k="3,5"]').innerHTML = '<div class="kristall"></div>';
+    zeichnen();
+  }
+  function zeichnen() {
+    roboter.style.left = `${(lage.x * 100) / N}%`;
+    roboter.style.top = `${(lage.y * 100) / N}%`;
+    roboter.querySelector('i').style.transform = `rotate(${[0, -90, 180, 90][lage.r]}deg)`;
+    document.getElementById('zaehler').textContent = `Schritt ${lage.i} / ${schritte.length}`;
+    document.querySelectorAll('#code div').forEach((d) => d.classList.toggle('aktiv', lage.i > 0 && +d.dataset.z === schritte[lage.i - 1][1]));
+  }
+  function weiter() {
+    if (lage.i >= schritte.length) return false;
+    const [art] = schritte[lage.i];
+    welt.querySelector(`[data-k="${lage.x},${lage.y}"]`).classList.add('spur');
+    if (art === 'gehe') { lage.x += R[lage.r][0]; lage.y += R[lage.r][1]; }
+    if (art === 'links') lage.r = (lage.r + 1) % 4;
+    if (art === 'rechts') lage.r = (lage.r + 3) % 4;
+    if (art === 'nimm') welt.querySelector(`[data-k="${lage.x},${lage.y}"]`).innerHTML = '';
+    lage.i++;
+    zeichnen();
+    if (lage.i === schritte.length) document.getElementById('stand').textContent = 'Am Ziel nach 18 Schritten, Kristall genommen.';
+    return lage.i < schritte.length;
+  }
+  let takt = null;
+  function abspielen() {
+    clearInterval(takt);
+    if (lage.i >= schritte.length) anfang();
+    takt = setInterval(() => { if (!weiter()) clearInterval(takt); }, +document.getElementById('tempo').value);
+  }
+  document.getElementById('abspielen').onclick = abspielen;
+  document.getElementById('laufen').onclick = () => { anfang(); abspielen(); };
+  document.getElementById('schritt').onclick = () => { clearInterval(takt); weiter(); };
+  document.getElementById('zurueck').onclick = () => { clearInterval(takt); anfang(); };
+  anfang();
+</script>
+</body>
+</html>

@@ -11,6 +11,7 @@
     { id: 'dashboard', titel: 'Dashboard', icon: 'fa-house', telefon: true },
     { id: 'aufgaben', titel: 'Aufgaben', icon: 'fa-list-check', telefon: true },
     { id: 'pfade', titel: 'Pfade', icon: 'fa-route', telefon: true },
+    { id: 'spiele', titel: 'Spiele', icon: 'fa-gamepad', telefon: true },
     { id: 'verwaltung', titel: 'Verwaltung', icon: 'fa-table-cells-large', telefon: false },
   ];
   const ziel = (id) => `${geraet}-${id === 'dashboard' ? 'start' : id}.html`;
@@ -23,7 +24,7 @@
         <header class="topbar">
           <button class="ikon"><i class="fa-solid fa-angles-left"></i></button>
           <div class="marke"><i class="fa-solid fa-hammer"></i>Codeschmiede</div>
-          <div class="rechts"><span class="konto"><i class="fa-solid fa-user"></i>marcel<button class="ikon" title="Abmelden"><i class="fa-solid fa-right-from-bracket"></i></button></span>${themaKnopf}</div>
+          <div class="rechts"><span class="kopf-stand" title="Stufe 7, Geselle: 1.284 von 1.600 Punkten bis Stufe 8"><span class="mini-ring" style="--anteil:62"><span>7</span></span>Geselle</span><span class="kopf-stand" title="Serie: 12 Tage, zwei Schutzschilde"><i class="fa-solid fa-fire flamme"></i><span class="num">12</span><i class="fa-solid fa-shield-halved schild"></i><i class="fa-solid fa-shield-halved schild"></i><i class="fa-solid fa-shield-halved schild leer"></i></span><span class="konto"><i class="fa-solid fa-user"></i>marcel<button class="ikon" title="Abmelden"><i class="fa-solid fa-right-from-bracket"></i></button></span>${themaKnopf}</div>
         </header>
         <div class="koerper">
           <aside class="nav">
