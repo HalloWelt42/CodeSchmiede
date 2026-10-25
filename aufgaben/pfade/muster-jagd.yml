@@ -1,0 +1,19 @@
+id: muster-jagd
+titel: Muster-Jagd
+beschreibung: |
+  Reguläre Ausdrücke als Spiel: Treffer fangen, Nieten auslassen, kürzere
+  Muster bringen mehr Sterne. Von Ziffern über Anker und Wortgrenzen bis zu
+  Gruppen und Rückverweisen.
+reihenfolge:
+  - m001-ziffern
+  - m002-zeilenanfang
+  - m003-datumsangaben
+  - m004-farbcodes
+  - m005-wochenende
+  - m006-postleitzahlen
+  - m007-ganze-zeile
+  - m008-strasse
+  - m009-doppelte-woerter
+  - m010-uhrzeiten
+  - m011-mailadressen
+  - m012-preise

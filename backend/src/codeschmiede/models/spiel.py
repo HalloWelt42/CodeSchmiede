@@ -92,6 +92,32 @@ class Spielstand(BaseModel):
     meisterschaft: list[BereichStand]
 
 
+class LevelStand(BaseModel):
+    id: str
+    titel: str
+    nummer: int
+    geloest: bool
+    sterne: int | None = None
+
+
+class SpielUebersicht(BaseModel):
+    """Ein Spiel im Spielebereich mit dem Stand seiner Levels."""
+
+    id: str
+    titel: str
+    icon: str
+    beschreibung: str
+    aufgabentyp: str
+    levels: list[LevelStand]
+    geschafft: int
+    sterne: int
+    sterne_moeglich: int
+    punkte: int
+    moeglich: int
+    # erstes nicht gelöstes Level, sonst None
+    naechstes: LevelStand | None = None
+
+
 class Bestwert(BaseModel):
     art: BestwertArt
     neu: float

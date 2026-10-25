@@ -5,16 +5,17 @@
  *   #erfolge             -> alle Erfolge
  *   #aufgaben            -> Liste aller Aufgaben
  *   #pfade               -> Liste aller Pfade
+ *   #spiele              -> Spielebereich
  *   #verwaltung          -> Verwaltungsübersicht aller Aufgaben (Admin)
  *   #aufgabe/<id>        -> Detail-Ansicht einer Aufgabe
  */
 
 import { fassung } from './FassungStore.svelte';
 
-export type Route = 'dashboard' | 'erfolge' | 'aufgaben' | 'pfade' | 'verwaltung' | 'aufgabe';
+export type Route = 'dashboard' | 'erfolge' | 'aufgaben' | 'pfade' | 'spiele' | 'verwaltung' | 'aufgabe';
 
 /** Routen ohne Parameter, deren Name gleich dem Hash ist */
-const EINFACH: Route[] = ['erfolge', 'aufgaben', 'pfade', 'verwaltung'];
+const EINFACH: Route[] = ['erfolge', 'aufgaben', 'pfade', 'spiele', 'verwaltung'];
 
 class RouteStore {
   aktiv = $state<Route>('dashboard');

@@ -10,7 +10,9 @@ legt er fest,
   Musterlösung und früheren Versuchen vergleichen lassen
   (`vergleicht_zeichen`; nicht bei gewählten Antworten), und
 - wie viele versteckte Tests eine Aufgabe hat (`zaehle_versteckt`,
-  Vorgabe: die `tests_versteckt` aus dem Frontmatter).
+  Vorgabe: die `tests_versteckt` aus dem Frontmatter), und
+- was an seinem `extra`-Block nicht stimmt (`pruefe_aufbau`, für die
+  Bestandsprüfung; Vorgabe: nichts).
 
 Neue Aufgabentypen brauchen nur eine neue Pruefer-Datei mit Decorator.
 """
@@ -28,10 +30,15 @@ if TYPE_CHECKING:
 
 PrueferFn = Callable[["Aufgabe", str, "Runner"], "PruefErgebnis"]
 ZaehlFn = Callable[["Aufgabe"], int]
+AufbauFn = Callable[["Aufgabe"], list[str]]
 
 
 def _versteckte_aus_frontmatter(aufgabe: "Aufgabe") -> int:
     return len(aufgabe.tests_versteckt)
+
+
+def _kein_befund(aufgabe: "Aufgabe") -> list[str]:
+    return []
 
 
 @dataclass(frozen=True)
@@ -41,6 +48,7 @@ class Pruefer:
     im_browser: bool = False
     zaehle_versteckt: ZaehlFn = _versteckte_aus_frontmatter
     vergleicht_zeichen: bool = True
+    pruefe_aufbau: AufbauFn = _kein_befund
 
 
 PRUEFER_REGISTRY: dict[str, Pruefer] = {}
@@ -52,6 +60,7 @@ def registriere(
     im_browser: bool = False,
     zaehle_versteckt: ZaehlFn = _versteckte_aus_frontmatter,
     vergleicht_zeichen: bool = True,
+    pruefe_aufbau: AufbauFn = _kein_befund,
 ) -> Callable[[PrueferFn], PrueferFn]:
     def deko(fn: PrueferFn) -> PrueferFn:
         PRUEFER_REGISTRY[typ] = Pruefer(
@@ -60,6 +69,7 @@ def registriere(
             im_browser=im_browser,
             zaehle_versteckt=zaehle_versteckt,
             vergleicht_zeichen=vergleicht_zeichen,
+            pruefe_aufbau=pruefe_aufbau,
         )
         return fn
     return deko

@@ -7,7 +7,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from codeschmiede.api import app_bauen
-from codeschmiede.models.konfig import SpielRegeln
+from codeschmiede.models.konfig import SpielKonfig, SpielRegeln
 from codeschmiede.pruefung.ergebnis import Kennwerte, PruefErgebnis, Wertung
 from codeschmiede.spiel.bestand import Bestand
 from codeschmiede.spiel.erfolge import ErfolgDefinition, bewerte, bis_hoechstens
@@ -200,8 +200,7 @@ def test_sterne_teilen_die_punkte(state):
 
 def test_spiel_level_erfuellt_das_spielziel(state):
     konfig = state.konfig.model_copy(deep=True)
-    for typ in konfig.aufgabentypen:
-        typ.spiel = typ.id == "css_klon"
+    konfig.spiele = [SpielKonfig(id="probe", titel="Probe", icon="fa-flag", aufgabentyp="css_klon")]
     bestand = Bestand.aus(state.aufgaben.alle_aufgaben(), state.aufgaben.alle_pfade(), konfig)
     b = verbuche(state, "c005-knopf", "b{color:red}", bestanden(sterne=1), bestand).belohnung
     ziele = {z.id: z.erledigt for z in b.auftrag.ziele}

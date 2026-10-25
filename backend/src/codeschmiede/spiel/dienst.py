@@ -18,7 +18,9 @@ from ..models.spiel import (
     Belohnung,
     Bestwert,
     ErfolgsListe,
+    LevelStand,
     SerienStand,
+    SpielUebersicht,
     Spielstand,
     StufenStand,
     Tagesauftrag,
@@ -100,6 +102,37 @@ class Spieldienst:
 
     def erfolge(self, bestand: Bestand, heute: date | None = None) -> ErfolgsListe:
         return self._lage(bestand, heute or date.today()).erfolge
+
+    def spiele(self, bestand: Bestand) -> list[SpielUebersicht]:
+        progress = {p.aufgabe_id: p for p in self.progress.hole_alle_progress()}
+        uebersicht = []
+        for spiel in bestand.konfig.spiele:
+            levels = []
+            for nummer, aufgabe in enumerate(bestand.levels(spiel), start=1):
+                p = progress.get(aufgabe.id)
+                levels.append(LevelStand(
+                    id=aufgabe.id,
+                    titel=aufgabe.titel,
+                    nummer=nummer,
+                    geloest=p is not None and p.status == "geloest",
+                    sterne=p.sterne if p else None,
+                ))
+            punkte = sum(progress[lv.id].punkte_erreicht for lv in levels if lv.id in progress)
+            uebersicht.append(SpielUebersicht(
+                id=spiel.id,
+                titel=spiel.titel,
+                icon=spiel.icon,
+                beschreibung=spiel.beschreibung,
+                aufgabentyp=spiel.aufgabentyp,
+                levels=levels,
+                geschafft=sum(1 for lv in levels if lv.geloest),
+                sterne=sum(lv.sterne or 0 for lv in levels),
+                sterne_moeglich=3 * len(levels),
+                punkte=punkte,
+                moeglich=sum(bestand.aufgaben[lv.id].schwierigkeit_score for lv in levels),
+                naechstes=next((lv for lv in levels if not lv.geloest), None),
+            ))
+        return uebersicht
 
     def verbuche(
         self, bestand: Bestand, aufgabe: Aufgabe, code: str, ergebnis: PruefErgebnis, heute: date | None = None
@@ -209,4 +242,15 @@ class Spieldienst:
             pfade_gesamt=sum(1 for p in bestand.pfade if p.reihenfolge),
             serie_laengste=serie.laengste,
             auftraege=auftraege,
+            levels_je_typ=self._zaehle_je_typ(bestand, bestand.aufgaben),
+            drei_sterne_je_typ=self._zaehle_je_typ(bestand, {p.aufgabe_id for p in progress if p.sterne == 3}),
         )
+
+    @staticmethod
+    def _zaehle_je_typ(bestand: Bestand, ids) -> dict[str, int]:
+        zahlen: dict[str, int] = {}
+        for aid in ids:
+            aufgabe = bestand.aufgaben.get(aid)
+            if aufgabe is not None and aufgabe.task_type in bestand.spieltypen:
+                zahlen[aufgabe.task_type] = zahlen.get(aufgabe.task_type, 0) + 1
+        return zahlen

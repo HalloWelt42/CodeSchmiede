@@ -15,6 +15,7 @@ from . import bug_finden_pruefer  # noqa: F401  registriert "bug_finden"
 from . import lueckentext_pruefer  # noqa: F401  registriert "lueckentext"
 from . import sql_pruefer  # noqa: F401  registriert "sql_abfrage"
 from . import css_klon_pruefer  # noqa: F401  registriert "css_klon"
+from . import muster_pruefer  # noqa: F401  registriert "muster_jagd"
 from .ergebnis import PruefErgebnis
 from .registry import Pruefer, hole, ohne_geheimes
 

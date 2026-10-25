@@ -72,6 +72,21 @@ aufgabentypen:
     titel: SQL-Abfrage
     view: sql_abfrage
     beschreibung: Ein Datensatz ist vorgegeben -- schreibe eine SELECT-Abfrage, die das erwartete Ergebnis liefert.
+  - id: muster_jagd
+    titel: Muster-Jagd
+    view: muster_jagd
+    beschreibung: Treffer und Nieten sind vorgegeben - finde einen regulären Ausdruck, der alle Treffer und keine Niete trifft.
+
+# Spiele im Spielebereich. Ihre Levels sind Aufgaben des genannten
+# Aufgabentyps, die Reihenfolge geben die Pfade vor. Levels zählen in
+# Punkte, Serie und Tagesauftrag wie alle Aufgaben (docs/SPIELE.md).
+spiele:
+  - id: muster-jagd
+    titel: Muster-Jagd
+    icon: fa-crosshairs
+    beschreibung: "Reguläre Ausdrücke: alle Treffer fangen, keine Niete. Kürzere Muster bringen mehr Sterne."
+    aufgabentyp: muster_jagd
+    pfade: [muster-jagd]
 
 # Spielmechanik (docs/SPIELE.md). Stufe k gilt ab stufe_basis * k * k
 # Punkten, alle titel_alle Stufen kommt der nächste Titel. Die Ränge der

@@ -32,6 +32,8 @@
   import ProbelaufBereich from './ProbelaufBereich.svelte';
   import VerlaufBereich from './VerlaufBereich.svelte';
   import SqlAbfrageView from './SqlAbfrageView.svelte';
+  import MusterJagdView from './MusterJagdView.svelte';
+  import { spielStore } from '../stores/SpielStore.svelte';
 
   let { aufgabeId }: { aufgabeId: string } = $props();
 
@@ -156,6 +158,8 @@
   }
 
   let aktProgress = $derived(progressStore.proAufgabe[aufgabeId]);
+  // Level eines Spiels: Kopf mit Levelnummer und Sternen
+  let alsLevel = $derived(spielStore.levelVon(aufgabeId));
 
   let schwFarbe = $derived(
     detail ? farbeZuCss(konfig.schwierigkeitFarbe(detail.schwierigkeit)) : 'var(--accent)',
@@ -174,7 +178,19 @@
       <button class="ikon" onclick={zurueck} aria-label="Zurück zur Liste">
         <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
       </button>
-      {#if geraet.telefon}
+      {#if alsLevel}
+        <span class="zelle-titel">
+          <b>Level {alsLevel.level.nummer}: {aktuell.titel}</b>
+          <span class:meta-text={geraet.telefon}>{alsLevel.spiel.titel}{geraet.telefon ? `, ${aktProgress?.punkte_erreicht ?? 0} / ${aktuell.schwierigkeit_score} Punkte` : `, ${aktuell.id}`}</span>
+        </span>
+        <div class="meta">
+          {#if !geraet.telefon}<span class="badge" style:color={schwFarbe}>{konfig.schwierigkeitTitel(aktuell.schwierigkeit)}</span>{/if}
+          <span class="sterne gross" title="beste Wertung: {aktProgress?.sterne ?? 0} von 3 Sternen">
+            {#each [1, 2, 3] as n (n)}<i class="fa-solid fa-star" class:aus={n > (aktProgress?.sterne ?? 0)} aria-hidden="true"></i>{/each}
+          </span>
+          {#if !geraet.telefon}<span class="num punkte"><i class="fa-solid fa-coins" aria-hidden="true"></i> {aktProgress?.punkte_erreicht ?? 0} / {aktuell.schwierigkeit_score}</span>{/if}
+        </div>
+      {:else if geraet.telefon}
         <span class="zelle-titel">
           <b>{aktuell.titel}</b>
           <span class="meta-text">
@@ -218,6 +234,8 @@
       <CssKlonView detail={aktuell} />
     {:else if aktuell.task_type === 'sql_abfrage'}
       <SqlAbfrageView detail={aktuell} />
+    {:else if aktuell.task_type === 'muster_jagd'}
+      <MusterJagdView detail={aktuell} />
     {:else}
       {#if aktuell.task_type === 'bug_finden'}
         <div class="hinweis-box band fehler">

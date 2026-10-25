@@ -34,8 +34,18 @@ class AufgabentypKonfig(BaseModel):
     titel: str
     view: str  # Frontend-View-Schlüssel (Komponenten-Registry)
     beschreibung: str = ""
-    # Levels dieses Typs zählen als Spiel (Meisterschaft "Spiele", Tagesauftrag)
-    spiel: bool = False
+
+
+class SpielKonfig(BaseModel):
+    """Ein Spiel im Spielebereich. Seine Levels sind Aufgaben des
+    Aufgabentyps; die Reihenfolge geben die Pfade vor."""
+
+    id: str
+    titel: str
+    icon: str  # Font-Awesome-Klasse, z. B. "fa-crosshairs"
+    beschreibung: str = ""
+    aufgabentyp: str
+    pfade: list[str] = Field(default_factory=list)
 
 
 class Raenge(BaseModel):
@@ -72,6 +82,7 @@ class Konfiguration(BaseModel):
     schwierigkeiten: list[SchwierigkeitsStufe] = []
     sprachen: list[SprachKonfig] = []
     aufgabentypen: list[AufgabentypKonfig] = []
+    spiele: list[SpielKonfig] = []
     spiel: SpielRegeln = Field(default_factory=SpielRegeln)
 
     def schwierigkeit_ids(self) -> set[str]:
@@ -84,4 +95,5 @@ class Konfiguration(BaseModel):
         return {t.id for t in self.aufgabentypen}
 
     def spieltypen(self) -> set[str]:
-        return {t.id for t in self.aufgabentypen if t.spiel}
+        """Aufgabentypen, deren Aufgaben Levels eines Spiels sind."""
+        return {s.aufgabentyp for s in self.spiele}

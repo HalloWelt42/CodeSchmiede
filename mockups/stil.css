@@ -338,9 +338,11 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 
 /* ----- Spiele ----- */
 .spiel-raster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-2); }
-.spiel-karte { display: grid; grid-template-columns: 120px minmax(0, 1fr); border: 1px solid var(--border); background: var(--bg-card-2); min-width: 0; cursor: pointer; }
+.spiel-karte { display: grid; grid-template-columns: 120px minmax(0, 1fr); border: 1px solid var(--border); background: var(--bg-card-2); min-width: 0; }
 .spiel-karte:hover { border-color: var(--accent); }
 .spiel-bild { position: relative; overflow: hidden; background: var(--bg); border-right: 1px solid var(--border); display: grid; place-items: center; min-height: 150px; }
+button.spiel-bild { width: 100%; padding: 0; border: 0; border-right: 1px solid var(--border); border-radius: 0; color: inherit; cursor: pointer; }
+button.level-punkt { padding: 0; cursor: pointer; }
 .spiel-text { padding: var(--sp-3); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .spiel-text h2 { margin: 0; font-size: var(--fs-lg); display: flex; align-items: center; gap: var(--sp-2); }
 .spiel-text h2 i { color: var(--accent); font-size: var(--fs-md); }

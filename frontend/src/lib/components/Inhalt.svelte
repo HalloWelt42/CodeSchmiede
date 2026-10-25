@@ -10,6 +10,8 @@
   import { BEREICHE } from '../navigation';
   import Dashboard from './Dashboard.svelte';
   import ErfolgeSeite from './ErfolgeSeite.svelte';
+  import SpieleSeite from './SpieleSeite.svelte';
+  import TelefonSpiele from './telefon/TelefonSpiele.svelte';
   import AufgabenListe from './AufgabenListe.svelte';
   import PfadListe from './PfadListe.svelte';
   import AufgabenDetail from './AufgabenDetail.svelte';
@@ -34,6 +36,8 @@
     <TelefonAufgaben />
   {:else if route.aktiv === 'pfade'}
     <TelefonPfade />
+  {:else if route.aktiv === 'spiele'}
+    <TelefonSpiele />
   {:else}
     <TelefonStart />
   {/if}
@@ -43,6 +47,8 @@
   <AufgabenListe />
 {:else if route.aktiv === 'pfade'}
   <PfadListe />
+{:else if route.aktiv === 'spiele'}
+  <SpieleSeite />
 {:else if route.aktiv === 'verwaltung'}
   <VerwaltungAnsicht />
 {/if}

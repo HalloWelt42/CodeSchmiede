@@ -22,8 +22,16 @@ export interface AufgabentypKonfig {
   titel: string;
   view: string;
   beschreibung: string;
-  /** Levels dieses Typs zählen als Spiel */
-  spiel?: boolean;
+}
+
+/** Ein Spiel im Spielebereich; seine Levels sind Aufgaben des Aufgabentyps */
+export interface SpielKonfig {
+  id: string;
+  titel: string;
+  icon: string;
+  beschreibung: string;
+  aufgabentyp: string;
+  pfade: string[];
 }
 
 /** Schwellen der Spielmechanik (docs/SPIELE.md) */
@@ -41,6 +49,7 @@ export interface Konfiguration {
   schwierigkeiten: SchwierigkeitsStufe[];
   sprachen: SprachKonfig[];
   aufgabentypen: AufgabentypKonfig[];
+  spiele?: SpielKonfig[];
   spiel?: SpielRegeln;
 }
 

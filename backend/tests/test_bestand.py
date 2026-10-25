@@ -1,5 +1,5 @@
 """Der echte Aufgabenbestand: lädt ohne Fehler, und jede Musterlösung
-besteht ihre eigenen Tests. Dauert einige Minuten, darum nur mit
+besteht ihre eigenen Tests, bei Spielen mit allen drei Sternen. Dauert einige Minuten, darum nur mit
 CODESCHMIEDE_BESTAND=1 (vor jedem Ausrollen und nach Änderungen am Bestand).
 Liest aufgaben/ nur; Datenbank im Temp-Ordner.
 """
@@ -66,8 +66,10 @@ def test_musterloesungen_bestehen(state):
         if not erg.bestanden and erg.timeout:
             # Zeitüberschreitung unter paralleler Last (langsamer Containerstart): einmal wiederholen
             erg = pruefe(a, ml["code"], state.runner)
-        if erg.bestanden:
+        if erg.bestanden and (erg.wertung is None or erg.wertung.sterne == 3):
             return None
+        if erg.bestanden:
+            return f"{a.id}/{ml['variante']}: Musterlösung erreicht nur {erg.wertung.sterne} Sterne"
         sichtbar = [t for t in erg.sichtbar if not t.bestanden]
         detail = (sichtbar[0].fehler or f"ist {sichtbar[0].tatsaechlich!r}, soll {sichtbar[0].erwartet!r}") if sichtbar else ""
         return f"{a.id}/{ml['variante']}: versteckt {erg.versteckt_fail} falsch {detail} {erg.stderr[-200:]}".strip()

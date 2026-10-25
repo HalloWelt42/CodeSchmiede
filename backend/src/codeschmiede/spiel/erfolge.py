@@ -8,7 +8,7 @@ brauchen nur einen Eintrag in `katalog` und, wenn nötig, eine Kennzahl.
 from collections.abc import Callable
 from dataclasses import dataclass
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from ..models.spiel import ErfolgsGruppe, ErfolgsListe, ErfolgStand, Rang
 
@@ -33,6 +33,9 @@ class Kennzahlen(BaseModel):
     pfade_gesamt: int = 0
     serie_laengste: int = 0
     auftraege: int = 0
+    # Spiele: Levels und Levels mit drei Sternen je Aufgabentyp
+    levels_je_typ: dict[str, int] = Field(default_factory=dict)
+    drei_sterne_je_typ: dict[str, int] = Field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -109,6 +112,13 @@ def katalog(k: Kennzahlen) -> list[ErfolgDefinition]:
             lambda n: f"{anzahl(n, 'eine Aufgabe', 'Aufgaben')} im ersten Versuch bestanden",
         ),
     ]
+    if k.levels_je_typ.get("muster_jagd"):
+        eintraege.append(ErfolgDefinition(
+            "scharfschuetze", "spiele", "fa-crosshairs", k.drei_sterne_je_typ.get("muster_jagd", 0),
+            bis_hoechstens((5,), k.levels_je_typ["muster_jagd"]),
+            ("Scharfschütze",),
+            lambda n: f"{anzahl(n, 'ein Muster', 'Muster')} mit drei Sternen",
+        ))
     return eintraege
 
 

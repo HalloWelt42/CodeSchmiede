@@ -9,6 +9,7 @@ import type {
   AufgabentypKonfig,
   Konfiguration,
   SchwierigkeitsStufe,
+  SpielKonfig,
   SprachKonfig,
 } from '../types/Konfig';
 
@@ -40,6 +41,11 @@ class KonfigStore {
 
   aufgabentyp(id: string): AufgabentypKonfig | undefined {
     return this.daten.aufgabentypen.find((t) => t.id === id);
+  }
+
+  /** Das Spiel, dessen Levels Aufgaben dieses Typs sind */
+  spielZuTyp(aufgabentyp: string): SpielKonfig | undefined {
+    return this.daten.spiele?.find((s) => s.aufgabentyp === aufgabentyp);
   }
 
   schwierigkeitTitel(id: string): string {

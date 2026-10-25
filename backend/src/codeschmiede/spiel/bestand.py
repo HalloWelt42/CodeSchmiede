@@ -3,7 +3,7 @@
 from dataclasses import dataclass, field
 
 from ..models.aufgabe import Aufgabe
-from ..models.konfig import Konfiguration
+from ..models.konfig import Konfiguration, SpielKonfig
 from ..models.pfad import Pfad
 
 
@@ -30,3 +30,14 @@ class Bestand:
 
     def hat_aufgaben(self) -> bool:
         return any(a.task_type not in self.spieltypen for a in self.aufgaben.values())
+
+    def levels(self, spiel: SpielKonfig) -> list[Aufgabe]:
+        """Levels eines Spiels: in der Reihenfolge seiner Pfade, übrige nach ID."""
+        vom_typ = {a.id: a for a in self.aufgaben.values() if a.task_type == spiel.aufgabentyp}
+        pfade = {p.id: p for p in self.pfade}
+        reihenfolge: list[str] = []
+        for pid in spiel.pfade:
+            if pid in pfade:
+                reihenfolge += [aid for aid in pfade[pid].reihenfolge if aid in vom_typ and aid not in reihenfolge]
+        reihenfolge += sorted(aid for aid in vom_typ if aid not in reihenfolge)
+        return [vom_typ[aid] for aid in reihenfolge]

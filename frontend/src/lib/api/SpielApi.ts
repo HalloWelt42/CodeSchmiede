@@ -78,6 +78,30 @@ export interface Spielstand {
   meisterschaft: BereichStand[];
 }
 
+export interface LevelStand {
+  id: string;
+  titel: string;
+  nummer: number;
+  geloest: boolean;
+  sterne: number | null;
+}
+
+export interface SpielUebersicht {
+  id: string;
+  titel: string;
+  icon: string;
+  beschreibung: string;
+  aufgabentyp: string;
+  levels: LevelStand[];
+  geschafft: number;
+  sterne: number;
+  sterne_moeglich: number;
+  punkte: number;
+  moeglich: number;
+  /** erstes nicht gelöstes Level */
+  naechstes: LevelStand | null;
+}
+
 export interface Bestwert {
   art: 'zeichen' | 'laufzeit' | 'sterne';
   neu: number;
@@ -112,6 +136,9 @@ export class SpielApi extends HttpBase {
   }
   erfolge(): Promise<ErfolgsListe> {
     return this.get<ErfolgsListe>('/erfolge');
+  }
+  spiele(): Promise<SpielUebersicht[]> {
+    return this.get<SpielUebersicht[]>('/spiele');
   }
 }
 

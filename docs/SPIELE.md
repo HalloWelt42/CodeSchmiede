@@ -17,8 +17,10 @@ Leitlinien:
 
 ## Die vier Spiele
 
-Jedes Spiel ist ein Aufgabentyp mit eigenem Prüfer; Levels sind Aufgabendateien wie alle anderen (eigener Ordner je
-Spiel unter `aufgaben/spiele/`), gehören zu Pfaden, zählen in Punkte, Serie und Wiederholung. Jedes Level vergibt bis
+Jedes Spiel ist ein Aufgabentyp mit eigenem Prüfer; Levels sind Aufgabendateien wie alle anderen. Sie liegen wie jede
+Aufgabe im Ordner ihrer Sprache, mit eigenem Kürzel vor der Nummer (Muster-Jagd `m001-...` unter `aufgaben/javascript/`),
+die Reihenfolge gibt ein Pfad vor, und `aufgaben/_konfig.yml` führt das Spiel unter `spiele` mit Titel, Symbol,
+Aufgabentyp und Pfaden. Levels zählen in Punkte, Serie und Wiederholung. Jedes Level vergibt bis
 zu drei Sterne: ein Stern fürs Bestehen, zwei und drei für Güte nach Schwellen aus der Level-Datei. Die Punkte eines
 Levels sind Grundpunkte mal Sterne durch drei; es zählt der beste Versuch.
 

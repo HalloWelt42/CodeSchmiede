@@ -461,3 +461,99 @@ button.karte:hover:not(:disabled) { border-color: var(--accent); background: var
 /* CSS-Aufgabe: Punkte in zwei Teilen (Deckung, Kürze ab 99 %) */
 .punkte-teile { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: var(--sp-2); align-items: center; font-size: var(--fs-xs); color: var(--fg-dim); }
 .punkte-teile .num { color: var(--fg); font-weight: 600; }
+
+/* ----- Spiele ----- */
+.spiel-raster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-2); }
+.spiel-karte { display: grid; grid-template-columns: 120px minmax(0, 1fr); border: 1px solid var(--border); background: var(--bg-card-2); min-width: 0; }
+.spiel-karte:hover { border-color: var(--accent); }
+.spiel-bild { position: relative; overflow: hidden; background: var(--bg); border-right: 1px solid var(--border); display: grid; place-items: center; min-height: 150px; }
+button.spiel-bild { width: 100%; padding: 0; border: 0; border-right: 1px solid var(--border); border-radius: 0; color: inherit; cursor: pointer; }
+button.level-punkt { padding: 0; cursor: pointer; }
+.spiel-text { padding: var(--sp-3); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.spiel-text h2 { margin: 0; font-size: var(--fs-lg); display: flex; align-items: center; gap: var(--sp-2); }
+.spiel-text h2 i { color: var(--accent); font-size: var(--fs-md); }
+.spiel-text p { margin: 0; color: var(--fg-dim); font-size: var(--fs-sm); }
+.spiel-stand { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-sm); color: var(--fg-dim); }
+.spiel-stand .balken { flex: 1; }
+.spiel-weiter { margin-top: auto; display: flex; align-items: center; gap: var(--sp-2); }
+.spiel-weiter .naechstes { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-sm); }
+/* Level-Leiste je Spiel */
+.level-leiste { display: flex; gap: 4px; flex-wrap: wrap; }
+.level-punkt { width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: var(--num); font-size: 11px; color: var(--fg-dim); background: var(--bg); }
+.level-punkt.fertig { border-color: color-mix(in srgb, var(--gold) 60%, var(--border)); color: var(--gold); }
+.level-punkt.aktuell { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.level-punkt.zu { opacity: .45; }
+/* Roboter-Welt */
+.welt { --zellen: 8; display: grid; grid-template-columns: repeat(var(--zellen), 1fr); gap: 2px; width: 100%; aspect-ratio: 1; background: var(--border); border: 2px solid var(--border-strong); position: relative; }
+.welt .zelle { background: var(--bg); position: relative; }
+.welt .zelle.wand { background: repeating-linear-gradient(45deg, var(--bg-card-2) 0 4px, var(--border-strong) 4px 6px); }
+.welt .zelle.spur::after { content: ""; position: absolute; inset: 38%; border-radius: 50%; background: color-mix(in srgb, var(--accent) 45%, transparent); }
+.welt .ziel { position: absolute; inset: 18%; border: 2px dashed var(--green); border-radius: 3px; }
+.welt .kristall { position: absolute; inset: 28%; background: #a78bfa; transform: rotate(45deg); border-radius: 2px; }
+.welt .roboter { position: absolute; width: calc(100% / var(--zellen)); aspect-ratio: 1; display: grid; place-items: center; transition: left .28s linear, top .28s linear; z-index: 2; }
+.welt .roboter i { font-size: clamp(14px, 3vw, 24px); color: var(--accent); transition: transform .2s; }
+.welt .roboter.crash i { color: var(--red); }
+.befehle { display: flex; flex-wrap: wrap; gap: 4px; }
+.befehle code { font-size: 12px; }
+.ablauf { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.welten { display: flex; flex-wrap: wrap; gap: 4px; }
+.welten .chip.ok { color: var(--green); border-color: var(--green); }
+.welten .chip.nein { color: var(--red); border-color: var(--red); }
+/* SQL-Krimi */
+.akte { font-family: var(--quick); }
+.akte .kapitel { font-family: var(--sans); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .08em; color: var(--orange); }
+.akte blockquote { margin: var(--sp-2) 0; padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border); background: var(--bg-card-2); }
+.akte .frage { margin: var(--sp-3) 0; padding: var(--sp-2) var(--sp-3); border: 1px solid var(--orange); color: var(--fg); font-family: var(--sans); font-weight: 600; background: color-mix(in srgb, var(--orange) 8%, transparent); }
+.pinnwand { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--sp-2); }
+.notiz { padding: var(--sp-2); border: 1px solid var(--border); background: color-mix(in srgb, var(--gold) 10%, var(--bg-card-2)); font-size: var(--fs-sm); transform: rotate(-.6deg); }
+.notiz:nth-child(2n) { transform: rotate(.7deg); }
+.notiz b { display: block; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .05em; color: var(--fg-dim); }
+.notiz.neu { border-color: var(--gold); }
+.daten { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12px; }
+.daten th, .daten td { border: 1px solid var(--border); padding: 3px 8px; text-align: left; white-space: nowrap; }
+.daten th { color: var(--accent); background: var(--bg-card-2); }
+.daten tr.treffer td { background: color-mix(in srgb, var(--gold) 14%, transparent); }
+/* Muster-Jagd */
+.muster-eingabe { display: flex; align-items: center; gap: 2px; height: 48px; padding: 0 var(--sp-3); border: 1px solid var(--border-strong); background: var(--bg); font-family: var(--mono); font-size: 20px; }
+.muster-eingabe:focus-within { border-color: var(--accent); }
+.muster-eingabe span { color: var(--fg-mute); }
+.muster-eingabe input { flex: 1; min-width: 0; border: 0; background: transparent; outline: none; color: var(--fg); font: inherit; }
+.zeilen-liste { display: flex; flex-direction: column; }
+.ziel-zeile { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: var(--sp-2); align-items: center; padding: 5px var(--sp-2); border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 13px; }
+.ziel-zeile i { color: var(--fg-mute); }
+.ziel-zeile.gut i { color: var(--green); }
+.ziel-zeile.schlecht i { color: var(--red); }
+.ziel-zeile.schlecht { background: color-mix(in srgb, var(--red) 7%, transparent); }
+.ziel-zeile mark { background: color-mix(in srgb, var(--accent) 35%, transparent); color: var(--fg); border-radius: 2px; }
+.spickzettel { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 3px var(--sp-3); font-size: var(--fs-sm); }
+.spickzettel code { justify-self: start; }
+/* Ausgabe-Sprint */
+.sprint { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; padding: var(--sp-4); gap: var(--sp-3); overflow-y: auto; }
+.sprint > * { width: min(100%, 760px); }
+.uhr { height: 8px; background: var(--bg); border: 1px solid var(--border); overflow: hidden; }
+.uhr span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--orange)); }
+.sprint-kopf { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-sm); color: var(--fg-dim); }
+.sprint-kopf .kette { margin-left: auto; color: var(--orange); font-weight: 600; }
+.schnipsel { margin: 0; padding: var(--sp-4); border: 1px solid var(--border); background: var(--bg); font-family: var(--mono); font-size: 17px; line-height: 1.6; white-space: pre; overflow-x: auto; }
+.antworten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-2); }
+.antwort { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--sp-2); align-items: center; min-height: 52px; padding: 0 var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg-card-2); font-family: var(--mono); font-size: 15px; color: var(--fg); text-align: left; cursor: pointer; }
+.antwort:hover { border-color: var(--accent); }
+.antwort kbd { width: 24px; height: 24px; display: grid; place-items: center; border: 1px solid var(--border-strong); border-radius: 3px; font-family: var(--num); font-size: 12px; color: var(--fg-dim); }
+.antwort.richtig { border-color: var(--green); background: color-mix(in srgb, var(--green) 12%, var(--bg-card-2)); }
+.antwort.falsch { border-color: var(--red); background: color-mix(in srgb, var(--red) 12%, var(--bg-card-2)); }
+.auswertung-zeile { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: var(--sp-2); padding: var(--sp-2) 0; border-bottom: 1px solid var(--border); font-size: var(--fs-sm); }
+.auswertung-zeile pre { margin: 4px 0; font-family: var(--mono); font-size: 12px; color: var(--fg-dim); white-space: pre-wrap; }
+.auswertung-zeile .erklaerung { color: var(--fg); font-family: var(--quick); }
+.auswertung-zeile .ok { color: var(--green); } .auswertung-zeile .nein { color: var(--red); }
+.telefon .antworten { grid-template-columns: minmax(0, 1fr); }
+.telefon .schnipsel { font-size: 15px; padding: var(--sp-3); }
+.telefon .spiel-raster { grid-template-columns: minmax(0, 1fr); }
+
+/* Wertung mit Ring (Spiele, CSS-Aufgaben) */
+.wertung-leiste { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: var(--sp-3); padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border); background: var(--bg-card); }
+.ring { position: relative; width: 64px; height: 64px; border-radius: 50%; background: conic-gradient(var(--accent) calc(var(--wert) * 1%), var(--bg-card-2) 0); display: grid; place-items: center; }
+.ring::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: var(--bg-card); }
+.ring span { position: relative; font-family: var(--num); font-weight: 700; font-size: 15px; }
+.wertung-text { min-width: 0; font-size: var(--fs-sm); line-height: 1.3; hyphens: auto; overflow-wrap: anywhere; }
+.wertung-text b { display: block; font-size: var(--fs-md); }
+.wertung-text span { color: var(--fg-dim); }
