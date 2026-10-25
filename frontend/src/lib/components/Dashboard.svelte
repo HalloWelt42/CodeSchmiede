@@ -4,6 +4,7 @@
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
   import { spielStore } from '../stores/SpielStore.svelte';
+  import { kursStore } from '../stores/KursStore.svelte';
   import { ladeStart, lead, weitermachen, wiederholungen } from '../startseite.svelte';
   import { schildText, serieUnter, tage } from '../spielanzeige';
   import EmptyState from './EmptyState.svelte';
@@ -15,7 +16,10 @@
   import Schilde from './spiel/Schilde.svelte';
   import StufeAnzeige from './spiel/StufeAnzeige.svelte';
 
-  onMount(ladeStart);
+  onMount(() => {
+    ladeStart();
+    void kursStore.laden(true);
+  });
 
   let weiter = $derived(weitermachen());
   let faellig = $derived(wiederholungen());
@@ -40,6 +44,10 @@
 {:else}
   <Seite titel="Willkommen zurück" lead={lead()}>
     {#snippet aktionen()}
+      {#if kursStore.weiter}
+        {@const k = kursStore.weiter}
+        <button class="knopf voll kuerzbar kurs-knopf" onclick={() => route.setze('einfuehrung', k.einfuehrung)} title="Kurs, Kapitel {k.nr}: {k.titel}"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>Kurs: {k.titel}</span></button>
+      {/if}
       {#if weiter}
         <button class="knopf primaer kuerzbar" onclick={weiter.oeffnen} title={weiter.text}><i class="fa-solid fa-play" aria-hidden="true"></i><span>{weiter.text}</span></button>
       {/if}
@@ -90,6 +98,8 @@
 {/if}
 
 <style>
+  /* drei Knöpfe im Kopf: der Kurs gibt zuerst nach */
+  .kurs-knopf { max-width: clamp(120px, 14vw, 300px); }
   .schilde {
     display: flex;
     align-items: center;

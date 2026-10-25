@@ -1,0 +1,2 @@
+fisch = "Hering"
+print(fisch)

@@ -1,0 +1,51 @@
+# Kurztest zu Kapitel 2: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-letzter-wert
+    text: Was gibt das Programm aus?
+    code: |
+      eis = "Vanille"
+      eis = "Fisch"
+      print(eis)
+    optionen:
+      - text: Fisch
+        richtig: true
+        erklaerung: Richtig, der zweite Wert ersetzt den ersten.
+      - text: Vanille
+        erklaerung: Die zweite Zeile ersetzt den Wert. Zum Glück für die Pinguine.
+      - text: |-
+          Vanille
+          Fisch
+        erklaerung: Es gibt nur ein print, also nur eine Zeile Ausgabe.
+  - frageart: fehlerstelle
+    id: kt-zu-frueh
+    text: Das Programm meldet NameError. Welche Zeile ist schuld?
+    code: |
+      print(gruss)
+      gruss = "Moin"
+      print("fertig")
+    zeile: 1
+    erklaerung: Genau. In Zeile 1 hat gruss noch keinen Wert.
+    hinweis: Wann bekommt gruss seinen Wert, und wann wird er gebraucht?
+  - frageart: luecke
+    id: kt-name-einsetzen
+    text: Ergänze den Namen, damit 7 ausgegeben wird.
+    code: |
+      zahl = 7
+      print(___)
+    antworten: [["zahl"]]
+    erklaerung: Richtig, ohne Anführungszeichen, sonst käme das Wort zahl heraus.
+    hinweis: Gesucht ist der Name, nicht ein Text.
+  - frageart: auswahl
+    id: kt-name-erlaubt
+    text: Welcher Name ist nicht erlaubt?
+    als_code: true
+    optionen:
+      - text: 1_platz
+        richtig: true
+        erklaerung: Richtig, Namen dürfen nicht mit einer Ziffer anfangen.
+      - text: platz_1
+        erklaerung: Ziffern sind erlaubt, nur nicht am Anfang.
+      - text: _platz
+        erklaerung: Ein Unterstrich am Anfang ist erlaubt.
+uebung: k028-visitenkarte

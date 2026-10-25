@@ -1,0 +1,2 @@
+pinguin = "Pit"
+print(pinguin)

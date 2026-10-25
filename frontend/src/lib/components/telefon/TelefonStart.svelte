@@ -4,6 +4,7 @@
   import { aufgabenStore } from '../../stores/AufgabenStore.svelte';
   import { route } from '../../stores/RouteStore.svelte';
   import { spielStore } from '../../stores/SpielStore.svelte';
+  import { kursStore } from '../../stores/KursStore.svelte';
   import { ladeStart, lead, letzteAufgabe, wiederholungen } from '../../startseite.svelte';
   import { schildText } from '../../spielanzeige';
   import EmptyState from '../EmptyState.svelte';
@@ -13,10 +14,17 @@
   import Schilde from '../spiel/Schilde.svelte';
   import StufeAnzeige from '../spiel/StufeAnzeige.svelte';
 
-  onMount(ladeStart);
+  onMount(() => {
+    ladeStart();
+    void kursStore.laden(true);
+  });
 
   let karten = $derived.by(() => {
     const liste = [letzteAufgabe()];
+    const kurs = kursStore.weiter;
+    if (kurs) {
+      liste.unshift({ icon: 'fa-graduation-cap', titel: 'Kurs', wert: kurs.titel, unter: `Kapitel ${kurs.nr}, Einführung ${kurs.abschnitte_fertig} von ${kurs.abschnitte}`, oeffnen: () => route.setze('einfuehrung', kurs.einfuehrung) });
+    }
     const faellig = wiederholungen();
     if (faellig) {
       liste.push({ icon: 'fa-rotate', titel: 'Wiederholen', wert: faellig.text, unter: 'Gelöstes auffrischen', oeffnen: faellig.oeffnen });

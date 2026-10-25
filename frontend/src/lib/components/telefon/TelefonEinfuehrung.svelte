@@ -81,6 +81,13 @@
         <div class="block"><div class="block-kopf"><span>Das kannst du jetzt</span></div>
           <ul class="lernziele">{#each e.lernziele as z (z)}<li><i class="fa-solid fa-check" aria-hidden="true"></i><span>{z}</span></li>{/each}</ul></div>
         <p class="dim">Die Übungen warten am Rechner.</p>
+        <div class="block"><div class="block-kopf"><span>Nochmal lesen</span></div>
+          <div class="schritt-liste">
+            {#each e.abschnitte as a (a.nummer)}
+              <button class="schritt nachlesen" onclick={() => { nummer = a.nummer; ende = false; feld?.scrollTo({ top: 0 }); }}><span class="nr">{a.nummer}</span><span class="t">{a.titel}</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+            {/each}
+          </div>
+        </div>
       </div>
     {:else if e && abschnitt}
       <div class="lesen-innen">
@@ -108,3 +115,8 @@
     </div>
   {/if}
 </div>
+
+<style>
+  .nachlesen { width: 100%; min-height: 44px; border: 0; background: transparent; color: var(--fg); font: inherit; text-align: left; }
+  .nachlesen:hover:not(:disabled) { background: var(--bg-card-2); color: var(--fg); }
+</style>

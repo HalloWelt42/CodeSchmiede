@@ -8,3 +8,6 @@ bloecke:
       - einfuehrung: py-ausgabe
         uebungen: [k011-hallo-welt, k012-guten-morgen, k013-pinguin-sagt, k014-zahlen, k015-drei-namen, k016-eisbude, k017-gedicht]
         projekt: [k019-notenbuch-kopf]
+      - einfuehrung: py-variablen
+        uebungen: [k021-erster-name, k022-lieblingsfisch, k023-wohnort, k024-punkte-steigen, k025-wer-ist-wer, k026-dreimal, k027-tauschen]
+        projekt: [k029-notenbuch-namen]
