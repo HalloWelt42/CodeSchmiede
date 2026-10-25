@@ -56,3 +56,6 @@ bloecke:
       - einfuehrung: py-funktionen
         uebungen: [k151-jubelruf, k152-quadrat, k153-begruessen, k154-eisscholle, k155-groessere, k156-gerade-pruefen, k157-suchen]
         projekt: [k159-notenbuch-funktionen]
+      - einfuehrung: py-sichtbarkeit
+        uebungen: [k161-drinnen-draussen, k162-klickzaehler, k163-fischpreis, k164-ohne-global, k165-fangbuch, k166-konto, k167-rundenzaehler]
+        projekt: [k169-notenbuch-eintragen]

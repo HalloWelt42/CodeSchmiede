@@ -1,0 +1,70 @@
+# Kurztest zu Kapitel 16: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-lokal
+    text: Was gibt das Programm aus?
+    code: |
+      name = "Pia"
+
+      def tauschen():
+          name = "Pit"
+
+      tauschen()
+      print(name)
+    als_code: true
+    optionen:
+      - text: Pia
+        richtig: true
+        erklaerung: Richtig. Das name in tauschen ist lokal; das äußere bleibt Pia.
+      - text: Pit
+        erklaerung: Ohne global legt die Zuweisung nur ein lokales name an.
+      - text: NameError
+        erklaerung: Draußen gibt es name, es wird nur nicht geändert.
+  - frageart: auswahl
+    id: kt-global
+    text: Was gibt das Programm aus?
+    code: |
+      stand = 10
+
+      def abziehen():
+          global stand
+          stand -= 3
+
+      abziehen()
+      abziehen()
+      print(stand)
+    als_code: true
+    optionen:
+      - text: "4"
+        richtig: true
+        erklaerung: Richtig, zweimal 3 weniger.
+      - text: "7"
+        erklaerung: abziehen läuft zweimal.
+      - text: "10"
+        erklaerung: Mit global ändert die Funktion das äußere stand.
+  - frageart: fehlerstelle
+    id: kt-unbound
+    text: Dieses Programm meldet UnboundLocalError. Welche Zeile?
+    code: |
+      leben = 3
+
+      def autsch():
+          print("Autsch!")
+          leben = leben - 1
+
+      autsch()
+    zeile: 5
+    erklaerung: Genau. Die Zuweisung macht leben lokal, rechts wird es aber schon gelesen.
+    hinweis: Wo wird drinnen etwas zugewiesen?
+  - frageart: auswahl
+    id: kt-liste
+    text: 'Braucht `def merken(x): notizen.append(x)` ein global, wenn notizen eine Liste draußen ist?'
+    optionen:
+      - text: Nein, append verändert nur den Inhalt der Liste
+        richtig: true
+        erklaerung: Richtig, der Name notizen wird nicht neu belegt.
+      - text: Ja, sonst meldet Python UnboundLocalError
+        erklaerung: Den gibt es nur bei einer Zuweisung an den Namen.
+      - text: Ja, sonst landet x in einer neuen Liste
+        erklaerung: append legt keine neue Liste an.
+uebung: k168-spielstand

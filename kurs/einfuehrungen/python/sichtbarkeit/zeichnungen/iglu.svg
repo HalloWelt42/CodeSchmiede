@@ -1,0 +1,30 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Iglu mit kleinem Fenster, drinnen schaut ein Pinguin hinaus, draußen steht ein Schneemann">
+  <ellipse cx="130" cy="166" rx="112" ry="8" fill="rgba(0,0,0,.12)"/>
+  <!-- Iglu -->
+  <path d="M30 162 Q30 52 120 52 Q210 52 210 162 Z" fill="#eef4f8" stroke="#2b3442" stroke-width="2.5" stroke-linejoin="round"/>
+  <g fill="none" stroke="#b8cad6" stroke-width="2">
+    <path d="M38 132 h164"/><path d="M50 104 h140"/><path d="M72 78 h96"/>
+    <path d="M70 162 v-30 M110 132 v-28 M150 162 v-30 M190 132 v-28 M90 104 v-26 M140 104 v-26 M128 78 v-24"/>
+  </g>
+  <!-- Eingang -->
+  <path d="M150 162 v-26 q0 -18 18 -18 q18 0 18 18 v26 Z" fill="#5c7385" stroke="#2b3442" stroke-width="2.2"/>
+  <!-- Fenster mit Pinguin -->
+  <circle cx="92" cy="112" r="20" fill="#5c7385" stroke="#2b3442" stroke-width="2.5"/>
+  <g transform="translate(92 118)">
+    <circle cx="0" cy="-6" r="10" fill="#2b3442"/>
+    <circle cx="-3.4" cy="-8" r="2.4" fill="#fff"/><circle cx="3.4" cy="-8" r="2.4" fill="#fff"/>
+    <circle cx="-1.8" cy="-8" r="1.2" fill="#111"/><circle cx="5" cy="-8" r="1.2" fill="#111"/>
+    <path d="M-3.4 -3 h6.8 l-3.4 4 Z" fill="#f2a13b"/>
+    <ellipse cx="0" cy="12" rx="12" ry="8" fill="#2b3442"/>
+  </g>
+  <path d="M72 112 h40 M92 92 v40" stroke="#2b3442" stroke-width="2" opacity=".35"/>
+  <!-- Schneemann draußen -->
+  <g stroke="#2b3442" stroke-width="2.2">
+    <circle cx="232" cy="142" r="17" fill="#ffffff"/>
+    <circle cx="232" cy="112" r="12" fill="#ffffff"/>
+    <path d="M222 101 h20 l-3 -14 h-14 Z" fill="#2b3442"/>
+  </g>
+  <circle cx="228" cy="110" r="1.6" fill="#111"/><circle cx="236" cy="110" r="1.6" fill="#111"/>
+  <path d="M232 114 l8 2 l-8 2 Z" fill="#f2a13b"/>
+  <path d="M218 138 l-12 -8 M246 138 l12 -8" stroke="#8a5a2b" stroke-width="2.2" stroke-linecap="round"/>
+</svg>
