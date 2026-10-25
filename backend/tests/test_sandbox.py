@@ -1,6 +1,8 @@
 """Härtung der Sandbox gegen das echte Image."""
 
 import subprocess
+import time
+import uuid
 
 import pytest
 
@@ -10,11 +12,15 @@ from codeschmiede.sandbox.runner import SandboxFehler
 from .conftest import braucht_sandbox
 
 pytestmark = braucht_sandbox
+# für die Zeitgrenze selbst: kurz, damit der Test nicht wartet
 KURZ = RunLimits(timeout_sekunden=2)
+# für Sicherheitseigenschaften: großzügig, denn unter hoher Last des Rechners braucht schon der Start von Python
+# im Container mehr als 2 s, und dann prüfte der Test die Zeitgrenze statt der Eigenschaft
+GENUG = RunLimits(timeout_sekunden=15)
 
 
 def test_normaler_lauf(docker_runner):
-    erg = docker_runner.run_code("print(6 * 7)", "python", KURZ)
+    erg = docker_runner.run_code("print(6 * 7)", "python", GENUG)
     assert erg.exit_code == 0 and erg.stdout == "42\n" and not erg.timeout
 
 
@@ -31,31 +37,31 @@ def test_ausgabeflut_wird_gekuerzt(docker_runner):
 
 def test_kein_netz(docker_runner):
     erg = docker_runner.run_code(
-        "import socket\nsocket.create_connection(('1.1.1.1', 80), timeout=1)", "python", KURZ
+        "import socket\nsocket.create_connection(('1.1.1.1', 80), timeout=1)", "python", GENUG
     )
     assert erg.exit_code != 0 and "unreachable" in erg.stderr.lower()
 
 
 def test_nur_lesend_ausser_tmp(docker_runner):
-    erg = docker_runner.run_code("open('/etc/x', 'w')", "python", KURZ)
+    erg = docker_runner.run_code("open('/etc/x', 'w')", "python", GENUG)
     assert "Read-only file system" in erg.stderr
-    erg = docker_runner.run_code("open('/tmp/a', 'w').write('ok'); print(open('/tmp/a').read())", "python", KURZ)
+    erg = docker_runner.run_code("open('/tmp/a', 'w').write('ok'); print(open('/tmp/a').read())", "python", GENUG)
     assert erg.stdout.strip() == "ok"
 
 
 def test_unprivilegiert(docker_runner):
-    erg = docker_runner.run_code("import os; print(os.getuid())", "python", KURZ)
+    erg = docker_runner.run_code("import os; print(os.getuid())", "python", GENUG)
     assert erg.stdout.strip() == "65534"
 
 
 def test_speichergrenze_ist_keine_zeitueberschreitung(docker_runner):
-    erg = docker_runner.run_code("x = bytearray(400 * 1024 * 1024)", "python", KURZ)
+    erg = docker_runner.run_code("x = bytearray(400 * 1024 * 1024)", "python", GENUG)
     assert not erg.timeout
     assert erg.exit_code != 0
 
 
 def test_javascript(docker_runner):
-    erg = docker_runner.run_code("console.log([1, 2].map((x) => x * 2).join(','))", "javascript", KURZ)
+    erg = docker_runner.run_code("console.log([1, 2].map((x) => x * 2).join(','))", "javascript", GENUG)
     assert erg.stdout.strip() == "2,4"
 
 
@@ -64,12 +70,22 @@ def test_unbekannte_sprache(docker_runner):
         docker_runner.run_code("x", "cobol", KURZ)
 
 
-def test_keine_reste(docker_runner):
+def test_keine_reste(docker_runner, monkeypatch):
+    # fester Name, damit nur dieser Lauf zählt und nicht Läufe anderer Nutzer derselben Sandbox
+    kennung = uuid.uuid4()
+    monkeypatch.setattr(uuid, "uuid4", lambda: kennung)
     docker_runner.run_code("while True: pass", "python", KURZ)
-    reste = subprocess.run(
-        ["docker", "ps", "-a", "--filter", "name=cs-lauf-", "--format", "{{.Names}}"],
-        capture_output=True, text=True,
-    ).stdout.strip()
+    name = f"cs-lauf-{kennung.hex[:16]}"
+    # --rm räumt im Docker-Dienst nach, unter Last mit Verzögerung
+    frist = time.monotonic() + 30
+    while True:
+        reste = subprocess.run(
+            ["docker", "ps", "-a", "--filter", f"name=^{name}$", "--format", "{{.Names}}"],
+            capture_output=True, text=True,
+        ).stdout.strip()
+        if reste == "" or time.monotonic() > frist:
+            break
+        time.sleep(1)
     assert reste == ""
 
 
@@ -99,5 +115,5 @@ def test_langsames_aufraeumen_kippt_keine_pruefung(monkeypatch):
 
 
 def test_datengrenze_wirkt(docker_runner):
-    erg = docker_runner.run_code("x = bytearray(400 * 1024 * 1024)", "python", KURZ)
+    erg = docker_runner.run_code("x = bytearray(400 * 1024 * 1024)", "python", GENUG)
     assert erg.exit_code != 0 and not erg.timeout
