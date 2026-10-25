@@ -81,3 +81,6 @@ bloecke:
       - einfuehrung: py-regex
         uebungen: [k221-erste-spur, k222-alle-zahlen, k223-zahlen-summe, k224-postleitzahl, k225-namen-finden, k226-datum-zerlegen, k227-schwaerzen]
         projekt: []
+      - einfuehrung: py-suchen-sortieren
+        uebungen: [k231-lineare-suche, k232-mitte, k233-wo-steht, k234-schritte-zaehlen, k235-groesstes, k236-auswahlsortieren, k237-blasen]
+        projekt: []

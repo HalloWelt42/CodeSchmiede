@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 23: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-voraussetzung
+    text: In welcher Liste darf man binär suchen?
+    optionen:
+      - text: "[3, 8, 11, 20]"
+        richtig: true
+        erklaerung: Richtig, nur diese ist sortiert.
+      - text: "[20, 3, 11, 8]"
+        erklaerung: Unsortiert; die Hälfte, die man wegwirft, könnte das Gesuchte enthalten.
+      - text: "[3, 20, 8, 11]"
+        erklaerung: Auch die ist nicht sortiert.
+  - frageart: auswahl
+    id: kt-erste-runde
+    text: Wie sieht die Liste nach der ersten Runde Auswahlsortieren aus?
+    code: zahlen = [7, 3, 9, 2]
+    als_code: true
+    optionen:
+      - text: "[2, 3, 9, 7]"
+        richtig: true
+        erklaerung: Richtig, das Kleinste, die 2, tauscht mit der 7 an Platz 0.
+      - text: "[2, 7, 3, 9]"
+        erklaerung: Getauscht werden nur zwei Plätze, der Rest bleibt stehen.
+      - text: "[3, 7, 9, 2]"
+        erklaerung: Gesucht wird das Kleinste der ganzen Liste, das ist die 2.
+  - frageart: auswahl
+    id: kt-schritte
+    text: Etwa wie viele Schritte braucht die binäre Suche in einer Million sortierter Zahlen höchstens?
+    optionen:
+      - text: Etwa 20
+        richtig: true
+        erklaerung: Richtig. Eine Million lässt sich etwa zwanzigmal halbieren.
+      - text: Etwa 1000
+        erklaerung: Halbieren schrumpft viel schneller.
+      - text: Etwa 500000
+        erklaerung: Das wäre die lineare Suche im Mittel.
+  - frageart: luecke
+    id: kt-links
+    text: Ergänze, wie es weitergeht, wenn das Element in der Mitte zu klein ist.
+    code: |
+      if liste[mitte] < ziel:
+          links = ___
+    antworten: [["mitte + 1", "mitte+1"]]
+    erklaerung: Richtig, die Mitte selbst ist schon geprüft, weiter geht es rechts davon.
+    hinweis: Die linke Grenze rückt hinter die Mitte.
+uebung: k238-rangliste
