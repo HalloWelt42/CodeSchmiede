@@ -1,0 +1,55 @@
+# Kurztest zu Kapitel 6: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-und-oder
+    text: Was gibt das Programm aus?
+    code: |
+      sonne = False
+      ferien = True
+      print(sonne or ferien)
+      print(sonne and ferien)
+    optionen:
+      - text: |-
+          True
+          False
+        richtig: true
+        erklaerung: Richtig. Für or reichen die Ferien, für and fehlt die Sonne.
+      - text: |-
+          False
+          True
+        erklaerung: or braucht nur eine wahre Seite, and beide.
+      - text: |-
+          True
+          True
+        erklaerung: and ist nur wahr, wenn beide Seiten wahr sind; sonne ist False.
+    als_code: true
+  - frageart: fehlerstelle
+    id: kt-fehler-gleich
+    text: Dieses Programm meldet einen Syntaxfehler. Welche Zeile?
+    code: |
+      fische = 3
+      print(fische = 3)
+      print(fische > 1)
+    zeile: 2
+    erklaerung: Genau. Zum Vergleichen braucht es ==, ein einzelnes = vergibt einen Namen.
+    hinweis: Welches Zeichen vergleicht, welches vergibt einen Namen?
+  - frageart: luecke
+    id: kt-luecke-in
+    text: Ergänze, damit geprüft wird, ob "pin" in wort vorkommt.
+    code: print("pin" ___ wort)
+    antworten: [["in"]]
+    erklaerung: Richtig, in schaut nach, ob ein Text in einem anderen steckt.
+    hinweis: Ein kurzes englisches Wort für "in".
+  - frageart: auswahl
+    id: kt-not
+    text: Was ergibt `not 4 > 2`?
+    als_code: true
+    optionen:
+      - text: 'False'
+        richtig: true
+        erklaerung: Richtig, 4 > 2 ist True, not dreht es um.
+      - text: 'True'
+        erklaerung: Erst wird verglichen (True), dann dreht not das Ergebnis um.
+      - text: Fehler
+        erklaerung: not darf vor einem Vergleich stehen.
+uebung: k068-schaltjahr

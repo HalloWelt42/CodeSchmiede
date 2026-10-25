@@ -1,0 +1,38 @@
+<svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Links leuchtet eine Lampe nur, wenn beide Schalter hintereinander geschlossen sind; rechts reicht einer von zwei Schaltern nebeneinander">
+  <!-- links: und -->
+  <g>
+    <path d="M20 120 H140 M20 120 V44 H52 M88 44 H104 M140 44 V120" fill="none" stroke="#2b3442" stroke-width="3" stroke-linecap="round"/>
+    <!-- Schalter 1 geschlossen -->
+    <circle cx="52" cy="44" r="4" fill="#2b3442"/><circle cx="88" cy="44" r="4" fill="#2b3442"/>
+    <path d="M52 44 L88 44" stroke="#3fbf6f" stroke-width="4" stroke-linecap="round"/>
+    <!-- Schalter 2 offen -->
+    <circle cx="104" cy="44" r="4" fill="#2b3442"/><circle cx="140" cy="44" r="4" fill="#2b3442"/>
+    <path d="M104 44 L136 24" stroke="#e5484d" stroke-width="4" stroke-linecap="round"/>
+    <!-- Lampe aus -->
+    <g transform="translate(80 120)">
+      <circle r="16" fill="#e9edf2" stroke="#2b3442" stroke-width="2.5"/>
+      <path d="M-6 -2 l6 8 l6 -8" fill="none" stroke="#8a93a0" stroke-width="2"/>
+      <rect x="-8" y="14" width="16" height="9" rx="2" fill="#8a93a0" stroke="#2b3442" stroke-width="2"/>
+    </g>
+    <text x="80" y="160" text-anchor="middle" font-family="'Chakra Petch', Barlow, monospace" font-weight="700" font-size="15" fill="#e5484d">and</text>
+  </g>
+  <!-- rechts: oder -->
+  <g transform="translate(150 0)">
+    <path d="M20 120 H140 M20 120 V30 H52 M88 30 H120 V120 M20 64 H52 M88 64 H120" fill="none" stroke="#2b3442" stroke-width="3" stroke-linecap="round"/>
+    <!-- Schalter oben offen -->
+    <circle cx="52" cy="30" r="4" fill="#2b3442"/><circle cx="88" cy="30" r="4" fill="#2b3442"/>
+    <path d="M52 30 L84 12" stroke="#e5484d" stroke-width="4" stroke-linecap="round"/>
+    <!-- Schalter unten geschlossen -->
+    <circle cx="52" cy="64" r="4" fill="#2b3442"/><circle cx="88" cy="64" r="4" fill="#2b3442"/>
+    <path d="M52 64 L88 64" stroke="#3fbf6f" stroke-width="4" stroke-linecap="round"/>
+    <!-- Lampe an -->
+    <g transform="translate(70 120)">
+      <circle r="26" fill="#fde047" opacity=".35"/>
+      <circle r="16" fill="#fde047" stroke="#2b3442" stroke-width="2.5"/>
+      <path d="M-6 -2 l6 8 l6 -8" fill="none" stroke="#b45309" stroke-width="2"/>
+      <rect x="-8" y="14" width="16" height="9" rx="2" fill="#8a93a0" stroke="#2b3442" stroke-width="2"/>
+      <g stroke="#f2b84b" stroke-width="2.5" stroke-linecap="round"><path d="M-30 -8 l-8 -3 M30 -8 l8 -3 M0 -30 v-8"/></g>
+    </g>
+    <text x="70" y="160" text-anchor="middle" font-family="'Chakra Petch', Barlow, monospace" font-weight="700" font-size="15" fill="#3fbf6f">or</text>
+  </g>
+</svg>

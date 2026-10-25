@@ -20,3 +20,8 @@ bloecke:
       - einfuehrung: py-umwandeln
         uebungen: [k051-aus-text-wird-zahl, k052-verwandeln, k053-begruessung, k054-doppelt-so-alt, k055-kommapreis, k056-zwei-zahlen, k057-verteilen-mit-eingabe]
         projekt: [k059-notenbuch-eingabe]
+  - titel: Entscheiden und wiederholen
+    kapitel:
+      - einfuehrung: py-wahrheit
+        uebungen: [k061-groesser, k062-gleich, k063-volljaehrig, k064-gerade, k065-eis-kaufen, k066-wochenende, k067-fisch-im-satz]
+        projekt: [k069-notenbuch-bestanden]
