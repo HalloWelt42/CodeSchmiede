@@ -59,3 +59,6 @@ bloecke:
       - einfuehrung: py-sichtbarkeit
         uebungen: [k161-drinnen-draussen, k162-klickzaehler, k163-fischpreis, k164-ohne-global, k165-fangbuch, k166-konto, k167-rundenzaehler]
         projekt: [k169-notenbuch-eintragen]
+      - einfuehrung: py-fehler
+        uebungen: [k171-erstes-netz, k172-durch-null, k173-sichere-zahl, k174-nochmal-bitte, k175-sicher-teilen, k176-alterspruefung, k177-unbekannte-ware]
+        projekt: [k179-notenbuch-fehler]

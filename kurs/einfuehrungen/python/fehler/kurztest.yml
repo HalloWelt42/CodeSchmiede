@@ -1,0 +1,69 @@
+# Kurztest zu Kapitel 17: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-ablauf
+    text: Was gibt das Programm aus?
+    code: |
+      try:
+          print("A")
+          x = 5 / 0
+          print("B")
+      except ZeroDivisionError:
+          print("C")
+      print("D")
+    als_code: true
+    optionen:
+      - text: |-
+          A
+          C
+          D
+        richtig: true
+        erklaerung: Richtig. Nach A kommt der Fehler, B wird übersprungen, C fängt, D läuft danach.
+      - text: |-
+          A
+          B
+          C
+          D
+        erklaerung: Nach dem Fehler läuft im try-Block nichts mehr.
+      - text: |-
+          C
+          D
+        erklaerung: A wird ausgegeben, bevor der Fehler passiert.
+  - frageart: luecke
+    id: kt-as
+    text: Ergänze, damit die Meldung des Fehlers in fehler landet.
+    code: |
+      try:
+          zahl = int("x")
+      except ValueError ___ fehler:
+          print(fehler)
+    antworten: [["as"]]
+    erklaerung: Richtig, mit as bekommt der Fehler einen Namen.
+    hinweis: Ein kleines englisches Wort für "als".
+  - frageart: auswahl
+    id: kt-raise
+    text: Wozu dient `raise ValueError("zu groß")`?
+    optionen:
+      - text: Es löst selbst einen Fehler mit dieser Meldung aus
+        richtig: true
+        erklaerung: Richtig, wer den Aufruf in try steckt, kann ihn fangen.
+      - text: Es fängt einen ValueError ab
+        erklaerung: Fangen macht except, raise löst aus.
+      - text: Es gibt "zu groß" aus und macht weiter
+        erklaerung: Nach raise endet die Funktion sofort.
+  - frageart: fehlerstelle
+    id: kt-ungefangen
+    text: Dieses Programm bricht ab. In welcher Zeile entsteht der Fehler?
+    code: |
+      werte = ["3", "vier", "5"]
+      summe = 0
+      for w in werte:
+          summe += int(w)
+      try:
+          print(summe)
+      except ValueError:
+          print("Fehler")
+    zeile: 4
+    erklaerung: Genau. int("vier") scheitert in Zeile 4, und die steht gar nicht im try-Block.
+    hinweis: Welche Zeile wandelt um, und steht sie im Netz?
+uebung: k178-messwerte
