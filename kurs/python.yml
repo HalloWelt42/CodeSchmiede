@@ -84,3 +84,6 @@ bloecke:
       - einfuehrung: py-suchen-sortieren
         uebungen: [k231-lineare-suche, k232-mitte, k233-wo-steht, k234-schritte-zaehlen, k235-groesstes, k236-auswahlsortieren, k237-blasen]
         projekt: []
+      - einfuehrung: py-rekursion
+        uebungen: [k241-countdown, k242-fakultaet, k243-summe-bis, k244-potenz, k245-umdrehen, k246-fibonacci, k247-quersumme]
+        projekt: []

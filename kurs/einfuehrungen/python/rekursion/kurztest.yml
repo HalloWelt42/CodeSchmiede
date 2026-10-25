@@ -1,0 +1,67 @@
+# Kurztest zu Kapitel 24: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-rueckwaerts
+    text: Was gibt das Programm aus?
+    code: |
+      def hoch(n):
+          if n > 0:
+              hoch(n - 1)
+              print(n)
+
+      hoch(3)
+    als_code: true
+    optionen:
+      - text: |-
+          1
+          2
+          3
+        richtig: true
+        erklaerung: Richtig. print steht nach dem Aufruf, also wird auf dem Rückweg ausgegeben, zuerst vom innersten Rahmen.
+      - text: |-
+          3
+          2
+          1
+        erklaerung: So wäre es, wenn print vor dem Aufruf stünde.
+      - text: |-
+          0
+          1
+          2
+          3
+        erklaerung: Bei n gleich 0 passiert gar nichts.
+  - frageart: luecke
+    id: kt-abbruch
+    text: Ergänze den Abbruchfall der Potenz.
+    code: |
+      def potenz(basis, exponent):
+          if exponent == 0:
+              return ___
+          return basis * potenz(basis, exponent - 1)
+    antworten: [["1"]]
+    erklaerung: Richtig, jede Zahl hoch 0 ist 1.
+    hinweis: Was ist 5 hoch 0?
+  - frageart: auswahl
+    id: kt-abbruchfall
+    text: Was passiert, wenn eine rekursive Funktion ihren Abbruchfall nie erreicht?
+    optionen:
+      - text: Python bricht nach vielen Aufrufen mit RecursionError ab
+        richtig: true
+        erklaerung: Richtig, nach etwa tausend Rahmen ist Schluss.
+      - text: Die Funktion gibt None zurück
+        erklaerung: Sie kommt nie bis zu einem Ende, an dem sie etwas zurückgeben könnte.
+      - text: Python merkt es und hört nach dem ersten Aufruf auf
+        erklaerung: Python ruft so lange auf, bis die Grenze erreicht ist.
+  - frageart: fehlerstelle
+    id: kt-falsche-richtung
+    text: Dieses Programm meldet RecursionError. In welcher Zeile läuft die Rekursion in die falsche Richtung?
+    code: |
+      def countdown(n):
+          if n == 0:
+              return "Los"
+          return countdown(n + 1)
+
+      print(countdown(3))
+    zeile: 4
+    erklaerung: Genau. n + 1 entfernt sich von 0, der Abbruchfall wird nie erreicht; richtig wäre n - 1.
+    hinweis: Wird n mit jedem Aufruf kleiner?
+uebung: k248-kistenlager
