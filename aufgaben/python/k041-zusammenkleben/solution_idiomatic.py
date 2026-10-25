@@ -1,0 +1,1 @@
+print("Eis" + " " + "am Stiel")

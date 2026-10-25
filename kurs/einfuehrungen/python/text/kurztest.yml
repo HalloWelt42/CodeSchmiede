@@ -1,0 +1,49 @@
+# Kurztest zu Kapitel 4: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-ausschnitt
+    text: Was gibt `print("Robbe"[1:3])` aus?
+    als_code: true
+    optionen:
+      - text: ob
+        richtig: true
+        erklaerung: Richtig, die Zeichen mit Index 1 und 2.
+      - text: obb
+        erklaerung: Das Zeichen an Index 3 gehört nicht mehr dazu.
+      - text: Ro
+        erklaerung: Der Index zählt ab 0, also ist 1 das zweite Zeichen.
+  - frageart: fehlerstelle
+    id: kt-text-plus-zahl
+    text: Dieses Programm bricht mit TypeError ab. Welche Zeile?
+    code: |
+      alter = 4
+      print("Pit ist", alter)
+      print("Pit ist " + alter)
+    zeile: 3
+    erklaerung: Genau. Text und Zahl lassen sich nicht mit + verbinden; mit Komma oder f-String geht es.
+    hinweise:
+      2: Mit Komma darf print Text und Zahl mischen.
+    hinweis: Wo wird ein Text mit einer Zahl verbunden?
+  - frageart: luecke
+    id: kt-laenge
+    text: Ergänze, damit die Anzahl der Zeichen von wort ausgegeben wird.
+    code: print(___(wort))
+    antworten: [["len"]]
+    erklaerung: Richtig, len zählt die Zeichen.
+    hinweis: Ein kurzes Wort für Länge auf Englisch.
+  - frageart: auswahl
+    id: kt-unveraendert
+    text: Was gibt das Programm aus?
+    code: |
+      name = "pia"
+      name.upper()
+      print(name)
+    optionen:
+      - text: pia
+        richtig: true
+        erklaerung: Richtig. upper liefert einen neuen Text, der hier nirgends aufgehoben wird.
+      - text: PIA
+        erklaerung: Erst name = name.upper() würde name ändern.
+      - text: Pia
+        erklaerung: upper macht alle Buchstaben groß, aber das Ergebnis wird hier gar nicht gemerkt.
+uebung: k048-namensschild

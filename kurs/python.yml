@@ -14,3 +14,6 @@ bloecke:
       - einfuehrung: py-rechnen
         uebungen: [k031-plus, k032-mal, k033-fischkosten, k034-gerecht-teilen, k035-durchschnitt, k036-quadrat-wuerfel, k037-kontostand]
         projekt: [k039-notenbuch-schnitt]
+      - einfuehrung: py-text
+        uebungen: [k041-zusammenkleben, k042-fstring-luecke, k043-wie-lang, k044-erster-letzter, k045-ausschnitt, k046-schreihals, k047-umtaufen]
+        projekt: [k049-notenbuch-kopfzeile]
