@@ -127,3 +127,9 @@ begriffe:
   - id: klasse
     titel: Eigene Klassen
     erkennung: {knoten: [ClassDef]}
+  - id: datum
+    titel: Datum und Zeit
+    erkennung: {aufrufe: [date, datetime, timedelta], methoden: [date, datetime, timedelta, strftime, strptime, fromisoformat, isoformat, weekday, isoweekday, today, now]}
+  - id: regex
+    titel: Reguläre Ausdrücke
+    erkennung: {methoden: [search, match, fullmatch, findall, finditer, sub, compile]}

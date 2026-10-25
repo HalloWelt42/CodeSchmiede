@@ -1,0 +1,49 @@
+# Kurztest zu Kapitel 21: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-monatsende
+    text: Was gibt das Programm aus?
+    code: |
+      from datetime import date, timedelta
+
+      print(date(2026, 1, 30) + timedelta(days=3))
+    als_code: true
+    optionen:
+      - text: "2026-02-02"
+        richtig: true
+        erklaerung: Richtig, der Januar hat 31 Tage, danach geht es im Februar weiter.
+      - text: "2026-01-33"
+        erklaerung: Python springt beim Monatsende in den nächsten Monat.
+      - text: "2026-02-03"
+        erklaerung: 30. plus 1 ist der 31., plus 2 der 1. Februar, plus 3 der 2. Februar.
+  - frageart: luecke
+    id: kt-vorlage
+    text: Ergänze die Vorlage, damit 24.12.2026 ausgegeben wird.
+    code: print(date(2026, 12, 24).strftime(___))
+    antworten: [['"%d.%m.%Y"', "'%d.%m.%Y'"]]
+    erklaerung: Richtig, Tag, Monat und Jahr mit Punkten.
+    hinweis: "%d für den Tag, %m für den Monat, %Y für das Jahr."
+  - frageart: auswahl
+    id: kt-weekday
+    text: Welche Zahl liefert `weekday()` für einen Montag?
+    optionen:
+      - text: "0"
+        richtig: true
+        erklaerung: Richtig, gezählt wird ab 0.
+      - text: "1"
+        erklaerung: Die Zählung beginnt bei 0.
+      - text: "7"
+        erklaerung: Die Werte gehen von 0 bis 6.
+  - frageart: fehlerstelle
+    id: kt-falsches-datum
+    text: Dieses Programm meldet ValueError. Welche Zeile?
+    code: |
+      from datetime import date
+
+      a = date(2026, 2, 28)
+      b = date(2026, 2, 29)
+      print(b - a)
+    zeile: 4
+    erklaerung: Genau. 2026 ist kein Schaltjahr, einen 29. Februar gibt es nicht.
+    hinweis: Welchen Tag gibt es im Jahr 2026 nicht?
+uebung: k218-fuetterplan

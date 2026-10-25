@@ -73,3 +73,8 @@ bloecke:
       - einfuehrung: py-klassen
         uebungen: [k201-eisbude, k202-name-merken, k203-eisscholle, k204-konto, k205-zaehler, k206-fische-zeigen, k207-wettfischen]
         projekt: [k209-notenbuch-klasse]
+  - titel: Zusatzthemen
+    kapitel:
+      - einfuehrung: py-datum
+        uebungen: [k211-heiligabend, k212-neujahr, k213-wochentag, k214-countdown, k215-deutsch, k216-in-hundert-tagen, k217-wie-alt]
+        projekt: []
