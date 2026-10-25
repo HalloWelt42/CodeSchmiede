@@ -35,6 +35,9 @@ def baue_kurs_router(state: AppState) -> APIRouter:
     def geloest() -> set[str]:
         return {p.aufgabe_id for p in state.progress.hole_alle_progress() if p.status == "geloest"}
 
+    def offen(eid: str) -> None:
+        state.kurs.pruefe_offen(eid, aufgaben(), geloest())
+
     @router.get("", response_model=list[KursSicht])
     def uebersicht() -> list[KursSicht]:
         return state.kurs.uebersicht(aufgaben(), geloest())
@@ -42,22 +45,26 @@ def baue_kurs_router(state: AppState) -> APIRouter:
     @router.get("/einfuehrung/{eid}", response_model=EinfuehrungSicht)
     def einfuehrung(eid: str) -> EinfuehrungSicht:
         with _fehler():
+            offen(eid)
             return state.kurs.einfuehrung(eid)
 
     @router.post("/einfuehrung/{eid}/antwort", response_model=Urteil)
     def antwort(eid: str, a: Antwort) -> Urteil:
         with _fehler():
+            offen(eid)
             return state.kurs.antworten(eid, a)
 
     @router.post("/einfuehrung/{eid}/abschnitt/{nummer}/fertig", response_model=EinfuehrungSicht)
     def abschnitt_fertig(eid: str, nummer: int) -> EinfuehrungSicht:
         with _fehler():
+            offen(eid)
             state.kurs.abschnitt_fertig(eid, nummer)
             return state.kurs.einfuehrung(eid)
 
     @router.post("/einfuehrung/{eid}/beispiel/{bid}/ausfuehren", response_model=Aufzeichnung)
     def ausfuehren(eid: str, bid: str, anfrage: AusfuehrenAnfrage) -> Aufzeichnung:
         with _fehler():
+            offen(eid)
             return state.kurs.ausfuehren(eid, bid, anfrage.code)
 
     @router.get("/kurztest/{eid}", response_model=KurztestSicht)

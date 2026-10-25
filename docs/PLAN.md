@@ -213,6 +213,25 @@ Offen für den Bau:
   eigenen Weg in den Lauf.
 - Stilvorgabe der Zeichnungen und Farbfamilien je Sprache: entstehen mit der Stilprobe.
 
+## Ergebnis Schritt 7, Teil 1: Aufbaukurs (0.78.0)
+
+- Unterbau: Aufzeichnung eines Python-Laufs in der Sandbox (je Zeile der Speicher danach, mit Aufrufrahmen, Rückgabe,
+  Grenzen), Aufgabentyp `programm` (ganzes Programm mit Eingaben für `input()`, Vergleich der Ausgabe), Einführungen als
+  Markdown mit Blöcken (`docs/KURS-FORMAT.md`), Kurse je Sprache, Begriffskatalog Python mit Erkennung über den
+  Syntaxbaum und Prüfung auf Vorgriffe, Mermaid-Diagramme als SVG (`tools/diagramme.py`), Bildaufträge an den Medienpool
+  (`tools/bildschluessel.py`, vorerst nur für Karten)
+- Server: Stand je Kapitel aus Ereignissen und gelösten Übungen, Antworten und Erklärungen nur nach dem Urteil,
+  Ausführen erst nach der Vorhersage, Abschnitt erst nach richtigen Fragen, gesperrte Kapitel nur per Kurztest,
+  Merkblatt aus der Einführung; Erfahrung je fertigem Abschnitt, Kurstage zählen zur Serie, Erfolg für Kapitel
+- Oberfläche: Bereich Kurs am Rechner (Übersicht, Einführung mit Werkbank, Ablauf und Speicherbild, alle Fragearten,
+  Kapitelende, Kurztest, Merkblatt) und am Telefon (Kurs, Einführung lesen, Fragen, Ausführen, Ablauf); Startseiten
+  führen zum aktuellen Kapitel; Programm-Aufgaben mit Ausgabevergleich und Probelauf mit Eingaben
+- Python-Kurs Kapitel 1 bis 3 (Ausgabe, Variablen, Rechnen): Einführungen mit eigenen Zeichnungen und Diagrammen,
+  je sieben Übungen, Kurztest und ein Stück des Kapitelprojekts Notenbuch; Bestandsprüfung lässt jedes Beispiel laufen
+  und vergleicht die richtige Vorhersage mit dem echten Lauf
+- Erzeugte Bilder ruhen (Nutzer 25.10.2026): Stilprobe im Medienpool angelegt, acht Bilder erzeugt, Erzeugung gestoppt;
+  weiter erst nach Klärung
+
 ## Offen
 
 - Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) zur Freigabe; Bau danach als eigener Abschnitt.

@@ -110,3 +110,30 @@ def test_sprint_schnipsel_stimmen(state):
     with ThreadPoolExecutor(max_workers=4) as pool:
         fehler = [f for f in pool.map(lauf, auftraege) if f]
     assert auftraege and fehler == [], "\n".join(fehler)
+
+
+def test_beispiele_laufen_und_vorhersagen_stimmen(state):
+    """Jedes Python-Beispiel der Einführungen läuft ohne Fehler; bei einer Vorhersage als Auswahl ist die richtige
+    Option genau die Ausgabe des echten Laufs."""
+    from codeschmiede.kurs.aufzeichnung import aufzeichnen
+    from codeschmiede.kurs.dienst import normalisiert
+    from codeschmiede.kurs.modelle import Beispiel
+    from codeschmiede.sandbox.result import RunLimits
+
+    falsch = []
+    for e in state.kurs.inhalt.einfuehrungen.values():
+        if e.kopf.sprache != "python":
+            continue
+        for a in e.abschnitte:
+            for t in a.teile:
+                if not isinstance(t, Beispiel):
+                    continue
+                lauf = aufzeichnen(state.runner, t.code, RunLimits(timeout_sekunden=15))
+                if lauf.fehler:
+                    falsch.append(f"{e.id}/{t.id}: {lauf.fehler}")
+                    continue
+                if t.vorhersage and t.vorhersage.art == "auswahl":
+                    richtig = next(o.text for o in t.vorhersage.optionen if o.richtig)
+                    if normalisiert(richtig) != normalisiert(lauf.ausgabe):
+                        falsch.append(f"{e.id}/{t.id}: richtige Option {richtig!r}, Lauf gibt {lauf.ausgabe!r}")
+    assert falsch == []

@@ -11,3 +11,6 @@ bloecke:
       - einfuehrung: py-variablen
         uebungen: [k021-erster-name, k022-lieblingsfisch, k023-wohnort, k024-punkte-steigen, k025-wer-ist-wer, k026-dreimal, k027-tauschen]
         projekt: [k029-notenbuch-namen]
+      - einfuehrung: py-rechnen
+        uebungen: [k031-plus, k032-mal, k033-fischkosten, k034-gerecht-teilen, k035-durchschnitt, k036-quadrat-wuerfel, k037-kontostand]
+        projekt: [k039-notenbuch-schnitt]

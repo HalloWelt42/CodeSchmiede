@@ -1,0 +1,44 @@
+# Kurztest zu Kapitel 3: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-rest-gerade
+    text: Was gibt `print(14 % 2)` aus?
+    als_code: true
+    optionen:
+      - text: '0'
+        richtig: true
+        erklaerung: Richtig, 14 ist gerade, beim Teilen durch 2 bleibt nichts übrig.
+      - text: '7'
+        erklaerung: 7 wäre 14 // 2. % liefert den Rest.
+      - text: '7.0'
+        erklaerung: Das wäre 14 / 2. % liefert den Rest.
+  - frageart: luecke
+    id: kt-kurzform
+    text: Ergänze so, dass punkte um 3 größer wird.
+    code: punkte ___ 3
+    antworten: [["+="]]
+    erklaerung: Richtig, += zählt dazu und merkt sich das Ergebnis.
+    hinweis: Gesucht ist die Kurzform für punkte = punkte + 3.
+  - frageart: ordnen
+    id: kt-ordnen-rechnung
+    text: Erst wird der Preis berechnet, dann ausgegeben, dann gibt es 2 Taler Rabatt, dann wieder ausgeben. Bring die Zeilen in Reihenfolge.
+    zeilen:
+      - preis = 4 * 3
+      - print(preis)
+      - preis -= 2
+      - print(preis)
+    erklaerung: Richtig. Erst ausrechnen, dann ausgeben, dann ändern.
+    hinweis: Ein Name braucht seinen Wert, bevor er verändert oder ausgegeben wird.
+  - frageart: auswahl
+    id: kt-klammer
+    text: Welche Zeile gibt 20 aus?
+    als_code: true
+    optionen:
+      - text: print((1 + 4) * 4)
+        richtig: true
+        erklaerung: Richtig, die Klammer kommt zuerst.
+      - text: print(1 + 4 * 4)
+        erklaerung: Punkt vor Strich, das ergibt 17.
+      - text: print(1 + 4 ** 2)
+        erklaerung: Hoch kommt vor plus, das ergibt 17.
+uebung: k038-stunden-minuten

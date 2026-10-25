@@ -283,3 +283,16 @@ def test_probelauf_eines_programms_mit_eingabe(kurs_settings, docker_runner):
     client = TestClient(app_bauen(kurs_settings, runner=docker_runner))
     antwort = client.post("/api/submissions/probelauf", json={"aufgabe_id": "092-echo", "code": "print(input() * 2)", "input": ["ab"]}).json()
     assert antwort["stdout"] == "abab\n" and antwort["fehler"] is None
+
+
+def test_gesperrtes_kapitel_nur_per_kurztest(kurs_settings, docker_runner):
+    zweite = kurs_settings.kurs_pfad / "einfuehrungen" / "python" / "zwei"
+    zweite.mkdir(parents=True)
+    (zweite / "einfuehrung.md").write_text(EINFUEHRUNG.replace("id: py-ausgabe", "id: py-zwei").replace("fuehrt_ein: [ausgabe, text]", "fuehrt_ein: [variable]"), encoding="utf-8")
+    kurs = kurs_settings.kurs_pfad / "python.yml"
+    kurs.write_text(kurs.read_text() + "      - {einfuehrung: py-zwei}\n", encoding="utf-8")
+    client = TestClient(app_bauen(kurs_settings, runner=docker_runner))
+    assert client.get("/api/kurs").json()[0]["bloecke"][0]["kapitel"][1]["stand"] == "zu"
+    assert client.get("/api/kurs/einfuehrung/py-zwei").status_code == 409
+    assert client.post("/api/kurs/einfuehrung/py-zwei/antwort", json={"element": "was-macht-print", "wahl": [0]}).status_code == 409
+    assert client.get("/api/kurs/einfuehrung/py-ausgabe").status_code == 200

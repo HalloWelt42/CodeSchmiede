@@ -204,6 +204,15 @@ class Kursdienst:
         tage = frozenset(e.tag for e in ereignisse if e.art in ("abschnitt", "kurztest") or (e.art in ("frage", "kurztest_frage") and e.richtig))
         return KursBeitrag(abschnitte=len(abschnitte), kapitel=kapitel, tage=tage)
 
+    def pruefe_offen(self, eid: str, aufgaben: dict[str, Aufgabe], geloest: set[str]) -> None:
+        """Ein Kapitel, das noch zu ist, lässt sich nur per Kurztest betreten; die Oberfläche versteckt es, der Server
+        erzwingt es."""
+        for kurs in self.uebersicht(aufgaben, geloest):
+            for block in kurs.bloecke:
+                for k in block.kapitel:
+                    if k.einfuehrung == eid and k.stand == "zu":
+                        raise NichtErlaubt(f"Kapitel {k.nr} ist noch zu; es öffnet sich nach Kapitel {k.nr - 1} oder per Kurztest")
+
     # ---------- Einführung ----------
 
     def einfuehrung(self, eid: str) -> EinfuehrungSicht:

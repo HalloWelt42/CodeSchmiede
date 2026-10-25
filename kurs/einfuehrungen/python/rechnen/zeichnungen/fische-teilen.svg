@@ -1,0 +1,35 @@
+<svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fünf Pinguine mit je drei Fischen, zwei Fische bleiben im Eimer">
+  <defs>
+    <g id="pinguin">
+      <ellipse cx="0" cy="34" rx="13" ry="3.5" fill="rgba(0,0,0,.16)"/>
+      <ellipse cx="0" cy="12" rx="13" ry="19" fill="#2b3442"/>
+      <ellipse cx="0" cy="16" rx="8.5" ry="13" fill="#f4f1ea"/>
+      <circle cx="0" cy="-9" r="9.5" fill="#2b3442"/>
+      <circle cx="-3.3" cy="-11" r="2.3" fill="#fff"/><circle cx="3.3" cy="-11" r="2.3" fill="#fff"/>
+      <circle cx="-2.8" cy="-10.6" r="1.1" fill="#111"/><circle cx="3.8" cy="-10.6" r="1.1" fill="#111"/>
+      <path d="M -3.6 -5.5 L 3.6 -5.5 L 0 -0.5 Z" fill="#f2a13b"/>
+      <ellipse cx="-5.5" cy="31" rx="4.6" ry="2.3" fill="#f2a13b"/><ellipse cx="5.5" cy="31" rx="4.6" ry="2.3" fill="#f2a13b"/>
+    </g>
+    <g id="fisch">
+      <ellipse cx="0" cy="0" rx="8" ry="4" fill="#7cc4e8" stroke="#2b3442" stroke-width="1.2"/>
+      <path d="M6.5 0 L12.5 -4.5 L12.5 4.5 Z" fill="#5aa9d4" stroke="#2b3442" stroke-width="1.2" stroke-linejoin="round"/>
+      <circle cx="-4" cy="-0.8" r="1" fill="#123"/>
+    </g>
+  </defs>
+  <!-- fünf Pinguine mit je drei Fischen -->
+  <g transform="translate(30 92)"><use href="#pinguin"/><use href="#fisch" transform="translate(-6 -42) rotate(-10)"/><use href="#fisch" transform="translate(4 -50) rotate(8)"/><use href="#fisch" transform="translate(-2 -58)"/></g>
+  <g transform="translate(78 92)"><use href="#pinguin"/><use href="#fisch" transform="translate(-6 -42) rotate(-10)"/><use href="#fisch" transform="translate(4 -50) rotate(8)"/><use href="#fisch" transform="translate(-2 -58)"/></g>
+  <g transform="translate(126 92)"><use href="#pinguin"/><use href="#fisch" transform="translate(-6 -42) rotate(-10)"/><use href="#fisch" transform="translate(4 -50) rotate(8)"/><use href="#fisch" transform="translate(-2 -58)"/></g>
+  <g transform="translate(174 92)"><use href="#pinguin"/><use href="#fisch" transform="translate(-6 -42) rotate(-10)"/><use href="#fisch" transform="translate(4 -50) rotate(8)"/><use href="#fisch" transform="translate(-2 -58)"/></g>
+  <g transform="translate(222 92)"><use href="#pinguin"/><use href="#fisch" transform="translate(-6 -42) rotate(-10)"/><use href="#fisch" transform="translate(4 -50) rotate(8)"/><use href="#fisch" transform="translate(-2 -58)"/></g>
+  <!-- Eimer mit dem Rest -->
+  <g transform="translate(268 120)">
+    <path d="M-18 -16 L18 -16 L13 22 L-13 22 Z" fill="#4f8fd6" stroke="#2b3442" stroke-width="2.2" stroke-linejoin="round"/>
+    <ellipse cx="0" cy="-16" rx="18" ry="5" fill="#3a6fae" stroke="#2b3442" stroke-width="2"/>
+    <path d="M-17 -14 Q0 -44 17 -14" fill="none" stroke="#2b3442" stroke-width="2"/>
+    <use href="#fisch" transform="translate(-5 -22) rotate(-30)"/>
+    <use href="#fisch" transform="translate(6 -24) rotate(25)"/>
+  </g>
+  <!-- Boden -->
+  <path d="M8 130 H250" stroke="#cfe3f2" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+</svg>
