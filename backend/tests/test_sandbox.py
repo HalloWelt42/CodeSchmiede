@@ -88,6 +88,16 @@ def test_ohne_speicher_cgroup_nur_datengrenze():
     assert "--memory=128m" in befehl and "--memory-swap=128m" in befehl
 
 
+def test_langsames_aufraeumen_kippt_keine_pruefung(monkeypatch):
+    from codeschmiede.sandbox.docker_runner import DockerRunner
+
+    def zu_langsam(*args, **kwargs):
+        raise subprocess.TimeoutExpired(args[0], kwargs.get("timeout", 15))
+
+    monkeypatch.setattr(subprocess, "run", zu_langsam)
+    DockerRunner({"python": "bild-py"})._beende("lauf")  # wirft nicht
+
+
 def test_datengrenze_wirkt(docker_runner):
     erg = docker_runner.run_code("x = bytearray(400 * 1024 * 1024)", "python", KURZ)
     assert erg.exit_code != 0 and not erg.timeout

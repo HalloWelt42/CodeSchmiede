@@ -212,9 +212,15 @@ class DockerRunner:
         ]
 
     def _beende(self, name: str) -> None:
-        subprocess.run(
-            [self.docker, "rm", "-f", name],
-            capture_output=True,
-            timeout=15,
-            check=False,
-        )
+        """Entfernt den Container nach Zeit- oder Ausgabeüberschreitung. Unter hoher Last antwortet Docker
+        manchmal nicht rechtzeitig; das darf die Prüfung nicht umwerfen. Der Container endet ohnehin durch sein
+        eigenes `timeout` und wird dann durch `--rm` entfernt."""
+        try:
+            subprocess.run(
+                [self.docker, "rm", "-f", name],
+                capture_output=True,
+                timeout=15,
+                check=False,
+            )
+        except (OSError, subprocess.TimeoutExpired):
+            logger.warning("Container %s ließ sich nicht sofort entfernen; er endet durch seine Zeitgrenze", name)
