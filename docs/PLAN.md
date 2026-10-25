@@ -26,11 +26,11 @@ Geklärt am 24.10.2026 (Analyse plus Frage-für-Frage-Klärung). Entwürfe der O
 | Gamifizierung | Alles gamifizieren, in bester Qualität (Nutzer 24.10.2026); Ausgestaltung mit Entwürfen vor dem Bau, zusammen mit den Spielen |
 | Lokale KI | Nur als Hilfe im Lernhelfer (Nachschlagewerk mit Wissenspool), gerechnet auf dem Mac über die Leitstelle; Wissenspool und Einzelheiten vor dem Bau klären |
 | Lernhelfer | Die lokale KI ist nur Hilfe: Assistent und Nachschlagewerk, das man nach Befehlen und Anweisungen fragt und das dafür in einem Wissenspool sucht (Nutzer 24.10.2026). Schwebendes, verschiebbares Hilfefenster mit diesem Lernhelfer (über die Leitstelle, Anwendung "Codeschmiede" ist angemeldet): löst nie die Aufgabe, gibt Rückfragen, kleine korrekte Bausteine (einzelne Befehle mit neutralem Mini-Beispiel), erklärt Fehler, schlägt den nächsten kleinen Schritt vor; minimalistisch. Der Server gibt ihm nur Aufgabentext, eigenen Code und letztes Ergebnis, nie Musterlösung oder versteckte Tests (Nutzer 24.10.2026). Einzelheiten vor dem Bau klären |
-| Aufbaukurs | Ein idiotensicherer Aufbaukurs von null an, in kleinsten Schritten mit einer neuen Sache je Aufgabe, als eigener zweiter Lauf in Schritt 7 (Nutzer 25.10.2026). Bisher gibt es nur Themenpfade (Python-Grundlagen hat 3 Aufgaben). Ideen und Reihenfolge der Themen kommen von einer großen bekannten Lernseite für Webtechnik und Programmierung; übernommen wird nur, was sinnvoll ist, und alles wird neu geschrieben: eigene Erklärungen, eigene Beispiele, eigene Werte und Namen, kein Text und kein Beispielcode im Wortlaut. Kursform und Umfang vor dem Bau klären |
-| Lehreinführungen | Zu jedem Thema ein richtiger, vollständiger Einführungskurs mit sinnvoller Logik, durch den man sich durcharbeitet; erst danach folgt das Üben mit den Aufgaben. Die Einführungen sind absolut vollständig und anschaulich (Nutzer 25.10.2026). Gehört zum Aufbaukurs (Schritt 7); Form, Gliederung je Thema und Anschauungsmittel vor dem Bau klären |
+| Aufbaukurs | Ein idiotensicherer Aufbaukurs von null an, in kleinsten Schritten mit einer neuen Sache je Aufgabe, als eigener zweiter Lauf in Schritt 7 (Nutzer 25.10.2026). Bisher gibt es nur Themenpfade (Python-Grundlagen hat 3 Aufgaben). Ideen und Reihenfolge der Themen kommen von einer großen bekannten Lernseite für Webtechnik und Programmierung; übernommen wird nur, was sinnvoll ist, und alles wird neu geschrieben: eigene Erklärungen, eigene Beispiele, eigene Werte und Namen, kein Text und kein Beispielcode im Wortlaut. Geklärt am 25.10.2026, siehe "Klärung Aufbaukurs und Lehreinführungen" |
+| Lehreinführungen | Zu jedem Thema ein richtiger, vollständiger Einführungskurs mit sinnvoller Logik, durch den man sich durcharbeitet; erst danach folgt das Üben mit den Aufgaben. Die Einführungen sind absolut vollständig und anschaulich (Nutzer 25.10.2026). Gehört zum Aufbaukurs (Schritt 7); geklärt am 25.10.2026, siehe "Klärung Aufbaukurs und Lehreinführungen" |
 | Editor | Hervorhebung im klassischen dunklen Farbschema einer bekannten Entwicklungsumgebung (die ältere Fassung); Vervollständigung nur für einzelne Befehle, keine mehrzeiligen Bausteine; Syntaxfehler sofort beim Tippen sichtbar (Nutzer 25.10.2026). Gebaut direkt nach Schritt 6, vor dem Ausrollen |
-| Debugger | Haltepunkte im Editor und ein Ausgabemodus wie bei einem echten Debugger, aber nur auf Ebene des eigenen Codes, kein Tiefendebugger; alle Speicherzustände Schritt für Schritt lesbar (Nutzer 25.10.2026). Umsetzung als Aufzeichnung: die Sandbox schreibt je ausgeführter Zeile des eigenen Codes die Variablen mit (Python über die Ablaufverfolgung, mit Grenze für Schritte und Größe), die Oberfläche spult vor und zurück, springt zum nächsten Haltepunkt, markiert die Zeile und zeigt den Speicher. Python zuerst, JavaScript danach; nur am Rechner, das Telefon muss nicht alles können (Nutzer 25.10.2026); Entwurf vorab |
-| Bildkarten | Lernfelder und Bereiche bekommen anschauliche Karten mit Bild und Beschreibung; freigestellte Bilder begleiten die Software. Erzeugt später lokal mit Flux2 über die Leitstelle, nur wenn dort alles entladen ist und Platz ist. Farblich dürfen die Inhalte (Bilder, Karten, Spielflächen) vom Mintgrün abweichen, damit sie in sich harmonisch sind (Nutzer 25.10.2026) |
+| Debugger | Haltepunkte im Editor und ein Ausgabemodus wie bei einem echten Debugger, aber nur auf Ebene des eigenen Codes, kein Tiefendebugger; alle Speicherzustände Schritt für Schritt lesbar (Nutzer 25.10.2026). Umsetzung als Aufzeichnung: die Sandbox schreibt je ausgeführter Zeile des eigenen Codes die Variablen mit (Python über die Ablaufverfolgung, mit Grenze für Schritte und Größe), die Oberfläche spult vor und zurück, springt zum nächsten Haltepunkt, markiert die Zeile und zeigt den Speicher. Python zuerst, JavaScript danach; nur am Rechner, das Telefon muss nicht alles können (Nutzer 25.10.2026); Entwurf vorab. Die Aufzeichnung entsteht vor dem Aufbaukurs (der Kurs zeichnet damit Speicherbilder und Abläufe), die Debugger-Oberfläche direkt nach dem Python-Kurs |
+| Bildkarten | Lernfelder und Bereiche bekommen anschauliche Karten mit Bild und Beschreibung; freigestellte Bilder begleiten die Software. Erzeugt später lokal mit Flux2 über die Leitstelle, nur wenn dort alles entladen ist und Platz ist. Farblich dürfen die Inhalte (Bilder, Karten, Spielflächen) vom Mintgrün abweichen, damit sie in sich harmonisch sind (Nutzer 25.10.2026). Ein Zeichenstil für Bildkarten und Kurs, je Sprache eine Farbfamilie, keine Schrift im Bild; vor jeder Bildserie nimmt der Nutzer selbst ab (Nutzer 25.10.2026, Einzelheiten unter "Klärung Aufbaukurs und Lehreinführungen") |
 | Aufgabenvarianten (später) | Je Aufgabe mehr Vielfalt: Werte vorab erzeugen und nachrechnen, bei Auswahlaufgaben die Reihenfolge der Antworten zufällig mischen, immer nachweislich korrekt; dazu eine Lösungserklärung, die das Verständnis stärkt. Als Plan aufgehoben, weil es aufwendig ist (Nutzer 25.10.2026) |
 | Literaturhinweise | Passende Stellen aus den eigenen Büchern als Literaturhinweise (zur Aufgabe und im Lernhelfer), gefunden über den Wissenspool. Nur für die eigene Installation: öffentlich hat kaum jemand diese Bücher (Nutzer 25.10.2026). Darum abschaltbar und ab Werk aus; Titel, Fundstellen und Zugang liegen nicht im öffentlichen Repo, sondern kommen zur Laufzeit aus dem privaten Wissenspool. Einzelheiten vor dem Bau klären |
 | Steuerungsspiele | Größere Spiele, bei denen eine Steuerung programmiert wird: Ampeln vom Fußgängerüberweg mit Ampelsteuerung über Umschaltautomatik und verschiedene Fälle bis zur großen Kreuzung mit vier Seiten und Sonderfällen, in Draufsicht von oben mit sichtbaren Ampeln; nur wenn die Ampeln richtig schalten, gibt es keine Unfälle, geprüft mit echten Abläufen. Dasselbe mit Aufzügen, später weitere Regelungen. Der Rahmen ist vorgefertigt, geschrieben werden nur Ablauf und Inhalte. Gern ein wenig lustig: roter Matschfleck für überfahrene Fußgänger, verbeulte Autos bei Unfällen; Ton spielt eine Rolle, die Klänge kommen aus dem vorhandenen Bestand (Medienpool). Vorher Entwürfe (Nutzer 25.10.2026); Konzept in `docs/SPIELE.md` |
@@ -67,7 +67,8 @@ Jeder Schritt einzeln committet und gepusht.
    - Sicherung, Handbuchseite, Einrichtungsskript
 6. **Spiele und Gamifizierung**: erst Entwürfe (Spiele, Spielmechanik über die ganze App, neue CSS-Bewertung nach Deckung und Kürze), nach Freigabe Bau (erledigt mit 0.77.0).
 7. **Neue Aufgaben** in den vier Bereichen und viele neue CSS-Nachbauten, mit automatischer Prüfung.
-   - zweiter, eigener Lauf: Aufbaukurs von null an (siehe Entscheidung "Aufbaukurs")
+   - zweiter, eigener Lauf: Aufbaukurs von null an mit Lehreinführungen (Reihenfolge unter "Klärung Aufbaukurs und
+     Lehreinführungen")
 
 ## Ergebnis Schritt 1
 
@@ -146,6 +147,71 @@ Jeder Schritt einzeln committet und gepusht.
 - Breiten 1920, 1440, 1280, 1100, 900, 430, 390 und 360 automatisch geprüft, mit Gegentest (abgeschnittene Elemente
   zählen mit); gefunden und behoben: abgeschnittener Reiter im Krimi, zu langes Schlagwort in der Aufgabenliste
 
+## Klärung Aufbaukurs und Lehreinführungen
+
+Frage für Frage geklärt am 25.10.2026 (Nutzer); Grundlage waren die Entscheidungen "Aufbaukurs" und
+"Lehreinführungen" und die Vorschläge in `docs/DIDAKTIK.md`.
+
+| Thema | Wahl |
+|---|---|
+| Kursform | Eigener Bereich Kurs neben Aufgaben, Pfade und Spiele. Je Sprache ein Kurs mit Kapiteln; jedes Kapitel hat erst die Lehreinführung, dann die Übungen |
+| Einführung und Themen | Eine Einführung je Thema, überall verlinkt: jede Einführung gibt es genau einmal, der Kurs ordnet sie zu Kapiteln, Themenpfade und Aufgaben verweisen darauf ("Erst lesen") |
+| Sprachen | Alle vier, Python zuerst; danach SQL, JavaScript, CSS |
+| HTML | HTML-Grundlagen vorn im CSS-Kurs (Elemente, Verschachtelung, Klassen, Attribute), so weit, dass man das vorgegebene HTML lesen und Selektoren treffen kann; kein eigener HTML-Kurs |
+| Aufbau einer Einführung | Kurze Abschnitte mit genau einer neuen Sache: Erklärung, Bild, Beispiel (erst vorhersagen, dann ausführen), danach eine Verständnisfrage; weiter nach der Antwort, bei falscher Antwort eine Erklärung. Am Ende die Karte "kann ich jetzt", dann die Übungen |
+| Beispiele | Ausführen und verändern: kleiner Editor, Lauf in der Sandbox (CSS live auf der Bühne, SQL auf Beispieldaten), danach Herumprobieren erlaubt, ein Knopf stellt das Original wieder her |
+| Vorhersage | Je Beispiel festgelegt: Auswahl aus 3 bis 4 Ausgaben (am Anfang) oder Ausgabe selbst eintippen (später); danach Vergleich mit dem echten Ergebnis |
+| Fragearten | Auswahl (je falscher Antwort eine eigene Erklärung), Lücke im Code, Zeilen ordnen, Fehlerstelle zeigen |
+| Anschauungsmittel | Speicherbilder, Ablauf Schritt für Schritt, Diagramme, Bilder und Zeichnungen |
+| Speicherbild und Ablauf | Aus dem echten Lauf: die Sandbox zeichnet auf (dieselbe Aufzeichnung wie für den Debugger), Bilder stimmen darum auch nach einer Änderung am Beispiel |
+| SQL und CSS | Abspielen als Zwischentabellen und Kästen: SQL in der Reihenfolge der Abarbeitung (FROM, JOIN, WHERE, GROUP BY, SELECT, ORDER BY) mit Zwischentabelle je Schritt; CSS Regel für Regel zugeschaltet, Außenabstand, Rand, Innenabstand und Inhalt als farbige Kästen |
+| Begleitmaterial | Sinnbilder (bildsprachliche Zeichnung je Abschnitt), Alltagsbeispiele (Konkretes vor dem Code), Schemata (abstrakt, exakt, von der App gezeichnet), Merkblatt je Kapitel (auch im Hilfefenster beim Üben und zum Ausdrucken). Abstraktes, Konkretes und Bildsprachliches stützen sich gegenseitig (Nutzer 25.10.2026) |
+| Bildwelt | Ein Zeichenstil für alle Kurse und die Bildkarten, festgelegt in einer Stilvorgabe, die jeder Bildauftrag erbt; je Sprache eine harmonische Farbfamilie; keine Schrift im Bild, Beschriftungen setzt die App darüber. Zeichnungen kommen aus dem Bildgenerator (Flux2 über die Leitstelle, nur wenn dort alles entladen ist) und werden freigestellt |
+| Exakte Grafiken | Für Sonderfälle und alles, was exakt stimmen muss, nicht der Bildgenerator, sondern Mermaid-Diagramme als Vektorbild (Nutzer 25.10.2026): der Mermaid-Code steht in der Einführung, beim Einlesen entsteht daraus ein SVG in der Stilvorgabe der App; der Browser lädt kein Mermaid, ein kaputtes Diagramm meldet die Prüfung beim Einlesen |
+| Abnahme der Zeichnungen | Bevor Hunderte Grafiken entstehen, nimmt der Nutzer selbst ab (Nutzer 25.10.2026): erst eine Stilprobe mit 10 bis 15 Bildern quer durch alle Arten, weiter erst nach Freigabe der Bildwelt; danach Bilder kapitelweise, jedes Kapitel als Bildbogen (freigeben oder neu erzeugen), erst dann erscheint es im Kurs |
+| Ablage der Bilder | Im Repo: der Bildauftrag (Motiv, Stilvorgabe, Startwert) steht in der Einführung, das freigegebene Bild als WebP mit Transparenz daneben; das Repo bleibt die einzige Wahrheit, der Pi liest nur |
+| Format | Markdown mit eigenen Blöcken: je Thema ein Ordner (etwa `einfuehrungen/python/schleifen/`) mit Kopf, Abschnitten als Überschriften, Beispielen, Fragen, Diagrammen und Bildaufträgen als Blöcke, Bilder daneben; je Sprache eine Kursdatei, die Themen zu Kapiteln ordnet und die Übungen anhängt; geprüft beim Einlesen |
+| Freischalten | Geführt: die Übungen eines Kapitels öffnen sich nach der Einführung, das nächste Kapitel nach den Pflichtübungen. Wer ein Thema schon kann, überspringt es per Kurztest; die Einführung bleibt jederzeit lesbar |
+| Kurztest | Eigene Testfragen je Kapitel (nicht die der Einführung) plus eine kleine Übung, die alle Teile des Kapitels braucht; bestanden nur, wenn alles stimmt |
+| Übungen | Neue Kursübungen: je Übung eine neue Sache, aufeinander aufbauend in Teilschritten. Passende Bestandsaufgaben am Kapitelende als freiwillige Vertiefung, aber nur solche, die ausschließlich Eingeführtes brauchen |
+| Prüfung "nichts vorausgesetzt" | Begriffskatalog je Sprache; jede Einführung sagt, was sie einführt; die Prüfung erkennt im Code der Beispiele und Übungen selbst, was benutzt wird (Python über den Syntaxbaum, SQL und CSS über ihre Parser), und meldet alles, was an der Stelle noch nicht eingeführt ist. Dieselbe Angabe wählt die Bestandsaufgaben für die Vertiefung |
+| Spielmechanik | Voll eingebunden: abgeschlossene Abschnitte bringen etwas Erfahrung, ein fertiges Kapitel einen Erfolg, der Tagesauftrag kann ein Abschnitt sein, die Verständnisfragen kommen in die Wiederholung nach Abstand, der Kursstand steht auf der Startseite; falsche Antworten kosten nichts |
+| Didaktik dazu | Verblassende Beispiele (gelöst, mit Lücken, leer), Kapitelprojekt, das über mehrere Kapitel wächst, Fehlermeldungen übersetzt mit Verweis auf den passenden Abschnitt (im Kurs und in allen Aufgaben), Sammelkarte mit Sinnbild je Kapitel |
+| Ton | Nicht zu seriös, Humor und Spaß, lockerer Ton (Nutzer 25.10.2026): Du-Ansprache, kurze Sprüche, schräge Beispielwelten, witzige Sinnbilder, Erklärungen bei falschen Antworten mit Augenzwinkern, nie spottend. Fachliches bleibt exakt, Humor würzt, trägt aber nie die Erklärung |
+| Telefon | Lesen mit Bildern und Diagrammen, Vorhersagen und Fragen, Beispiele unverändert ausführen, Ablauf abspielen, Merkblatt; Beispiele verändern und Kursübungen mit Editor nur am Rechner |
+| Umfang Python | Von null bis Klassen und Dateien, rund 20 Kapitel: Ausgabe, Werte und Variablen, Rechnen, Text, Verzweigungen, Schleifen, Listen, Wörterbücher, Mengen, Funktionen, Fehlerbehandlung, Module, Dateien, Klassen. Fortgeschrittenes folgt als zweiter Teil |
+| Zusatzthemen | Themen außerhalb des Kurses (etwa Datum und Zeit, reguläre Ausdrücke, Algorithmen) bekommen ihre Einführung nach dem Kurs ihrer Sprache, gleich aufgebaut; erst danach die nächste Sprache |
+| Inbetriebnahme | Kapitelweise: ein Kapitel wird ausgerollt, sobald Einführung, Übungen, Kurztest und Merkblatt geprüft und seine Bilder abgenommen sind; der Kurs zeigt nur fertige Kapitel |
+
+Folgt aus früheren Entscheidungen:
+
+- Antworten der Verständnisfragen, Vorhersagen und Kurztests bleiben auf dem Server (Lösungsschutz); der Browser
+  bekommt nach der Antwort nur Urteil und Erklärung.
+- Einführungen und Übungen werden direkt geschrieben, nicht von der lokalen KI; Themenfolge angelehnt an eine große
+  Lernseite, alles neu formuliert (Entscheidung "Aufbaukurs").
+- Kursstand und Erfahrung werden wie die übrige Spielmechanik aus gespeicherten Antworten und Abgaben abgeleitet.
+- Bildbogen zur Abnahme und Bilderzeugung nur am Mac (der Pi liest nur), danach Commit und Ausrollen.
+- Lesetext in großer Schrift (Grundschrift 17 px und mehr).
+
+Reihenfolge des Baus:
+
+1. Entwürfe zur Freigabe: Kursübersicht, Einführung (Abschnitt, Beispiel mit Vorhersage, Fragearten, Speicherbild,
+   Ablauf, SQL-Zwischentabellen, CSS-Kästen), Kurztest, Merkblatt, Sammelkarte, Bildbogen, Telefon.
+2. Aufzeichnung in der Sandbox (Python): je ausgeführter Zeile die Variablen, mit Grenzen für Schritte und Größe.
+3. Unterbau: Format und Einlesen, Begriffskatalog mit Erkennung, Mermaid zu SVG, Prüfung beim Einlesen.
+4. Kursbereich in der Oberfläche (Rechner und Telefon), Spielmechanik, Verweise aus Pfaden und Aufgaben.
+5. Python-Kurs Kapitel für Kapitel; Stilprobe der Zeichnungen zur Abnahme, danach Bilder je Kapitel mit Bildbogen;
+   jedes fertige Kapitel wird ausgerollt.
+6. Debugger-Oberfläche auf derselben Aufzeichnung.
+7. Einführungen der übrigen Python-Themenpfade, danach SQL, JavaScript und CSS (mit HTML-Grundlagen) auf demselben
+   Unterbau.
+
+Offen für den Bau:
+
+- Eingaben mit `input()` im Kurs: die Sandbox bekommt den Code über stdin; vorbereitete Eingaben brauchen einen
+  eigenen Weg in den Lauf.
+- Stilvorgabe der Zeichnungen und Farbfamilien je Sprache: entstehen mit der Stilprobe.
+
 ## Offen
 
 - Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) zur Freigabe; Bau danach als eigener Abschnitt.
@@ -157,9 +223,11 @@ Jeder Schritt einzeln committet und gepusht.
   `docs/SPIELE.md`, vor dem Bau Entwürfe.
 - Volle Speichergrenze der Sandbox auf dem Pi: Speicher-cgroup einschalten (`cgroup_enable=memory`, Neustart des Pi), Entscheidung des Nutzers.
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
-- Vorschläge für Lernweg, Darstellung, Inhalte und Spielereien in `docs/DIDAKTIK.md` als Grundlage für die Klärung.
-- Aufbaukurs mit Lehreinführungen: Kursform (Pfad mit Lerneinheiten oder eigener Bereich), Sprachen, Gliederung je
-  Thema, Anschauungsmittel und Umfang vor dem Bau klären, Entwürfe zuerst (Schritt 7).
+- Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
+  Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.
+- Aufbaukurs mit Lehreinführungen: geklärt am 25.10.2026; als Nächstes die Entwürfe zur Freigabe (Kursübersicht,
+  Einführung mit Abschnitt, Beispiel, Frage, Speicherbild und Ablauf, Kurztest, Merkblatt, Sammelkarte, Bildbogen zur
+  Abnahme, Telefon).
 - Spielerische Grundlagenübungen zu Flexbox und Grid (Nutzer 25.10.2026): eigene Bildwelt, je Level eine neue
   Eigenschaft, Teil der CSS-Übungen vor den Herausforderungen; Skizze in `docs/CSS-IDEEN.md`, vor dem Bau Entwürfe.
 - CSS-Bestand automatisch messen: die Prüfung beim Bau (Musterlösung deckt voll, Startcode besteht nicht) lief

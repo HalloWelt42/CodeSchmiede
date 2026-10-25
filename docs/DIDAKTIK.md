@@ -1,7 +1,8 @@
 # Didaktik: Vorschläge für Aufbau, Darstellung, Inhalte und Spielereien
 
-Vorschläge vom 25.10.2026 als Grundlage für die Klärung der Lehreinführungen und des Aufbaukurses (Schritt 7). Nichts
-davon ist entschieden; die Entscheidungen stehen in `PLAN.md`.
+Vorschläge vom 25.10.2026 als Grundlage für die Klärung der Lehreinführungen und des Aufbaukurses (Schritt 7). Was
+davon übernommen ist, steht in `PLAN.md` unter "Klärung Aufbaukurs und Lehreinführungen"; der Rest ist nicht
+entschieden.
 
 ## Leitlinie: ein Thema, ein Lernweg
 
