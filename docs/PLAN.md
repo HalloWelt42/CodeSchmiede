@@ -157,6 +157,7 @@ Jeder Schritt einzeln committet und gepusht.
   `docs/SPIELE.md`, vor dem Bau Entwürfe.
 - Volle Speichergrenze der Sandbox auf dem Pi: Speicher-cgroup einschalten (`cgroup_enable=memory`, Neustart des Pi), Entscheidung des Nutzers.
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
+- Vorschläge für Lernweg, Darstellung, Inhalte und Spielereien in `docs/DIDAKTIK.md` als Grundlage für die Klärung.
 - Aufbaukurs mit Lehreinführungen: Kursform (Pfad mit Lerneinheiten oder eigener Bereich), Sprachen, Gliederung je
   Thema, Anschauungsmittel und Umfang vor dem Bau klären, Entwürfe zuerst (Schritt 7).
 - Spielerische Grundlagenübungen zu Flexbox und Grid (Nutzer 25.10.2026): eigene Bildwelt, je Level eine neue
