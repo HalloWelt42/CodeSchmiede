@@ -48,3 +48,6 @@ bloecke:
       - einfuehrung: py-woerterbuecher
         uebungen: [k131-nachschlagen, k132-eintragen, k133-telefonbuch, k134-alle-zeigen, k135-woerter-zaehlen, k136-umdrehen, k137-bester-bewohner]
         projekt: [k139-notenbuch-faecher]
+      - einfuehrung: py-mengen
+        uebungen: [k141-einmalig, k142-verschiedene-gaeste, k143-buchstaben, k144-schon-gesehen, k145-gemeinsam, k146-nur-bei-pit, k147-alle-sorten]
+        projekt: [k149-notenbuch-verschiedene]

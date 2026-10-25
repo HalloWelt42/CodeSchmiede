@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 14: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-zaehlen
+    text: Was gibt das Programm aus?
+    code: |
+      wuerfe = [6, 2, 6, 6, 2]
+      print(len(wuerfe), len(set(wuerfe)))
+    als_code: true
+    optionen:
+      - text: 5 2
+        richtig: true
+        erklaerung: Richtig, fünf Würfe, aber nur zwei verschiedene Augenzahlen.
+      - text: 5 5
+        erklaerung: set wirft die doppelten Sechsen und Zweien hinaus.
+      - text: 2 5
+        erklaerung: Die Reihenfolge der Ausgabe folgt der Reihenfolge im print.
+  - frageart: luecke
+    id: kt-leer
+    text: Ergänze, damit eine leere Menge entsteht.
+    code: besucher = ___
+    antworten: [["set()"]]
+    erklaerung: Richtig, set() ist die leere Menge; {} wäre ein Wörterbuch.
+    hinweis: Leere geschweifte Klammern sind schon vergeben.
+  - frageart: auswahl
+    id: kt-differenz
+    text: 'Was liefert `sorted({1, 2, 3} - {2, 5})`?'
+    als_code: true
+    optionen:
+      - text: "[1, 3]"
+        richtig: true
+        erklaerung: Richtig, was in der ersten Menge, aber nicht in der zweiten steckt.
+      - text: "[1, 3, 5]"
+        erklaerung: Die 5 steht nur in der zweiten Menge; minus nimmt nur aus der ersten.
+      - text: "[2]"
+        erklaerung: Das wäre das Gemeinsame, also &.
+  - frageart: fehlerstelle
+    id: kt-append
+    text: Dieses Programm meldet AttributeError. Welche Zeile?
+    code: |
+      farben = {"rot", "blau"}
+      farben.add("grün")
+      farben.append("gelb")
+      print(len(farben))
+    zeile: 3
+    erklaerung: Genau. Mengen haben kein append, dort heißt es add.
+    hinweis: Welche Methode gehört zu Listen, nicht zu Mengen?
+uebung: k148-zwei-tage

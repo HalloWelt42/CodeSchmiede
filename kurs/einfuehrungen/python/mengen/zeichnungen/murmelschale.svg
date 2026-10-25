@@ -1,0 +1,33 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eine Schale mit drei verschiedenfarbigen Murmeln, eine zweite rote Murmel springt wieder heraus">
+  <ellipse cx="130" cy="168" rx="92" ry="7" fill="rgba(0,0,0,.15)"/>
+  <!-- Schale -->
+  <path d="M42 98 Q130 196 218 98 Z" fill="#7aa6c2" stroke="#2b3442" stroke-width="2.5" stroke-linejoin="round"/>
+  <ellipse cx="130" cy="98" rx="88" ry="16" fill="#9cc3da" stroke="#2b3442" stroke-width="2.5"/>
+  <ellipse cx="130" cy="100" rx="76" ry="10" fill="#4f7d99"/>
+  <!-- Murmeln in der Schale -->
+  <g stroke="#2b3442" stroke-width="2">
+    <circle cx="100" cy="96" r="12" fill="#e2574c"/>
+    <circle cx="130" cy="99" r="12" fill="#f2c14e"/>
+    <circle cx="160" cy="96" r="12" fill="#5bb36a"/>
+  </g>
+  <g fill="#fff" opacity=".7">
+    <circle cx="96" cy="91" r="3.5"/><circle cx="126" cy="94" r="3.5"/><circle cx="156" cy="91" r="3.5"/>
+  </g>
+  <!-- zweite rote Murmel springt heraus -->
+  <path d="M120 70 Q150 18 196 40" fill="none" stroke="#2b3442" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
+  <circle cx="204" cy="44" r="12" fill="#e2574c" stroke="#2b3442" stroke-width="2"/>
+  <circle cx="200" cy="39" r="3.5" fill="#fff" opacity=".7"/>
+  <!-- Bewegungsstriche -->
+  <g stroke="#2b3442" stroke-width="2" stroke-linecap="round">
+    <path d="M220 34 l10 -6"/><path d="M222 46 l12 0"/><path d="M220 57 l10 6"/>
+  </g>
+  <!-- kleiner Pinguin schaut zu -->
+  <g transform="translate(40 128)">
+    <ellipse cx="0" cy="8" rx="11" ry="14" fill="#2b3442"/><ellipse cx="0" cy="11" rx="7" ry="9.5" fill="#f4f1ea"/>
+    <circle cx="0" cy="-9" r="8.5" fill="#2b3442"/>
+    <circle cx="-2.9" cy="-10.5" r="2" fill="#fff"/><circle cx="2.9" cy="-10.5" r="2" fill="#fff"/>
+    <circle cx="-2.3" cy="-11" r="1" fill="#111"/><circle cx="3.5" cy="-11" r="1" fill="#111"/>
+    <path d="M-3.2 -6 h6.4 l-3.2 4 Z" fill="#f2a13b"/>
+    <path d="M-3 22 h-5 M3 22 h5" stroke="#f2a13b" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>
