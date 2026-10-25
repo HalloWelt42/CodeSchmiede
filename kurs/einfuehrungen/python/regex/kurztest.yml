@@ -1,0 +1,54 @@
+# Kurztest zu Kapitel 22: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-findall
+    text: Was gibt das Programm aus?
+    code: |
+      import re
+
+      print(re.findall(r"[aeiou]", "Pinguin"))
+    als_code: true
+    optionen:
+      - text: "['i', 'u', 'i']"
+        richtig: true
+        erklaerung: Richtig, jeder einzelne Vokal ist ein Treffer.
+      - text: "['iui']"
+        erklaerung: Die Vokale stehen nicht nebeneinander, und ohne + ist jeder ein eigener Treffer.
+      - text: "3"
+        erklaerung: findall liefert die Treffer selbst, nicht ihre Anzahl.
+  - frageart: luecke
+    id: kt-fullmatch
+    text: Ergänze, damit nur Eingaben aus genau drei Ziffern passen.
+    code: |
+      import re
+      if re.___(r"\d{3}", eingabe):
+          print("Gültig")
+    antworten: [["fullmatch"]]
+    erklaerung: Richtig, fullmatch prüft den ganzen Text.
+    hinweis: Gesucht ist die Prüfung von Anfang bis Ende.
+  - frageart: auswahl
+    id: kt-sub
+    text: 'Was liefert `re.sub(r"\s+", " ", "Fisch   und    Eis")`?'
+    als_code: true
+    optionen:
+      - text: Fisch und Eis
+        richtig: true
+        erklaerung: Richtig, jede Folge von Leerraum wird zu einem Leerzeichen.
+      - text: FischundEis
+        erklaerung: Ersetzt wird durch ein Leerzeichen, nicht durch nichts.
+      - text: Fisch   und    Eis
+        erklaerung: sub ersetzt jeden Treffer; die langen Lücken sind Treffer.
+  - frageart: fehlerstelle
+    id: kt-gruppe
+    text: Dieses Programm meldet IndexError. Welche Zeile?
+    code: |
+      import re
+
+      t = re.fullmatch(r"(\w+):(\d+)", "Pia:42")
+      print(t.group(1))
+      print(t.group(2))
+      print(t.group(3))
+    zeile: 6
+    erklaerung: Genau. Das Muster hat nur zwei Klammern, also zwei Gruppen.
+    hinweis: Zähle die runden Klammern im Muster.
+uebung: k228-fangprotokoll

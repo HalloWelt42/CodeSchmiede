@@ -78,3 +78,6 @@ bloecke:
       - einfuehrung: py-datum
         uebungen: [k211-heiligabend, k212-neujahr, k213-wochentag, k214-countdown, k215-deutsch, k216-in-hundert-tagen, k217-wie-alt]
         projekt: []
+      - einfuehrung: py-regex
+        uebungen: [k221-erste-spur, k222-alle-zahlen, k223-zahlen-summe, k224-postleitzahl, k225-namen-finden, k226-datum-zerlegen, k227-schwaerzen]
+        projekt: []

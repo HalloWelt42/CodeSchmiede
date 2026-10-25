@@ -1,0 +1,37 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin als Spürnase mit Lupe über einem langen Papierstreifen, einige Stellen leuchten">
+  <ellipse cx="130" cy="168" rx="110" ry="7" fill="rgba(0,0,0,.12)"/>
+  <!-- Papierstreifen -->
+  <path d="M8 124 q60 -10 120 0 t124 0 v22 q-62 10 -124 0 t-120 0 Z" fill="#fbf4e2" stroke="#2b3442" stroke-width="2.2"/>
+  <!-- Zeichen als Kästchen, einige leuchten -->
+  <g fill="#8a93a0">
+    <rect x="18" y="128" width="8" height="12" rx="1.5"/><rect x="30" y="128" width="8" height="12" rx="1.5"/>
+    <rect x="50" y="127" width="8" height="12" rx="1.5"/><rect x="62" y="127" width="8" height="12" rx="1.5"/><rect x="74" y="127" width="8" height="12" rx="1.5"/>
+    <rect x="96" y="128" width="8" height="12" rx="1.5"/>
+    <rect x="164" y="128" width="8" height="12" rx="1.5"/><rect x="176" y="128" width="8" height="12" rx="1.5"/>
+    <rect x="216" y="128" width="8" height="12" rx="1.5"/><rect x="228" y="129" width="8" height="12" rx="1.5"/>
+  </g>
+  <g fill="#f2c14e" stroke="#2b3442" stroke-width="1.2">
+    <rect x="116" y="128" width="8" height="12" rx="1.5"/><rect x="128" y="128" width="8" height="12" rx="1.5"/>
+    <rect x="196" y="128" width="8" height="12" rx="1.5"/>
+  </g>
+  <g stroke="#f2c14e" stroke-width="2" stroke-linecap="round" opacity=".8">
+    <path d="M126 120 v-6 M116 122 l-4 -5 M136 122 l4 -5"/><path d="M200 120 v-6"/>
+  </g>
+  <!-- Pinguin mit Mütze -->
+  <g transform="translate(58 74)">
+    <ellipse cx="0" cy="12" rx="20" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="17" rx="13" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-22" r="15" fill="#2b3442"/>
+    <circle cx="-5" cy="-25" r="3.8" fill="#fff"/><circle cx="5" cy="-25" r="3.8" fill="#fff"/>
+    <circle cx="-3.6" cy="-24" r="1.9" fill="#111"/><circle cx="6.4" cy="-24" r="1.9" fill="#111"/>
+    <path d="M-6 -16 h12 l-6 7 Z" fill="#f2a13b"/>
+    <path d="M-17 -32 q17 -16 34 0 Z" fill="#8a5a2b" stroke="#2b3442" stroke-width="1.8"/>
+    <path d="M-21 -32 h42" stroke="#2b3442" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M17 4 q20 0 34 12" fill="none" stroke="#2b3442" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <!-- Lupe -->
+  <g stroke="#2b3442" stroke-width="2.5">
+    <path d="M108 92 l-14 -14" stroke="#8a5a2b" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="126" cy="108" r="22" fill="rgba(156,195,218,.35)"/>
+  </g>
+</svg>
