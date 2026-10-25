@@ -5,7 +5,7 @@ die Antwort an das Frontend: aggregiert + Nutzerausgabe + Laufzeit.
 Versteckte Tests werden nur als Anzahl durchgereicht (Anti-Hardcoding).
 """
 
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -37,8 +37,15 @@ class Kennwerte(BaseModel):
 
 
 class SternKriterium(BaseModel):
+    """Ein Stern und wofür er steht. "ergebnis" entscheidet der Prüfer;
+    "ohne_hinweis" und "versuche" hängen vom Verlauf der Aufgabe ab und
+    entscheidet die Verbuchung (spiel/dienst.py)."""
+
     text: str
     erreicht: bool
+    art: Literal["ergebnis", "ohne_hinweis", "versuche"] = "ergebnis"
+    # bei "versuche": höchstens so viele Prüfversuche
+    grenze: int | None = None
 
 
 class Wertung(BaseModel):

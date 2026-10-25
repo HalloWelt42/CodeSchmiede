@@ -128,7 +128,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
         verbucht = state.spiel.verbuche(state.bestand(), aufgabe, code, ergebnis)
         return SubmissionAntwort(
             bestanden=ergebnis.bestanden,
-            pruefung=ergebnis,
+            pruefung=verbucht.pruefung,
             codelaenge_zeichen=codelaenge(code),
             submission_id=verbucht.submission_id,
             progress=verbucht.progress,

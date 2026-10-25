@@ -50,6 +50,8 @@ class SpielKonfig(BaseModel):
     pfade: list[str] = Field(default_factory=list)
     # "stufen": Levels nacheinander (Leiste); "auswahl": gleichrangige Kategorien zum Wählen
     levels_als: Literal["stufen", "auswahl"] = "stufen"
+    # wie ein Level heißt, etwa "Kapitel" im Krimi
+    level_wort: str = "Level"
 
 
 class Raenge(BaseModel):

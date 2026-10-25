@@ -36,12 +36,14 @@ MAX_ZEILEN = 10_000
 AUSDUENNUNGEN = (2, 3)
 
 
-def _datasets_dir(aufgabe: Aufgabe) -> Path:
+def datasets_dir(aufgabe: Aufgabe) -> Path:
     # aufgabe.dateipfad: .../aufgaben/sql/<id>/aufgabe.md
     return aufgabe.dateipfad.parent.parent / "datasets"
 
 
-def _skript(schema_sql: str, laeufe: list[dict[str, Any]], marke: str) -> str:
+def skript(schema_sql: str, laeufe: list[dict[str, Any]], marke: str) -> str:
+    """Python-Skript für die Sandbox: jede Abfrage auf einer frischen
+    SQLite-Datenbank aus `schema_sql`, wahlweise ausgedünnt."""
     return (
         "import json, sqlite3, sys\n"
         f"SCHEMA = json.loads({json.dumps(schema_sql)!r})\n"
@@ -101,7 +103,7 @@ def pruefe(aufgabe: Aufgabe, code: str, runner: Runner) -> PruefErgebnis:
 
     if not DATASET_NAME.match(dataset):
         return _fehler(f"Aufgabe ohne gültiges `dataset`-Feld ({dataset!r})")
-    dataset_pfad = _datasets_dir(aufgabe) / f"{dataset}.sql"
+    dataset_pfad = datasets_dir(aufgabe) / f"{dataset}.sql"
     if not dataset_pfad.exists():
         return _fehler(f"Datensatz '{dataset}' nicht gefunden")
 
@@ -115,7 +117,7 @@ def pruefe(aufgabe: Aufgabe, code: str, runner: Runner) -> PruefErgebnis:
 
     marke = neue_marke()
     erg = runner.run_code(
-        _skript(dataset_pfad.read_text(encoding="utf-8"), laeufe, marke),
+        skript(dataset_pfad.read_text(encoding="utf-8"), laeufe, marke),
         "python",
         RunLimits(timeout_sekunden=aufgabe.zeitlimit_sekunden),
     )

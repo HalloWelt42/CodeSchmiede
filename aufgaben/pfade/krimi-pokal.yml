@@ -1,0 +1,15 @@
+id: krimi-pokal
+titel: "Fall 1: Der verschwundene Pokal"
+beschreibung: |
+  Der Pokal des Turnvereins ist aus der Vitrine verschwunden. Acht Kapitel
+  von der Alarmanlage bis zum Lager: Filter, Joins, Gruppierung,
+  Unterabfragen und Zeiten in einer echten, unordentlichen Datenbank.
+reihenfolge:
+  - k001-die-alarmanlage
+  - k002-die-zeugin
+  - k003-die-aussage
+  - k004-der-schluesseldienst
+  - k005-das-fahrtenbuch
+  - k006-die-anrufe
+  - k007-das-geld
+  - k008-das-lager

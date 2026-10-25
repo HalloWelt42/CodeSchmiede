@@ -84,6 +84,10 @@ export interface LevelStand {
   nummer: number;
   geloest: boolean;
   sterne: number | null;
+  /** Pfad, zu dem das Level gehört (im Krimi der Fall), und die Nummer darin */
+  gruppe: string | null;
+  nummer_in_gruppe: number | null;
+  gruppe_groesse: number | null;
 }
 
 export interface SpielUebersicht {
@@ -94,6 +98,8 @@ export interface SpielUebersicht {
   aufgabentyp: string;
   /** "stufen": Levels nacheinander; "auswahl": gleichrangige Kategorien */
   levels_als: 'stufen' | 'auswahl';
+  /** wie ein Level heißt, etwa "Kapitel" */
+  level_wort: string;
   levels: LevelStand[];
   geschafft: number;
   sterne: number;
@@ -157,6 +163,23 @@ export interface RoboterLaeufe {
   timeout: boolean;
 }
 
+export interface Ergebnistabelle {
+  spalten: string[];
+  zeilen: unknown[][];
+}
+
+export interface KrimiErgebnis {
+  tabelle: Ergebnistabelle | null;
+  fehler: string | null;
+  laufzeit_ms: number;
+}
+
+export interface Notiz {
+  kapitel: number;
+  titel: string;
+  text: string;
+}
+
 export interface SprintFrage {
   code: string;
   optionen: string[];
@@ -210,6 +233,12 @@ export class SpielApi extends HttpBase {
   }
   roboterLauf(aufgabeId: string, code: string): Promise<RoboterLaeufe> {
     return this.post<RoboterLaeufe>(`/roboter/${aufgabeId}/lauf`, { code });
+  }
+  krimiAusfuehren(aufgabeId: string, code: string): Promise<KrimiErgebnis> {
+    return this.post<KrimiErgebnis>(`/krimi/${aufgabeId}/ausfuehren`, { code });
+  }
+  krimiPinnwand(aufgabeId: string): Promise<Notiz[]> {
+    return this.get<Notiz[]>(`/krimi/${aufgabeId}/pinnwand`);
   }
   sprintRunde(aufgabeId: string): Promise<SprintRunde> {
     return this.post<SprintRunde>(`/sprint/${aufgabeId}/runde`, {});

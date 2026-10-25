@@ -34,6 +34,7 @@
   import SqlAbfrageView from './SqlAbfrageView.svelte';
   import MusterJagdView from './MusterJagdView.svelte';
   import SprintView from './SprintView.svelte';
+  import KrimiView from './KrimiView.svelte';
   import RoboterView from './RoboterView.svelte';
   import { spielStore } from '../stores/SpielStore.svelte';
 
@@ -181,9 +182,11 @@
         <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
       </button>
       {#if alsLevel}
+        {@const l = alsLevel.level}
+        {@const gruppe = l.gruppe && l.gruppe !== alsLevel.spiel.titel ? l.gruppe : null}
         <span class="zelle-titel">
-          <b>{alsLevel.spiel.levels_als === 'auswahl' ? aktuell.titel : `Level ${alsLevel.level.nummer}: ${aktuell.titel}`}</b>
-          <span class:meta-text={geraet.telefon}>{alsLevel.spiel.titel}{geraet.telefon ? `, ${aktProgress?.punkte_erreicht ?? 0} / ${aktuell.schwierigkeit_score} Punkte` : `, ${aktuell.id}`}</span>
+          <b>{alsLevel.spiel.levels_als === 'auswahl' ? aktuell.titel : `${alsLevel.spiel.level_wort} ${l.nummer_in_gruppe ?? l.nummer}: ${aktuell.titel}`}</b>
+          <span class:meta-text={geraet.telefon}>{alsLevel.spiel.titel}{gruppe ? `, ${gruppe}` : ''}{geraet.telefon ? `, ${aktProgress?.punkte_erreicht ?? 0} / ${aktuell.schwierigkeit_score} Punkte` : gruppe ? '' : `, ${aktuell.id}`}</span>
         </span>
         <div class="meta">
           {#if !geraet.telefon}<span class="badge" style:color={schwFarbe}>{konfig.schwierigkeitTitel(aktuell.schwierigkeit)}</span>{/if}
@@ -242,6 +245,8 @@
       <SprintView detail={aktuell} />
     {:else if aktuell.task_type === 'roboter'}
       <RoboterView detail={aktuell} />
+    {:else if aktuell.task_type === 'sql_krimi'}
+      <KrimiView detail={aktuell} />
     {:else}
       {#if aktuell.task_type === 'bug_finden'}
         <div class="hinweis-box band fehler">

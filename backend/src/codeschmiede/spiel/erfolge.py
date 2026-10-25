@@ -20,6 +20,14 @@ RAENGE_JE_STUFENZAHL: dict[int, tuple[Rang, ...]] = {
 RANG_NAME: dict[Rang, str] = {"bronze": "Bronze", "silber": "Silber", "gold": "Gold"}
 
 
+class FallStand(BaseModel):
+    """Ein Fall des SQL-Krimis: 0 offen, 1 alle Kapitel gelöst, 2 alle mit drei Sternen."""
+
+    id: str
+    titel: str
+    stufe: int
+
+
 class Kennzahlen(BaseModel):
     """Was die Erfolge zählen; der Spieldienst rechnet sie aus Abgaben und Fortschritt."""
 
@@ -40,6 +48,7 @@ class Kennzahlen(BaseModel):
     volle_runden: int = 0
     # Roboter: Levels mit höchstens drei Zeilen Code gelöst
     roboter_kurz: int = 0
+    faelle: list[FallStand] = Field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -122,6 +131,12 @@ def katalog(k: Kennzahlen) -> list[ErfolgDefinition]:
             bis_hoechstens((5,), k.levels_je_typ["muster_jagd"]),
             ("Scharfschütze",),
             lambda n: f"{anzahl(n, 'ein Muster', 'Muster')} mit drei Sternen",
+        ))
+    for fall in k.faelle:
+        eintraege.append(ErfolgDefinition(
+            f"fall_{fall.id}", "spiele", "fa-user-secret", fall.stufe, (1, 2),
+            (f"Fall gelöst: {fall.titel}",),
+            lambda n: "alle Kapitel gelöst" if n == 1 else "alle Kapitel mit drei Sternen",
         ))
     if k.levels_je_typ.get("roboter"):
         eintraege.append(ErfolgDefinition(

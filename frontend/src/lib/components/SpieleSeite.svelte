@@ -54,7 +54,7 @@
   <div class="spiel-raster">
     {#each spiele as s (s.id)}
       {@const naechstes = s.naechstes}
-      {@const weiterText = naechstes ? `Weiter: Level ${naechstes.nummer}, ${naechstes.titel}` : 'Alle Level geschafft; mehr Sterne holen?'}
+      {@const weiterText = naechstes ? `Weiter: ${s.level_wort} ${naechstes.nummer}, ${naechstes.titel}` : `Alles geschafft; mehr Sterne holen?`}
       <div class="spiel-karte">
         <button class="spiel-bild" onclick={() => oeffne(ziel(s))} aria-label="{s.titel} spielen"><SpielBild id={s.id} /></button>
         <div class="spiel-text">
@@ -83,7 +83,7 @@
                 class:fertig={l.geloest}
                 class:aktuell={naechstes?.id === l.id}
                 class:zu={!l.geloest && naechstes !== null && l.nummer > naechstes.nummer}
-                title="Level {l.nummer}: {l.titel}{l.sterne ? `, ${l.sterne} ${l.sterne === 1 ? 'Stern' : 'Sterne'}` : ''}"
+                title="{s.level_wort} {l.nummer}: {l.titel}{l.sterne ? `, ${l.sterne} ${l.sterne === 1 ? 'Stern' : 'Sterne'}` : ''}"
                 onclick={() => oeffne(l)}
               >{l.nummer}</button>
             {/each}

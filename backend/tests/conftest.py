@@ -50,6 +50,8 @@ aufgabentypen:
   - {id: sql_abfrage, titel: SQL, view: sql_abfrage}
   - {id: muster_jagd, titel: Muster-Jagd, view: muster_jagd}
   - {id: ausgabe_sprint, titel: Ausgabe-Sprint, view: ausgabe_sprint}
+  - {id: roboter, titel: Roboter-Parcours, view: roboter}
+  - {id: sql_krimi, titel: SQL-Krimi, view: sql_krimi}
 """
 
 KOPF = """schema_version: 1

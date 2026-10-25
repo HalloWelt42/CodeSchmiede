@@ -41,7 +41,7 @@
 <div class="belohnung">
   <div class="belohnung-kopf">
     <span class="plus">+{b.punkte}</span>
-    <span>von {b.punkte_moeglich} Punkten, {grund}</span>
+    <span class="grund">von {b.punkte_moeglich} Punkten, {grund}</span>
     {#if b.sterne !== null}
       <span class="sterne gross" title="{b.sterne} von 3 Sternen">
         {#each [1, 2, 3] as s (s)}<i class="fa-solid fa-star" class:aus={s > (b.sterne ?? 0)} aria-hidden="true"></i>{/each}

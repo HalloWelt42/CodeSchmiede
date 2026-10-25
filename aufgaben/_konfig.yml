@@ -72,6 +72,10 @@ aufgabentypen:
     titel: SQL-Abfrage
     view: sql_abfrage
     beschreibung: Ein Datensatz ist vorgegeben -- schreibe eine SELECT-Abfrage, die das erwartete Ergebnis liefert.
+  - id: sql_krimi
+    titel: SQL-Krimi
+    view: sql_krimi
+    beschreibung: Ein Fall in Kapiteln - die Antwort auf jede Frage steckt in einem Abfrageergebnis.
   - id: roboter
     titel: Roboter-Parcours
     view: roboter
@@ -89,6 +93,13 @@ aufgabentypen:
 # Aufgabentyps, die Reihenfolge geben die Pfade vor. Levels zählen in
 # Punkte, Serie und Tagesauftrag wie alle Aufgaben (docs/SPIELE.md).
 spiele:
+  - id: sql-krimi
+    titel: SQL-Krimi
+    icon: fa-user-secret
+    beschreibung: "Ein Fall in Kapiteln. Jede Antwort steckt in einer Abfrage: Filter, Joins, Gruppen, Unterabfragen."
+    aufgabentyp: sql_krimi
+    pfade: [krimi-pokal]
+    level_wort: Kapitel
   - id: roboter-parcours
     titel: Roboter-Parcours
     icon: fa-robot

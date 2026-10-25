@@ -129,6 +129,41 @@ Regeln (Beispiele): nie fahren mit offener Tür, Tür nur im Halt an einer Etage
 Bahnübergang mit Schranke, Schleuse mit Wasserstand, Heizungsregler mit Schaltpause, Parkhaus mit Belegung und
 Schranken, Förderband mit Weiche, Garagentor mit Sicherheitsleiste.
 
+## Weitere Spielideen: Turingmaschine und digitale Schaltungen (Idee, vor dem Bau Entwürfe)
+
+Vorschlag des Nutzers (25.10.2026): eine Turingmaschine programmieren, extrem anschaulich, mit mehreren Aufgaben, und
+digitale Schaltungen bis zur 7-Segment-Anzeige, Halb- und Volladdierer; einfache und etwas komplexere Aufgaben,
+Verdrahtungsaufgaben mal mit, mal ohne fertige Anordnung.
+
+- **Gemeinsam**: abgegeben wird kein Code, sondern Daten (Übergangstabelle, Schaltplan als Liste von Bausteinen und
+  Leitungen). Der Server rechnet sie vollständig nach, ganz ohne Sandbox; das ist billig und sicher auf dem Pi.
+  Aufbau in Teilschritten wie überall.
+- **Schaltungen**: Bausteine UND, ODER, NICHT, XOR, NAND; Leitungen leuchten bei 1, Lämpchen und 7-Segment-Anzeige
+  zeigen das Ergebnis. Stufen: einzelne Gatter, Halbaddierer, Volladdierer, 4-Bit-Addierer, Multiplexer, Dekoder,
+  7-Segment-Dekoder, später Flipflop und Zähler. Zwei Arten: "Verdrahten" (Bausteine stehen, nur Leitungen ziehen) und
+  "Frei" (Bausteine selbst setzen). Prüfung über die ganze Wahrheitstabelle; Sterne nach Zahl der Bausteine und Tiefe
+  (Laufzeit).
+- **Turingmaschine**: Band mit Kopf, Zustandsdiagramm und Übergangstabelle, Schritt für Schritt abspielbar. Aufgaben:
+  Binärzahl um eins erhöhen, Einsen zählen, Kopieren, Palindrom, Klammern prüfen, unäre Addition. Prüfung auf sichtbaren
+  und versteckten Bändern mit Schrittgrenze; Sterne nach Zahl der Zustände und Schritte. Passt zur Ampel: beides sind
+  Zustandsautomaten.
+
+## Weitere Spielideen: Codes knacken und Flaggenjagd (Idee, vor dem Bau Entwürfe)
+
+Vorschlag des Nutzers (25.10.2026): geheime Codes knacken und Hacking-Aufgaben, bei denen man eine versteckte Flagge
+findet.
+
+- **Codes knacken**: man schreibt einen Knacker statt zu raten. Stufen: Verschiebung (Cäsar), Ersetzung mit
+  Häufigkeitsanalyse, Schlüsselwort (Vigenère), XOR mit kurzem Schlüssel, Kodierungen (Base64, Hex) als Schichten,
+  kleine Schlüsselräume durchprobieren (vierstellige PIN gegen einen Prüfwert). Geprüft wird auf versteckten
+  Geheimtexten mit anderen Schlüsseln, ein eingetippter Klartext zählt also nicht. Sterne nach Laufzeit und Kürze.
+- **Flaggenjagd**: kleine, absichtlich verwundbare Systeme, die nur in der Sandbox leben: Anmeldung mit SQL-Einschleusung,
+  Dateiausgabe mit Pfadausbruch, vorhersagbare Zugangsmarke, Rechenfehler im Warenkorb (negative Menge), Seite mit
+  eingeschleustem Skript. Die Flagge wird je Spieler und Lauf zufällig erzeugt und lässt sich nicht weitergeben.
+  Aufbau in Teilschritten: erst die Flagge finden, dann im zweiten Teilschritt die Lücke im Code schließen; die
+  Prüfung greift dann erneut an und darf die Flagge nicht mehr finden. So lernt man Angriff und Abwehr zusammen.
+- **Grenze**: nie gegen echte Systeme, kein Netz; alle Ziele sind eigene Übungssysteme in der Sandbox.
+
 ## Spielmechanik in der ganzen App
 
 | Mechanik | Was sie belohnt | Wo sie erscheint |

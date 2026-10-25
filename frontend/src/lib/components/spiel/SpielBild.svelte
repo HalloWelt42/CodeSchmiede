@@ -6,7 +6,12 @@
   const ROBOTER_BILD = ['.#..Z', '*#.#.', '***#.', '.#*K.', '#...#'].join('').split('');
 </script>
 
-{#if id === 'roboter-parcours'}
+{#if id === 'sql-krimi'}
+  <div class="akte-bild">
+    <div class="akte-text"><div class="kapitel">AKTE 1</div>SELECT ...<br />JOIN zeugen<br /><span class="fund">LK-447-B</span></div>
+    <i class="fa-solid fa-magnifying-glass lupe" aria-hidden="true"></i>
+  </div>
+{:else if id === 'roboter-parcours'}
   <div class="welt mini" style:--zellen="5">
     {#each ROBOTER_BILD as z, i (i)}
       <div class="zelle" class:wand={z === '#'} class:spur={z === '*'}>
@@ -47,6 +52,28 @@
     color: var(--fg);
   }
   .mini { width: 96px; }
+  .akte-bild { position: absolute; inset: 0; }
+  .akte-text {
+    position: absolute;
+    inset: 14px 18px;
+    border: 1px solid var(--border);
+    background: var(--bg-card-2);
+    padding: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--fg-dim);
+    line-height: 1.5;
+    text-align: left;
+  }
+  .akte-text .kapitel { color: var(--orange); }
+  .fund { background: color-mix(in srgb, var(--gold) 30%, transparent); color: var(--fg); }
+  .lupe {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    font-size: 26px;
+    color: var(--orange);
+  }
   .sprint-bild { text-align: center; }
   .uhrzeit {
     font-size: 34px;

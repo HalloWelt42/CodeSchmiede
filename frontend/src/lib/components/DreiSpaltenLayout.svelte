@@ -41,6 +41,8 @@
     pruefen?: Pruefen;
     /** Beschriftung der drei Schritte am Telefon */
     schritte?: [string, string, string];
+    /** Knopf am Telefon zum mittleren Schritt, ab Werk "Zum <Schritt>" */
+    zumEditor?: string;
   }
   let {
     links,
@@ -52,6 +54,7 @@
     rechtsTitel,
     pruefen,
     schritte = ['Aufgabe', 'Code', 'Ergebnis'],
+    zumEditor,
   }: Props = $props();
 
   const SCHRITT_ICONS = ['fa-file-lines', 'fa-code', 'fa-flask'];
@@ -132,7 +135,7 @@
       <div class="pane-inhalt">{@render links()}</div>
       <div class="t-unten">
         <button class="knopf voll" onclick={() => (schritt = 1)}>
-          <i class="fa-solid fa-code" aria-hidden="true"></i>Zum {schritte[1]}
+          <i class="fa-solid fa-code" aria-hidden="true"></i>{zumEditor ?? `Zum ${schritte[1]}`}
         </button>
       </div>
     </section>

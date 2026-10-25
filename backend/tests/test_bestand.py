@@ -11,7 +11,9 @@ from concurrent.futures import ThreadPoolExecutor
 import pytest
 
 from codeschmiede.config import PROJEKT_WURZEL, Settings
+from codeschmiede.models.progress import Progress
 from codeschmiede.pruefung.orchestrator import pruefe, pruefer_fuer
+from codeschmiede.spiel.dienst import mit_verlauf
 from codeschmiede.state import AppState
 
 from .conftest import braucht_sandbox
@@ -66,6 +68,9 @@ def test_musterloesungen_bestehen(state):
         if not erg.bestanden and erg.timeout:
             # Zeitüberschreitung unter paralleler Last (langsamer Containerstart): einmal wiederholen
             erg = pruefe(a, ml["code"], state.runner)
+        if erg.wertung:
+            # Sterne aus dem Verlauf so, als gelänge die Musterlösung im ersten Versuch ohne Hinweis
+            erg = erg.model_copy(update={"wertung": mit_verlauf(erg.wertung, Progress(aufgabe_id=a.id, status="neu"))})
         if erg.bestanden and (erg.wertung is None or erg.wertung.sterne == 3):
             return None
         if erg.bestanden:

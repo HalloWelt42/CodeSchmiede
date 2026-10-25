@@ -98,6 +98,10 @@ class LevelStand(BaseModel):
     nummer: int
     geloest: bool
     sterne: int | None = None
+    # Pfad, zu dem das Level gehört (im Krimi der Fall), und die Nummer darin
+    gruppe: str | None = None
+    nummer_in_gruppe: int | None = None
+    gruppe_groesse: int | None = None
 
 
 class SpielUebersicht(BaseModel):
@@ -109,6 +113,7 @@ class SpielUebersicht(BaseModel):
     beschreibung: str
     aufgabentyp: str
     levels_als: Literal["stufen", "auswahl"]
+    level_wort: str
     levels: list[LevelStand]
     geschafft: int
     sterne: int

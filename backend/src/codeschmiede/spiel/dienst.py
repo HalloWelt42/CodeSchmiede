@@ -32,11 +32,11 @@ from ..progress.submissions import (
     SubmissionRepository,
     codelaenge,
 )
-from ..pruefung.ergebnis import Kennwerte, PruefErgebnis
+from ..pruefung.ergebnis import Kennwerte, PruefErgebnis, Wertung
 from ..pruefung.registry import hole
 from .auftrag import tagesauftrag
 from .bestand import Bestand
-from .erfolge import Kennzahlen, erfolge, neu_erreicht
+from .erfolge import FallStand, Kennzahlen, erfolge, neu_erreicht
 from .gutschriften import GutschriftRepository
 from .meisterschaft import meisterschaft
 from .serie import serie_aus_tagen
@@ -59,8 +59,28 @@ class Lage:
 class Verbuchung:
     submission_id: int
     progress: Progress
+    # die Prüfung mit den Sternen nach dem Verlauf
+    pruefung: PruefErgebnis
     # nur bei bestandenen Abgaben
     belohnung: Belohnung | None
+
+
+def mit_verlauf(wertung: Wertung, bisher: Progress) -> Wertung:
+    """Entscheidet die Sterne, die vom Verlauf abhängen (ohne Hinweis,
+    Zahl der Prüfversuche); Sterne zählen nur der Reihe nach."""
+    kriterien = []
+    for k in wertung.kriterien:
+        if k.art == "ohne_hinweis":
+            k = k.model_copy(update={"erreicht": bisher.hints_genutzt == 0 and not bisher.aufgegeben})
+        elif k.art == "versuche":
+            k = k.model_copy(update={"erreicht": k.grenze is not None and bisher.versuche + 1 <= k.grenze})
+        kriterien.append(k)
+    sterne = 0
+    for k in kriterien:
+        if not k.erreicht:
+            break
+        sterne += 1
+    return wertung.model_copy(update={"kriterien": kriterien, "sterne": sterne})
 
 
 def neue_bestwerte(
@@ -107,16 +127,26 @@ class Spieldienst:
         progress = {p.aufgabe_id: p for p in self.progress.hole_alle_progress()}
         heute = self.submissions.heute_je_aufgabe()
         uebersicht = []
+        pfade = {p.id: p for p in bestand.pfade}
         for spiel in bestand.konfig.spiele:
+            gruppe_von = {}
+            for pid in spiel.pfade:
+                if pid in pfade:
+                    for k, aid in enumerate(pfade[pid].reihenfolge, start=1):
+                        gruppe_von.setdefault(aid, (pfade[pid].titel, k, len(pfade[pid].reihenfolge)))
             levels = []
             for nummer, aufgabe in enumerate(bestand.levels(spiel), start=1):
                 p = progress.get(aufgabe.id)
+                gruppe = gruppe_von.get(aufgabe.id)
                 levels.append(LevelStand(
                     id=aufgabe.id,
                     titel=aufgabe.titel,
                     nummer=nummer,
                     geloest=p is not None and p.status == "geloest",
                     sterne=p.sterne if p else None,
+                    gruppe=gruppe[0] if gruppe else None,
+                    nummer_in_gruppe=gruppe[1] if gruppe else None,
+                    gruppe_groesse=gruppe[2] if gruppe else None,
                 ))
             punkte = sum(progress[lv.id].punkte_erreicht for lv in levels if lv.id in progress)
             uebersicht.append(SpielUebersicht(
@@ -126,6 +156,7 @@ class Spieldienst:
                 beschreibung=spiel.beschreibung,
                 aufgabentyp=spiel.aufgabentyp,
                 levels_als=spiel.levels_als,
+                level_wort=spiel.level_wort,
                 levels=levels,
                 geschafft=sum(1 for lv in levels if lv.geloest),
                 sterne=sum(lv.sterne or 0 for lv in levels),
@@ -147,6 +178,8 @@ class Spieldienst:
 
         vorher = self._lage(bestand, heute)
         bisher = self.progress.hole_progress(aufgabe.id) or Progress(aufgabe_id=aufgabe.id, status="neu")
+        if ergebnis.wertung and any(k.art != "ergebnis" for k in ergebnis.wertung.kriterien):
+            ergebnis = ergebnis.model_copy(update={"wertung": mit_verlauf(ergebnis.wertung, bisher)})
         wertung = ergebnis.wertung
         sterne = wertung.sterne if wertung else None
         kennwerte = wertung.kennwerte.model_copy() if wertung else Kennwerte()
@@ -168,7 +201,7 @@ class Spieldienst:
         )
         progress = self.progress.aktualisiere_nach_submission(aufgabe, ergebnis.bestanden, sterne, heute)
         if not ergebnis.bestanden:
-            return Verbuchung(submission_id, progress, None)
+            return Verbuchung(submission_id, progress, ergebnis, None)
 
         nachher = self._lage(bestand, heute)
         bonus = 0
@@ -194,7 +227,7 @@ class Spieldienst:
             auftrag_bonus=bonus,
             auftrag=nachher.auftrag,
         )
-        return Verbuchung(submission_id, progress, belohnung)
+        return Verbuchung(submission_id, progress, ergebnis, belohnung)
 
     # --- Stand ------------------------------------------------------------
 
@@ -250,10 +283,28 @@ class Spieldienst:
             volle_runden=sum(
                 1 for a in abgaben if a.kennwerte.treffer is not None and a.kennwerte.treffer == a.kennwerte.fragen
             ),
+            faelle=self._faelle(bestand, progress),
             roboter_kurz=len({
                 a.aufgabe_id for a in abgaben if a.kennwerte.zeilen is not None and a.kennwerte.zeilen <= 3
             }),
         )
+
+    @staticmethod
+    def _faelle(bestand: Bestand, progress: list[Progress]) -> list[FallStand]:
+        stand = {p.aufgabe_id: p for p in progress}
+        pfade = {p.id: p for p in bestand.pfade}
+        faelle = []
+        for spiel in bestand.konfig.spiele:
+            if spiel.aufgabentyp != "sql_krimi":
+                continue
+            for pid in spiel.pfade:
+                kapitel = [a for a in pfade[pid].reihenfolge if a in bestand.aufgaben] if pid in pfade else []
+                if not kapitel:
+                    continue
+                geloest = all(a in stand and stand[a].status == "geloest" for a in kapitel)
+                voll = geloest and all(stand[a].sterne == 3 for a in kapitel)
+                faelle.append(FallStand(id=pid, titel=pfade[pid].titel, stufe=2 if voll else 1 if geloest else 0))
+        return faelle
 
     @staticmethod
     def _zaehle_je_typ(bestand: Bestand, ids) -> dict[str, int]:

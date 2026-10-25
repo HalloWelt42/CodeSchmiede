@@ -10,6 +10,8 @@ from pydantic import BaseModel, Field
 
 from ..models.spiel import ErfolgsListe, Spielstand, SpielUebersicht
 from ..models.sprint import SprintAbschluss, SprintRueckmeldung, SprintRunde
+from ..pruefung import krimi_pruefer
+from ..pruefung.krimi_pruefer import Ergebnistabelle
 from ..pruefung.roboter_pruefer import Laeufe, lauf_sichtbar
 from ..sandbox.runner import SandboxFehler
 from ..spiel.sprint import FalscheAntwort, RundeNichtGefunden, RundeVorbei
@@ -23,6 +25,22 @@ class SprintAntwort(BaseModel):
 
 class RoboterProbe(BaseModel):
     code: str = Field(min_length=1, max_length=50_000)
+
+
+class KrimiAbfrage(BaseModel):
+    code: str = Field(min_length=1, max_length=50_000)
+
+
+class KrimiErgebnis(BaseModel):
+    tabelle: Ergebnistabelle | None = None
+    fehler: str | None = None
+    laufzeit_ms: float = 0
+
+
+class Notiz(BaseModel):
+    kapitel: int
+    titel: str
+    text: str
 
 
 def baue_spiel_router(state: AppState) -> APIRouter:
@@ -50,6 +68,41 @@ def baue_spiel_router(state: AppState) -> APIRouter:
             return lauf_sichtbar(aufgabe, anfrage.code, state.runner)
         except SandboxFehler as fehler:
             raise HTTPException(status_code=503, detail=str(fehler)) from fehler
+
+    def krimi_kapitel(aufgabe_id: str):
+        aufgabe = state.aufgaben.aufgabe(aufgabe_id)
+        if aufgabe is None or aufgabe.task_type != "sql_krimi":
+            raise HTTPException(status_code=404, detail="Kein Krimi-Kapitel")
+        return aufgabe
+
+    @router.post("/krimi/{aufgabe_id}/ausfuehren", response_model=KrimiErgebnis)
+    def krimi_ausfuehren(aufgabe_id: str, anfrage: KrimiAbfrage) -> KrimiErgebnis:
+        """Führt die Abfrage nur auf der Tatort-Datenbank aus; zählt nicht als Versuch."""
+        aufgabe = krimi_kapitel(aufgabe_id)
+        level = krimi_pruefer.level_von(aufgabe)
+        try:
+            tabellen, stderr, laufzeit, _ = krimi_pruefer.ausfuehren(aufgabe, [(level.dataset, anfrage.code)], state.runner)
+        except SandboxFehler as fehler:
+            raise HTTPException(status_code=503, detail=str(fehler)) from fehler
+        if tabellen is None:
+            return KrimiErgebnis(fehler=stderr, laufzeit_ms=laufzeit)
+        return KrimiErgebnis(tabelle=tabellen[0], fehler=tabellen[0].fehler, laufzeit_ms=laufzeit)
+
+    @router.get("/krimi/{aufgabe_id}/pinnwand", response_model=list[Notiz])
+    def krimi_pinnwand(aufgabe_id: str) -> list[Notiz]:
+        """Notizen der gelösten Kapitel desselben Falls, in der Reihenfolge des Falls."""
+        krimi_kapitel(aufgabe_id)
+        geloest = {p.aufgabe_id for p in state.progress.hole_alle_progress() if p.status == "geloest"}
+        notizen = []
+        for pfad_id in state.aufgaben.pfade_von(aufgabe_id):
+            pfad = state.aufgaben.pfad(pfad_id)
+            for aid in pfad.reihenfolge if pfad else []:
+                kapitel = state.aufgaben.aufgabe(aid)
+                if kapitel is None or kapitel.task_type != "sql_krimi" or aid not in geloest:
+                    continue
+                level = krimi_pruefer.level_von(kapitel)
+                notizen.append(Notiz(kapitel=level.kapitel, titel=kapitel.titel, text=level.notiz))
+        return notizen
 
     @router.post("/sprint/{aufgabe_id}/runde", response_model=SprintRunde)
     def sprint_runde(aufgabe_id: str) -> SprintRunde:

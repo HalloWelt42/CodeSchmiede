@@ -2,6 +2,7 @@
 
 Liefert pro Dataset alle Tabellen mit Spalten + ersten N Zeilen. Der
 Frontend zeigt das als frei bewegliches Schema-Panel ueber dem Editor.
+Gegenproben des SQL-Krimis bleiben verborgen.
 """
 from __future__ import annotations
 
@@ -12,6 +13,7 @@ from typing import Any
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
+from ..pruefung.krimi_pruefer import geheime_datensaetze
 from ..pruefung.sql_pruefer import DATASET_NAME
 from ..state import AppState
 
@@ -38,6 +40,8 @@ def baue_sql_dataset_router(state: AppState) -> APIRouter:
     def vorschau(name: str, limit: int = 5) -> DatasetVorschau:
         if not DATASET_NAME.match(name):
             raise HTTPException(status_code=400, detail="Ungültiger Datensatzname")
+        if name in geheime_datensaetze(state.aufgaben.alle_aufgaben()):
+            raise HTTPException(status_code=404, detail=f"Dataset '{name}' nicht gefunden")
         limit = max(1, min(50, limit))
         datei = _datasets_dir() / f"{name}.sql"
         if not datei.exists():
