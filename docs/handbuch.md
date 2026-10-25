@@ -83,7 +83,7 @@ Probe: nach dem Anmelden zeigt die Startseite den alten Fortschritt.
 
 ### 5. Frisch: App-Schlüssel und erste Einrichtung
 
-In der Kellerwolke unter Einstellungen, Apps einen App-Schlüssel "Codeschmiede" anlegen. Dann {{adresse}} öffnen: die
+In der Kellerwolke am Rechner im Menü am eigenen Namen "Zugänge" öffnen (als Admin heißt der Eintrag "Verwaltung", darin der Reiter Zugänge), als Name der App "Codeschmiede" eintragen und "Schlüssel ausstellen". Der Schlüssel (`kw_app_...`) erscheint nur dieses eine Mal. Dann {{adresse}} öffnen: die
 Seite "Erste Einrichtung" fragt nach der Adresse der Kellerwolke, dem App-Schlüssel und dem Einrichtungscode. Der Code
 steht auf dem Pi in `{{wurzel}}/daten/einrichtungscode` und gilt nur, bis die App eingerichtet ist.
 
@@ -92,7 +92,7 @@ Probe: danach erscheint "Anmelden"; mit dem Konto, dem der App-Schlüssel gehör
 ### 6. Telefon koppeln
 
 Auf dem iPhone {{adresse}} öffnen, zum Home-Bildschirm hinzufügen und die Web-App starten. Jede Web-App hat ihren
-eigenen Speicher: einmal "Gerät koppeln" mit einem Code aus der Kellerwolke (Einstellungen, Geräte).
+eigenen Speicher: einmal "Gerät koppeln" mit einem Code aus der Kellerwolke (am Rechner im Menü am Namen, Reiter Geräte).
 
 Probe: die Web-App zeigt die Startseite mit den Reitern unten.
 

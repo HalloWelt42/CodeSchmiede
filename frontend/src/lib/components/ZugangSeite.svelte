@@ -92,7 +92,7 @@
         {#if fehler}<p class="hinweis-box fehler"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>{fehler}</p>{/if}
         <p class="zugang-fuss">
           {#if zugang.info?.einrichtungscode}Den Code findest du am Rechner der App in <code>{zugang.info.einrichtungscode}</code>.{/if}
-          Den App-Schlüssel legst du in der Kellerwolke an: Einstellungen, Apps.
+          Den App-Schlüssel stellst du in der Kellerwolke aus: Menü am Namen, Zugänge, Name der App eintragen, Schlüssel ausstellen.
         </p>
         <button class="knopf voll" type="submit" disabled={laeuft || !moeglich}>
           <i class="fa-solid {laeuft ? 'fa-spinner fa-spin' : 'fa-plug'}" aria-hidden="true"></i>Einrichten
@@ -120,7 +120,7 @@
           <i class="fa-solid {laeuft ? 'fa-spinner fa-spin' : weg === 'passwort' ? 'fa-right-to-bracket' : 'fa-link'}" aria-hidden="true"></i>
           {weg === 'passwort' ? 'Anmelden' : 'Koppeln'}
         </button>
-        <p class="zugang-fuss">Am Telefon als Web-App einmal koppeln: Code in der Kellerwolke unter Einstellungen, Geräte.</p>
+        <p class="zugang-fuss">Am Telefon als Web-App einmal koppeln: Code in der Kellerwolke am Rechner unter Menü am Namen, Geräte.</p>
       </form>
     {/if}
   </main>
