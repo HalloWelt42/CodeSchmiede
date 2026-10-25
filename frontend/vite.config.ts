@@ -17,8 +17,16 @@ for (const pfad of ['../VERSION', './VERSION']) {
 
 const BACKEND = process.env.VITE_BACKEND || 'http://127.0.0.1:8200';
 
+// Die gebaute Startseite nennt ihre Fassung; das Backend meldet sie in
+// /api/v1/app, und das Ausrollen prüft, dass Server und Oberfläche passen.
+const fassungEinsetzen = {
+  name: 'fassung-einsetzen',
+  transformIndexHtml: (html: string) =>
+    html.replace('<head>', `<head>\n  <meta name="app-fassung" content="${APP_VERSION}" />`),
+};
+
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [svelte(), fassungEinsetzen],
   define: {
     __APP_VERSION__: JSON.stringify(APP_VERSION),
   },

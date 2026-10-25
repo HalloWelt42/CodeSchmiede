@@ -1,0 +1,85 @@
+# Codeschmiede auf dem Pi. Vorne Caddy mit dem Zertifikat der Hausstelle und HTTP/2 (wie die anderen Apps auf dem
+# Pi; tools/ausrollen.sh stellt es aus), dahinter das Backend mit der gebauten Oberfläche, nur im eigenen Netz.
+# Den Docker-Socket sieht allein der Sandbox-Dienst; er startet je Prüfung einen abgeschotteten Container aus den
+# Abbildern codeschmiede-sandbox:<sprache> (Dienste mit Profil "bilder", gebaut beim Ausrollen).
+#
+# Daten in ./daten (SQLite, Einrichtungscode), Sicherungen in ./sicherungen, Aufgaben nur lesend aus dem Stand des
+# Repos. SANDBOX_SCHLUESSEL steht in ./.env (legt das Ausrollen einmal an, Modus 0600) und gilt für Backend und
+# Sandbox-Dienst.
+services:
+  codeschmiede:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+      target: backend
+    image: codeschmiede:aktuell
+    container_name: codeschmiede
+    restart: unless-stopped
+    user: "1000:1000"
+    expose:
+      - "8200"
+    environment:
+      CODESCHMIEDE_AUFGABEN_PFAD: /app/aufgaben
+      CODESCHMIEDE_DATEN_PFAD: /app/daten
+      CODESCHMIEDE_DB_DATEI: /app/daten/codeschmiede.sqlite
+      # nächtliche Kopie der Datenbank; dort liegen auch die Kopien vor jedem Ausrollen
+      CODESCHMIEDE_SICHERUNGEN_PFAD: /app/sicherungen
+      CODESCHMIEDE_AUFGABEN_SCHREIBBAR: "false"
+      CODESCHMIEDE_AUFGABEN_BEOBACHTEN: "false"
+      CODESCHMIEDE_SANDBOX_URL: http://sandbox:8203
+      CODESCHMIEDE_SANDBOX_SCHLUESSEL: ${SANDBOX_SCHLUESSEL:?SANDBOX_SCHLUESSEL fehlt in .env}
+      CODESCHMIEDE_CA_DATEI: /zertifikate/rootCA.pem
+      # wie ein Mensch die Datei mit dem Einrichtungscode am Pi findet (setzt das Ausrollen)
+      CODESCHMIEDE_EINRICHTUNGSCODE_ORT: ${EINRICHTUNGSCODE_ORT:-}
+    volumes:
+      - ./aufgaben:/app/aufgaben:ro
+      - ./daten:/app/daten
+      - ./sicherungen:/app/sicherungen
+      - ./zertifikate:/zertifikate:ro
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - sandbox
+
+  sandbox:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+      target: sandbox
+    image: codeschmiede-sandbox-dienst:aktuell
+    container_name: codeschmiede-sandbox
+    restart: unless-stopped
+    expose:
+      - "8203"
+    environment:
+      CODESCHMIEDE_SANDBOX_HOST: 0.0.0.0
+      CODESCHMIEDE_SANDBOX_SCHLUESSEL: ${SANDBOX_SCHLUESSEL:?SANDBOX_SCHLUESSEL fehlt in .env}
+      CODESCHMIEDE_SANDBOX_MAX_PARALLEL: "2"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  vorne:
+    image: caddy:2.11.6-alpine
+    container_name: codeschmiede-vorne
+    restart: unless-stopped
+    security_opt: ["no-new-privileges:true"]
+    depends_on: [codeschmiede]
+    ports:
+      - "8661:8661"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./zertifikate:/zertifikate:ro
+
+  # Abbilder, in denen der eingereichte Code läuft; nur gebaut, nie gestartet
+  bild-python:
+    profiles: [bilder]
+    build:
+      context: sandbox-bilder
+      dockerfile: python.Dockerfile
+    image: codeschmiede-sandbox:python
+
+  bild-javascript:
+    profiles: [bilder]
+    build:
+      context: sandbox-bilder
+      dockerfile: javascript.Dockerfile
+    image: codeschmiede-sandbox:javascript

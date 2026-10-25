@@ -1,6 +1,7 @@
 <script lang="ts">
   import { layout } from '../stores/LayoutStore.svelte';
   import { theme } from '../stores/ThemeStore.svelte';
+  import { zugang } from '../stores/ZugangStore.svelte';
 </script>
 
 <header class="topbar">
@@ -16,6 +17,14 @@
     Codeschmiede
   </div>
   <div class="rechts">
+    {#if zugang.konto}
+      <span class="konto">
+        <i class="fa-solid {zugang.konto.geraet ? 'fa-link' : 'fa-user'}" aria-hidden="true"></i>{zugang.konto.name}
+        <button class="ikon" onclick={() => zugang.abmelden()} aria-label="Abmelden" title="Abmelden">
+          <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+        </button>
+      </span>
+    {/if}
     <button class="ikon" onclick={() => theme.toggle()} aria-label="Theme wechseln">
       <i class="fa-solid {theme.modus === 'dark' ? 'fa-sun' : 'fa-moon'}" aria-hidden="true"></i>
     </button>

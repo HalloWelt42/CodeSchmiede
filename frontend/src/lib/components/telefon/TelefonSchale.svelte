@@ -7,6 +7,7 @@
    */
   import { route } from '../../stores/RouteStore.svelte';
   import { theme } from '../../stores/ThemeStore.svelte';
+  import { zugang } from '../../stores/ZugangStore.svelte';
   import { BEREICHE, istAktiv } from '../../navigation';
   import FassungsBand from '../FassungsBand.svelte';
   import Inhalt from '../Inhalt.svelte';
@@ -20,9 +21,16 @@
       <i class="fa-solid fa-hammer" aria-hidden="true"></i>
       Codeschmiede
     </div>
-    <button class="ikon" onclick={() => theme.toggle()} aria-label="Theme wechseln">
-      <i class="fa-solid {theme.modus === 'dark' ? 'fa-sun' : 'fa-moon'}" aria-hidden="true"></i>
-    </button>
+    <div class="rechts">
+      {#if zugang.konto}
+        <button class="ikon" onclick={() => zugang.abmelden()} aria-label="Abmelden {zugang.konto.name}">
+          <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+        </button>
+      {/if}
+      <button class="ikon" onclick={() => theme.toggle()} aria-label="Theme wechseln">
+        <i class="fa-solid {theme.modus === 'dark' ? 'fa-sun' : 'fa-moon'}" aria-hidden="true"></i>
+      </button>
+    </div>
   </header>
   <FassungsBand />
   <main class="t-inhalt">
@@ -65,6 +73,10 @@
     font-weight: 600;
   }
   .marke i { color: var(--accent); }
+  .rechts {
+    display: flex;
+    gap: var(--sp-2);
+  }
   .t-inhalt {
     flex: 1;
     min-height: 0;

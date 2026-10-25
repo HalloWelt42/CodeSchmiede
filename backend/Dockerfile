@@ -1,7 +1,17 @@
 # Codeschmiede: ein Python-Unterbau, zwei Ziele.
-#   backend  -- FastAPI-App, ohne Docker-Zugang
+#   backend  -- FastAPI-App samt gebauter Oberfläche, ohne Docker-Zugang
 #   sandbox  -- Sandbox-Dienst, einziger Teil mit Docker-CLI und Socket
-# Bauen: docker compose build (die Ziele stehen in docker-compose.yml).
+# Bauen: docker compose build (die Ziele stehen in compose.pi.yml und docker-compose.yml).
+
+# Oberfläche: genau nach package-lock.json gebaut; die Startseite nennt ihre Fassung (Meta app-fassung)
+FROM node:26-slim AS oberflaeche
+WORKDIR /bau
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci --no-fund --no-audit
+COPY frontend/. ./
+COPY VERSION ./VERSION
+RUN npm run build
+
 
 FROM python:3.14-slim AS basis
 
@@ -25,6 +35,8 @@ ENV PYTHONUNBUFFERED=1
 
 FROM basis AS backend
 
+COPY --from=oberflaeche /bau/dist /app/oberflaeche
+ENV CODESCHMIEDE_OBERFLAECHE_PFAD=/app/oberflaeche
 EXPOSE 8200
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD curl -fsS http://localhost:8200/api/healthz || exit 1

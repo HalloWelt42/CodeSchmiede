@@ -22,6 +22,7 @@
   import { aufgabenApi } from '../api/AufgabenApi';
   import { progressApi } from '../api/ProgressApi';
   import { submissionsApi } from '../api/SubmissionsApi';
+  import { sqlApi, type VorschauTabelle } from '../api/SqlApi';
   import type { AufgabeDetail } from '../types/Aufgabe';
   import type { SubmissionAntwort } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
@@ -61,13 +62,7 @@
     if (pruefen_laeuft || code !== gesicherter_code) return fassung.halten();
   });
 
-  interface SchemaTabelle {
-    name: string;
-    spalten: string[];
-    zeilen: unknown[][];
-    gesamt_zeilen: number;
-  }
-  let schema_daten = $state<SchemaTabelle[] | null>(null);
+  let schema_daten = $state<VorschauTabelle[] | null>(null);
   let schema_panel_offen = $state(false);
   let schema_position = $state({ x: 80, y: 80 });
 
@@ -89,11 +84,7 @@
     schema_panel_offen = true;
     if (schema_daten) return;
     try {
-      const r = await fetch(`/api/sql/datasets/${dataset}/vorschau?limit=5`);
-      if (r.ok) {
-        const j = await r.json();
-        schema_daten = j.tabellen;
-      }
+      schema_daten = await sqlApi.vorschau(dataset);
     } catch (e) {
       fehler = (e as Error).message;
     }

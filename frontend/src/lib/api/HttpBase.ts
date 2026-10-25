@@ -1,8 +1,11 @@
 /*
  * Schmaler fetch-Wrapper mit JSON-Parsing und einheitlicher
- * Fehlerbehandlung. Im Dev-Modus laeuft alles über den Vite-Proxy
+ * Fehlerbehandlung. Jede Anfrage trägt die Sitzung der Kellerwolke
+ * (sitzung.ts). Im Dev-Modus läuft alles über den Vite-Proxy
  * (/api -> http://127.0.0.1:8200).
  */
+
+import { KOPF, sitzung } from './sitzung';
 
 export class ApiFehler extends Error {
   constructor(
@@ -19,10 +22,13 @@ export class HttpBase {
 
   protected async request<T>(pfad: string, optionen: RequestInit = {}): Promise<T> {
     const url = this.basis + pfad;
+    const kopf: Record<string, string> = { 'Content-Type': 'application/json' };
+    if (sitzung.token) kopf[KOPF] = sitzung.token;
     const antwort = await fetch(url, {
-      headers: { 'Content-Type': 'application/json', ...(optionen.headers ?? {}) },
       ...optionen,
+      headers: { ...kopf, ...(optionen.headers ?? {}) },
     });
+    sitzung.pruefen(antwort);
 
     if (!antwort.ok) {
       let body: unknown = null;

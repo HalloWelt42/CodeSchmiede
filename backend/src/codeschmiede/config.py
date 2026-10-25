@@ -40,5 +40,24 @@ class Settings(BaseSettings):
     # nur die eigene Herkunft (Oberfläche und API unter derselben Adresse).
     erlaubte_herkuenfte: list[str] = []
 
+    # Anmeldung mit dem Kellerwolke-Konto. Aus nur für Tests und eine
+    # Entwicklung ohne Kellerwolke; im Betrieb immer an.
+    anmeldung_pflicht: bool = True
+    # Vorgabe für die Einrichtung; gespeichert wird, was dort eingetragen wird.
+    kellerwolke_adresse: str = ""
+    # Zusätzliche Zertifikatsstelle für HTTPS im Heimnetz (Hausstelle).
+    # Leer: die mkcert-Stelle dieses Rechners, wenn es eine gibt.
+    ca_datei: Path | None = None
+
+    # Nächtliche Sicherung der Datenbank in diesen Ordner (Betrieb).
+    # Leer: keine; vor jedem Ausrollen sichert zusätzlich das Ausrollen.
+    sicherungen_pfad: Path | None = None
+    sicherung_stunde: int = 3
+    sicherungen_behalten: int = 14
+
+    # Gebaute Oberfläche, die das Backend selbst ausliefert (Betrieb).
+    # Leer: keine; in der Entwicklung liefert Vite die Oberfläche.
+    oberflaeche_pfad: Path | None = None
+
     api_host: str = "127.0.0.1"
     api_port: int = 8200

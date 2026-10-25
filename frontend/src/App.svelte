@@ -1,8 +1,9 @@
 <script lang="ts">
   /*
-   * Wurzel: Rechnerschale (Kopfleiste, Navigation, Inhalt, Fuß) oder
-   * eigene Telefonschale, entschieden im GeraetStore. Den Inhalt nach
-   * Route teilen sich beide (Inhalt.svelte).
+   * Wurzel: ohne gültige Anmeldung die Seite für Anmeldung und
+   * Einrichtung, sonst Rechnerschale (Kopfleiste, Navigation, Inhalt,
+   * Fuß) oder eigene Telefonschale, entschieden im GeraetStore. Den
+   * Inhalt nach Route teilen sich beide (Inhalt.svelte).
    */
   import { onMount } from 'svelte';
   import { theme } from './lib/stores/ThemeStore.svelte';
@@ -17,22 +18,32 @@
   import FassungsBand from './lib/components/FassungsBand.svelte';
   import Inhalt from './lib/components/Inhalt.svelte';
   import TelefonSchale from './lib/components/telefon/TelefonSchale.svelte';
+  import ZugangSeite from './lib/components/ZugangSeite.svelte';
+  import { zugang } from './lib/stores/ZugangStore.svelte';
 
   onMount(() => {
     theme.init();
     route.init();
     layout.init();
-    konfig.init();
     const geraetEnde = geraet.init();
     const fassungEnde = fassung.verfolgen();
+    const zugangEnde = zugang.init();
     return () => {
       geraetEnde();
       fassungEnde();
+      void zugangEnde.then((aus) => aus());
     };
+  });
+
+  // die Konfiguration braucht eine Anmeldung
+  $effect(() => {
+    if (zugang.stand === 'bereit' && !konfig.geladen) void konfig.init();
   });
 </script>
 
-{#if geraet.telefon}
+{#if zugang.stand !== 'bereit'}
+  <ZugangSeite />
+{:else if geraet.telefon}
   <TelefonSchale />
 {:else}
   <div class="app">

@@ -34,15 +34,24 @@ Hintergrund, `stop.sh` beendet sie.
 
 Browser: <http://localhost:5184>.
 
-### Docker Compose (Pi)
+Angemeldet wird mit dem Konto der Kellerwolke (Baustein des Appkern). Beim
+ersten Start fragt die App nach Adresse und App-Schlüssel der Kellerwolke;
+von einem anderen Gerät braucht die Einrichtung den Code aus
+`<daten>/einrichtungscode`. Zum Entwickeln ohne Kellerwolke:
+`CODESCHMIEDE_ANMELDUNG_PFLICHT=false`.
+
+### Betrieb auf dem Pi
 
 ```bash
-./scripts/build-sandbox.sh    # einmalig: Sandbox-Images bauen
-docker compose up -d
+tools/ausrollen.sh
 ```
 
-Browser: <http://localhost:8201>. Backend und Sandbox-Dienst sind nur im
-Compose-Netz erreichbar; die Aufgaben sind dort nur lesbar.
+Vorne ein Vorschaltdienst mit HTTPS und HTTP/2, dahinter das Backend mit der
+gebauten Oberfläche und der Sandbox-Dienst als einziger Teil mit
+Docker-Zugang (`compose.pi.yml`). Ziel, Ordner und Adresse kommen aus dem
+Handbuch des Verbunds; Einrichtung, Sicherung und Rückspielen stehen in
+[`docs/handbuch.md`](docs/handbuch.md). Die Aufgaben sind dort nur lesbar,
+bearbeitet wird am Mac.
 
 ## Tests
 

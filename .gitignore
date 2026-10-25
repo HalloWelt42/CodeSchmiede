@@ -15,8 +15,12 @@ dist/
 .vite/
 *.tsbuildinfo
 
-# Daten und Datenbanken
+# Daten und Datenbanken (data/ in der Entwicklung, daten/ im Betrieb auf dem Pi)
 data/
+daten/
+sicherungen/
+zertifikate/
+deploy/.probelauf/
 *.db
 *.db-journal
 *.db-wal

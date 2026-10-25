@@ -23,7 +23,7 @@
         <header class="topbar">
           <button class="ikon"><i class="fa-solid fa-angles-left"></i></button>
           <div class="marke"><i class="fa-solid fa-hammer"></i>Codeschmiede</div>
-          <div class="rechts">${themaKnopf}</div>
+          <div class="rechts"><span class="konto"><i class="fa-solid fa-user"></i>marcel<button class="ikon" title="Abmelden"><i class="fa-solid fa-right-from-bracket"></i></button></span>${themaKnopf}</div>
         </header>
         <div class="koerper">
           <aside class="nav">
@@ -37,7 +37,7 @@
   } else {
     document.body.innerHTML = `
       <div class="telefon">
-        <header class="t-kopf"><div class="marke"><i class="fa-solid fa-hammer"></i>Codeschmiede</div><div class="rechts">${themaKnopf}</div></header>
+        <header class="t-kopf"><div class="marke"><i class="fa-solid fa-hammer"></i>Codeschmiede</div><div class="rechts"><button class="ikon" title="Abmelden"><i class="fa-solid fa-right-from-bracket"></i></button>${themaKnopf}</div></header>
         <main class="t-inhalt">${inhalt}</main>
         <nav class="t-reiter">
           ${BEREICHE.filter((b) => b.telefon).map((b) => `<button class="${b.id === bereich ? 'aktiv' : ''}" onclick="location.href='${ziel(b.id)}'"><i class="fa-solid ${b.icon}"></i>${b.titel}</button>`).join('')}

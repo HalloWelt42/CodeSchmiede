@@ -142,6 +142,8 @@ def settings(tmp_path: Path, bestand: Path) -> Settings:
         aufgaben_pfad=bestand,
         daten_pfad=tmp_path / "data",
         db_datei=tmp_path / "data" / "test.db",
+        # Anmeldung prüft test_zugang.py mit einer Schein-Kellerwolke
+        anmeldung_pflicht=False,
     )
 
 

@@ -7,13 +7,19 @@ Schutz gegen fremde Webseiten im selben Browser:
   werden abgewiesen. Maßgeblich ist `Sec-Fetch-Site` des Browsers, ohne
   diesen Kopf die `Origin` gegen den eigenen Host. Anfragen ohne beides
   kommen nicht aus einem Browser (Skripte, Tests) und sind erlaubt.
+
+Anmeldung: alle Endpunkte außer Gesundheit, App-Angaben, Einrichtung und
+Anmeldung selbst verlangen ein Kellerwolke-Konto, das die App nutzen darf
+(zugang/). Im Betrieb liefert das Backend auch die gebaute Oberfläche aus.
 """
 
 import asyncio
 from contextlib import asynccontextmanager
 from urllib.parse import urlsplit
 
-from fastapi import FastAPI, Request
+import httpx
+from appkern.anmeldung.api import angemeldet, anmeldungs_router
+from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
@@ -21,14 +27,18 @@ from pydantic import BaseModel
 from . import _finde_version
 from .aufgaben.watcher import AufgabenWatcher
 from .config import Settings
+from .oberflaeche import fassung_der_oberflaeche, oberflaeche_einhaengen
+from .sicherung import nachts_sichern
 from .routes.admin import baue_admin_router
 from .routes.aufgaben import baue_aufgaben_router
 from .routes.pfade import baue_pfade_router
 from .routes.progress import baue_progress_router
 from .routes.sql_dataset import baue_sql_dataset_router
 from .routes.submissions import baue_submissions_router
+from .routes.zugang import baue_zugangs_router
 from .sandbox.runner import Runner
 from .state import AppState
+from .zugang import Zugang
 
 SICHERE_METHODEN = {"GET", "HEAD", "OPTIONS"}
 FREMD = {"cross-site", "same-site"}
@@ -55,26 +65,38 @@ def herkunft_erlaubt(request: Request, erlaubte: set[str]) -> bool:
     return True
 
 
-def app_bauen(settings: Settings | None = None, runner: Runner | None = None) -> FastAPI:
+def app_bauen(
+    settings: Settings | None = None,
+    runner: Runner | None = None,
+    kellerwolke_transport: httpx.AsyncBaseTransport | None = None,
+) -> FastAPI:
     aktive_settings = settings or Settings()
     state = AppState(aktive_settings, runner=runner)
+    zugang = Zugang(aktive_settings, state.db, transport=kellerwolke_transport)
     watcher = AufgabenWatcher(state)
     erlaubte = set(aktive_settings.erlaubte_herkuenfte)
+    oberflaeche = aktive_settings.oberflaeche_pfad
+    # ändernde Anfragen in Arbeit (Prüfungen, Probeläufe): das Ausrollen wartet darauf
+    laufend = 0
 
     @asynccontextmanager
     async def lifespan(_app: FastAPI):
-        if not aktive_settings.aufgaben_beobachten:
-            yield
-            return
-        task = asyncio.create_task(watcher.laufe())
+        await zugang.starten()
+        aufgaben = []
+        if aktive_settings.aufgaben_beobachten:
+            aufgaben.append(asyncio.create_task(watcher.laufe()))
+        if aktive_settings.sicherungen_pfad is not None:
+            aufgaben.append(asyncio.create_task(nachts_sichern(
+                aktive_settings.db_datei, aktive_settings.sicherungen_pfad,
+                aktive_settings.sicherung_stunde, aktive_settings.sicherungen_behalten,
+            )))
         try:
             yield
         finally:
-            task.cancel()
-            try:
-                await task
-            except asyncio.CancelledError:
-                pass
+            for aufgabe in aufgaben:
+                aufgabe.cancel()
+            await asyncio.gather(*aufgaben, return_exceptions=True)
+            await zugang.schliessen()
 
     app = FastAPI(
         title="Codeschmiede",
@@ -84,14 +106,22 @@ def app_bauen(settings: Settings | None = None, runner: Runner | None = None) ->
         lifespan=lifespan,
     )
     app.state.codeschmiede = state
+    app.state.zugang = zugang
 
     @app.middleware("http")
     async def herkunft_pruefen(request: Request, call_next):
-        if request.method not in SICHERE_METHODEN and not herkunft_erlaubt(request, erlaubte):
+        nonlocal laufend
+        if request.method in SICHERE_METHODEN:
+            return await call_next(request)
+        if not herkunft_erlaubt(request, erlaubte):
             return JSONResponse(
                 status_code=403, content={"detail": "Anfrage aus fremder Herkunft abgewiesen"}
             )
-        return await call_next(request)
+        laufend += 1
+        try:
+            return await call_next(request)
+        finally:
+            laufend -= 1
 
     if erlaubte:
         app.add_middleware(
@@ -103,12 +133,20 @@ def app_bauen(settings: Settings | None = None, runner: Runner | None = None) ->
             expose_headers=["X-Total-Count"],
         )
 
-    app.include_router(baue_aufgaben_router(state))
-    app.include_router(baue_pfade_router(state))
-    app.include_router(baue_submissions_router(state))
-    app.include_router(baue_sql_dataset_router(state))
-    app.include_router(baue_progress_router(state))
-    app.include_router(baue_admin_router(state))
+    schutz = [Depends(angemeldet(zugang.anmeldung))] if aktive_settings.anmeldung_pflicht else []
+    app.include_router(baue_aufgaben_router(state), dependencies=schutz)
+    app.include_router(baue_pfade_router(state), dependencies=schutz)
+    app.include_router(baue_submissions_router(state), dependencies=schutz)
+    app.include_router(baue_sql_dataset_router(state), dependencies=schutz)
+    app.include_router(baue_progress_router(state), dependencies=schutz)
+    app.include_router(baue_admin_router(state), dependencies=schutz)
+    app.include_router(anmeldungs_router(zugang.anmeldung))
+    app.include_router(baue_zugangs_router(
+        zugang,
+        anmeldung_pflicht=aktive_settings.anmeldung_pflicht,
+        oberflaeche=lambda: fassung_der_oberflaeche(oberflaeche),
+        laufend=lambda: laufend,
+    ))
 
     @app.get("/api/healthz", response_model=HealthAntwort)
     def healthz() -> HealthAntwort:
@@ -122,5 +160,9 @@ def app_bauen(settings: Settings | None = None, runner: Runner | None = None) ->
             befunde_anzahl=len(state.befunde),
             aufgaben_schreibbar=aktive_settings.aufgaben_schreibbar,
         )
+
+    # zuletzt: fängt alle übrigen Orte für die Oberfläche
+    if oberflaeche is not None and (oberflaeche / "index.html").is_file():
+        oberflaeche_einhaengen(app, oberflaeche)
 
     return app

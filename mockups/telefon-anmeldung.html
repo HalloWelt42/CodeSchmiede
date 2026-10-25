@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="de" data-geraet="telefon" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Telefon: Anmeldung</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<div class="telefon">
+  <header class="t-kopf">
+    <div class="marke"><i class="fa-solid fa-hammer"></i>Codeschmiede</div>
+    <div class="rechts"><button class="ikon"><i class="fa-solid fa-sun"></i></button></div>
+  </header>
+  <main class="zugang">
+    <!-- Anmelden -->
+    <section class="zugang-karte" data-ansicht="anmelden">
+      <h1>Anmelden</h1>
+      <p class="unter">Mit deinem Konto der Kellerwolke unter <code>https://192.168.178.49:39280</code></p>
+      <div class="segment">
+        <button data-weg="passwort"><i class="fa-solid fa-key"></i>Passwort</button>
+        <button class="aktiv" data-weg="code"><i class="fa-solid fa-link"></i>Gerät koppeln</button>
+      </div>
+      <div data-teil="passwort" hidden>
+        <label class="feld">Name<input class="eingabe" value="marcel" autocomplete="username"></label>
+        <label class="feld" style="margin-top:var(--sp-2)">Passwort<input class="eingabe" type="password" value="geheim" autocomplete="current-password"></label>
+      </div>
+      <div data-teil="code">
+        <label class="feld">Code aus der Kellerwolke<input class="eingabe mono" placeholder="ABCD-EFGH"></label>
+        <label class="feld" style="margin-top:var(--sp-2)">Name dieses Geräts<input class="eingabe" value="iPhone, Web-App"></label>
+      </div>
+      <p class="hinweis-box fehler" hidden data-teil="fehler"><i class="fa-solid fa-triangle-exclamation"></i>Anmeldung fehlgeschlagen</p>
+      <button class="knopf voll"><i class="fa-solid fa-right-to-bracket"></i>Anmelden</button>
+      <p class="zugang-fuss">Am Telefon als Web-App einmal koppeln: Code in der Kellerwolke unter Einstellungen, Geräte.</p>
+    </section>
+
+    <!-- Erste Einrichtung -->
+    <section class="zugang-karte" data-ansicht="einrichtung" hidden>
+      <h1>Erste Einrichtung</h1>
+      <p class="unter">Die Codeschmiede braucht einen App-Schlüssel der Kellerwolke. Wer ihn besitzt, darf die App nutzen.</p>
+      <label class="feld">Adresse der Kellerwolke<input class="eingabe mono" value="https://192.168.178.49:39280"></label>
+      <label class="feld">App-Schlüssel<input class="eingabe mono" type="password" placeholder="kw_app_..."></label>
+      <label class="feld">Einrichtungscode<input class="eingabe mono" placeholder="XXXX-XXXX-XXXX-XXXX"></label>
+      <p class="zugang-fuss">Den Code findest du auf dem Pi in <code>/mnt/data/codeschmiede/daten/einrichtungscode</code>. Den App-Schlüssel legst du in der Kellerwolke an: Einstellungen, Apps.</p>
+      <button class="knopf voll"><i class="fa-solid fa-plug"></i>Einrichten</button>
+    </section>
+  </main>
+</div>
+<div class="mock-leiste">
+  <a href="index.html">Übersicht</a>
+  <button data-zeige="anmelden">Anmelden</button>
+  <button data-zeige="einrichtung">Einrichtung</button>
+  <button data-zeige="fehler">Fehler</button>
+</div>
+<script>
+  // nur Entwurf: zwischen den Zuständen umschalten
+  const zeige = (a) => document.querySelectorAll('[data-ansicht]').forEach((k) => (k.hidden = k.dataset.ansicht !== a));
+  document.querySelectorAll('[data-zeige]').forEach((b) => b.addEventListener('click', () => {
+    if (b.dataset.zeige === 'fehler') { zeige('anmelden'); document.querySelector('[data-teil="fehler"]').hidden = false; }
+    else zeige(b.dataset.zeige);
+  }));
+  document.querySelectorAll('[data-weg]').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-weg]').forEach((x) => x.classList.toggle('aktiv', x === b));
+    document.querySelector('[data-teil="passwort"]').hidden = b.dataset.weg !== 'passwort';
+    document.querySelector('[data-teil="code"]').hidden = b.dataset.weg !== 'code';
+  }));
+</script>
+</body>
+</html>

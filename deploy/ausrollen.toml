@@ -1,0 +1,5 @@
+# Ausrollen auf den Pi mit tools/ausrollen.sh (Schritte des Appkern: appkern.werkzeuge.ausrollen, dazu eigene für
+# Sandbox-Abbilder, Schlüssel und Fassung). Rechner, Ordner, Adresse und Namen im Zertifikat gehören dem Haus und stehen
+# nicht im Repo: tools/ausrollen.sh holt sie aus der privaten Wahrheit (handbuch ziel codeschmiede --toml).
+kennung = "codeschmiede"
+repo = "https://github.com/HalloWelt42/CodeSchmiede.git"
