@@ -79,7 +79,8 @@ def baue_bestand(wurzel: Path) -> None:
         tests_sichtbar:
           - {input: [2], expected: 4}
         tests_versteckt:
-          - {input: [21], expected: 42}
+          # unverwechselbarer Wert: Tests suchen ihn in Antworten, kurze Zahlen stehen zufällig in Laufzeiten
+          - {input: [314159], expected: 628318}
           - {input: [-3], expected: -6}
         starter_code: "def verdoppeln(x):\\n    pass\\n"
         """)

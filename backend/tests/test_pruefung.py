@@ -23,7 +23,7 @@ def test_python_falsch_zeigt_nur_sichtbare(client):
     assert not erg["bestanden"]
     p = erg["pruefung"]
     assert p["sichtbar"][0]["bestanden"] and p["versteckt_fail"] == 2
-    assert "42" not in str(p)
+    assert "628318" not in str(p)
 
 
 def test_eq_trick_hilft_nicht(client):
@@ -47,15 +47,15 @@ def test_gefaelschte_ausgabe_hilft_nicht(client):
 
 
 def test_erwartungen_gelangen_nicht_in_die_sandbox(client):
-    # Der Nutzercode durchsucht den eigenen Quelltext nach der 42 aus dem versteckten Test.
+    # Der Nutzercode durchsucht den Quelltext seines Aufrufers nach der Erwartung des versteckten Tests.
     code = (
-        "import inspect, sys\n"
+        "import sys\n"
         "def verdoppeln(x):\n"
-        "    quelle = ''.join(str(f.f_code.co_consts) for f in [sys._getframe(1)])\n"
-        "    return 42 if '42' in quelle else 2 * x\n"
+        "    quelle = str(sys._getframe(1).f_code.co_consts)\n"
+        "    return -1 if '628318' in quelle else 2 * x\n"
     )
     erg = submit(client, "001-verdoppeln", code)
-    assert erg["bestanden"], erg  # richtig gerechnet; die 42 stand nirgends
+    assert erg["bestanden"], erg  # richtig gerechnet; die Erwartung stand nirgends
 
 
 def test_tupel_ist_nicht_liste(client):

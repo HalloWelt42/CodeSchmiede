@@ -43,7 +43,7 @@ def test_aufgeben_kostet_die_punkte(client):
 def test_versteckte_tests_nie_im_detail(client):
     detail = client.get("/api/aufgaben/001-verdoppeln").json()
     assert detail["anzahl_versteckte_tests"] == 2
-    assert "42" not in str(detail)
+    assert "628318" not in str(detail)
     sql = client.get("/api/aufgaben/s006-werte").json()
     assert sql["anzahl_versteckte_tests"] == 2
 
