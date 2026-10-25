@@ -2,6 +2,7 @@
  * Typen für Code-Submissions und das Pruef-Ergebnis vom Backend.
  * Versteckte Tests werden nur als Anzahl übertragen.
  */
+import type { Belohnung } from '../api/SpielApi';
 
 export interface TestErgebnis {
   index: number;
@@ -21,6 +22,27 @@ export interface PruefErgebnis {
   stdout: string;
   stderr: string;
   timeout: boolean;
+  /** nur bei Aufgabentypen mit Sternen (Spiele, CSS) */
+  wertung?: Wertung | null;
+}
+
+export interface Kennwerte {
+  deckung?: number | null;
+  schritte?: number | null;
+  zeilen?: number | null;
+  treffer?: number | null;
+  kuerzer_als_muster?: boolean | null;
+}
+
+export interface SternKriterium {
+  text: string;
+  erreicht: boolean;
+}
+
+export interface Wertung {
+  sterne: number;
+  kriterien: SternKriterium[];
+  kennwerte: Kennwerte;
 }
 
 export interface ProgressEintragLeicht {
@@ -29,6 +51,7 @@ export interface ProgressEintragLeicht {
   versuche: number;
   hints_genutzt: number;
   punkte_erreicht: number;
+  sterne: number | null;
   aufgegeben: boolean;
   geloest_am: string | null;
   ease: number;
@@ -50,6 +73,8 @@ export interface SubmissionAntwort {
   submission_id: number;
   progress: ProgressEintragLeicht;
   vergleich: VergleichEintrag[];
+  /** nur bei bestandenen Abgaben */
+  belohnung: Belohnung | null;
 }
 
 export interface ProbelaufAntwort {

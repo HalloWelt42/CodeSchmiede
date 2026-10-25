@@ -19,6 +19,9 @@ from .pruefung import orchestrator  # noqa: F401  füllt die Pruefer-Registry
 from .sandbox.dienst_runner import DienstRunner
 from .sandbox.runner import Runner
 from .sandbox.schluessel import lade_schluessel
+from .spiel.bestand import Bestand
+from .spiel.dienst import Spieldienst
+from .spiel.gutschriften import GutschriftRepository
 
 
 class AppState:
@@ -38,6 +41,8 @@ class AppState:
         self.schreiber = AufgabenSchreiber(settings.aufgaben_pfad, self.loader)
         self.progress = ProgressRepository(self.db)
         self.submissions = SubmissionRepository(self.db)
+        self.gutschriften = GutschriftRepository(self.db)
+        self.spiel = Spieldienst(self.progress, self.submissions, self.gutschriften, self.aufgaben)
 
         self.runner: Runner = runner or DienstRunner(
             settings.sandbox_url,
@@ -46,6 +51,9 @@ class AppState:
                 settings.sandbox_schluessel_datei or settings.daten_pfad / "sandbox-schluessel",
             ),
         )
+
+    def bestand(self) -> Bestand:
+        return Bestand.aus(self.aufgaben.alle_aufgaben(), self.aufgaben.alle_pfade(), self.konfig)
 
     def neu_einlesen(self) -> None:
         """Konfiguration, Aufgaben und Pfade neu lesen und den Bestand prüfen.

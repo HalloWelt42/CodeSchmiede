@@ -68,7 +68,7 @@ Bestands (jede Musterlösung gegen ihre Tests, einige Minuten) läuft mit
 - `scripts/build-sandbox.sh` - Sandbox-Images aller Sprachen bauen (idempotent)
 - `scripts/setup.sh` - Plattform-Setup (Voraussetzungen + Pakete)
 - `scripts/start.sh`, `scripts/stop.sh` - Dienste starten und beenden
-- `scripts/inspect-db.sh` - Tabellen-Counts, Submissions, Streak
+- `scripts/inspect-db.sh` - Tabellen-Counts, Submissions, Tage mit Übung
 - `scripts/reset-db.sh` - Datenbank löschen (Vorsicht-Modus)
 - `scripts/bump.sh [patch|minor|major]` - Version anheben
 

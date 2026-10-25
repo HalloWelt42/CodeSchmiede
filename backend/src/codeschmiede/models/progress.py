@@ -1,4 +1,4 @@
-"""Datenmodelle für Fortschritts-Tracking und Streak."""
+"""Datenmodelle für Fortschritts-Tracking."""
 
 from datetime import date, datetime
 from typing import Literal
@@ -17,6 +17,8 @@ class Progress(BaseModel):
     versuche: int = 0
     hints_genutzt: int = 0
     punkte_erreicht: int = 0
+    # beste Sterne, nur bei Aufgabentypen mit Sternen
+    sterne: int | None = None
     # Musterlösungen vor dem Bestehen angesehen; Bestehen bringt danach 0 Punkte.
     aufgegeben: bool = False
     geloest_am: datetime | None = None
@@ -29,14 +31,6 @@ class Progress(BaseModel):
     @property
     def musterloesungen_frei(self) -> bool:
         return self.status == "geloest" or self.aufgegeben
-
-
-class Streak(BaseModel):
-    """Aktuelle und laengste Tagesserie. Persistiert in `kv_state`."""
-
-    aktuell: int = 0
-    laengster: int = 0
-    letzter_tag: date | None = None
 
 
 class GesamtFortschritt(BaseModel):
@@ -59,9 +53,6 @@ class Tagesziel(BaseModel):
     faellige_wiederholungen: list[str]
     vorgeschlagene_neue: str | None = None
     letzte_aufgabe: str | None = None
-    streak_aktiv: bool = False
-    aktueller_streak: int = 0
-    laengster_streak: int = 0
 
 
 class WeiterVorschlag(BaseModel):

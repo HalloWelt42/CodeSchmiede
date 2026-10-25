@@ -225,14 +225,14 @@ def baue_admin_router(state: AppState) -> APIRouter:
 
     @router.get("/export")
     def export() -> dict:
-        """Vollständige Sicherung als JSON: Submissions, Progress, Streak,
-        Konfig. Aufgaben sind Dateien im Repo, hier nur die IDs."""
+        """Vollständige Sicherung als JSON: Submissions, Progress,
+        Tagesaufträge, Konfig. Aufgaben sind Dateien im Repo, hier nur die IDs."""
         return {
             "version": __version__,
             "exportiert_am": datetime.now().isoformat(),
             "submissions": state.submissions.alle_fuer_export(),
             "progress": [p.model_dump(mode="json") for p in state.progress.hole_alle_progress()],
-            "streak": state.progress.hole_streak().model_dump(mode="json"),
+            "tagesauftraege": state.gutschriften.fuer_export(),
             "konfig": state.konfig.model_dump(),
             "aufgaben_ids": [a.id for a in state.aufgaben.alle_aufgaben()],
         }

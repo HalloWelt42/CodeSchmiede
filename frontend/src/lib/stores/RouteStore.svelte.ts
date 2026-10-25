@@ -2,6 +2,7 @@
  * Hash-basiertes Routing.
  * Routen:
  *   #dashboard           -> Dashboard
+ *   #erfolge             -> alle Erfolge
  *   #aufgaben            -> Liste aller Aufgaben
  *   #pfade               -> Liste aller Pfade
  *   #verwaltung          -> Verwaltungsübersicht aller Aufgaben (Admin)
@@ -10,7 +11,10 @@
 
 import { fassung } from './FassungStore.svelte';
 
-export type Route = 'dashboard' | 'aufgaben' | 'pfade' | 'verwaltung' | 'aufgabe';
+export type Route = 'dashboard' | 'erfolge' | 'aufgaben' | 'pfade' | 'verwaltung' | 'aufgabe';
+
+/** Routen ohne Parameter, deren Name gleich dem Hash ist */
+const EINFACH: Route[] = ['erfolge', 'aufgaben', 'pfade', 'verwaltung'];
 
 class RouteStore {
   aktiv = $state<Route>('dashboard');
@@ -37,14 +41,8 @@ class RouteStore {
     if (hash.startsWith('aufgabe/')) {
       this.aktiv = 'aufgabe';
       this.aufgabeId = hash.slice('aufgabe/'.length);
-    } else if (hash === 'aufgaben') {
-      this.aktiv = 'aufgaben';
-      this.aufgabeId = null;
-    } else if (hash === 'pfade') {
-      this.aktiv = 'pfade';
-      this.aufgabeId = null;
-    } else if (hash === 'verwaltung') {
-      this.aktiv = 'verwaltung';
+    } else if ((EINFACH as string[]).includes(hash)) {
+      this.aktiv = hash as Route;
       this.aufgabeId = null;
     } else {
       this.aktiv = 'dashboard';

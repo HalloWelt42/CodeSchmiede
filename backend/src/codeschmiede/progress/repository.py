@@ -1,5 +1,6 @@
-"""ProgressRepository -- liest und schreibt Progress, Streak und
-Aggregate aus der SQLite-DB.
+"""ProgressRepository -- liest und schreibt den Fortschritt je Aufgabe
+und Aggregate aus der SQLite-DB. Serie und Tagesauftrag leitet die
+Spielmechanik aus den Abgaben ab.
 """
 
 import sqlite3
@@ -7,14 +8,8 @@ from datetime import date, datetime, timedelta
 
 from ..db.connection import Datenbank
 from ..models.aufgabe import Aufgabe
-from ..models.progress import GesamtFortschritt, Progress, Streak
+from ..models.progress import GesamtFortschritt, Progress
 from .sm2 import berechne_naechsten_schritt
-from .streak import aktualisiere_streak
-
-
-KV_AKTUELL = "streak.aktuell"
-KV_LAENGSTER = "streak.laengster"
-KV_LETZTER_TAG = "streak.letzter_tag"
 
 
 class ProgressRepository:
@@ -102,7 +97,11 @@ class ProgressRepository:
     # --- Update bei Submission --------------------------------------------
 
     def aktualisiere_nach_submission(
-        self, aufgabe: Aufgabe, bestanden: bool, heute: date | None = None
+        self,
+        aufgabe: Aufgabe,
+        bestanden: bool,
+        sterne: int | None = None,
+        heute: date | None = None,
     ) -> Progress:
         heute = heute or date.today()
         jetzt = datetime.now()
@@ -131,14 +130,16 @@ class ProgressRepository:
             )
             faellig = heute + timedelta(days=sm2.intervall_tage)
             erreichte_punkte = (
-                0 if bisher.aufgegeben else self._berechne_punkte(aufgabe, bisher.hints_genutzt)
+                0 if bisher.aufgegeben else self.berechne_punkte(aufgabe, bisher.hints_genutzt, sterne)
             )
             best_of = max(bisher.punkte_erreicht, erreichte_punkte)
+            beste_sterne = sterne if bisher.sterne is None else max(bisher.sterne, sterne or 0)
             neu = bisher.model_copy(
                 update={
                     "status": "geloest",
                     "versuche": neue_versuche,
                     "punkte_erreicht": best_of,
+                    "sterne": beste_sterne,
                     "geloest_am": bisher.geloest_am or jetzt,
                     "ease": sm2.ease,
                     "intervall_tage": sm2.intervall_tage,
@@ -146,7 +147,6 @@ class ProgressRepository:
                     "letzte_wiederholung": jetzt,
                 }
             )
-            self._aktualisiere_streak(heute)
 
         self._schreibe(neu)
         return neu
@@ -195,51 +195,20 @@ class ProgressRepository:
 
     def reset_aufgabe(self, aufgabe_id: str) -> None:
         """Setzt Progress für eine Aufgabe zurück. Submissions bleiben
-        als Historie erhalten. Streak bleibt unangetastet.
+        als Historie erhalten, damit auch Serie und Tagesaufträge.
         """
         with self.db.connect() as conn:
             conn.execute("DELETE FROM progress WHERE aufgabe_id = ?", (aufgabe_id,))
 
     def reset_alles(self) -> None:
-        """Globaler Reset: Submissions + Progress + Streak komplett weg.
-        Aufgaben-Dateien bleiben unangetastet.
+        """Globaler Reset: Submissions, Progress und Tagesaufträge komplett
+        weg, damit auch Serie und Erfolge. Aufgaben-Dateien bleiben
+        unangetastet.
         """
         with self.db.connect() as conn:
             conn.execute("DELETE FROM submissions")
             conn.execute("DELETE FROM progress")
-            conn.execute("DELETE FROM kv_state WHERE key LIKE 'streak.%'")
-
-    # --- Streak -----------------------------------------------------------
-
-    def hole_streak(self) -> Streak:
-        with self.db.connect() as conn:
-            rows = conn.execute(
-                "SELECT key, value FROM kv_state WHERE key LIKE 'streak.%'"
-            ).fetchall()
-        kv = {r["key"]: r["value"] for r in rows}
-        letzter_tag_str = kv.get(KV_LETZTER_TAG)
-        return Streak(
-            aktuell=int(kv.get(KV_AKTUELL, "0")),
-            laengster=int(kv.get(KV_LAENGSTER, "0")),
-            letzter_tag=date.fromisoformat(letzter_tag_str) if letzter_tag_str else None,
-        )
-
-    def _aktualisiere_streak(self, heute: date) -> None:
-        bisher = self.hole_streak()
-        neuer = aktualisiere_streak(bisher, heute)
-        with self.db.connect() as conn:
-            for k, v in [
-                (KV_AKTUELL, str(neuer.aktuell)),
-                (KV_LAENGSTER, str(neuer.laengster)),
-                (KV_LETZTER_TAG, neuer.letzter_tag.isoformat() if neuer.letzter_tag else ""),
-            ]:
-                conn.execute(
-                    """
-                    INSERT INTO kv_state (key, value) VALUES (?, ?)
-                    ON CONFLICT(key) DO UPDATE SET value = excluded.value
-                    """,
-                    (k, v),
-                )
+            conn.execute("DELETE FROM tagesauftraege")
 
     # --- Schreib-Helfer ---------------------------------------------------
 
@@ -249,14 +218,15 @@ class ProgressRepository:
                 """
                 INSERT INTO progress (
                     aufgabe_id, status, versuche, hints_genutzt, punkte_erreicht,
-                    aufgegeben, geloest_am, ease, intervall_tage, faellig_am,
+                    sterne, aufgegeben, geloest_am, ease, intervall_tage, faellig_am,
                     letzte_wiederholung
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(aufgabe_id) DO UPDATE SET
                     status=excluded.status,
                     versuche=excluded.versuche,
                     hints_genutzt=excluded.hints_genutzt,
                     punkte_erreicht=excluded.punkte_erreicht,
+                    sterne=excluded.sterne,
                     aufgegeben=excluded.aufgegeben,
                     geloest_am=excluded.geloest_am,
                     ease=excluded.ease,
@@ -270,6 +240,7 @@ class ProgressRepository:
                     p.versuche,
                     p.hints_genutzt,
                     p.punkte_erreicht,
+                    p.sterne,
                     1 if p.aufgegeben else 0,
                     p.geloest_am.isoformat() if p.geloest_am else None,
                     p.ease,
@@ -280,11 +251,12 @@ class ProgressRepository:
             )
 
     @staticmethod
-    def _berechne_punkte(aufgabe: Aufgabe, hints_genutzt: int) -> int:
+    def berechne_punkte(aufgabe: Aufgabe, hints_genutzt: int, sterne: int | None = None) -> int:
         """Erreichte Punkte = Score - Summe Hint-Kosten der bereits
-        geoeffneten Hints."""
+        geoeffneten Hints; bei Aufgaben mit Sternen davon Sterne / 3."""
         kosten = sum(h.kosten for h in aufgabe.hints[:hints_genutzt])
-        return max(0, aufgabe.schwierigkeit_score - kosten)
+        grund = max(0, aufgabe.schwierigkeit_score - kosten)
+        return grund if sterne is None else round(grund * sterne / 3)
 
     @staticmethod
     def _row_zu_progress(row: sqlite3.Row) -> Progress:
@@ -294,6 +266,7 @@ class ProgressRepository:
             versuche=row["versuche"],
             hints_genutzt=row["hints_genutzt"],
             punkte_erreicht=row["punkte_erreicht"] or 0,
+            sterne=row["sterne"],
             aufgegeben=bool(row["aufgegeben"]),
             geloest_am=datetime.fromisoformat(row["geloest_am"]) if row["geloest_am"] else None,
             ease=row["ease"],

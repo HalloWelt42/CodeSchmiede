@@ -9,6 +9,7 @@
   import { geraet } from '../stores/GeraetStore.svelte';
   import { BEREICHE } from '../navigation';
   import Dashboard from './Dashboard.svelte';
+  import ErfolgeSeite from './ErfolgeSeite.svelte';
   import AufgabenListe from './AufgabenListe.svelte';
   import PfadListe from './PfadListe.svelte';
   import AufgabenDetail from './AufgabenDetail.svelte';
@@ -26,6 +27,8 @@
   {#key route.aufgabeId}
     <AufgabenDetail aufgabeId={route.aufgabeId} />
   {/key}
+{:else if route.aktiv === 'erfolge'}
+  <ErfolgeSeite />
 {:else if geraet.telefon}
   {#if route.aktiv === 'aufgaben'}
     <TelefonAufgaben />

@@ -1,6 +1,6 @@
 /*
- * Store für Progress-Daten. Laedt initial alle vier Endpunkte parallel,
- * stellt einen `neuLaden()`-Trigger zur Verfuegung (z.B. nach Submission).
+ * Store für Progress-Daten. Lädt die Endpunkte parallel und mit ihnen den
+ * daraus abgeleiteten Spielstand; `ladeAlles()` nach jeder Abgabe.
  */
 
 import {
@@ -8,14 +8,13 @@ import {
   type GesamtFortschritt,
   type ProgressEintrag,
   type ProgressStatus,
-  type Streak,
   type Tagesziel,
 } from '../api/ProgressApi';
+import { spielStore } from './SpielStore.svelte';
 
 class ProgressStore {
   gesamt = $state<GesamtFortschritt | null>(null);
   heute = $state<Tagesziel | null>(null);
-  streak = $state<Streak | null>(null);
   proAufgabe = $state<Record<string, ProgressEintrag>>({});
   laden = $state(false);
   fehler = $state<string | null>(null);
@@ -24,15 +23,14 @@ class ProgressStore {
     this.laden = true;
     this.fehler = null;
     try {
-      const [g, h, s, a] = await Promise.all([
+      const [g, h, a] = await Promise.all([
         progressApi.gesamt(),
         progressApi.heute(),
-        progressApi.streak(),
         progressApi.alleAufgaben(),
+        spielStore.laden(),
       ]);
       this.gesamt = g;
       this.heute = h;
-      this.streak = s;
       this.proAufgabe = a;
     } catch (e) {
       this.fehler = (e as Error).message;

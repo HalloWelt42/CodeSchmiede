@@ -18,6 +18,7 @@ from pydantic import BaseModel, Field
 
 from ..models.aufgabe import Aufgabe
 from ..models.progress import Progress
+from ..models.spiel import Belohnung
 from ..progress.submissions import codelaenge
 from ..pruefung.ergebnis import PruefErgebnis
 from ..pruefung.kodierung import anzeigen
@@ -46,6 +47,8 @@ class SubmissionAntwort(BaseModel):
     submission_id: int
     progress: Progress
     vergleich: list[VergleichEintrag] = Field(default_factory=list)
+    # nur bei bestandenen Abgaben
+    belohnung: Belohnung | None = None
 
 
 class LokaleSubmissionAnfrage(BaseModel):
@@ -105,12 +108,17 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             state.aufgaben.setze_metriken_cache(aufgabe.id, cached)
         return [VergleichEintrag(**m) for m in cached]
 
-    def speichere(aufgabe: Aufgabe, code: str, ergebnis: PruefErgebnis) -> tuple[int, Progress]:
-        submission_id = state.submissions.speichere(
-            aufgabe, code, ergebnis.bestanden, ergebnis.laufzeit_ms
+    def antwort(aufgabe: Aufgabe, code: str, ergebnis: PruefErgebnis) -> SubmissionAntwort:
+        verbucht = state.spiel.verbuche(state.bestand(), aufgabe, code, ergebnis)
+        return SubmissionAntwort(
+            bestanden=ergebnis.bestanden,
+            pruefung=ergebnis,
+            codelaenge_zeichen=codelaenge(code),
+            submission_id=verbucht.submission_id,
+            progress=verbucht.progress,
+            vergleich=vergleich(aufgabe) if ergebnis.bestanden else [],
+            belohnung=verbucht.belohnung,
         )
-        progress = state.progress.aktualisiere_nach_submission(aufgabe, ergebnis.bestanden)
-        return submission_id, progress
 
     @router.post("", response_model=SubmissionAntwort)
     def submit(anfrage: SubmissionAnfrage) -> SubmissionAntwort:
@@ -122,16 +130,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
         if im_browser:
             raise HTTPException(status_code=400, detail="Diese Aufgabe wird im Browser geprüft")
 
-        ergebnis = pruefe_sicher(aufgabe, anfrage.code)
-        submission_id, progress = speichere(aufgabe, anfrage.code, ergebnis)
-        return SubmissionAntwort(
-            bestanden=ergebnis.bestanden,
-            pruefung=ergebnis,
-            codelaenge_zeichen=codelaenge(anfrage.code),
-            submission_id=submission_id,
-            progress=progress,
-            vergleich=vergleich(aufgabe) if ergebnis.bestanden else [],
-        )
+        return antwort(aufgabe, anfrage.code, pruefe_sicher(aufgabe, anfrage.code))
 
     @router.post("/lokal", response_model=SubmissionAntwort)
     def submit_lokal(anfrage: LokaleSubmissionAnfrage) -> SubmissionAntwort:
@@ -144,14 +143,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
         if not im_browser:
             raise HTTPException(status_code=400, detail="Diese Aufgabe wird auf dem Server geprüft")
 
-        submission_id, progress = speichere(aufgabe, anfrage.code, anfrage.pruefung)
-        return SubmissionAntwort(
-            bestanden=anfrage.pruefung.bestanden,
-            pruefung=anfrage.pruefung,
-            codelaenge_zeichen=codelaenge(anfrage.code),
-            submission_id=submission_id,
-            progress=progress,
-        )
+        return antwort(aufgabe, anfrage.code, anfrage.pruefung)
 
     @router.post("/probelauf", response_model=ProbelaufAntwort)
     def probelauf(anfrage: ProbelaufAnfrage) -> ProbelaufAntwort:

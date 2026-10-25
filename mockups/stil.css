@@ -74,6 +74,9 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .titelzeile h1 { margin: 0; font-size: var(--fs-xl); font-weight: 600; line-height: 1.2; white-space: nowrap; }
 .lead { color: var(--fg-dim); font-size: var(--fs-sm); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .aktionen { margin-left: auto; display: flex; gap: var(--sp-2); flex: none; }
+/* ein Knopf mit langem Ziel (Weitermachen: Titel) bleibt schmal genug für Titel und Untertitel */
+.knopf.kuerzbar { max-width: clamp(160px, 22vw, 360px); }
+.kuerzbar span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .rollfeld { flex: 1; min-height: 0; overflow-y: auto; overflow-x: clip; padding: var(--sp-3) var(--sp-4) var(--sp-4); }
 .rollfeld.ohne-rand { padding: 0; }
 
@@ -296,11 +299,11 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .sterne.gross { font-size: 18px; gap: 3px; }
 /* Tagesauftrag */
 .auftrag { display: flex; flex-direction: column; gap: 4px; }
-.auftrag-ziel { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); min-width: 0; }
+.auftrag-ziel { display: flex; align-items: baseline; gap: var(--sp-2); font-size: var(--fs-sm); min-width: 0; }
 .auftrag-ziel i { width: 16px; text-align: center; color: var(--fg-mute); }
 .auftrag-ziel.erledigt i { color: var(--green); }
 .auftrag-ziel.erledigt span { color: var(--fg-dim); text-decoration: line-through; }
-.auftrag-ziel span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.auftrag-ziel span { min-width: 0; }
 /* Meisterschaft je Bereich */
 .meister { display: grid; grid-template-columns: 22px 92px minmax(0, 1fr) 72px; gap: 6px var(--sp-2); align-items: center; font-size: var(--fs-sm); }
 .medaille { width: 20px; height: 20px; flex: none; overflow: hidden; border-radius: 50%; display: grid; place-items: center; font-size: 10px; color: var(--bg); background: var(--fg-mute); }
@@ -325,6 +328,8 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .belohnung .zeile { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); }
 .belohnung .zeile i { width: 16px; text-align: center; color: var(--accent); }
 .belohnung .zeile .medaille { width: 16px; height: 16px; font-size: 8px; }
+/* Symbol in der Medaille in deren Farbe, nicht in der Farbe der Zeile */
+.erfolg .medaille i, .belohnung .zeile .medaille i { width: auto; color: inherit; }
 .belohnung .balken span { transition: width .9s ease-out; }
 
 /* CSS-Aufgabe: Punkte in zwei Teilen (Deckung, Kürze ab 99 %) */

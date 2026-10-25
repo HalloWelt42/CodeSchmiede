@@ -1,20 +1,38 @@
 <script lang="ts">
-  /* Startseite am Telefon: Karten als Zeilen, knapper Fortschritt, letzte zwölf Wochen. */
+  /* Startseite am Telefon: Stufe mit Serie, Tagesauftrag, Weitermachen, letzte zwölf Wochen. */
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../../stores/AufgabenStore.svelte';
-  import { progressStore } from '../../stores/ProgressStore.svelte';
-  import { fortschrittProzent, ladeStart, lead, letzteAufgabe, streak, tagesziel } from '../../startseite.svelte';
+  import { route } from '../../stores/RouteStore.svelte';
+  import { spielStore } from '../../stores/SpielStore.svelte';
+  import { ladeStart, lead, letzteAufgabe, wiederholungen } from '../../startseite.svelte';
+  import { schildText } from '../../spielanzeige';
   import EmptyState from '../EmptyState.svelte';
   import Seite from '../Seite.svelte';
   import StreakHeatmap from '../StreakHeatmap.svelte';
+  import AuftragsZiele from '../spiel/AuftragsZiele.svelte';
+  import Schilde from '../spiel/Schilde.svelte';
+  import StufeAnzeige from '../spiel/StufeAnzeige.svelte';
 
   onMount(ladeStart);
 
-  let karten = $derived([
-    tagesziel(),
-    { ...letzteAufgabe(), titel: 'Weitermachen' },
-    streak(),
-  ]);
+  let karten = $derived.by(() => {
+    const liste = [letzteAufgabe()];
+    const faellig = wiederholungen();
+    if (faellig) {
+      liste.push({ icon: 'fa-rotate', titel: 'Wiederholen', wert: faellig.text, unter: 'Gelöstes auffrischen', oeffnen: faellig.oeffnen });
+    }
+    const e = spielStore.erfolge;
+    if (e) {
+      liste.push({
+        icon: 'fa-medal',
+        titel: 'Erfolge',
+        wert: `${e.erreicht} von ${e.gesamt} erreicht`,
+        unter: 'Meilensteine, Serie, Technik',
+        oeffnen: () => route.setze('erfolge'),
+      });
+    }
+    return liste;
+  });
 </script>
 
 {#if aufgabenStore.fehler && aufgabenStore.liste.length === 0}
@@ -27,6 +45,25 @@
   />
 {:else}
   <Seite titel="Willkommen zurück" lead={lead()}>
+    {#if spielStore.stand}
+      {@const stand = spielStore.stand}
+      <div class="karte abstand">
+        <StufeAnzeige stufe={stand.stufe} klein />
+        <div class="serie" title={schildText(stand.serie)}>
+          <i class="fa-solid fa-fire flamme" aria-hidden="true"></i><span class="num">{stand.serie.aktuell}</span>
+          {stand.serie.aktuell === 1 ? 'Tag' : 'Tage'} Serie
+          <span class="schilde"><Schilde serie={stand.serie} /></span>
+        </div>
+      </div>
+      <div class="karte abstand">
+        <span class="k-titel">
+          <i class="fa-solid fa-bullseye" aria-hidden="true"></i>Tagesauftrag
+          <span class="num zaehler">{stand.auftrag.ziele.filter((z) => z.erledigt).length} / {stand.auftrag.ziele.length}</span>
+        </span>
+        <AuftragsZiele auftrag={stand.auftrag} />
+      </div>
+    {/if}
+
     <div class="t-karten">
       {#each karten as k (k.titel)}
         <button class="karte" onclick={k.oeffnen}>
@@ -41,24 +78,28 @@
       {/each}
     </div>
 
-    {#if progressStore.gesamt && progressStore.gesamt.aufgaben_gesamt > 0}
-      {@const g = progressStore.gesamt}
-      <div class="block">
-        <div class="block-kopf"><span>Fortschritt</span><span class="num">{g.aufgaben_geloest} / {g.aufgaben_gesamt}</span></div>
-        <div class="balken"><span style:width="{fortschrittProzent()}%"></span></div>
-        <div class="chips">
-          <span class="chip gruen">{g.aufgaben_geloest} gelöst</span>
-          <span class="chip orange">{g.aufgaben_in_arbeit} in Arbeit</span>
-          <span class="chip akz">{g.punkte_gesamt} Punkte</span>
-        </div>
-      </div>
-    {/if}
-
     <StreakHeatmap wochen={12} />
   </Seite>
 {/if}
 
 <style>
+  .abstand { margin-bottom: var(--sp-2); }
+  .serie {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--sp-2);
+    font-size: var(--fs-sm);
+  }
+  .schilde {
+    margin-left: auto;
+    display: inline-flex;
+    gap: 4px;
+  }
+  .zaehler {
+    margin-left: auto;
+    color: var(--fg);
+  }
   .text {
     min-width: 0;
     flex: 1;

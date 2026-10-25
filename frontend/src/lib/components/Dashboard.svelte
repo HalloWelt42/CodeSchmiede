@@ -1,18 +1,24 @@
 <script lang="ts">
-  /* Startseite am Rechner: drei Karten, Gesamtfortschritt, Aktivität und Erfolge. */
+  /* Startseite am Rechner: Stufe, Serie und Tagesauftrag, Meisterschaft und Erfolge, Aktivität. */
   import { onMount } from 'svelte';
   import { aufgabenStore } from '../stores/AufgabenStore.svelte';
-  import { progressStore } from '../stores/ProgressStore.svelte';
   import { route } from '../stores/RouteStore.svelte';
-  import { fortschrittProzent, ladeStart, lead, letzteAufgabe, streak, tagesziel } from '../startseite.svelte';
-  import AchievementListe from './AchievementListe.svelte';
+  import { spielStore } from '../stores/SpielStore.svelte';
+  import { ladeStart, lead, weitermachen, wiederholungen } from '../startseite.svelte';
+  import { schildText, serieUnter, tage } from '../spielanzeige';
   import EmptyState from './EmptyState.svelte';
   import Seite from './Seite.svelte';
   import StreakHeatmap from './StreakHeatmap.svelte';
+  import AuftragsZiele from './spiel/AuftragsZiele.svelte';
+  import ErfolgeBlock from './spiel/ErfolgeBlock.svelte';
+  import MeisterschaftBlock from './spiel/MeisterschaftBlock.svelte';
+  import Schilde from './spiel/Schilde.svelte';
+  import StufeAnzeige from './spiel/StufeAnzeige.svelte';
 
   onMount(ladeStart);
 
-  let karten = $derived([tagesziel(), letzteAufgabe(), streak()]);
+  let weiter = $derived(weitermachen());
+  let faellig = $derived(wiederholungen());
 </script>
 
 {#if aufgabenStore.fehler && aufgabenStore.liste.length === 0}
@@ -33,37 +39,64 @@
   />
 {:else}
   <Seite titel="Willkommen zurück" lead={lead()}>
-    <div class="karten">
-      {#each karten as k (k.titel)}
-        <button class="karte" onclick={k.oeffnen}>
-          <span class="k-titel"><i class="fa-solid {k.icon}" aria-hidden="true"></i>{k.titel}</span>
-          <span class="k-wert">{k.wert}</span>
-          <span class="k-unter">{k.unter}</span>
-          <span class="k-cta">{k.cta} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-        </button>
-      {/each}
-    </div>
+    {#snippet aktionen()}
+      {#if weiter}
+        <button class="knopf primaer kuerzbar" onclick={weiter.oeffnen} title={weiter.text}><i class="fa-solid fa-play" aria-hidden="true"></i><span>{weiter.text}</span></button>
+      {/if}
+      {#if faellig}
+        <button class="knopf" onclick={faellig.oeffnen}><i class="fa-solid fa-rotate" aria-hidden="true"></i>{faellig.text}</button>
+      {/if}
+    {/snippet}
 
-    {#if progressStore.gesamt && progressStore.gesamt.aufgaben_gesamt > 0}
-      {@const g = progressStore.gesamt}
-      <div class="block">
-        <div class="block-kopf">
-          <span>Gesamtfortschritt</span>
-          <span class="num">{g.aufgaben_geloest} / {g.aufgaben_gesamt} gelöst</span>
+    {#if spielStore.stand}
+      {@const stand = spielStore.stand}
+      <div class="karten">
+        <div class="karte">
+          <span class="k-titel"><i class="fa-solid fa-hammer" aria-hidden="true"></i>Stufe</span>
+          <StufeAnzeige stufe={stand.stufe} />
         </div>
-        <div class="balken"><span style:width="{fortschrittProzent()}%"></span></div>
-        <div class="chips">
-          <span class="chip gruen"><i class="fa-solid fa-check" aria-hidden="true"></i>{g.aufgaben_geloest} gelöst</span>
-          <span class="chip orange"><i class="fa-solid fa-pen" aria-hidden="true"></i>{g.aufgaben_in_arbeit} in Arbeit</span>
-          <span class="chip"><i class="fa-regular fa-circle" aria-hidden="true"></i>{g.aufgaben_neu} neu</span>
-          <span class="chip akz"><i class="fa-solid fa-coins" aria-hidden="true"></i>{g.punkte_gesamt} / {g.punkte_maximal} Punkte</span>
+        <div class="karte">
+          <span class="k-titel"><i class="fa-solid fa-fire" aria-hidden="true"></i>Serie</span>
+          <span class="k-wert"><span class="num">{stand.serie.aktuell}</span> {stand.serie.aktuell === 1 ? 'Tag' : 'Tage'}</span>
+          <span class="k-unter" title="längste Serie: {tage(stand.serie.laengste)}">{serieUnter(stand.serie)}</span>
+          {#if stand.serie.schilde_max > 0}
+            <span class="k-unter schilde"><Schilde serie={stand.serie} /> {schildText(stand.serie)}</span>
+          {/if}
         </div>
+        <div class="karte">
+          <span class="k-titel">
+            <i class="fa-solid fa-bullseye" aria-hidden="true"></i>Tagesauftrag
+            <span class="num zaehler">{stand.auftrag.ziele.filter((z) => z.erledigt).length} / {stand.auftrag.ziele.length}</span>
+          </span>
+          <AuftragsZiele auftrag={stand.auftrag} />
+          <span class="k-cta">
+            {#if stand.auftrag.gutgeschrieben}
+              Erledigt, +{stand.auftrag.bonus} Punkte gutgeschrieben
+            {:else}
+              Alle {stand.auftrag.ziele.length === 3 ? 'drei' : stand.auftrag.ziele.length}: +{stand.auftrag.bonus} Punkte
+            {/if}
+          </span>
+        </div>
+      </div>
+
+      <div class="zwei">
+        <MeisterschaftBlock bereiche={stand.meisterschaft} />
+        {#if spielStore.erfolge}<ErfolgeBlock erfolge={spielStore.erfolge} />{/if}
       </div>
     {/if}
 
-    <div class="zwei">
-      <StreakHeatmap />
-      <AchievementListe />
-    </div>
+    <StreakHeatmap />
   </Seite>
 {/if}
+
+<style>
+  .schilde {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .zaehler {
+    margin-left: auto;
+    color: var(--fg);
+  }
+</style>

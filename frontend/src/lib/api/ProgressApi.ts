@@ -11,20 +11,11 @@ export interface GesamtFortschritt {
   punkte_maximal: number;
 }
 
-export interface Streak {
-  aktuell: number;
-  laengster: number;
-  letzter_tag: string | null;
-}
-
 export interface Tagesziel {
   datum: string;
   faellige_wiederholungen: string[];
   vorgeschlagene_neue: string | null;
   letzte_aufgabe: string | null;
-  streak_aktiv: boolean;
-  aktueller_streak: number;
-  laengster_streak: number;
 }
 
 export type ProgressStatus = 'neu' | 'in_arbeit' | 'geloest';
@@ -35,6 +26,8 @@ export interface ProgressEintrag {
   versuche: number;
   hints_genutzt: number;
   punkte_erreicht: number;
+  /** beste Sterne, nur bei Aufgabentypen mit Sternen */
+  sterne: number | null;
   /** Musterlösungen vor dem Bestehen angesehen; Bestehen bringt danach keine Punkte. */
   aufgegeben: boolean;
   geloest_am: string | null;
@@ -60,22 +53,6 @@ export interface HeatmapAntwort {
   tage: HeatmapTag[];
 }
 
-export interface Achievement {
-  id: string;
-  titel: string;
-  beschreibung: string;
-  icon: string;
-  erreicht: boolean;
-  fortschritt: number;
-  ziel: number;
-}
-
-export interface AchievementsAntwort {
-  eintraege: Achievement[];
-  erreicht_anzahl: number;
-  gesamt_anzahl: number;
-}
-
 export class ProgressApi extends HttpBase {
   constructor() {
     super('/api/progress');
@@ -86,9 +63,6 @@ export class ProgressApi extends HttpBase {
   }
   heute(): Promise<Tagesziel> {
     return this.get<Tagesziel>('/heute');
-  }
-  streak(): Promise<Streak> {
-    return this.get<Streak>('/streak');
   }
   alleAufgaben(): Promise<Record<string, ProgressEintrag>> {
     return this.get<Record<string, ProgressEintrag>>('/aufgaben');
@@ -107,9 +81,6 @@ export class ProgressApi extends HttpBase {
   }
   heatmapJahr(jahr: number): Promise<HeatmapAntwort> {
     return this.get<HeatmapAntwort>(`/heatmap?jahr=${jahr}`);
-  }
-  achievements(): Promise<AchievementsAntwort> {
-    return this.get<AchievementsAntwort>('/achievements');
   }
 }
 

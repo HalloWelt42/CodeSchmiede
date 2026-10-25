@@ -17,7 +17,7 @@ from .ergebnis import PruefErgebnis
 from .registry import registriere
 
 
-@registriere("output_quiz", verbirgt=("quiz.richtig_index",))
+@registriere("output_quiz", verbirgt=("quiz.richtig_index",), vergleicht_zeichen=False)
 def pruefe(aufgabe: Aufgabe, antwort: str, runner: Runner) -> PruefErgebnis:
     quiz = (getattr(aufgabe, "model_extra", {}) or {}).get("quiz", {})
     richtig_index = quiz.get("richtig_index")

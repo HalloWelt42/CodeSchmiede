@@ -22,12 +22,26 @@ export interface AufgabentypKonfig {
   titel: string;
   view: string;
   beschreibung: string;
+  /** Levels dieses Typs zählen als Spiel */
+  spiel?: boolean;
+}
+
+/** Schwellen der Spielmechanik (docs/SPIELE.md) */
+export interface SpielRegeln {
+  stufe_basis: number;
+  titel: string[];
+  titel_alle: number;
+  raenge: { bronze: number; silber: number; gold: number };
+  schild_alle_tage: number;
+  schilde_max: number;
+  auftrag_bonus: number;
 }
 
 export interface Konfiguration {
   schwierigkeiten: SchwierigkeitsStufe[];
   sprachen: SprachKonfig[];
   aufgabentypen: AufgabentypKonfig[];
+  spiel?: SpielRegeln;
 }
 
 /**

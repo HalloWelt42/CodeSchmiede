@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Schnellinspektion der DB: Tabellen-Counts, letzte Submissions, Streak.
+# Schnellinspektion der DB: Tabellen-Counts, letzte Submissions, Tage mit Übung.
 
 set -euo pipefail
 
@@ -16,7 +16,7 @@ echo "Datei: $DB ($(du -h "$DB" | cut -f1))"
 echo
 
 echo "Tabellen-Counts:"
-for tabelle in aufgaben aufgaben_versionen pfade submissions progress kv_state schema_version; do
+for tabelle in aufgaben aufgaben_versionen pfade submissions progress tagesauftraege kv_state schema_version; do
   n=$(sqlite3 "$DB" "SELECT COUNT(*) FROM $tabelle" 2>/dev/null || echo "?")
   printf "  %-22s %s\n" "$tabelle" "$n"
 done
@@ -28,9 +28,11 @@ sqlite3 -column -header "$DB" \
    FROM submissions ORDER BY id DESC LIMIT 5" 2>/dev/null || echo "  (keine)"
 
 echo
-echo "Streak:"
+echo "Letzte 10 Tage mit bestandener Abgabe (daraus leitet sich die Serie ab):"
 sqlite3 -column -header "$DB" \
-  "SELECT key, value FROM kv_state WHERE key LIKE 'streak.%'" 2>/dev/null || echo "  (kein Eintrag)"
+  "SELECT date(zeitstempel, 'localtime') AS tag, COUNT(*) AS bestanden
+   FROM submissions WHERE bestanden = 1
+   GROUP BY tag ORDER BY tag DESC LIMIT 10" 2>/dev/null || echo "  (keine)"
 
 echo
 echo "Faellige Wiederholungen heute:"

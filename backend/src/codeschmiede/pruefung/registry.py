@@ -5,7 +5,10 @@ legt er fest,
 - welche Felder seines `extra`-Blocks nie an den Browser gehen
   (`verbirgt`, Punktpfade wie "quiz.richtig_index"),
 - ob seine Aufgaben im Browser geprüft werden (`im_browser`, etwa
-  CSS-Nachbauten, die nur ein Browser rendern kann), und
+  CSS-Nachbauten, die nur ein Browser rendern kann),
+- ob die Abgabe selbst geschriebener Code ist, dessen Zeichen sich mit
+  Musterlösung und früheren Versuchen vergleichen lassen
+  (`vergleicht_zeichen`; nicht bei gewählten Antworten), und
 - wie viele versteckte Tests eine Aufgabe hat (`zaehle_versteckt`,
   Vorgabe: die `tests_versteckt` aus dem Frontmatter).
 
@@ -37,6 +40,7 @@ class Pruefer:
     verbirgt: tuple[str, ...] = ()
     im_browser: bool = False
     zaehle_versteckt: ZaehlFn = _versteckte_aus_frontmatter
+    vergleicht_zeichen: bool = True
 
 
 PRUEFER_REGISTRY: dict[str, Pruefer] = {}
@@ -47,10 +51,15 @@ def registriere(
     verbirgt: tuple[str, ...] = (),
     im_browser: bool = False,
     zaehle_versteckt: ZaehlFn = _versteckte_aus_frontmatter,
+    vergleicht_zeichen: bool = True,
 ) -> Callable[[PrueferFn], PrueferFn]:
     def deko(fn: PrueferFn) -> PrueferFn:
         PRUEFER_REGISTRY[typ] = Pruefer(
-            pruefe=fn, verbirgt=verbirgt, im_browser=im_browser, zaehle_versteckt=zaehle_versteckt
+            pruefe=fn,
+            verbirgt=verbirgt,
+            im_browser=im_browser,
+            zaehle_versteckt=zaehle_versteckt,
+            vergleicht_zeichen=vergleicht_zeichen,
         )
         return fn
     return deko

@@ -3,7 +3,7 @@ zweck: "Eigener Programmier-Trainer: Aufgaben in Python, JavaScript, SQL und CSS
 geraet: [pi]
 abhaengigkeiten: [kellerwolke, appkern]
 daten:
-  - "Pi: `{{wurzel}}/daten/codeschmiede.sqlite` (Lernfortschritt, Abgaben, Punkte, Streak, Zugang zur Kellerwolke) und `daten/einrichtungscode`, solange die App uneingerichtet ist"
+  - "Pi: `{{wurzel}}/daten/codeschmiede.sqlite` (Lernfortschritt, Abgaben, Punkte, Tagesaufträge, Zugang zur Kellerwolke) und `daten/einrichtungscode`, solange die App uneingerichtet ist"
   - "Pi: die Aufgaben kommen nur lesend aus dem Stand des Repos in `{{wurzel}}/aufgaben`; bearbeitet wird am Mac, ausgerollt über das Repo"
 sicherung:
   - "nachts um 3 Uhr eine Kopie der Datenbank nach `{{wurzel}}/sicherungen/nachts-*.sqlite` (die letzten 14 bleiben), dazu vor jedem Ausrollen `codeschmiede-*.sqlite` (die letzten zehn bleiben); das Werkzeug Sicherungen holt sie täglich nach `~/Sicherungen/codeschmiede/pi`"

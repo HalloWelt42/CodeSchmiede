@@ -31,6 +31,7 @@
   import MusterloesungenBereich from './MusterloesungenBereich.svelte';
   import VerlaufBereich from './VerlaufBereich.svelte';
   import EditorBereich from './EditorBereich.svelte';
+  import BelohnungsBand from './spiel/BelohnungsBand.svelte';
 
   let { detail }: { detail: AufgabeDetail } = $props();
 
@@ -206,10 +207,10 @@
       {:else if pruefen_laeuft}
         <p class="dim"><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Abfrage läuft in der Sandbox ...</p>
       {:else if ergebnis}
+        {#if ergebnis.belohnung}<BelohnungsBand belohnung={ergebnis.belohnung} />{/if}
         <div class="ergebnis-kopf" class:nein={!ergebnis.bestanden}>
           <i class="fa-solid {ergebnis.bestanden ? 'fa-circle-check' : 'fa-circle-xmark'}" aria-hidden="true"></i>
           {ergebnis.bestanden ? 'Bestanden' : 'Noch nicht bestanden'}
-          {#if ergebnis.bestanden}<span class="num">+{ergebnis.progress.punkte_erreicht}</span>{/if}
         </div>
         {#if ergebnis.pruefung?.stderr}
           <pre class="sql-fehler">{ergebnis.pruefung.stderr}</pre>

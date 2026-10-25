@@ -26,9 +26,21 @@ class AufgabenRepository:
         # Cache fuer Performance-Vergleich. Wird beim Reindex geleert,
         # weil sich die Musterloesungen geaendert haben koennten.
         self._musterloesungen_metriken: dict[str, list[dict]] = {}
+        self._musterlaengen: dict[str, int | None] = {}
 
     def leere_metriken_cache(self) -> None:
         self._musterloesungen_metriken.clear()
+        self._musterlaengen.clear()
+
+    def kuerzeste_musterloesung(self, aufgabe_id: str) -> int | None:
+        """Zeichen ohne Leerraum der kürzesten Musterlösung, None ohne Musterlösung."""
+        if aufgabe_id not in self._musterlaengen:
+            laengen = [
+                sum(1 for c in ml["code"] if not c.isspace())
+                for ml in self.loader.lade_musterloesungen(aufgabe_id)
+            ]
+            self._musterlaengen[aufgabe_id] = min(laengen) if laengen else None
+        return self._musterlaengen[aufgabe_id]
 
     def metriken_cache(self, aufgabe_id: str) -> list[dict] | None:
         return self._musterloesungen_metriken.get(aufgabe_id)

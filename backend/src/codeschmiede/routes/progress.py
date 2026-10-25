@@ -1,4 +1,5 @@
-"""HTTP-Routen für Progress, Tagesziel, Streak, Reset und Weiter-Vorschlag."""
+"""HTTP-Routen für Progress, Tagesziel, Aktivität, Reset und Weiter-Vorschlag.
+Serie und Erfolge gehören zur Spielmechanik (routes/spiel.py)."""
 
 from datetime import date
 
@@ -8,33 +9,15 @@ from pydantic import BaseModel
 from ..models.progress import (
     GesamtFortschritt,
     Progress,
-    Streak,
     Tagesziel,
     WeiterVorschlag,
 )
-from ..progress.streak import streak_aktiv
 from ..progress.submissions import TagesAktivitaet
 from ..state import AppState
 
 
 class HeatmapAntwort(BaseModel):
     tage: list[TagesAktivitaet]
-
-
-class Achievement(BaseModel):
-    id: str
-    titel: str
-    beschreibung: str
-    icon: str
-    erreicht: bool
-    fortschritt: int = 0
-    ziel: int = 1
-
-
-class AchievementsAntwort(BaseModel):
-    eintraege: list[Achievement]
-    erreicht_anzahl: int
-    gesamt_anzahl: int
 
 
 def baue_progress_router(state: AppState) -> APIRouter:
@@ -48,7 +31,6 @@ def baue_progress_router(state: AppState) -> APIRouter:
     def heute() -> Tagesziel:
         heute_dat = date.today()
         faellig = state.progress.faellige_aufgaben(heute_dat)
-        streak = state.progress.hole_streak()
 
         progress_dict = {p.aufgabe_id: p for p in state.progress.hole_alle_progress()}
         offen = [
@@ -65,14 +47,7 @@ def baue_progress_router(state: AppState) -> APIRouter:
             faellige_wiederholungen=faellig,
             vorgeschlagene_neue=vorschlag,
             letzte_aufgabe=state.progress.letzte_aktive_aufgabe(),
-            streak_aktiv=streak_aktiv(streak, heute_dat),
-            aktueller_streak=streak.aktuell,
-            laengster_streak=streak.laengster,
         )
-
-    @router.get("/streak", response_model=Streak)
-    def get_streak() -> Streak:
-        return state.progress.hole_streak()
 
     @router.get("/aufgaben", response_model=dict[str, Progress])
     def aufgaben_progress() -> dict[str, Progress]:
@@ -87,7 +62,7 @@ def baue_progress_router(state: AppState) -> APIRouter:
 
     @router.post("/reset-alles")
     def reset_alles() -> dict[str, str]:
-        """Globaler Reset: löscht alle Submissions, Progress und Streak.
+        """Globaler Reset: löscht alle Submissions, Progress und Tagesaufträge.
         Aufgaben-Dateien bleiben unangetastet -- man fängt komplett von
         vorne an.
         """
@@ -158,127 +133,5 @@ def baue_progress_router(state: AppState) -> APIRouter:
                 raise HTTPException(400, "tage muss zwischen 1 und 730 sein")
             eintraege = state.submissions.je_tag_seit(tage)
         return HeatmapAntwort(tage=eintraege)
-
-    @router.get("/achievements", response_model=AchievementsAntwort)
-    def achievements() -> AchievementsAntwort:
-        """Berechnet alle Achievements zur Laufzeit aus DB-Daten."""
-        gesamt = state.progress.gesamt_fortschritt(state.aufgaben.alle_aufgaben())
-        streak = state.progress.hole_streak()
-
-        bestandene = state.submissions.bestandene_aufgaben_ids()
-        sprachen = len({
-            a.sprache for a in state.aufgaben.alle_aufgaben() if a.id in bestandene
-        })
-
-        # Pfad-Vollendung in Python (einfacher mit Pfad-Modellen)
-        progress_dict = {p.aufgabe_id: p for p in state.progress.hole_alle_progress()}
-
-        def aufgabe_geloest(aid: str) -> bool:
-            p = progress_dict.get(aid)
-            return p is not None and p.status == "geloest"
-
-        pfade_komplett = sum(
-            1
-            for p in state.aufgaben.alle_pfade()
-            if p.reihenfolge and all(aufgabe_geloest(a) for a in p.reihenfolge)
-        )
-
-        eintraege = [
-            Achievement(
-                id="erste_aufgabe",
-                titel="Erste Aufgabe",
-                beschreibung="Loese deine erste Aufgabe",
-                icon="fa-flag-checkered",
-                erreicht=gesamt.aufgaben_geloest >= 1,
-                fortschritt=min(gesamt.aufgaben_geloest, 1),
-                ziel=1,
-            ),
-            Achievement(
-                id="zehn_aufgaben",
-                titel="Aufgewärmt",
-                beschreibung="10 Aufgaben gelöst",
-                icon="fa-fire",
-                erreicht=gesamt.aufgaben_geloest >= 10,
-                fortschritt=min(gesamt.aufgaben_geloest, 10),
-                ziel=10,
-            ),
-            Achievement(
-                id="fuenfzig_aufgaben",
-                titel="Halbprofi",
-                beschreibung="50 Aufgaben gelöst",
-                icon="fa-medal",
-                erreicht=gesamt.aufgaben_geloest >= 50,
-                fortschritt=min(gesamt.aufgaben_geloest, 50),
-                ziel=50,
-            ),
-            Achievement(
-                id="streak_3",
-                titel="Drei am Stück",
-                beschreibung="3 Tage Streak",
-                icon="fa-bolt",
-                erreicht=streak.aktuell >= 3 or streak.laengster >= 3,
-                fortschritt=min(max(streak.aktuell, streak.laengster), 3),
-                ziel=3,
-            ),
-            Achievement(
-                id="streak_7",
-                titel="Eine Woche",
-                beschreibung="7 Tage Streak",
-                icon="fa-calendar-week",
-                erreicht=streak.aktuell >= 7 or streak.laengster >= 7,
-                fortschritt=min(max(streak.aktuell, streak.laengster), 7),
-                ziel=7,
-            ),
-            Achievement(
-                id="streak_30",
-                titel="Marathon",
-                beschreibung="30 Tage Streak",
-                icon="fa-trophy",
-                erreicht=streak.aktuell >= 30 or streak.laengster >= 30,
-                fortschritt=min(max(streak.aktuell, streak.laengster), 30),
-                ziel=30,
-            ),
-            Achievement(
-                id="pfad_komplett",
-                titel="Erster Pfad voll",
-                beschreibung="Einen ganzen Pfad gelöst",
-                icon="fa-route",
-                erreicht=pfade_komplett >= 1,
-                fortschritt=min(pfade_komplett, 1),
-                ziel=1,
-            ),
-            Achievement(
-                id="drei_pfade",
-                titel="Pfad-Sammler",
-                beschreibung="Drei Pfade vollständig gelöst",
-                icon="fa-map-location-dot",
-                erreicht=pfade_komplett >= 3,
-                fortschritt=min(pfade_komplett, 3),
-                ziel=3,
-            ),
-            Achievement(
-                id="hundert_submissions",
-                titel="Fleissig",
-                beschreibung="100 Submissions abgeschickt",
-                icon="fa-paper-plane",
-                erreicht=gesamt.submissions_gesamt >= 100,
-                fortschritt=min(gesamt.submissions_gesamt, 100),
-                ziel=100,
-            ),
-            Achievement(
-                id="multilingual",
-                titel="Polyglott",
-                beschreibung="Aufgaben in 2 Sprachen gelöst",
-                icon="fa-globe",
-                erreicht=sprachen >= 2,
-                fortschritt=min(sprachen, 2),
-                ziel=2,
-            ),
-        ]
-        return AchievementsAntwort(
-            eintraege=eintraege,
-            erreicht_anzahl=sum(1 for a in eintraege if a.erreicht),
-            gesamt_anzahl=len(eintraege),
-        )
 
     return router

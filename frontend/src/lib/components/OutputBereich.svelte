@@ -5,17 +5,17 @@
    * Ausgaben, Kennzahlen und der Vergleich mit den Musterlösungen.
    */
   import type { SubmissionAntwort } from '../types/Submission';
+  import BelohnungsBand from './spiel/BelohnungsBand.svelte';
 
   interface Props {
     ergebnis: SubmissionAntwort | null;
     fehler: string | null;
     laeuft: boolean;
     anzahl_versteckt: number;
-    schwierigkeit_score: number;
     onWeiter: () => void;
   }
 
-  let { ergebnis, fehler, laeuft, anzahl_versteckt, schwierigkeit_score, onWeiter }: Props = $props();
+  let { ergebnis, fehler, laeuft, anzahl_versteckt, onWeiter }: Props = $props();
 
   const wert = (w: unknown): string => JSON.stringify(w);
 </script>
@@ -29,6 +29,7 @@
 {:else}
   {@const p = ergebnis.pruefung}
   {@const bestandenSichtbar = p.sichtbar.filter((t) => t.bestanden).length}
+  {#if ergebnis.belohnung}<BelohnungsBand belohnung={ergebnis.belohnung} />{/if}
   <div class="ergebnis-kopf" class:nein={!ergebnis.bestanden}>
     <i class="fa-solid {ergebnis.bestanden ? 'fa-circle-check' : 'fa-circle-xmark'}" aria-hidden="true"></i>
     {ergebnis.bestanden ? 'Bestanden' : 'Noch nicht bestanden'}
@@ -72,7 +73,7 @@
   {/if}
 
   <p class="dim kennzahlen-text">
-    Laufzeit {p.laufzeit_ms.toFixed(0)} ms, {ergebnis.codelaenge_zeichen} Zeichen, {ergebnis.progress.versuche}. Versuch{#if ergebnis.bestanden}, +{ergebnis.progress.punkte_erreicht} von {schwierigkeit_score} Punkten{/if}
+    Laufzeit {p.laufzeit_ms.toFixed(0)} ms, {ergebnis.codelaenge_zeichen} Zeichen, {ergebnis.progress.versuche}. Versuch
   </p>
   {#if ergebnis.bestanden}
     <button class="knopf primaer" onclick={onWeiter}>

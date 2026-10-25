@@ -228,6 +228,9 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .titelzeile h1 { margin: 0; font-size: var(--fs-xl); font-weight: 600; line-height: 1.2; white-space: nowrap; }
 .lead { color: var(--fg-dim); font-size: var(--fs-sm); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .aktionen { margin-left: auto; display: flex; gap: var(--sp-2); flex: none; }
+/* ein Knopf mit langem Ziel (Weitermachen: Titel) bleibt schmal genug für Titel und Untertitel */
+.knopf.kuerzbar { max-width: clamp(160px, 22vw, 360px); }
+.kuerzbar span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .rollfeld { flex: 1; min-height: 0; overflow-y: auto; overflow-x: clip; padding: var(--sp-3) var(--sp-4) var(--sp-4); }
 .rollfeld.ohne-rand { padding: 0; }
 
@@ -388,3 +391,73 @@ button.karte:hover:not(:disabled) { border-color: var(--accent); background: var
 /* Konto in der Kopfleiste */
 .konto { display: inline-flex; align-items: center; gap: var(--sp-2); height: var(--knopf-h); padding: 0 var(--sp-1) 0 var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--fg-dim); font-size: var(--fs-sm); }
 .konto .ikon { width: 24px; height: 24px; border: 0; }
+
+/* ----- Spielmechanik: Stufe, Serie, Tagesauftrag, Meisterschaft, Sterne, Belohnung ----- */
+:root { --gold: #e3b341; --silber: #a8b3bf; --bronze: #c98a5a; }
+:root[data-theme='light'] { --gold: #9a6a00; --silber: #6b7785; --bronze: #9a5b2c; }
+/* Kopf: Stufe und Serie als schmale Anzeigen */
+.kopf-stand { display: inline-flex; align-items: center; gap: var(--sp-2); height: var(--knopf-h); padding: 0 var(--sp-3) 0 4px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: var(--fs-sm); color: var(--fg-dim); white-space: nowrap; }
+.kopf-stand .num { color: var(--fg); font-weight: 600; }
+.mini-ring { --anteil: 0; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--accent) calc(var(--anteil) * 1%), var(--bg-card-2) 0); position: relative; font-family: var(--num); font-size: 11px; font-weight: 700; color: var(--fg); }
+.mini-ring::before { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--bg-card); }
+.mini-ring span { position: relative; }
+.flamme { color: var(--orange); }
+.schild { color: var(--accent); font-size: 12px; }
+.schild.leer { color: var(--fg-mute); opacity: .5; }
+/* Stufe groß */
+.stufe { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sp-3); align-items: center; }
+.stufe-ring { --anteil: 0; width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--accent) calc(var(--anteil) * 1%), var(--bg) 0); position: relative; }
+.stufe-ring::before { content: ""; position: absolute; inset: 7px; border-radius: 50%; background: var(--bg-card-2); }
+.stufe-ring b { position: relative; font-family: var(--num); font-size: 24px; line-height: 1; }
+.stufe-ring small { position: absolute; bottom: 13px; font-size: 9px; text-transform: uppercase; letter-spacing: .08em; color: var(--fg-dim); }
+.stufe-text { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.stufe-text b { font-size: var(--fs-lg); }
+.stufe-text span { font-size: var(--fs-sm); color: var(--fg-dim); }
+/* Sterne */
+.sterne { display: inline-flex; gap: 1px; color: var(--gold); font-size: 12px; }
+.sterne .aus { color: var(--fg-mute); opacity: .45; }
+.sterne.gross { font-size: 18px; gap: 3px; }
+/* Tagesauftrag */
+.auftrag { display: flex; flex-direction: column; gap: 4px; }
+.auftrag-ziel { display: flex; align-items: baseline; gap: var(--sp-2); font-size: var(--fs-sm); min-width: 0; }
+.auftrag-ziel i { width: 16px; text-align: center; color: var(--fg-mute); }
+.auftrag-ziel.erledigt i { color: var(--green); }
+.auftrag-ziel.erledigt span { color: var(--fg-dim); text-decoration: line-through; }
+.auftrag-ziel span { min-width: 0; }
+/* Meisterschaft je Bereich */
+.meister { display: grid; grid-template-columns: 22px 92px minmax(0, 1fr) 72px; gap: 6px var(--sp-2); align-items: center; font-size: var(--fs-sm); }
+.medaille { width: 20px; height: 20px; flex: none; overflow: hidden; border-radius: 50%; display: grid; place-items: center; font-size: 10px; color: var(--bg); background: var(--fg-mute); }
+.medaille.gold { background: var(--gold); } .medaille.silber { background: var(--silber); } .medaille.bronze { background: var(--bronze); }
+.medaille.keine { background: transparent; border: 1px dashed var(--border-strong); color: var(--fg-mute); }
+.meister .num { text-align: right; font-weight: 500; color: var(--fg-dim); }
+/* Erfolge mit Stufen */
+.erfolg { display: flex; align-items: center; gap: var(--sp-2); padding: 5px 0; border-bottom: 1px solid var(--border); font-size: var(--fs-sm); }
+.erfolg:last-child { border-bottom: 0; }
+.erfolg i { width: 20px; text-align: center; color: var(--fg-mute); }
+.erfolg.da i { color: var(--orange); }
+.erfolg .name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.erfolg .dim { margin-left: auto; font-size: var(--fs-xs); }
+.erfolg .medaille { margin-right: 2px; }
+.erfolg-kachel { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: var(--sp-3); align-items: center; padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border); background: var(--bg-card-2); min-width: 0; }
+.erfolg-kachel.gesperrt { opacity: .55; }
+.erfolg-kachel .gross-medaille { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-size: 17px; color: var(--bg); background: var(--fg-mute); }
+.gross-medaille.gold { background: var(--gold); } .gross-medaille.silber { background: var(--silber); } .gross-medaille.bronze { background: var(--bronze); }
+.erfolg-kachel b { display: block; font-weight: 600; }
+.erfolg-kachel small { display: block; color: var(--fg-dim); font-size: var(--fs-xs); }
+.erfolg-kachel .balken { margin-top: 4px; }
+.kachel-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--sp-2); }
+/* Belohnungsmoment nach dem Bestehen */
+.belohnung { border: 1px solid var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--bg-card)); padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); margin-bottom: var(--sp-3); }
+.belohnung-kopf { display: flex; align-items: baseline; gap: var(--sp-3); }
+.belohnung-kopf .plus { font-family: var(--num); font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1; }
+.belohnung-kopf span { color: var(--fg-dim); font-size: var(--fs-sm); }
+.belohnung .zeile { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); }
+.belohnung .zeile i { width: 16px; text-align: center; color: var(--accent); }
+.belohnung .zeile .medaille { width: 16px; height: 16px; font-size: 8px; }
+/* Symbol in der Medaille in deren Farbe, nicht in der Farbe der Zeile */
+.erfolg .medaille i, .belohnung .zeile .medaille i { width: auto; color: inherit; }
+.belohnung .balken span { transition: width .9s ease-out; }
+
+/* CSS-Aufgabe: Punkte in zwei Teilen (Deckung, Kürze ab 99 %) */
+.punkte-teile { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: var(--sp-2); align-items: center; font-size: var(--fs-xs); color: var(--fg-dim); }
+.punkte-teile .num { color: var(--fg); font-weight: 600; }

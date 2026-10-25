@@ -18,7 +18,9 @@ export const BEREICHE: Bereich[] = [
   { id: 'verwaltung', titel: 'Verwaltung', icon: 'fa-table-cells-large', telefon: false },
 ];
 
-/** Eine geöffnete Aufgabe gehört zum Bereich Aufgaben. */
+/** Unterseiten und ihr Bereich: eine geöffnete Aufgabe gehört zu Aufgaben, die Erfolge zum Dashboard. */
+const GEHOERT_ZU: Partial<Record<Route, Route>> = { aufgabe: 'aufgaben', erfolge: 'dashboard' };
+
 export function istAktiv(bereich: Bereich, aktiv: Route): boolean {
-  return bereich.id === aktiv || (bereich.id === 'aufgaben' && aktiv === 'aufgabe');
+  return bereich.id === aktiv || GEHOERT_ZU[aktiv] === bereich.id;
 }

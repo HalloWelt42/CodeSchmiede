@@ -271,7 +271,6 @@
               fehler={pruef_fehler}
               laeuft={pruefen_laeuft}
               anzahl_versteckt={aktuell.anzahl_versteckte_tests}
-              schwierigkeit_score={aktuell.schwierigkeit_score}
               onWeiter={geheZuNaechster}
             />
             <VerlaufBereich aufgabeId={aktuell.id} stand={abgaben} onUebernehmen={(c) => (code = c)} />

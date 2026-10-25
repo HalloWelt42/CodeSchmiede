@@ -2,6 +2,7 @@
   import { layout } from '../stores/LayoutStore.svelte';
   import { theme } from '../stores/ThemeStore.svelte';
   import { zugang } from '../stores/ZugangStore.svelte';
+  import KopfStand from './spiel/KopfStand.svelte';
 </script>
 
 <header class="topbar">
@@ -17,6 +18,7 @@
     Codeschmiede
   </div>
   <div class="rechts">
+    <KopfStand />
     {#if zugang.konto}
       <span class="konto">
         <i class="fa-solid {zugang.konto.geraet ? 'fa-link' : 'fa-user'}" aria-hidden="true"></i>{zugang.konto.name}

@@ -33,6 +33,7 @@
   import MusterloesungenBereich from './MusterloesungenBereich.svelte';
   import VerlaufBereich from './VerlaufBereich.svelte';
   import EditorBereich from './EditorBereich.svelte';
+  import BelohnungsBand from './spiel/BelohnungsBand.svelte';
 
   let { detail }: { detail: AufgabeDetail } = $props();
 
@@ -219,7 +220,7 @@ ${css}
             {:else if prozent === null}
               <b>Noch nicht geprüft</b><span>{asserts.length} Prüfpunkte</span>
             {:else if erfuellt === assert_ergebnisse.length}
-              <b>Alle Prüfpunkte erfüllt</b><span>{ergebnis?.bestanden ? `+${ergebnis.progress.punkte_erreicht} Punkte` : ''}</span>
+              <b>Alle Prüfpunkte erfüllt</b><span>{ergebnis?.bestanden ? 'bestanden' : ''}</span>
             {:else}
               <b>{erfuellt} von {assert_ergebnisse.length} erfüllt</b><span>noch {assert_ergebnisse.length - erfuellt} offen</span>
             {/if}
@@ -227,6 +228,7 @@ ${css}
           <div class="wert-kachel"><span class="num">{zeichen}</span><small>Zeichen</small></div>
           <div class="wert-kachel"><span class="num gedimmt">{bestwert ?? '-'}</span><small>Bestwert</small></div>
         </div>
+        {#if ergebnis?.belohnung}<BelohnungsBand belohnung={ergebnis.belohnung} />{/if}
         {#if ergebnis?.bestanden}
           <button class="knopf primaer weiter" onclick={geheZuNaechster}>
             <i class="fa-solid fa-forward" aria-hidden="true"></i>Nächste Aufgabe

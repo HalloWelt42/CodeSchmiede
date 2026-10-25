@@ -72,3 +72,19 @@ aufgabentypen:
     titel: SQL-Abfrage
     view: sql_abfrage
     beschreibung: Ein Datensatz ist vorgegeben -- schreibe eine SELECT-Abfrage, die das erwartete Ergebnis liefert.
+
+# Spielmechanik (docs/SPIELE.md). Stufe k gilt ab stufe_basis * k * k
+# Punkten, alle titel_alle Stufen kommt der nächste Titel. Die Ränge der
+# Meisterschaft sind Anteile der erreichbaren Punkte. Je schild_alle_tage
+# Tage Serie gibt es einen Schutzschild, höchstens schilde_max. Ein ganz
+# erledigter Tagesauftrag bringt auftrag_bonus Punkte. Ein schnellerer Lauf
+# zählt als Bestwert ab bestwert_laufzeit_anteil der alten Laufzeit.
+spiel:
+  stufe_basis: 25
+  titel: [Lehrling, Geselle, Schmied, Meister, Großmeister]
+  titel_alle: 5
+  raenge: {bronze: 0.25, silber: 0.5, gold: 0.8}
+  schild_alle_tage: 7
+  schilde_max: 3
+  auftrag_bonus: 10
+  bestwert_laufzeit_anteil: 0.8

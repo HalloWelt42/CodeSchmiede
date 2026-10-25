@@ -44,7 +44,7 @@ def _setze_ein(template: str, ersetzungen: dict[str, str]) -> str:
     )
 
 
-@registriere("lueckentext")
+@registriere("lueckentext", vergleicht_zeichen=False)
 def pruefe(aufgabe: Aufgabe, code: str, runner: Runner) -> PruefErgebnis:
     extra = getattr(aufgabe, "model_extra", {}) or {}
     lueckentext = extra.get("lueckentext", {}) or {}

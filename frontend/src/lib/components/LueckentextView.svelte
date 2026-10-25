@@ -148,7 +148,6 @@
         {fehler}
         laeuft={pruefen_laeuft}
         anzahl_versteckt={detail.anzahl_versteckte_tests}
-        schwierigkeit_score={detail.schwierigkeit_score}
         onWeiter={geheZuNaechster}
       />
     </div>

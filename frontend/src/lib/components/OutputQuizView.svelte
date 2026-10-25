@@ -14,6 +14,8 @@
   import { progressApi } from '../api/ProgressApi';
   import { submissionsApi } from '../api/SubmissionsApi';
   import type { AufgabeDetail } from '../types/Aufgabe';
+  import type { Belohnung } from '../api/SpielApi';
+  import BelohnungsBand from './spiel/BelohnungsBand.svelte';
 
   interface QuizDef {
     code: string;
@@ -36,7 +38,7 @@
   });
   let bestanden = $state<boolean | null>(null);
   let stderr = $state<string>('');
-  let punkte = $state<number>(0);
+  let belohnung = $state<Belohnung | null>(null);
   let fehler = $state<string | null>(null);
 
   async function waehleUndPruefe(index: number): Promise<void> {
@@ -48,7 +50,7 @@
       const ergebnis = await submissionsApi.submit(detail.id, String(index));
       bestanden = ergebnis.bestanden;
       stderr = ergebnis.pruefung.stderr;
-      punkte = ergebnis.progress.punkte_erreicht;
+      belohnung = ergebnis.belohnung;
       await progressStore.ladeAlles();
     } catch (e) {
       fehler = (e as Error).message;
@@ -126,7 +128,6 @@
           <div class="ergebnis-zeile">
             <i class="fa-solid fa-check" aria-hidden="true"></i>
             <span class="ergebnis-text">Richtig!</span>
-            <span class="punkte num">+{punkte} von {detail.schwierigkeit_score} Punkten</span>
           </div>
           <button class="weiter" onclick={geheZuNaechster}>
             Weiter
@@ -144,6 +145,7 @@
           </button>
         {/if}
       </section>
+      {#if bestanden && belohnung}<div class="band"><BelohnungsBand {belohnung} /></div>{/if}
     {/if}
   {/if}
 </div>
@@ -287,6 +289,9 @@
     gap: var(--sp-3);
     flex-wrap: wrap;
   }
+  .band {
+    margin-top: var(--sp-3);
+  }
   .ergebnis.ok {
     background: color-mix(in srgb, var(--green) 10%, transparent);
     border-color: var(--green);
@@ -311,10 +316,6 @@
   .ergebnis.ok i { color: var(--green); }
   .ergebnis.fail .ergebnis-text,
   .ergebnis.fail i { color: var(--red); }
-  .punkte {
-    color: var(--green);
-    font-size: var(--fs-md);
-  }
   .hint {
     color: var(--fg-dim);
     font-family: var(--quick);

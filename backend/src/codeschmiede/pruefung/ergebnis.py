@@ -7,7 +7,7 @@ Versteckte Tests werden nur als Anzahl durchgereicht (Anti-Hardcoding).
 
 from typing import Any
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class TestErgebnis(BaseModel):
@@ -19,6 +19,36 @@ class TestErgebnis(BaseModel):
     fehler: str | None = None
 
 
+class Kennwerte(BaseModel):
+    """Messwerte eines Versuchs über das Bestehen hinaus, je Aufgabentyp
+    gefüllt. Sie stehen mit der Abgabe in der Datenbank; Bestwerte und
+    Erfolge leiten sich daraus ab."""
+
+    # CSS: Anteil der Bildpunkte, die mit dem Ziel übereinstimmen, 0 bis 1
+    deckung: float | None = Field(default=None, ge=0, le=1)
+    # Roboter: Schritte in der sichtbaren Welt und Zeilen Code
+    schritte: int | None = Field(default=None, ge=0)
+    zeilen: int | None = Field(default=None, ge=0)
+    # Sprint: richtige Antworten der Runde
+    treffer: int | None = Field(default=None, ge=0)
+    # setzt die Verbuchung: weniger Zeichen als die kürzeste Musterlösung
+    kuerzer_als_muster: bool | None = None
+
+
+class SternKriterium(BaseModel):
+    text: str
+    erreicht: bool
+
+
+class Wertung(BaseModel):
+    """Sterne eines Levels: einer fürs Bestehen, zwei und drei für Güte
+    nach den Schwellen der Level-Datei."""
+
+    sterne: int = Field(ge=0, le=3)
+    kriterien: list[SternKriterium] = Field(default_factory=list)
+    kennwerte: Kennwerte = Field(default_factory=Kennwerte)
+
+
 class PruefErgebnis(BaseModel):
     bestanden: bool
     sichtbar: list[TestErgebnis]
@@ -28,3 +58,5 @@ class PruefErgebnis(BaseModel):
     stdout: str = ""
     stderr: str = ""
     timeout: bool = False
+    # nur bei Aufgabentypen mit Sternen (Spiele, CSS)
+    wertung: Wertung | None = None
