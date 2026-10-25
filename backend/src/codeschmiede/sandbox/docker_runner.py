@@ -18,6 +18,7 @@ seinen Namen. Die Ausgabe ist auf eine Höchstmenge begrenzt; wer mehr
 schreibt, wird abgebrochen.
 """
 
+import logging
 import subprocess
 import threading
 import time
@@ -28,12 +29,19 @@ from typing import IO
 from .result import RunLimits, RunResult
 from .runner import SandboxFehler
 
+logger = logging.getLogger("codeschmiede.sandbox")
+
 
 # Wie jede Sprache ihr Programm von stdin liest.
 SPRACHBEFEHLE: dict[str, tuple[str, ...]] = {
     "python": ("python", "-"),
     "javascript": ("node", "-"),
 }
+
+# Datengrenze je Prozess (RLIMIT_DATA): wirkt auch ohne Speicher-cgroup (Raspberry Pi OS startet mit
+# cgroup_disable=memory, dann verwirft Docker --memory). Node reserviert beim Start rund 400 MB beschreibbaren
+# Adressraum für seinen Code und braucht darum mindestens 512 MB; die übrigen Sprachen bekommen die Speichergrenze.
+MINDEST_DATEN_MB: dict[str, int] = {"javascript": 512}
 
 # Exit-Code von `timeout`, wenn die Laufzeitgrenze griff. 137 (SIGKILL) heißt
 # fast immer Speichergrenze; die gemessene Laufzeit enthält die Startzeit des
@@ -47,6 +55,7 @@ NOBODY = "65534:65534"
 class Sprachbild:
     image: str
     befehl: tuple[str, ...]
+    mindest_daten_mb: int = 0
 
 
 class _BegrenzterLeser(threading.Thread):
@@ -83,7 +92,8 @@ class DockerRunner:
         docker: str = "docker",
     ):
         self.bilder = {
-            sprache: Sprachbild(image=image, befehl=SPRACHBEFEHLE[sprache])
+            sprache: Sprachbild(image=image, befehl=SPRACHBEFEHLE[sprache],
+                                mindest_daten_mb=MINDEST_DATEN_MB.get(sprache, 0))
             for sprache, image in bilder.items()
             if sprache in SPRACHBEFEHLE
         }
@@ -92,6 +102,23 @@ class DockerRunner:
         # erlaubt ist, bevor der Dienst hart beendet (Host-abhängig).
         self.startzeit_sekunden = startzeit_sekunden
         self.docker = docker
+        self._speicher_cgroup: bool | None = None
+
+    @property
+    def speicher_cgroup(self) -> bool:
+        """Ob der Docker-Daemon Speichergrenzen per cgroup durchsetzt (einmal gefragt). Ohne sie verwirft er --memory
+        mit einer Warnung, die sonst in jeder Fehlerausgabe stünde; dann bleibt die Datengrenze je Prozess."""
+        if self._speicher_cgroup is None:
+            try:
+                antwort = subprocess.run([self.docker, "info", "--format", "{{.MemoryLimit}}"],
+                                         capture_output=True, text=True, timeout=15, check=False)
+                self._speicher_cgroup = antwort.stdout.strip() == "true"
+            except (OSError, subprocess.TimeoutExpired):
+                self._speicher_cgroup = True   # unbekannt: wie bisher übergeben, Docker meldet es selbst
+            if not self._speicher_cgroup:
+                logger.warning("Docker setzt keine Speichergrenzen durch (Speicher-cgroup aus); es gilt nur die "
+                               "Datengrenze je Prozess")
+        return self._speicher_cgroup
 
     @property
     def sprachen(self) -> list[str]:
@@ -162,6 +189,7 @@ class DockerRunner:
         )
 
     def _befehl_bauen(self, name: str, bild: Sprachbild, limits: RunLimits) -> list[str]:
+        daten = max(limits.memory_mb, bild.mindest_daten_mb) * 1024 * 1024
         return [
             self.docker, "run", "--rm", "-i",
             "--name", name,
@@ -171,8 +199,8 @@ class DockerRunner:
             "--cap-drop=ALL",
             "--security-opt=no-new-privileges",
             "--user", NOBODY,
-            f"--memory={limits.memory_mb}m",
-            f"--memory-swap={limits.memory_mb}m",
+            *([f"--memory={limits.memory_mb}m", f"--memory-swap={limits.memory_mb}m"] if self.speicher_cgroup else []),
+            "--ulimit", f"data={daten}:{daten}",
             f"--cpus={limits.cpus}",
             "--pids-limit=64",
             "--ulimit", "nofile=64:64",

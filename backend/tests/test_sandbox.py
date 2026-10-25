@@ -71,3 +71,23 @@ def test_keine_reste(docker_runner):
         capture_output=True, text=True,
     ).stdout.strip()
     assert reste == ""
+
+
+def test_ohne_speicher_cgroup_nur_datengrenze():
+    from codeschmiede.sandbox.docker_runner import DockerRunner, Sprachbild
+
+    runner = DockerRunner({"python": "bild-py", "javascript": "bild-js"})
+    runner._speicher_cgroup = False
+    befehl = runner._befehl_bauen("lauf", runner.bilder["python"], KURZ)
+    assert not any(a.startswith("--memory") for a in befehl)
+    assert "data=134217728:134217728" in befehl
+    # Node braucht beim Start mehr beschreibbaren Adressraum
+    assert "data=536870912:536870912" in runner._befehl_bauen("lauf", runner.bilder["javascript"], KURZ)
+    runner._speicher_cgroup = True
+    befehl = runner._befehl_bauen("lauf", Sprachbild("x", ("python", "-")), KURZ)
+    assert "--memory=128m" in befehl and "--memory-swap=128m" in befehl
+
+
+def test_datengrenze_wirkt(docker_runner):
+    erg = docker_runner.run_code("x = bytearray(400 * 1024 * 1024)", "python", KURZ)
+    assert erg.exit_code != 0 and not erg.timeout

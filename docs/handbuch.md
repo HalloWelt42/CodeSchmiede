@@ -109,6 +109,11 @@ jedem Ausrollen `codeschmiede-*.sqlite` (zehn bleiben). Das Werkzeug Sicherungen
   `codeschmiede-sandbox:python`, erneut ausrollen (es baut die Abbilder mit).
 - Prüfungen laufen in die Zeitgrenze: der Pi startet Container langsamer als der Mac; die Startreserve des Sandbox-Dienstes
   (`CODESCHMIEDE_SANDBOX_STARTZEIT_SEKUNDEN`, Vorgabe 20) in `compose.pi.yml` erhöhen.
+- Speichergrenze: Raspberry Pi OS startet den Kernel mit `cgroup_disable=memory`; dann setzt Docker `--memory` nicht
+  durch. Der Sandbox-Dienst merkt das selbst (`/gesund` meldet `speichergrenze: datengrenze`) und begrenzt jeden Lauf
+  nur über die Datengrenze je Prozess (Python 128 MB, JavaScript 512 MB). Volle Speichergrenze: `cgroup_enable=memory`
+  an die eine Zeile in `/boot/firmware/cmdline.txt` anhängen und den Pi neu starten; danach meldet `/gesund`
+  `speichergrenze: cgroup`.
 - Anmeldung "Die Kellerwolke ist gerade nicht erreichbar": Adresse und Zertifikat prüfen; bestätigte Anmeldungen gelten
   bis zu 24 Stunden weiter.
 - Ein Koppelcode "gilt nicht": er muss aus der Kellerwolke stammen, mit der die App verbunden ist (Adresse auf der

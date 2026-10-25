@@ -54,7 +54,7 @@ Jeder Schritt einzeln committet und gepusht.
    - Umlaute und einfache Bindestriche in Texten und Titeln (IDs bleiben ASCII)
    - Warnung beim Einlesen
 4. **Oberfläche** nach den Entwürfen: feste Köpfe, Rollfelder, Telefonschale (Entwürfe freigegeben 25.10.2026, erledigt mit 0.75.0).
-5. **Anmeldung und Ausrollen auf den Pi**
+5. **Anmeldung und Ausrollen auf den Pi** (erledigt mit 0.76.0)
    - Kellerwolke-Konto
    - Daten unter `/mnt/data`
    - Verwaltung nur lesend
@@ -109,12 +109,21 @@ Jeder Schritt einzeln committet und gepusht.
 - Geprüft: alle Ansichten in 1920, 1440, 1280, 1100, 900 und 390 px ohne seitliches Rollen und ohne Überlauf, Seite rollt nie als Ganzes; Prüfablauf am Telefon mit der Sandbox
 - Texte bereinigt (doppelte Bindestriche, Ersatzschreibungen in Bestätigungen und im Aufgabeneditor)
 
+## Ergebnis Schritt 5
+
+- Anmeldung mit dem Kellerwolke-Konto über den Baustein des Appkern (Passwort oder gekoppeltes Gerät); nutzen darf das Konto, dem der App-Schlüssel gehört; alle Endpunkte außer Gesundheit, App-Angaben, Einrichtung und Anmeldung geschützt
+- Erste Einrichtung im Browser (Adresse und App-Schlüssel der Kellerwolke), von anderen Geräten nur mit dem Einrichtungscode aus der Datei am Rechner; Anmelde- und Einrichtungsseite nach Entwurf `mockups/rechner-anmeldung.html`, `telefon-anmeldung.html`
+- Betrieb auf dem Pi unter `/mnt/data/codeschmiede`, Port 8661: Vorschaltdienst mit Zertifikat der Hausstelle und HTTP/2, Backend mit gebauter Oberfläche, Sandbox-Dienst als einziger Teil mit Docker-Socket, Sandbox-Abbilder beim Ausrollen gebaut; Aufgaben nur lesend aus dem Repo
+- Ausrollen `tools/ausrollen.sh` mit den Schritten des Appkern (Zertifikat, Stand, Bauen, Sicherung, Start) und eigenen (Tests, Sandbox-Schlüssel nur auf dem Pi, Abbilder, Fassungen); vorher Probelauf des Handbuchs in einer abgeschotteten Umgebung
+- Datenbank nachts und vor jedem Ausrollen gesichert, vom Werkzeug Sicherungen auf den Mac geholt; Handbuchseite `docs/handbuch.md`, Einrichtungsskript `einrichten.sh`
+- Sandbox auf dem Pi gemessen: Containerstart warm unter 1 s, kalt rund 5 s (schneller als Docker am Mac); ohne Netz bestätigt
+- Speicher-cgroup ist auf dem Pi aus (`cgroup_disable=memory`): der Sandbox-Dienst erkennt das und begrenzt über die Datengrenze je Prozess
+- Zwei zufällig rote Tests behoben (die gesuchte 42 stand in Laufzeiten und Laufkennungen)
+
 ## Offen
 
 - Entwürfe der Spiele (Schritt 6).
-- Port und Adresse auf dem Pi werden beim Ausrollen nach den Regeln des Unterbaus vergeben.
-- Startreserve der Sandbox auf dem Pi messen (am Mac braucht Docker Desktop gerade 6 bis 13 s je Container).
-- Bis zur Anmeldung (Schritt 5) ist die Verwaltung samt Musterlösungen ohne Schutz erreichbar.
+- Volle Speichergrenze der Sandbox auf dem Pi: Speicher-cgroup einschalten (`cgroup_enable=memory`, Neustart des Pi), Entscheidung des Nutzers.
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Aufbaukurs: Kursform (Pfad mit Lerneinheiten oder eigener Bereich), Sprachen und Umfang vor dem Bau klären (Schritt 7).
 - Literaturhinweise aus den eigenen Büchern: Schalter, Quelle im Wissenspool und Anzeige vor dem Bau klären.

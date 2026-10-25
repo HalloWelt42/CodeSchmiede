@@ -61,6 +61,8 @@ class Gesundheit(BaseModel):
     status: str
     sprachen: list[str]
     max_parallel: int
+    # "cgroup": Docker setzt die Speichergrenze durch; "datengrenze": nur die Grenze je Prozess (Speicher-cgroup aus)
+    speichergrenze: str
 
 
 def dienst_bauen(
@@ -84,7 +86,8 @@ def dienst_bauen(
 
     @app.get("/gesund", response_model=Gesundheit)
     def gesund() -> Gesundheit:
-        return Gesundheit(status="ok", sprachen=runner.sprachen, max_parallel=e.max_parallel)
+        return Gesundheit(status="ok", sprachen=runner.sprachen, max_parallel=e.max_parallel,
+                          speichergrenze="cgroup" if runner.speicher_cgroup else "datengrenze")
 
     @app.post("/laeufe", response_model=RunResult)
     def lauf(
