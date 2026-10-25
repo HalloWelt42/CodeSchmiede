@@ -6,7 +6,10 @@ maskierbaren Symbole randlos gezogen; ohne Grund (freigestelltes Logo) steht es 
 Die Hintergrundfarbe kommt aus dem Manifest (background_color). Erzeugt in OEFFENTLICH:
   favicon.svg                                   Kopie der Quelle für moderne Browser
   favicon.ico                                   16, 32 und 48 in einer Datei
-  favicon-32.png, icon-192.png, icon-512.png    wie die Quelle, Durchsichtiges bleibt (purpose any)
+  favicon-32.png                                wie die Quelle, Durchsichtiges bleibt (nur für Tabs)
+  icon-192.png, icon-512.png                    deckend auf der Hintergrundfarbe der App (purpose any); iOS nimmt beim
+                                                Hinzufügen zum Startbildschirm das Symbol aus dem Manifest und zeigt
+                                                keins, wenn es durchsichtige Stellen hat (gemessen 25.10.2026, iOS 18.7)
   icon-maskable-192.png, icon-maskable-512.png  randlos, Motiv in der sicheren Zone (purpose maskable)
   apple-touch-icon.png                          180, ohne Durchsichtigkeit auf der Hintergrundfarbe der App
 
@@ -95,10 +98,13 @@ def main() -> None:
 
     ico = [rastern(quelle, g) for g in (48, 32, 16)]
     ico[0].save(OEFFENTLICH / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)], append_images=ico[1:])
-    for name, groesse in (("favicon-32.png", 32), ("icon-192.png", 192), ("icon-512.png", 512)):
-        rastern(quelle, groesse).save(OEFFENTLICH / name, optimize=True)
+    rastern(quelle, 32).save(OEFFENTLICH / "favicon-32.png", optimize=True)
 
     randlos = grund_randlos(quelle)
+    for groesse in (192, 512):
+        bild = (auf_grund(rastern(quelle, groesse), groesse, 1.0, farbe) if randlos
+                else auf_grund(rastern(quelle, 2 * groesse), groesse, FREI_APPLE, farbe))
+        bild.convert("RGB").save(OEFFENTLICH / f"icon-{groesse}.png", optimize=True)
     for groesse in (192, 512):
         bild = rastern(randlos, groesse) if randlos else auf_grund(rastern(quelle, groesse), groesse, FREI_MASKIERBAR, farbe)
         bild.save(OEFFENTLICH / f"icon-maskable-{groesse}.png", optimize=True)

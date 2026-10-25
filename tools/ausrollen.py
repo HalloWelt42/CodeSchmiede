@@ -8,7 +8,8 @@ weil die Codeschmiede nicht auf dem Gerüst des Appkern steht:
   Aufgabenbestands gehört vor den Commit, siehe docs/handbuch.md)
 - Schlüssel des Sandbox-Dienstes: einmal auf dem Pi erzeugt in `<wurzel>/.env` (Modus 0600), nie im Repo
 - Sandbox-Abbilder: die Dienste mit Profil "bilder" werden mitgebaut
-- Prüfen: Server, gebaute Oberfläche und VERSION nennen dieselbe Fassung, HTTP/2, Symbole und Manifest
+- Prüfen: Server, gebaute Oberfläche und VERSION nennen dieselbe Fassung, HTTP/2, Symbole und Manifest, Symbole des
+  Startbildschirms deckend
 
 Aufruf: tools/ausrollen.py --ergaenzung DATEI [--sofort]
 """
@@ -81,9 +82,15 @@ def pruefen(z: a.Ziel) -> None:
         antwort = a._curl(z, "-o", "/dev/null", "-w", "%{http_code} %{content_type}", f"{z.adresse}/{pfad}")
         if not antwort.startswith(f"200 {typ}"):
             raise a.Abbruch(f"Symbol {pfad}: {antwort} (erwartet 200 {typ})")
+    # Lehre 3 der Apps: iOS nimmt das Symbol aus dem Manifest und zeigt keins, wenn es durchsichtige Stellen hat
+    hausstelle = Path(a._lauf(["mkcert", "-CAROOT"])) / "rootCA.pem"
+    for pfad in a.DECKEND:
+        daten = subprocess.run(["curl", "-s", "--cacert", str(hausstelle), f"{z.adresse}/{pfad}"], capture_output=True).stdout
+        if not a._deckend(daten):
+            raise a.Abbruch(f"Symbol {pfad} hat durchsichtige Stellen (iOS zeigt dann keins): python3 scripts/symbole.py")
     if info["einrichtung_noetig"]:
         print(f"Erste Einrichtung nötig: Einrichtungscode in {info['einrichtungscode']}")
-    print("HTTP/2 über den Vorschaltdienst, Symbole und Manifest in Ordnung")
+    print("HTTP/2 über den Vorschaltdienst, Symbole deckend, Manifest in Ordnung")
 
 
 def ausrollen(ergaenzung: Path, sofort: bool) -> int:
