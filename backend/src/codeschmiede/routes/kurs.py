@@ -1,4 +1,5 @@
-"""HTTP-Routen des Aufbaukurses: Übersicht, Einführung, Antworten, Beispiele, Kurztest, Merkblatt, Bilder."""
+"""HTTP-Routen des Aufbaukurses: Übersicht, Einführung, Antworten, Beispiele, Kurztest, Merkblatt; dazu die Dateien
+des Kurses (Zeichnungen, Diagramme, Bilder) auf eigenem Weg ohne Anmeldung."""
 
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -83,6 +84,14 @@ def baue_kurs_router(state: AppState) -> APIRouter:
     def merkblatt(eid: str) -> MerkblattSicht:
         with _fehler():
             return state.kurs.merkblatt(eid)
+
+    return router
+
+
+def baue_kurs_dateien_router(state: AppState) -> APIRouter:
+    """Zeichnungen, Diagramme und Bilder des Kurses. Sie stehen im öffentlichen Repo und enthalten nichts Persönliches;
+    ohne Anmeldung, weil Bilder per <img> und eingebettete Diagramme den Sitzungskopf nicht mitschicken können."""
+    router = APIRouter(prefix="/api/kurs", tags=["kurs"])
 
     @router.get("/bilder/{schluessel}.webp")
     def bild(schluessel: str) -> FileResponse:

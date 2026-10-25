@@ -143,3 +143,20 @@ def test_oberflaeche_wird_ausgeliefert(zugangs_settings, tmp_path: Path):
         assert c.get("/fehlt.png").status_code == 404
         assert c.get("/..%2F..%2Fetc/passwd").status_code == 404
         assert c.get("/api/gibt-es-nicht").status_code == 404
+
+
+def test_kursdateien_ohne_anmeldung_kursdaten_nur_mit(client, zugangs_settings):
+    from .test_kurs import baue_kurs
+
+    baue_kurs(zugangs_settings.kurs_pfad, zugangs_settings.aufgaben_pfad)
+    zeichnungen = zugangs_settings.kurs_pfad / "einfuehrungen" / "python" / "ausgabe" / "zeichnungen"
+    zeichnungen.mkdir()
+    (zeichnungen / "papagei.svg").write_text("<svg xmlns='http://www.w3.org/2000/svg'/>", encoding="utf-8")
+    client.app.state.codeschmiede.neu_einlesen()
+    einrichten(client, zugangs_settings)
+    assert client.get("/api/kurs").status_code == 401
+    assert client.get("/api/kurs/einfuehrung/py-ausgabe").status_code == 401
+    bild = client.get("/api/kurs/zeichnungen/py-ausgabe/papagei.svg")
+    assert bild.status_code == 200 and bild.headers["content-type"].startswith("image/svg+xml")
+    assert client.get("/api/kurs/zeichnungen/py-ausgabe/fehlt.svg").status_code == 404
+    assert client.get("/api/kurs", headers=anmelden(client)).status_code == 200
