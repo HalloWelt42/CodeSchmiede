@@ -26,6 +26,7 @@ from ..pruefung.kodierung import anzeigen
 from ..pruefung.orchestrator import UnbekannterAufgabentyp, pruefe, pruefer_fuer
 from ..pruefung.registry import Abgabeweg
 from ..pruefung.testlauf import fuehre_aus
+from ..pruefung.programm_pruefer import fuehre_programm_aus
 from ..sandbox.result import RunLimits
 from ..sandbox.runner import SandboxFehler
 from ..state import AppState
@@ -156,8 +157,18 @@ def baue_submissions_router(state: AppState) -> APIRouter:
 
     @router.post("/probelauf", response_model=ProbelaufAntwort)
     def probelauf(anfrage: ProbelaufAnfrage) -> ProbelaufAntwort:
-        """Führt die Funktion mit eigener Eingabe aus, ohne Bewertung."""
+        """Führt die Funktion mit eigener Eingabe aus (bei Programmen: das Programm mit den Eingabezeilen), ohne
+        Bewertung."""
         aufgabe = hole_aufgabe(anfrage.aufgabe_id)
+        if aufgabe.task_type == "programm":
+            try:
+                lauf = fuehre_programm_aus(state.runner, anfrage.code, [[str(z) for z in anfrage.input]],
+                                           RunLimits(timeout_sekunden=aufgabe.zeitlimit_sekunden))
+            except SandboxFehler as fehler:
+                raise HTTPException(status_code=503, detail=str(fehler)) from fehler
+            erstes = (lauf.ergebnisse or [{"ausgabe": "", "fehler": "Programm lief nicht bis zum Ende"}])[0]
+            return ProbelaufAntwort(stdout=erstes["ausgabe"], stderr=lauf.stderr, laufzeit_ms=lauf.laufzeit_ms,
+                                    timeout=lauf.timeout, fehler=erstes["fehler"])
         if not aufgabe.funktion:
             raise HTTPException(status_code=400, detail="Aufgabe definiert keine Funktion")
         try:

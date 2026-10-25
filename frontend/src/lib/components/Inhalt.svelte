@@ -19,6 +19,12 @@
   import TelefonStart from './telefon/TelefonStart.svelte';
   import TelefonAufgaben from './telefon/TelefonAufgaben.svelte';
   import TelefonPfade from './telefon/TelefonPfade.svelte';
+  import KursSeite from './kurs/KursSeite.svelte';
+  import EinfuehrungSeite from './kurs/EinfuehrungSeite.svelte';
+  import KurztestSeite from './kurs/KurztestSeite.svelte';
+  import MerkblattSeite from './kurs/MerkblattSeite.svelte';
+  import TelefonKurs from './telefon/TelefonKurs.svelte';
+  import TelefonEinfuehrung from './telefon/TelefonEinfuehrung.svelte';
 
   let erlaubt = $derived(
     !geraet.telefon || BEREICHE.find((b) => b.id === route.aktiv)?.telefon !== false,
@@ -31,8 +37,18 @@
   {/key}
 {:else if route.aktiv === 'erfolge'}
   <ErfolgeSeite />
+{:else if route.aktiv === 'kurztest' && route.kursId}
+  {#key route.kursId}<KurztestSeite id={route.kursId} />{/key}
+{:else if route.aktiv === 'merkblatt' && route.kursId}
+  {#key route.kursId}<MerkblattSeite id={route.kursId} telefon={geraet.telefon} />{/key}
+{:else if route.aktiv === 'einfuehrung' && route.kursId}
+  {#key route.kursId}
+    {#if geraet.telefon}<TelefonEinfuehrung id={route.kursId} />{:else}<EinfuehrungSeite id={route.kursId} />{/if}
+  {/key}
 {:else if geraet.telefon}
-  {#if route.aktiv === 'aufgaben'}
+  {#if route.aktiv === 'kurs'}
+    <TelefonKurs />
+  {:else if route.aktiv === 'aufgaben'}
     <TelefonAufgaben />
   {:else if route.aktiv === 'pfade'}
     <TelefonPfade />
@@ -43,6 +59,8 @@
   {/if}
 {:else if !erlaubt || route.aktiv === 'dashboard'}
   <Dashboard />
+{:else if route.aktiv === 'kurs'}
+  <KursSeite />
 {:else if route.aktiv === 'aufgaben'}
   <AufgabenListe />
 {:else if route.aktiv === 'pfade'}

@@ -52,6 +52,8 @@ class Kennzahlen(BaseModel):
     css_aufgaben: int = 0
     css_deckungsgleich: int = 0
     faelle: list[FallStand] = Field(default_factory=list)
+    # Aufbaukurs: geschaffte Kapitel (fertig oder per Kurztest)
+    kurs_kapitel: int = 0
 
 
 @dataclass(frozen=True)
@@ -106,6 +108,11 @@ def katalog(k: Kennzahlen) -> list[ErfolgDefinition]:
             ("Pfad gegangen", "Fünf Pfade gegangen", "Alle Pfade gegangen"),
             lambda n: f"{anzahl(n, 'einen Pfad', 'Pfade')} vollständig gelöst",
         ))
+    eintraege.append(ErfolgDefinition(
+        "kurs_kapitel", "meilensteine", "fa-graduation-cap", k.kurs_kapitel, (1, 5, 20),
+        ("Erstes Kapitel", "Fünf Kapitel", "Zwanzig Kapitel"),
+        lambda n: f"{anzahl(n, 'ein Kapitel', 'Kapitel')} im Kurs geschafft",
+    ))
     eintraege += [
         ErfolgDefinition(
             "serie", "serie", "fa-fire", k.serie_laengste, (7, 30, 100),

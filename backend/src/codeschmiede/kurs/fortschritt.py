@@ -43,6 +43,15 @@ class KursfortschrittRepository:
 
 
 @dataclass(frozen=True)
+class KursBeitrag:
+    """Was der Kurs zur Spielmechanik beiträgt: fertige Abschnitte, geschaffte Kapitel, Tage mit Kursarbeit."""
+
+    abschnitte: int = 0
+    kapitel: int = 0
+    tage: frozenset[date] = frozenset()
+
+
+@dataclass(frozen=True)
 class Stand:
     """Was aus den Ereignissen folgt, je Einführung abgefragt."""
 

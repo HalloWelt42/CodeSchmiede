@@ -17,9 +17,11 @@
     anzahl_versteckt: number;
     quelle: Quelle;
     schwierigkeit_score: number;
+    /** Programm-Aufgabe: Tests sind Eingabezeilen und erwartete Ausgabe */
+    programm?: boolean;
   }
 
-  let { aufgabeId, markdown, hints, tests_sichtbar, anzahl_versteckt, quelle, schwierigkeit_score }: Props = $props();
+  let { aufgabeId, markdown, hints, tests_sichtbar, anzahl_versteckt, quelle, schwierigkeit_score, programm = false }: Props = $props();
 
   let html = $state('');
   let host: HTMLDivElement | undefined = $state();
@@ -52,7 +54,14 @@
         </summary>
         <ul class="tests">
           {#each tests_sichtbar as t, i (i)}
-            <li><code>{formatiereTest(t)}</code></li>
+            {#if programm}
+              <li class="programm-test">
+                {#if t.input.length}<span class="etikett">Eingabe</span><pre>{t.input.join('\n')}</pre>{/if}
+                <span class="etikett">Erwartete Ausgabe</span><pre>{String(t.expected).replace(/\n$/, '')}</pre>
+              </li>
+            {:else}
+              <li><code>{formatiereTest(t)}</code></li>
+            {/if}
           {/each}
         </ul>
         {#if anzahl_versteckt > 0}
@@ -212,4 +221,7 @@
   }
 
   .dim { color: var(--fg-dim); }
+  .programm-test { display: flex; flex-direction: column; gap: 4px; }
+  .programm-test .etikett { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .05em; color: var(--fg-mute); }
+  .programm-test pre { margin: 0; padding: var(--sp-2) var(--sp-3); background: var(--bg); border: 1px solid var(--border); font-family: var(--mono); font-size: 13px; white-space: pre-wrap; }
 </style>

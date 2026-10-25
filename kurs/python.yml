@@ -1,0 +1,10 @@
+# Python-Kurs: Kapitel in Reihenfolge, je Kapitel Einführung, Übungen (verblassend, je Übung eine neue Sache) und
+# das Stück des Kapitelprojekts. Ein Kapitel steht hier erst, wenn es fertig ist (Inbetriebnahme kapitelweise).
+sprache: python
+titel: Python
+bloecke:
+  - titel: Erste Schritte
+    kapitel:
+      - einfuehrung: py-ausgabe
+        uebungen: [k011-hallo-welt, k012-guten-morgen, k013-pinguin-sagt, k014-zahlen, k015-drei-namen, k016-eisbude, k017-gedicht]
+        projekt: [k019-notenbuch-kopf]

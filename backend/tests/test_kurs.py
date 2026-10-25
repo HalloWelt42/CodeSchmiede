@@ -262,3 +262,24 @@ def test_programm_pruefer_mit_eingabe(kurs_settings, docker_runner):
     assert not schlecht.bestanden and schlecht.versteckt_fail == 1
     kaputt = pruefe(aufgabe, 'print("Hallo"\n', docker_runner)
     assert not kaputt.bestanden and "SyntaxError" in (kaputt.sichtbar[0].fehler or "")
+
+
+def test_abschnitt_bringt_erfahrung_und_zaehlt_zur_serie(kurs_client):
+    vorher = kurs_client.get("/api/spiel/stand").json()
+    kurs_client.post("/api/kurs/einfuehrung/py-ausgabe/antwort", json={"element": "was-macht-print", "wahl": [0]})
+    kurs_client.post("/api/kurs/einfuehrung/py-ausgabe/abschnitt/1/fertig")
+    kurs_client.post("/api/kurs/einfuehrung/py-ausgabe/abschnitt/1/fertig")   # zweimal fertig zählt einmal
+    nachher = kurs_client.get("/api/spiel/stand").json()
+    assert nachher["punkte"] == vorher["punkte"] + 5
+    assert nachher["serie"]["heute_geuebt"] and not vorher["serie"]["heute_geuebt"]
+
+
+@braucht_sandbox
+def test_probelauf_eines_programms_mit_eingabe(kurs_settings, docker_runner):
+    schreibe_aufgabe(kurs_settings.aufgaben_pfad, "python", "092-echo", "programm", """\
+        tests_sichtbar:
+          - {input: [a], expected: "a"}
+        """)
+    client = TestClient(app_bauen(kurs_settings, runner=docker_runner))
+    antwort = client.post("/api/submissions/probelauf", json={"aufgabe_id": "092-echo", "code": "print(input() * 2)", "input": ["ab"]}).json()
+    assert antwort["stdout"] == "abab\n" and antwort["fehler"] is None

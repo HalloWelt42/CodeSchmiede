@@ -11,9 +11,11 @@
     aufgabeId: string;
     code: string;
     funktion: string | null;
+    /** Programm-Aufgabe: Eingabezeilen für input() statt Funktionsargumente */
+    programm?: boolean;
   }
 
-  let { aufgabeId, code, funktion }: Props = $props();
+  let { aufgabeId, code, funktion, programm = false }: Props = $props();
 
   let eingabe_text = $state('');
   let antwort = $state<ProbelaufAntwort | null>(null);
@@ -36,7 +38,7 @@
   }
 
   async function laufeAb(): Promise<void> {
-    const args = parseEingabe();
+    const args = programm ? (eingabe_text ? eingabe_text.split('\n') : []) : parseEingabe();
     if (args === null) {
       fehler = 'Eingabe konnte nicht geparst werden. Beispiele: 7   "anna"   [1,2,3]   3, 5';
       return;
@@ -59,6 +61,14 @@
 
 <div class="probelauf">
   <div class="zeile">
+    {#if programm}
+    <textarea
+      rows="1"
+      bind:value={eingabe_text}
+      placeholder="Eingaben für input(), eine je Zeile (leer lassen, wenn das Programm nichts fragt)"
+      aria-label="Eingaben für den Probelauf"
+    ></textarea>
+    {:else}
     <span class="aufruf">{funktion ?? 'f'}(</span>
     <input
       type="text"
@@ -68,6 +78,7 @@
       onkeydown={(e) => { if (e.key === 'Enter') laufeAb(); }}
     />
     <span class="aufruf">)</span>
+    {/if}
     <button class="knopf" onclick={laufeAb} disabled={laeuft || !code.trim()}>
       <i class="fa-solid {laeuft ? 'fa-spinner fa-spin' : 'fa-play'}" aria-hidden="true"></i>Lauf
     </button>
@@ -80,8 +91,10 @@
     <div class="antwort">
       {#if antwort.fehler}
         <span class="marke">Fehler</span><code class="fehlertext">{antwort.fehler}</code>
-      {:else}
+      {:else if !programm}
         <span class="marke">Rückgabe</span><code class="rueckgabe">{formatiere(antwort.rueckgabe)}</code>
+      {:else}
+        <span class="marke">Ausgabe</span>
       {/if}
       <span class="laufzeit num">{antwort.laufzeit_ms.toFixed(0)} ms{antwort.timeout ? ', Zeit überschritten' : ''}</span>
     </div>
@@ -108,7 +121,7 @@
     gap: var(--sp-2);
   }
   .aufruf { color: var(--fg-dim); white-space: nowrap; }
-  input {
+  input, textarea {
     flex: 1;
     min-width: 0;
     height: 28px;
@@ -119,7 +132,8 @@
     font-family: var(--mono);
     font-size: 12px;
   }
-  input:focus { outline: none; border-color: var(--accent); }
+  textarea { min-height: 28px; height: auto; padding: 4px var(--sp-2); resize: vertical; color: var(--fg); }
+  input:focus, textarea:focus { outline: none; border-color: var(--accent); }
   .knopf { height: 28px; }
   .meldung {
     margin: var(--sp-2) 0 0;

@@ -12,12 +12,22 @@
     fehler: string | null;
     laeuft: boolean;
     anzahl_versteckt: number;
+    /** Programm-Aufgabe: Ausgaben Zeile für Zeile vergleichen statt Rückgaben */
+    programm?: boolean;
     onWeiter: () => void;
   }
 
-  let { ergebnis, fehler, laeuft, anzahl_versteckt, onWeiter }: Props = $props();
+  let { ergebnis, fehler, laeuft, anzahl_versteckt, programm = false, onWeiter }: Props = $props();
 
   const wert = (w: unknown): string => JSON.stringify(w);
+  const zeilenVon = (w: unknown): string[] => String(w ?? '').replace(/\s+$/, '').split('\n').map((z) => z.replace(/\s+$/, ''));
+  /** erste Zeile (ab 1), in der die Ausgabe abweicht */
+  function ersteAbweichung(erwartet: unknown, tatsaechlich: unknown): number {
+    const a = zeilenVon(erwartet);
+    const b = zeilenVon(tatsaechlich);
+    for (let i = 0; i < Math.max(a.length, b.length); i++) if (a[i] !== b[i]) return i + 1;
+    return 0;
+  }
 </script>
 
 {#if laeuft}
@@ -37,6 +47,22 @@
   </div>
 
   {#each p.sichtbar as t (t.index)}
+    {#if programm}
+      {@const ab = t.bestanden ? 0 : ersteAbweichung(t.erwartet, t.tatsaechlich)}
+      <div class="programm-ergebnis">
+        <div class="test-zeile"><i class="fa-solid {t.bestanden ? 'fa-check ok' : 'fa-xmark nein'}" aria-hidden="true"></i>
+          {#if t.eingabe.length}<span class="dim">Eingabe {t.eingabe.join(', ')}:</span>{/if}
+          {t.bestanden ? 'Ausgabe stimmt' : t.fehler ? '' : `Ausgabe weicht ab Zeile ${ab} ab`}
+          {#if t.fehler}<span class="fehlertext">{t.fehler}</span>{/if}
+        </div>
+        {#if !t.bestanden}
+          <div class="vergleich-zeilen">
+            <div><span class="etikett">Erwartet</span><pre>{#each zeilenVon(t.erwartet) as z, i (i)}<span class:ab={i + 1 === ab}>{z || ' '}</span>{'\n'}{/each}</pre></div>
+            <div><span class="etikett">Deine Ausgabe</span><pre>{#each zeilenVon(t.tatsaechlich) as z, i (i)}<span class:ab={i + 1 === ab}>{z || ' '}</span>{'\n'}{/each}</pre></div>
+          </div>
+        {/if}
+      </div>
+    {:else}
     <div class="test-zeile">
       <i class="fa-solid {t.bestanden ? 'fa-check ok' : 'fa-xmark nein'}" aria-hidden="true"></i>
       <span class="aufruf">
@@ -50,6 +76,7 @@
         {/if}
       </span>
     </div>
+    {/if}
   {/each}
   {#if anzahl_versteckt > 0}
     <div class="test-zeile">
@@ -169,4 +196,8 @@
     min-width: 44px;
     text-align: right;
   }
+  .vergleich-zeilen { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--sp-2); margin: 4px 0 var(--sp-2); }
+  .vergleich-zeilen .etikett { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .05em; color: var(--fg-mute); }
+  .vergleich-zeilen pre { margin: 2px 0 0; padding: var(--sp-2); background: var(--bg); border: 1px solid var(--border); font-family: var(--mono); font-size: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .vergleich-zeilen .ab { background: color-mix(in srgb, var(--red) 22%, transparent); }
 </style>

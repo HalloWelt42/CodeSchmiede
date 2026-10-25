@@ -1,0 +1,5 @@
+print("Der Pinguin")
+print("watschelt los")
+print()
+print("Das Eis")
+print("ist groß")

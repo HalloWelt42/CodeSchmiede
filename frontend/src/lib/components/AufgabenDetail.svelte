@@ -279,6 +279,7 @@
                 anzahl_versteckt={aktuell.anzahl_versteckte_tests}
                 quelle={aktuell.quelle}
                 schwierigkeit_score={aktuell.schwierigkeit_score}
+                programm={aktuell.task_type === 'programm'}
               />
             {:else}
               <MusterloesungenBereich aufgabeId={aktuell.id} bind:freigegeben={musterloesungen_frei} />
@@ -290,7 +291,7 @@
           <div class="editor-host">
             <EditorBereich sprache={aktuell.sprache} bind:code />
           </div>
-          <ProbelaufBereich aufgabeId={aktuell.id} {code} funktion={aktuell.funktion} />
+          <ProbelaufBereich aufgabeId={aktuell.id} {code} funktion={aktuell.funktion} programm={aktuell.task_type === 'programm'} />
         {/snippet}
 
         {#snippet rechts()}
@@ -300,6 +301,7 @@
               fehler={pruef_fehler}
               laeuft={pruefen_laeuft}
               anzahl_versteckt={aktuell.anzahl_versteckte_tests}
+              programm={aktuell.task_type === 'programm'}
               onWeiter={geheZuNaechster}
             />
             <VerlaufBereich aufgabeId={aktuell.id} stand={abgaben} onUebernehmen={(c) => (code = c)} />

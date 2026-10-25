@@ -20,7 +20,7 @@ from ..sandbox.runner import Runner
 from .aufzeichnung import Aufzeichnung, aufzeichnen
 from .begriffe import erkenne
 from .einlesen import Kursinhalt, lade
-from .fortschritt import KursfortschrittRepository, Stand
+from .fortschritt import KursBeitrag, KursfortschrittRepository, Stand
 from .modelle import (Alltag, Augenzwinkern, Auswahlfrage, Beispiel, Diagramm, Einfuehrung, Falle,
                       Fehlerstellenfrage, FrageTeil, Kapitel, Lueckenfrage, Merke, Option, Ordnungsfrage, Text,
                       Vorhersage, Zeichnung)
@@ -194,6 +194,15 @@ class Kursdienst:
             kurztest=e.id in self.inhalt.kurztests,
             vertiefung=[uebung(a) for a in self._vertiefung.get(e.id, [])],
         )
+
+    def beitrag(self, aufgaben: dict[str, Aufgabe], geloest: set[str]) -> KursBeitrag:
+        """Für Stufe, Serie und Erfolge: fertige Abschnitte (je einmal), geschaffte Kapitel, Tage mit Kursarbeit."""
+        ereignisse = self.fortschritt.alle()
+        abschnitte = {(e.einfuehrung, e.element) for e in ereignisse if e.art == "abschnitt"}
+        kapitel = sum(1 for k in self.uebersicht(aufgaben, geloest) for b in k.bloecke for x in b.kapitel
+                      if x.stand in ("fertig", "uebersprungen"))
+        tage = frozenset(e.tag for e in ereignisse if e.art in ("abschnitt", "kurztest") or (e.art in ("frage", "kurztest_frage") and e.richtig))
+        return KursBeitrag(abschnitte=len(abschnitte), kapitel=kapitel, tage=tage)
 
     # ---------- Einführung ----------
 

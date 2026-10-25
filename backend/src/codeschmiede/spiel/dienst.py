@@ -7,10 +7,12 @@ nachher die Belohnung ablesen. Die Regeln selbst stehen in den
 Nachbarmodulen und sind reine Funktionen.
 """
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import date
 
 from ..aufgaben.repository import AufgabenRepository
+from ..kurs.fortschritt import KursBeitrag
 from ..models.aufgabe import Aufgabe
 from ..models.konfig import SpielRegeln
 from ..models.progress import Progress
@@ -105,11 +107,14 @@ class Spieldienst:
         submissions: SubmissionRepository,
         gutschriften: GutschriftRepository,
         aufgaben: AufgabenRepository,
+        kurs: Callable[[set[str]], KursBeitrag] | None = None,
     ):
         self.progress = progress
         self.submissions = submissions
         self.gutschriften = gutschriften
         self.aufgaben = aufgaben
+        # Beitrag des Aufbaukurses zu den gelösten Aufgaben (Abschnitte, Kapitel, Tage); ohne Kurs nichts
+        self.kurs = kurs or (lambda geloest: KursBeitrag())
 
     def stand(self, bestand: Bestand, heute: date | None = None) -> Spielstand:
         lage = self._lage(bestand, heute or date.today())
@@ -239,8 +244,10 @@ class Spieldienst:
         progress = self.progress.hole_alle_progress()
         gutschriften = self.gutschriften.alle()
 
-        punkte = sum(p.punkte_erreicht for p in progress) + sum(gutschriften.values())
-        serie = serie_aus_tagen((a.tag for a in abgaben), heute, regeln)
+        kurs = self.kurs({p.aufgabe_id for p in progress if p.status == "geloest"})
+        punkte = (sum(p.punkte_erreicht for p in progress) + sum(gutschriften.values())
+                  + kurs.abschnitte * regeln.kurs_abschnitt_punkte)
+        serie = serie_aus_tagen([*(a.tag for a in abgaben), *kurs.tage], heute, regeln)
         auftrag = tagesauftrag(
             heute,
             [a for a in abgaben if a.tag == heute],
@@ -248,7 +255,8 @@ class Spieldienst:
             regeln.auftrag_bonus,
             heute in gutschriften,
         )
-        kennzahlen = self._kennzahlen(bestand, abgaben, progress, serie, len(gutschriften))
+        kennzahlen = self._kennzahlen(bestand, abgaben, progress, serie, len(gutschriften)).model_copy(
+            update={"kurs_kapitel": kurs.kapitel})
         return Lage(
             punkte=punkte,
             stufe=stufe_aus_punkten(punkte, regeln),

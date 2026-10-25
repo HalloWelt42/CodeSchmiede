@@ -1,0 +1,42 @@
+# Kurztest zu Kapitel 1: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: luecke
+    id: kt-luecke-zahl
+    text: Ergänze so, dass die Zahl 7 ausgegeben wird, als Zahl und nicht als Text.
+    code: print(___)
+    antworten: [["7"]]
+    erklaerung: Richtig, Zahlen stehen ohne Anführungszeichen.
+    hinweis: Eine Zahl braucht keine Anführungszeichen.
+  - frageart: fehlerstelle
+    id: kt-fehler-klammer
+    text: Wo fehlt etwas?
+    code: |
+      print("Eins")
+      print("Zwei"
+      print("Drei")
+    zeile: 2
+    erklaerung: Genau, die schließende Klammer fehlt.
+    hinweis: Zähle die Klammern in jeder Zeile.
+  - frageart: auswahl
+    id: kt-ausgabe-komma
+    text: Was gibt `print("Fisch", 2)` aus?
+    als_code: true
+    optionen:
+      - text: Fisch 2
+        richtig: true
+        erklaerung: Richtig, print setzt ein Leerzeichen zwischen die Werte.
+      - text: Fisch2
+        erklaerung: Zwischen Werten mit Komma setzt print immer ein Leerzeichen.
+      - text: Fisch, 2
+        erklaerung: Das Komma trennt nur die Werte, ausgegeben wird es nicht.
+  - frageart: ordnen
+    id: kt-ordnen-brief
+    text: Bring den Brief in Ordnung.
+    zeilen:
+      - print("Lieber Paul,")
+      - print()
+      - print("der Fisch war lecker.")
+      - print("Deine Pia")
+    erklaerung: Richtig, Anrede, leere Zeile, Text, Gruß.
+    hinweis: Wie bei einem echten Brief, oben die Anrede.
+uebung: k018-steckbrief

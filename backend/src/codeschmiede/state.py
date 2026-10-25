@@ -47,7 +47,8 @@ class AppState:
         self.progress = ProgressRepository(self.db)
         self.submissions = SubmissionRepository(self.db)
         self.gutschriften = GutschriftRepository(self.db)
-        self.spiel = Spieldienst(self.progress, self.submissions, self.gutschriften, self.aufgaben)
+        self.spiel = Spieldienst(self.progress, self.submissions, self.gutschriften, self.aufgaben,
+                                 kurs=lambda geloest: self.kurs.beitrag({a.id: a for a in self.aufgaben.alle_aufgaben()}, geloest))
         self.sprint = SprintDienst(SprintRundenRepository(self.db), self.spiel)
 
         self.runner: Runner = runner or DienstRunner(

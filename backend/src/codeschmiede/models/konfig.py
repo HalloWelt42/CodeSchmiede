@@ -78,6 +78,8 @@ class SpielRegeln(BaseModel):
     schild_alle_tage: int = Field(default=7, ge=1)
     schilde_max: int = Field(default=3, ge=0)
     auftrag_bonus: int = Field(default=10, ge=0)
+    # Aufbaukurs: Erfahrung je fertigem Abschnitt einer Einführung
+    kurs_abschnitt_punkte: int = Field(default=5, ge=0)
     # ein schnellerer Lauf zählt als Bestwert erst ab diesem Anteil der alten Laufzeit
     bestwert_laufzeit_anteil: float = Field(default=0.8, gt=0, lt=1)
 

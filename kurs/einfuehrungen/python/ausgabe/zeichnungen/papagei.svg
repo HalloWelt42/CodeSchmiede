@@ -1,0 +1,38 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Papagei auf einer Stange ruft durch ein Megafon">
+  <!-- Stange -->
+  <rect x="20" y="138" width="150" height="10" rx="5" fill="#8a5a3c" stroke="#2b3442" stroke-width="2.5"/>
+  <!-- Schwanzfedern -->
+  <path d="M64 120 L40 172 L58 168 L72 124 Z" fill="#4f8fd6" stroke="#2b3442" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M74 122 L62 176 L80 170 L84 124 Z" fill="#f2b84b" stroke="#2b3442" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Körper -->
+  <ellipse cx="88" cy="98" rx="34" ry="44" fill="#3fbf6f" stroke="#2b3442" stroke-width="2.5"/>
+  <ellipse cx="96" cy="108" rx="18" ry="26" fill="#a8e6b8"/>
+  <!-- Flügel -->
+  <path d="M60 86 Q52 118 76 134 Q84 108 74 84 Z" fill="#2f9e5a" stroke="#2b3442" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M64 104 Q70 112 74 122" fill="none" stroke="#2b3442" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Kopf -->
+  <circle cx="100" cy="52" r="28" fill="#e5484d" stroke="#2b3442" stroke-width="2.5"/>
+  <path d="M84 30 Q92 14 104 26" fill="#f2b84b" stroke="#2b3442" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Auge -->
+  <circle cx="106" cy="46" r="9" fill="#fff" stroke="#2b3442" stroke-width="2"/>
+  <circle cx="108" cy="46" r="4.5" fill="#2b3442"/>
+  <circle cx="109.5" cy="44.5" r="1.5" fill="#fff"/>
+  <!-- Wange -->
+  <ellipse cx="96" cy="62" rx="6" ry="4" fill="#ff9aa2" opacity=".8"/>
+  <!-- Schnabel (offen) -->
+  <path d="M120 50 Q136 50 136 62 Q128 58 120 60 Z" fill="#f2b84b" stroke="#2b3442" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M120 62 Q130 64 132 70 Q124 72 118 66 Z" fill="#e0a032" stroke="#2b3442" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Füße -->
+  <path d="M80 136 q-4 6 -8 4 M80 136 q2 8 -2 8 M100 136 q-2 8 -6 8 M100 136 q4 6 2 8" fill="none" stroke="#f2a13b" stroke-width="4" stroke-linecap="round"/>
+  <!-- Megafon -->
+  <g transform="rotate(-8 170 62)">
+    <rect x="132" y="56" width="16" height="14" rx="3" fill="#4f8fd6" stroke="#2b3442" stroke-width="2.5"/>
+    <path d="M148 54 L196 34 L196 92 L148 72 Z" fill="#f2b84b" stroke="#2b3442" stroke-width="2.5" stroke-linejoin="round"/>
+    <ellipse cx="196" cy="63" rx="7" ry="29" fill="#fde7b0" stroke="#2b3442" stroke-width="2.5"/>
+    <path d="M140 70 l-4 14 h8 Z" fill="#4f8fd6" stroke="#2b3442" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+  <!-- Schallwellen -->
+  <path d="M214 40 Q226 60 214 82" fill="none" stroke="#4f8fd6" stroke-width="4" stroke-linecap="round"/>
+  <path d="M226 30 Q244 60 226 92" fill="none" stroke="#4f8fd6" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+  <path d="M238 22 Q260 60 238 100" fill="none" stroke="#4f8fd6" stroke-width="4" stroke-linecap="round" opacity=".4"/>
+</svg>

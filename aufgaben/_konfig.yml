@@ -138,4 +138,5 @@ spiel:
   schild_alle_tage: 7
   schilde_max: 3
   auftrag_bonus: 10
+  kurs_abschnitt_punkte: 5
   bestwert_laufzeit_anteil: 0.8
