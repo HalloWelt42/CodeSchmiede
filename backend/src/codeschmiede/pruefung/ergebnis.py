@@ -29,8 +29,9 @@ class Kennwerte(BaseModel):
     # Roboter: Schritte in der sichtbaren Welt und Zeilen Code
     schritte: int | None = Field(default=None, ge=0)
     zeilen: int | None = Field(default=None, ge=0)
-    # Sprint: richtige Antworten der Runde
+    # Sprint: richtige Antworten und Fragen der Runde
     treffer: int | None = Field(default=None, ge=0)
+    fragen: int | None = Field(default=None, ge=0)
     # setzt die Verbuchung: weniger Zeichen als die kürzeste Musterlösung
     kuerzer_als_muster: bool | None = None
 

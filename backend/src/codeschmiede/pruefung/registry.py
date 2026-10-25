@@ -4,8 +4,9 @@ Jeder Pruefer registriert sich per `@registriere(typ)`-Decorator. Dabei
 legt er fest,
 - welche Felder seines `extra`-Blocks nie an den Browser gehen
   (`verbirgt`, Punktpfade wie "quiz.richtig_index"),
-- ob seine Aufgaben im Browser geprüft werden (`im_browser`, etwa
-  CSS-Nachbauten, die nur ein Browser rendern kann),
+- auf welchem Weg Abgaben kommen (`abgabe`): "server" prüft hier,
+  "browser" schickt ein fertiges Ergebnis (CSS-Nachbauten, die nur ein
+  Browser rendern kann), "runde" gibt über eine Spielrunde ab (Sprint),
 - ob die Abgabe selbst geschriebener Code ist, dessen Zeichen sich mit
   Musterlösung und früheren Versuchen vergleichen lassen
   (`vergleicht_zeichen`; nicht bei gewählten Antworten), und
@@ -20,7 +21,7 @@ Neue Aufgabentypen brauchen nur eine neue Pruefer-Datei mit Decorator.
 import copy
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Literal
 
 if TYPE_CHECKING:
     from ..models.aufgabe import Aufgabe
@@ -28,6 +29,7 @@ if TYPE_CHECKING:
     from .ergebnis import PruefErgebnis
 
 
+Abgabeweg = Literal["server", "browser", "runde"]
 PrueferFn = Callable[["Aufgabe", str, "Runner"], "PruefErgebnis"]
 ZaehlFn = Callable[["Aufgabe"], int]
 AufbauFn = Callable[["Aufgabe"], list[str]]
@@ -45,7 +47,7 @@ def _kein_befund(aufgabe: "Aufgabe") -> list[str]:
 class Pruefer:
     pruefe: PrueferFn
     verbirgt: tuple[str, ...] = ()
-    im_browser: bool = False
+    abgabe: Abgabeweg = "server"
     zaehle_versteckt: ZaehlFn = _versteckte_aus_frontmatter
     vergleicht_zeichen: bool = True
     pruefe_aufbau: AufbauFn = _kein_befund
@@ -57,7 +59,7 @@ PRUEFER_REGISTRY: dict[str, Pruefer] = {}
 def registriere(
     typ: str,
     verbirgt: tuple[str, ...] = (),
-    im_browser: bool = False,
+    abgabe: Abgabeweg = "server",
     zaehle_versteckt: ZaehlFn = _versteckte_aus_frontmatter,
     vergleicht_zeichen: bool = True,
     pruefe_aufbau: AufbauFn = _kein_befund,
@@ -66,7 +68,7 @@ def registriere(
         PRUEFER_REGISTRY[typ] = Pruefer(
             pruefe=fn,
             verbirgt=verbirgt,
-            im_browser=im_browser,
+            abgabe=abgabe,
             zaehle_versteckt=zaehle_versteckt,
             vergleicht_zeichen=vergleicht_zeichen,
             pruefe_aufbau=pruefe_aufbau,

@@ -20,12 +20,21 @@
     sterne: spiele.reduce((s, x) => s + x.sterne, 0),
     sterneMoeglich: spiele.reduce((s, x) => s + x.sterne_moeglich, 0),
     punkte: spiele.reduce((s, x) => s + x.punkte, 0),
+    // Runden zählen nur Spiele mit Auswahl (Sprint); ohne solche keine Kennzahl
+    runden: spiele.some((x) => x.levels_als === 'auswahl')
+      ? spiele.filter((x) => x.levels_als === 'auswahl').reduce((s, x) => s + x.versuche_heute, 0)
+      : null,
   });
 
   /** Sterne eines Spiels auf drei verdichtet: Anteil der möglichen Sterne */
   const sterneVon = (s: SpielUebersicht) => (s.sterne_moeglich ? Math.round((3 * s.sterne) / s.sterne_moeglich) : 0);
   const oeffne = (l: LevelStand | null | undefined) => l && route.setze('aufgabe', l.id);
   const ziel = (s: SpielUebersicht) => s.naechstes ?? s.levels[0];
+
+  // gewählte Kategorie je Spiel mit Auswahl; ohne Wahl die erste ohne drei Sterne
+  let wahl = $state<Record<string, string>>({});
+  const gewaehlt = (s: SpielUebersicht) =>
+    s.levels.find((l) => l.id === wahl[s.id]) ?? s.levels.find((l) => (l.sterne ?? 0) < 3) ?? s.levels[0];
 </script>
 
 <Seite titel="Spiele" lead="Jedes Level zählt in Punkte, Serie und Tagesauftrag">
@@ -35,6 +44,9 @@
         <div class="kennzahl"><span class="num">{summe.geschafft} / {summe.levels}</span><small>Level</small></div>
         <div class="kennzahl"><span class="num">{summe.sterne} / {summe.sterneMoeglich}</span><small>Sterne</small></div>
         <div class="kennzahl"><span class="num">{zahl(summe.punkte)}</span><small>Punkte aus Spielen</small></div>
+        {#if summe.runden !== null}
+          <div class="kennzahl"><span class="num">{summe.runden}</span><small>Runden heute</small></div>
+        {/if}
       </div>
     {/if}
   {/snippet}
@@ -55,6 +67,15 @@
               {#each [1, 2, 3] as n (n)}<i class="fa-solid fa-star" class:aus={n > sterneVon(s)} aria-hidden="true"></i>{/each}
             </span>
           </div>
+          {#if s.levels_als === 'auswahl'}
+            <div class="chips auswahl">
+              {#each s.levels as l (l.id)}
+                <button class="chip" class:akz={gewaehlt(s)?.id === l.id} onclick={() => (wahl[s.id] = l.id)} title={l.sterne ? `${l.sterne} von 3 Sternen` : 'noch keine Sterne'}>
+                  {l.titel}{#if l.sterne}<span class="sterne">{#each { length: l.sterne } as _, k (k)}<i class="fa-solid fa-star" aria-hidden="true"></i>{/each}</span>{/if}
+                </button>
+              {/each}
+            </div>
+          {:else}
           <div class="level-leiste">
             {#each s.levels as l (l.id)}
               <button
@@ -67,9 +88,15 @@
               >{l.nummer}</button>
             {/each}
           </div>
+          {/if}
           <div class="spiel-weiter">
-            <span class="naechstes dim" title={weiterText}>{weiterText}</span>
-            <button class="knopf primaer" onclick={() => oeffne(ziel(s))}><i class="fa-solid fa-play" aria-hidden="true"></i>Spielen</button>
+            {#if s.levels_als === 'auswahl'}
+              <span class="naechstes dim">{s.versuche_heute === 1 ? '1 Runde heute' : `${s.versuche_heute} Runden heute`}</span>
+              <button class="knopf primaer" onclick={() => oeffne(gewaehlt(s))}><i class="fa-solid fa-play" aria-hidden="true"></i>Runde starten</button>
+            {:else}
+              <span class="naechstes dim" title={weiterText}>{weiterText}</span>
+              <button class="knopf primaer" onclick={() => oeffne(ziel(s))}><i class="fa-solid fa-play" aria-hidden="true"></i>Spielen</button>
+            {/if}
           </div>
         </div>
       </div>
@@ -79,4 +106,7 @@
 
 <style>
   .spiel-weiter .knopf { margin-left: auto; }
+  .auswahl { margin-top: 0; }
+  .auswahl .chip { cursor: pointer; text-transform: none; letter-spacing: 0; }
+  .auswahl .sterne { font-size: 10px; }
 </style>

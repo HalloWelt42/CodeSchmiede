@@ -1,0 +1,10 @@
+id: ausgabe-sprint
+titel: Ausgabe-Sprint
+beschreibung: |
+  Code lesen gegen die Uhr: je Sprache und Stufe eine Runde aus zehn
+  Schnipseln. Sterne ab 6, 8 und 10 richtigen Antworten.
+reihenfolge:
+  - a001-python-anfaenger
+  - a002-python-mittel
+  - a003-javascript-anfaenger
+  - a004-javascript-mittel

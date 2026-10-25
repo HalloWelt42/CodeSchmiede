@@ -49,11 +49,13 @@ Levels sind Grundpunkte mal Sterne durch drei; es zählt der beste Versuch.
 ### Ausgabe-Sprint
 
 - **Lehrt**: Code lesen und im Kopf ausführen: Reihenfolge, Gültigkeit, Grenzfälle, Gleitkomma, Wahrheitswerte.
-- **Ablauf**: Runden mit zehn kurzen Schnipseln gegen die Uhr (Vorgabe 90 Sekunden). Antwort wählen oder tippen;
-  richtige Antworten in Folge geben eine Kette, die die Punkte der Runde erhöht. Am Ende der Runde die Auswertung: jede
-  falsche Antwort mit der richtigen und einer kurzen Erklärung, warum.
-- **Prüfung**: wie die Ausgabe-Quizze, die richtige Antwort bleibt auf dem Server. Die Runde stellt der Server aus dem
-  Bestand zusammen (Sprache und Stufe wählbar).
+- **Ablauf**: Runden mit zehn kurzen Schnipseln gegen die Uhr (Vorgabe 90 Sekunden). Antwort wählen (Klick oder Tasten
+  1 bis 4); richtige Antworten in Folge bilden eine Kette, die als eigener Bestwert zählt, nicht in Punkte (eine
+  Währung). Am Ende der Runde die Auswertung: jede falsche Antwort mit der richtigen und einer kurzen Erklärung, warum.
+- **Prüfung**: Je Sprache und Stufe ein Sprint-Level mit eigenem Vorrat an Schnipseln. Die Runde stellt der Server
+  zusammen und mischt die Antworten; die richtige erfährt der Browser erst nach seiner Wahl, gewählt wird der Reihe nach
+  und nur bis zur Frist. Der Bestandstest lässt jeden Schnipsel in der Sandbox laufen und vergleicht mit der richtigen
+  Antwort.
 - **Sterne**: je Runde nach Trefferzahl (6, 8, 10 von 10). Gut fürs Telefon.
 
 ### Muster-Jagd
@@ -70,7 +72,7 @@ Levels sind Grundpunkte mal Sterne durch drei; es zählt der beste Versuch.
 
 | Mechanik | Was sie belohnt | Wo sie erscheint |
 |---|---|---|
-| Stufe | gesammelte Punkte; Stufe k ab 25 · k² Punkten, alle fünf Stufen ein Titel (Lehrling, Geselle, Schmied, Meister, Großmeister) | Ring im Kopf, Startseite |
+| Stufe | gesammelte Punkte; Stufe k ab 25 * k * k Punkten, alle fünf Stufen ein Titel (Lehrling, Geselle, Schmied, Meister, Großmeister) | Ring im Kopf, Startseite |
 | Meisterschaft | Anteil der erreichbaren Punkte je Sprache und je Spiel (Rang Bronze ab 25 %, Silber ab 50 %, Gold ab 80 %) | Startseite, Kopf der Aufgabenliste |
 | Serie | Tage am Stück mit mindestens einer bestandenen Aufgabe oder einem Level; je sieben Tage ein Schutzschild (höchstens drei), der einen verpassten Tag auffängt | Startseite, Kopf |
 | Tagesauftrag | drei kleine Ziele je Tag (eine Wiederholung oder neue Aufgabe, ein Spiel-Level, eine Aufgabe ohne Hinweis); alle drei geben 10 Punkte | Startseite |

@@ -72,6 +72,10 @@ aufgabentypen:
     titel: SQL-Abfrage
     view: sql_abfrage
     beschreibung: Ein Datensatz ist vorgegeben -- schreibe eine SELECT-Abfrage, die das erwartete Ergebnis liefert.
+  - id: ausgabe_sprint
+    titel: Ausgabe-Sprint
+    view: ausgabe_sprint
+    beschreibung: Zehn Schnipsel gegen die Uhr - sage voraus, was der Code ausgibt.
   - id: muster_jagd
     titel: Muster-Jagd
     view: muster_jagd
@@ -81,6 +85,13 @@ aufgabentypen:
 # Aufgabentyps, die Reihenfolge geben die Pfade vor. Levels zählen in
 # Punkte, Serie und Tagesauftrag wie alle Aufgaben (docs/SPIELE.md).
 spiele:
+  - id: ausgabe-sprint
+    titel: Ausgabe-Sprint
+    icon: fa-stopwatch
+    beschreibung: "Zehn Schnipsel, 90 Sekunden: Ausgabe vorhersagen. Danach jede falsche Antwort mit Erklärung."
+    aufgabentyp: ausgabe_sprint
+    pfade: [ausgabe-sprint]
+    levels_als: auswahl
   - id: muster-jagd
     titel: Muster-Jagd
     icon: fa-crosshairs

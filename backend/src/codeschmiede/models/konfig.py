@@ -5,6 +5,8 @@ deklarativ definieren -- ohne Code-Aenderung. Frontend zieht die Konfig
 ueber `/api/admin/konfig` und nutzt sie reaktiv.
 """
 
+from typing import Literal
+
 from pydantic import BaseModel, Field
 
 
@@ -46,6 +48,8 @@ class SpielKonfig(BaseModel):
     beschreibung: str = ""
     aufgabentyp: str
     pfade: list[str] = Field(default_factory=list)
+    # "stufen": Levels nacheinander (Leiste); "auswahl": gleichrangige Kategorien zum Wählen
+    levels_als: Literal["stufen", "auswahl"] = "stufen"
 
 
 class Raenge(BaseModel):

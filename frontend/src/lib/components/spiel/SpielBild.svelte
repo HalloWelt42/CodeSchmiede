@@ -3,7 +3,13 @@
   let { id }: { id: string } = $props();
 </script>
 
-{#if id === 'muster-jagd'}
+{#if id === 'ausgabe-sprint'}
+  <div class="sprint-bild">
+    <div class="num uhrzeit">0:42</div>
+    <div class="code">print(3 * "ab")</div>
+    <div class="kette"><i class="fa-solid fa-link" aria-hidden="true"></i> Kette 4</div>
+  </div>
+{:else if id === 'muster-jagd'}
   <div class="muster">
     <div class="akz">/\d{'{'}2{'}'}\.\d{'{'}2{'}'}/</div>
     <div><i class="fa-solid fa-check ok" aria-hidden="true"></i> <mark>24.10</mark>.2026</div>
@@ -27,6 +33,22 @@
   mark {
     background: color-mix(in srgb, var(--accent) 35%, transparent);
     color: var(--fg);
+  }
+  .sprint-bild { text-align: center; }
+  .uhrzeit {
+    font-size: 34px;
+    color: var(--accent);
+  }
+  .code {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-dim);
+  }
+  .kette {
+    margin-top: 6px;
+    color: var(--orange);
+    font-weight: 600;
+    font-size: 12px;
   }
   .ersatz {
     font-size: 32px;

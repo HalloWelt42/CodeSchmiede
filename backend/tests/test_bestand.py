@@ -43,7 +43,7 @@ def test_musterloesungen_bestehen(state):
     auftraege = [
         (a, ml)
         for a in state.aufgaben.alle_aufgaben()
-        if not pruefer_fuer(a).im_browser
+        if pruefer_fuer(a).abgabe == "server"
         for ml in state.loader.lade_musterloesungen(a.id)
     ]
 
@@ -77,3 +77,31 @@ def test_musterloesungen_bestehen(state):
     with ThreadPoolExecutor(max_workers=4) as pool:
         fehler = [f for f in pool.map(lauf, auftraege) if f]
     assert fehler == [], f"{len(fehler)} von {len(auftraege)}:\n" + "\n".join(fehler)
+
+
+def test_sprint_schnipsel_stimmen(state):
+    """Jeder Schnipsel gibt in der Sandbox genau die richtige Option aus;
+    "Fehler" heißt, der Code bricht ab."""
+    from codeschmiede.pruefung.sprint_pruefer import FEHLER, level_von
+    from codeschmiede.sandbox.result import RunLimits
+
+    auftraege = [
+        (a, i, s)
+        for a in state.aufgaben.alle_aufgaben()
+        if a.task_type == "ausgabe_sprint"
+        for i, s in enumerate(level_von(a).schnipsel)
+    ]
+
+    def lauf(auftrag):
+        a, i, s = auftrag
+        for _ in range(2):
+            erg = state.runner.run_code(s.code, a.sprache, RunLimits(timeout_sekunden=15))
+            if not erg.timeout:
+                break
+        ist = FEHLER if erg.exit_code != 0 else erg.stdout.strip()
+        soll = s.optionen[s.richtig]
+        return None if ist == soll else f"{a.id} #{i}: soll {soll!r}, ist {ist!r}"
+
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        fehler = [f for f in pool.map(lauf, auftraege) if f]
+    assert auftraege and fehler == [], "\n".join(fehler)

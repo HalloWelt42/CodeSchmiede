@@ -48,6 +48,8 @@ aufgabentypen:
   - {id: output_quiz, titel: Quiz, view: output_quiz}
   - {id: css_klon, titel: CSS, view: css_klon}
   - {id: sql_abfrage, titel: SQL, view: sql_abfrage}
+  - {id: muster_jagd, titel: Muster-Jagd, view: muster_jagd}
+  - {id: ausgabe_sprint, titel: Ausgabe-Sprint, view: ausgabe_sprint}
 """
 
 KOPF = """schema_version: 1

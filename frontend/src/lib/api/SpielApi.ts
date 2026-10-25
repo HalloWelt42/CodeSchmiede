@@ -92,12 +92,16 @@ export interface SpielUebersicht {
   icon: string;
   beschreibung: string;
   aufgabentyp: string;
+  /** "stufen": Levels nacheinander; "auswahl": gleichrangige Kategorien */
+  levels_als: 'stufen' | 'auswahl';
   levels: LevelStand[];
   geschafft: number;
   sterne: number;
   sterne_moeglich: number;
   punkte: number;
   moeglich: number;
+  /** Abgaben heute in diesem Spiel (Runden, Versuche) */
+  versuche_heute: number;
   /** erstes nicht gelöstes Level */
   naechstes: LevelStand | null;
 }
@@ -126,6 +130,43 @@ export interface Belohnung {
   auftrag: Tagesauftrag;
 }
 
+export interface SprintFrage {
+  code: string;
+  optionen: string[];
+}
+
+export interface SprintRunde {
+  id: string;
+  aufgabe_id: string;
+  sekunden: number;
+  fragen: SprintFrage[];
+}
+
+export interface SprintRueckmeldung {
+  richtig: boolean;
+  /** Stelle der richtigen Antwort in der gezeigten Reihenfolge */
+  richtige_wahl: number;
+}
+
+export interface SprintAuswertung {
+  code: string;
+  optionen: string[];
+  gewaehlt: number | null;
+  richtig: number;
+  warum: string;
+}
+
+export interface SprintAbschluss {
+  bestanden: boolean;
+  sterne: number;
+  treffer: number;
+  fragen: number;
+  laengste_kette: number;
+  sekunden: number;
+  auswertung: SprintAuswertung[];
+  belohnung: Belohnung | null;
+}
+
 export class SpielApi extends HttpBase {
   constructor() {
     super('/api/spiel');
@@ -139,6 +180,15 @@ export class SpielApi extends HttpBase {
   }
   spiele(): Promise<SpielUebersicht[]> {
     return this.get<SpielUebersicht[]>('/spiele');
+  }
+  sprintRunde(aufgabeId: string): Promise<SprintRunde> {
+    return this.post<SprintRunde>(`/sprint/${aufgabeId}/runde`, {});
+  }
+  sprintAntwort(rundeId: string, frage: number, wahl: number): Promise<SprintRueckmeldung> {
+    return this.post<SprintRueckmeldung>(`/sprint/runde/${rundeId}/antwort`, { frage, wahl });
+  }
+  sprintAbschluss(rundeId: string): Promise<SprintAbschluss> {
+    return this.post<SprintAbschluss>(`/sprint/runde/${rundeId}/abschluss`, {});
   }
 }
 

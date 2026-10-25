@@ -6,9 +6,9 @@ mit den Musterlösungen mit. Die werden einmal pro Aufgabe durch die
 Sandbox geschickt und im AufgabenRepository gecacht; ein Reindex über
 den Watcher leert den Cache.
 
-Geprüft wird auf dem Server. Nur Aufgabentypen, deren Pruefer
-`im_browser` ist (CSS-Nachbauten), schicken ein fertiges Ergebnis über
-`/lokal`; alle anderen nehmen nur diesen Weg.
+Geprüft wird auf dem Server. Aufgabentypen mit Abgabeweg "browser"
+(CSS-Nachbauten) schicken ein fertiges Ergebnis über `/lokal`, solche mit
+"runde" (Sprint) geben über ihre Spielrunde ab (routes/spiel.py).
 """
 
 from typing import Any
@@ -23,10 +23,18 @@ from ..progress.submissions import codelaenge
 from ..pruefung.ergebnis import PruefErgebnis
 from ..pruefung.kodierung import anzeigen
 from ..pruefung.orchestrator import UnbekannterAufgabentyp, pruefe, pruefer_fuer
+from ..pruefung.registry import Abgabeweg
 from ..pruefung.testlauf import fuehre_aus
 from ..sandbox.result import RunLimits
 from ..sandbox.runner import SandboxFehler
 from ..state import AppState
+
+
+WEG_HINWEIS: dict[Abgabeweg, str] = {
+    "server": "Diese Aufgabe wird auf dem Server geprüft",
+    "browser": "Diese Aufgabe wird im Browser geprüft",
+    "runde": "Diese Aufgabe wird über eine Spielrunde abgegeben",
+}
 
 
 class SubmissionAnfrage(BaseModel):
@@ -83,6 +91,14 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             raise HTTPException(status_code=404, detail="Aufgabe nicht gefunden")
         return aufgabe
 
+    def verlange_weg(aufgabe: Aufgabe, weg: Abgabeweg) -> None:
+        try:
+            abgabe = pruefer_fuer(aufgabe).abgabe
+        except UnbekannterAufgabentyp as fehler:
+            raise HTTPException(status_code=422, detail=str(fehler)) from fehler
+        if abgabe != weg:
+            raise HTTPException(status_code=400, detail=WEG_HINWEIS[abgabe])
+
     def pruefe_sicher(aufgabe: Aufgabe, code: str) -> PruefErgebnis:
         try:
             return pruefe(aufgabe, code, state.runner)
@@ -123,12 +139,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
     @router.post("", response_model=SubmissionAntwort)
     def submit(anfrage: SubmissionAnfrage) -> SubmissionAntwort:
         aufgabe = hole_aufgabe(anfrage.aufgabe_id)
-        try:
-            im_browser = pruefer_fuer(aufgabe).im_browser
-        except UnbekannterAufgabentyp as fehler:
-            raise HTTPException(status_code=422, detail=str(fehler)) from fehler
-        if im_browser:
-            raise HTTPException(status_code=400, detail="Diese Aufgabe wird im Browser geprüft")
+        verlange_weg(aufgabe, "server")
 
         return antwort(aufgabe, anfrage.code, pruefe_sicher(aufgabe, anfrage.code))
 
@@ -136,12 +147,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
     def submit_lokal(anfrage: LokaleSubmissionAnfrage) -> SubmissionAntwort:
         """Speichert das Ergebnis einer im Browser geprüften Aufgabe."""
         aufgabe = hole_aufgabe(anfrage.aufgabe_id)
-        try:
-            im_browser = pruefer_fuer(aufgabe).im_browser
-        except UnbekannterAufgabentyp as fehler:
-            raise HTTPException(status_code=422, detail=str(fehler)) from fehler
-        if not im_browser:
-            raise HTTPException(status_code=400, detail="Diese Aufgabe wird auf dem Server geprüft")
+        verlange_weg(aufgabe, "browser")
 
         return antwort(aufgabe, anfrage.code, anfrage.pruefung)
 

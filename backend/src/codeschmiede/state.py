@@ -22,6 +22,8 @@ from .sandbox.schluessel import lade_schluessel
 from .spiel.bestand import Bestand
 from .spiel.dienst import Spieldienst
 from .spiel.gutschriften import GutschriftRepository
+from .spiel.sprint import SprintDienst
+from .spiel.sprint_runden import SprintRundenRepository
 
 
 class AppState:
@@ -43,6 +45,7 @@ class AppState:
         self.submissions = SubmissionRepository(self.db)
         self.gutschriften = GutschriftRepository(self.db)
         self.spiel = Spieldienst(self.progress, self.submissions, self.gutschriften, self.aufgaben)
+        self.sprint = SprintDienst(SprintRundenRepository(self.db), self.spiel)
 
         self.runner: Runner = runner or DienstRunner(
             settings.sandbox_url,

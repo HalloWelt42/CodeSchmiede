@@ -1,4 +1,4 @@
-"""GutschriftRepository -- einziger Ort, der die Tabelle `tagesauftraege`
+"""GutschriftRepository - einziger Ort, der die Tabelle `tagesauftraege`
 liest und schreibt."""
 
 from datetime import date

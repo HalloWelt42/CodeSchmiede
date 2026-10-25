@@ -1,4 +1,4 @@
-"""Spieldienst -- rechnet den Spielstand aus Abgaben, Fortschritt und
+"""Spieldienst - rechnet den Spielstand aus Abgaben, Fortschritt und
 Gutschriften und verbucht Abgaben samt Belohnung.
 
 Eine Abgabe verbuchen heißt: Abgabe speichern, Fortschritt fortschreiben,
@@ -105,6 +105,7 @@ class Spieldienst:
 
     def spiele(self, bestand: Bestand) -> list[SpielUebersicht]:
         progress = {p.aufgabe_id: p for p in self.progress.hole_alle_progress()}
+        heute = self.submissions.heute_je_aufgabe()
         uebersicht = []
         for spiel in bestand.konfig.spiele:
             levels = []
@@ -124,12 +125,14 @@ class Spieldienst:
                 icon=spiel.icon,
                 beschreibung=spiel.beschreibung,
                 aufgabentyp=spiel.aufgabentyp,
+                levels_als=spiel.levels_als,
                 levels=levels,
                 geschafft=sum(1 for lv in levels if lv.geloest),
                 sterne=sum(lv.sterne or 0 for lv in levels),
                 sterne_moeglich=3 * len(levels),
                 punkte=punkte,
                 moeglich=sum(bestand.aufgaben[lv.id].schwierigkeit_score for lv in levels),
+                versuche_heute=sum(heute.get(lv.id, 0) for lv in levels),
                 naechstes=next((lv for lv in levels if not lv.geloest), None),
             ))
         return uebersicht
@@ -244,6 +247,9 @@ class Spieldienst:
             auftraege=auftraege,
             levels_je_typ=self._zaehle_je_typ(bestand, bestand.aufgaben),
             drei_sterne_je_typ=self._zaehle_je_typ(bestand, {p.aufgabe_id for p in progress if p.sterne == 3}),
+            volle_runden=sum(
+                1 for a in abgaben if a.kennwerte.treffer is not None and a.kennwerte.treffer == a.kennwerte.fragen
+            ),
         )
 
     @staticmethod

@@ -36,6 +36,8 @@ class Kennzahlen(BaseModel):
     # Spiele: Levels und Levels mit drei Sternen je Aufgabentyp
     levels_je_typ: dict[str, int] = Field(default_factory=dict)
     drei_sterne_je_typ: dict[str, int] = Field(default_factory=dict)
+    # Sprint: Runden ohne Fehler
+    volle_runden: int = 0
 
 
 @dataclass(frozen=True)
@@ -118,6 +120,12 @@ def katalog(k: Kennzahlen) -> list[ErfolgDefinition]:
             bis_hoechstens((5,), k.levels_je_typ["muster_jagd"]),
             ("Scharfschütze",),
             lambda n: f"{anzahl(n, 'ein Muster', 'Muster')} mit drei Sternen",
+        ))
+    if k.levels_je_typ.get("ausgabe_sprint"):
+        eintraege.append(ErfolgDefinition(
+            "fehlerfreier_sprint", "spiele", "fa-stopwatch", k.volle_runden, (1, 5, 20),
+            ("Fehlerfreier Sprint",),
+            lambda n: f"{anzahl(n, 'eine Runde', 'Runden')} ohne Fehler",
         ))
     return eintraege
 

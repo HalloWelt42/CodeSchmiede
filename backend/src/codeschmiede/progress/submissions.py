@@ -107,6 +107,14 @@ class SubmissionRepository:
             for r in rows
         ]
 
+    def heute_je_aufgabe(self) -> dict[str, int]:
+        """Abgaben des heutigen Tages je Aufgabe, bestanden oder nicht."""
+        with self.db.connect() as conn:
+            rows = conn.execute(
+                f"SELECT aufgabe_id, COUNT(*) AS n FROM submissions WHERE {TAG} = date('now', 'localtime') GROUP BY aufgabe_id"
+            ).fetchall()
+        return {r["aufgabe_id"]: r["n"] for r in rows}
+
     def erste_versuche_bestanden(self) -> int:
         """Aufgaben, deren erste Abgabe bestanden hat."""
         with self.db.connect() as conn:

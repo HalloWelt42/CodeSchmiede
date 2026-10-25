@@ -12,6 +12,6 @@ from .ergebnis import PruefErgebnis
 from .registry import registriere
 
 
-@registriere("css_klon", im_browser=True)
+@registriere("css_klon", abgabe="browser")
 def pruefe(aufgabe: Aufgabe, code: str, runner: Runner) -> PruefErgebnis:
     raise ValueError(f"Aufgabe {aufgabe.id} wird im Browser geprüft")

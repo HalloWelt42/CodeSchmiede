@@ -33,6 +33,7 @@
   import VerlaufBereich from './VerlaufBereich.svelte';
   import SqlAbfrageView from './SqlAbfrageView.svelte';
   import MusterJagdView from './MusterJagdView.svelte';
+  import SprintView from './SprintView.svelte';
   import { spielStore } from '../stores/SpielStore.svelte';
 
   let { aufgabeId }: { aufgabeId: string } = $props();
@@ -180,7 +181,7 @@
       </button>
       {#if alsLevel}
         <span class="zelle-titel">
-          <b>Level {alsLevel.level.nummer}: {aktuell.titel}</b>
+          <b>{alsLevel.spiel.levels_als === 'auswahl' ? aktuell.titel : `Level ${alsLevel.level.nummer}: ${aktuell.titel}`}</b>
           <span class:meta-text={geraet.telefon}>{alsLevel.spiel.titel}{geraet.telefon ? `, ${aktProgress?.punkte_erreicht ?? 0} / ${aktuell.schwierigkeit_score} Punkte` : `, ${aktuell.id}`}</span>
         </span>
         <div class="meta">
@@ -236,6 +237,8 @@
       <SqlAbfrageView detail={aktuell} />
     {:else if aktuell.task_type === 'muster_jagd'}
       <MusterJagdView detail={aktuell} />
+    {:else if aktuell.task_type === 'ausgabe_sprint'}
+      <SprintView detail={aktuell} />
     {:else}
       {#if aktuell.task_type === 'bug_finden'}
         <div class="hinweis-box band fehler">

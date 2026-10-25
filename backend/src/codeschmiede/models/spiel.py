@@ -108,12 +108,15 @@ class SpielUebersicht(BaseModel):
     icon: str
     beschreibung: str
     aufgabentyp: str
+    levels_als: Literal["stufen", "auswahl"]
     levels: list[LevelStand]
     geschafft: int
     sterne: int
     sterne_moeglich: int
     punkte: int
     moeglich: int
+    # Abgaben heute in diesem Spiel (Runden, Versuche)
+    versuche_heute: int
     # erstes nicht gelöstes Level, sonst None
     naechstes: LevelStand | None = None
 
