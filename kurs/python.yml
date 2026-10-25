@@ -67,3 +67,6 @@ bloecke:
       - einfuehrung: py-module
         uebungen: [k181-wurzel, k182-abrunden, k183-kreisflaeche, k184-boote, k185-mittelwert, k186-wuerfelbecher, k187-hauptprogramm]
         projekt: [k189-notenbuch-median]
+      - einfuehrung: py-dateien
+        uebungen: [k191-erste-datei, k192-dranhaengen, k193-einkaufszettel, k194-gedicht-zaehlen, k195-logbuch, k196-punkteliste, k197-datei-fehlt]
+        projekt: [k199-notenbuch-speichern]

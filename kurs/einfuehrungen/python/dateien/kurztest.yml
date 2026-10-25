@@ -1,0 +1,58 @@
+# Kurztest zu Kapitel 19: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-ueberschreiben
+    text: Was gibt das Programm aus?
+    code: |
+      with open("eis.txt", "w") as datei:
+          datei.write("Vanille\n")
+      with open("eis.txt", "w") as datei:
+          datei.write("Schoko\n")
+      with open("eis.txt") as datei:
+          print(datei.read().strip())
+    als_code: true
+    optionen:
+      - text: Schoko
+        richtig: true
+        erklaerung: Richtig, das zweite w hat die Datei neu angelegt.
+      - text: |-
+          Vanille
+          Schoko
+        erklaerung: Dafür hätte das zweite Öffnen den Modus a gebraucht.
+      - text: Vanille
+        erklaerung: w überschreibt, es bleibt das zuletzt Geschriebene.
+  - frageart: luecke
+    id: kt-anhaengen
+    text: Ergänze, damit der Eintrag ans Logbuch angehängt wird.
+    code: |
+      with open("log.txt", ___) as datei:
+          datei.write("Mittwoch: Eis\n")
+    antworten: [['"a"', "'a'"]]
+    erklaerung: Richtig, a für append.
+    hinweis: Der Modus zum Anhängen, ein Buchstabe.
+  - frageart: auswahl
+    id: kt-split
+    text: 'Was liefert `"Hering;3;frisch".split(";")`?'
+    als_code: true
+    optionen:
+      - text: "['Hering', '3', 'frisch']"
+        richtig: true
+        erklaerung: Richtig, drei Teile, alle als Text.
+      - text: "['Hering', 3, 'frisch']"
+        erklaerung: split liefert immer Texte; Zahlen macht erst int.
+      - text: "['Hering;3;frisch']"
+        erklaerung: Zerlegt wird an jedem Semikolon.
+  - frageart: fehlerstelle
+    id: kt-falsch-entpackt
+    text: Dieses Programm meldet ValueError. Welche Zeile?
+    code: |
+      with open("p.txt", "w") as datei:
+          datei.write("Pia;42;Gold\n")
+      with open("p.txt") as datei:
+          for zeile in datei:
+              name, punkte = zeile.strip().split(";")
+              print(name)
+    zeile: 5
+    erklaerung: Genau. Die Zeile hat drei Teile, links stehen nur zwei Namen.
+    hinweis: Wie viele Teile liefert split, und wie viele Namen stehen links?
+uebung: k198-rekordliste
