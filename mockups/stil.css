@@ -216,6 +216,8 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 .editor { font-family: var(--mono); font-size: 13px; line-height: 1.6; padding: var(--sp-2) 0; }
 .editor div { display: flex; }
 .editor .ln { width: 36px; text-align: right; padding-right: var(--sp-3); color: var(--fg-mute); flex: none; }
+/* Einrückung im Code bleibt stehen */
+.editor .ln + span { white-space: pre-wrap; min-width: 0; }
 .kw { color: #5eead4; font-weight: 600; } .str { color: #a6e3d0; } .kom { color: var(--fg-mute); font-style: italic; }
 .probelauf { flex: none; border-top: 1px solid var(--border); padding: var(--sp-2) var(--sp-3); display: flex; gap: var(--sp-2); align-items: center; font-family: var(--mono); font-size: 12px; }
 .probelauf input { flex: 1; min-width: 0; height: 28px; border: 1px solid var(--border); background: var(--bg-card); padding: 0 var(--sp-2); border-radius: var(--radius-sm); }
@@ -422,6 +424,83 @@ button.level-punkt { padding: 0; cursor: pointer; }
 .telefon .antworten { grid-template-columns: minmax(0, 1fr); }
 .telefon .schnipsel { font-size: 15px; padding: var(--sp-3); }
 .telefon .spiel-raster { grid-template-columns: minmax(0, 1fr); }
+
+/* ----- Steuerungsspiele: Szene von oben oder im Schnitt, Ablaufplan, Kennwerte ----- */
+.steuer-seite { flex: 1; min-height: 0; display: grid; grid-template-columns: clamp(240px, 21vw, 300px) minmax(0, 1fr) clamp(360px, 36vw, 560px); }
+.steuer-seite > .spalte + .spalte { border-left: 1px solid var(--border); }
+.szene { display: block; width: 100%; height: auto; background: color-mix(in srgb, var(--green) 9%, var(--bg)); border: 1px solid var(--border); }
+.szene .gehweg { fill: var(--bg-card-2); }
+.szene .strasse { fill: color-mix(in srgb, var(--fg) 9%, var(--bg)); }
+.szene .mittellinie { stroke: var(--fg-mute); stroke-width: 2; stroke-dasharray: 12 10; }
+.szene .zebra { fill: color-mix(in srgb, var(--fg) 75%, transparent); }
+.szene .haltlinie { stroke: var(--fg-dim); stroke-width: 3; }
+.szene .gehaeuse { fill: #121519; stroke: var(--border-strong); }
+.szene .lampe { fill: #2b3038; }
+.szene .lampe.rot.an { fill: #ef4444; } .szene .lampe.gelb.an { fill: #f5c518; } .szene .lampe.gruen.an { fill: #22c55e; }
+.szene .taster { fill: #121519; stroke: var(--border-strong); }
+.szene .taster.an { fill: var(--accent); }
+.szene .fuss { fill: var(--orange); stroke: var(--bg); stroke-width: 1.5; }
+.szene .auto { stroke: rgba(0, 0, 0, .35); }
+.szene .scheibe { fill: rgba(255, 255, 255, .55); }
+/* Unfälle: Matschfleck, verbeultes Blech mit Riss und Rauch */
+.szene .matsch { fill: #b91c1c; opacity: .9; }
+.szene .verbeult { stroke: rgba(0, 0, 0, .55); stroke-width: 1; }
+.szene .riss { fill: none; stroke: #111; stroke-width: 1.2; }
+.szene .rauch { fill: color-mix(in srgb, var(--fg-mute) 55%, transparent); }
+.szene .fuehrerhaus { fill: #94a3b8; }
+.ablaufplan .unfall-marke { fill: var(--red); }
+.welten .chip[data-ablauf] { cursor: pointer; }
+.welten .chip.gewaehlt { background: color-mix(in srgb, currentColor 14%, transparent); }
+.szene .etage { stroke: var(--border-strong); }
+.szene .schacht { fill: color-mix(in srgb, var(--fg) 6%, var(--bg)); stroke: var(--border); }
+.szene .kabine { fill: var(--bg-card-2); stroke: var(--accent); stroke-width: 2; }
+.szene .kabine-innen { fill: color-mix(in srgb, #fde68a 48%, var(--bg-card-2)); }
+.szene .handlauf { stroke: var(--fg-mute); stroke-width: 1.2; }
+.szene .tuerblatt { fill: #9aa5b1; stroke: #6b7682; stroke-width: .6; }
+.szene .tuerkante { stroke: #4b5560; stroke-width: 1; }
+.szene .rahmen-tuer { fill: none; stroke: #6b7682; stroke-width: 2; }
+.szene .anzeige-feld { fill: #0b0d10; stroke: var(--border-strong); stroke-width: .6; }
+.szene .anzeige { fill: #f59e0b; font: 700 6.5px var(--num); }
+.szene .seil line { stroke: var(--fg-mute); stroke-width: .8; }
+.szene .glas { fill: color-mix(in srgb, #9bd3ff 16%, transparent); }
+.szene .glas-kante { stroke: #8b96a2; stroke-width: 1.4; }
+.szene .glas-schein { stroke: rgba(255, 255, 255, .35); stroke-width: 1.2; }
+.szene .ruf { fill: var(--fg-mute); } .szene .ruf.an { fill: var(--gold); }
+.szene .beschriftung { fill: var(--fg-dim); font: 600 11px var(--num); }
+.ablaufplan { display: block; width: 100%; height: auto; }
+.ablaufplan .achse { stroke: var(--border-strong); }
+.ablaufplan .raster { stroke: var(--border); stroke-dasharray: 2 4; }
+.ablaufplan text { fill: var(--fg-dim); font: 500 10px var(--num); }
+.ablaufplan .rot { fill: #ef4444; } .ablaufplan .gelb { fill: #f5c518; } .ablaufplan .gruen { fill: #22c55e; } .ablaufplan .rotgelb { fill: #f97316; }
+.ablaufplan .marke { fill: var(--accent); }
+.ablaufplan .zeiger { stroke: var(--fg); stroke-width: 1.5; }
+.ablaufplan .fahrt { fill: none; stroke: var(--accent); stroke-width: 2; }
+.sim-werte { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--border); background: var(--bg-card-2); }
+.sim-werte > div { padding: 6px var(--sp-2); border-right: 1px solid var(--border); min-width: 0; }
+.sim-werte > div:last-child { border-right: 0; }
+.sim-werte .num { display: block; font-size: var(--fs-lg); font-weight: 600; }
+.sim-werte small { display: block; font-size: var(--fs-xs); color: var(--fg-dim); text-transform: uppercase; letter-spacing: .04em; line-height: 1.25; overflow-wrap: anywhere; hyphens: auto; }
+.sim-werte .gut { color: var(--green); } .sim-werte .schlecht { color: var(--red); }
+a.t-eintrag { color: var(--fg); text-decoration: none; }
+.regeln { margin: 0; padding-left: 18px; font-size: var(--fs-sm); display: flex; flex-direction: column; gap: 3px; }
+/* Teilschritte: eine Aufgabe baut sich Ziel für Ziel auf; erledigt, aktuell, noch gesperrt */
+.teilschritte { display: flex; flex-direction: column; gap: 4px; margin: var(--sp-2) 0 var(--sp-3); }
+.teilschritt { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: var(--sp-2); align-items: start; padding: 6px var(--sp-2); border: 1px solid var(--border); background: var(--bg-card-2); font-family: var(--sans); font-size: var(--fs-sm); }
+.teilschritt > i { margin-top: 3px; text-align: center; color: var(--fg-mute); }
+.teilschritt b { display: block; font-weight: 600; }
+.teilschritt small { display: block; color: var(--fg-dim); font-size: var(--fs-xs); line-height: 1.35; }
+.teilschritt.erledigt > i { color: var(--green); }
+.teilschritt.erledigt b { color: var(--fg-dim); font-weight: 500; }
+.teilschritt.aktuell { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--bg-card-2)); }
+.teilschritt.aktuell > i { color: var(--accent); }
+.teilschritt.zu { opacity: .55; }
+.teilschritt .stand { margin-top: 4px; color: var(--orange); font-size: var(--fs-xs); }
+.modus { display: flex; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+.modus button { flex: 1; height: 28px; border: 0; background: transparent; color: var(--fg-dim); font-size: var(--fs-xs); cursor: pointer; white-space: nowrap; }
+.modus button.aktiv { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); font-weight: 600; }
+.telefon .sim-werte { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.telefon .sim-werte > div:nth-child(2) { border-right: 0; }
+.telefon .sim-werte > div:nth-child(-n + 2) { border-bottom: 1px solid var(--border); }
 
 /* ----- Entwurfsleiste ----- */
 .mock-leiste { position: fixed; right: 10px; bottom: 34px; z-index: 50; display: flex; gap: 6px; padding: 6px; background: var(--bg-elev); border: 1px solid var(--border-strong); font-size: 12px; }

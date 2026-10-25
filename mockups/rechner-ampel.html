@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="spiele">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Ampelschule</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<style>
+  .welt-spalte { padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); }
+  .editor div.aktiv { background: color-mix(in srgb, var(--accent) 16%, transparent); }
+</style>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="a-kopf">
+      <button class="ikon"><i class="fa-solid fa-arrow-left"></i></button>
+      <span class="zelle-titel"><b>Ampel 2: Fußgänger auf Knopfdruck</b><span>Ampelschule, Python</span></span>
+      <div class="meta">
+        <span class="badge" style="color:var(--orange)">Mittel</span>
+        <span class="sterne gross"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star aus"></i></span>
+        <span class="num" style="color:var(--accent)"><i class="fa-solid fa-coins"></i> 8 / 12</span>
+      </div>
+    </header>
+    <div class="steuer-seite">
+      <section class="spalte">
+        <nav class="reiter-klein"><button class="aktiv">Aufgabe</button><button>Musterlösung</button><button>Verlauf</button></nav>
+        <div class="rollfeld md">
+          <p>Eine Fußgängerampel über eine zweispurige Straße. Die Autos haben Grün, bis jemand den Taster drückt. Dann schaltet die Ampel sicher um, lässt die Fußgänger gehen und gibt den Autos wieder Grün.</p>
+          <div class="modus"><button class="aktiv">Schritt für Schritt</button><button>Alles auf einmal</button></div>
+          <h2>Teilschritte</h2>
+          <p class="dim" style="font-size:var(--fs-sm);margin:0">Ein Ziel nach dem anderen; klappt es, kommt der nächste Schritt dazu. Dein Programm bleibt stehen und wächst mit.</p>
+          <div class="teilschritte">
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>1. Grün, bis jemand drückt</b><small>Autos haben Grün; drückt jemand den Taster, wird es Rot. Geprüft: Taster wird gelesen.</small></div></div>
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>2. Gelb vor Rot</b><small>Zwischen Grün und Rot mindestens 3 s Gelb.</small></div></div>
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>3. Fußgänger gehen</b><small>Bei Rot für die Autos bekommen die Fußgänger Grün, nie beide zugleich.</small></div></div></div>
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>4. Räumzeit</b><small>Nach Gelb 2 s alles Rot, damit der Überweg frei wird.</small></div></div>
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>5. Zurück zu den Autos</b><small>Fußgänger wieder Rot, dann 1 s Rot-Gelb, dann Grün für die Autos.</small></div></div>
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>6. Mindestgrün</b><small>Autos behalten mindestens 20 s Grün am Stück, auch wenn ständig gedrückt wird.</small></div></div>
+            <div class="teilschritt aktuell"><i class="fa-solid fa-crosshairs"></i><div><b>7. Alle Abläufe</b><small>Abschluss: die versteckten Abläufe, auch Lieferverkehr mit langsamem Lkw.</small><div class="stand"><i class="fa-solid fa-triangle-exclamation"></i> noch offen: im Lieferverkehr ein Unfall, Ablauf rechts in Rot</div></div></div>
+          </div>
+          <h2>Sensoren und Signale</h2>
+          <div class="spickzettel">
+            <code>takt(lage)</code><span>läuft jede Sekunde</span>
+            <code>lage.taster</code><span>jemand hat gedrückt und wartet</span>
+            <code>lage.sekunde</code><span>Zeit seit dem Start</span>
+            <code>lage.ueberweg_frei</code><span>kein Fahrzeug im Überweg</span>
+            <code>"auto"</code><span>gruen, gelb, rot, rotgelb</span>
+            <code>"fuss"</code><span>gruen, rot</span>
+          </div>
+          <h2>Sterne</h2>
+          <div class="spickzettel" style="font-family:var(--sans)">
+            <span class="sterne"><i class="fa-solid fa-star"></i></span><span>kein Unfall, kein Verstoß, in allen Abläufen</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>Fußgänger warten höchstens 25 s, Autos im Mittel höchstens 6 s</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>dazu höchstens 320 Zeichen Code</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte mitte">
+        <div class="spalten-kopf"><span class="kopf-titel">341 Zeichen</span><button class="knopf" style="margin-left:auto"><i class="fa-solid fa-traffic-light"></i>Ablauf</button><button class="knopf voll"><i class="fa-solid fa-play"></i>Prüfen</button></div>
+        <div class="rollfeld" style="padding:0">
+          <div class="editor">
+            <div><span class="ln">1</span><span>LAMPEN = {</span></div>
+            <div><span class="ln">2</span><span>    <span class="str">"autos"</span>: (<span class="str">"gruen"</span>, <span class="str">"rot"</span>),</span></div>
+            <div><span class="ln">3</span><span>    <span class="str">"gelb"</span>: (<span class="str">"gelb"</span>, <span class="str">"rot"</span>),</span></div>
+            <div><span class="ln">4</span><span>    <span class="str">"raeumen"</span>: (<span class="str">"rot"</span>, <span class="str">"rot"</span>),</span></div>
+            <div><span class="ln">5</span><span>    <span class="str">"gehen"</span>: (<span class="str">"rot"</span>, <span class="str">"gruen"</span>),</span></div>
+            <div><span class="ln">6</span><span>    <span class="str">"leeren"</span>: (<span class="str">"rot"</span>, <span class="str">"rot"</span>),</span></div>
+            <div><span class="ln">7</span><span>    <span class="str">"anfahren"</span>: (<span class="str">"rotgelb"</span>, <span class="str">"rot"</span>),</span></div>
+            <div><span class="ln">8</span><span>}</span></div>
+            <div><span class="ln">9</span><span><span class="kom"># nach welcher Phase was folgt, nach wie vielen Sekunden</span></span></div>
+            <div><span class="ln">10</span><span>FOLGE = {<span class="str">"gelb"</span>: (<span class="str">"raeumen"</span>, 3), <span class="str">"raeumen"</span>: (<span class="str">"gehen"</span>, 2),</span></div>
+            <div><span class="ln">11</span><span>         <span class="str">"gehen"</span>: (<span class="str">"leeren"</span>, 8), <span class="str">"leeren"</span>: (<span class="str">"anfahren"</span>, 3),</span></div>
+            <div><span class="ln">12</span><span>         <span class="str">"anfahren"</span>: (<span class="str">"autos"</span>, 1)}</span></div>
+            <div><span class="ln">13</span><span>phase, seit = <span class="str">"autos"</span>, 0</span></div>
+            <div><span class="ln">14</span><span></span></div>
+            <div class="aktiv"><span class="ln">15</span><span><span class="kw">def</span> takt(lage):</span></div>
+            <div><span class="ln">16</span><span>    <span class="kw">global</span> phase, seit</span></div>
+            <div><span class="ln">17</span><span>    seit += 1</span></div>
+            <div><span class="ln">18</span><span>    <span class="kw">if</span> phase == <span class="str">"autos"</span>:</span></div>
+            <div><span class="ln">19</span><span>        <span class="kw">if</span> lage.taster <span class="kw">and</span> seit &gt;= 20:</span></div>
+            <div><span class="ln">20</span><span>            phase, seit = <span class="str">"gelb"</span>, 0</span></div>
+            <div><span class="ln">21</span><span>    <span class="kw">elif</span> seit &gt;= FOLGE[phase][1]:</span></div>
+            <div><span class="ln">22</span><span>        phase, seit = FOLGE[phase][0], 0</span></div>
+            <div><span class="ln">23</span><span>    auto, fuss = LAMPEN[phase]</span></div>
+            <div><span class="ln">24</span><span>    <span class="kw">return</span> {<span class="str">"auto"</span>: auto, <span class="str">"fuss"</span>: fuss}</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte" id="welt">
+        <div class="spalten-kopf"><span>Kreuzung</span><span class="num" data-zeit style="margin-left:auto;color:var(--fg);text-transform:none;letter-spacing:0">0:00 / 1:30</span></div>
+        <div class="rollfeld welt-spalte">
+          <div class="ablauf">
+            <button class="knopf-klein" data-abspielen><i class="fa-solid fa-play"></i>Abspielen</button>
+            <button class="knopf-klein" data-anhalten><i class="fa-solid fa-pause"></i>Anhalten</button>
+            <button class="knopf-klein" data-vorn><i class="fa-solid fa-rotate-left"></i>Von vorn</button>
+            <button class="knopf-klein" data-ton title="Klänge beim Abspielen"><i class="fa-solid fa-volume-xmark"></i>Ton aus</button>
+            <select class="wahl" data-tempo style="height:26px;margin-left:auto"><option value="1">1-fach</option><option value="2" selected>2-fach</option><option value="4">4-fach</option></select>
+          </div>
+          <svg class="szene" role="img" aria-label="Fußgängerüberweg von oben"></svg>
+          <div class="gruppe" style="margin:0">Signalplan <span class="dim" style="text-transform:none;letter-spacing:0">Klick springt zur Sekunde</span></div>
+          <svg class="ablaufplan" role="img" aria-label="Signalplan"></svg>
+          <div class="sim-werte">
+            <div><span class="num" data-wert="unfaelle">0</span><small>Unfälle</small></div>
+            <div><span class="num" data-wert="verstoesse">0</span><small>Verstöße</small></div>
+            <div><span class="num" data-wert="fuss">0 s</span><small>Fußgänger max.</small></div>
+            <div><span class="num" data-wert="autos">0 s</span><small>Autos im Mittel</small></div>
+          </div>
+          <div class="welten">
+            <span class="chip ok gewaehlt" data-ablauf="sichtbar"><i class="fa-solid fa-check"></i><span>sichtbar</span></span>
+            <span class="chip ok"><i class="fa-solid fa-check"></i><span>Stoßzeit</span></span>
+            <span class="chip nein" data-ablauf="liefer" title="Unfall im versteckten Ablauf: klicken spielt die Stelle ab"><i class="fa-solid fa-car-burst"></i><span>Lieferverkehr</span></span>
+            <span class="chip ok"><i class="fa-solid fa-check"></i><span>ruhiger Abend</span></span>
+          </div>
+          <p class="dim" style="margin:0;font-size:var(--fs-sm)">Im Lieferverkehr war ein langsamer Lkw bei Gelb schon über der Haltlinie und brauchte länger als Gelb und Räumzeit zusammen: bei <span class="num" data-unfall-zeit>1:12</span> stand er noch im Überweg, als die Fußgänger Grün bekamen. Ein Klick auf den roten Ablauf spielt die Stelle ab; die Lösung ist ein Blick auf <code>lage.ueberweg_frei</code> vor dem Grün für die Fußgänger.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script src="ampel.js"></script>
+<script>ampelStarten(document.getElementById('welt'));</script>
+</body>
+</html>

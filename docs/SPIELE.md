@@ -6,6 +6,8 @@ nach Freigabe.
 
 Leitlinien:
 
+- Aufbauend: Aufgaben und Levels bauen aufeinander auf; im einfachen Modus geht es ein Ziel nach dem anderen, und erst
+  wenn eines klappt, kommt der nächste Teilschritt (Nutzer 25.10.2026).
 - Lernen vor Belohnung: jede Mechanik belohnt etwas, das beim Lernen hilft (üben, wiederholen, sauber und knapp
   lösen), nie bloßes Klicken.
 - Eine Wahrheit: es gibt eine Währung, die Punkte. Stufe, Ränge und Sterne leiten sich aus gespeicherten Ergebnissen ab
@@ -67,6 +69,65 @@ Levels sind Grundpunkte mal Sterne durch drei; es zählt der beste Versuch.
   versteckte Zeilen. Die Vorschau im Browser nutzt dieselbe Ausdrucksart (JavaScript), damit Vorschau und Prüfung
   übereinstimmen.
 - **Sterne**: Bestehen; höchstens so lang wie die Musterlösung plus Spielraum; so kurz wie die Musterlösung.
+
+## Steuerungsspiele (Idee, Entwürfe zur Freigabe)
+
+Größere Spiele, bei denen eine Steuerung programmiert wird und echte Abläufe zeigen, ob sie stimmt (Nutzer
+25.10.2026). Der Rahmen ist vorgefertigt: Welt, Verkehr, Zeichnung, Szenarien. Geschrieben wird nur der Ablauf, eine
+Funktion `takt(lage)`, die jede Sekunde die Sensoren bekommt und die Stellung der Signale oder den Fahrbefehl
+zurückgibt. Wie beim Roboter kommt aus der Sandbox nur diese Folge; Verkehr, Unfälle, Regelverstöße und Wartezeiten
+rechnet das Backend selbst nach, die Szenarien laufen deterministisch.
+
+- **Aufbau in Teilschritten**: Jedes Level ist eine Folge kleiner Ziele, die aufeinander aufbauen (erst Grün bis zum
+  Tastendruck, dann Gelb davor, dann die Fußgänger, dann die Räumzeit ...). Im einfachen Modus ("Schritt für Schritt")
+  wird nur das aktuelle Ziel geprüft; klappt es, kommt der nächste Teilschritt dazu, das Programm bleibt stehen und
+  wächst mit. Wer mag, nimmt "Alles auf einmal". Auch die Levels bauen aufeinander auf: das nächste beginnt mit dem
+  Programm des vorigen (Nutzer 25.10.2026).
+- **Spaß und Ton**: Fehler sind sichtbar und ein wenig lustig: roter Matschfleck für überfahrene Fußgänger, verbeultes
+  Blech, Rauch und Auffahrer dahinter; Klänge für Taster, Ticken der Fußgängerampel, Blechschaden, Matsch, Gong und Tür,
+  ausgewählt aus dem Bestand des Medienpools (CC0), Ton aus, bis man ihn einschaltet. Fehlende Klänge (Bremsen,
+  Autohupe) kommen über den Klanglader dazu.
+- **Prüfung**: sichtbare und versteckte Szenarien (andere Ankünfte, Stoßzeiten, Sonderfälle). Sicherheitsregeln sind
+  harte Tests: ein Unfall oder Verstoß, und das Level gilt nicht. Gezeigt wird die Stelle im Ablauf (Zeitmarke).
+- **Sterne**: einer ohne Unfall und Verstoß in allen Szenarien; zwei, wenn dazu die Wartezeiten im sichtbaren Szenario
+  unter der Schwelle liegen; drei, wenn dazu der Code höchstens so viele Zeichen hat.
+- **Ansicht**: links Aufgabe, Regeln, Sensoren und Signale; Mitte das Programm; rechts die Welt mit Abspielen und
+  darunter der Ablaufplan (Signalplan der Ampeln, Fahrdiagramm des Aufzugs), Kennzahlen und Szenarien.
+
+### Ampelschule
+
+Draufsicht von oben, die Ampeln sichtbar am Straßenrand; Autos halten bei Rot, Fußgänger drücken den Taster.
+
+1. Fußgängerampel im festen Takt
+2. Fußgängerampel auf Knopfdruck (Mindestgrün für Autos, Gelb, Räumzeit)
+3. Zwei Straßen, Umschaltautomatik mit Räumzeit
+4. Kontaktschleifen: Grün nur bei Bedarf
+5. Kreuzung mit Fußgängern an allen vier Seiten
+6. Linksabbieger mit eigener Phase
+7. Große Kreuzung, vier Zufahrten, zweispurig, Abbieger und Fußgänger
+8. Sonderfälle: Einsatzfahrzeug mit Vorrang, Nachtbetrieb mit gelbem Blinklicht, Störung
+
+Regeln (Beispiele): nie Grün für sich kreuzende Ströme, Gelb mindestens 3 s, Rot-Gelb 1 s, Räumzeit mit allem Rot,
+Fußgänger warten höchstens 60 s.
+
+### Aufzugsteuerung
+
+Schnitt durchs Haus von der Seite, Kabine im Schacht, wartende Leute mit Rufknöpfen, Fahrdiagramm (Etage über Zeit).
+
+1. Zwei Etagen: rufen, fahren, Tür auf und zu
+2. Rufe sammeln: unterwegs halten, wer in Fahrtrichtung will
+3. Tür und Lichtschranke
+4. Bürohaus: abwärts sammeln
+5. Zwei Aufzüge: wer fährt?
+6. Stoßzeit am Morgen
+7. Sonderfälle: Überlast, Wartung, Feuerwehrfahrt
+
+Regeln (Beispiele): nie fahren mit offener Tür, Tür nur im Halt an einer Etage öffnen, jeder Ruf wird bedient.
+
+### Weitere Regelungen (Ideen)
+
+Bahnübergang mit Schranke, Schleuse mit Wasserstand, Heizungsregler mit Schaltpause, Parkhaus mit Belegung und
+Schranken, Förderband mit Weiche, Garagentor mit Sicherheitsleiste.
 
 ## Spielmechanik in der ganzen App
 

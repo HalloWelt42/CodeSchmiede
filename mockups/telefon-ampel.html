@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="de" data-geraet="telefon" data-bereich="spiele">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Telefon: Ampelschule</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="seiten-kopf">
+      <div class="titelzeile">
+        <button class="ikon" onclick="location.href='telefon-spiele.html'"><i class="fa-solid fa-arrow-left"></i></button>
+        <span class="zelle-titel"><b style="font-size:var(--fs-lg)">Ampel 2: Fußgänger auf Knopfdruck</b><span>Ampelschule, 8 / 12 Punkte</span></span>
+      </div>
+      <div class="segment">
+        <button data-gruppe="a" data-ziel="p-aufgabe"><i class="fa-solid fa-file-lines"></i>Aufgabe</button>
+        <button data-gruppe="a" data-ziel="p-code"><i class="fa-solid fa-code"></i>Programm</button>
+        <button data-gruppe="a" data-ziel="p-welt" class="aktiv"><i class="fa-solid fa-traffic-light"></i>Kreuzung</button>
+      </div>
+    </header>
+    <div class="t-pane" data-pane="a" id="p-aufgabe">
+      <div class="rollfeld md">
+        <p>Die Autos haben Grün, bis jemand den Taster drückt. Dann schaltet die Ampel sicher um, lässt die Fußgänger gehen und gibt den Autos wieder Grün.</p>
+        <h2>Regeln</h2>
+        <ol class="regeln">
+          <li>Nie Grün für Autos und Fußgänger zugleich.</li>
+          <li>Vor Rot kommt Gelb, mindestens 3 s.</li>
+          <li>Nach Gelb 2 s alles Rot.</li>
+          <li>Autos haben mindestens 20 s Grün am Stück.</li>
+        </ol>
+      </div>
+      <div class="t-unten"><button class="knopf voll" data-gruppe="a" data-ziel="p-code"><i class="fa-solid fa-code"></i>Zum Programm</button></div>
+    </div>
+    <div class="t-pane" data-pane="a" id="p-code">
+      <div class="rollfeld" style="padding:0;background:var(--bg)">
+        <div class="editor" style="font-size:14px">
+          <div><span class="ln">1</span><span><span class="kw">def</span> takt(lage):</span></div>
+          <div><span class="ln">2</span><span>    <span class="kw">global</span> phase, seit</span></div>
+          <div><span class="ln">3</span><span>    seit += 1</span></div>
+          <div><span class="ln">4</span><span>    <span class="kw">if</span> phase == <span class="str">"autos"</span>:</span></div>
+          <div><span class="ln">5</span><span>        <span class="kw">if</span> lage.taster <span class="kw">and</span> seit &gt;= 20:</span></div>
+          <div><span class="ln">6</span><span>            phase, seit = <span class="str">"gelb"</span>, 0</span></div>
+        </div>
+      </div>
+      <div class="t-unten"><button class="knopf voll" data-gruppe="a" data-ziel="p-welt"><i class="fa-solid fa-play"></i>Prüfen</button></div>
+    </div>
+    <div class="t-pane aktiv" data-pane="a" id="p-welt">
+      <div class="rollfeld" id="welt" style="display:flex;flex-direction:column;gap:var(--sp-2)">
+        <div class="ablauf">
+          <button class="knopf-klein" data-abspielen><i class="fa-solid fa-play"></i>Abspielen</button>
+          <button class="knopf-klein" data-anhalten><i class="fa-solid fa-pause"></i></button>
+          <button class="knopf-klein" data-ton title="Klänge beim Abspielen"><i class="fa-solid fa-volume-xmark"></i>Ton aus</button>
+          <span class="num" data-zeit style="margin-left:auto;font-size:var(--fs-sm)">0:00</span>
+        </div>
+        <svg class="szene" role="img" aria-label="Fußgängerüberweg von oben"></svg>
+        <svg class="ablaufplan" role="img" aria-label="Signalplan"></svg>
+        <div class="sim-werte">
+          <div><span class="num" data-wert="unfaelle">0</span><small>Unfälle</small></div>
+          <div><span class="num" data-wert="verstoesse">0</span><small>Verstöße</small></div>
+          <div><span class="num" data-wert="fuss">0 s</span><small>Fußgänger max.</small></div>
+          <div><span class="num" data-wert="autos">0 s</span><small>Autos im Mittel</small></div>
+        </div>
+        <div class="welten">
+          <span class="chip ok gewaehlt" data-ablauf="sichtbar"><i class="fa-solid fa-check"></i><span>sichtbar</span></span>
+          <span class="chip ok"><i class="fa-solid fa-check"></i><span>Stoßzeit</span></span>
+          <span class="chip nein" data-ablauf="liefer"><i class="fa-solid fa-car-burst"></i><span>Lieferverkehr</span></span>
+          <span class="chip ok"><i class="fa-solid fa-check"></i><span>ruhiger Abend</span></span>
+        </div>
+      </div>
+      <div class="t-unten"><button class="knopf voll"><i class="fa-solid fa-play"></i>Prüfen</button></div>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script src="ampel.js"></script>
+<script>ampelStarten(document.getElementById('welt'));</script>
+</body>
+</html>

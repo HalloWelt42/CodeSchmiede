@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="spiele">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Aufzugsteuerung</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<style>
+  .welt-spalte { padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); }
+  .welt-spalte .szene { max-height: calc(100vh - 430px); width: auto; max-width: 100%; align-self: center; aspect-ratio: 360 / 330; }
+</style>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="a-kopf">
+      <button class="ikon"><i class="fa-solid fa-arrow-left"></i></button>
+      <span class="zelle-titel"><b>Aufzug 2: Rufe sammeln</b><span>Aufzugsteuerung, Python</span></span>
+      <div class="meta">
+        <span class="badge" style="color:var(--orange)">Mittel</span>
+        <span class="sterne gross"><i class="fa-regular fa-star aus"></i><i class="fa-regular fa-star aus"></i><i class="fa-regular fa-star aus"></i></span>
+        <span class="num" style="color:var(--accent)"><i class="fa-solid fa-coins"></i> 0 / 12</span>
+      </div>
+    </header>
+    <div class="steuer-seite">
+      <section class="spalte">
+        <nav class="reiter-klein"><button class="aktiv">Aufgabe</button><button>Musterlösung</button><button>Verlauf</button></nav>
+        <div class="rollfeld md">
+          <p>Ein Aufzug in einem Haus mit sechs Etagen. Er soll unterwegs anhalten, wenn jemand aussteigen will oder in seiner Fahrtrichtung zusteigen möchte, und erst umkehren, wenn in dieser Richtung niemand mehr wartet.</p>
+          <div class="modus"><button class="aktiv">Schritt für Schritt</button><button>Alles auf einmal</button></div>
+          <h2>Teilschritte</h2>
+          <p class="dim" style="font-size:var(--fs-sm);margin:0">Ein Ziel nach dem anderen; klappt es, kommt der nächste Schritt dazu. Dein Programm bleibt stehen und wächst mit.</p>
+          <div class="teilschritte">
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>1. Zum Ruf fahren</b><small>Ein einzelner Ruf: hinfahren und dort halten.</small></div></div>
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>2. Ans Ziel bringen</b><small>Wer eingestiegen ist, drückt sein Ziel: hinfahren, halten.</small></div></div>
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>3. Tür sicher</b><small>Nie fahren mit offener Tür; die Tür öffnet nur im Halt an einer Etage.</small></div></div>
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>4. Mitnehmen</b><small>Unterwegs halten, wenn jemand in Fahrtrichtung zusteigen will.</small></div></div></div>
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>5. Erst umkehren, wenn alles erledigt ist</b><small>Die Richtung wechselt erst, wenn in ihr niemand mehr wartet oder aussteigen will.</small></div></div>
+            <div class="teilschritt aktuell"><i class="fa-solid fa-crosshairs"></i><div><b>6. Alle Abläufe</b><small>Abschluss: die versteckten Abläufe, Morgen im Bürohaus, Mittagspause, Gast oben.</small><div class="stand"><i class="fa-solid fa-triangle-exclamation"></i> Prüfen startet die versteckten Abläufe</div></div></div>
+          </div>
+          <h2>Sensoren und Befehle</h2>
+          <div class="spickzettel">
+            <code>takt(lage)</code><span>läuft, wenn die Kabine an einer Etage steht</span>
+            <code>lage.etage</code><span>wo die Kabine ist, 0 bis 5</span>
+            <code>lage.ziele</code><span>gedrückte Knöpfe in der Kabine</span>
+            <code>lage.rufe[1]</code><span>Rufe nach oben, je Etage</span>
+            <code>lage.rufe[-1]</code><span>Rufe nach unten</span>
+            <code>"halten"</code><span>Tür auf, aus- und einsteigen, Tür zu</span>
+            <code>"hoch"</code><span>eine Etage nach oben, ebenso <code>"runter"</code>, <code>"warten"</code></span>
+          </div>
+          <h2>Sterne</h2>
+          <div class="spickzettel" style="font-family:var(--sans)">
+            <span class="sterne"><i class="fa-solid fa-star"></i></span><span>alle bedient, kein Verstoß, in allen Abläufen</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>im Mittel höchstens 15 s Wartezeit</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>dazu höchstens 360 Zeichen Code</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte mitte">
+        <div class="spalten-kopf"><span class="kopf-titel">352 Zeichen</span><button class="knopf" style="margin-left:auto"><i class="fa-solid fa-elevator"></i>Ablauf</button><button class="knopf voll"><i class="fa-solid fa-play"></i>Prüfen</button></div>
+        <div class="rollfeld" style="padding:0">
+          <div class="editor">
+            <div><span class="ln">1</span><span>richtung = 0  <span class="kom"># 1 aufwärts, -1 abwärts, 0 steht</span></span></div>
+            <div><span class="ln">2</span><span></span></div>
+            <div><span class="ln">3</span><span><span class="kw">def</span> takt(lage):</span></div>
+            <div><span class="ln">4</span><span>    <span class="kw">global</span> richtung</span></div>
+            <div><span class="ln">5</span><span>    hier = lage.etage</span></div>
+            <div><span class="ln">6</span><span>    offen = lage.ziele | lage.rufe[1] | lage.rufe[-1]</span></div>
+            <div><span class="ln">7</span><span>    <span class="kw">if not</span> any((e - hier) * richtung &gt; 0 <span class="kw">for</span> e <span class="kw">in</span> offen):</span></div>
+            <div><span class="ln">8</span><span>        <span class="kw">if</span> any(e &gt; hier <span class="kw">for</span> e <span class="kw">in</span> offen):</span></div>
+            <div><span class="ln">9</span><span>            richtung = 1</span></div>
+            <div><span class="ln">10</span><span>        <span class="kw">elif</span> any(e &lt; hier <span class="kw">for</span> e <span class="kw">in</span> offen):</span></div>
+            <div><span class="ln">11</span><span>            richtung = -1</span></div>
+            <div><span class="ln">12</span><span>        <span class="kw">else</span>:</span></div>
+            <div><span class="ln">13</span><span>            richtung = 1 <span class="kw">if</span> hier <span class="kw">in</span> lage.rufe[1] <span class="kw">else</span> -1 <span class="kw">if</span> offen <span class="kw">else</span> 0</span></div>
+            <div><span class="ln">14</span><span>    <span class="kw">if</span> hier <span class="kw">in</span> lage.ziele <span class="kw">or</span> hier <span class="kw">in</span> lage.rufe.get(richtung, ()):</span></div>
+            <div><span class="ln">15</span><span>        <span class="kw">return</span> <span class="str">"halten"</span></span></div>
+            <div><span class="ln">16</span><span>    <span class="kw">return</span> {1: <span class="str">"hoch"</span>, -1: <span class="str">"runter"</span>, 0: <span class="str">"warten"</span>}[richtung]</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte" id="welt">
+        <div class="spalten-kopf"><span>Haus</span><span class="num" data-zeit style="margin-left:auto;color:var(--fg);text-transform:none;letter-spacing:0">0:00 / 2:00</span></div>
+        <div class="rollfeld welt-spalte">
+          <div class="ablauf">
+            <button class="knopf-klein" data-abspielen><i class="fa-solid fa-play"></i>Abspielen</button>
+            <button class="knopf-klein" data-anhalten><i class="fa-solid fa-pause"></i>Anhalten</button>
+            <button class="knopf-klein" data-vorn><i class="fa-solid fa-rotate-left"></i>Von vorn</button>
+            <button class="knopf-klein" data-ton title="Klänge beim Abspielen"><i class="fa-solid fa-volume-xmark"></i>Ton aus</button>
+            <select class="wahl" data-tempo style="height:26px;margin-left:auto"><option value="1">1-fach</option><option value="2" selected>2-fach</option><option value="4">4-fach</option></select>
+          </div>
+          <svg class="szene" role="img" aria-label="Haus im Schnitt mit Aufzug"></svg>
+          <div class="gruppe" style="margin:0">Fahrdiagramm <span class="dim" style="text-transform:none;letter-spacing:0">Etage über Zeit, Punkte sind Rufe</span></div>
+          <svg class="ablaufplan" role="img" aria-label="Fahrdiagramm"></svg>
+          <div class="sim-werte">
+            <div><span class="num" data-wert="verstoesse">0</span><small>Verstöße</small></div>
+            <div><span class="num" data-wert="bedient">0</span><small>Bedient</small></div>
+            <div><span class="num" data-wert="mittel">0 s</span><small>Warten im Mittel</small></div>
+            <div><span class="num" data-wert="max">0 s</span><small>Warten max.</small></div>
+          </div>
+          <div class="welten">
+            <span class="chip ok"><i class="fa-solid fa-check"></i>sichtbar</span>
+            <span class="chip ok"><i class="fa-solid fa-check"></i>Morgen im Bürohaus</span>
+            <span class="chip ok"><i class="fa-solid fa-check"></i>Mittagspause</span>
+            <span class="chip ok"><i class="fa-solid fa-check"></i>Gast oben</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script src="aufzug.js"></script>
+<script>aufzugStarten(document.getElementById('welt'));</script>
+</body>
+</html>
