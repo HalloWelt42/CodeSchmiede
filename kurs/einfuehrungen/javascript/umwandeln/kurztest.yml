@@ -1,0 +1,45 @@
+# Kurztest zu Kapitel 5: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-typeof
+    text: Was gibt `console.log(typeof "42", typeof 42);` aus?
+    als_code: true
+    optionen:
+      - text: string number
+        richtig: true
+        erklaerung: Richtig. In Anführungszeichen ist es Text, ohne eine Zahl.
+      - text: number number
+        erklaerung: '"42" steht in Anführungszeichen, also ist es Text, auch wenn nur Ziffern drinstehen.'
+      - text: text zahl
+        erklaerung: typeof antwortet auf Englisch, mit string und number.
+  - frageart: fehlerstelle
+    id: kt-fehler-kleben
+    text: Das Programm soll zwei eingegebene Zahlen addieren, gibt bei 4 und 5 aber 45 aus. In welcher Zeile liegt das Problem?
+    code: |
+      const a = prompt("Erste Zahl? ");
+      const b = Number(prompt("Zweite Zahl? "));
+      const summe = a + b;
+      console.log(summe);
+    zeile: 1
+    erklaerung: Genau. a bleibt Text, und Text plus Zahl wird geklebt. Mit Number(prompt(...)) in Zeile 1 stimmt es.
+    hinweis: Welche Eingabe wird nicht umgewandelt?
+  - frageart: luecke
+    id: kt-luecke-tofixed
+    text: Ergänze, damit `4.20` herauskommt.
+    code: console.log((4.2).___(2));
+    antworten: [["toFixed"]]
+    erklaerung: Richtig, toFixed(2) gibt genau zwei Stellen hinter dem Punkt.
+    hinweis: Feste Nachkommastellen, auf Englisch fixed.
+  - frageart: auswahl
+    id: kt-nan
+    text: Welcher Ausdruck prüft richtig, ob `wert` keine Zahl ist?
+    als_code: true
+    optionen:
+      - text: Number.isNaN(wert)
+        richtig: true
+        erklaerung: Richtig. Das ist der sichere Weg.
+      - text: typeof wert
+        erklaerung: typeof NaN ist ausgerechnet "number". NaN ist eine Zahl, die keine ist.
+      - text: Number(wert)
+        erklaerung: Das wandelt nur um und prüft nichts. Heraus käme wieder NaN.
+uebung: j058-zahlenwaage

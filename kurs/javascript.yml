@@ -15,3 +15,9 @@ bloecke:
       - einfuehrung: js-rechnen
         uebungen: [j031-plus, j032-broetchenpreis, j033-durchschnitt, j034-gerecht-teilen, j035-eisscholle, j036-tagesbilanz, j037-kartons]
         projekt: [j039-fischwagen-summe]
+      - einfuehrung: js-text
+        uebungen: [j041-zusammenkleben, j042-vorlage, j043-wie-lang, j044-erster-letzter, j045-ausschnitt, j046-schreihals, j047-umtaufen]
+        projekt: [j049-fischwagen-vorlagen]
+      - einfuehrung: js-umwandeln
+        uebungen: [j051-begruessung, j052-doppelt, j053-naechstes-jahr, j054-was-ist-das, j055-gewicht, j056-kommapreis, j057-ohne-antwort]
+        projekt: [j059-fischwagen-eingabe]

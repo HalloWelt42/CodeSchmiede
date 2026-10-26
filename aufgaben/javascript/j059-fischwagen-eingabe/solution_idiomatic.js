@@ -1,0 +1,15 @@
+const wagen = "Zum frostigen Hering";
+const preisBroetchen = 2.5;
+const preisLimonade = 1.75;
+console.log(`*** ${wagen.toUpperCase()} ***`);
+const kunde = prompt("Kunde? ");
+const broetchen = Number(prompt("Brötchen? "));
+const limonaden = Number(prompt("Limonaden? "));
+let summe = 0;
+console.log(`Kassenbon für ${kunde}`);
+console.log(`${broetchen} x Heringsbrötchen: ${(broetchen * preisBroetchen).toFixed(2)} Euro`);
+summe += broetchen * preisBroetchen;
+console.log(`${limonaden} x Limonade: ${(limonaden * preisLimonade).toFixed(2)} Euro`);
+summe += limonaden * preisLimonade;
+console.log("=".repeat(30));
+console.log(`Summe: ${summe.toFixed(2)} Euro`);

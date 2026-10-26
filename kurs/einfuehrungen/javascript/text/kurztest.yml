@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 4: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-laenge
+    text: Was gibt dieses Programm aus?
+    code: |
+      const ort = "Eisberg";
+      console.log(ort.length, ort[1], ort.slice(3));
+    optionen:
+      - text: 7 i berg
+        richtig: true
+        erklaerung: Richtig. Sieben Zeichen, Index 1 ist das zweite Zeichen, und slice(3) nimmt alles ab Index 3.
+      - text: 7 E berg
+        erklaerung: Gezählt wird ab 0, ort[1] ist das zweite Zeichen.
+      - text: 6 i berg
+        erklaerung: length zählt alle Zeichen, E-i-s-b-e-r-g sind sieben.
+  - frageart: luecke
+    id: kt-luecke-gross
+    text: Ergänze die Methode, damit `MOIN` herauskommt.
+    code: console.log("moin".___());
+    antworten: [["toUpperCase"]]
+    erklaerung: Richtig, toUpperCase macht alles groß.
+    hinweis: Upper heißt oben, also groß.
+  - frageart: auswahl
+    id: kt-kleben
+    text: Was gibt `console.log("Tisch " + 2 + 3);` aus?
+    als_code: true
+    optionen:
+      - text: Tisch 23
+        richtig: true
+        erklaerung: Richtig. Von links nach rechts, "Tisch " + 2 ist schon Text, dann wird 3 angeklebt.
+      - text: Tisch 5
+        erklaerung: Vorne steht ein Text, ab da wird nur noch geklebt. Mit Klammern, "Tisch " + (2 + 3), käme 5 heraus.
+      - text: Fehler
+        erklaerung: Text und Zahl lassen sich zusammenkleben, die Zahl wird dabei Text.
+  - frageart: fehlerstelle
+    id: kt-fehler-vorlage
+    text: Das Programm soll `Pia zahlt 5 Euro` ausgeben, aber in einer Zeile stimmt die Vorlage nicht. Welche?
+    code: |
+      const name = "Pia";
+      const betrag = 5;
+      const satz = "${name} zahlt ${betrag} Euro";
+      console.log(satz);
+    zeile: 3
+    erklaerung: Genau. Mit normalen Anführungszeichen bleibt ${name} wörtlich stehen; ersetzt wird nur in Backticks.
+    hinweis: Welche Anführungszeichen braucht eine Vorlage?
+uebung: j048-namensschild

@@ -271,6 +271,22 @@ Offen für den Bau:
   neuer Tabellen liest die Kontrolle über pragma_table_info
 - Kommazahlen erscheinen auch in den Ergebnissen der SQL-Aufgaben so, wie die Datenbank sie schreibt (4.0)
 
+## Ergebnis Schritt 7, Teil 5: JavaScript-Kurs, Erste Schritte (0.85.0)
+
+- Gliederung des JavaScript-Kurses wie beim Python-Kurs in fünf Blöcken mit 21 Kapiteln: Erste Schritte (Ausgabe,
+  Variablen, Rechnen, Text, Eingaben und Umwandeln), Entscheiden und wiederholen (Wahrheit, Verzweigungen, while, for),
+  Sammeln und ordnen (Arrays, Arrays bearbeiten, Objekte, Map und Set), Eigene Funktionen (Funktionen,
+  Pfeilfunktionen und Rückrufe, Sichtbarkeit, Fehler), Größere Programme (Zerlegen und verteilen, Klassen, JSON,
+  Asynchron); Beispiele und Übungen laufen in Node ohne Webseite, ausgegeben wird in die Konsole; Kapitelprojekt ist
+  die Kasse des Fischwagens Zum frostigen Hering, die über alle Kapitel wächst
+- Unterbau: Aufzeichnung eines JavaScript-Laufs über den Inspector von Node (ein Worker hängt sich als Debugger an
+  den Hauptthread, Haltepunkte an jeder Stelle des Beispiels, je Halt die Namen aller Rahmen; Rückgabewerte,
+  Fehlerzeile mit den Schritten davor, Rückrufe aus Zeitgebern und Versprechen); Programm-Aufgaben in JavaScript mit
+  `prompt()` als Eingabe, je Fall ein frischer Kontext; Begriffserkennung über tree-sitter mit Knotenarten,
+  Operatoren, Aufrufen, Methoden und Eigenschaften; Begriffskatalog für den ganzen Kurs
+- Kapitel 1 bis 5 mit eigenen Zeichnungen, Diagrammen, Kurztest, je sieben Übungen und je einem Stück des
+  Kapitelprojekts; ab Kapitel 5 versteckte Fälle mit anderen Eingaben
+
 ## Offen
 
 - Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) zur Freigabe; Bau danach als eigener Abschnitt.
@@ -284,7 +300,7 @@ Offen für den Bau:
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
   Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.
-- Aufbaukurs weiter: JavaScript und CSS; Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
+- Aufbaukurs weiter: JavaScript ab Kapitel 6, dann CSS; Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
 - Aufbaukurs mit Lehreinführungen: geklärt am 25.10.2026; Entwürfe liegen zur Freigabe in `mockups/` (Übersicht
   `mockups/index.html`, Abschnitt Aufbaukurs): Kursübersicht, Einführung für Python, SQL und CSS, Kurztest, Merkblatt,
   Kapitelende mit Sammelkarte, Telefon; freigegeben 25.10.2026 (der Bildbogen entfällt, Bilder kommen aus dem Medienpool).

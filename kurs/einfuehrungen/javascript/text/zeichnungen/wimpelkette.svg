@@ -1,0 +1,44 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin hängt eine Wimpelkette auf, jeder Wimpel trägt ein Zeichen, darunter zählen Punkte von null an hoch">
+  <ellipse cx="130" cy="170" rx="112" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Pfosten links -->
+  <rect x="12" y="30" width="8" height="138" fill="#a8733f" stroke="#2b3442" stroke-width="2"/>
+  <!-- Schnur -->
+  <path d="M18 36 Q100 66 196 46" fill="none" stroke="#2b3442" stroke-width="2"/>
+  <!-- Wimpel: Dreiecke entlang der Schnur, abwechselnde Farben -->
+  <g stroke="#2b3442" stroke-width="1.8" stroke-linejoin="round">
+    <path d="M30 41 h24 l-12 30 Z" fill="#e2574c"/>
+    <path d="M62 49 h24 l-12 30 Z" fill="#f2c94c"/>
+    <path d="M94 53 h24 l-12 30 Z" fill="#5b9bd5"/>
+    <path d="M126 54 h24 l-12 30 Z" fill="#7fc8a9"/>
+    <path d="M158 51 h24 l-12 30 Z" fill="#e2574c"/>
+  </g>
+  <!-- Zeichen als einfache Formen, keine Schrift -->
+  <g fill="#fffaf0" stroke="none">
+    <circle cx="42" cy="51" r="4.5"/>
+    <rect x="70" y="55" width="8" height="8" rx="1"/>
+    <path d="M106 57 l5 9 h-10 Z"/>
+    <path d="M138 57 l2 4 h4 l-3 3 l1 4 l-4 -2 l-4 2 l1 -4 l-3 -3 h4 Z"/>
+    <path d="M166 58 h8 v3 h-8 Z M166 64 h8 v3 h-8 Z"/>
+  </g>
+  <!-- Nummernschildchen darunter -->
+  <g fill="#fffaf0" stroke="#2b3442" stroke-width="1.4">
+    <circle cx="42" cy="82" r="6"/><circle cx="74" cy="90" r="6"/><circle cx="106" cy="94" r="6"/><circle cx="138" cy="95" r="6"/><circle cx="170" cy="92" r="6"/>
+  </g>
+  <g fill="#2b3442">
+    <circle cx="74" cy="90" r="1.6"/>
+    <circle cx="104" cy="94" r="1.6"/><circle cx="108" cy="94" r="1.6"/>
+    <circle cx="135" cy="95" r="1.4"/><circle cx="138" cy="95" r="1.4"/><circle cx="141" cy="95" r="1.4"/>
+    <circle cx="167" cy="90" r="1.4"/><circle cx="173" cy="90" r="1.4"/><circle cx="167" cy="94" r="1.4"/><circle cx="173" cy="94" r="1.4"/>
+  </g>
+  <!-- Pinguin hält das Ende der Schnur -->
+  <g transform="translate(220 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-6 -40 -24 -76" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>
