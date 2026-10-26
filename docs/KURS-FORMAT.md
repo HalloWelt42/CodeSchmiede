@@ -75,7 +75,10 @@ Kopfzeile, NULL als `NULL`.
 
 ### Ablauf
 
-Python: Zeile für Zeile aus der Aufzeichnung in der Sandbox, mit Speicherbild. SQL: das Ergebnis und je Klausel die
+Python: Zeile für Zeile aus der Aufzeichnung in der Sandbox, mit Speicherbild. JavaScript genauso, aufgezeichnet über
+den Inspector von Node wie mit einem Debugger (`kurs/aufzeichner.js`): Arrays erscheinen als Liste, Map als Wörterbuch,
+Set als Menge, Objekte mit ihren Eigenschaften, `null` und `undefined` als nichts; Rückrufe aus Zeitgebern und
+Versprechen laufen mit. Eingaben eines Beispiels (`eingabe`) liest `prompt()`. SQL: das Ergebnis und je Klausel die
 Zwischentabelle in der Reihenfolge der Abarbeitung (FROM, JOIN, WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY,
 LIMIT); der SQL-Parser zerlegt die Abfrage in Teilabfragen, die in der Sandbox auf dem Datensatz laufen. Zerlegt wird
 eine einzelne SELECT-Abfrage ohne WITH und UNION, sonst gibt es nur das Ergebnis.
@@ -118,14 +121,19 @@ bloecke:
 
 Die Kapitelnummer ist die Stelle im Kurs. Übungen sind gewöhnliche Aufgaben unter `aufgaben/`; für Kapitel ohne
 Funktionen gibt es den Aufgabentyp `programm` (ganzes Programm, `tests_sichtbar`/`tests_versteckt` mit `input` als
-Liste der Eingabezeilen und `expected` als erwartete Ausgabe). Vertiefung aus dem Bestand sucht die Codeschmiede
+Liste der Eingabezeilen und `expected` als erwartete Ausgabe), in Python wie in JavaScript. Die Eingabezeilen liest
+`input()` in Python und `prompt()` in JavaScript; beide schreiben ihre Frage ohne Zeilenumbruch in die Ausgabe, und
+`prompt()` liefert `null`, wenn keine Zeile mehr da ist. Ein JavaScript-Programm ist fertig, wenn auch seine
+Zeitgeber und Versprechen erledigt sind. Vertiefung aus dem Bestand sucht die Codeschmiede
 selbst: Aufgaben, die nur Eingeführtes brauchen und das Neue des Kapitels üben.
 
 ## Begriffskatalog und Prüfung
 
 `begriffe/<sprache>.yml` nennt je Begriff `id`, `titel` und `erkennung` (Python: `knoten`, `operatoren`, `aufrufe`,
 `methoden`, `literale` aus dem Syntaxbaum; SQL: `knoten` als Ausdrucksarten des SQL-Parsers, dazu `LeftJoin` und
-`RightJoin`, und `aufrufe` als Funktionen in Großbuchstaben). Für jedes Kapitel gilt als bekannt, was dieses und alle früheren
+`RightJoin`, und `aufrufe` als Funktionen in Großbuchstaben; JavaScript: `knoten` und `literale` als Knotenarten von
+tree-sitter, `operatoren` als Operatoren und Schlüsselwörter, wie sie im Code stehen (`===`, `let`, `of`), `aufrufe`
+als Namen, auch mit Punkt (`console.log`, `Math.round`), `methoden` und `eigenschaften` hinter einem Punkt (`length`)). Für jedes Kapitel gilt als bekannt, was dieses und alle früheren
 einführen. Benutzt Code in Beispielen, Fragen, Kurztest, Übungen oder Projekt einen Begriff, der dort noch nicht
 eingeführt ist, meldet die Prüfung einen Vorgriff. Weitere Befunde: unbekannte Begriffe, doppelt eingeführte, fehlende
 Einführungen, Aufgaben oder Zeichnungen, ungebaute Diagramme, Einführungen ohne Kurs.

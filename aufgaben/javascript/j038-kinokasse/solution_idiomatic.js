@@ -1,0 +1,13 @@
+const erwachsene = 3 * 7.5;
+const kinder = 4 * 4.25;
+let summe = 0;
+let karten = 0;
+summe += erwachsene;
+karten += 3;
+summe += kinder;
+karten += 4;
+console.log("Erwachsene:", erwachsene);
+console.log("Kinder:", kinder);
+console.log("Karten:", karten);
+console.log("Summe:", summe);
+console.log("Gerundet:", Math.round(summe));

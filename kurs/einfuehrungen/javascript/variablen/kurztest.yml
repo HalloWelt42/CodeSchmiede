@@ -1,0 +1,49 @@
+# Kurztest zu Kapitel 2: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-ausgabe-name
+    text: Was gibt dieses Programm aus?
+    code: |
+      let fisch = "Sprotte";
+      fisch = "Scholle";
+      console.log("fisch", fisch);
+    optionen:
+      - text: fisch Scholle
+        richtig: true
+        erklaerung: Richtig. Der erste Wert ist Text in Anführungszeichen, der zweite der Wert hinter dem Namen, und der ist inzwischen Scholle.
+      - text: Sprotte Scholle
+        erklaerung: '"fisch" in Anführungszeichen ist Text, kein Name. Er wird so ausgegeben, wie er dasteht.'
+      - text: fisch Sprotte
+        erklaerung: Zeile 2 hat fisch einen neuen Wert gegeben.
+  - frageart: fehlerstelle
+    id: kt-fehler-const
+    text: Wo bricht das Programm ab?
+    code: |
+      const preis = 3;
+      let anzahl = 2;
+      anzahl = 4;
+      preis = 5;
+      console.log(preis, anzahl);
+    zeile: 4
+    erklaerung: Genau. preis ist ein const und darf keinen neuen Wert bekommen.
+    hinweis: Welcher Name ist ein Messingschild?
+  - frageart: luecke
+    id: kt-luecke-const
+    text: Der Name des Pinguins ändert sich nie. Ergänze das passende Wort.
+    code: |
+      ___ name = "Pit";
+      console.log(name);
+    antworten: [["const"]]
+    erklaerung: Richtig, was sich nie ändert, wird ein const.
+    hinweis: Messingschild statt Kreidetafel.
+  - frageart: ordnen
+    id: kt-ordnen-zaehlen
+    text: Bring die Zeilen in Reihenfolge, damit erst 1 und dann 2 Kunden gezählt werden.
+    zeilen:
+      - let kunden = 1;
+      - console.log(kunden);
+      - kunden = 2;
+      - console.log(kunden);
+    erklaerung: Richtig. Erst anlegen, ausgeben, dann ändern und wieder ausgeben.
+    hinweis: Ein Name muss angelegt sein, bevor man ihn benutzt.
+uebung: j028-steckbrief-namen

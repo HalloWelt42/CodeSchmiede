@@ -291,7 +291,7 @@
           <div class="editor-host">
             <EditorBereich sprache={aktuell.sprache} bind:code />
           </div>
-          <ProbelaufBereich aufgabeId={aktuell.id} {code} funktion={aktuell.funktion} programm={aktuell.task_type === 'programm'} />
+          <ProbelaufBereich aufgabeId={aktuell.id} {code} funktion={aktuell.funktion} programm={aktuell.task_type === 'programm'} sprache={aktuell.sprache} />
         {/snippet}
 
         {#snippet rechts()}

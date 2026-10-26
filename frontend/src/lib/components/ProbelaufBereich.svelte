@@ -11,11 +11,13 @@
     aufgabeId: string;
     code: string;
     funktion: string | null;
-    /** Programm-Aufgabe: Eingabezeilen für input() statt Funktionsargumente */
+    /** Programm-Aufgabe: Eingabezeilen für input() oder prompt() statt Funktionsargumente */
     programm?: boolean;
+    sprache?: string;
   }
 
-  let { aufgabeId, code, funktion, programm = false }: Props = $props();
+  let { aufgabeId, code, funktion, programm = false, sprache = 'python' }: Props = $props();
+  let eingabeBefehl = $derived(sprache === 'javascript' ? 'prompt()' : 'input()');
 
   let eingabe_text = $state('');
   let antwort = $state<ProbelaufAntwort | null>(null);
@@ -65,7 +67,7 @@
     <textarea
       rows="1"
       bind:value={eingabe_text}
-      placeholder="Eingaben für input(), eine je Zeile (leer lassen, wenn das Programm nichts fragt)"
+      placeholder="Eingaben für {eingabeBefehl}, eine je Zeile (leer lassen, wenn das Programm nichts fragt)"
       aria-label="Eingaben für den Probelauf"
     ></textarea>
     {:else}

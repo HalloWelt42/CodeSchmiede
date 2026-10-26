@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 3: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-punkt-vor-strich
+    text: Was gibt dieses Programm aus?
+    code: |
+      let x = 2 + 3 * 4;
+      x++;
+      console.log(x);
+    optionen:
+      - text: '15'
+        richtig: true
+        erklaerung: Richtig. 3 * 4 ist 12, plus 2 ergibt 14, und x++ macht 15 daraus.
+      - text: '21'
+        erklaerung: Punkt vor Strich, erst 3 * 4. Klammern gibt es hier keine.
+      - text: '14'
+        erklaerung: Die zweite Zeile zählt x noch um eins hoch.
+  - frageart: luecke
+    id: kt-luecke-rest
+    text: Ergänze, damit der Rest von 17 geteilt durch 5 ausgegeben wird.
+    code: console.log(17 ___ 5);
+    antworten: [["%"]]
+    erklaerung: Richtig, 17 % 5 ist 2.
+    hinweis: Rest, nicht geteilt.
+  - frageart: auswahl
+    id: kt-runden
+    text: Welcher Ausdruck rundet 4.2 auf 5?
+    als_code: true
+    optionen:
+      - text: Math.ceil(4.2)
+        richtig: true
+        erklaerung: Richtig, ceil heißt Decke und rundet immer auf.
+      - text: Math.round(4.2)
+        erklaerung: round rundet kaufmännisch, 4.2 wird 4.
+      - text: Math.floor(4.2)
+        erklaerung: floor heißt Boden und rundet immer ab.
+  - frageart: fehlerstelle
+    id: kt-fehler-const
+    text: Das Programm soll Kunden zählen, bricht aber ab. In welcher Zeile?
+    code: |
+      const kunden = 0;
+      console.log(kunden);
+      kunden++;
+      console.log(kunden);
+    zeile: 3
+    erklaerung: Genau. ++ ändert den Wert, und kunden ist ein const. Mit let klappt es.
+    hinweis: Welche Zeile ändert einen Wert?
+uebung: j038-kinokasse

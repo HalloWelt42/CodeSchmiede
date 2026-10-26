@@ -1,0 +1,229 @@
+# Begriffskatalog JavaScript: woran die Prüfung erkennt, dass Code einen Baustein benutzt.
+#
+# Jede Einführung nennt unter fuehrt_ein die Begriffe, die sie erklärt. Benutzt Code in einem Kapitel einen Begriff,
+# den weder dieses noch ein früheres Kapitel einführt, meldet die Prüfung einen Vorgriff.
+# Erkennung (Baum von tree-sitter): knoten (benannte Knotenarten), operatoren (Operatoren und Schlüsselwörter, wie sie
+# im Code stehen), literale (Knotenarten fester Werte), aufrufe (Namen, auch mit Punkt wie console.log), methoden,
+# eigenschaften (gelesen hinter einem Punkt, etwa length).
+
+sprache: javascript
+begriffe:
+  # Kapitel 1: Ausgabe
+  - id: ausgabe
+    titel: Ausgabe mit console.log
+    erkennung: {aufrufe: [console.log]}
+  - id: text
+    titel: Text in Anführungszeichen
+    erkennung: {literale: [string]}
+  - id: zahl
+    titel: Ganze Zahlen und Kommazahlen
+    erkennung: {literale: [number]}
+  - id: kommentar
+    titel: Kommentare mit // und /* */
+    erkennung: {knoten: [comment]}
+  # Kapitel 2: Variablen
+  - id: let
+    titel: Variablen mit let
+    erkennung: {operatoren: [let]}
+  - id: const
+    titel: Konstanten mit const
+    erkennung: {operatoren: [const]}
+  - id: zuweisung
+    titel: Neuen Wert zuweisen
+    erkennung: {knoten: [assignment_expression]}
+  # Kapitel 3: Rechnen
+  - id: grundrechnen
+    titel: Plus, minus, mal, geteilt
+    erkennung: {operatoren: ["+", "-", "*", "/"]}
+  - id: rest
+    titel: Rest beim Teilen mit %
+    erkennung: {operatoren: ["%"]}
+  - id: potenz
+    titel: Hochrechnen mit **
+    erkennung: {operatoren: ["**"]}
+  - id: kurzschreibweise
+    titel: Kurzschreibweise wie += und ++
+    erkennung: {knoten: [augmented_assignment_expression, update_expression]}
+  - id: math
+    titel: Runden und mehr mit Math
+    erkennung: {aufrufe: [Math.round, Math.floor, Math.ceil, Math.trunc, Math.max, Math.min, Math.abs, Math.sqrt, Math.random]}
+  # Kapitel 4: Text
+  - id: vorlage
+    titel: Vorlagen mit Backticks und ${}
+    erkennung: {knoten: [template_string]}
+  - id: laenge
+    titel: Länge mit length
+    erkennung: {eigenschaften: [length]}
+  - id: index
+    titel: Zugriff über den Index
+    erkennung: {knoten: [subscript_expression]}
+  - id: textmethoden
+    titel: Methoden für Text
+    erkennung: {methoden: [toUpperCase, toLowerCase, trim, includes, startsWith, endsWith, indexOf, slice, replace, replaceAll, repeat, padStart, padEnd, at]}
+  # Kapitel 5: Umwandeln und Eingabe
+  - id: eingabe
+    titel: Eingabe mit prompt
+    erkennung: {aufrufe: [prompt]}
+  - id: umwandeln
+    titel: Werte umwandeln mit Number und String
+    erkennung: {aufrufe: [Number, String, parseInt, parseFloat, Boolean]}
+  - id: typeof
+    titel: Typ abfragen mit typeof
+    erkennung: {operatoren: [typeof]}
+  - id: nan
+    titel: Keine Zahl erkennen mit Number.isNaN
+    erkennung: {aufrufe: [Number.isNaN, isNaN, Number.isInteger]}
+  - id: nachkommastellen
+    titel: Nachkommastellen mit toFixed
+    erkennung: {methoden: [toFixed]}
+  - id: nichts
+    titel: null und undefined
+    erkennung: {literale: ["null", undefined]}
+  # Kapitel 6: Wahrheit
+  - id: wahrheitswert
+    titel: true und false
+    erkennung: {literale: ["true", "false"]}
+  - id: vergleich
+    titel: Vergleichen mit === und <
+    erkennung: {operatoren: ["===", "!==", "<", ">", "<=", ">="]}
+  - id: loser_vergleich
+    titel: Der lose Vergleich ==
+    erkennung: {operatoren: ["==", "!="]}
+  - id: logik
+    titel: Verknüpfen mit &&, || und !
+    erkennung: {operatoren: ["&&", "||", "!"]}
+  # Kapitel 7: Verzweigungen
+  - id: if
+    titel: Verzweigen mit if
+    erkennung: {knoten: [if_statement]}
+  - id: else
+    titel: Sonst mit else und else if
+    erkennung: {knoten: [else_clause]}
+  - id: bedingter_ausdruck
+    titel: "Kurz entscheiden mit ? und :"
+    erkennung: {knoten: [ternary_expression]}
+  - id: switch
+    titel: Fälle unterscheiden mit switch
+    erkennung: {knoten: [switch_statement]}
+  # Kapitel 8: while
+  - id: while
+    titel: Wiederholen mit while
+    erkennung: {knoten: [while_statement, do_statement]}
+  - id: break
+    titel: Schleife verlassen mit break
+    erkennung: {knoten: [break_statement]}
+  # Kapitel 9: for
+  - id: for
+    titel: Zählen mit for
+    erkennung: {knoten: [for_statement]}
+  - id: for_of
+    titel: Durchgehen mit for ... of
+    erkennung: {operatoren: [of]}
+  - id: continue
+    titel: Durchgang überspringen mit continue
+    erkennung: {knoten: [continue_statement]}
+  # Kapitel 10: Arrays
+  - id: array
+    titel: Arrays mit eckigen Klammern
+    erkennung: {knoten: [array]}
+  - id: anhaengen
+    titel: Anhängen mit push
+    erkennung: {methoden: [push]}
+  - id: zerlegen_verbinden
+    titel: Text zerlegen mit split, verbinden mit join
+    erkennung: {methoden: [split, join]}
+  # Kapitel 11: Arrays bearbeiten
+  - id: arraymethoden
+    titel: Methoden für Arrays
+    erkennung: {methoden: [pop, shift, unshift, splice, sort, reverse, concat, lastIndexOf]}
+  # Kapitel 12: Objekte
+  - id: objekt
+    titel: Objekte mit Eigenschaften
+    erkennung: {knoten: [object]}
+  - id: for_in
+    titel: Eigenschaften durchgehen mit for ... in und in
+    erkennung: {operatoren: [in]}
+  - id: objektmethoden
+    titel: Object.keys, Object.values und Object.entries
+    erkennung: {aufrufe: [Object.keys, Object.values, Object.entries]}
+  - id: delete
+    titel: Eigenschaft entfernen mit delete
+    erkennung: {operatoren: [delete]}
+  # Kapitel 13: Map und Set
+  - id: new
+    titel: Neue Objekte mit new
+    erkennung: {operatoren: [new]}
+  - id: map
+    titel: Wörterbücher mit Map
+    erkennung: {aufrufe: [Map]}
+  - id: set
+    titel: Mengen mit Set
+    erkennung: {aufrufe: [Set]}
+  # Kapitel 14: Funktionen
+  - id: funktion
+    titel: Eigene Funktionen mit function
+    erkennung: {knoten: [function_declaration, function_expression]}
+  - id: return
+    titel: Rückgabe mit return
+    erkennung: {knoten: [return_statement]}
+  - id: standardwert
+    titel: Standardwerte für Parameter
+    erkennung: {knoten: [assignment_pattern]}
+  # Kapitel 15: Pfeilfunktionen
+  - id: pfeilfunktion
+    titel: Pfeilfunktionen mit =>
+    erkennung: {knoten: [arrow_function]}
+  - id: rueckrufmethoden
+    titel: map, filter, reduce und Freunde
+    erkennung: {methoden: [map, filter, reduce, forEach, find, findIndex, some, every]}
+  # Kapitel 16: Sichtbarkeit
+  - id: var
+    titel: Die alte Art var
+    erkennung: {operatoren: [var]}
+  # Kapitel 17: Fehler
+  - id: try
+    titel: Fehler abfangen mit try und catch
+    erkennung: {knoten: [try_statement]}
+  - id: throw
+    titel: Fehler werfen mit throw
+    erkennung: {knoten: [throw_statement]}
+  - id: fehlerarten
+    titel: Error und seine Verwandten
+    erkennung: {aufrufe: [Error, TypeError, RangeError, SyntaxError, ReferenceError]}
+  # Kapitel 18: Zerlegen und verteilen
+  - id: destrukturierung
+    titel: Auspacken in Namen
+    erkennung: {knoten: [object_pattern, array_pattern]}
+  - id: spread
+    titel: Verteilen und einsammeln mit ...
+    erkennung: {operatoren: ["..."]}
+  - id: optional
+    titel: Vorsichtig zugreifen mit ?. und ??
+    erkennung: {knoten: [optional_chain], operatoren: ["??"]}
+  # Kapitel 19: Klassen
+  - id: klasse
+    titel: Eigene Klassen mit class
+    erkennung: {knoten: [class_declaration, class]}
+  - id: this
+    titel: Das eigene Objekt mit this
+    erkennung: {knoten: [this]}
+  - id: extends
+    titel: Erben mit extends
+    erkennung: {knoten: [class_heritage]}
+  - id: getter
+    titel: Berechnete Eigenschaften mit get
+    erkennung: {operatoren: [get, set, static]}
+  # Kapitel 20: JSON
+  - id: json
+    titel: JSON schreiben und lesen
+    erkennung: {aufrufe: [JSON.stringify, JSON.parse]}
+  # Kapitel 21: Asynchron
+  - id: zeitgeber
+    titel: Später ausführen mit setTimeout
+    erkennung: {aufrufe: [setTimeout, setInterval, clearTimeout, clearInterval]}
+  - id: promise
+    titel: Versprechen mit Promise und then
+    erkennung: {aufrufe: [Promise, Promise.all, Promise.resolve, Promise.reject], methoden: [then, catch, finally]}
+  - id: async
+    titel: Warten mit async und await
+    erkennung: {operatoren: [async, await]}

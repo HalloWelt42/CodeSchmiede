@@ -1,0 +1,43 @@
+# Kurztest zu Kapitel 1: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: luecke
+    id: kt-luecke-zahl
+    text: Ergänze so, dass die Zahl 7 ausgegeben wird, als Zahl und nicht als Text.
+    code: console.log(___);
+    antworten: [["7"]]
+    erklaerung: Richtig, Zahlen stehen ohne Anführungszeichen.
+    hinweis: Eine Zahl braucht keine Anführungszeichen.
+  - frageart: fehlerstelle
+    id: kt-fehler-klammer
+    text: Wo fehlt etwas?
+    code: |
+      console.log("Eins");
+      console.log("Zwei";
+      console.log("Drei");
+    zeile: 2
+    erklaerung: Genau, die schließende Klammer fehlt.
+    hinweis: Zähle die Klammern in jeder Zeile.
+  - frageart: auswahl
+    id: kt-ausgabe-komma
+    text: Was gibt `console.log("Fisch", 2.0);` aus?
+    als_code: true
+    optionen:
+      - text: Fisch 2
+        richtig: true
+        erklaerung: Richtig. console.log setzt ein Leerzeichen zwischen die Werte, und 2.0 ist einfach 2.
+      - text: Fisch 2.0
+        erklaerung: Nullen hinter dem Komma lässt JavaScript weg.
+      - text: Fisch, 2
+        erklaerung: Das Komma trennt nur die Werte, ausgegeben wird es nicht.
+  - frageart: ordnen
+    id: kt-ordnen-brief
+    text: Bring den Brief in Ordnung, mit einem Kommentar ganz oben.
+    zeilen:
+      - // Brief an Paul
+      - console.log("Lieber Paul,");
+      - console.log();
+      - console.log("der Hering war lecker.");
+      - console.log("Deine Pia");
+    erklaerung: Richtig. Kommentar, Anrede, leere Zeile, Text, Gruß.
+    hinweis: Wie bei einem echten Brief, oben die Anrede.
+uebung: j018-steckbrief

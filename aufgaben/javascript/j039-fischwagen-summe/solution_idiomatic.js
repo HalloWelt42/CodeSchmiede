@@ -1,0 +1,14 @@
+const wagen = "Zum frostigen Hering";
+let kunde = "Pia";
+const preisBroetchen = 2.5;
+const preisLimonade = 1.75;
+const broetchen = 3;
+const limonaden = 2;
+let summe = 0;
+console.log("*** Fischwagen", wagen, "***");
+console.log("Kassenbon für", kunde);
+console.log(broetchen, "x Heringsbrötchen:", broetchen * preisBroetchen);
+summe += broetchen * preisBroetchen;
+console.log(limonaden, "x Limonade:", limonaden * preisLimonade);
+summe += limonaden * preisLimonade;
+console.log("Summe:", summe);

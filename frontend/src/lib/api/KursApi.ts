@@ -160,7 +160,7 @@ export interface Schritt {
 }
 
 export interface Aufzeichnung {
-  art: 'python';
+  art: 'python' | 'javascript';
   schritte: Schritt[];
   ausgabe: string;
   fehler: string | null;

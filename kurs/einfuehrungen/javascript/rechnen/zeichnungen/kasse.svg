@@ -1,0 +1,39 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin steht hinter einer altmodischen Registrierkasse, aus der ein langer Kassenzettel quillt">
+  <ellipse cx="130" cy="170" rx="112" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Theke -->
+  <rect x="14" y="128" width="170" height="40" rx="3" fill="#c38a55" stroke="#2b3442" stroke-width="2.4"/>
+  <path d="M14 140 h170" stroke="#a8733f" stroke-width="2"/>
+  <!-- Kassenzettel, quillt heraus und rollt sich -->
+  <path d="M60 52 q-6 -26 8 -38 q18 -10 22 8 q2 14 -10 16 q-8 0 -8 -8" fill="none" stroke="#2b3442" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+  <path d="M60 52 q-6 -26 8 -38 q18 -10 22 8 q2 14 -10 16 q-8 0 -8 -8" fill="none" stroke="#fffaf0" stroke-width="7" stroke-linecap="round"/>
+  <!-- Kasse -->
+  <path d="M36 128 l8 -60 h96 l8 60 Z" fill="#e0b54a" stroke="#2b3442" stroke-width="2.4" stroke-linejoin="round"/>
+  <rect x="52" y="44" width="80" height="26" rx="3" fill="#2b3442"/>
+  <rect x="56" y="48" width="72" height="18" rx="2" fill="#7fc8a9"/>
+  <g stroke="#2b3442" stroke-width="2" stroke-linecap="round"><path d="M64 57 h10 M80 57 h4 M90 57 h10 M106 57 h14"/></g>
+  <!-- Tasten -->
+  <g fill="#fffaf0" stroke="#2b3442" stroke-width="1.4">
+    <rect x="54" y="80" width="14" height="10" rx="2"/><rect x="72" y="80" width="14" height="10" rx="2"/><rect x="90" y="80" width="14" height="10" rx="2"/><rect x="108" y="80" width="14" height="10" rx="2"/>
+    <rect x="52" y="96" width="14" height="10" rx="2"/><rect x="70" y="96" width="14" height="10" rx="2"/><rect x="88" y="96" width="14" height="10" rx="2"/>
+  </g>
+  <rect x="106" y="96" width="20" height="10" rx="2" fill="#e2574c" stroke="#2b3442" stroke-width="1.4"/>
+  <rect x="48" y="112" width="88" height="10" rx="2" fill="#b8892a" stroke="#2b3442" stroke-width="1.4"/>
+  <!-- Fisch auf der Theke -->
+  <g transform="translate(160 120)">
+    <path d="M-14 0 q14 -10 26 0 q-12 10 -26 0 Z" fill="#a7afba" stroke="#2b3442" stroke-width="1.6"/>
+    <path d="M12 0 l8 -6 v12 Z" fill="#a7afba" stroke="#2b3442" stroke-width="1.6"/>
+    <circle cx="-8" cy="-1" r="1.4" fill="#2b3442"/>
+  </g>
+  <!-- Pinguin -->
+  <g transform="translate(220 122)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 0 q-14 -4 -26 -18" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+    <path d="M-9 -38 h18 l-3 -8 h-12 Z" fill="#fffaf0" stroke="#2b3442" stroke-width="1.6"/>
+  </g>
+</svg>

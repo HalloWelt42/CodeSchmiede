@@ -1,9 +1,13 @@
-"""Aufzeichnung eines Python-Laufs: je ausgeführter Zeile des eigenen Codes der Speicher danach.
+"""Aufzeichnung eines Laufs: je ausgeführter Zeile des eigenen Codes der Speicher danach.
 
 Daraus entstehen im Kurs Ablauf und Speicherbild eines Beispiels, später im Debugger das Vor- und Zurückspulen.
 Aufgezeichnet wird in der Sandbox wie jeder andere Lauf: das Skript besteht aus einem kleinen Aufzeichner und dem
 Code des Nutzers als Zeichenkette, die der Aufzeichner unter dem Dateinamen BEISPIEL ausführt. Nur Zeilen aus dieser
 Datei zählen, Bibliotheken und der Aufzeichner selbst bleiben unsichtbar (kein Tiefendebugger).
+
+Python verfolgt den Lauf über die Ablaufverfolgung des Interpreters (der Aufzeichner steht unten), JavaScript über
+den Inspector von Node wie ein Debugger (aufzeichner.js). Beide liefern dieselbe Aufzeichnung; Werte aus JavaScript
+bekommen die Arten der Python-Werte (Array als Liste, Map als Wörterbuch, null und undefined als nichts).
 
 Grenzen halten die Aufzeichnung klein: höchstens MAX_SCHRITTE Schritte, Werte bis zur Tiefe MAX_TIEFE mit höchstens
 MAX_ELEMENTE Elementen, Darstellungen bis MAX_ZEICHEN Zeichen. Wird eine Grenze erreicht, läuft der Code trotzdem zu
@@ -13,6 +17,7 @@ Ende, nur die Aufzeichnung endet (`gekuerzt`).
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from typing import Literal
 
 from pydantic import BaseModel, Field
@@ -22,6 +27,9 @@ from ..sandbox.result import RunLimits
 from ..sandbox.runner import Runner
 
 BEISPIEL = "<beispiel>"
+BEISPIEL_JS = "beispiel.js"
+"""Dateiname des Beispiels in JavaScript; der Inspector erkennt das Skript daran."""
+AUFZEICHNER_JS = Path(__file__).with_name("aufzeichner.js")
 MAX_SCHRITTE = 400
 MAX_TIEFE = 3
 MAX_ELEMENTE = 20
@@ -60,8 +68,11 @@ class Schritt(BaseModel):
     """Bei der letzten Zeile einer Funktion: ihr Rückgabewert."""
 
 
+Sprache = Literal["python", "javascript"]
+
+
 class Aufzeichnung(BaseModel):
-    art: Literal["python"] = "python"
+    art: Sprache = "python"
     schritte: list[Schritt] = Field(default_factory=list)
     ausgabe: str = ""
     fehler: str | None = None
@@ -215,14 +226,29 @@ def skript(code: str, marke: str, eingabe: list[str] | None = None) -> str:
     )
 
 
-def aufzeichnen(runner: Runner, code: str, limits: RunLimits | None = None, eingabe: list[str] | None = None) -> Aufzeichnung:
-    """Führt Python-Code in der Sandbox aus und liefert Ausgabe, Fehler und die Schritte mit dem Speicher; input()
-    liest die Zeilen aus `eingabe`."""
+def skript_javascript(code: str, marke: str, eingabe: list[str] | None = None) -> str:
+    """Das JavaScript für die Sandbox: aufzeichner.js mit dem Nutzercode und den Zeilen für prompt(). Der Code wird
+    zuletzt eingesetzt, damit Platzhalter in ihm unberührt bleiben."""
+    werte = {"__BEISPIEL__": BEISPIEL_JS, "__GRENZEN__": [MAX_SCHRITTE, MAX_TIEFE, MAX_ELEMENTE, MAX_ZEICHEN],
+             "__EINGABE__": eingabe or [], "__MARKE__": marke, "__CODE__": code}
+    text = AUFZEICHNER_JS.read_text(encoding="utf-8")
+    for platzhalter, wert in werte.items():
+        text = text.replace(platzhalter, json.dumps(wert))
+    return text
+
+
+SKRIPTE = {"python": skript, "javascript": skript_javascript}
+
+
+def aufzeichnen(runner: Runner, code: str, limits: RunLimits | None = None, eingabe: list[str] | None = None,
+                sprache: Sprache = "python") -> Aufzeichnung:
+    """Führt Code in der Sandbox aus und liefert Ausgabe, Fehler und die Schritte mit dem Speicher; input() in Python
+    und prompt() in JavaScript lesen die Zeilen aus `eingabe`."""
     marke = neue_marke()
-    erg = runner.run_code(skript(code, marke, eingabe), "python", limits or RunLimits())
+    erg = runner.run_code(SKRIPTE[sprache](code, marke, eingabe), sprache, limits or RunLimits())
     _, block = lies_block(erg, marke)
     if block is None:
         # Der Aufzeichner kam nicht bis zum Ende: Zeit, Speicher oder Ausgabeflut
-        return Aufzeichnung(fehler=hinweise(erg).strip() or "Der Lauf brach ab.", zeitueberschreitung=erg.timeout,
+        return Aufzeichnung(art=sprache, fehler=hinweise(erg).strip() or "Der Lauf brach ab.", zeitueberschreitung=erg.timeout,
                             gekuerzt=erg.gekuerzt, laufzeit_ms=erg.laufzeit_ms)
-    return Aufzeichnung.model_validate({**block, "zeitueberschreitung": erg.timeout, "laufzeit_ms": erg.laufzeit_ms})
+    return Aufzeichnung.model_validate({**block, "art": sprache, "zeitueberschreitung": erg.timeout, "laufzeit_ms": erg.laufzeit_ms})

@@ -1,14 +1,14 @@
 <script lang="ts">
   /*
    * Werkbank eines Beispiels: ausführen (erst nach der Vorhersage), am Rechner verändern und das Original
-   * wiederherstellen. Der Lauf kommt aus der Sandbox; wie er sich zeigt, hängt an der Sprache: bei Python Ausgabe,
+   * wiederherstellen. Der Lauf kommt aus der Sandbox; wie er sich zeigt, hängt an der Sprache: bei Python und JavaScript Ausgabe,
    * Ablauf und Speicherbild, bei SQL Ergebnis und Zwischentabellen auf dem Datensatz der Einführung.
    */
   import type { Snippet } from 'svelte';
   import { kursApi, type BeispielTeil, type Lauf } from '../../api/KursApi';
   import EditorBereich from '../EditorBereich.svelte';
   import CodeBlock from './CodeBlock.svelte';
-  import PythonAblauf from './PythonAblauf.svelte';
+  import AufzeichnungAblauf from './AufzeichnungAblauf.svelte';
   import SqlAblauf from './SqlAblauf.svelte';
 
   interface Props {
@@ -81,12 +81,12 @@
   {/if}
 
   {#if beispiel.eingabe.length}
-    <div class="eingabe-zeile"><span class="dim">Eingabe für input():</span>{#each beispiel.eingabe as z, i (i)}<code>{z}</code>{/each}</div>
+    <div class="eingabe-zeile"><span class="dim">Eingabe für {sprache === 'javascript' ? 'prompt()' : 'input()'}:</span>{#each beispiel.eingabe as z, i (i)}<code>{z}</code>{/each}</div>
   {/if}
   {#if lauf?.art === 'sql'}
     <SqlAblauf {lauf} ablauf={beispiel.ablauf} bind:zeile />
   {:else if lauf}
-    <PythonAblauf {lauf} ablauf={beispiel.ablauf} bind:zeile />
+    <AufzeichnungAblauf {lauf} ablauf={beispiel.ablauf} bind:zeile />
   {/if}
   {#if fehler}<div class="erklaerung schlecht"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span>{fehler}</span></div>{/if}
 </div>

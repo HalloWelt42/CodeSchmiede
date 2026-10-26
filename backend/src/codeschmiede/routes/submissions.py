@@ -163,7 +163,7 @@ def baue_submissions_router(state: AppState) -> APIRouter:
         if aufgabe.task_type == "programm":
             try:
                 lauf = fuehre_programm_aus(state.runner, anfrage.code, [[str(z) for z in anfrage.input]],
-                                           RunLimits(timeout_sekunden=aufgabe.zeitlimit_sekunden))
+                                           RunLimits(timeout_sekunden=aufgabe.zeitlimit_sekunden), aufgabe.sprache)
             except SandboxFehler as fehler:
                 raise HTTPException(status_code=503, detail=str(fehler)) from fehler
             erstes = (lauf.ergebnisse or [{"ausgabe": "", "fehler": "Programm lief nicht bis zum Ende"}])[0]

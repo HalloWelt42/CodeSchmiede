@@ -297,15 +297,21 @@ class Kurs(Streng):
 class Erkennung(Streng):
     knoten: list[str] = Field(default_factory=list)
     """Python: Namen von Knoten des Syntaxbaums (For, While, ListComp ...); SQL: Ausdrucksarten des SQL-Parsers
-    (Select, Where, Order, Join, Like ...)."""
+    (Select, Where, Order, Join, Like ...); JavaScript: Knotenarten von tree-sitter (if_statement, template_string,
+    arrow_function ...)."""
     aufrufe: list[str] = Field(default_factory=list)
-    """Python: aufgerufene Namen (print, range, len ...); SQL: Funktionen in Großbuchstaben (COUNT, UPPER ...)."""
+    """Python: aufgerufene Namen (print, range, len ...); SQL: Funktionen in Großbuchstaben (COUNT, UPPER ...);
+    JavaScript: aufgerufene Namen (prompt, Number ...) und Aufrufe an einem Namen mit Punkt (console.log, Math.round)."""
     methoden: list[str] = Field(default_factory=list)
-    """Python: aufgerufene Methoden (append, split ...)."""
+    """Python und JavaScript: aufgerufene Methoden (append, split; push, toUpperCase ...)."""
     operatoren: list[str] = Field(default_factory=list)
-    """Python: Operatoren als Knotennamen (Add, Mod, Eq, In ...)."""
+    """Python: Operatoren als Knotennamen (Add, Mod, Eq, In ...); JavaScript: Operatoren und Schlüsselwörter, wie sie
+    im Code stehen (===, %, let, const ...)."""
     literale: list[str] = Field(default_factory=list)
-    """Python: Typen fester Werte im Code (str, int, float, bool, NoneType)."""
+    """Python: Typen fester Werte im Code (str, int, float, bool, NoneType); JavaScript: Knotenarten fester Werte
+    (number, string, template_string, true, false, null, undefined)."""
+    eigenschaften: list[str] = Field(default_factory=list)
+    """JavaScript: gelesene Eigenschaften hinter einem Punkt, die keine Methoden sind (length, size ...)."""
 
 
 class Begriff(Streng):

@@ -1,0 +1,33 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin wischt eine Kreidetafel ab, daneben hängt ein festes Messingschild mit Schrauben">
+  <ellipse cx="130" cy="170" rx="112" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Messingschild, festgeschraubt -->
+  <rect x="16" y="30" width="78" height="40" rx="6" fill="#e0b54a" stroke="#2b3442" stroke-width="2.4"/>
+  <rect x="22" y="36" width="66" height="28" rx="4" fill="none" stroke="#b8892a" stroke-width="1.6"/>
+  <g stroke="#8a6418" stroke-width="2.6" stroke-linecap="round"><path d="M32 46 h46 M32 54 h34"/></g>
+  <g fill="#a7afba" stroke="#2b3442" stroke-width="1.2">
+    <circle cx="22" cy="36" r="3"/><circle cx="88" cy="36" r="3"/><circle cx="22" cy="64" r="3"/><circle cx="88" cy="64" r="3"/>
+  </g>
+  <g stroke="#2b3442" stroke-width="1"><path d="M20.5 36 h3 M86.5 36 h3 M20.5 64 h3 M86.5 64 h3"/></g>
+  <!-- Kreidetafel auf Staffelei -->
+  <path d="M112 60 l-12 106 M184 60 l12 106 M148 60 v104" stroke="#a8733f" stroke-width="5" stroke-linecap="round"/>
+  <rect x="104" y="40" width="88" height="66" rx="4" fill="#3d5a4a" stroke="#a8733f" stroke-width="5"/>
+  <!-- halb weggewischt: alter Text verblasst, neuer frisch -->
+  <g stroke="#f4f1ea" stroke-width="2.4" stroke-linecap="round">
+    <path d="M116 58 h40" opacity=".25"/>
+    <path d="M116 70 h52 M116 82 h36"/>
+  </g>
+  <path d="M150 52 q12 6 28 2 q-10 10 -26 6 Z" fill="#f4f1ea" opacity=".18"/>
+  <rect x="108" y="100" width="22" height="5" rx="1.5" fill="#f4f1ea" stroke="#2b3442" stroke-width="1"/>
+  <!-- Pinguin mit Schwamm -->
+  <g transform="translate(226 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-14 -14 -30 -48" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+    <rect x="-58" y="-62" width="20" height="12" rx="3" fill="#f2c94c" stroke="#2b3442" stroke-width="1.6" transform="rotate(-18 -48 -56)"/>
+  </g>
+</svg>

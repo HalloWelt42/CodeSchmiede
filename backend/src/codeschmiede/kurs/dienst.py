@@ -41,7 +41,7 @@ VERTIEFUNG_ARTEN = {"code_schreiben", "sql_abfrage", "sql_aenderung"}
 
 Frage = Auswahlfrage | Lueckenfrage | Ordnungsfrage | Fehlerstellenfrage
 Lauf = Aufzeichnung | SqlLauf
-MIT_ABLAUF = {"python", "sql"}
+MIT_ABLAUF = {"python", "sql", "javascript"}
 """Sprachen, deren Beispiele die Codeschmiede ausführt und abspielt."""
 
 
@@ -362,8 +362,8 @@ class Kursdienst:
         raise NichtGefunden(f"Beispiel {bid} gibt es nicht")
 
     def lauf(self, e: Einfuehrung, b: Beispiel, code: str | None = None) -> Lauf:
-        """Lauf eines Beispiels: bei Python die Aufzeichnung, bei SQL Ergebnis und Zwischentabellen auf dem Datensatz
-        der Einführung. Das Original wird je Inhalt nur einmal gerechnet."""
+        """Lauf eines Beispiels: bei Python und JavaScript die Aufzeichnung, bei SQL Ergebnis und Zwischentabellen auf
+        dem Datensatz der Einführung. Das Original wird je Inhalt nur einmal gerechnet."""
         if e.kopf.sprache not in MIT_ABLAUF:
             raise NichtErlaubt(f"Beispiele in {e.kopf.sprache} lassen sich noch nicht ausführen")
         quelltext = b.code if code is None else code
@@ -374,7 +374,7 @@ class Kursdienst:
         if e.kopf.sprache == "sql":
             ergebnis = sql_lauf(self._runner(), self.datensatz_sql(e.kopf.datensatz or ""), quelltext, LAUF)
         else:
-            ergebnis = aufzeichnen(self._runner(), quelltext, LAUF, b.eingabe)
+            ergebnis = aufzeichnen(self._runner(), quelltext, LAUF, b.eingabe, e.kopf.sprache)
         if code is None and not ergebnis.zeitueberschreitung:
             self._laeufe[schluessel] = ergebnis
         return ergebnis

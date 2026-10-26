@@ -1,6 +1,6 @@
 <script lang="ts">
   /*
-   * Lauf eines Python-Beispiels: die Ausgabe bis zum aktuellen Schritt, der Abspieler und das Speicherbild nach
+   * Lauf eines Beispiels in Python oder JavaScript: die Ausgabe bis zum aktuellen Schritt, der Abspieler und das Speicherbild nach
    * jeder Zeile. Die aktuelle Zeile meldet die Komponente nach außen, damit Code und Editor sie markieren.
    */
   import { onDestroy } from 'svelte';

@@ -1,0 +1,17 @@
+# JavaScript-Kurs: Kapitel in Reihenfolge, je Kapitel Einführung, Übungen (verblassend, je Übung eine neue Sache) und
+# das Stück des Kapitelprojekts Fischwagen. Ein Kapitel steht hier erst, wenn es fertig ist (Inbetriebnahme
+# kapitelweise). Beispiele und Übungen laufen in Node, ohne Webseite; ausgegeben wird in die Konsole.
+sprache: javascript
+titel: JavaScript
+bloecke:
+  - titel: Erste Schritte
+    kapitel:
+      - einfuehrung: js-ausgabe
+        uebungen: [j011-hallo-welt, j012-moin, j013-pinguin-sagt, j014-zahlen, j015-drei-namen, j016-schild, j017-auskommentieren]
+        projekt: [j019-fischwagen-kopf]
+      - einfuehrung: js-variablen
+        uebungen: [j021-erster-name, j022-tagesangebot, j023-mittags, j024-schild-repariert, j025-steckbrief-kurz, j026-dreimal, j027-tauschen]
+        projekt: [j029-fischwagen-namen]
+      - einfuehrung: js-rechnen
+        uebungen: [j031-plus, j032-broetchenpreis, j033-durchschnitt, j034-gerecht-teilen, j035-eisscholle, j036-tagesbilanz, j037-kartons]
+        projekt: [j039-fischwagen-summe]

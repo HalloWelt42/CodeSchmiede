@@ -1,7 +1,8 @@
 """Programm-Prüfer: ein ganzes Programm läuft mit vorgegebener Eingabe, verglichen wird seine Ausgabe.
 
 Für den Aufbaukurs, der mit `print` beginnt und Funktionen erst spät einführt. Ein Testfall ist
-`{input: [Zeilen der Eingabe], expected: "erwartete Ausgabe"}`; `input()` liest diese Zeilen der Reihe nach.
+`{input: [Zeilen der Eingabe], expected: "erwartete Ausgabe"}`; `input()` in Python und `prompt()` in JavaScript
+lesen diese Zeilen der Reihe nach (der Rahmen für JavaScript steht in programm_rahmen.js).
 
 Die Sandbox bekommt den Code über die Standardeingabe; darum liest das Programm nicht von dort, sondern ein kleiner
 Rahmen setzt je Fall eine eigene Eingabe ein, führt den Code mit frischen Namen aus und fängt die Ausgabe auf. Alle
@@ -13,6 +14,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+from pathlib import Path
 
 from ..models.aufgabe import Aufgabe
 from ..sandbox.result import RunLimits
@@ -22,6 +24,9 @@ from .registry import registriere
 from .testlauf import hinweise, lies_block, neue_marke
 
 PROGRAMM = "<programm>"
+PROGRAMM_JS = "programm.js"
+RAHMEN_JS = Path(__file__).with_name("programm_rahmen.js")
+SPRACHEN = ("python", "javascript")
 
 _RAHMEN = r'''
 import io as _io, json as _j, sys as _s
@@ -70,9 +75,20 @@ def skript(code: str, eingaben: list[list[str]], marke: str) -> str:
             .replace("__DATEI__", repr(PROGRAMM)).replace("__MARKE__", repr(marke)))
 
 
-def fuehre_programm_aus(runner: Runner, code: str, eingaben: list[list[str]], limits: RunLimits) -> Programmlauf:
+def skript_javascript(code: str, eingaben: list[list[str]], marke: str) -> str:
+    text = RAHMEN_JS.read_text(encoding="utf-8")
+    for platzhalter, wert in {"__FAELLE__": eingaben, "__DATEI__": PROGRAMM_JS, "__MARKE__": marke, "__CODE__": code}.items():
+        text = text.replace(platzhalter, json.dumps(wert))
+    return text
+
+
+SKRIPTE = {"python": skript, "javascript": skript_javascript}
+
+
+def fuehre_programm_aus(runner: Runner, code: str, eingaben: list[list[str]], limits: RunLimits,
+                        sprache: str = "python") -> Programmlauf:
     marke = neue_marke()
-    erg = runner.run_code(skript(code, eingaben, marke), "python", limits)
+    erg = runner.run_code(SKRIPTE[sprache](code, eingaben, marke), sprache, limits)
     _, block = lies_block(erg, marke)
     return Programmlauf(ergebnisse=block if isinstance(block, list) else None, stderr=hinweise(erg),
                         laufzeit_ms=erg.laufzeit_ms, timeout=erg.timeout)
@@ -88,8 +104,8 @@ def _zeilen(eingabe: list) -> list[str]:
 
 def _aufbau(aufgabe: Aufgabe) -> list[str]:
     befunde = []
-    if aufgabe.sprache != "python":
-        befunde.append("Programm-Aufgaben gibt es bisher nur für Python")
+    if aufgabe.sprache not in SPRACHEN:
+        befunde.append(f"Programm-Aufgaben gibt es nur für {' und '.join(SPRACHEN)}")
     for i, t in enumerate(aufgabe.tests_sichtbar + aufgabe.tests_versteckt):
         if not isinstance(t.expected, str):
             befunde.append(f"Test {i + 1}: expected muss die erwartete Ausgabe als Text sein")
@@ -100,10 +116,11 @@ def _aufbau(aufgabe: Aufgabe) -> list[str]:
 
 @registriere("programm", pruefe_aufbau=_aufbau)
 def pruefe(aufgabe: Aufgabe, code: str, runner: Runner) -> PruefErgebnis:
-    if aufgabe.sprache != "python":
-        raise ValueError(f"Aufgabe {aufgabe.id}: Programm-Aufgaben gibt es bisher nur für Python")
+    if aufgabe.sprache not in SPRACHEN:
+        raise ValueError(f"Aufgabe {aufgabe.id}: Programm-Aufgaben gibt es nur für {' und '.join(SPRACHEN)}")
     tests = aufgabe.tests_sichtbar + aufgabe.tests_versteckt
-    lauf = fuehre_programm_aus(runner, code, [_zeilen(t.input) for t in tests], RunLimits(timeout_sekunden=aufgabe.zeitlimit_sekunden))
+    lauf = fuehre_programm_aus(runner, code, [_zeilen(t.input) for t in tests], RunLimits(timeout_sekunden=aufgabe.zeitlimit_sekunden),
+                               aufgabe.sprache)
     if lauf.ergebnisse is None:
         return PruefErgebnis(
             bestanden=False,
