@@ -6,6 +6,8 @@
  */
 
 const NAV_SCHLUESSEL = 'codeschmiede.sidebar_offen';
+/** Ohne gespeicherte Wahl startet die Navigation erst ab dieser Fensterbreite breit, damit der Inhalt Platz hat. */
+const NAV_BREIT_AB_PX = 1200;
 const SPALTEN_SCHLUESSEL = 'codeschmiede.detail_spalten';
 
 const STANDARD_SPALTEN: [number, number, number] = [1 / 3, 1 / 3, 1 / 3];
@@ -17,9 +19,7 @@ class LayoutStore {
 
   init(): void {
     const nb = localStorage.getItem(NAV_SCHLUESSEL);
-    if (nb !== null) {
-      this.navBreit = nb === '1';
-    }
+    this.navBreit = nb !== null ? nb === '1' : window.innerWidth >= NAV_BREIT_AB_PX;
     const sp = localStorage.getItem(SPALTEN_SCHLUESSEL);
     if (sp) {
       try {

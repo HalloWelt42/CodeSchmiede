@@ -9,7 +9,10 @@
   <button
     class="ikon"
     onclick={() => layout.umschaltenNav()}
-    aria-label={layout.navBreit ? 'Navigation schmal' : 'Navigation breit'}
+    aria-label={layout.navBreit ? 'Navigation einklappen' : 'Navigation ausklappen'}
+    title={layout.navBreit ? 'Navigation einklappen' : 'Navigation ausklappen'}
+    aria-expanded={layout.navBreit}
+    aria-controls="hauptnavigation"
   >
     <i class="fa-solid {layout.navBreit ? 'fa-angles-left' : 'fa-angles-right'}" aria-hidden="true"></i>
   </button>
