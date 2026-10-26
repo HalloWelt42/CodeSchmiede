@@ -1,0 +1,56 @@
+# Kurztest zu Kapitel 9: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-summe
+    text: Was gibt dieses Programm aus?
+    code: |
+      let summe = 0;
+      for (let i = 1; i <= 4; i++) {
+        if (i === 3) {
+          continue;
+        }
+        summe += i;
+      }
+      console.log(summe);
+    optionen:
+      - text: '7'
+        richtig: true
+        erklaerung: Richtig. 1 + 2 + 4, die 3 wird übersprungen.
+      - text: '10'
+        erklaerung: Bei i gleich 3 springt continue weiter, ohne zu addieren.
+      - text: '3'
+        erklaerung: continue beendet nicht die ganze Schleife, das wäre break. Die 4 kommt noch dazu.
+  - frageart: luecke
+    id: kt-luecke-of
+    text: Ergänze das Wort, damit z jedes Zeichen von "Möwe" ist.
+    code: |
+      for (const z ___ "Möwe") {
+        console.log(z);
+      }
+    antworten: [["of"]]
+    erklaerung: Richtig, of liefert die Zeichen.
+    hinweis: Zwei Buchstaben, nicht in.
+  - frageart: fehlerstelle
+    id: kt-fehler-const
+    text: Diese Zählschleife bricht gleich im ersten Schritt ab. In welcher Zeile?
+    code: |
+      let gesamt = 0;
+      for (const i = 0; i < 3; i++) {
+        gesamt += i;
+      }
+      console.log(gesamt);
+    zeile: 2
+    erklaerung: Genau. i++ will den Zähler ändern, und ein const lässt sich nicht ändern. Der Zähler braucht let.
+    hinweis: Was passiert mit dem Zähler nach jedem Durchgang?
+  - frageart: auswahl
+    id: kt-wie-oft
+    text: Wie oft läuft der innere Block bei `for (let a = 0; a < 3; a++) { for (let b = 0; b < 4; b++) { ... } }`?
+    optionen:
+      - text: 12-mal
+        richtig: true
+        erklaerung: Richtig. Für jeden der 3 äußeren Durchgänge 4 innere.
+      - text: 7-mal
+        erklaerung: Die Durchgänge werden nicht addiert, sondern multipliziert, die innere Schleife läuft jedes Mal ganz.
+      - text: 4-mal
+        erklaerung: Die innere Schleife läuft bei jedem äußeren Durchgang wieder von vorn.
+uebung: j098-fisch-moewe

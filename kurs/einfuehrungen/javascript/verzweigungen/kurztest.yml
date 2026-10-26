@@ -1,0 +1,65 @@
+# Kurztest zu Kapitel 7: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-else-if
+    text: Was gibt dieses Programm aus?
+    code: |
+      const fische = 12;
+      if (fische > 20) {
+        console.log("Festmahl");
+      } else if (fische > 10) {
+        console.log("Satt");
+      } else if (fische > 5) {
+        console.log("Snack");
+      } else {
+        console.log("Hunger");
+      }
+    optionen:
+      - text: Satt
+        richtig: true
+        erklaerung: Richtig. 12 > 20 stimmt nicht, 12 > 10 schon, und dann ist Schluss.
+      - text: |-
+          Satt
+          Snack
+        erklaerung: Nur der erste passende Weg läuft, auch wenn 12 > 5 ebenfalls stimmt.
+      - text: Festmahl
+        erklaerung: 12 ist nicht größer als 20.
+  - frageart: luecke
+    id: kt-luecke-else
+    text: Ergänze das Wort für den Weg, wenn die Bedingung nicht stimmt.
+    code: |
+      if (offen) {
+        console.log("Herein!");
+      } ___ {
+        console.log("Morgen wieder");
+      }
+    antworten: [["else"]]
+    erklaerung: Richtig, else ist der Sonst-Weg.
+    hinweis: Englisch für sonst.
+  - frageart: auswahl
+    id: kt-kurzform
+    text: 'Was liefert `5 > 3 ? "ja" : "nein"`?'
+    als_code: true
+    optionen:
+      - text: '"ja"'
+        richtig: true
+        erklaerung: Richtig, die Bedingung stimmt, also der erste Wert.
+      - text: '"nein"'
+        erklaerung: 5 > 3 stimmt, also der Wert vor dem Doppelpunkt.
+      - text: 'true'
+        erklaerung: Die Kurzform liefert einen der beiden Werte, nicht die Bedingung.
+  - frageart: fehlerstelle
+    id: kt-fehler-break
+    text: Bei "Pia" soll nur "Hallo Pia" erscheinen, es kommt aber noch "Wer bist du?" dazu. Wo fehlt etwas?
+    code: |
+      const name = "Pia";
+      switch (name) {
+        case "Pia":
+          console.log("Hallo Pia");
+        default:
+          console.log("Wer bist du?");
+      }
+    zeile: 4
+    erklaerung: Genau. Nach der Begrüßung fehlt ein break, darum läuft es in default hinein.
+    hinweis: Was beendet einen case?
+uebung: j078-eintritt

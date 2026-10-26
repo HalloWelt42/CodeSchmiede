@@ -105,13 +105,13 @@ begriffe:
   - id: switch
     titel: Fälle unterscheiden mit switch
     erkennung: {knoten: [switch_statement]}
+  - id: break
+    titel: Abbrechen mit break
+    erkennung: {knoten: [break_statement]}
   # Kapitel 8: while
   - id: while
     titel: Wiederholen mit while
     erkennung: {knoten: [while_statement, do_statement]}
-  - id: break
-    titel: Schleife verlassen mit break
-    erkennung: {knoten: [break_statement]}
   # Kapitel 9: for
   - id: for
     titel: Zählen mit for

@@ -21,3 +21,17 @@ bloecke:
       - einfuehrung: js-umwandeln
         uebungen: [j051-begruessung, j052-doppelt, j053-naechstes-jahr, j054-was-ist-das, j055-gewicht, j056-kommapreis, j057-ohne-antwort]
         projekt: [j059-fischwagen-eingabe]
+  - titel: Entscheiden und wiederholen
+    kapitel:
+      - einfuehrung: js-wahrheit
+        uebungen: [j061-groesser, j062-passwort, j063-volljaehrig, j064-gerade, j065-eis-kaufen, j066-wochenende, j067-gast]
+        projekt: [j069-fischwagen-stempel]
+      - einfuehrung: js-verzweigungen
+        uebungen: [j071-grosser-fang, j072-eis-haelt, j073-gerade-ungerade, j074-ampel, j075-einzahl, j076-angebot, j077-groesste]
+        projekt: [j079-fischwagen-rabatt]
+      - einfuehrung: js-while
+        uebungen: [j081-countdown, j082-summe-bis, j083-waren-zaehlen, j084-verdoppeln, j085-zahlenraten, j086-quersumme, j087-mindestens-einmal]
+        projekt: [j089-fischwagen-tag]
+      - einfuehrung: js-for
+        uebungen: [j091-einmaleins, j092-fuenferschritte, j093-buchstabieren, j094-vokale, j095-rueckwaerts, j096-tannenbaum, j097-nur-ziffern]
+        projekt: [j099-fischwagen-stempelkarte]

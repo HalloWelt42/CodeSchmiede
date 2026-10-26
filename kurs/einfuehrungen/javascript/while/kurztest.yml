@@ -1,0 +1,56 @@
+# Kurztest zu Kapitel 8: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-durchgaenge
+    text: Wie oft erscheint Fisch?
+    code: |
+      let i = 0;
+      while (i < 6) {
+        console.log("Fisch");
+        i += 2;
+      }
+    optionen:
+      - text: Dreimal
+        richtig: true
+        erklaerung: Richtig. i ist 0, 2 und 4; bei 6 stimmt i < 6 nicht mehr.
+      - text: Sechsmal
+        erklaerung: i wächst in Zweierschritten, nicht in Einerschritten.
+      - text: Viermal
+        erklaerung: Bei i gleich 6 ist i < 6 schon falsch.
+  - frageart: luecke
+    id: kt-luecke-while
+    text: Ergänze das Wort, das den Block wiederholt, solange noch Brötchen da sind.
+    code: |
+      let broetchen = 5;
+      ___ (broetchen > 0) {
+        broetchen--;
+      }
+    antworten: [["while"]]
+    erklaerung: Richtig, while wiederholt.
+    hinweis: Englisch für solange.
+  - frageart: fehlerstelle
+    id: kt-fehler-null
+    text: Das Programm soll Namen lesen, bis keiner mehr kommt. Kommt nichts mehr, bricht es ab. In welcher Zeile?
+    code: |
+      while (true) {
+        const name = prompt("Name? ");
+        if (name === "") {
+          break;
+        }
+        console.log(name.toUpperCase());
+      }
+    zeile: 6
+    erklaerung: 'Genau. Kommt nichts mehr, liefert prompt null, und null hat kein toUpperCase. Reparieren lässt es sich in Zeile 3: name === null || name === "".'
+    hinweis: Was liefert prompt, wenn keine Eingabe mehr kommt, und was passiert dann mit dem Wert?
+  - frageart: auswahl
+    id: kt-do-while
+    text: Wann wird bei do ... while die Bedingung geprüft?
+    optionen:
+      - text: Nach jedem Durchgang, darum läuft der Block mindestens einmal
+        richtig: true
+        erklaerung: Richtig, die Bedingung steht am Ende.
+      - text: Vor jedem Durchgang, wie bei while
+        erklaerung: Bei while ja, bei do ... while steht sie hinten.
+      - text: Nur ein einziges Mal am Anfang
+        erklaerung: Geprüft wird nach jedem Durchgang.
+uebung: j088-sparschwein

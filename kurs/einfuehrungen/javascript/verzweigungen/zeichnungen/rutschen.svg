@@ -1,0 +1,28 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin steht oben auf einem Eisberg, von dem zwei Rutschen in verschiedene Richtungen hinabführen">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Wasser rechts unten -->
+  <path d="M170 150 q15 -6 30 0 t30 0 t30 0 v20 h-90 Z" fill="#5b9bd5" stroke="#2b3442" stroke-width="2"/>
+  <!-- Eisberg -->
+  <path d="M86 168 l20 -110 l18 -12 l20 14 l18 108 Z" fill="#e8f2fa" stroke="#2b3442" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M106 58 l18 -12 l20 14 l-10 10 l-12 -8 Z" fill="#fffaf0" stroke="#2b3442" stroke-width="1.6" stroke-linejoin="round"/>
+  <!-- linke Rutsche zum Fischwagen -->
+  <path d="M112 66 q-30 30 -58 76 q-6 10 -26 12" fill="none" stroke="#2b3442" stroke-width="12" stroke-linecap="round"/>
+  <path d="M112 66 q-30 30 -58 76 q-6 10 -26 12" fill="none" stroke="#f2c94c" stroke-width="8" stroke-linecap="round"/>
+  <!-- rechte Rutsche zum Wasser -->
+  <path d="M138 66 q26 30 42 70 q4 10 16 14" fill="none" stroke="#2b3442" stroke-width="12" stroke-linecap="round"/>
+  <path d="M138 66 q26 30 42 70 q4 10 16 14" fill="none" stroke="#7fc8a9" stroke-width="8" stroke-linecap="round"/>
+  <!-- kleiner Fischwagen links unten -->
+  <rect x="6" y="138" width="30" height="20" rx="3" fill="#e2574c" stroke="#2b3442" stroke-width="1.8"/>
+  <circle cx="13" cy="160" r="4" fill="#2b3442"/><circle cx="29" cy="160" r="4" fill="#2b3442"/>
+  <!-- Pinguin oben, schaut auf beide Wege -->
+  <g transform="translate(125 26) scale(0.72)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 0 l-12 6 M17 0 l12 6" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,31 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin steigt eine Eistreppe hinauf, auf jeder Stufe liegt ein Fisch">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Eistreppe, fünf Stufen -->
+  <g fill="#e8f2fa" stroke="#2b3442" stroke-width="2.2" stroke-linejoin="round">
+    <rect x="40" y="144" width="200" height="24"/>
+    <rect x="80" y="120" width="160" height="24"/>
+    <rect x="120" y="96" width="120" height="24"/>
+    <rect x="160" y="72" width="80" height="24"/>
+    <rect x="200" y="48" width="40" height="24"/>
+  </g>
+  <g stroke="#fffaf0" stroke-width="2" stroke-linecap="round" opacity=".9">
+    <path d="M44 148 h30 M84 124 h30 M124 100 h30 M164 76 h30 M204 52 h20"/>
+  </g>
+  <!-- Fische auf den Stufen -->
+  <g stroke="#2b3442" stroke-width="1.4">
+    <g transform="translate(100 140)"><path d="M-9 0 q9 -6 17 0 q-8 6 -17 0 Z" fill="#a7afba"/><path d="M8 0 l5 -4 v8 Z" fill="#a7afba"/></g>
+    <g transform="translate(140 116)"><path d="M-9 0 q9 -6 17 0 q-8 6 -17 0 Z" fill="#a7afba"/><path d="M8 0 l5 -4 v8 Z" fill="#a7afba"/></g>
+    <g transform="translate(180 92)"><path d="M-9 0 q9 -6 17 0 q-8 6 -17 0 Z" fill="#a7afba"/><path d="M8 0 l5 -4 v8 Z" fill="#a7afba"/></g>
+    <g transform="translate(220 68)"><path d="M-9 0 q9 -6 17 0 q-8 6 -17 0 Z" fill="#a7afba"/><path d="M8 0 l5 -4 v8 Z" fill="#a7afba"/></g>
+  </g>
+  <!-- Pinguin auf der zweiten Stufe, Fuß gehoben -->
+  <g transform="translate(108 92) scale(0.8)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-3" cy="-26" r="3.4" fill="#fff"/><circle cx="7" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-2" cy="-25" r="1.7" fill="#111"/><circle cx="8" cy="-25" r="1.7" fill="#111"/>
+    <path d="M12 -20 l9 3 l-9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 33 l7 -4" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+</svg>

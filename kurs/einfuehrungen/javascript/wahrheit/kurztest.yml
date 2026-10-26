@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 6: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-und-oder
+    text: Was gibt dieses Programm aus?
+    code: |
+      const fische = 4;
+      console.log(fische > 2 && fische < 4, fische === 4 || fische > 10, !(fische > 2));
+    optionen:
+      - text: false true false
+        richtig: true
+        erklaerung: Richtig. 4 < 4 ist falsch, also das ganze und. Beim oder reicht fische === 4. Und fische > 2 umgedreht ist false.
+      - text: true true false
+        erklaerung: "4 < 4 ist falsch, kleiner heißt echt kleiner. Für gleich bräuchte es <=."
+      - text: false true true
+        erklaerung: fische > 2 ist wahr, das ! dreht es zu false.
+  - frageart: fehlerstelle
+    id: kt-fehler-zuweisung
+    text: Das Programm soll prüfen, ob der Preis 5 ist, bricht aber ab. In welcher Zeile steckt der Fehler?
+    code: |
+      const preis = 4;
+      console.log("Preis ist 5:", preis = 5);
+    zeile: 2
+    erklaerung: Genau. Ein einzelnes = will preis einen neuen Wert geben, und preis ist ein const. Gemeint war ===.
+    hinweis: Zuweisen oder vergleichen?
+  - frageart: luecke
+    id: kt-luecke-ungleich
+    text: Ergänze, damit true herauskommt, wenn der Fisch kein Hering ist.
+    code: |
+      const fisch = "Makrele";
+      console.log(fisch ___ "Hering");
+    antworten: [["!=="]]
+    erklaerung: Richtig, !== ist der strenge Vergleich auf ungleich.
+    hinweis: Ausrufezeichen und zwei Gleichheitszeichen.
+  - frageart: auswahl
+    id: kt-falsy
+    text: Welcher Wert gilt in JavaScript als wahr?
+    als_code: true
+    optionen:
+      - text: '"0"'
+        richtig: true
+        erklaerung: Richtig. Ein Text mit einem Zeichen darin ist nicht leer, also wahr, auch wenn das Zeichen eine Null ist.
+      - text: '0'
+        erklaerung: Die Zahl 0 gilt als falsch.
+      - text: '""'
+        erklaerung: Der leere Text gilt als falsch.
+uebung: j068-tuersteher
