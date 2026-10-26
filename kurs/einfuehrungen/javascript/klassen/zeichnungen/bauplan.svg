@@ -1,0 +1,37 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin mit Bleistift hinter dem Ohr hält einen blauen Bauplan, daneben stehen drei gleich gebaute, aber verschieden bemalte Vogelhäuschen">
+  <defs>
+    <g id="haus">
+      <path d="M-16 0 l16 -14 l16 14 Z" stroke="#2b3442" stroke-width="1.8" stroke-linejoin="round"/>
+      <rect x="-12" y="0" width="24" height="22" stroke="#2b3442" stroke-width="1.8"/>
+      <circle cx="0" cy="9" r="4" fill="#2b3442"/>
+      <path d="M0 22 v20" stroke="#a8733f" stroke-width="3"/>
+    </g>
+  </defs>
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Bauplan -->
+  <g transform="rotate(-6 70 70)">
+    <rect x="12" y="24" width="112" height="84" rx="3" fill="#5b9bd5" stroke="#2b3442" stroke-width="2.2"/>
+    <g fill="none" stroke="#e8f2fa" stroke-width="1.6">
+      <path d="M44 74 l24 -22 l24 22 Z"/>
+      <rect x="50" y="74" width="36" height="28"/>
+      <circle cx="68" cy="86" r="6"/>
+      <path d="M22 32 h30 M22 40 h20" stroke-dasharray="3 3"/>
+      <path d="M100 52 v50 M96 52 h8 M96 102 h8"/>
+    </g>
+  </g>
+  <!-- drei Häuschen -->
+  <use href="#haus" fill="#e2574c" transform="translate(146 118)"/>
+  <use href="#haus" fill="#f2c94c" transform="translate(180 118)"/>
+  <use href="#haus" fill="#7fc8a9" transform="translate(214 118)"/>
+  <!-- Pinguin klein vorne links -->
+  <g transform="translate(40 140) scale(0.62)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-3" cy="-26" r="3.4" fill="#fff"/><circle cx="7" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-2" cy="-25" r="1.7" fill="#111"/><circle cx="8" cy="-25" r="1.7" fill="#111"/>
+    <path d="M12 -20 l9 3 l-9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <rect x="-20" y="-44" width="22" height="5" rx="2" fill="#f2c94c" stroke="#2b3442" stroke-width="1.4" transform="rotate(-20 -9 -41)"/>
+  </g>
+</svg>

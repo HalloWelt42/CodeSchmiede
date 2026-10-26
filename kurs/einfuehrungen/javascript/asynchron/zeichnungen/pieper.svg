@@ -1,0 +1,32 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin sitzt entspannt auf einer Bank und hält einen blinkenden Abholpieper, im Hintergrund dampft die Küche des Fischwagens">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Fischwagen hinten rechts mit Dampf -->
+  <rect x="150" y="56" width="96" height="70" rx="6" fill="#e2574c" stroke="#2b3442" stroke-width="2.2"/>
+  <path d="M146 56 l10 -16 h84 l10 16 Z" fill="#f2c94c" stroke="#2b3442" stroke-width="2"/>
+  <rect x="162" y="70" width="40" height="26" rx="2" fill="#fffaf0" stroke="#2b3442" stroke-width="1.6"/>
+  <ellipse cx="182" cy="90" rx="12" ry="5" fill="#a7afba" stroke="#2b3442" stroke-width="1.4"/>
+  <circle cx="170" cy="132" r="8" fill="#2b3442"/><circle cx="228" cy="132" r="8" fill="#2b3442"/>
+  <g fill="none" stroke="#a7afba" stroke-width="3" stroke-linecap="round">
+    <path d="M178 82 q-6 -8 0 -16 q6 -8 0 -16"/>
+    <path d="M188 80 q-6 -8 0 -16 q6 -8 0 -16"/>
+  </g>
+  <!-- Bank -->
+  <rect x="20" y="124" width="110" height="10" rx="3" fill="#c38a55" stroke="#2b3442" stroke-width="2"/>
+  <path d="M30 134 v30 M120 134 v30" stroke="#a8733f" stroke-width="6"/>
+  <rect x="20" y="96" width="110" height="8" rx="3" fill="#c38a55" stroke="#2b3442" stroke-width="2"/>
+  <path d="M30 104 v20 M120 104 v20" stroke="#a8733f" stroke-width="5"/>
+  <!-- Pinguin sitzend mit Pieper -->
+  <g transform="translate(72 108)">
+    <ellipse cx="0" cy="6" rx="19" ry="22" fill="#2b3442"/>
+    <ellipse cx="0" cy="9" rx="12.5" ry="15" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <path d="M-7 -26 q2 -2 4 0 M3 -26 q2 -2 4 0" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-10 26 h-8 M10 26 h8" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M14 0 q12 -4 16 -14" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+    <rect x="24" y="-28" width="14" height="18" rx="3" fill="#5b9bd5" stroke="#2b3442" stroke-width="1.6"/>
+    <circle cx="31" cy="-22" r="3" fill="#f2c94c" stroke="#2b3442" stroke-width="1"/>
+  </g>
+  <!-- Blinkstrahlen -->
+  <g stroke="#f2c94c" stroke-width="2.4" stroke-linecap="round"><path d="M112 74 l6 -6 M116 84 l8 0 M112 94 l6 6"/></g>
+</svg>

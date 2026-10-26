@@ -1,0 +1,78 @@
+# Kurztest zu Kapitel 19: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-objekte
+    text: Was gibt dieses Programm aus?
+    code: |
+      class Eimer {
+        constructor() {
+          this.fische = [];
+        }
+        rein(fisch) {
+          this.fische.push(fisch);
+        }
+        get anzahl() {
+          return this.fische.length;
+        }
+      }
+      const a = new Eimer();
+      const b = new Eimer();
+      a.rein("Hering");
+      a.rein("Aal");
+      b.rein("Butt");
+      console.log(a.anzahl, b.anzahl);
+    optionen:
+      - text: 2 1
+        richtig: true
+        erklaerung: Richtig. Jeder Eimer bekommt im constructor sein eigenes leeres Array.
+      - text: 3 3
+        erklaerung: Jedes new baut ein eigenes Objekt mit eigener Liste.
+      - text: 2 undefined
+        erklaerung: anzahl ist ein get, er liefert die Länge der Liste von b, also 1.
+  - frageart: luecke
+    id: kt-luecke-this
+    text: Ergänze, damit die Methode den Namen des eigenen Objekts benutzt.
+    code: |
+      class Pinguin {
+        constructor(name) {
+          this.name = name;
+        }
+        gruss() {
+          return `Moin, ich bin ${___.name}`;
+        }
+      }
+    antworten: [["this"]]
+    erklaerung: Richtig, this ist das Objekt, das gerade grüßt.
+    hinweis: Wie im constructor.
+  - frageart: fehlerstelle
+    id: kt-fehler-super
+    text: Das Programm bricht beim Bauen der Suppe ab. In welcher Zeile?
+    code: |
+      class Gericht {
+        constructor(name) {
+          this.name = name;
+        }
+      }
+      class Suppe extends Gericht {
+        constructor(name, scharf) {
+          this.scharf = scharf;
+          super(name);
+        }
+      }
+      const s = new Suppe("Fischsuppe", true);
+    zeile: 8
+    erklaerung: Genau. In einer erbenden Klasse muss super(...) vor dem ersten this stehen.
+    hinweis: Was muss im constructor einer erbenden Klasse zuerst passieren?
+  - frageart: auswahl
+    id: kt-static
+    text: Wie ruft man `static heute()` aus der Klasse `Kasse` auf?
+    als_code: true
+    optionen:
+      - text: Kasse.heute()
+        richtig: true
+        erklaerung: Richtig, über den Klassennamen.
+      - text: new Kasse().heute
+        erklaerung: static gehört der Klasse, nicht den einzelnen Objekten.
+      - text: this.heute()
+        erklaerung: Von außen gibt es kein passendes this; static ruft man über die Klasse.
+uebung: j198-aquarium

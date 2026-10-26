@@ -30,6 +30,7 @@ BEISPIEL = "<beispiel>"
 BEISPIEL_JS = "beispiel.js"
 """Dateiname des Beispiels in JavaScript; der Inspector erkennt das Skript daran."""
 AUFZEICHNER_JS = Path(__file__).with_name("aufzeichner.js")
+ZEITGEBER_JS = Path(__file__).parent.parent / "pruefung" / "zeitgeber.js"
 MAX_SCHRITTE = 400
 MAX_TIEFE = 3
 MAX_ELEMENTE = 20
@@ -231,7 +232,7 @@ def skript_javascript(code: str, marke: str, eingabe: list[str] | None = None) -
     zuletzt eingesetzt, damit Platzhalter in ihm unberührt bleiben."""
     werte = {"__BEISPIEL__": BEISPIEL_JS, "__GRENZEN__": [MAX_SCHRITTE, MAX_TIEFE, MAX_ELEMENTE, MAX_ZEICHEN],
              "__EINGABE__": eingabe or [], "__MARKE__": marke, "__CODE__": code}
-    text = AUFZEICHNER_JS.read_text(encoding="utf-8")
+    text = AUFZEICHNER_JS.read_text(encoding="utf-8").replace("__ZEITGEBER__", ZEITGEBER_JS.read_text(encoding="utf-8"))
     for platzhalter, wert in werte.items():
         text = text.replace(platzhalter, json.dumps(wert))
     return text

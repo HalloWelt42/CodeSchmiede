@@ -6,8 +6,10 @@
 // keine Haltepunkte und bleiben unsichtbar (kein Tiefendebugger). Rückrufe aus Zeitgebern und Versprechen werden
 // mit aufgezeichnet; die Ergebnisse kommen, sobald nichts mehr zu tun ist.
 //
-// Die Platzhalter __...__ ersetzt aufzeichnung.py durch JSON-Werte. Alles steht in einer Funktion, damit kein Name
-// dieses Rahmens neben den Namen des Beispiels im Speicher erscheint.
+// Zeitgeber laufen auf einer eigenen Uhr (pruefung/zeitgeber.js, von aufzeichnung.py vor dem Rahmen eingesetzt). Die
+// übrigen Platzhalter ersetzt aufzeichnung.py durch JSON-Werte. Alles steht in einer Funktion, damit kein Name dieses
+// Rahmens neben den Namen des Beispiels im Speicher erscheint.
+__ZEITGEBER__
 (() => {
   const BEISPIEL = __BEISPIEL__;
   const [MAX_SCHRITTE, MAX_TIEFE, MAX_ELEMENTE, MAX_ZEICHEN] = __GRENZEN__;
@@ -58,7 +60,12 @@
       plan.push(modul);
       for (const f of [...rahmen].reverse()) {
         if (f === unten && untenIstModul) continue;
-        const r = { name: f.functionName || '(anonym)', bereiche: [] };
+        const r = { name: f.functionName || '(anonym)', bereiche: [], dies: null };
+        // this einer Methode erscheint wie self in Python als eigener Name im Rahmen
+        if (f.this && f.this.type === 'object' && f.this.objectId) {
+          r.dies = bereiche.length;
+          bereiche.push({ objectId: f.this.objectId });
+        }
         for (const b of [...f.scopeChain].reverse()) {
           if (!RAHMEN_BEREICHE.includes(b.type)) continue;
           r.bereiche.push({ nr: bereiche.length, global: false });
@@ -249,10 +256,11 @@
   globalThis[HILFE] = {
     wert: (w) => wert(w),
     lesen(bauplan, bereiche) {
-      const rahmen = bauplan.map((r) => ({
-        name: r.name,
-        variablen: Object.assign({}, ...r.bereiche.map((b) => namen(bereiche[b.nr], b.global))),
-      }));
+      const rahmen = bauplan.map((r) => {
+        const dies = r.dies === null || r.dies === undefined ? undefined : bereiche[r.dies];
+        const eigenes = dies !== undefined && dies !== globalThis ? { this: wert(dies) } : {};
+        return { name: r.name, variablen: Object.assign(eigenes, ...r.bereiche.map((b) => namen(bereiche[b.nr], b.global))) };
+      });
       return { rahmen, ausgabe: neu.splice(0).join('') };
     },
   };
@@ -269,6 +277,9 @@
   }
   process.on('uncaughtException', fehler);
   process.on('unhandledRejection', fehler);
+  // Zeitgeber auf eigener Uhr: die Halte des Verfolgers kosten echte Zeit und brächten sonst die Reihenfolge durcheinander
+  const zeitgeber = zeitgeberBauen(fehler);
+  for (const name of ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval']) globalThis[name] = zeitgeber[name];
 
   const bereit = new Int32Array(new SharedArrayBuffer(4));
   const worker = new Worker(`(${verfolger.toString()})()`, {
@@ -297,9 +308,7 @@
   }
 
   // Erst abschließen, wenn auch Zeitgeber und Versprechen des Beispiels erledigt sind
-  worker.unref();
-  process.once('beforeExit', () => {
-    worker.ref();
+  zeitgeber.abarbeiten().then(() => {
     worker.once('message', ({ schritte, gekuerzt }) => {
       const rest = neu.splice(0).join('');
       if (rest && schritte.length) schritte[schritte.length - 1].ausgabe += rest;

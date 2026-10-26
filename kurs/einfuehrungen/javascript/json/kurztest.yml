@@ -1,0 +1,45 @@
+# Kurztest zu Kapitel 20: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-stringify
+    text: Was gibt dieses Programm aus?
+    code: |
+      const fang = { fisch: "Hering", anzahl: 3, frisch: true, notiz: undefined };
+      console.log(JSON.stringify(fang));
+    optionen:
+      - text: '{"fisch":"Hering","anzahl":3,"frisch":true}'
+        richtig: true
+        erklaerung: Richtig. Namen in doppelten Anführungszeichen, keine Leerzeichen, und undefined fällt weg.
+      - text: "{ fisch: 'Hering', anzahl: 3, frisch: true }"
+        erklaerung: So zeigt console.log ein Objekt. JSON setzt doppelte Anführungszeichen, auch um die Namen.
+      - text: '{"fisch":"Hering","anzahl":"3","frisch":"true","notiz":"undefined"}'
+        erklaerung: Zahlen und Wahrheitswerte bleiben in JSON ohne Anführungszeichen, und undefined fällt ganz weg.
+  - frageart: luecke
+    id: kt-luecke-einruecken
+    text: Ergänze, damit der JSON-Text mit zwei Leerzeichen eingerückt wird.
+    code: 'console.log(JSON.stringify({ a: 1 }, null, ___));'
+    antworten: [["2"]]
+    erklaerung: Richtig, die dritte Angabe ist die Einrückung.
+    hinweis: Wie viele Leerzeichen?
+  - frageart: fehlerstelle
+    id: kt-fehler-json
+    text: Das Programm bricht ab. In welcher Zeile?
+    code: |
+      const zeile = "{'name': 'Pia'}";
+      const kunde = JSON.parse(zeile);
+      console.log(kunde.name);
+    zeile: 2
+    erklaerung: Genau. JSON verlangt doppelte Anführungszeichen; parse wirft einen SyntaxError.
+    hinweis: Welche Anführungszeichen erlaubt JSON?
+  - frageart: auswahl
+    id: kt-map
+    text: Was wird aus einer Map bei `JSON.stringify`?
+    optionen:
+      - text: Ein leeres Objekt {}
+        richtig: true
+        erklaerung: Richtig. JSON kennt keine Maps; wer sie speichern will, wandelt sie vorher in ein Objekt oder Array um.
+      - text: Ein Objekt mit allen Einträgen
+        erklaerung: Das wäre schön, passiert aber nicht von selbst.
+      - text: Ein Fehler
+        erklaerung: stringify meckert nicht, es lässt den Inhalt einfach weg.
+uebung: j208-spielstand

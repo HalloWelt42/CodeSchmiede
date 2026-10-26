@@ -1,0 +1,35 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin packt eine Kiste aus und legt jedes Teil auf ein eigenes beschriftetes Feld am Boden">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- offene Kiste -->
+  <path d="M120 70 h80 v50 h-80 Z" fill="#c38a55" stroke="#2b3442" stroke-width="2.2"/>
+  <path d="M120 70 l-14 -18 h80 l14 18" fill="#d9a774" stroke="#2b3442" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M200 70 l14 -16" stroke="#2b3442" stroke-width="2"/>
+  <!-- Felder am Boden -->
+  <g fill="#fffaf0" stroke="#2b3442" stroke-width="1.6">
+    <rect x="10" y="132" width="44" height="30" rx="3"/>
+    <rect x="62" y="132" width="44" height="30" rx="3"/>
+    <rect x="114" y="132" width="44" height="30" rx="3"/>
+  </g>
+  <g fill="#e8f2fa" stroke="#2b3442" stroke-width="1.2">
+    <rect x="16" y="124" width="22" height="10" rx="2"/><rect x="68" y="124" width="22" height="10" rx="2"/><rect x="120" y="124" width="22" height="10" rx="2"/>
+  </g>
+  <!-- Teile auf den Feldern -->
+  <g stroke="#2b3442" stroke-width="1.4">
+    <g transform="translate(32 148)"><path d="M-12 0 q12 -8 22 0 q-10 8 -22 0 Z" fill="#a7afba"/><path d="M10 0 l6 -5 v10 Z" fill="#a7afba"/></g>
+    <ellipse cx="84" cy="148" rx="14" ry="8" fill="#d9a774"/>
+    <circle cx="131" cy="146" r="7" fill="#f2c94c"/><circle cx="143" cy="150" r="5" fill="#f2c94c"/>
+  </g>
+  <!-- ein Teil fliegt noch -->
+  <g transform="translate(174 46) rotate(-25)" stroke="#2b3442" stroke-width="1.4"><ellipse cx="0" cy="0" rx="10" ry="6" fill="#7fc8a9"/></g>
+  <!-- Pinguin -->
+  <g transform="translate(226 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -4 q-14 -18 -36 -26" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

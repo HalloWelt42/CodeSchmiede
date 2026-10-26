@@ -1,0 +1,61 @@
+# Kurztest zu Kapitel 21: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-reihenfolge
+    text: Was gibt dieses Programm aus?
+    code: |
+      setTimeout(() => console.log("1"), 20);
+      setTimeout(() => console.log("2"), 10);
+      console.log("3");
+    optionen:
+      - text: |-
+          3
+          2
+          1
+        richtig: true
+        erklaerung: Richtig. Zuerst der übrige Code, dann die Rückrufe in der Reihenfolge, in der ihre Zeit um ist.
+      - text: |-
+          1
+          2
+          3
+        erklaerung: setTimeout gibt nur Aufträge für später ab. Die 3 kommt sofort.
+      - text: |-
+          3
+          1
+          2
+        erklaerung: Der zweite Zeitgeber ist nach 10 Millisekunden dran, der erste erst nach 20.
+  - frageart: luecke
+    id: kt-luecke-async
+    text: Ergänze das Wort, damit await in der Funktion erlaubt ist.
+    code: |
+      ___ function laden() {
+        await warte(10);
+      }
+    antworten: [["async"]]
+    erklaerung: Richtig, await gibt es nur in einer async-Funktion.
+    hinweis: Fünf Buchstaben vor function.
+  - frageart: auswahl
+    id: kt-all
+    text: Was liefert `await Promise.all([a, b])`?
+    optionen:
+      - text: Ein Array mit den Ergebnissen von a und b, in dieser Reihenfolge
+        richtig: true
+        erklaerung: Richtig, die Reihenfolge der Ergebnisse folgt der Reihenfolge im Aufruf.
+      - text: Nur das Ergebnis, das zuerst fertig ist
+        erklaerung: Promise.all wartet auf alle.
+      - text: Ein Array in der Reihenfolge, in der sie fertig wurden
+        erklaerung: Fertig werden dürfen sie in beliebiger Reihenfolge, das Array behält die Reihenfolge des Aufrufs.
+  - frageart: fehlerstelle
+    id: kt-fehler-await
+    text: Das Programm bricht schon beim Lesen ab. In welcher Zeile?
+    code: |
+      const warte = (ms) => new Promise((erfuellen) => setTimeout(erfuellen, ms));
+      function bestellung() {
+        await warte(10);
+        console.log("fertig");
+      }
+      bestellung();
+    zeile: 3
+    erklaerung: Genau. await steht in einer Funktion ohne async, das ist ein SyntaxError.
+    hinweis: Wo ist await erlaubt?
+uebung: j218-kueche

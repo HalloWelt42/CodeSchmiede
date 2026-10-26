@@ -26,6 +26,7 @@ from .testlauf import hinweise, lies_block, neue_marke
 PROGRAMM = "<programm>"
 PROGRAMM_JS = "programm.js"
 RAHMEN_JS = Path(__file__).with_name("programm_rahmen.js")
+ZEITGEBER_JS = Path(__file__).with_name("zeitgeber.js")
 SPRACHEN = ("python", "javascript")
 
 _RAHMEN = r'''
@@ -76,7 +77,7 @@ def skript(code: str, eingaben: list[list[str]], marke: str) -> str:
 
 
 def skript_javascript(code: str, eingaben: list[list[str]], marke: str) -> str:
-    text = RAHMEN_JS.read_text(encoding="utf-8")
+    text = RAHMEN_JS.read_text(encoding="utf-8").replace("__ZEITGEBER__", ZEITGEBER_JS.read_text(encoding="utf-8"))
     for platzhalter, wert in {"__FAELLE__": eingaben, "__DATEI__": PROGRAMM_JS, "__MARKE__": marke, "__CODE__": code}.items():
         text = text.replace(platzhalter, json.dumps(wert))
     return text

@@ -78,7 +78,8 @@ Kopfzeile, NULL als `NULL`.
 Python: Zeile für Zeile aus der Aufzeichnung in der Sandbox, mit Speicherbild. JavaScript genauso, aufgezeichnet über
 den Inspector von Node wie mit einem Debugger (`kurs/aufzeichner.js`): Arrays erscheinen als Liste, Map als Wörterbuch,
 Set als Menge, Objekte mit ihren Eigenschaften, `null` und `undefined` als nichts; Rückrufe aus Zeitgebern und
-Versprechen laufen mit. Eingaben eines Beispiels (`eingabe`) liest `prompt()`. SQL: das Ergebnis und je Klausel die
+Versprechen laufen mit. Zeitgeber laufen dabei, wie in den Programm-Aufgaben, auf einer eigenen Uhr
+(`pruefung/zeitgeber.js`): Sie warten nicht echt, sondern kommen in der Reihenfolge ihrer Wartezeiten dran. Eingaben eines Beispiels (`eingabe`) liest `prompt()`. SQL: das Ergebnis und je Klausel die
 Zwischentabelle in der Reihenfolge der Abarbeitung (FROM, JOIN, WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY,
 LIMIT); der SQL-Parser zerlegt die Abfrage in Teilabfragen, die in der Sandbox auf dem Datensatz laufen. Zerlegt wird
 eine einzelne SELECT-Abfrage ohne WITH und UNION, sonst gibt es nur das Ergebnis.

@@ -63,3 +63,17 @@ bloecke:
       - einfuehrung: js-fehler
         uebungen: [j171-erstes-netz, j172-durch-null, j173-sichere-zahl, j174-kasse-zu, j175-noten, j176-weiterwerfen, j177-unbekannte-ware]
         projekt: [j179-fischwagen-eingaben]
+  - titel: Größere Programme
+    kapitel:
+      - einfuehrung: js-zerlegen
+        uebungen: [j181-auspacken, j182-tauschen, j183-objekt-auspacken, j184-kopie, j185-beliebig-viele, j186-vorsichtig, j187-einstellungen]
+        projekt: [j189-fischwagen-gutscheine]
+      - einfuehrung: js-klassen
+        uebungen: [j191-erste-klasse, j192-konto, j193-getter, j194-viele-objekte, j195-static, j196-erben, j197-tostring]
+        projekt: [j199-fischwagen-klasse]
+      - einfuehrung: js-json
+        uebungen: [j201-als-text, j202-zettel-lesen, j203-schoen, j204-bestellung-rechnen, j205-tiefe-kopie, j206-unlesbar, j207-map-speichern]
+        projekt: [j209-fischwagen-kassenbuch]
+      - einfuehrung: js-asynchron
+        uebungen: [j211-spaeter, j212-countdown, j213-versprochen, j214-await, j215-angebrannt, j216-alle-zugleich, j217-nacheinander]
+        projekt: [j219-fischwagen-kueche]

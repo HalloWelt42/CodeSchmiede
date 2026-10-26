@@ -91,6 +91,16 @@ def test_eingabe_und_rueckrufe(docker_runner):
 
 
 @braucht_sandbox
+def test_zeitgeber_laufen_auf_eigener_uhr(docker_runner):
+    """Die Halte des Verfolgers kosten echte Zeit; die eigene Uhr hält die Reihenfolge trotzdem nach den Wartezeiten."""
+    code = ('const kochen = (g, ms) => new Promise((ok) => setTimeout(() => { console.log(g); ok(g); }, ms));\n'
+            'async function kueche() {\n  const t = await Promise.all([kochen("Suppe", 30), kochen("Brot", 10), kochen("Limo", 5)]);\n'
+            '  console.log(t.join(","));\n}\nkueche();\n')
+    a = _js(docker_runner, code)
+    assert a.fehler is None and a.ausgabe == "Limo\nBrot\nSuppe\nSuppe,Brot,Limo\n"
+
+
+@braucht_sandbox
 def test_programm_mit_prompt(settings, docker_runner):
     state = app_bauen(settings, runner=docker_runner).state.codeschmiede
     schreibe_aufgabe(settings.aufgaben_pfad, "javascript", "j901-gruss", "programm", """\

@@ -1,0 +1,51 @@
+# Kurztest zu Kapitel 18: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-auspacken
+    text: Was gibt dieses Programm aus?
+    code: |
+      const [a, , b = 9] = [1, 2];
+      const { x, y = 5 } = { x: 3, y: null };
+      console.log(a, b, x, y);
+    optionen:
+      - text: 1 9 3 null
+        richtig: true
+        erklaerung: Richtig. Die Lücke überspringt die 2, b fehlt und bekommt 9. y ist da, wenn auch null; der Standardwert gilt nur bei undefined.
+      - text: 1 2 3 5
+        erklaerung: Das leere Komma überspringt einen Wert, b wäre der dritte. Und null ist ein vorhandener Wert.
+      - text: 1 9 3 5
+        erklaerung: Standardwerte springen nur bei undefined ein, nicht bei null.
+  - frageart: luecke
+    id: kt-luecke-spread
+    text: Ergänze, damit eine Kopie mit einem zusätzlichen Gast entsteht.
+    code: |
+      const gaeste = ["Pia", "Ole"];
+      const mehr = [___gaeste, "Ida"];
+    antworten: [["..."]]
+    erklaerung: Richtig, die drei Punkte verteilen die Gäste ins neue Array.
+    hinweis: Drei gleiche Zeichen.
+  - frageart: auswahl
+    id: kt-nullish
+    text: Was liefert `0 ?? 7`?
+    als_code: true
+    optionen:
+      - text: '0'
+        richtig: true
+        erklaerung: Richtig. 0 ist weder null noch undefined, also bleibt sie.
+      - text: '7'
+        erklaerung: Das wäre 0 || 7. ?? ersetzt nur null und undefined.
+      - text: 'undefined'
+        erklaerung: ?? liefert einen der beiden Werte, hier die 0.
+  - frageart: fehlerstelle
+    id: kt-fehler-optional
+    text: Das Programm bricht bei Ole ab. In welcher Zeile fehlt ein Fragezeichen?
+    code: |
+      const kunden = [{ name: "Pia", karte: { stempel: 3 } }, { name: "Ole" }];
+      for (const k of kunden) {
+        const stempel = k.karte.stempel ?? 0;
+        console.log(k.name, stempel);
+      }
+    zeile: 3
+    erklaerung: Genau. Ole hat keine karte; k.karte?.stempel liefert dann undefined, und ?? macht 0 daraus.
+    hinweis: Wo wird in etwas gegriffen, das fehlen kann?
+uebung: j188-kundendatei

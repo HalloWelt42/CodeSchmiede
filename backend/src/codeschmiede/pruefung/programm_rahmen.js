@@ -2,8 +2,10 @@
 //
 // Jeder Fall läuft in einem frischen Kontext mit eigener Eingabe: prompt(frage) schreibt die Frage wie input() in
 // Python ohne Zeilenumbruch in die Ausgabe und liefert die nächste Eingabezeile (null, wenn keine mehr da ist),
-// console schreibt in die Ausgabe des Falls. Ein Fall ist fertig, wenn auch seine Zeitgeber und Versprechen erledigt
-// sind. Die Platzhalter __...__ ersetzt programm_pruefer.py durch JSON-Werte, den Code zuletzt.
+// console schreibt in die Ausgabe des Falls. Zeitgeber laufen auf einer eigenen Uhr (zeitgeber.js, von
+// programm_pruefer.py vor dem Rahmen eingesetzt); ein Fall ist fertig, wenn auch seine Zeitgeber und Versprechen
+// erledigt sind. Die übrigen Platzhalter ersetzt programm_pruefer.py durch JSON-Werte, den Code zuletzt.
+__ZEITGEBER__
 (async () => {
   const vm = require('node:vm');
   const util = require('node:util');
@@ -36,28 +38,12 @@
     return new Promise((fertig) => {
       const teile = [];
       const zeilen = [...eingabe];
-      const offen = new Set();
       let fehler = null;
-      let abgeschlossen = false;
       const schreib = (text) => teile.push(text);
       melden = (e) => {
         if (fehler === null) fehler = fehlertext(e);
       };
-      const abschliessen = () => {
-        // erst nach den Versprechen dieses Durchgangs nachsehen, ob noch etwas aussteht
-        setImmediate(() => {
-          if (offen.size || abgeschlossen) return;
-          abgeschlossen = true;
-          fertig({ ausgabe: teile.join(''), fehler });
-        });
-      };
-      const rueckruf = (f, argumente) => {
-        try {
-          f(...argumente);
-        } catch (e) {
-          melden(e);
-        }
-      };
+      const zeitgeber = zeitgeberBauen((e) => melden(e));
       const konsole = {};
       for (const art of ['log', 'info', 'debug', 'warn', 'error']) konsole[art] = (...x) => schreib(util.format(...x) + '\n');
       const kontext = vm.createContext({
@@ -66,37 +52,18 @@
           if (frage !== undefined) schreib(String(frage));
           return zeilen.length ? zeilen.shift() : null;
         },
-        setTimeout: (f, ms, ...argumente) => {
-          const t = setTimeout(() => {
-            offen.delete(t);
-            rueckruf(f, argumente);
-            abschliessen();
-          }, ms);
-          offen.add(t);
-          return t;
-        },
-        clearTimeout: (t) => {
-          clearTimeout(t);
-          offen.delete(t);
-          abschliessen();
-        },
-        setInterval: (f, ms, ...argumente) => {
-          const t = setInterval(() => rueckruf(f, argumente), ms);
-          offen.add(t);
-          return t;
-        },
-        clearInterval: (t) => {
-          clearInterval(t);
-          offen.delete(t);
-          abschliessen();
-        },
+        setTimeout: zeitgeber.setTimeout,
+        clearTimeout: zeitgeber.clearTimeout,
+        setInterval: zeitgeber.setInterval,
+        clearInterval: zeitgeber.clearInterval,
       });
       try {
         skript.runInContext(kontext);
       } catch (e) {
         melden(e);
       }
-      abschliessen();
+      // Ein Fall ist fertig, wenn auch seine Zeitgeber und Versprechen erledigt sind
+      zeitgeber.abarbeiten().then(() => fertig({ ausgabe: teile.join(''), fehler }));
     });
   }
 
