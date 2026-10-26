@@ -29,3 +29,29 @@ bloecke:
       - einfuehrung: css-kastenmodell
         uebungen: [w071-schild, w072-polster, w073-rahmen, w074-abstand, w075-genau-300, w076-border-box, w077-mittig]
         projekt: [w079-speisekarte-kasten]
+      - einfuehrung: css-raender
+        uebungen: [w081-gutschein, w082-urkunde, w083-unterstrichen, w084-pillen, w085-kreis, w086-sprechblase, w087-umriss]
+        projekt: [w089-speisekarte-ecken]
+      - einfuehrung: css-einheiten
+        uebungen: [w091-polster-in-em, w092-rem, w093-halbe-halbe, w094-viertel-buehne, w095-obergrenze, w096-untergrenze, w097-gemischt]
+        projekt: [w099-speisekarte-masse]
+      - einfuehrung: css-schatten
+        uebungen: [w101-schweben, w102-harte-kante, w103-eingedrueckt, w104-leuchtschrift, w105-sonnenuntergang, w106-markise, w107-sonne]
+        projekt: [w109-speisekarte-schatten]
+  - titel: Anordnen
+    kapitel:
+      - einfuehrung: css-display
+        uebungen: [w111-leiste, w112-span-als-block, w113-kacheln, w114-ausblenden, w115-platz-halten, w116-knoepfe, w117-schmale-ueberschrift]
+        projekt: [w119-speisekarte-display]
+      - einfuehrung: css-flexbox
+        uebungen: [w121-in-eine-reihe, w122-luecken, w123-spalte, w124-andersrum, w125-umbrechen, w126-preis-daneben, w127-kartenreihe]
+        projekt: [w129-speisekarte-flex]
+      - einfuehrung: css-flex-ausrichten
+        uebungen: [w131-mitte, w132-name-und-preis, w133-gleich-verteilt, w134-senkrecht-mittig, w135-genau-mitte, w136-aus-der-reihe, w137-suchleiste]
+        projekt: [w139-speisekarte-ausrichten]
+      - einfuehrung: css-grid
+        uebungen: [w141-drei-spalten, w142-anteile, w143-wiederholen, w144-fest-und-rest, w145-zeilen-und-luecken, w146-mindestens, w147-eiswuerfelfach]
+        projekt: [w149-speisekarte-grid]
+      - einfuehrung: css-grid-bereiche
+        uebungen: [w151-breite-torte, w152-hohe-saeule, w153-ganze-breite, w154-genau-platziert, w155-seitenplan, w156-luecke-im-plan, w157-umgestellt]
+        projekt: [w159-speisekarte-bereiche]

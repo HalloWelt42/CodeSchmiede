@@ -1,0 +1,15 @@
+.theke {
+  width: 360px;
+  background-color: #2b3442;
+  padding: 10px;
+}
+
+.links {
+  width: 50%;
+  background-color: teal;
+}
+
+.rechts {
+  width: 75%;
+  background-color: purple;
+}

@@ -1,0 +1,10 @@
+.fach {
+  display: grid;
+  grid-template-columns: 120px 120px 120px;
+}
+
+.fach div {
+  background-color: teal;
+  border: 1px solid #2b3442;
+  padding: 8px;
+}

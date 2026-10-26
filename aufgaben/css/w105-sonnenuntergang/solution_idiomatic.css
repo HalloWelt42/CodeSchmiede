@@ -1,0 +1,5 @@
+.himmel {
+  height: 200px;
+  padding: 16px;
+  background: linear-gradient(to bottom, #ffb347, #ff5e62, #2b1a4a);
+}

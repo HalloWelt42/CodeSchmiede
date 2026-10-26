@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 12: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-wer-ordnet
+    text: "Welche Elemente stellen sich bei `.box { display: flex; }` in eine Reihe?"
+    optionen:
+      - text: Die direkten Kinder von .box
+        richtig: true
+        erklaerung: Richtig. Enkel ordnen sich nicht mit, sie bleiben in ihren Eltern.
+      - text: Alle Nachfahren von .box
+        erklaerung: Nur die direkten Kinder werden Flex-Elemente.
+      - text: .box selbst und seine Geschwister
+        erklaerung: .box bleibt ein Block, nur sein Inhalt ordnet sich neu.
+  - frageart: auswahl
+    id: kt-reverse
+    text: "Wie stehen drei Kinder A, B, C bei `flex-direction: column-reverse`?"
+    optionen:
+      - text: C oben, dann B, A unten
+        richtig: true
+        erklaerung: Richtig, eine Spalte, von unten nach oben gefüllt.
+      - text: A oben, dann B, C unten
+        erklaerung: Das wäre column ohne reverse.
+      - text: C B A nebeneinander
+        erklaerung: column stellt sie untereinander.
+  - frageart: luecke
+    id: kt-luecke-gap
+    text: Zwischen den Kindern sollen 10 Pixel Lücke sein, aber nicht am Rand. Ergänze die Eigenschaft.
+    code: |
+      .reihe {
+        display: flex;
+        ___: 10px;
+      }
+    antworten: [["gap"]]
+    erklaerung: Richtig, gap legt Lücken nur zwischen die Kinder.
+    hinweis: Lücke heißt auf Englisch gap.
+  - frageart: auswahl
+    id: kt-stauchen
+    text: Was passiert ohne flex-wrap, wenn die Kinder zusammen breiter sind als der Behälter?
+    optionen:
+      - text: Sie werden schmaler gestaucht
+        richtig: true
+        erklaerung: Richtig. Flex-Elemente dürfen schrumpfen.
+      - text: Sie brechen in die nächste Reihe um
+        erklaerung: Umbrechen nur mit flex-wrap wrap.
+      - text: Die letzten verschwinden
+        erklaerung: Verschwinden tut nichts.
+uebung: w128-pinnwand

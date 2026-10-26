@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 13: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-around
+    text: "Was macht `justify-content: space-around`?"
+    optionen:
+      - text: Jedes Kind bekommt links und rechts gleich viel Platz, am Rand ist die Lücke darum halb so groß
+        richtig: true
+        erklaerung: Richtig.
+      - text: Das erste und letzte Kind kleben am Rand
+        erklaerung: Das ist space-between.
+      - text: Alle Lücken sind gleich, auch am Rand
+        erklaerung: Das ist space-evenly.
+  - frageart: auswahl
+    id: kt-column-achse
+    text: "Bei `flex-direction: column`: Was richtet `justify-content: center` aus?"
+    optionen:
+      - text: Senkrecht, entlang der Spalte
+        richtig: true
+        erklaerung: Richtig. justify-content folgt immer der Hauptachse, und die läuft jetzt von oben nach unten.
+      - text: Waagerecht
+        erklaerung: Waagerecht wäre jetzt align-items.
+      - text: Gar nichts, in Spalten wirkt es nicht
+        erklaerung: Es wirkt, nur entlang der neuen Hauptachse.
+  - frageart: luecke
+    id: kt-luecke-unten
+    text: Alle Kinder sollen unten im Behälter stehen. Ergänze die Eigenschaft.
+    code: |
+      .reihe {
+        display: flex;
+        height: 100px;
+        ___: flex-end;
+      }
+    antworten: [["align-items"]]
+    erklaerung: Richtig, quer zur Reihe richtet align-items aus.
+    hinweis: Quer zur Hauptachse heißt die Eigenschaft align-...
+  - frageart: auswahl
+    id: kt-grow-teilen
+    text: "Zwei Kinder haben `flex-grow: 1` und `flex-grow: 3`. Wie teilen sie 80 Pixel freien Platz?"
+    optionen:
+      - text: 20 und 60 Pixel
+        richtig: true
+        erklaerung: Richtig, eins zu drei.
+      - text: Je 40 Pixel
+        erklaerung: Das wäre bei gleichen Werten.
+      - text: Das zweite bekommt alles
+        erklaerung: Beide wachsen, im Verhältnis ihrer Werte.
+uebung: w138-kopfleiste

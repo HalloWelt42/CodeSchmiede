@@ -1,0 +1,15 @@
+.fach {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: repeat(3, 80px);
+  gap: 8px;
+  padding: 8px;
+  width: 344px;
+  background-color: #38bdf8;
+  border-radius: 12px;
+}
+
+.fach div {
+  background-color: #e3f1f8;
+  border-radius: 8px;
+}

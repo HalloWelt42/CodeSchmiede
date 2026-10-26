@@ -1,0 +1,11 @@
+.galerie {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.galerie div {
+  background-color: teal;
+  border: 1px solid #2b3442;
+  padding: 8px;
+  height: 60px;
+}

@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 11: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-block
+    text: Was tut ein Block-Element von Haus aus?
+    optionen:
+      - text: Es beginnt eine neue Zeile und nimmt die ganze Breite ein
+        richtig: true
+        erklaerung: Richtig, wie eine große Kiste mit eigenem Brett.
+      - text: Es steht mitten im Text und ist so breit wie sein Inhalt
+        erklaerung: So verhalten sich Inline-Elemente.
+      - text: Es ist unsichtbar, bis man display setzt
+        erklaerung: Sichtbar ist es von Anfang an.
+  - frageart: auswahl
+    id: kt-none-opacity
+    text: "Was ist der Unterschied zwischen `display: none` und `opacity: 0`?"
+    optionen:
+      - text: Bei none verschwindet auch der Platz, bei opacity 0 bleibt er frei
+        richtig: true
+        erklaerung: Richtig.
+      - text: Es gibt keinen, beides blendet aus
+        erklaerung: Beides blendet aus, aber nur none gibt den Platz frei.
+      - text: Bei opacity 0 verschwindet der Platz, bei none bleibt er
+        erklaerung: Genau andersherum.
+  - frageart: luecke
+    id: kt-luecke-kachel
+    text: Die Kästen sollen nebeneinander stehen und ihre feste Breite behalten. Ergänze den Wert.
+    code: |
+      .kachel {
+        display: ___;
+        width: 100px;
+      }
+    antworten: [["inline-block"]]
+    erklaerung: Richtig, inline-block verbindet beides.
+    hinweis: Halb inline, halb Block.
+  - frageart: auswahl
+    id: kt-width-span
+    text: "Warum ändert `strong { width: 300px; }` nichts?"
+    optionen:
+      - text: strong ist inline und ignoriert width
+        richtig: true
+        erklaerung: Richtig. Erst als inline-block oder block gehorcht es.
+      - text: 300 Pixel sind zu breit für die Bühne
+        erklaerung: Die Bühne ist breiter. Das Problem ist die Art des Elements.
+      - text: width gibt es nur für div
+        erklaerung: width gilt für alle Blöcke und inline-blocks.
+uebung: w118-regal

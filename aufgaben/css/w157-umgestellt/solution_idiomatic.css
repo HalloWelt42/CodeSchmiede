@@ -1,0 +1,17 @@
+.bon {
+  display: grid;
+  width: 280px;
+  grid-template-areas:
+    "kopf"
+    "posten"
+    "summe";
+  gap: 2px;
+  background-color: #fbf4e2;
+  color: #2b3442;
+  font-family: monospace;
+  padding: 12px;
+}
+
+.kopf { grid-area: kopf; font-weight: bold; }
+.posten { grid-area: posten; }
+.summe { grid-area: summe; border-top: 1px dashed #2b3442; }

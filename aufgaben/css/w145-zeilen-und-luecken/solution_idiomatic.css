@@ -1,0 +1,12 @@
+.plan {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 40px 120px;
+  gap: 6px;
+}
+
+.plan div {
+  background-color: teal;
+  border: 1px solid #2b3442;
+  padding: 8px;
+}

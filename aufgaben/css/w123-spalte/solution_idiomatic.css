@@ -1,0 +1,11 @@
+.turm {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 200px;
+}
+
+.turm div {
+  background-color: teal;
+  padding: 10px;
+}

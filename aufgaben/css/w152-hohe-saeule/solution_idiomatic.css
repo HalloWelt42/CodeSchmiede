@@ -1,0 +1,17 @@
+.wand {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  grid-template-rows: 80px 80px;
+  gap: 4px;
+}
+
+.wand div {
+  background-color: teal;
+  padding: 8px;
+}
+
+.wand .saeule {
+  grid-row: span 2;
+  background-color: #ffd166;
+  color: #2b3442;
+}

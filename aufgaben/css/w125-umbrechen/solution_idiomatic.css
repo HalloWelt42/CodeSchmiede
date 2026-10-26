@@ -1,0 +1,12 @@
+.kacheln {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.kacheln div {
+  width: 160px;
+  height: 60px;
+  background-color: teal;
+  padding: 10px;
+}

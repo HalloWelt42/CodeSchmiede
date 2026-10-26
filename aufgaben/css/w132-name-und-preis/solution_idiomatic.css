@@ -1,0 +1,10 @@
+.zeile {
+  display: flex;
+  justify-content: space-between;
+  width: 320px;
+  border-bottom: 1px dotted gray;
+}
+
+.preis {
+  color: gold;
+}

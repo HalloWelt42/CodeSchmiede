@@ -1,0 +1,9 @@
+.knopf {
+  display: inline-block;
+  min-width: 80px;
+  padding: 12px 8px;
+  margin: 8px 4px;
+  text-align: center;
+  background-color: #e63946;
+  border-radius: 8px;
+}

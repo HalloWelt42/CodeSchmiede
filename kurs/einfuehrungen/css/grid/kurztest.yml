@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 14: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-fuellen
+    text: "Ein Raster hat drei Spalten. In welcher Zeile und Spalte landet das siebte Kind?"
+    optionen:
+      - text: Dritte Zeile, erste Spalte
+        richtig: true
+        erklaerung: Richtig. Zwei volle Zeilen mit je drei, dann beginnt die dritte.
+      - text: Erste Zeile, siebte Spalte
+        erklaerung: Es gibt nur drei Spalten, danach geht es in der nächsten Zeile weiter.
+      - text: Zweite Zeile, dritte Spalte
+        erklaerung: Das ist das sechste Kind.
+  - frageart: auswahl
+    id: kt-fr-rechnen
+    text: "Ein Raster ist 400 Pixel breit mit `grid-template-columns: 100px 1fr 2fr`. Wie breit ist die letzte Spalte?"
+    optionen:
+      - text: 200 Pixel
+        richtig: true
+        erklaerung: Richtig. 300 Pixel bleiben übrig, aufgeteilt eins zu zwei.
+      - text: 266 Pixel
+        erklaerung: fr verteilt nur, was nach den festen 100 Pixeln übrig bleibt.
+      - text: 2 Pixel
+        erklaerung: fr ist ein Anteil, kein Pixel.
+  - frageart: luecke
+    id: kt-luecke-repeat
+    text: Fünf gleiche Spalten, kurz geschrieben. Ergänze.
+    code: |
+      .reihe {
+        display: grid;
+        grid-template-columns: ___(5, 1fr);
+      }
+    antworten: [["repeat"]]
+    erklaerung: Richtig.
+    hinweis: Wiederholen heißt repeat.
+  - frageart: auswahl
+    id: kt-flex-grid
+    text: Was kann Grid, was Flexbox allein nicht kann?
+    optionen:
+      - text: Spalten und Zeilen zugleich festlegen
+        richtig: true
+        erklaerung: Richtig. Flexbox ordnet in einer Richtung, Grid in zwei.
+      - text: Kinder nebeneinanderstellen
+        erklaerung: Das kann Flexbox auch.
+      - text: Lücken mit gap
+        erklaerung: gap gibt es in beiden.
+uebung: w148-schachbrett

@@ -1,0 +1,9 @@
+.reihe {
+  display: flex;
+  gap: 16px;
+}
+
+.reihe div {
+  background-color: teal;
+  padding: 10px;
+}

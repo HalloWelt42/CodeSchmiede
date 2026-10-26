@@ -1,0 +1,30 @@
+.kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 0 16px;
+  background-color: #0b1d3a;
+}
+
+.logo {
+  font-size: 20px;
+  color: #ffd166;
+}
+
+.menue {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  height: 50px;
+}
+
+.menue div {
+  background-color: teal;
+  padding: 10px;
+}
+
+.menue .neu {
+  align-self: flex-end;
+  background-color: crimson;
+}

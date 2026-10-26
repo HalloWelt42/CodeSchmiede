@@ -1,0 +1,16 @@
+.plan {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 4px;
+}
+
+.plan div {
+  background-color: teal;
+  padding: 8px;
+  height: 60px;
+}
+
+.plan .fuss {
+  grid-column: 1 / -1;
+  background-color: purple;
+}

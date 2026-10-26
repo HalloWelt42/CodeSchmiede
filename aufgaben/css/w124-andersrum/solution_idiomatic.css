@@ -1,0 +1,10 @@
+.countdown {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 8px;
+}
+
+.countdown div {
+  background-color: teal;
+  padding: 10px;
+}

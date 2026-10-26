@@ -1,0 +1,20 @@
+.seite {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  grid-template-rows: 60px 180px 40px;
+  grid-template-areas:
+    "kopf kopf"
+    "menue inhalt"
+    "fuss fuss";
+  gap: 4px;
+}
+
+.seite div {
+  background-color: teal;
+  padding: 8px;
+}
+
+.a { grid-area: kopf; }
+.b { grid-area: menue; }
+.c { grid-area: inhalt; }
+.d { grid-area: fuss; }

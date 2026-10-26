@@ -1,0 +1,8 @@
+h2 {
+  border-bottom: 3px solid gold;
+}
+
+.tipp {
+  border-left: 6px solid teal;
+  padding-left: 12px;
+}

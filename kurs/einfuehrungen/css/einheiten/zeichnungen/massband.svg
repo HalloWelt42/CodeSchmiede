@@ -1,0 +1,31 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin misst einen Hering mit drei Maßbändern: einem mit festen Strichen, einem aus aneinandergereihten Flossen und einem, das sich der Scholle anpasst">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Hering -->
+  <path d="M30 40 q50 -26 110 0 q-60 26 -110 0 Z" fill="#9fb4c8" stroke="#2b3442" stroke-width="2"/>
+  <path d="M140 40 l18 -12 v24 Z" fill="#9fb4c8" stroke="#2b3442" stroke-width="2"/>
+  <circle cx="44" cy="37" r="3" fill="#2b3442"/>
+  <!-- Maßband 1: feste Striche -->
+  <rect x="30" y="66" width="128" height="14" rx="2" fill="#f2c94c" stroke="#2b3442" stroke-width="1.4"/>
+  <g stroke="#2b3442" stroke-width="1.2"><path d="M42 66 v6 M54 66 v6 M66 66 v8 M78 66 v6 M90 66 v6 M102 66 v8 M114 66 v6 M126 66 v6 M138 66 v8 M150 66 v6"/></g>
+  <!-- Maßband 2: Flossen -->
+  <g fill="#2b3442">
+    <path d="M30 98 q20 -10 40 0 q-20 6 -40 0 Z"/>
+    <path d="M72 98 q20 -10 40 0 q-20 6 -40 0 Z"/>
+    <path d="M114 98 q20 -10 40 0 q-20 6 -40 0 Z" opacity=".5"/>
+  </g>
+  <!-- Maßband 3: passt sich der Scholle an -->
+  <rect x="30" y="118" width="128" height="34" rx="4" fill="#e3f1f8" stroke="#2b3442" stroke-width="1.6"/>
+  <rect x="30" y="124" width="64" height="10" rx="2" fill="#4fd1a5" stroke="#2b3442" stroke-width="1.2"/>
+  <rect x="30" y="138" width="96" height="10" rx="2" fill="#ec6aa8" stroke="#2b3442" stroke-width="1.2"/>
+  <!-- Pinguin -->
+  <g transform="translate(214 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-20 -24 -42 -48" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

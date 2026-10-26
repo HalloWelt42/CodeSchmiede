@@ -1,0 +1,16 @@
+.theke {
+  display: flex;
+  gap: 8px;
+  height: 160px;
+  align-items: center;
+  background-color: #2b3442;
+}
+
+.theke div {
+  background-color: teal;
+  padding: 10px;
+}
+
+.kasse {
+  height: 100px;
+}

@@ -1,0 +1,26 @@
+.brett {
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  gap: 8px;
+  width: 360px;
+  height: 340px;
+}
+
+.kopf {
+  background-color: #ffd166;
+  color: #2b3442;
+  padding: 12px;
+}
+
+.felder {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.felder div {
+  background-color: teal;
+  border: 1px solid #2b3442;
+  padding: 8px;
+}

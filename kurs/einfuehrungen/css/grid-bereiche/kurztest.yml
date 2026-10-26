@@ -1,0 +1,49 @@
+# Kurztest zu Kapitel 15: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-span-linie
+    text: "Was ist bei einem Raster mit vier Spalten dasselbe wie `grid-column: 1 / 3`?"
+    als_code: true
+    optionen:
+      - text: "grid-column: 1 / span 2;"
+        richtig: true
+        erklaerung: Richtig, ab Linie 1 über zwei Spalten.
+      - text: "grid-column: span 3;"
+        erklaerung: Das wären drei Spalten.
+      - text: "grid-column: 1 / -1;"
+        erklaerung: Das reicht bis zur letzten Linie, über alle vier Spalten.
+  - frageart: auswahl
+    id: kt-punkt
+    text: Was bedeutet ein Punkt in grid-template-areas?
+    optionen:
+      - text: Ein leeres Fach, das zu keinem Bereich gehört
+        richtig: true
+        erklaerung: Richtig.
+      - text: Das Ende einer Zeile im Plan
+        erklaerung: Zeilen enden mit dem Anführungszeichen.
+      - text: Ein Fach für das erste Kind
+        erklaerung: Ein Punkt bleibt frei.
+  - frageart: luecke
+    id: kt-luecke-area
+    text: Das Kind soll in den Bereich namens kopf. Ergänze die Eigenschaft.
+    code: |
+      .titel {
+        ___: kopf;
+      }
+    antworten: [["grid-area"]]
+    erklaerung: Richtig.
+    hinweis: Bereich heißt area.
+  - frageart: fehlerstelle
+    id: kt-ungleich
+    text: Dieser Plan ist ungültig. In welcher Zeile steckt der Fehler?
+    code: |
+      .seite {
+        display: grid;
+        grid-template-areas:
+          "kopf kopf"
+          "menue inhalt inhalt";
+      }
+    zeile: 5
+    erklaerung: Genau. Die zweite Zeile hat drei Namen, die erste nur zwei. Alle Zeilen brauchen gleich viele.
+    hinweis: Zähl die Namen je Zeile.
+uebung: w158-zeitung

@@ -1,0 +1,14 @@
+.seite {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 200px;
+}
+
+.menue {
+  background-color: #2b3442;
+}
+
+.inhalt {
+  background-color: #fbf4e2;
+  color: #2b3442;
+}

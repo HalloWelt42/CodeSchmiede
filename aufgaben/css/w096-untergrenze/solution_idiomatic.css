@@ -1,0 +1,7 @@
+.marke {
+  width: 10%;
+  min-width: 120px;
+  min-height: 3em;
+  background-color: crimson;
+  text-align: center;
+}

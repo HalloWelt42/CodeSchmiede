@@ -1,0 +1,24 @@
+.zeitung {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 50px 120px 80px;
+  grid-template-areas:
+    "titel titel titel"
+    "aufmacher aufmacher wetter"
+    "anzeige kurz kurz";
+  gap: 6px;
+  background-color: #fbf4e2;
+  color: #2b3442;
+  padding: 6px;
+}
+
+.zeitung div {
+  border: 1px solid #2b3442;
+  padding: 6px;
+}
+
+.titel { grid-area: titel; font-family: serif; font-size: 24px; }
+.aufmacher { grid-area: aufmacher; }
+.wetter { grid-area: wetter; }
+.anzeige { grid-area: anzeige; background-color: #ffd166; }
+.kurz { grid-area: kurz; }

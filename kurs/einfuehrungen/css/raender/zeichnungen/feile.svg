@@ -1,0 +1,32 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin feilt die Ecken einer eckigen Eisscholle rund, daneben liegt eine kreisrunde Scholle und ein Schild mit gestricheltem Rand">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Wasser -->
+  <rect x="6" y="118" width="190" height="44" rx="4" fill="#38bdf8" opacity=".35"/>
+  <!-- eckige Scholle, eine Ecke schon rund -->
+  <path d="M24 100 h86 a18 18 0 0 1 18 18 v14 h-104 Z" fill="#e3f1f8" stroke="#2b3442" stroke-width="2"/>
+  <!-- Feilspäne -->
+  <g fill="#fff"><circle cx="124" cy="96" r="1.8"/><circle cx="131" cy="90" r="1.4"/><circle cx="118" cy="88" r="1.2"/></g>
+  <!-- runde Scholle -->
+  <circle cx="160" cy="128" r="22" fill="#e3f1f8" stroke="#2b3442" stroke-width="2"/>
+  <!-- Schild mit gestricheltem Rand -->
+  <rect x="30" y="20" width="96" height="54" rx="2" fill="#fbf4e2" stroke="#2b3442" stroke-width="1.6"/>
+  <rect x="38" y="28" width="80" height="38" fill="none" stroke="#ec6aa8" stroke-width="3" stroke-dasharray="7 5"/>
+  <circle cx="78" cy="47" r="7" fill="#f2c94c"/>
+  <!-- Feile -->
+  <g transform="rotate(35 160 80)">
+    <rect x="150" y="56" width="8" height="44" rx="2" fill="#a7afba" stroke="#2b3442" stroke-width="1.4"/>
+    <g stroke="#2b3442" stroke-width=".8"><path d="M151 62 h6 M151 68 h6 M151 74 h6 M151 80 h6 M151 86 h6 M151 92 h6"/></g>
+    <rect x="149" y="100" width="10" height="16" rx="2" fill="#c98c55" stroke="#2b3442" stroke-width="1.4"/>
+  </g>
+  <!-- Pinguin -->
+  <g transform="translate(224 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-16 -10 -30 -16" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

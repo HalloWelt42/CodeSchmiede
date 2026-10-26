@@ -1,0 +1,15 @@
+.leiste {
+  display: flex;
+  gap: 8px;
+}
+
+.leiste div {
+  background-color: teal;
+  padding: 10px;
+}
+
+.leiste .suche {
+  flex-grow: 1;
+  background-color: #e3f1f8;
+  color: #555;
+}

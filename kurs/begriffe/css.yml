@@ -112,3 +112,98 @@ begriffe:
   - id: box_sizing
     titel: box-sizing
     erkennung: {eigenschaften: [box-sizing]}
+  # Kapitel 8: Ränder und Ecken
+  - id: rahmenart
+    titel: Gestrichelte, gepunktete und doppelte Ränder
+    erkennung: {werte: ["*:dashed", "*:dotted", "*:double"]}
+  - id: rahmenseite
+    titel: Ränder an einzelnen Seiten
+    erkennung: {eigenschaften: [border-top, border-right, border-bottom, border-left]}
+  - id: ecken
+    titel: Runde Ecken mit border-radius
+    erkennung: {eigenschaften: [border-radius, border-top-left-radius, border-top-right-radius, border-bottom-right-radius, border-bottom-left-radius]}
+  - id: outline
+    titel: Umrisse mit outline
+    erkennung: {eigenschaften: [outline, outline-offset]}
+  # Kapitel 9: Einheiten
+  - id: em
+    titel: em, relativ zur Schrift
+    erkennung: {literale: [em]}
+  - id: rem
+    titel: rem, relativ zur Schrift der Seite
+    erkennung: {literale: [rem]}
+  - id: prozent
+    titel: Prozent vom Elternelement
+    erkennung: {literale: ["%"]}
+  - id: vw_vh
+    titel: vw und vh, relativ zum Fenster
+    erkennung: {literale: [vw, vh]}
+  - id: min_max
+    titel: Grenzen mit min-width und max-width
+    erkennung: {eigenschaften: [min-width, max-width, min-height, max-height]}
+  # Kapitel 10: Schatten und Verläufe
+  - id: box_shadow
+    titel: Schatten mit box-shadow
+    erkennung: {eigenschaften: [box-shadow]}
+  - id: text_shadow
+    titel: Schatten unter Text mit text-shadow
+    erkennung: {eigenschaften: [text-shadow]}
+  - id: verlauf
+    titel: Farbverläufe als Hintergrund
+    erkennung: {aufrufe: [linear-gradient, radial-gradient], eigenschaften: [background, background-image]}
+  # Kapitel 11: display
+  - id: display_block
+    titel: display block
+    erkennung: {werte: ["display:block"]}
+  - id: display_inline
+    titel: display inline
+    erkennung: {werte: ["display:inline"]}
+  - id: display_inline_block
+    titel: display inline-block
+    erkennung: {werte: ["display:inline-block"]}
+  - id: display_none
+    titel: display none
+    erkennung: {werte: ["display:none"]}
+  # Kapitel 12: Flexbox
+  - id: flex
+    titel: Flex-Behälter mit display flex
+    erkennung: {werte: ["display:flex", "display:inline-flex"]}
+  - id: flex_richtung
+    titel: Richtung mit flex-direction
+    erkennung: {eigenschaften: [flex-direction]}
+  - id: gap
+    titel: Lücken mit gap
+    erkennung: {eigenschaften: [gap, row-gap, column-gap]}
+  - id: flex_wrap
+    titel: Umbrechen mit flex-wrap
+    erkennung: {eigenschaften: [flex-wrap, flex-flow]}
+  # Kapitel 13: Flexbox ausrichten
+  - id: justify_content
+    titel: Verteilen mit justify-content
+    erkennung: {eigenschaften: [justify-content]}
+  - id: align_items
+    titel: Ausrichten mit align-items und align-self
+    erkennung: {eigenschaften: [align-items, align-self]}
+  - id: flex_grow
+    titel: Wachsen mit flex-grow
+    erkennung: {eigenschaften: [flex-grow, flex, flex-basis, flex-shrink]}
+  # Kapitel 14: Grid
+  - id: grid
+    titel: Raster mit display grid
+    erkennung: {werte: ["display:grid", "display:inline-grid"]}
+  - id: grid_spuren
+    titel: Spalten und Zeilen mit grid-template-columns und grid-template-rows
+    erkennung: {eigenschaften: [grid-template-columns, grid-template-rows]}
+  - id: fr
+    titel: Anteile mit fr
+    erkennung: {literale: [fr]}
+  - id: repeat
+    titel: repeat und minmax
+    erkennung: {aufrufe: [repeat, minmax]}
+  # Kapitel 15: Grid-Bereiche
+  - id: spannen
+    titel: Spannen und platzieren mit grid-column und grid-row
+    erkennung: {eigenschaften: [grid-column, grid-row, grid-column-start, grid-column-end, grid-row-start, grid-row-end]}
+  - id: bereiche
+    titel: Bereiche mit grid-template-areas und grid-area
+    erkennung: {eigenschaften: [grid-template-areas, grid-area]}

@@ -1,0 +1,14 @@
+.rahmen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background-color: #2b3442;
+}
+
+.schild {
+  padding: 20px 40px;
+  background-color: #ffd166;
+  color: #2b3442;
+  border-radius: 8px;
+}

@@ -1,0 +1,17 @@
+.wand {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+}
+
+.spalte {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.spalte div {
+  padding: 8px;
+  background-color: #ffd166;
+  color: #2b3442;
+}

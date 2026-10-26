@@ -1,0 +1,12 @@
+.spalten {
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) 1fr 1fr;
+  gap: 6px;
+}
+
+.spalten div {
+  background-color: teal;
+  border: 1px solid #2b3442;
+  padding: 8px;
+  height: 80px;
+}

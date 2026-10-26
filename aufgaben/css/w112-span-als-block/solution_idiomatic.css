@@ -1,0 +1,8 @@
+.angebot {
+  display: block;
+  width: 220px;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: gold;
+  color: #2b3442;
+}

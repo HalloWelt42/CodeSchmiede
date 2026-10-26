@@ -1,0 +1,16 @@
+.rahmen {
+  width: 60vw;
+  padding: 1rem;
+  border: 0.25rem solid gold;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 0 0 0.5em;
+}
+
+p {
+  width: 50%;
+  margin: 0;
+  background-color: teal;
+}

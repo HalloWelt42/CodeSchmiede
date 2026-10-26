@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 9: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-em-polster
+    text: "Ein Element hat `font-size: 10px; padding: 3em;`. Wie groß ist das Polster?"
+    optionen:
+      - text: 30 Pixel
+        richtig: true
+        erklaerung: Richtig, dreimal die eigene Schriftgröße.
+      - text: 48 Pixel
+        erklaerung: Das wäre 3rem, gemessen mit 16 Pixeln. em misst mit der eigenen Schrift.
+      - text: 3 Pixel
+        erklaerung: em ist ein Vielfaches der Schriftgröße.
+  - frageart: auswahl
+    id: kt-welche-einheit
+    text: Ein Kasten soll immer ein Drittel so breit sein wie sein Elternelement. Welche Angabe passt?
+    als_code: true
+    optionen:
+      - text: "width: 33.33%;"
+        richtig: true
+        erklaerung: Richtig, Prozent hängen am Elternelement.
+      - text: "width: 33vw;"
+        erklaerung: vw misst am Fenster, nicht am Elternelement.
+      - text: "width: 33em;"
+        erklaerung: em misst mit der Schrift.
+  - frageart: luecke
+    id: kt-luecke-grenze
+    text: Der Kasten soll 90 Prozent breit sein, aber nie breiter als 400 Pixel. Ergänze die Eigenschaft.
+    code: |
+      .kasten {
+        width: 90%;
+        ___: 400px;
+      }
+    antworten: [["max-width"]]
+    erklaerung: Richtig, max-width setzt die Obergrenze.
+    hinweis: Höchstens heißt maximal.
+  - frageart: auswahl
+    id: kt-vw-buehne
+    text: "Wie breit ist `width: 10vw` auf unserer 600 Pixel breiten Bühne?"
+    optionen:
+      - text: 60 Pixel
+        richtig: true
+        erklaerung: Richtig, ein Zehntel von 600.
+      - text: 10 Pixel
+        erklaerung: vw ist ein Hundertstel des Fensters, 10vw also ein Zehntel.
+      - text: 160 Pixel
+        erklaerung: Das wäre 10rem.
+uebung: w098-wegweiser

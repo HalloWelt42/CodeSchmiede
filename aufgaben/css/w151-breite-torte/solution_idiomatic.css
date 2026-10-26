@@ -1,0 +1,15 @@
+.tisch {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.tisch div {
+  background-color: teal;
+  padding: 8px;
+}
+
+.tisch .torte {
+  grid-column: span 3;
+  background-color: crimson;
+}

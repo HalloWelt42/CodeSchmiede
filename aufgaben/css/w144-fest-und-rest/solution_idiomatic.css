@@ -1,0 +1,11 @@
+.zeile {
+  display: grid;
+  grid-template-columns: 80px 1fr 60px;
+}
+
+.zeile div {
+  background-color: teal;
+  border: 1px solid #2b3442;
+  padding: 8px;
+  height: 60px;
+}

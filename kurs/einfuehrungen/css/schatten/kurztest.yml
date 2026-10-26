@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 10: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-unschaerfe
+    text: "Welcher Wert in `box-shadow: 4px 6px 10px 2px black` ist die Unschärfe?"
+    optionen:
+      - text: 10px
+        richtig: true
+        erklaerung: Richtig. Erst rechts, dann unten, dann Unschärfe, dann Ausdehnung.
+      - text: 2px
+        erklaerung: Das ist die Ausdehnung, sie steht als vierter Wert.
+      - text: 6px
+        erklaerung: Das ist der Versatz nach unten.
+  - frageart: fehlerstelle
+    id: kt-verlauf-falsch
+    text: Ein Verlauf erscheint nicht. In welcher Zeile steckt der Fehler?
+    code: |
+      .himmel {
+        height: 100px;
+        background-color: linear-gradient(to bottom, orange, crimson);
+        padding: 10px;
+      }
+    zeile: 3
+    erklaerung: Genau. Ein Verlauf ist ein Bild und gehört zu background oder background-image.
+    hinweis: Wohin gehört ein Bild, und wohin eine einzelne Farbe?
+  - frageart: luecke
+    id: kt-luecke-mehrere
+    text: Zwei Schatten sollen übereinander liegen. Ergänze das Trennzeichen.
+    code: |
+      .k {
+        box-shadow: 0 0 0 3px gold___ 0 6px 12px black;
+      }
+    antworten: [[","]]
+    erklaerung: Richtig, mehrere Schatten trennt ein Komma.
+    hinweis: Wie bei einer Aufzählung.
+  - frageart: auswahl
+    id: kt-radial
+    text: "Wie verläuft `radial-gradient(white, black)`?"
+    optionen:
+      - text: Von Weiß in der Mitte zu Schwarz am Rand
+        richtig: true
+        erklaerung: Richtig, die erste Farbe liegt in der Mitte.
+      - text: Von Weiß oben zu Schwarz unten
+        erklaerung: Das wäre linear-gradient. radial verläuft kreisförmig.
+      - text: Von Schwarz in der Mitte zu Weiß am Rand
+        erklaerung: Die erste Farbe gehört in die Mitte.
+uebung: w108-plakat-fest

@@ -1,0 +1,9 @@
+.leiste {
+  display: flex;
+}
+
+.leiste div {
+  background-color: teal;
+  padding: 10px;
+  margin-right: 6px;
+}

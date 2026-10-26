@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 8: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-gepunktet
+    text: Welcher Rand ist gepunktet?
+    als_code: true
+    optionen:
+      - text: "border: 2px dotted gray;"
+        richtig: true
+        erklaerung: Richtig, dotted heißt gepunktet.
+      - text: "border: 2px dashed gray;"
+        erklaerung: dashed ist gestrichelt.
+      - text: "border: 2px double gray;"
+        erklaerung: double zeichnet zwei Linien.
+  - frageart: auswahl
+    id: kt-vier-ecken
+    text: "Welche Ecke ist bei `border-radius: 0 0 0 20px` rund?"
+    optionen:
+      - text: unten links
+        richtig: true
+        erklaerung: Richtig. Gezählt wird von oben links im Uhrzeigersinn, die vierte Ecke ist unten links.
+      - text: oben links
+        erklaerung: Oben links ist die erste Ecke, und die ist 0.
+      - text: unten rechts
+        erklaerung: Unten rechts ist die dritte Ecke.
+  - frageart: luecke
+    id: kt-luecke-seite
+    text: Nur unten soll eine Linie erscheinen. Ergänze die Eigenschaft.
+    code: |
+      h2 {
+        ___: 2px solid gold;
+      }
+    antworten: [["border-bottom"]]
+    erklaerung: Richtig, border-bottom ist der Rand unten.
+    hinweis: Unten heißt bottom.
+  - frageart: auswahl
+    id: kt-outline
+    text: Was unterscheidet outline von border?
+    optionen:
+      - text: Der Umriss braucht keinen Platz und verschiebt nichts
+        richtig: true
+        erklaerung: Richtig. Er wird nur über die Umgebung gezeichnet.
+      - text: Der Umriss kann keine Farbe haben
+        erklaerung: Er nimmt Breite, Art und Farbe wie ein Rand.
+      - text: Der Umriss liegt innerhalb des Innenabstands
+        erklaerung: Er liegt außen um den Kasten herum.
+uebung: w088-eisschollen

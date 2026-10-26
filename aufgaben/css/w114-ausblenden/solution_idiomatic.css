@@ -1,0 +1,8 @@
+li {
+  background-color: #1f6f8b;
+  margin-bottom: 4px;
+}
+
+.ausverkauft {
+  display: none;
+}

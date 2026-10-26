@@ -1,0 +1,17 @@
+.reihe {
+  display: flex;
+  gap: 8px;
+  height: 140px;
+  align-items: flex-end;
+  background-color: #2b3442;
+}
+
+.reihe div {
+  background-color: teal;
+  padding: 10px;
+}
+
+.reihe .huepft {
+  align-self: flex-start;
+  background-color: crimson;
+}

@@ -1,0 +1,8 @@
+.karte {
+  width: 200px;
+  padding: 24px;
+  background-color: #fbf4e2;
+  color: #2b3442;
+  border-radius: 10px;
+  box-shadow: 10px 10px 20px black;
+}

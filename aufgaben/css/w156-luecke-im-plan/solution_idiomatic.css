@@ -1,0 +1,19 @@
+.theke {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 90px 90px;
+  grid-template-areas:
+    "eis fisch fisch"
+    ". fisch fisch"
+    "kasse kasse kasse";
+  gap: 4px;
+}
+
+.theke div {
+  background-color: teal;
+  padding: 8px;
+}
+
+.eis { grid-area: eis; }
+.fisch { grid-area: fisch; }
+.kasse { grid-area: kasse; }

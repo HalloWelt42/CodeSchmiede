@@ -1,0 +1,16 @@
+.galerie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+  background-color: #2b3442;
+}
+
+.karte {
+  width: 120px;
+  height: 140px;
+  padding: 8px;
+  background-color: #fbf4e2;
+  color: #2b3442;
+  border-radius: 8px;
+}
