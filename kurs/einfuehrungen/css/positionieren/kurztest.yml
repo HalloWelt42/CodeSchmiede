@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 16: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-relative-platz
+    text: Was ist der Unterschied zwischen relative und absolute?
+    optionen:
+      - text: Bei relative bleibt der Platz reserviert, bei absolute verschwindet er
+        richtig: true
+        erklaerung: Richtig.
+      - text: relative misst am Fenster, absolute an der eigenen Stelle
+        erklaerung: relative verschiebt von der eigenen Stelle, absolute misst am nächsten positionierten Vorfahren.
+      - text: Es gibt keinen, beides verschiebt
+        erklaerung: Beide verschieben, aber nur absolute nimmt aus dem Fluss.
+  - frageart: auswahl
+    id: kt-bezug
+    text: Woran richtet sich ein Element mit position absolute?
+    optionen:
+      - text: Am nächsten Vorfahren, der selbst positioniert ist, sonst am Fenster
+        richtig: true
+        erklaerung: Richtig.
+      - text: Immer am direkten Elternelement
+        erklaerung: Nur wenn dieses positioniert ist.
+      - text: Immer am Fenster
+        erklaerung: Nur wenn kein Vorfahre positioniert ist.
+  - frageart: luecke
+    id: kt-luecke-ecke
+    text: Der Stempel soll in die untere rechte Ecke seines Bezugsrahmens. Ergänze die beiden Eigenschaften.
+    code: |
+      .stempel {
+        position: absolute;
+        ___: 0;
+        ___: 0;
+      }
+    antworten: [["bottom", "right"], ["right", "bottom"]]
+    erklaerung: Richtig, bottom und right.
+    hinweis: Unten heißt bottom, rechts right.
+  - frageart: auswahl
+    id: kt-z
+    text: Wann wirkt z-index?
+    optionen:
+      - text: Bei positionierten Elementen
+        richtig: true
+        erklaerung: Richtig, etwa mit relative oder absolute (und bei Flex- und Grid-Kindern).
+      - text: Bei allen Elementen immer
+        erklaerung: Bei einem gewöhnlichen Block im Fluss wirkt er nicht.
+      - text: Nur bei Bildern
+        erklaerung: z-index ist nicht auf Bilder beschränkt.
+uebung: w168-schaukasten

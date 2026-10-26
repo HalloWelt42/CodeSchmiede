@@ -1,0 +1,18 @@
+.wand {
+  position: relative;
+  height: 300px;
+  background-color: #c98c55;
+}
+
+.zettel {
+  position: absolute;
+  width: 130px;
+  padding: 12px;
+  background-color: #fff6c2;
+  color: #2b3442;
+  box-shadow: 2px 4px 6px rgb(0 0 0 / 0.4);
+}
+
+.eins { top: 20px; left: 20px; }
+.zwei { top: 60px; left: 200px; }
+.drei { top: 170px; left: 100px; }

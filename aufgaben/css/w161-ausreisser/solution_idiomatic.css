@@ -1,0 +1,11 @@
+p {
+  width: 220px;
+  padding: 6px;
+  background-color: teal;
+}
+
+.b {
+  position: relative;
+  left: 60px;
+  background-color: crimson;
+}

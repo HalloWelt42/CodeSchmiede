@@ -207,3 +207,16 @@ begriffe:
   - id: bereiche
     titel: Bereiche mit grid-template-areas und grid-area
     erkennung: {eigenschaften: [grid-template-areas, grid-area]}
+  # Kapitel 16: Positionieren
+  - id: position_relative
+    titel: position relative
+    erkennung: {werte: ["position:relative"]}
+  - id: position_absolute
+    titel: position absolute
+    erkennung: {werte: ["position:absolute", "position:fixed"]}
+  - id: versatz
+    titel: Lage mit top, right, bottom, left und inset
+    erkennung: {eigenschaften: [top, right, bottom, left, inset]}
+  - id: z_index
+    titel: Stapelreihenfolge mit z-index
+    erkennung: {eigenschaften: [z-index]}

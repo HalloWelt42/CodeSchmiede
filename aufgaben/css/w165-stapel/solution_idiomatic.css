@@ -1,0 +1,15 @@
+.stapel {
+  position: relative;
+  height: 200px;
+}
+
+.stapel div {
+  position: absolute;
+  width: 140px;
+  height: 90px;
+  padding: 6px;
+}
+
+.stapel .a { top: 0; left: 0; background-color: teal; z-index: 3; }
+.stapel .b { top: 30px; left: 60px; background-color: crimson; z-index: 2; }
+.stapel .c { top: 60px; left: 120px; background-color: purple; }

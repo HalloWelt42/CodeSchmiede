@@ -1,0 +1,13 @@
+.bild {
+  position: relative;
+  width: 260px;
+  height: 160px;
+  padding: 10px;
+  background: linear-gradient(to bottom, #38bdf8, #0b4f8a);
+}
+
+.rahmen {
+  position: absolute;
+  inset: 16px;
+  border: 9px double white;
+}

@@ -55,3 +55,6 @@ bloecke:
       - einfuehrung: css-grid-bereiche
         uebungen: [w151-breite-torte, w152-hohe-saeule, w153-ganze-breite, w154-genau-platziert, w155-seitenplan, w156-luecke-im-plan, w157-umgestellt]
         projekt: [w159-speisekarte-bereiche]
+      - einfuehrung: css-positionieren
+        uebungen: [w161-ausreisser, w162-in-die-ecke, w163-bezugsrahmen, w164-unten-links, w165-stapel, w166-rahmen-im-bild, w167-pinnwand]
+        projekt: [w169-speisekarte-aufkleber]

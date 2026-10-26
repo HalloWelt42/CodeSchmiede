@@ -1,0 +1,17 @@
+.bild {
+  position: relative;
+  width: 240px;
+  height: 140px;
+  padding: 10px;
+  background-color: #38bdf8;
+  color: #0b1d3a;
+}
+
+.unterschrift {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-size: 14px;
+  background-color: #fbf4e2;
+  padding: 4px 10px;
+}
