@@ -9,10 +9,7 @@
   --css-a: #ec6aa8; --css-b: #4fd1a5; --css-c: #fbcfe8;
   /* Lesetext */
   --fs-lesen: 18px;
-  /* Editorfarben wie in der App (klassisches dunkles Schema) */
-  --ed-grund: #2b2b2b; --ed-text: #a9b7c6; --ed-rand: #313335; --ed-nr: #606366;
-  --ed-kw: #cc7832; --ed-str: #6a8759; --ed-zahl: #6897bb; --ed-kom: #808080; --ed-fn: #ffc66d; --ed-feld: #9876aa;
-  --ed-zeile: #323232;
+  /* Editorfarben stehen in editor.css */
   /* Kastenmodell in der CSS-Werkbank: Inhalt, Innenabstand, Rahmen, Außenabstand */
   --kasten-inhalt: #38bdf8; --kasten-padding: #4fd1a5; --kasten-border: #ec6aa8; --kasten-margin: #f59e0b;
 }
@@ -34,7 +31,7 @@
   .code .ln { width: 34px; flex: none; text-align: right; padding-right: var(--sp-3); color: var(--ed-nr); user-select: none; }
   .code .ln + span { white-space: pre; min-width: 0; }
   .code > div.jetzt { background: color-mix(in srgb, var(--accent) 22%, var(--ed-grund)); box-shadow: inset 3px 0 0 var(--accent); }
-  .code > div.halt .ln { color: #ff6b68; }
+  .code > div.halt .ln { color: var(--ed-haltepunkt); }
   .code > div.halt .ln::before { content: "\25CF"; margin-right: 2px; }
   .code > div.fehlerzeile { cursor: pointer; }
   .code > div.fehlerzeile:hover { background: var(--ed-zeile); }
@@ -42,9 +39,9 @@
   .code > div.richtig { background: color-mix(in srgb, var(--green) 26%, var(--ed-grund)); }
   .ck { color: var(--ed-kw); font-weight: 700; } .cs { color: var(--ed-str); } .cz { color: var(--ed-zahl); }
   .cm { color: var(--ed-kom); font-style: italic; } .cf { color: var(--ed-fn); } .cv { color: var(--ed-feld); }
-  .code .luecke { display: inline-block; min-width: 64px; height: 22px; vertical-align: top; border: 1px dashed var(--accent); background: #1f2a29; color: var(--fg); font: inherit; padding: 0 4px; outline: none; }
+  .code .luecke { display: inline-block; min-width: 64px; height: 22px; vertical-align: top; border: 1px dashed var(--accent); background: var(--ed-luecke); color: var(--fg); font: inherit; padding: 0 4px; outline: none; }
   .code .luecke:focus { border-style: solid; }
-  .ausgabe { margin: 0; padding: var(--sp-2) var(--sp-3); background: #1e1f22; border: 1px solid var(--border); border-top: 0; font-family: var(--mono); font-size: 14px; line-height: 1.55; color: #d6dde5; white-space: pre-wrap; min-height: 34px; }
+  .ausgabe { margin: 0; padding: var(--sp-2) var(--sp-3); background: var(--ed-konsole); border: 1px solid var(--border); border-top: 0; font-family: var(--mono); font-size: 14px; line-height: 1.55; color: var(--ed-konsole-text); white-space: pre-wrap; min-height: 34px; }
   .ausgabe .leer { color: var(--fg-mute); font-style: italic; font-family: var(--sans); }
   
   /* ----- Kursübersicht ----- */

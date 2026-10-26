@@ -1,4 +1,5 @@
 import { HttpBase } from './HttpBase';
+import type { Debuglauf } from '../types/Aufzeichnung';
 import type { Messung, ProbelaufAntwort, SubmissionAntwort } from '../types/Submission';
 
 export class SubmissionsApi extends HttpBase {
@@ -17,6 +18,11 @@ export class SubmissionsApi extends HttpBase {
 
   probelauf(aufgabeId: string, code: string, input: unknown[]): Promise<ProbelaufAntwort> {
     return this.post<ProbelaufAntwort>('/probelauf', { aufgabe_id: aufgabeId, code, input });
+  }
+
+  /** Wie der Probelauf, aber als Aufzeichnung je Zeile für den Debugger. */
+  debuggen(aufgabeId: string, code: string, input: unknown[]): Promise<Debuglauf> {
+    return this.post<Debuglauf>('/debuggen', { aufgabe_id: aufgabeId, code, input });
   }
 }
 

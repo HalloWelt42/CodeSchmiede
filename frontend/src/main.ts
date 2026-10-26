@@ -2,6 +2,7 @@ import { mount } from 'svelte';
 import 'katex/dist/katex.min.css';
 import './styles/fonts.css';
 import './styles/global.css';
+import './styles/editor.css';
 import './styles/kurs.css';
 import App from './App.svelte';
 

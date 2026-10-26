@@ -2,6 +2,7 @@
   /*
    * Probelauf-Panel: eigene Eingabe testen, Funktion mit dem Input
    * aufrufen, Rückgabe + stdout anzeigen. Kein Test-Vergleich.
+   * Mit `onDebuggen` gibt es daneben den Debugger mit derselben Eingabe.
    */
   import { submissionsApi } from '../api/SubmissionsApi';
   import { fassung } from '../stores/FassungStore.svelte';
@@ -14,9 +15,12 @@
     /** Programm-Aufgabe: Eingabezeilen für input() oder prompt() statt Funktionsargumente */
     programm?: boolean;
     sprache?: string;
+    /** Debugger anbieten: bekommt die Eingabe und den Aufruf als Text (bei Programmen null) */
+    onDebuggen?: (eingabe: unknown[], aufruf: string | null) => void;
+    debugLaeuft?: boolean;
   }
 
-  let { aufgabeId, code, funktion, programm = false, sprache = 'python' }: Props = $props();
+  let { aufgabeId, code, funktion, programm = false, sprache = 'python', onDebuggen, debugLaeuft = false }: Props = $props();
   let eingabeBefehl = $derived(sprache === 'javascript' ? 'prompt()' : 'input()');
 
   let eingabe_text = $state('');
@@ -39,12 +43,23 @@
     }
   }
 
-  async function laufeAb(): Promise<void> {
+  /** Argumente oder Eingabezeilen; null mit Meldung, wenn sie sich nicht lesen lassen */
+  function eingabe(): unknown[] | null {
     const args = programm ? (eingabe_text ? eingabe_text.split('\n') : []) : parseEingabe();
-    if (args === null) {
-      fehler = 'Eingabe konnte nicht geparst werden. Beispiele: 7   "anna"   [1,2,3]   3, 5';
-      return;
-    }
+    if (args === null) fehler = 'Eingabe konnte nicht geparst werden. Beispiele: 7   "anna"   [1,2,3]   3, 5';
+    return args;
+  }
+
+  function debuggen(): void {
+    const args = eingabe();
+    if (args === null || !onDebuggen) return;
+    fehler = null;
+    onDebuggen(args, programm ? null : `${funktion ?? 'f'}(${eingabe_text.trim()})`);
+  }
+
+  async function laufeAb(): Promise<void> {
+    const args = eingabe();
+    if (args === null) return;
     laeuft = true;
     fehler = null;
     try {
@@ -63,6 +78,7 @@
 
 <div class="probelauf">
   <div class="zeile">
+    <div class="eingabe">
     {#if programm}
     <textarea
       rows="1"
@@ -81,9 +97,17 @@
     />
     <span class="aufruf">)</span>
     {/if}
+    </div>
+    <div class="knoepfe">
     <button class="knopf" onclick={laufeAb} disabled={laeuft || !code.trim()}>
       <i class="fa-solid {laeuft ? 'fa-spinner fa-spin' : 'fa-play'}" aria-hidden="true"></i>Lauf
     </button>
+    {#if onDebuggen}
+      <button class="knopf debug" onclick={debuggen} disabled={debugLaeuft || !code.trim()} title="Lauf Schritt für Schritt mit Speicher, hält an den Haltepunkten">
+        <i class="fa-solid {debugLaeuft ? 'fa-spinner fa-spin' : 'fa-bug'}" aria-hidden="true"></i>Debuggen
+      </button>
+    {/if}
+    </div>
   </div>
 
   {#if fehler}
@@ -117,10 +141,25 @@
     font-family: var(--mono);
     font-size: 12px;
   }
+  /* ist die Spalte schmal, rutschen die Knöpfe unter die Eingabe */
   .zeile {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+  .eingabe {
+    flex: 1 1 200px;
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: var(--sp-2);
+  }
+  .knoepfe {
+    flex: none;
+    display: flex;
+    gap: var(--sp-2);
+    margin-left: auto;
   }
   .aufruf { color: var(--fg-dim); white-space: nowrap; }
   input, textarea {
@@ -137,6 +176,8 @@
   textarea { min-height: 28px; height: auto; padding: 4px var(--sp-2); resize: vertical; color: var(--fg); }
   input:focus, textarea:focus { outline: none; border-color: var(--accent); }
   .knopf { height: 28px; }
+  .knopf.debug { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 60%, var(--border)); }
+  .knopf.debug:hover:not(:disabled) { color: var(--gold); border-color: var(--gold); }
   .meldung {
     margin: var(--sp-2) 0 0;
     color: var(--orange);

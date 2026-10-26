@@ -20,8 +20,8 @@ stand: 1afcbf7
 
 ## Zweck
 
-Die Codeschmiede ist der eigene Programmier-Trainer: Aufgaben als Dateien im Repo, ein Editor im Browser, eine Prüfung
-mit sichtbaren und versteckten Tests, Punkte, Pfade, Wiederholungen und eine Verwaltung, die auch die versteckten
+Die Codeschmiede ist der eigene Programmier-Trainer: Aufgaben als Dateien im Repo, ein Editor im Browser mit Debugger
+(Haltepunkte, Schritte vor und zurück, Speicher), eine Prüfung mit sichtbaren und versteckten Tests, Punkte, Pfade, Wiederholungen und eine Verwaltung, die auch die versteckten
 Tests zeigt. Fassung {{fassung}}, erreichbar unter {{adresse}}.
 
 Eingereichter Code läuft nie im Backend, sondern im Sandbox-Dienst: je Prüfung ein eigener Container ohne Netz, nur
@@ -114,6 +114,8 @@ jedem Ausrollen `codeschmiede-*.sqlite` (zehn bleiben). Das Werkzeug Sicherungen
   nur über die Datengrenze je Prozess (Python 128 MB, JavaScript 512 MB). Volle Speichergrenze: `cgroup_enable=memory`
   an die eine Zeile in `/boot/firmware/cmdline.txt` anhängen und den Pi neu starten; danach meldet `/gesund`
   `speichergrenze: cgroup`.
+- Der Debugger meldet "Die Ausgabe war zu lang": eine Aufzeichnung wird höchstens etwa 600 KB groß und braucht die
+  Ausgabegrenze des Sandbox-Dienstes (`CODESCHMIEDE_SANDBOX_MAX_AUSGABE_BYTES`, Vorgabe 1 MB); nicht darunter setzen.
 - Anmeldung "Die Kellerwolke ist gerade nicht erreichbar": Adresse und Zertifikat prüfen; bestätigte Anmeldungen gelten
   bis zu 24 Stunden weiter.
 - Ein Koppelcode "gilt nicht": er muss aus der Kellerwolke stammen, mit der die App verbunden ist (Adresse auf der

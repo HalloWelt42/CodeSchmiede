@@ -16,8 +16,11 @@
     markierteZeile?: number | null;
     /** Befehle der Aufgabe für die Vervollständigung, etwa gehe() */
     befehle?: readonly string[];
+    /** Rinne für Haltepunkte des Debuggers; die gesetzten Zeilen stehen in `haltepunkte` */
+    mitHaltepunkten?: boolean;
+    haltepunkte?: number[];
   }
-  let { sprache, code = $bindable(), markierteZeile = null, befehle = [] }: Props = $props();
+  let { sprache, code = $bindable(), markierteZeile = null, befehle = [], mitHaltepunkten = false, haltepunkte = $bindable([]) }: Props = $props();
 
   let host: HTMLDivElement | undefined = $state();
   let view: EditorView | null = null;
@@ -32,6 +35,7 @@
       beiAenderung: (neuerCode) => {
         code = neuerCode;
       },
+      beiHaltepunkten: mitHaltepunkten ? (zeilen) => (haltepunkte = zeilen) : undefined,
     });
   });
 

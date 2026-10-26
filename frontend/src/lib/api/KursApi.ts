@@ -4,6 +4,9 @@
  * (backend/.../kurs/sicht.py ist die Wahrheit dieser Typen).
  */
 import { HttpBase } from './HttpBase';
+import type { Aufzeichnung } from '../types/Aufzeichnung';
+
+export type { Aufzeichnung, Rahmen, Schritt, Wert } from '../types/Aufzeichnung';
 
 export type Kapitelstand = 'fertig' | 'uebersprungen' | 'aktuell' | 'offen' | 'zu';
 export type Frageart = 'auswahl' | 'luecke' | 'ordnen' | 'fehlerstelle';
@@ -135,40 +138,6 @@ export interface Urteil {
   richtig: boolean;
   erklaerung: string;
   abschnitt_bereit: boolean;
-}
-
-/** Ein Wert im Speicherbild; gleiche `kennung` heißt: dasselbe Objekt (Pfeil). */
-export interface Wert {
-  art: 'zahl' | 'text' | 'wahrheit' | 'nichts' | 'liste' | 'tupel' | 'menge' | 'woerterbuch' | 'funktion' | 'klasse' | 'objekt' | 'sonst';
-  darstellung: string;
-  kennung: number | null;
-  elemente: Wert[] | null;
-  paare: [Wert, Wert][] | null;
-  attribute: Record<string, Wert> | null;
-  gekuerzt: boolean;
-}
-
-export interface Rahmen {
-  name: string;
-  variablen: Record<string, Wert>;
-}
-
-export interface Schritt {
-  zeile: number;
-  rahmen: Rahmen[];
-  ausgabe: string;
-  rueckgabe: Wert | null;
-}
-
-export interface Aufzeichnung {
-  art: 'python' | 'javascript';
-  schritte: Schritt[];
-  ausgabe: string;
-  fehler: string | null;
-  fehlerzeile: number | null;
-  gekuerzt: boolean;
-  zeitueberschreitung: boolean;
-  laufzeit_ms: number;
 }
 
 export type Zeilenzustand = '' | 'neu' | 'bleibt' | 'raus' | 'geaendert';

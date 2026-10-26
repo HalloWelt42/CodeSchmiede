@@ -2,7 +2,8 @@
   /*
    * Speicher nach einer Zeile: je Aufrufrahmen die Namen mit ihren Werten. Einfache Werte als Kasten, Listen und
    * Tupel als Fächerreihe mit Nummern, Wörterbücher als Schubladen, Objekte mit ihren Attributen. Zeigen zwei Namen
-   * auf dasselbe Objekt, steht das dabei. Gelb ist, was sich in diesem Schritt geändert hat.
+   * auf dasselbe Objekt, steht das dabei. Gelb ist, was sich in diesem Schritt geändert hat. Im Debugger steht die
+   * innerste Funktion oben und ist hervorgehoben.
    */
   import type { Schritt, Wert } from '../../api/KursApi';
 
@@ -10,8 +11,12 @@
     schritt: Schritt | null;
     /** voriger Schritt: was sich seitdem geändert hat, leuchtet */
     vorher?: Schritt | null;
+    /** innerste Funktion zuerst (Debugger) */
+    innenZuerst?: boolean;
   }
-  let { schritt, vorher = null }: Props = $props();
+  let { schritt, vorher = null, innenZuerst = false }: Props = $props();
+
+  let rahmenFolge = $derived(schritt ? (innenZuerst ? [...schritt.rahmen].reverse() : schritt.rahmen) : []);
 
   function geaendert(rahmen: string, name: string, w: Wert): boolean {
     const alt = vorher?.rahmen.find((r) => r.name === rahmen)?.variablen[name];
@@ -20,7 +25,7 @@
 
   /** Namen, die auf dasselbe Objekt zeigen wie dieser (Verweis) */
   function teilen(name: string, w: Wert): string[] {
-    if (w.kennung === null || !['liste', 'tupel', 'menge', 'woerterbuch', 'objekt'].includes(w.art)) return [];
+    if (w.kennung == null || !['liste', 'tupel', 'menge', 'woerterbuch', 'objekt'].includes(w.art)) return [];
     return (schritt?.rahmen ?? []).flatMap((r) => Object.entries(r.variablen).filter(([n, x]) => n !== name && x.kennung === w.kennung).map(([n]) => n));
   }
 
@@ -43,8 +48,8 @@
   {#if !schritt}
     <span class="dim" style="font-size:var(--fs-sm)">Noch nichts im Speicher.</span>
   {:else}
-    {#each schritt.rahmen as r (r.name)}
-      {#if schritt.rahmen.length > 1}<div class="gruppe">{r.name === 'Modul' ? 'Hauptprogramm' : `in ${r.name}()`}</div>{/if}
+    {#each rahmenFolge as r, n (n)}
+      {#if schritt.rahmen.length > 1}<div class="gruppe" class:innen={innenZuerst && n === 0}>{r.name === 'Modul' ? 'Hauptprogramm' : `in ${r.name}()`}</div>{/if}
       {#each Object.entries(r.variablen) as [name, w] (name)}
         {@const neu = geaendert(r.name, name, w)}
         {@const geteilt = teilen(name, w)}
@@ -94,4 +99,5 @@
   .objekt { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border: 2px solid var(--s-b, var(--accent)); border-radius: 4px; font-family: var(--mono); font-size: 13px; }
   .verweis { display: block; margin-top: 2px; color: var(--fg-dim); font-size: var(--fs-xs); }
   .gruppe { margin-top: 0; }
+  .gruppe.innen { color: var(--accent); }
 </style>

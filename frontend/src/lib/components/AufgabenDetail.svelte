@@ -20,6 +20,8 @@
   import type { SubmissionAntwort } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
+  import DebuggerBereich from './DebuggerBereich.svelte';
+  import { DebugSitzung } from '../debugger/sitzung.svelte';
   import CssKlonView from './CssKlonView.svelte';
   import DreiSpaltenLayout from './DreiSpaltenLayout.svelte';
   import SpaltenReiter from './SpaltenReiter.svelte';
@@ -54,8 +56,23 @@
   // wartet eine neue Fassung mit dem Neuladen.
   let gesicherter_code = $state('');
   $effect(() => {
-    if (pruefen_laeuft || code !== gesicherter_code) return fassung.halten();
+    if (pruefen_laeuft || code !== gesicherter_code || sitzung.aktiv) return fassung.halten();
   });
+
+  // Debugger (nur am Rechner, Python und JavaScript): Lauf mit der Eingabe des Probelaufs, rechts als eigener Reiter
+  const sitzung = new DebugSitzung();
+  let rechter_tab = $state<'ergebnis' | 'debugger'>('ergebnis');
+  /** Zeile, die der Debugger gerade zeigt */
+  let debug_zeile = $state<number | null>(null);
+  let mit_debugger = $derived(!geraet.telefon && (detail?.sprache === 'python' || detail?.sprache === 'javascript'));
+  $effect(() => {
+    if (!sitzung.aktiv) rechter_tab = 'ergebnis';
+  });
+
+  function debuggen(eingabe: unknown[], aufruf: string | null): void {
+    rechter_tab = 'debugger';
+    if (detail) void sitzung.starten(detail.id, code, eingabe, aufruf);
+  }
 
   let musterloesungen_frei = $state(false);
   let aktiver_tab = $state<'aufgabe' | 'loesungen'>('aufgabe');
@@ -102,6 +119,7 @@
     if (!detail) return;
     pruefen_laeuft = true;
     pruef_fehler = null;
+    rechter_tab = 'ergebnis';
     const eingereicht = code;
     try {
       ergebnis = await submissionsApi.submit(detail.id, code);
@@ -256,7 +274,7 @@
       {/if}
       <DreiSpaltenLayout
         mitteTitel="Editor, {konfig.sprache(aktuell.sprache)?.titel ?? aktuell.sprache}"
-        rechtsTitel="Ergebnis"
+        rechtsTitel={sitzung.aktiv ? undefined : 'Ergebnis'}
         pruefen={{ aktion: pruefe, laeuft: pruefen_laeuft, moeglich: code.trim() !== '' }}
       >
         {#snippet links()}
@@ -289,12 +307,43 @@
 
         {#snippet mitte()}
           <div class="editor-host">
-            <EditorBereich sprache={aktuell.sprache} bind:code />
+            <EditorBereich
+              sprache={aktuell.sprache}
+              bind:code
+              markierteZeile={rechter_tab === 'debugger' ? debug_zeile : null}
+              mitHaltepunkten={mit_debugger}
+              bind:haltepunkte={sitzung.haltepunkte}
+            />
           </div>
-          <ProbelaufBereich aufgabeId={aktuell.id} {code} funktion={aktuell.funktion} programm={aktuell.task_type === 'programm'} sprache={aktuell.sprache} />
+          {#if mit_debugger}
+            <div class="rinnen-hinweis"><i class="fa-solid fa-circle" aria-hidden="true"></i> Klick links neben die Zeilennummer setzt oder löscht einen Haltepunkt.</div>
+          {/if}
+          <ProbelaufBereich
+            aufgabeId={aktuell.id}
+            {code}
+            funktion={aktuell.funktion}
+            programm={aktuell.task_type === 'programm'}
+            sprache={aktuell.sprache}
+            onDebuggen={mit_debugger ? debuggen : undefined}
+            debugLaeuft={sitzung.laeuft}
+          />
         {/snippet}
 
         {#snippet rechts()}
+          {#if sitzung.aktiv}
+            <SpaltenReiter
+              reiter={[
+                { id: 'ergebnis', titel: 'Ergebnis', icon: 'fa-square-check' },
+                { id: 'debugger', titel: 'Debugger', icon: 'fa-bug' },
+              ]}
+              bind:aktiv={rechter_tab}
+            />
+          {/if}
+          {#if rechter_tab === 'debugger'}
+            <div class="rollfeld">
+              <DebuggerBereich {sitzung} sprache={aktuell.sprache} {code} bind:zeile={debug_zeile} />
+            </div>
+          {:else}
           <div class="rollfeld">
             <OutputBereich
               {ergebnis}
@@ -306,6 +355,7 @@
             />
             <VerlaufBereich aufgabeId={aktuell.id} stand={abgaben} onUebernehmen={(c) => (code = c)} />
           </div>
+          {/if}
         {/snippet}
       </DreiSpaltenLayout>
     {/if}
@@ -352,4 +402,12 @@
     min-height: 0;
     overflow: hidden;
   }
+  .rinnen-hinweis {
+    flex: none;
+    padding: 4px var(--sp-3);
+    border-top: 1px solid var(--border);
+    color: var(--fg-mute);
+    font-size: var(--fs-xs);
+  }
+  .rinnen-hinweis i { color: var(--ed-haltepunkt); font-size: 9px; vertical-align: 1px; }
 </style>

@@ -1,0 +1,33 @@
+/* Farben des Editors, einzige Stelle: klassisches Schema einer verbreiteten Entwicklungsumgebung (ältere Fassung),
+   dunkel und hell. Der Editor (editor/KlassischesSchema.ts) und der Code im Kurs (kurs.css) lesen nur diese Variablen;
+   sie folgen dem Erscheinungsbild der App (data-theme am <html>), ohne dass ein Editor neu entsteht. */
+
+:root,
+:root[data-theme='dark'] {
+  --ed-schema: dark;
+  --ed-grund: #2b2b2b; --ed-text: #a9b7c6; --ed-rand: #313335; --ed-nr: #606366;
+  --ed-zeile: #323232; --ed-auswahl: #214283; --ed-cursor: #bbbbbb;
+  --ed-flaeche: #3c3f41; --ed-linie: #4b4f51;
+  --ed-kw: #cc7832; --ed-str: #6a8759; --ed-zahl: #6897bb; --ed-kom: #808080; --ed-dokukom: #629755;
+  --ed-fn: #ffc66d; --ed-feld: #9876aa; --ed-dekorator: #bbb529;
+  --ed-marke: #e8bf6a; --ed-attribut: #bababa; --ed-wert: #a5c261; --ed-verweis: #287bde;
+  --ed-fehler: #bc3f3c; --ed-warnung: #be9117;
+  --ed-klammer: #3b514d; --ed-klammer-text: #ffef28; --ed-treffer: #32593d;
+  /* Ausgabe unter dem Code und Lücken zum Ausfüllen */
+  --ed-konsole: #1e1f22; --ed-konsole-text: #d6dde5; --ed-luecke: #1f2a29;
+  --ed-haltepunkt: #ff6b68;
+}
+
+:root[data-theme='light'] {
+  --ed-schema: light;
+  --ed-grund: #ffffff; --ed-text: #000000; --ed-rand: #f0f0f0; --ed-nr: #999999;
+  --ed-zeile: #fffae3; --ed-auswahl: #a6d2ff; --ed-cursor: #000000;
+  --ed-flaeche: #f2f2f2; --ed-linie: #c9c9c9;
+  --ed-kw: #000080; --ed-str: #008000; --ed-zahl: #0000ff; --ed-kom: #808080; --ed-dokukom: #808080;
+  --ed-fn: #00627a; --ed-feld: #660e7a; --ed-dekorator: #808000;
+  --ed-marke: #000080; --ed-attribut: #0000ff; --ed-wert: #008000; --ed-verweis: #0000ff;
+  --ed-fehler: #e00000; --ed-warnung: #a36b00;
+  --ed-klammer: #99ccff; --ed-klammer-text: #000000; --ed-treffer: #e4e4ff;
+  --ed-konsole: #f7f7f7; --ed-konsole-text: #1f2328; --ed-luecke: #eefaf8;
+  --ed-haltepunkt: #e5534b;
+}

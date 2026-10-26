@@ -28,7 +28,7 @@ Geklärt am 24.10.2026 (Analyse plus Frage-für-Frage-Klärung). Entwürfe der O
 | Lernhelfer | Die lokale KI ist nur Hilfe: Assistent und Nachschlagewerk, das man nach Befehlen und Anweisungen fragt und das dafür in einem Wissenspool sucht (Nutzer 24.10.2026). Schwebendes, verschiebbares Hilfefenster mit diesem Lernhelfer (über die Leitstelle, Anwendung "Codeschmiede" ist angemeldet): löst nie die Aufgabe, gibt Rückfragen, kleine korrekte Bausteine (einzelne Befehle mit neutralem Mini-Beispiel), erklärt Fehler, schlägt den nächsten kleinen Schritt vor; minimalistisch. Der Server gibt ihm nur Aufgabentext, eigenen Code und letztes Ergebnis, nie Musterlösung oder versteckte Tests (Nutzer 24.10.2026). Einzelheiten vor dem Bau klären |
 | Aufbaukurs | Ein idiotensicherer Aufbaukurs von null an, in kleinsten Schritten mit einer neuen Sache je Aufgabe, als eigener zweiter Lauf in Schritt 7 (Nutzer 25.10.2026). Bisher gibt es nur Themenpfade (Python-Grundlagen hat 3 Aufgaben). Ideen und Reihenfolge der Themen kommen von einer großen bekannten Lernseite für Webtechnik und Programmierung; übernommen wird nur, was sinnvoll ist, und alles wird neu geschrieben: eigene Erklärungen, eigene Beispiele, eigene Werte und Namen, kein Text und kein Beispielcode im Wortlaut. Geklärt am 25.10.2026, siehe "Klärung Aufbaukurs und Lehreinführungen" |
 | Lehreinführungen | Zu jedem Thema ein richtiger, vollständiger Einführungskurs mit sinnvoller Logik, durch den man sich durcharbeitet; erst danach folgt das Üben mit den Aufgaben. Die Einführungen sind absolut vollständig und anschaulich (Nutzer 25.10.2026). Gehört zum Aufbaukurs (Schritt 7); geklärt am 25.10.2026, siehe "Klärung Aufbaukurs und Lehreinführungen" |
-| Editor | Hervorhebung im klassischen dunklen Farbschema einer bekannten Entwicklungsumgebung (die ältere Fassung); Vervollständigung nur für einzelne Befehle, keine mehrzeiligen Bausteine; Syntaxfehler sofort beim Tippen sichtbar (Nutzer 25.10.2026). Gebaut direkt nach Schritt 6, vor dem Ausrollen |
+| Editor | Hervorhebung im klassischen Farbschema einer bekannten Entwicklungsumgebung (die ältere Fassung), dunkel und im hellen Erscheinungsbild hell (Nutzer 26.10.2026); Vervollständigung nur für einzelne Befehle, keine mehrzeiligen Bausteine; Syntaxfehler sofort beim Tippen sichtbar (Nutzer 25.10.2026). Gebaut direkt nach Schritt 6, vor dem Ausrollen |
 | Debugger | Haltepunkte im Editor und ein Ausgabemodus wie bei einem echten Debugger, aber nur auf Ebene des eigenen Codes, kein Tiefendebugger; alle Speicherzustände Schritt für Schritt lesbar (Nutzer 25.10.2026). Umsetzung als Aufzeichnung: die Sandbox schreibt je ausgeführter Zeile des eigenen Codes die Variablen mit (Python über die Ablaufverfolgung, mit Grenze für Schritte und Größe), die Oberfläche spult vor und zurück, springt zum nächsten Haltepunkt, markiert die Zeile und zeigt den Speicher. Python zuerst, JavaScript danach; nur am Rechner, das Telefon muss nicht alles können (Nutzer 25.10.2026); Entwurf vorab. Die Aufzeichnung entsteht vor dem Aufbaukurs (der Kurs zeichnet damit Speicherbilder und Abläufe), die Debugger-Oberfläche direkt nach dem Python-Kurs |
 | Bildkarten | Lernfelder und Bereiche bekommen anschauliche Karten mit Bild und Beschreibung; freigestellte Bilder begleiten die Software. Erzeugt später lokal mit Flux2 über die Leitstelle, nur wenn dort alles entladen ist und Platz ist. Farblich dürfen die Inhalte (Bilder, Karten, Spielflächen) vom Mintgrün abweichen, damit sie in sich harmonisch sind (Nutzer 25.10.2026). Ein Zeichenstil für Bildkarten und Kurs, je Sprache eine Farbfamilie, keine Schrift im Bild; vor jeder Bildserie nimmt der Nutzer selbst ab (Nutzer 25.10.2026, Einzelheiten unter "Klärung Aufbaukurs und Lehreinführungen") |
 | Aufgabenvarianten (später) | Je Aufgabe mehr Vielfalt: Werte vorab erzeugen und nachrechnen, bei Auswahlaufgaben die Reihenfolge der Antworten zufällig mischen, immer nachweislich korrekt; dazu eine Lösungserklärung, die das Verständnis stärkt. Als Plan aufgehoben, weil es aufwendig ist (Nutzer 25.10.2026) |
@@ -343,6 +343,30 @@ freigegebene Entwurf `mockups/rechner-einfuehrung-css.html`.
   keine Vorgabe von einer genaueren Regel überstimmt wird (so gefundene Kaskadenfehler behoben); Bildbögen aller
   Beispiele gegen die richtige Vorhersage und aller Zielbilder gesichtet.
 
+## Ergebnis: Debugger auf der Aufzeichnung, heller Editor (0.88.0)
+
+Nach dem freigegebenen Entwurf `mockups/rechner-debugger.html` (26.10.2026), nur am Rechner, für Python und
+JavaScript.
+
+- Haltepunkte in einer eigenen Rinne links der Zeilennummern, gesetzt und gelöscht mit einem Klick; sie wandern beim
+  Tippen mit ihrer Zeile und bleiben über das Beenden hinaus stehen.
+- "Debuggen" neben "Lauf" im Probelauf: dieselbe Eingabe, der Lauf wird aufgezeichnet und hält am ersten Haltepunkt
+  (ohne Haltepunkte in der ersten Zeile). Bei Funktionsaufgaben hängt eine unsichtbare Zeile den Aufruf an; ihre
+  Schritte fallen weg, die Rückgabe des Aufrufs steht am Ende für sich.
+- Rechte Spalte mit den Reitern Ergebnis und Debugger: Steuerleiste (Anfang, voriger Haltepunkt, Schritt zurück,
+  hinein, über, hinaus, nächster Haltepunkt, Ende, Beenden), Zeitleiste mit einem Strich je Schritt (Höhe gleich
+  Aufruftiefe, rote Punkte an den Halten, Klick und Pfeiltasten springen), Aufrufstapel mit der Zeile, in der jeder
+  Rahmen wartet, Speicherbild aus dem Kurs (innerste Funktion oben) und die Ausgabe bis zum Schritt. Eine Zeile mit
+  Aufruf hält nur beim Eintritt, nicht noch einmal nach der Rückkehr.
+- Ändert sich der Code, ist die Aufzeichnung veraltet: der Debugger sagt es und zeichnet mit "Neu" noch einmal auf.
+- Unterbau: die Aufzeichnung ist ein eigenes Paket (`backend/src/codeschmiede/aufzeichnung/`), das Kurs und Debugger
+  teilen, mit Grenzen je Verwendung (Kurs 400 Schritte, Debugger 2000) und einer Grenze von 600 KB für alle Schritte,
+  damit eine lange Aufzeichnung unter der Ausgabegrenze der Sandbox bleibt und nicht der ganze Lauf verloren geht. Die
+  Antwort lässt leere Felder weg. Route `POST /api/submissions/debuggen`.
+- Editor und Code im Kurs folgen dem Erscheinungsbild der App: neben dem klassischen dunklen Schema das klassische
+  helle derselben Entwicklungsumgebung (Nutzer 26.10.2026). Alle Editorfarben stehen als Variablen in
+  `frontend/src/styles/editor.css`; Umschalten wirkt sofort, ohne den Editor neu aufzubauen.
+
 ## Offen
 
 - Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) zur Freigabe; Bau danach als eigener Abschnitt.
@@ -356,7 +380,7 @@ freigegebene Entwurf `mockups/rechner-einfuehrung-css.html`.
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
   Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.
-- Aufbaukurs weiter: Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
+- Aufbaukurs weiter: Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
 - Aufbaukurs mit Lehreinführungen: geklärt am 25.10.2026; Entwürfe liegen zur Freigabe in `mockups/` (Übersicht
   `mockups/index.html`, Abschnitt Aufbaukurs): Kursübersicht, Einführung für Python, SQL und CSS, Kurztest, Merkblatt,
   Kapitelende mit Sammelkarte, Telefon; freigegeben 25.10.2026 (der Bildbogen entfällt, Bilder kommen aus dem Medienpool).

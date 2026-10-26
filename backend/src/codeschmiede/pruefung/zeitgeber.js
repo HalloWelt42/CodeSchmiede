@@ -1,4 +1,4 @@
-// Zeitgeber mit eigener Uhr für die Läufe in der Sandbox (eingesetzt in programm_rahmen.js und kurs/aufzeichner.js).
+// Zeitgeber mit eigener Uhr für die Läufe in der Sandbox (eingesetzt in programm_rahmen.js und aufzeichnung/aufzeichner.js).
 //
 // setTimeout und setInterval warten nicht wirklich: Ihre Rückrufe kommen in eine Liste mit der Zeit, zu der sie dran
 // wären. Ist der übrige Code fertig, arbeitet abarbeiten() die Liste in der Reihenfolge dieser Zeiten ab und erledigt

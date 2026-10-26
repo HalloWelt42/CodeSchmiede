@@ -1,8 +1,9 @@
 /*
- * Farbschema des Editors: klassisches Dunkel, wie es in verbreiteten
- * Entwicklungsumgebungen lange der Standard war (ältere Fassung).
- * Fester dunkler Grund in hellem und dunklem Erscheinungsbild; die
- * Farben stehen hier und nirgends sonst. Schlüsselwörter sind fett.
+ * Farbschema des Editors: das klassische Schema einer verbreiteten
+ * Entwicklungsumgebung (ältere Fassung), dunkel und hell. Die Farben
+ * stehen als CSS-Variablen in styles/editor.css und folgen dem
+ * Erscheinungsbild der App; hier steht nur, welches Teil welche Farbe
+ * trägt. Schlüsselwörter sind fett.
  *
  * Eigenschaftsnamen bedeuten in CSS etwas anderes als in Python und
  * JavaScript (dort Attribute eines Objekts); deshalb gilt für CSS ein
@@ -15,33 +16,34 @@ import type { Extension } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { tags as t, type Highlighter } from '@lezer/highlight';
 
-export const FARBE = {
-  grund: '#2b2b2b',
-  text: '#a9b7c6',
-  rand: '#313335',
-  zeilennummer: '#606366',
-  aktiveZeile: '#323232',
-  auswahl: '#214283',
-  cursor: '#bbbbbb',
-  flaeche: '#3c3f41',
-  linie: '#4b4f51',
-  schluessel: '#cc7832',
-  zeichenkette: '#6a8759',
-  zahl: '#6897bb',
-  kommentar: '#808080',
-  dokukommentar: '#629755',
-  funktion: '#ffc66d',
-  feld: '#9876aa',
-  dekorator: '#bbb529',
-  marke: '#e8bf6a',
-  attribut: '#bababa',
-  wert: '#a5c261',
-  verweis: '#287bde',
-  fehler: '#bc3f3c',
-  warnung: '#be9117',
-  klammer: '#3b514d',
-  klammerText: '#ffef28',
-  treffer: '#32593d',
+/** Farben als Verweise auf styles/editor.css */
+const FARBE = {
+  grund: 'var(--ed-grund)',
+  text: 'var(--ed-text)',
+  rand: 'var(--ed-rand)',
+  zeilennummer: 'var(--ed-nr)',
+  aktiveZeile: 'var(--ed-zeile)',
+  auswahl: 'var(--ed-auswahl)',
+  cursor: 'var(--ed-cursor)',
+  flaeche: 'var(--ed-flaeche)',
+  linie: 'var(--ed-linie)',
+  schluessel: 'var(--ed-kw)',
+  zeichenkette: 'var(--ed-str)',
+  zahl: 'var(--ed-zahl)',
+  kommentar: 'var(--ed-kom)',
+  dokukommentar: 'var(--ed-dokukom)',
+  funktion: 'var(--ed-fn)',
+  feld: 'var(--ed-feld)',
+  dekorator: 'var(--ed-dekorator)',
+  marke: 'var(--ed-marke)',
+  attribut: 'var(--ed-attribut)',
+  wert: 'var(--ed-wert)',
+  verweis: 'var(--ed-verweis)',
+  fehler: 'var(--ed-fehler)',
+  warnung: 'var(--ed-warnung)',
+  klammer: 'var(--ed-klammer)',
+  klammerText: 'var(--ed-klammer-text)',
+  treffer: 'var(--ed-treffer)',
 } as const;
 
 const F = FARBE;
@@ -76,8 +78,8 @@ const rahmen = EditorView.theme(
     '.cm-diagnostic-error': { borderLeft: `4px solid ${F.fehler}` },
     '.cm-diagnostic-warning': { borderLeft: `4px solid ${F.warnung}` },
     '.cm-lint-marker': { width: '0.9em', height: '0.9em' },
-    // dunkle Bedienteile der Suchleiste, auch die Ankreuzfelder
-    '.cm-panels': { backgroundColor: F.flaeche, color: F.text, colorScheme: 'dark' },
+    // Bedienteile der Suchleiste im Schema des Editors, auch die Ankreuzfelder
+    '.cm-panels': { backgroundColor: F.flaeche, color: F.text, colorScheme: 'var(--ed-schema)' },
     '.cm-panels.cm-panels-bottom': { borderTop: `1px solid ${F.linie}` },
     '.cm-panels.cm-panels-top': { borderBottom: `1px solid ${F.linie}` },
     '.cm-panel input[type=text], .cm-textfield': {
@@ -88,7 +90,6 @@ const rahmen = EditorView.theme(
     },
     '.cm-panel label': { color: F.text },
   },
-  { dark: true },
 );
 
 /** Farben für alle Sprachen außer CSS */
@@ -143,7 +144,7 @@ const ausserhalbCss: Highlighter = {
   scope: (typ) => !cssFarben.scope?.(typ),
 };
 
-export const klassischDunkel: Extension = [
+export const klassischesSchema: Extension = [
   rahmen,
   syntaxHighlighting(cssFarben),
   syntaxHighlighting(ausserhalbCss),

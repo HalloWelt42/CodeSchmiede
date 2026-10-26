@@ -5,9 +5,10 @@
  * nicht unterstuetzte Sprachen faellt der Editor auf Plain-Text zurück.
  *
  * Ausstattung wie in einer Entwicklungsumgebung: Farbschema
- * (KlassischDunkel), Vervollständigung einzelner Befehle, Syntaxprüfung
+ * (KlassischesSchema, dunkel und hell), Vervollständigung einzelner Befehle, Syntaxprüfung
  * beim Tippen (nur in Programmiersprachen), Klammern schließen und
- * markieren, Suchen und Ersetzen, Mehrfachauswahl, deutsche Bedientexte.
+ * markieren, Suchen und Ersetzen, Mehrfachauswahl, deutsche Bedientexte;
+ * auf Wunsch Haltepunkte für den Debugger.
  */
 
 import { closeBrackets, closeBracketsKeymap, completionKeymap } from '@codemirror/autocomplete';
@@ -34,7 +35,8 @@ import {
   rectangularSelection,
 } from '@codemirror/view';
 
-import { klassischDunkel } from './KlassischDunkel';
+import { klassischesSchema } from './KlassischesSchema';
+import { haltepunkte } from './Haltepunkte';
 import { deutscheTexte } from './Phrasen';
 import { syntaxpruefung } from './Syntaxpruefung';
 import { vervollstaendigung } from './Vervollstaendigung';
@@ -67,12 +69,15 @@ export interface EditorOptionen {
   beiAenderung: (code: string) => void;
   /** Befehle der Aufgabe für die Vervollständigung, etwa gehe() */
   befehle?: readonly string[];
+  /** gesetzt: Rinne für Haltepunkte des Debuggers, meldet jede Änderung */
+  beiHaltepunkten?: (zeilen: number[]) => void;
 }
 
 export function erstelleEditor(opts: EditorOptionen): EditorView {
   const state = EditorState.create({
     doc: opts.initialerCode,
     extensions: [
+      opts.beiHaltepunkten ? haltepunkte(opts.beiHaltepunkten) : [],
       lineNumbers(),
       highlightActiveLineGutter(),
       foldGutter(),
@@ -100,7 +105,7 @@ export function erstelleEditor(opts: EditorOptionen): EditorView {
       spracheExtension(opts.sprache),
       vervollstaendigung(opts.befehle),
       MIT_SYNTAXPRUEFUNG.has(opts.sprache) ? syntaxpruefung : [],
-      klassischDunkel,
+      klassischesSchema,
       deutscheTexte,
       zeilenMarke,
       EditorView.lineWrapping,
