@@ -1,0 +1,51 @@
+# Kurztest zu Kapitel 4: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-und-oder
+    text: Welche Bedingung findet alle Pinguine aus dem Norden, die Hering oder Lachs mögen?
+    als_code: true
+    optionen:
+      - text: WHERE kolonie = 'Nord' AND lieblingsfisch IN ('Hering', 'Lachs')
+        richtig: true
+        erklaerung: Richtig, IN fasst das OR zusammen, und AND verlangt zusätzlich den Norden.
+      - text: WHERE kolonie = 'Nord' AND lieblingsfisch = 'Hering' OR lieblingsfisch = 'Lachs'
+        erklaerung: AND bindet zuerst; so kommen alle Lachsfreunde, auch Pia aus dem Süden.
+      - text: WHERE kolonie = 'Nord' AND lieblingsfisch = 'Hering' AND lieblingsfisch = 'Lachs'
+        erklaerung: Niemand hat zwei Lieblingsfische zugleich; das findet keine Zeile.
+  - frageart: auswahl
+    id: kt-between
+    text: Wie viele Zeilen liefert die Abfrage?
+    code: |
+      SELECT name
+      FROM kolonien
+      WHERE wassertemperatur BETWEEN -1.5 AND 4.0;
+    optionen:
+      - text: "3"
+        richtig: true
+        erklaerung: Richtig. Nord, Süd und West; beide Grenzen gehören dazu.
+      - text: "1"
+        erklaerung: Bei BETWEEN zählen die Grenzen mit, -1,5 und 4,0 sind also dabei.
+      - text: "4"
+        erklaerung: Die Ostkolonie hat 9,5 Grad, das liegt über 4,0.
+  - frageart: luecke
+    id: kt-not-in
+    text: Ergänze, damit alle Fütterungen kommen, bei denen es weder Hering noch Sardine gab.
+    code: |
+      SELECT *
+      FROM fuetterungen
+      WHERE fisch ___ IN ('Hering', 'Sardine');
+    antworten: [["NOT", "not"]]
+    erklaerung: Richtig, NOT IN schließt die Werte der Liste aus.
+    hinweis: Das Wort, das eine Bedingung umdreht.
+  - frageart: auswahl
+    id: kt-klammern
+    text: 'Was bedeutet `WHERE a OR b AND c` für die Datenbank?'
+    optionen:
+      - text: a OR (b AND c)
+        richtig: true
+        erklaerung: Richtig, AND bindet stärker, wie Punkt vor Strich.
+      - text: (a OR b) AND c
+        erklaerung: Das müsste man mit Klammern so schreiben.
+      - text: Das ist ein Fehler
+        erklaerung: Die Abfrage läuft, sie bedeutet nur vielleicht nicht, was man meint.
+uebung: q048-futterplan

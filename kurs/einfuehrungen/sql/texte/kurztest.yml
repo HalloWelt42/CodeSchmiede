@@ -1,0 +1,49 @@
+# Kurztest zu Kapitel 5: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-prozent
+    text: Wofür steht % in einem Muster hinter LIKE?
+    optionen:
+      - text: Für beliebig viele Zeichen, auch für keines
+        richtig: true
+        erklaerung: Richtig. Darum passt 'Pa%' auch auf einen Pinguin, der nur Pa hieße.
+      - text: Für genau ein Zeichen
+        erklaerung: Das ist der Unterstrich _.
+      - text: Für eine Zahl
+        erklaerung: '% hat mit Prozent hier nichts zu tun, es lässt beliebig viele Zeichen offen.'
+  - frageart: auswahl
+    id: kt-muster
+    text: Wie viele Zeilen liefert die Abfrage?
+    code: |
+      SELECT name
+      FROM pinguine
+      WHERE name LIKE '%l%';
+    optionen:
+      - text: "3"
+        richtig: true
+        erklaerung: Richtig. Paul, Polly und Pablo haben ein l im Namen.
+      - text: "1"
+        erklaerung: Mit %l% darf das l irgendwo stehen, nicht nur bei Polly.
+      - text: "0"
+        erklaerung: Das Muster ist richtig geschrieben und findet drei Namen.
+  - frageart: luecke
+    id: kt-substr
+    text: Ergänze, damit von jeder Kolonie nur der erste Buchstabe kommt.
+    code: |
+      SELECT SUBSTR(name, ___, 1) AS kuerzel
+      FROM kolonien;
+    antworten: [["1"]]
+    erklaerung: Richtig, SQL zählt die Zeichen ab 1.
+    hinweis: Bei welcher Stelle fängt der Text an?
+  - frageart: auswahl
+    id: kt-gleich-oder-like
+    text: "Warum findet `WHERE name = 'pit'` niemanden, `WHERE name LIKE 'pit'` aber Pit?"
+    optionen:
+      - text: Weil = auf Groß und klein achtet und LIKE bei A bis Z nicht
+        richtig: true
+        erklaerung: Richtig. LIKE ohne Platzhalter vergleicht wie =, nur ohne auf Groß und klein zu achten.
+      - text: Weil LIKE immer ein % ergänzt
+        erklaerung: LIKE ergänzt nichts; ohne Platzhalter muss der ganze Text passen.
+      - text: Weil = nur Zahlen vergleicht
+        erklaerung: = vergleicht auch Texte, aber ganz genau.
+uebung: q058-kurze-namen

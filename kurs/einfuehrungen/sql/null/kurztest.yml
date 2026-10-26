@@ -1,0 +1,49 @@
+# Kurztest zu Kapitel 6: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-null-vergleich
+    text: Wie viele Zeilen liefert die Abfrage?
+    code: |
+      SELECT name
+      FROM pfleger
+      WHERE kolonie <> 'Nord';
+    optionen:
+      - text: "2"
+        richtig: true
+        erklaerung: Richtig. Hannes und Ida; bei Jonas fehlt die Kolonie, und ein Vergleich mit NULL stimmt nie.
+      - text: "3"
+        erklaerung: Jonas hat keine Kolonie eingetragen. Ob NULL ungleich Nord ist, weiß niemand, also fällt er heraus.
+      - text: "4"
+        erklaerung: Greta gehört zur Nordkolonie und fällt sicher heraus.
+  - frageart: auswahl
+    id: kt-null-ist
+    text: Was ist NULL?
+    optionen:
+      - text: Ein Zeichen dafür, dass der Wert fehlt
+        richtig: true
+        erklaerung: Richtig.
+      - text: Die Zahl 0
+        erklaerung: 0 ist ein bekannter Wert. NULL heißt, dass man den Wert nicht kennt.
+      - text: Ein leerer Text ''
+        erklaerung: Auch '' ist ein Wert, nur ein kurzer. NULL ist gar kein Wert.
+  - frageart: luecke
+    id: kt-coalesce
+    text: Ergänze, damit bei unbekanntem Lieblingsfisch "geheim" erscheint.
+    code: |
+      SELECT name, ___(lieblingsfisch, 'geheim') AS fisch
+      FROM pinguine;
+    antworten: [["COALESCE", "coalesce"]]
+    erklaerung: Richtig, COALESCE nimmt den ersten Wert, der nicht NULL ist.
+    hinweis: Die Funktion, die Lücken füllt.
+  - frageart: auswahl
+    id: kt-null-rechnen
+    text: "Was ergibt `SELECT 5 + NULL;`?"
+    optionen:
+      - text: "NULL"
+        richtig: true
+        erklaerung: Richtig. Fünf plus unbekannt ist unbekannt.
+      - text: "5"
+        erklaerung: NULL ist nicht 0; wer mit NULL rechnet, bekommt NULL.
+      - text: Fehler
+        erklaerung: Die Rechnung läuft, das Ergebnis ist nur unbekannt.
+uebung: q068-raetselliste

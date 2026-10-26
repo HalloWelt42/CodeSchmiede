@@ -1,0 +1,31 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin kratzt sich am Kopf vor einer Karteikarte, auf der ein Feld leer ist und ein Fragezeichen schwebt">
+  <ellipse cx="130" cy="170" rx="108" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Karteikarte -->
+  <g transform="rotate(-4 90 100)">
+    <rect x="22" y="56" width="124" height="88" rx="4" fill="#fbf4e2" stroke="#2b3442" stroke-width="2.4"/>
+    <path d="M22 74 h124" stroke="#e2574c" stroke-width="1.6"/>
+    <g fill="#a7afba">
+      <rect x="32" y="84" width="34" height="7" rx="2"/><rect x="74" y="84" width="58" height="7" rx="2" fill="#7aa6c2"/>
+      <rect x="32" y="100" width="34" height="7" rx="2"/><rect x="74" y="100" width="44" height="7" rx="2" fill="#7aa6c2"/>
+      <rect x="32" y="116" width="34" height="7" rx="2"/>
+    </g>
+    <rect x="74" y="113" width="58" height="13" rx="2" fill="none" stroke="#2b3442" stroke-width="1.6" stroke-dasharray="4 3"/>
+  </g>
+  <!-- schwebendes Fragezeichen -->
+  <path d="M98 30 q0 -14 14 -14 q14 0 14 12 q0 9 -10 13 q-4 2 -4 9 v3" fill="none" stroke="#f2a13b" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="112" cy="62" r="4" fill="#f2a13b"/>
+  <!-- Pinguin -->
+  <g transform="translate(200 122)">
+    <ellipse cx="0" cy="12" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="16" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-22" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-24" r="3.4" fill="#fff"/><circle cx="5" cy="-24" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-23" r="1.7" fill="#111"/><circle cx="4" cy="-23" r="1.7" fill="#111"/>
+    <path d="M-12 -18 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 39 h-7 M8 39 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Flügel am Kopf -->
+    <path d="M17 2 q14 -18 2 -34" fill="none" stroke="#2b3442" stroke-width="6.5" stroke-linecap="round"/>
+    <path d="M-17 4 q-8 10 -6 20" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+    <path d="M22 -40 l4 -4 M26 -34 l6 -2" stroke="#2b3442" stroke-width="1.8" stroke-linecap="round" opacity=".6"/>
+  </g>
+</svg>

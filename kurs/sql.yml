@@ -15,3 +15,14 @@ bloecke:
       - einfuehrung: sql-where
         uebungen: [q031-suedkolonie, q032-die-juengeren, q033-ostkolonie, q034-eiskalt, q035-grosse-portionen, q036-kein-hering, q037-die-aelteren]
         projekt: [q039-steckbrief-norden]
+  - titel: Genauer filtern
+    kapitel:
+      - einfuehrung: sql-logik
+        uebungen: [q041-heringe-im-norden, q042-alt-oder-schwer, q043-hering-am-21, q044-pfleger-nord-ost, q045-mittlere-portionen, q046-sued-und-ost, q047-die-leichten]
+        projekt: [q049-steckbrief-nord-ost]
+      - einfuehrung: sql-texte
+        uebungen: [q051-faengt-mit-po-an, q052-am-strand, q053-mit-l, q054-vier-buchstaben, q055-namenslaenge, q056-initialen, q057-winterlage]
+        projekt: [q059-steckbrief-kuerzel]
+      - einfuehrung: sql-null
+        uebungen: [q061-der-springer, q062-bekannte-fische, q063-raetsel-im-norden, q064-noch-offen, q065-kein-lachs, q066-halbe-saetze, q067-fischnamen-zaehlen]
+        projekt: [q069-steckbrief-unbekannt]
