@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 10: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-index
+    text: Was gibt dieses Programm aus?
+    code: |
+      const reihe = [10, 20, 30];
+      reihe.push(40);
+      reihe[0] = 5;
+      console.log(reihe.length, reihe[0] + reihe[3]);
+    optionen:
+      - text: 4 45
+        richtig: true
+        erklaerung: Richtig. Nach push sind es vier Werte, und 5 + 40 ist 45.
+      - text: 3 45
+        erklaerung: push hat einen vierten Wert angehängt.
+      - text: 4 50
+        erklaerung: Fach 0 wurde auf 5 geändert, bevor gerechnet wird.
+  - frageart: luecke
+    id: kt-luecke-join
+    text: Ergänze die Methode, damit "A-B-C" herauskommt.
+    code: console.log(["A", "B", "C"].___("-"));
+    antworten: [["join"]]
+    erklaerung: Richtig, join verbindet mit dem Trenner.
+    hinweis: Verbinden heißt auf Englisch...
+  - frageart: fehlerstelle
+    id: kt-fehler-index
+    text: Das Programm soll den letzten Gast in Großbuchstaben begrüßen, bricht aber ab. In welcher Zeile?
+    code: |
+      const gaeste = ["Pia", "Ole", "Ida"];
+      const letzter = gaeste[gaeste.length];
+      console.log(letzter.toUpperCase());
+    zeile: 3
+    erklaerung: Genau, dort bricht es ab. Die Ursache steht in Zeile 2, gaeste[3] gibt es nicht, und undefined hat kein toUpperCase. Richtig wäre gaeste.length - 1.
+    hinweis: Welcher Wert landet in letzter?
+  - frageart: auswahl
+    id: kt-split
+    text: Was liefert `"1,2,3".split(",")`?
+    als_code: true
+    optionen:
+      - text: "[ '1', '2', '3' ]"
+        richtig: true
+        erklaerung: Richtig, drei Texte, keine Zahlen. split liefert immer Texte.
+      - text: '[ 1, 2, 3 ]'
+        erklaerung: split wandelt nicht um, die Werte bleiben Text.
+      - text: '123'
+        erklaerung: split liefert ein Array, kein Text.
+uebung: j108-fangliste

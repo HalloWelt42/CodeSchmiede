@@ -1,0 +1,41 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin legt Fische in die nummerierten Fächer einer langen Eiswürfelschale">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Schale -->
+  <rect x="14" y="104" width="176" height="44" rx="6" fill="#5b9bd5" stroke="#2b3442" stroke-width="2.4"/>
+  <g fill="#e8f2fa" stroke="#2b3442" stroke-width="1.8">
+    <rect x="22" y="112" width="34" height="28" rx="4"/>
+    <rect x="64" y="112" width="34" height="28" rx="4"/>
+    <rect x="106" y="112" width="34" height="28" rx="4"/>
+    <rect x="148" y="112" width="34" height="28" rx="4"/>
+  </g>
+  <!-- Nummernpunkte unter den Fächern: 0, 1, 2, 3 -->
+  <g fill="#fffaf0" stroke="#2b3442" stroke-width="1.2">
+    <circle cx="39" cy="158" r="6"/><circle cx="81" cy="158" r="6"/><circle cx="123" cy="158" r="6"/><circle cx="165" cy="158" r="6"/>
+  </g>
+  <g fill="#2b3442">
+    <circle cx="81" cy="158" r="1.6"/>
+    <circle cx="121" cy="158" r="1.5"/><circle cx="125" cy="158" r="1.5"/>
+    <circle cx="162" cy="158" r="1.4"/><circle cx="165" cy="158" r="1.4"/><circle cx="168" cy="158" r="1.4"/>
+  </g>
+  <!-- Fische in den ersten drei Fächern -->
+  <g stroke="#2b3442" stroke-width="1.4">
+    <g transform="translate(37 126)"><path d="M-11 0 q11 -7 20 0 q-9 7 -20 0 Z" fill="#a7afba"/><path d="M9 0 l6 -5 v10 Z" fill="#a7afba"/></g>
+    <g transform="translate(79 126)"><path d="M-11 0 q11 -7 20 0 q-9 7 -20 0 Z" fill="#7fc8a9"/><path d="M9 0 l6 -5 v10 Z" fill="#7fc8a9"/></g>
+    <g transform="translate(121 126)"><path d="M-11 0 q11 -7 20 0 q-9 7 -20 0 Z" fill="#f2c94c"/><path d="M9 0 l6 -5 v10 Z" fill="#f2c94c"/></g>
+  </g>
+  <!-- Fisch über dem letzten Fach, gleich hinein -->
+  <g stroke="#2b3442" stroke-width="1.4" transform="translate(170 84) rotate(-20)">
+    <path d="M-11 0 q11 -7 20 0 q-9 7 -20 0 Z" fill="#e2574c"/><path d="M9 0 l6 -5 v10 Z" fill="#e2574c"/>
+  </g>
+  <!-- Pinguin -->
+  <g transform="translate(222 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-14 -14 -34 -38" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,52 @@
+# Kurztest zu Kapitel 12: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-zugriff
+    text: Was gibt dieses Programm aus?
+    code: |
+      const p = { name: "Pit", fische: 3 };
+      const was = "fische";
+      p[was] += 2;
+      console.log(p.fische, p.was, "name" in p);
+    optionen:
+      - text: 5 undefined true
+        richtig: true
+        erklaerung: Richtig. p[was] ist p.fische, das wird 5. p.was sucht eine Eigenschaft was, die es nicht gibt.
+      - text: 5 fische true
+        erklaerung: Der Punkt nimmt den Namen wörtlich, p.was gibt es nicht.
+      - text: 3 undefined true
+        erklaerung: p[was] += 2 hat fische schon auf 5 erhöht.
+  - frageart: luecke
+    id: kt-luecke-forin
+    text: Ergänze das Wort, damit alle Namen der Eigenschaften ausgegeben werden.
+    code: |
+      const preise = { Hering: 2, Aal: 5 };
+      for (const name ___ preise) {
+        console.log(name);
+      }
+    antworten: [["in"]]
+    erklaerung: Richtig, for ... in für Objekte.
+    hinweis: Bei Objekten nicht of.
+  - frageart: fehlerstelle
+    id: kt-fehler-of
+    text: Das Programm soll alle Preise ausgeben, bricht aber ab. In welcher Zeile?
+    code: |
+      const preise = { Hering: 2, Aal: 5 };
+      for (const preis of preise) {
+        console.log(preis);
+      }
+    zeile: 2
+    erklaerung: Genau. for ... of geht nicht über ein Objekt. Object.values(preise) liefert die Preise als Array.
+    hinweis: Welche Schleife passt zu Objekten?
+  - frageart: auswahl
+    id: kt-delete
+    text: Was macht `delete kunde.telefon`?
+    optionen:
+      - text: Es entfernt die Eigenschaft telefon aus dem Objekt.
+        richtig: true
+        erklaerung: Richtig, danach ist "telefon" in kunde false.
+      - text: Es löscht das ganze Objekt kunde.
+        erklaerung: Gelöscht wird nur die eine Eigenschaft.
+      - text: Es setzt telefon auf null.
+        erklaerung: Die Eigenschaft verschwindet ganz, statt einen leeren Wert zu bekommen.
+uebung: j128-inventur

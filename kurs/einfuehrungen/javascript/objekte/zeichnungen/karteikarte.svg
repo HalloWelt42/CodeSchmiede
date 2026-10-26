@@ -1,0 +1,36 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin füllt eine große Karteikarte mit beschrifteten Feldern aus, daneben liegt ein Stapel weiterer Karten">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Stapel hinten -->
+  <g stroke="#2b3442" stroke-width="1.6">
+    <rect x="28" y="30" width="128" height="96" rx="4" fill="#f4ecd6" transform="rotate(-6 92 78)"/>
+    <rect x="24" y="34" width="128" height="96" rx="4" fill="#fbf4e2" transform="rotate(-3 88 82)"/>
+  </g>
+  <!-- große Karte -->
+  <rect x="20" y="40" width="140" height="104" rx="5" fill="#fffaf0" stroke="#2b3442" stroke-width="2.2"/>
+  <path d="M20 58 h140" stroke="#e2574c" stroke-width="2"/>
+  <!-- Felder: Etikett links, Wert rechts -->
+  <g fill="#e8f2fa" stroke="#2b3442" stroke-width="1.4">
+    <rect x="30" y="68" width="34" height="14" rx="2"/><rect x="30" y="90" width="34" height="14" rx="2"/><rect x="30" y="112" width="34" height="14" rx="2"/>
+  </g>
+  <g stroke="#a7afba" stroke-width="2.4" stroke-linecap="round">
+    <path d="M72 75 h60 M72 97 h44 M72 119 h26"/>
+  </g>
+  <!-- Stempel im dritten Feld -->
+  <g fill="none" stroke="#e2574c" stroke-width="2"><circle cx="110" cy="119" r="5"/><circle cx="124" cy="119" r="5"/><circle cx="138" cy="119" r="5"/></g>
+  <!-- Stift -->
+  <g transform="rotate(35 176 92)">
+    <rect x="170" y="62" width="9" height="46" rx="2" fill="#f2c94c" stroke="#2b3442" stroke-width="1.6"/>
+    <path d="M170 108 l4.5 10 l4.5 -10 Z" fill="#fbf4e2" stroke="#2b3442" stroke-width="1.4"/>
+  </g>
+  <!-- Pinguin -->
+  <g transform="translate(222 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-12 -10 -26 -16" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

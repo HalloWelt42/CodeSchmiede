@@ -1,0 +1,49 @@
+# Kurztest zu Kapitel 13: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-map
+    text: Was gibt dieses Programm aus?
+    code: |
+      const m = new Map();
+      m.set("a", 1);
+      m.set("b", 2);
+      m.set("a", 3);
+      console.log(m.size, m.get("a"));
+    optionen:
+      - text: 2 3
+        richtig: true
+        erklaerung: Richtig. set mit einem vorhandenen Schlüssel ersetzt den Wert, es bleiben zwei Einträge.
+      - text: 3 1
+        erklaerung: Jeder Schlüssel kommt nur einmal vor; das zweite set für a überschreibt.
+      - text: 3 3
+        erklaerung: Schlüssel a ist schon da, darum wächst die Map nicht.
+  - frageart: luecke
+    id: kt-luecke-new
+    text: Ergänze das Wort, das eine neue Menge baut.
+    code: const sorten = ___ Set(["Hering", "Aal", "Hering"]);
+    antworten: [["new"]]
+    erklaerung: Richtig, new baut das neue Set.
+    hinweis: Drei Buchstaben, auf Deutsch neu.
+  - frageart: fehlerstelle
+    id: kt-fehler-has
+    text: Das Programm soll melden, ob Pia dabei war, bricht aber ab. In welcher Zeile?
+    code: |
+      const gaeste = new Set(["Pia", "Ole"]);
+      gaeste.add("Ida");
+      console.log(gaeste.includes("Pia"));
+    zeile: 3
+    erklaerung: Genau. includes gibt es bei Arrays und Text; ein Set fragt mit has.
+    hinweis: Wie heißt die Frage bei einem Set?
+  - frageart: auswahl
+    id: kt-set-groesse
+    text: Wie groß ist `new Set("Möwe")`?
+    als_code: true
+    optionen:
+      - text: '4'
+        richtig: true
+        erklaerung: Richtig. Ein Text liefert seine Zeichen, und alle vier sind verschieden.
+      - text: '1'
+        erklaerung: Ein Text wird in seine Zeichen zerlegt, nicht als Ganzes aufgenommen.
+      - text: '3'
+        erklaerung: M, ö, w und e sind vier verschiedene Zeichen.
+uebung: j138-vereinsliste

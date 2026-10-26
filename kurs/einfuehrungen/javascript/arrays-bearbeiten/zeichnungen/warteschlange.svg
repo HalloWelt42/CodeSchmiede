@@ -1,0 +1,30 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eine Schlange von Pinguinen steht am Fischwagen an, einer drängelt sich vorne hinein, hinten kommt gerade einer dazu">
+  <defs>
+    <g id="pingu">
+      <ellipse cx="0" cy="10" rx="13" ry="19" fill="#2b3442"/>
+      <ellipse cx="0" cy="13" rx="8.5" ry="13" fill="#f4f1ea"/>
+      <circle cx="0" cy="-14" r="10" fill="#2b3442"/>
+      <circle cx="-4" cy="-15" r="2.4" fill="#fff"/><circle cx="2" cy="-15" r="2.4" fill="#fff"/>
+      <circle cx="-4.6" cy="-14.6" r="1.2" fill="#111"/><circle cx="1.4" cy="-14.6" r="1.2" fill="#111"/>
+      <path d="M-9 -11 l-6 2 l6 2 Z" fill="#f2a13b"/>
+      <path d="M-6 28 h-5 M6 28 h5" stroke="#f2a13b" stroke-width="2.6" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Fischwagen links -->
+  <rect x="6" y="88" width="56" height="58" rx="5" fill="#e2574c" stroke="#2b3442" stroke-width="2.2"/>
+  <rect x="14" y="98" width="40" height="22" rx="2" fill="#fffaf0" stroke="#2b3442" stroke-width="1.6"/>
+  <path d="M4 88 l8 -14 h44 l8 14 Z" fill="#f2c94c" stroke="#2b3442" stroke-width="2"/>
+  <circle cx="18" cy="150" r="7" fill="#2b3442"/><circle cx="50" cy="150" r="7" fill="#2b3442"/>
+  <!-- Schlange -->
+  <use href="#pingu" transform="translate(98 132)"/>
+  <use href="#pingu" transform="translate(132 132)"/>
+  <use href="#pingu" transform="translate(166 132)"/>
+  <!-- Drängler vorne, schräg -->
+  <use href="#pingu" transform="translate(78 124) rotate(-12)"/>
+  <path d="M92 104 q-6 -10 -16 -8" fill="none" stroke="#e2574c" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M74 95 l4 -5 l2 6 Z" fill="#e2574c"/>
+  <!-- Neuer hinten, kommt angewatschelt -->
+  <use href="#pingu" transform="translate(222 130)"/>
+  <g stroke="#2b3442" stroke-width="1.6" stroke-linecap="round" opacity=".5"><path d="M240 120 h8 M242 130 h8 M240 140 h8"/></g>
+</svg>

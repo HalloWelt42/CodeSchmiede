@@ -35,3 +35,17 @@ bloecke:
       - einfuehrung: js-for
         uebungen: [j091-einmaleins, j092-fuenferschritte, j093-buchstabieren, j094-vokale, j095-rueckwaerts, j096-tannenbaum, j097-nur-ziffern]
         projekt: [j099-fischwagen-stempelkarte]
+  - titel: Sammeln und ordnen
+    kapitel:
+      - einfuehrung: js-arrays
+        uebungen: [j101-erstes-array, j102-umtauschen, j103-jeden-gruessen, j104-gaeste-sammeln, j105-summe-und-schnitt, j106-groesster-fang, j107-laengstes-wort]
+        projekt: [j109-fischwagen-speisekarte]
+      - einfuehrung: js-arrays-bearbeiten
+        uebungen: [j111-letzter-geht, j112-vordraengeln, j113-gibt-es, j114-ausverkauft, j115-alphabetisch, j116-zusammenlegen, j117-mitte]
+        projekt: [j119-fischwagen-stammkunden]
+      - einfuehrung: js-objekte
+        uebungen: [j121-steckbrief-objekt, j122-geburtstag, j123-preis-nachschlagen, j124-preisliste, j125-strichliste, j126-teuerstes, j127-auf-die-karte]
+        projekt: [j129-fischwagen-karteikarten]
+      - einfuehrung: js-map-set
+        uebungen: [j131-erste-map, j132-umbuchen, j133-telefonbuch, j134-preisliste-map, j135-doppelte-weg, j136-schon-gesehen, j137-gemeinsam]
+        projekt: [j139-fischwagen-maps]

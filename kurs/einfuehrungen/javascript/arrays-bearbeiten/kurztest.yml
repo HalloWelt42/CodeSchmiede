@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 11: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-schlange
+    text: Was gibt dieses Programm aus?
+    code: |
+      const s = ["A", "B", "C"];
+      s.shift();
+      s.push("D");
+      s.unshift("E");
+      console.log(s.join(""));
+    optionen:
+      - text: EBCD
+        richtig: true
+        erklaerung: Richtig. A geht vorne raus, D kommt hinten dazu, E stellt sich vorne an.
+      - text: EABCD
+        erklaerung: shift hat A schon vorne herausgenommen.
+      - text: BCDE
+        erklaerung: unshift stellt vorne an, nicht hinten.
+  - frageart: luecke
+    id: kt-luecke-indexof
+    text: Ergänze die Methode, damit die Stelle von "Ole" ausgegeben wird, also 1.
+    code: console.log(["Pia", "Ole", "Ida"].___("Ole"));
+    antworten: [["indexOf"]]
+    erklaerung: Richtig, indexOf liefert die Stelle.
+    hinweis: Index von...
+  - frageart: fehlerstelle
+    id: kt-fehler-sort
+    text: Die Preise sollen aufsteigend sortiert werden. In welcher Zeile liegt der Denkfehler, der 12 vor 3 stellt?
+    code: |
+      const preise = [3, 12, 7];
+      preise.sort();
+      console.log(preise.join(" < "));
+    zeile: 2
+    erklaerung: Genau. Ohne Vergleichsfunktion sortiert sort Zahlen als Text, und "12" kommt vor "3". Wie es richtig geht, zeigt Kapitel 15.
+    hinweis: Wie vergleicht sort ohne weitere Angabe?
+  - frageart: auswahl
+    id: kt-slice-splice
+    text: Welche Methode lässt das Array unverändert?
+    optionen:
+      - text: slice
+        richtig: true
+        erklaerung: Richtig, slice liefert nur eine Kopie eines Ausschnitts.
+      - text: splice
+        erklaerung: splice streicht und fügt im Array selbst ein.
+      - text: sort
+        erklaerung: sort ordnet das Array selbst um.
+uebung: j118-schlangenverwaltung
