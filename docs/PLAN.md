@@ -429,9 +429,21 @@ Einzelheiten in `docs/SPIELE.md`.
 - Die gemeinsame Ansicht der Steuerungsspiele kann jetzt einen eigenen Editor, eigenen Titel, eigene Zeitanzeige
   und Takt aufnehmen; ohne Klänge fehlt der Tonknopf.
 
+## Ergebnis: Digitale Schaltungen (0.92.0)
+
+Nach dem freigegebenen Entwurf `mockups/rechner-schaltung.html`; Einzelheiten in `docs/SPIELE.md`.
+
+- Schaltplan als Text mit Plan-Editor (verdrahten mit zwei Klicks, Bausteine ziehen, setzen, löschen) und
+  Textansicht, Wahrheitstabelle mit Soll und Ist, 7-Segment-Anzeige; Prüfung im Backend ohne Sandbox, acht Levels
+  vom Verdrahten der Grundgatter bis zur 7-Segment-Anzeige. Routen `GET /api/spiel/schaltung/{id}/plan` und
+  `POST /api/spiel/schaltung/{id}/lauf`.
+- Die gemeinsame Ansicht kann ohne Abspielen arbeiten und bei jeder Änderung sofort neu rechnen; Szene und Editor
+  können eine Zeile oder ein Bild wählen.
+- Später: Flipflop und Zähler (brauchen einen Takt).
+
 ## Offen
 
-- Digitale Schaltungen nach dem freigegebenen Entwurf `mockups/rechner-schaltung.html` (im Bau).
+- Schaltungen mit Takt: Flipflop und Zähler (später, eigener Entwurf).
 - Weitere Spielideen (Nutzer 25.10.2026): Codes knacken (Knacker schreiben, geprüft auf versteckten Geheimtexten) und
   Flaggenjagd (verwundbare Übungssysteme nur in der Sandbox, erst Flagge finden, dann Lücke schließen); Skizze in
   `docs/SPIELE.md`, vor dem Bau Entwürfe.

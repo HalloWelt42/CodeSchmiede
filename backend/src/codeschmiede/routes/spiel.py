@@ -1,6 +1,6 @@
 """HTTP-Routen der Spielmechanik: Spielstand für Kopf und Startseite,
 Erfolge für ihre Seite, Spiele mit dem Stand ihrer Levels, Probeläufe des
-Roboters, der Steuerungsspiele und der Turingmaschine und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
+Roboters, der Steuerungsspiele, der Turingmaschine und der Schaltungen und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
 
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -12,9 +12,10 @@ from ..models.spiel import ErfolgsListe, Spielstand, SpielUebersicht
 from ..models.sprint import SprintAbschluss, SprintRueckmeldung, SprintRunde
 from ..pruefung import krimi_pruefer
 from ..pruefung.krimi_pruefer import Ergebnistabelle
-from ..pruefung import ampel_pruefer, aufzug_pruefer, turing_pruefer
+from ..pruefung import ampel_pruefer, aufzug_pruefer, schaltung_pruefer, turing_pruefer
 from ..pruefung.ampel_pruefer import AmpelLaeufe, AmpelSterne
 from ..pruefung.aufzug_pruefer import AufzugLaeufe, AufzugSterne
+from ..pruefung.schaltung_pruefer import SchaltungLaeufe, SchaltungSterne, Vorgabe
 from ..pruefung.turing_pruefer import Band, TuringLaeufe, TuringSterne
 from ..pruefung.roboter_pruefer import Laeufe, lauf_sichtbar
 from ..steuerung import ampel_welt
@@ -87,6 +88,22 @@ class TuringAnsicht(BaseModel):
     sensoren: list[str]
     teilschritte: list[TeilschrittText]
     sterne: TuringSterne
+    aufbauend_auf: str | None
+
+
+class SchaltungAnsicht(BaseModel):
+    """Was die Schaltungen vor dem ersten Lauf zeigen: Ein- und Ausgänge, erlaubte Bausteine, Vorgabe beim
+    Verdrahten, die Spalten der Wahrheitstabelle und vom Level, was der Browser braucht."""
+
+    eingaenge: list[str]
+    ausgaenge: list[str]
+    bausteine: list[str]
+    vorgabe: list[Vorgabe]
+    soll: dict[str, str]
+    dauer: int
+    sensoren: list[str]
+    teilschritte: list[TeilschrittText]
+    sterne: SchaltungSterne
     aufbauend_auf: str | None
 
 
@@ -211,6 +228,27 @@ def baue_spiel_router(state: AppState) -> APIRouter:
     def turing_lauf(aufgabe_id: str, anfrage: ProgrammProbe) -> TuringLaeufe:
         """Probelauf auf den sichtbaren Bändern, ohne Wertung und ohne Abgabe (ohne Sandbox: eine Tabelle ist Daten)."""
         return turing_pruefer.lauf_sichtbar(turing_level(aufgabe_id), anfrage.code)
+
+    def schaltung_level(aufgabe_id: str):
+        aufgabe = state.aufgaben.aufgabe(aufgabe_id)
+        if aufgabe is None or aufgabe.task_type != "schaltung":
+            raise HTTPException(status_code=404, detail="Kein Schaltungs-Level")
+        return aufgabe
+
+    @router.get("/schaltung/{aufgabe_id}/plan", response_model=SchaltungAnsicht)
+    def schaltung_plan(aufgabe_id: str) -> SchaltungAnsicht:
+        level = schaltung_pruefer.level_von(schaltung_level(aufgabe_id))
+        return SchaltungAnsicht(
+            eingaenge=level.eingaenge, ausgaenge=level.ausgaenge, bausteine=level.bausteine, vorgabe=level.vorgabe,
+            soll=level.soll, dauer=2 ** len(level.eingaenge), sensoren=[],
+            teilschritte=[TeilschrittText(titel=s.titel, text=s.text) for s in level.teilschritte],
+            sterne=level.sterne, aufbauend_auf=level.aufbauend_auf,
+        )
+
+    @router.post("/schaltung/{aufgabe_id}/lauf", response_model=SchaltungLaeufe)
+    def schaltung_lauf(aufgabe_id: str, anfrage: ProgrammProbe) -> SchaltungLaeufe:
+        """Wahrheitstabelle des Plans, ohne Wertung und ohne Abgabe (ohne Sandbox: ein Plan ist Daten)."""
+        return schaltung_pruefer.lauf_sichtbar(schaltung_level(aufgabe_id), anfrage.code)
 
     def krimi_kapitel(aufgabe_id: str):
         aufgabe = state.aufgaben.aufgabe(aufgabe_id)

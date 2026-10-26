@@ -50,11 +50,11 @@
     /** ob ein misslungener Ablauf einen Unfall hatte (eigenes Symbol) */
     mitUnfall?: (kennzahlen: K) => boolean;
     hilfe: Snippet<[A]>;
-    szene: Snippet<[A, W | null, number]>;
-    plan: Snippet<[A, W | null, number, number, (sekunde: number) => void]>;
+    szene: Snippet<[A, W | null, number, (sekunde: number) => void]>;
+    plan?: Snippet<[A, W | null, number, number, (sekunde: number) => void]>;
     kennzahlen: Snippet<[A, W]>;
     /** eigener Editor statt Python; bekommt den Code, die Wiedergabe und das gezeigte Bild */
-    editor?: Snippet<[A, CodeZugriff, W | null, number]>;
+    editor?: Snippet<[A, CodeZugriff, W | null, number, (sekunde: number) => void]>;
     /** Titel der mittleren Spalte; ab Werk "Programm, n Zeichen" */
     mitteTitel?: (code: string) => string;
     /** Anzeige der Zeit; ab Werk Minuten und Sekunden */
@@ -63,10 +63,14 @@
     takt?: number;
     /** Hinweis neben dem Titel des Ablaufplans */
     planHinweis?: string;
+    /** ohne Abspielen (Schaltungen): keine Leiste, das Bild ist eine Auswahl */
+    abspielen?: boolean;
+    /** jede Änderung am Code rechnet sofort neu (Spiele ohne Sandbox) */
+    live?: boolean;
   }
   let {
     detail, welt, symbol, planTitel, ladeAnsicht, probieren, tonZuBild, mitUnfall, hilfe, szene, plan, kennzahlen,
-    editor, mitteTitel, zeitText, takt = DT, planHinweis = 'Klick springt zur Sekunde',
+    editor, mitteTitel, zeitText, takt = DT, planHinweis = 'Klick springt zur Sekunde', abspielen = true, live = false,
   }: Props = $props();
 
   let ansicht = $state<A | null>(null);
@@ -126,11 +130,29 @@
     abspieler.abspielen();
   }
 
+  function springe(sekunde: number): void {
+    if (wiedergabe) abspieler.springe(bildBei(wiedergabe, sekunde));
+  }
+
   function neueAuswertung(neu: Auswertung<W, K> | null): void {
     auswertung = neu;
+    if (!abspielen) {
+      // die Auswahl bleibt stehen, solange es sie noch gibt
+      const n = neu?.wiedergaben[0]?.bilder.length ?? 0;
+      abspieler.laden(n, n ? Math.min(Math.max(abspieler.bild, 0), n - 1) : -1);
+      return;
+    }
     if (neu) zeige(neu.wiedergaben[0]?.name ?? null);
     else abspieler.laden(0);
   }
+
+  // Spiele ohne Sandbox rechnen bei jeder Änderung neu, kurz nach dem letzten Tastendruck
+  $effect(() => {
+    if (!live || !ansicht) return;
+    void code;
+    const uhr = setTimeout(() => probelauf(), 350);
+    return () => clearTimeout(uhr);
+  });
 
   /** Eigenes letztes Programm, sonst das bestandene des Levels davor, sonst der Startcode. */
   async function anfangscode(aufbauend_auf: string | null): Promise<string> {
@@ -258,15 +280,17 @@
   {/snippet}
 
   {#snippet mitteZusatz()}
-    <button class="knopf-klein" onclick={probelauf} disabled={probe_laeuft || pruefen_laeuft || !code.trim()}>
-      <i class="fa-solid {probe_laeuft ? 'fa-spinner fa-spin' : symbol}" aria-hidden="true"></i>Ablauf
-    </button>
+    {#if !live}
+      <button class="knopf-klein" onclick={probelauf} disabled={probe_laeuft || pruefen_laeuft || !code.trim()}>
+        <i class="fa-solid {probe_laeuft ? 'fa-spinner fa-spin' : symbol}" aria-hidden="true"></i>Ablauf
+      </button>
+    {/if}
   {/snippet}
 
   {#snippet mitte()}
     <div class="editor-host">
       {#if editor && ansicht}
-        {@render editor(ansicht, zugriff, wiedergabe, abspieler.bild)}
+        {@render editor(ansicht, zugriff, wiedergabe, abspieler.bild, springe)}
       {:else}
         <EditorBereich sprache="python" bind:code />
       {/if}
@@ -276,7 +300,7 @@
   {#snippet rechts()}
     <div class="rollfeld welt-rahmen">
       {#if ergebnis?.belohnung}<BelohnungsBand belohnung={ergebnis.belohnung} />{/if}
-      <div class="ablauf-leiste">
+      {#if abspielen}<div class="ablauf-leiste">
         <button class="knopf-klein" onclick={() => abspieler.abspielen()} disabled={!wiedergabe || abspieler.laeuft}>
           <i class="fa-solid fa-play" aria-hidden="true"></i>Abspielen
         </button>
@@ -300,14 +324,16 @@
           {#each TEMPI as t (t)}<option value={t}>{t}-fach</option>{/each}
         </select>
         <span class="num zeit">{zeitText ? zeitText(zeit, dauer) : `${uhr(zeit)} / ${uhr(dauer)}`}</span>
-      </div>
+      </div>{/if}
 
       {#if ansicht}
-        {@render szene(ansicht, wiedergabe, abspieler.bild)}
-        <div class="gruppe">
-          {planTitel}{#if wiedergabe}<span class="dim klein">{wiedergabe.name}, {planHinweis}</span>{/if}
-        </div>
-        {@render plan(ansicht, wiedergabe, dauer, zeit, (s) => wiedergabe && abspieler.springe(bildBei(wiedergabe, s)))}
+        {@render szene(ansicht, wiedergabe, abspieler.bild, springe)}
+        {#if plan}
+          <div class="gruppe">
+            {planTitel}{#if wiedergabe}<span class="dim klein">{wiedergabe.name}, {planHinweis}</span>{/if}
+          </div>
+          {@render plan(ansicht, wiedergabe, dauer, zeit, springe)}
+        {/if}
       {:else if !fehler}
         <p class="dim"><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> {welt} wird geladen ...</p>
       {/if}

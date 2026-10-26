@@ -21,6 +21,7 @@ from . import roboter_pruefer  # noqa: F401  registriert "roboter"
 from . import ampel_pruefer  # noqa: F401  registriert "ampel"
 from . import aufzug_pruefer  # noqa: F401  registriert "aufzug"
 from . import turing_pruefer  # noqa: F401  registriert "turing"
+from . import schaltung_pruefer  # noqa: F401  registriert "schaltung"
 from . import krimi_pruefer  # noqa: F401  registriert "sql_krimi"
 from . import programm_pruefer  # noqa: F401  registriert "programm"
 from .ergebnis import PruefErgebnis

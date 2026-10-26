@@ -5,6 +5,7 @@
  */
 import type { AmpelAnsicht, AmpelLaeufe } from '../types/Ampel';
 import type { AufzugAnsicht, AufzugLaeufe } from '../types/Aufzug';
+import type { SchaltungAnsicht, SchaltungLaeufe } from '../types/Schaltung';
 import type { TuringAnsicht, TuringLaeufe } from '../types/Turing';
 import { HttpBase } from './HttpBase';
 
@@ -254,6 +255,12 @@ export class SpielApi extends HttpBase {
   }
   turingLauf(aufgabeId: string, code: string): Promise<TuringLaeufe> {
     return this.post<TuringLaeufe>(`/turing/${aufgabeId}/lauf`, { code });
+  }
+  schaltungPlan(aufgabeId: string): Promise<SchaltungAnsicht> {
+    return this.get<SchaltungAnsicht>(`/schaltung/${aufgabeId}/plan`);
+  }
+  schaltungLauf(aufgabeId: string, code: string): Promise<SchaltungLaeufe> {
+    return this.post<SchaltungLaeufe>(`/schaltung/${aufgabeId}/lauf`, { code });
   }
   krimiAusfuehren(aufgabeId: string, code: string): Promise<KrimiErgebnis> {
     return this.post<KrimiErgebnis>(`/krimi/${aufgabeId}/ausfuehren`, { code });

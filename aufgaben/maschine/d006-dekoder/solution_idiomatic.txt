@@ -1,0 +1,10 @@
+na = NICHT(A) @ 150,60
+nb = NICHT(B) @ 150,200
+y0 = NOR(A, B) @ 300,20
+y1 = UND(na, B) @ 300,100
+y2 = UND(A, nb) @ 300,180
+y3 = UND(A, B) @ 300,260
+Y0 = y0
+Y1 = y1
+Y2 = y2
+Y3 = y3

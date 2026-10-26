@@ -1,0 +1,12 @@
+na = NICHT(A) @ 150,60
+nb = NICHT(B) @ 150,200
+sa = ODER(A, nb) @ 300,40
+sc = ODER(na, B) @ 300,130
+sf = NOR(A, B) @ 300,220
+a = sa
+b = 1
+c = sc
+d = sa
+e = nb
+f = sf
+g = A

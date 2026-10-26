@@ -113,6 +113,10 @@ aufgabentypen:
     titel: Turingmaschine
     view: turing
     beschreibung: Eine Übergangstabelle bauen - Band, Kopf und Zustände zeigen Schritt für Schritt, was sie tut.
+  - id: schaltung
+    titel: Digitale Schaltung
+    view: schaltung
+    beschreibung: Gatter verdrahten oder selbst setzen - die ganze Wahrheitstabelle zeigt, ob die Schaltung stimmt.
 
 # Spiele im Spielebereich. Ihre Levels sind Aufgaben des genannten
 # Aufgabentyps, die Reihenfolge geben die Pfade vor. Levels zählen in
@@ -162,6 +166,12 @@ spiele:
     beschreibung: "Rechnen mit Band, Kopf und Tabelle: Bits tauschen, plus eins, Klammern prüfen, Palindrome und Kopieren."
     aufgabentyp: turing
     pfade: [turingmaschine]
+  - id: schaltungen
+    titel: Digitale Schaltungen
+    icon: fa-microchip
+    beschreibung: "Mit UND, ODER und NICHT rechnen: vom Halbaddierer über Multiplexer und Dekoder bis zur 7-Segment-Anzeige."
+    aufgabentyp: schaltung
+    pfade: [schaltungen]
 
 # Spielmechanik (docs/SPIELE.md). Stufe k gilt ab stufe_basis * k * k
 # Punkten, alle titel_alle Stufen kommt der nächste Titel. Die Ränge der

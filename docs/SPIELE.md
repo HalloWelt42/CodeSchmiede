@@ -211,6 +211,22 @@ Entwürfe: `mockups/rechner-turing.html` und `mockups/rechner-schaltung.html`. B
   Entscheider), Unär addieren, Klammern prüfen, Palindrom, Kopieren. Jede Musterlösung besteht mit drei Sternen,
   jeder Startcode scheitert am ersten Teilschritt (Tests in `backend/tests/test_turing.py`).
 
+### Digitale Schaltungen (gebaut, 0.92.0)
+
+- **Schaltplan als Text** (`backend/src/codeschmiede/steuerung/schaltung.py`): je Zeile ein Baustein
+  `name = ART(Eingang, Eingang) @ x,y` oder ein Ausgang `Ausgang = Signal`; Signale sind Eingänge, Bausteine und die
+  festen Werte 0 und 1, `?` ist offen, `@ x,y` nur die Lage im Plan. Arten: UND, ODER, XOR, NAND, NOR, NICHT.
+- **Prüfung** (`pruefung/schaltung_pruefer.py`) ohne Sandbox über die ganze Wahrheitstabelle; je Ausgang eine
+  Spalte aus 0, 1 und x (egal). Beim Verdrahten müssen es genau die vorgegebenen Bausteine sein. Teilschritte nennen
+  Ausgänge. Sterne: ganze Tabelle; höchstens so viele Bausteine; dazu höchstens so tief (längster Weg).
+- **Ansicht** `SchaltungView` in der gemeinsamen Ansicht ohne Abspielen und mit sofortigem Neurechnen: Plan-Editor
+  (Schalter, feste Werte, Bausteine zum Ziehen, Lämpchen, Leitungen mit zwei Klicks, beim freien Bauen eine Leiste
+  zum Setzen und Löschen) oder der Text; rechts die Wahrheitstabelle mit Soll und Ist, ein Klick wählt die Zeile, und
+  bei den Ausgängen a bis g eine 7-Segment-Anzeige.
+- **Levels** (`d001` bis `d008`, Pfad `schaltungen`): Drei Gatter und Halbaddierer zum Verdrahten, dann frei: NAND,
+  Volladdierer, Multiplexer, Dekoder, XOR nur aus NAND, 7-Segment-Anzeige von 0 bis 3. Flipflop und Zähler brauchen
+  einen Takt und kommen später (Tests in `backend/tests/test_schaltung.py`).
+
 ## Weitere Spielideen: Codes knacken und Flaggenjagd (Idee, vor dem Bau Entwürfe)
 
 Vorschlag des Nutzers (25.10.2026): geheime Codes knacken und Hacking-Aufgaben, bei denen man eine versteckte Flagge

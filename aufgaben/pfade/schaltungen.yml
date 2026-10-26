@@ -1,0 +1,14 @@
+id: schaltungen
+titel: Digitale Schaltungen
+beschreibung: |
+  Mit UND, ODER und NICHT rechnen: erst verdrahten, dann selbst bauen, vom
+  Halbaddierer über Multiplexer und Dekoder bis zur 7-Segment-Anzeige.
+reihenfolge:
+  - d001-drei-gatter
+  - d002-nand
+  - d003-halbaddierer
+  - d004-volladdierer
+  - d005-multiplexer
+  - d006-dekoder
+  - d007-xor-aus-nand
+  - d008-sieben-segment
