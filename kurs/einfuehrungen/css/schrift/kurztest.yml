@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 6: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-fett
+    text: Welche Angabe macht Text fett?
+    als_code: true
+    optionen:
+      - text: "font-weight: bold;"
+        richtig: true
+        erklaerung: Richtig, oder gleichwertig font-weight 700.
+      - text: "font-style: bold;"
+        erklaerung: font-style ist für schräg und gerade zuständig.
+      - text: "text-decoration: bold;"
+        erklaerung: text-decoration zieht Linien, fett macht es nichts.
+  - frageart: fehlerstelle
+    id: kt-leerzeichen
+    text: Eine Angabe fällt still weg. In welcher Zeile?
+    code: |
+      h2 {
+        font-family: serif;
+        font-size: 22 px;
+        text-align: center;
+      }
+    zeile: 3
+    erklaerung: Genau. Zwischen Zahl und Einheit darf kein Leerzeichen stehen.
+    hinweis: Schau dir die Zahlen genau an.
+  - frageart: luecke
+    id: kt-luecke-gross
+    text: Die Überschrift soll in Großbuchstaben erscheinen, ohne das HTML zu ändern. Ergänze den Wert.
+    code: |
+      h2 {
+        text-transform: ___;
+      }
+    antworten: [["uppercase"]]
+    erklaerung: Richtig, uppercase schreibt alles groß.
+    hinweis: Großbuchstaben heißen auf Englisch upper case.
+  - frageart: auswahl
+    id: kt-zeilenhoehe
+    text: "Wie hoch ist eine Zeile bei `font-size: 20px; line-height: 1.5;`?"
+    optionen:
+      - text: 30 Pixel
+        richtig: true
+        erklaerung: Richtig, das 1,5-Fache von 20 Pixeln.
+      - text: 1,5 Pixel
+        erklaerung: Eine Zahl ohne Einheit bei line-height ist ein Vielfaches der Schriftgröße.
+      - text: 21,5 Pixel
+        erklaerung: Es wird nicht addiert, sondern malgenommen.
+uebung: w068-plakat

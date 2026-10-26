@@ -21,3 +21,11 @@ bloecke:
       - einfuehrung: css-farben
         uebungen: [w051-orange-mischen, w052-hex-lachs, w053-hex-kurz, w054-grautoene, w055-eisscholle, w056-blass, w057-glasfenster]
         projekt: [w059-speisekarte-hausfarben]
+  - titel: Gestalten
+    kapitel:
+      - einfuehrung: css-schrift
+        uebungen: [w061-groesser, w062-tafel, w063-dick-und-schraeg, w064-schriftfamilien, w065-mittig, w066-ausverkauft-streichen, w067-luftig]
+        projekt: [w069-speisekarte-schrift]
+      - einfuehrung: css-kastenmodell
+        uebungen: [w071-schild, w072-polster, w073-rahmen, w074-abstand, w075-genau-300, w076-border-box, w077-mittig]
+        projekt: [w079-speisekarte-kasten]

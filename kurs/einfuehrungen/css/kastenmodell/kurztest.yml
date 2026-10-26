@@ -1,0 +1,54 @@
+# Kurztest zu Kapitel 7: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-reihenfolge
+    text: Welche Schicht liegt direkt um den Inhalt?
+    optionen:
+      - text: padding
+        richtig: true
+        erklaerung: Richtig. Von innen nach außen Inhalt, padding, border, margin.
+      - text: margin
+        erklaerung: margin liegt ganz außen, hinter dem Rand.
+      - text: border
+        erklaerung: Der Rand kommt erst nach dem Innenabstand.
+  - frageart: auswahl
+    id: kt-breite
+    text: "Wie breit ist der Kasten von Rand zu Rand?"
+    code: |
+      .k {
+        width: 150px;
+        padding: 0 25px;
+        border: 5px solid;
+        box-sizing: border-box;
+      }
+    optionen:
+      - text: 150px
+        richtig: true
+        erklaerung: Richtig, mit border-box zählt width schon alles bis zum Rand.
+      - text: 210px
+        erklaerung: So wäre es ohne box-sizing border-box.
+      - text: 180px
+        erklaerung: Mit border-box werden Polster und Rand innen abgezogen, nicht außen addiert.
+  - frageart: luecke
+    id: kt-luecke-mitte
+    text: Der Kasten mit fester Breite soll waagerecht in der Mitte stehen. Ergänze den Wert für links und rechts.
+    code: |
+      .karte {
+        width: 300px;
+        margin: 0 ___;
+      }
+    antworten: [["auto"]]
+    erklaerung: Richtig, auto teilt den freien Platz gleich auf.
+    hinweis: Der Browser soll den Platz selbst aufteilen, automatisch.
+  - frageart: auswahl
+    id: kt-vier-werte
+    text: "Was heißt `padding: 1px 2px 3px 4px`?"
+    optionen:
+      - text: oben 1, rechts 2, unten 3, links 4
+        richtig: true
+        erklaerung: Richtig, im Uhrzeigersinn von oben.
+      - text: links 1, oben 2, rechts 3, unten 4
+        erklaerung: Es beginnt oben und geht im Uhrzeigersinn.
+      - text: oben 1, unten 2, links 3, rechts 4
+        erklaerung: Die Reihenfolge ist oben, rechts, unten, links.
+uebung: w078-ausweis

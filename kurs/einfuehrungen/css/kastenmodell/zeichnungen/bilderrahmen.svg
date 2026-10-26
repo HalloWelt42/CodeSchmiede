@@ -1,0 +1,38 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin hängt ein Bild mit breitem Passepartout und Rahmen an eine Eiswand, mit Abstand neben einem zweiten Bild">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Eiswand -->
+  <rect x="6" y="6" width="248" height="140" rx="4" fill="#e3f1f8"/>
+  <!-- Abstand angedeutet (margin) -->
+  <rect x="22" y="20" width="118" height="112" fill="none" stroke="#f59e0b" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <!-- Rahmen (border) -->
+  <rect x="32" y="30" width="98" height="92" fill="#ec6aa8" stroke="#2b3442" stroke-width="2"/>
+  <!-- Passepartout (padding) -->
+  <rect x="40" y="38" width="82" height="76" fill="#4fd1a5" stroke="#2b3442" stroke-width="1.2"/>
+  <!-- Foto (Inhalt) -->
+  <rect x="54" y="52" width="54" height="48" fill="#38bdf8" stroke="#2b3442" stroke-width="1.2"/>
+  <path d="M54 92 l14 -14 l10 9 l8 -6 l22 19 Z" fill="#2b3442" opacity=".55"/>
+  <circle cx="96" cy="64" r="5" fill="#fff6c2"/>
+  <!-- Nachbarbild rechts mit Abstand -->
+  <rect x="152" y="40" width="40" height="52" fill="#ec6aa8" stroke="#2b3442" stroke-width="1.6"/>
+  <rect x="158" y="46" width="28" height="40" fill="#4fd1a5"/>
+  <rect x="164" y="52" width="16" height="28" fill="#38bdf8"/>
+  <!-- Nagel und Schnur -->
+  <circle cx="81" cy="12" r="2.5" fill="#2b3442"/>
+  <path d="M81 12 L44 30 M81 12 L118 30" stroke="#2b3442" stroke-width="1.2"/>
+  <!-- Pinguin -->
+  <g transform="translate(222 128)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-14 -14 -20 -34" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <!-- Hammer -->
+  <g transform="rotate(-25 200 88)">
+    <rect x="198" y="80" width="5" height="26" rx="1.5" fill="#c98c55" stroke="#2b3442" stroke-width="1.2"/>
+    <rect x="191" y="74" width="19" height="8" rx="1.5" fill="#a7afba" stroke="#2b3442" stroke-width="1.2"/>
+  </g>
+</svg>

@@ -74,3 +74,41 @@ begriffe:
   - id: transparenz
     titel: Durchscheinen mit Alphawert und opacity
     erkennung: {eigenschaften: [opacity], aufrufe: [rgba]}
+  # Kapitel 6: Text und Schrift
+  - id: px
+    titel: Pixel als Einheit
+    erkennung: {literale: [px]}
+  - id: schriftgroesse
+    titel: Schriftgröße mit font-size
+    erkennung: {eigenschaften: [font-size]}
+  - id: schriftschnitt
+    titel: Fett und schräg mit font-weight und font-style
+    erkennung: {eigenschaften: [font-weight, font-style]}
+  - id: schriftart
+    titel: Schriftart mit font-family
+    erkennung: {eigenschaften: [font-family]}
+  - id: textausrichtung
+    titel: Text ausrichten mit text-align
+    erkennung: {eigenschaften: [text-align]}
+  - id: textschmuck
+    titel: Großbuchstaben und Linien mit text-transform und text-decoration
+    erkennung: {eigenschaften: [text-transform, text-decoration]}
+  - id: textabstand
+    titel: Zeilenhöhe und Buchstabenabstand
+    erkennung: {eigenschaften: [line-height, letter-spacing]}
+  # Kapitel 7: Das Kastenmodell
+  - id: breite_hoehe
+    titel: Breite und Höhe mit width und height
+    erkennung: {eigenschaften: [width, height]}
+  - id: padding
+    titel: Innenabstand mit padding
+    erkennung: {eigenschaften: [padding, padding-top, padding-right, padding-bottom, padding-left]}
+  - id: border
+    titel: Rand mit border
+    erkennung: {eigenschaften: [border, border-width, border-style, border-color]}
+  - id: margin
+    titel: Außenabstand mit margin
+    erkennung: {eigenschaften: [margin, margin-top, margin-right, margin-bottom, margin-left]}
+  - id: box_sizing
+    titel: box-sizing
+    erkennung: {eigenschaften: [box-sizing]}

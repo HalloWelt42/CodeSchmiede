@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+.ausweis {
+  width: 320px;
+  margin: 30px auto;
+  padding: 16px 24px;
+  border: 6px solid #ec6aa8;
+  background-color: #fbf4e2;
+  color: #2b3442;
+}
+
+.ausweis h2 {
+  margin: 0 0 12px;
+}
+
+.ausweis p {
+  margin: 4px 0;
+}
