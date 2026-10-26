@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="aufgaben">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Debugger</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="kurs.css">
+<script src="daten.js"></script>
+<script src="hilfen.js"></script>
+<style>
+  .dbg-editor { font-family: var(--mono); font-size: 13px; line-height: 1.7; padding: var(--sp-2) 0; background: var(--ed-grund); min-height: 100%; }
+  .dbg-editor > div { display: flex; }
+  .dbg-editor .rinne { width: 22px; flex: none; display: grid; place-items: center; cursor: pointer; }
+  .dbg-editor .rinne::before { content: ""; width: 10px; height: 10px; border-radius: 50%; }
+  .dbg-editor .rinne:hover::before { background: color-mix(in srgb, #ff6b68 40%, transparent); }
+  .dbg-editor > div.halt .rinne::before { background: #ff6b68; }
+  .dbg-editor .ln { width: 26px; flex: none; text-align: right; padding-right: var(--sp-3); color: var(--ed-nr); user-select: none; }
+  .dbg-editor .ln + span { white-space: pre; min-width: 0; flex: 1; }
+  .dbg-editor > div.jetzt { background: color-mix(in srgb, var(--accent) 20%, var(--ed-grund)); box-shadow: inset 3px 0 0 var(--accent); }
+  .dbg-editor > div.aufrufer { background: color-mix(in srgb, var(--accent) 7%, var(--ed-grund)); }
+  .rinnen-hinweis { flex: none; padding: 4px var(--sp-3); font-size: var(--fs-xs); color: var(--fg-mute); border-top: 1px solid var(--border); }
+  .rinnen-hinweis i { color: #ff6b68; }
+  .probelauf .knopf.dbg { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 60%, var(--border)); }
+  .probelauf .knopf.dbg:hover { color: var(--gold); border-color: var(--gold); }
+
+  .steuer { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+  .steuer .ikon { width: 32px; height: 32px; }
+  .steuer .ikon.halt-ikon i { color: #ff6b68; }
+  .steuer .trenn { width: 1px; height: 22px; background: var(--border); margin: 0 4px; }
+  .steuer .stopp { margin-left: auto; height: 32px; }
+  .steuer .stopp-ikon { margin-left: auto; }
+  .stand { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-3); align-items: baseline; font-size: var(--fs-sm); color: var(--fg-dim); }
+  .stand b { color: var(--fg); }
+  .zeitleiste { display: flex; align-items: flex-end; gap: 2px; height: 46px; padding: 4px 0 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .zeitleiste span { flex: 1; min-width: 3px; background: color-mix(in srgb, var(--accent) 35%, transparent); border-radius: 2px 2px 0 0; position: relative; }
+  .zeitleiste span.war { background: color-mix(in srgb, var(--accent) 70%, transparent); }
+  .zeitleiste span.jetzt { background: var(--gold); }
+  .zeitleiste span.treffer::after { content: ""; position: absolute; left: 50%; top: -9px; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: #ff6b68; }
+  .zeitleiste span.fehler { background: var(--red); }
+  .legende-dbg { display: flex; flex-wrap: wrap; gap: var(--sp-3); font-size: var(--fs-xs); color: var(--fg-mute); }
+  .legende-dbg i { margin-right: 4px; }
+  .stapel { display: flex; flex-direction: column; border: 1px solid var(--border); }
+  .stapel div { display: flex; justify-content: space-between; gap: var(--sp-2); padding: 4px var(--sp-2); font-family: var(--mono); font-size: 13px; border-top: 1px solid var(--border); }
+  .stapel div:first-child { border-top: 0; background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--fg); }
+  .stapel div span:last-child { color: var(--fg-mute); font-family: var(--sans); font-size: var(--fs-xs); white-space: nowrap; }
+  .block-titel { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .06em; color: var(--fg-dim); display: flex; justify-content: space-between; gap: var(--sp-2); }
+  .konsole { margin: 0; padding: var(--sp-2); min-height: 34px; border: 1px solid var(--border); background: var(--ed-grund); font-family: var(--mono); font-size: 13px; white-space: pre-wrap; }
+  .konsole .leer { color: var(--fg-mute); font-style: italic; font-family: var(--sans); }
+  .rueckgabe-zeile { display: flex; align-items: center; gap: var(--sp-2); padding: var(--sp-2); border: 1px solid var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); font-family: var(--mono); font-size: 14px; }
+  .dbg-rollfeld { display: flex; flex-direction: column; gap: var(--sp-3); }
+  .dbg-rollfeld > * { flex-shrink: 0; }
+  .dbg-rollfeld .fach span { min-width: 40px; }
+  .dbg-rollfeld .speicher-zeile { grid-template-columns: 70px minmax(0, 1fr); }
+  .speicher .gruppe { margin: 0; font-size: var(--fs-xs); color: var(--fg-mute); text-transform: uppercase; letter-spacing: .05em; }
+  .speicher .gruppe.innen { color: var(--accent); }
+</style>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite" data-sprache="python">
+    <header class="a-kopf">
+      <button class="ikon"><i class="fa-solid fa-arrow-left"></i></button>
+      <span class="zelle-titel"><b>Nur gerade Zahlen behalten</b><span>238-gerade-filter</span></span>
+      <div class="meta">
+        <span class="badge st-anfaenger">Anfänger</span><span class="badge sprache">Python</span>
+        <span><i class="fa-regular fa-clock"></i> 3 min</span>
+        <span class="num" style="color:var(--accent)"><i class="fa-solid fa-coins"></i> 0 / 4</span>
+      </div>
+    </header>
+    <div class="spalten">
+      <section class="spalte">
+        <div class="spalten-kopf">
+          <span style="color:var(--accent)"><i class="fa-solid fa-file-lines"></i> Aufgabe</span>
+        </div>
+        <div class="rollfeld md">
+          <p>Schreibe <code>nur_gerade(zahlen)</code>, die alle <b>geraden Zahlen</b> aus der Liste liefert, in der <b>ursprünglichen Reihenfolge</b>.</p>
+          <p>Null zählt als gerade. Negative gerade Zahlen ebenso.</p>
+          <h2>Beispiele</h2>
+          <table><tr><th>Liste</th><th>Ergebnis</th></tr><tr><td><code>[1, 2, 3, 4, 5]</code></td><td><code>[2, 4]</code></td></tr><tr><td><code>[1, 3, 5]</code></td><td><code>[]</code></td></tr></table>
+        </div>
+      </section>
+      <div class="trenner"></div>
+      <section class="spalte mitte">
+        <div class="spalten-kopf"><span>Editor, Python</span><button class="knopf voll"><i class="fa-solid fa-play"></i>Prüfen</button></div>
+        <div class="rollfeld" style="padding:0"><div class="dbg-editor" id="editor"></div></div>
+        <div class="rinnen-hinweis"><i class="fa-solid fa-circle"></i> Klick links neben die Zeilennummer setzt oder löscht einen Haltepunkt.</div>
+        <div class="probelauf"><span class="dim">nur_gerade(</span><input value="[1, 2, 3, 4]"><span class="dim">)</span><button class="knopf"><i class="fa-solid fa-play"></i>Lauf</button><button class="knopf dbg" onclick="starten()"><i class="fa-solid fa-bug"></i>Debuggen</button></div>
+      </section>
+      <div class="trenner"></div>
+      <section class="spalte">
+        <div class="spalten-kopf">
+          <span>Ergebnis</span><span class="mute">|</span><span style="color:var(--accent)"><i class="fa-solid fa-bug"></i> Debugger</span>
+        </div>
+        <div class="rollfeld dbg-rollfeld" id="debugger"></div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+const CODE = "def ist_gerade(x):\n    return x % 2 == 0\n\ndef nur_gerade(zahlen):\n    ergebnis = []\n    for x in zahlen:\n        if ist_gerade(x):\n            ergebnis.append(x)\n    print(\"gefunden:\", len(ergebnis))\n    return ergebnis\n";
+const SCHRITTE = [{"zeile": 1, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}}}], "ausgabe": ""}, {"zeile": 4, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}], "ausgabe": ""}, {"zeile": 5, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[]", "kennung": 4346668800, "elemente": [], "gekuerzt": false}}}], "ausgabe": ""}, {"zeile": 6, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[]", "kennung": 4346668800, "elemente": [], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "1"}}}], "ausgabe": ""}, {"zeile": 7, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[]", "kennung": 4346668800, "elemente": [], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "1"}}}, {"name": "ist_gerade", "variablen": {"x": {"art": "zahl", "darstellung": "1"}}}], "ausgabe": ""}, {"zeile": 2, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[]", "kennung": 4346668800, "elemente": [], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "1"}}}, {"name": "ist_gerade", "variablen": {"x": {"art": "zahl", "darstellung": "1"}}}], "ausgabe": "", "rueckgabe": {"art": "wahrheit", "darstellung": "False"}}, {"zeile": 7, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[]", "kennung": 4346668800, "elemente": [], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "1"}}}], "ausgabe": ""}, {"zeile": 6, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[]", "kennung": 4346668800, "elemente": [], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "2"}}}], "ausgabe": ""}, {"zeile": 7, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[]", "kennung": 4346668800, "elemente": [], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "2"}}}, {"name": "ist_gerade", "variablen": {"x": {"art": "zahl", "darstellung": "2"}}}], "ausgabe": ""}, {"zeile": 2, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[]", "kennung": 4346668800, "elemente": [], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "2"}}}, {"name": "ist_gerade", "variablen": {"x": {"art": "zahl", "darstellung": "2"}}}], "ausgabe": "", "rueckgabe": {"art": "wahrheit", "darstellung": "True"}}, {"zeile": 7, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[]", "kennung": 4346668800, "elemente": [], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "2"}}}], "ausgabe": ""}, {"zeile": 8, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "2"}}}], "ausgabe": ""}, {"zeile": 6, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "3"}}}], "ausgabe": ""}, {"zeile": 7, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "3"}}}, {"name": "ist_gerade", "variablen": {"x": {"art": "zahl", "darstellung": "3"}}}], "ausgabe": ""}, {"zeile": 2, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "3"}}}, {"name": "ist_gerade", "variablen": {"x": {"art": "zahl", "darstellung": "3"}}}], "ausgabe": "", "rueckgabe": {"art": "wahrheit", "darstellung": "False"}}, {"zeile": 7, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "3"}}}], "ausgabe": ""}, {"zeile": 6, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "4"}}}], "ausgabe": ""}, {"zeile": 7, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "4"}}}, {"name": "ist_gerade", "variablen": {"x": {"art": "zahl", "darstellung": "4"}}}], "ausgabe": ""}, {"zeile": 2, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "4"}}}, {"name": "ist_gerade", "variablen": {"x": {"art": "zahl", "darstellung": "4"}}}], "ausgabe": "", "rueckgabe": {"art": "wahrheit", "darstellung": "True"}}, {"zeile": 7, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "4"}}}], "ausgabe": ""}, {"zeile": 8, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2, 4]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "4"}}}], "ausgabe": ""}, {"zeile": 6, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2, 4]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "4"}}}], "ausgabe": ""}, {"zeile": 9, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2, 4]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "4"}}}], "ausgabe": "gefunden: 2\n"}, {"zeile": 10, "rahmen": [{"name": "Modul", "variablen": {"ist_gerade": {"art": "funktion", "darstellung": "ist_gerade", "kennung": 4346530976}, "nur_gerade": {"art": "funktion", "darstellung": "nur_gerade", "kennung": 4346530800}}}, {"name": "nur_gerade", "variablen": {"zahlen": {"art": "liste", "darstellung": "[1, 2, 3, 4]", "kennung": 4346672000, "elemente": [{"art": "zahl", "darstellung": "1"}, {"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "3"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "ergebnis": {"art": "liste", "darstellung": "[2, 4]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}, "x": {"art": "zahl", "darstellung": "4"}}}], "ausgabe": "", "rueckgabe": {"art": "liste", "darstellung": "[2, 4]", "kennung": 4346668800, "elemente": [{"art": "zahl", "darstellung": "2"}, {"art": "zahl", "darstellung": "4"}], "gekuerzt": false}}];
+const zeilen = CODE.replace(/\n$/, '').split('\n');
+const haltepunkte = new Set([8]);
+let i = 0;
+
+const tiefe = (s) => s.rahmen.length;
+// Rückkehr aus einem Aufruf: die Zeile lief schon, als der Aufruf begann, darum hält ein Haltepunkt dort nicht noch einmal
+const rueckkehr = (k) => k > 0 && tiefe(SCHRITTE[k]) < tiefe(SCHRITTE[k - 1]);
+const treffer = (k) => haltepunkte.has(SCHRITTE[k].zeile) && !rueckkehr(k);
+const NAMEN = { Modul: 'Hauptprogramm' };
+
+function gehe(k) { i = Math.max(0, Math.min(SCHRITTE.length - 1, k)); zeichnen(); }
+function suche(von, richtung, passt) {
+  for (let k = von + richtung; k >= 0 && k < SCHRITTE.length; k += richtung) if (passt(k)) return k;
+  return richtung > 0 ? SCHRITTE.length - 1 : 0;
+}
+const hinein = () => gehe(i + 1);
+const zurueck = () => gehe(i - 1);
+const ueber = () => gehe(suche(i, 1, (k) => tiefe(SCHRITTE[k]) <= tiefe(SCHRITTE[i])));
+const hinaus = () => gehe(suche(i, 1, (k) => tiefe(SCHRITTE[k]) < tiefe(SCHRITTE[i])));
+const weiter = () => gehe(suche(i, 1, treffer));
+const zurueckHalt = () => gehe(suche(i, -1, treffer));
+function starten() { i = suche(-1, 1, treffer); zeichnen(); }
+
+function wertHtml(w, neu) {
+  if (w.elemente) {
+    if (!w.elemente.length) return '<span class="kasten-wert leer">leer</span>';
+    return '<div class="faecher' + (neu ? ' neu' : '') + '">' + w.elemente.map((e, n) => `<div class="fach"><span>${e.darstellung}</span><small>${n}</small></div>`).join('') + '</div>';
+  }
+  if (w.art === 'funktion') return `<span class="dim" style="font-family:var(--mono);font-size:13px">Funktion</span>`;
+  return `<span class="kasten-wert${neu ? ' neu' : ''}">${w.darstellung}</span>`;
+}
+
+function speicherHtml(s, vorher) {
+  const innen = s.rahmen.length - 1;
+  return s.rahmen.slice().reverse().map((r, n) => {
+    const alt = vorher?.rahmen.find((x) => x.name === r.name)?.variablen ?? {};
+    const titel = r.name === 'Modul' ? 'Hauptprogramm' : `in ${r.name}()`;
+    const zeilen = Object.entries(r.variablen).map(([name, w]) => {
+      const neu = !alt[name] || alt[name].darstellung !== w.darstellung;
+      return `<div class="speicher-zeile"><span class="speicher-name">${name}</span><div>${wertHtml(w, neu && n === 0)}</div></div>`;
+    }).join('');
+    return `<div class="gruppe${n === 0 ? ' innen' : ''}">${titel}</div>${zeilen}`;
+  }).join('');
+}
+
+function zeichnen() {
+  const s = SCHRITTE[i];
+  const vorher = i > 0 ? SCHRITTE[i - 1] : null;
+  document.getElementById('editor').innerHTML = zeilen.map((z, n) => {
+    const nr = n + 1;
+    const klassen = [haltepunkte.has(nr) ? 'halt' : '', s.zeile === nr ? 'jetzt' : ''].join(' ');
+    return `<div class="${klassen}"><span class="rinne" onclick="umschalten(${nr})" title="Haltepunkt"></span><span class="ln">${nr}</span><span>${z.replace(/&/g, '&amp;').replace(/</g, '&lt;') || ' '}</span></div>`;
+  }).join('');
+
+  const ausgabe = SCHRITTE.slice(0, i + 1).map((x) => x.ausgabe).join('');
+  const stapel = s.rahmen.slice().reverse().map((r, n) => {
+    const args = r.name === 'Modul' ? '' : Object.entries(r.variablen).slice(0, 1).map(([k, v]) => `${k}=${v.darstellung}`).join(', ');
+    return `<div><span>${NAMEN[r.name] ?? r.name + '(' + args + ')'}</span><span>${n === 0 ? 'Zeile ' + s.zeile : 'wartet'}</span></div>`;
+  }).join('');
+  const leiste = SCHRITTE.map((x, k) => `<span class="${k < i ? 'war' : ''} ${k === i ? 'jetzt' : ''} ${treffer(k) ? 'treffer' : ''}" style="height:${12 + tiefe(x) * 10}px" onclick="gehe(${k})" title="Schritt ${k + 1}, Zeile ${x.zeile}"></span>`).join('');
+  const ende = i === SCHRITTE.length - 1;
+
+  document.getElementById('debugger').innerHTML = `
+    <div class="steuer">
+      <button class="ikon" onclick="gehe(0)" title="Zum Anfang"><i class="fa-solid fa-backward-fast"></i></button>
+      <button class="ikon halt-ikon" onclick="zurueckHalt()" title="Zurück zum vorigen Haltepunkt"><i class="fa-solid fa-backward"></i></button>
+      <button class="ikon" onclick="zurueck()" title="Einen Schritt zurück"><i class="fa-solid fa-backward-step"></i></button>
+      <span class="trenn"></span>
+      <button class="ikon" onclick="hinein()" title="Schritt hinein: nächste Zeile, auch in eine Funktion"><i class="fa-solid fa-arrow-turn-down"></i></button>
+      <button class="ikon" onclick="ueber()" title="Schritt über: Funktionsaufrufe in einem Zug"><i class="fa-solid fa-share"></i></button>
+      <button class="ikon" onclick="hinaus()" title="Schritt hinaus: bis die Funktion zurückkehrt"><i class="fa-solid fa-arrow-turn-up"></i></button>
+      <button class="ikon halt-ikon" onclick="weiter()" title="Weiter bis zum nächsten Haltepunkt"><i class="fa-solid fa-forward"></i></button>
+      <button class="ikon" onclick="gehe(SCHRITTE.length - 1)" title="Zum Ende"><i class="fa-solid fa-forward-fast"></i></button>
+      <button class="ikon stopp-ikon" title="Debugger beenden"><i class="fa-solid fa-stop"></i></button>
+    </div>
+    <div class="stand"><span>Schritt <b class="num">${i + 1}</b> von <span class="num">${SCHRITTE.length}</span></span><span>Zeile <b class="num">${s.zeile}</b> ausgeführt</span>${treffer(i) ? '<span style="color:#ff6b68"><i class="fa-solid fa-circle"></i> Haltepunkt</span>' : ''}</div>
+    <div class="zeitleiste" title="Jeder Strich ist ein Schritt; je höher, desto tiefer im Aufruf">${leiste}</div>
+    <div class="legende-dbg"><span><i class="fa-solid fa-circle" style="color:#ff6b68"></i>hält am Haltepunkt</span><span><i class="fa-solid fa-square" style="color:var(--gold)"></i>jetzt</span><span>höher heißt tiefer im Aufruf</span></div>
+    <div class="block-titel"><span>Aufrufstapel</span></div>
+    <div class="stapel">${stapel}</div>
+    <div class="speicher"><div class="speicher-titel"><span>Speicher</span><span>nach Zeile <b class="num">${s.zeile}</b></span></div>${speicherHtml(s, vorher)}${s.rueckgabe ? `<div class="speicher-zeile"><span class="speicher-name">return</span><span class="kasten-wert neu">${s.rueckgabe.darstellung}</span></div>` : ''}</div>
+    <div class="block-titel"><span>Ausgabe bis hier</span></div>
+    <pre class="konsole">${ausgabe || '<span class="leer">Noch keine Ausgabe</span>'}</pre>
+    ${ende ? `<div class="rueckgabe-zeile"><i class="fa-solid fa-flag-checkered"></i>nur_gerade([1, 2, 3, 4]) gibt ${s.rueckgabe.darstellung} zurück</div>` : ''}
+  `;
+}
+
+function umschalten(nr) { haltepunkte.has(nr) ? haltepunkte.delete(nr) : haltepunkte.add(nr); zeichnen(); }
+starten();
+</script>
+</body>
+</html>
