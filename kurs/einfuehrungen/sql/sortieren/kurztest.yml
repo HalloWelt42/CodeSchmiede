@@ -1,0 +1,50 @@
+# Kurztest zu Kapitel 7: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-vorgabe
+    text: "In welche Richtung sortiert `ORDER BY name` ohne weitere Angabe?"
+    optionen:
+      - text: Aufsteigend, also nach dem Alphabet
+        richtig: true
+        erklaerung: Richtig, aufsteigend ist die Vorgabe.
+      - text: Absteigend
+        erklaerung: Dafür braucht es DESC.
+      - text: Gar nicht, dafür braucht es noch ASC
+        erklaerung: ASC darf man schreiben, muss man aber nicht; es ist die Vorgabe.
+  - frageart: auswahl
+    id: kt-limit
+    text: Was liefert die Abfrage?
+    code: |
+      SELECT name
+      FROM pinguine
+      ORDER BY geburtsjahr DESC
+      LIMIT 2;
+    optionen:
+      - text: Die zwei jüngsten Pinguine
+        richtig: true
+        erklaerung: Richtig. Späte Geburtsjahre zuerst, davon die ersten zwei.
+      - text: Die zwei ältesten Pinguine
+        erklaerung: DESC stellt die späten Geburtsjahre nach vorn, das sind die jüngsten.
+      - text: Die ersten zwei Zeilen der Tabelle
+        erklaerung: LIMIT arbeitet nach ORDER BY, also auf der sortierten Liste.
+  - frageart: luecke
+    id: kt-distinct
+    text: Ergänze, damit jeder Fisch nur einmal erscheint.
+    code: |
+      SELECT ___ fisch
+      FROM fuetterungen;
+    antworten: [["DISTINCT", "distinct"]]
+    erklaerung: Richtig, DISTINCT streicht doppelte Zeilen.
+    hinweis: Das Wort für "jeden nur einmal".
+  - frageart: auswahl
+    id: kt-alias
+    text: "Warum darf `ORDER BY jahre` einen Namen benutzen, den erst `AS jahre` vergeben hat, `WHERE jahre > 5` aber nicht?"
+    optionen:
+      - text: Weil ORDER BY nach SELECT abgearbeitet wird, WHERE davor
+        richtig: true
+        erklaerung: Richtig. Beim Sortieren gibt es die Spalte jahre schon, beim Aussieben noch nicht.
+      - text: Weil ORDER BY weiter unten steht
+        erklaerung: Es geht nicht ums Schreiben, sondern um die Reihenfolge der Abarbeitung.
+      - text: Das darf keines von beiden
+        erklaerung: ORDER BY darf es, denn SELECT ist dann schon fertig.
+uebung: q078-rangliste

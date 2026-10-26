@@ -225,6 +225,7 @@ def zerlege(sql: str) -> list[Teilabfrage] | None:
     gewaehlt = [(s.table, s.name) if isinstance(s, exp.Column) else ("", s.alias_or_name) for s in q.expressions]
     schlicht = (group is None and not q.find(exp.AggFunc) and q.expressions
                 and all(isinstance(s, exp.Column) and not isinstance(s.this, exp.Star) for s in q.expressions))
+    zusammengefasst = any(not f.find_ancestor(exp.Subquery) for s in q.expressions for f in s.find_all(exp.AggFunc))
     quelle = len(teile) - 1
     liste = ", ".join(_text(s) for s in q.expressions)
 
@@ -239,6 +240,10 @@ def zerlege(sql: str) -> list[Teilabfrage] | None:
         if None not in stellen:
             t = Zwischentabelle(spalten=v["spalten"], zeilen=v["zeilen"], weg=[j not in stellen for j in range(len(v["spalten"]))])
             return beschriftet(e, t), f"Jetzt erst wählt SELECT die Spalten {liste}; die übrigen fallen weg."
+        if group is not None:
+            return _tabelle(e[i], "neu"), f"SELECT macht aus jeder Gruppe eine Zeile und berechnet {liste}."
+        if zusammengefasst:
+            return _tabelle(e[i], "neu"), f"SELECT fasst die {_zeilen_wort(len(v['zeilen']))} zu einer zusammen und berechnet {liste}."
         return _tabelle(e[i], "neu"), f"SELECT berechnet die Spalten {liste}: {_zeilen_wort(len(e[i]['zeilen']))}."
     teile.append(Teilabfrage("SELECT", _text(auswahl), deute_select, r"\bSELECT\b"))
 

@@ -114,10 +114,9 @@ def test_sprint_schnipsel_stimmen(state):
 
 def test_beispiele_laufen_und_vorhersagen_stimmen(state):
     """Jedes Beispiel der Einführungen (Python und SQL) läuft ohne Fehler; bei einer Vorhersage als Auswahl ist die
-    richtige Option genau die Ausgabe des echten Laufs, oder bei `vergleich: zeilen` ihre Zeilenzahl."""
-    import re
+    richtige Option genau die Ausgabe des echten Laufs, ihre Zeilenzahl oder ihr Anfang (je nach `vergleich`)."""
 
-    from codeschmiede.kurs.dienst import MIT_ABLAUF, normalisiert, zeilenzahl
+    from codeschmiede.kurs.dienst import MIT_ABLAUF, vorhersage_stimmt
     from codeschmiede.kurs.modelle import Beispiel
 
     falsch = []
@@ -136,10 +135,6 @@ def test_beispiele_laufen_und_vorhersagen_stimmen(state):
                 if v is None or v.art != "auswahl":
                     continue
                 richtig = next(o.text for o in v.optionen if o.richtig)
-                if v.vergleich == "zeilen":
-                    zahl = re.search(r"\d+", richtig)
-                    if zahl is None or int(zahl.group()) != zeilenzahl(lauf.ausgabe):
-                        falsch.append(f"{e.id}/{t.id}: richtige Option {richtig!r}, Lauf hat {zeilenzahl(lauf.ausgabe)} Zeilen")
-                elif normalisiert(richtig) != normalisiert(lauf.ausgabe):
-                    falsch.append(f"{e.id}/{t.id}: richtige Option {richtig!r}, Lauf gibt {lauf.ausgabe!r}")
+                if not vorhersage_stimmt(v.vergleich, richtig, lauf.ausgabe):
+                    falsch.append(f"{e.id}/{t.id} ({v.vergleich}): richtige Option {richtig!r}, Lauf gibt {lauf.ausgabe!r}")
     assert falsch == []

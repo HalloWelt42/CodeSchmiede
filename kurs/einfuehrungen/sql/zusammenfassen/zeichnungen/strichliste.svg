@@ -1,0 +1,33 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin vor einer Tafel mit Strichliste, daneben ein Eimer voller Fische">
+  <ellipse cx="130" cy="170" rx="112" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Tafel -->
+  <rect x="20" y="22" width="132" height="86" rx="4" fill="#2f4a3e" stroke="#2b3442" stroke-width="3"/>
+  <rect x="20" y="22" width="132" height="86" rx="4" fill="none" stroke="#c38a55" stroke-width="5" opacity=".9"/>
+  <g stroke="#f4f1ea" stroke-width="2.6" stroke-linecap="round">
+    <path d="M36 40 v22 M43 40 v22 M50 40 v22 M57 40 v22 M32 58 l30 -14"/>
+    <path d="M74 40 v22 M81 40 v22 M88 40 v22 M95 40 v22 M70 58 l30 -14"/>
+    <path d="M112 40 v22 M119 40 v22"/>
+    <path d="M36 80 h70"/>
+  </g>
+  <circle cx="124" cy="88" r="7" fill="none" stroke="#f2a13b" stroke-width="2.4"/>
+  <path d="M60 108 l-10 56 M112 108 l10 56" stroke="#c38a55" stroke-width="5" stroke-linecap="round"/>
+  <!-- Eimer mit Fischen -->
+  <g transform="translate(124 128)">
+    <path d="M-2 4 q7 -14 14 0 Z" fill="#7aa6c2" stroke="#2b3442" stroke-width="1.6" transform="rotate(-25 6 0)"/>
+    <path d="M12 2 q7 -14 14 0 Z" fill="#a7afba" stroke="#2b3442" stroke-width="1.6" transform="rotate(20 18 0)"/>
+    <path d="M-6 8 h40 l-5 32 h-30 Z" fill="#a7afba" stroke="#2b3442" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M-4 8 q18 -18 36 0" fill="none" stroke="#2b3442" stroke-width="1.8"/>
+  </g>
+  <!-- Pinguin mit Kreide -->
+  <g transform="translate(202 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-26" r="1.7" fill="#111"/><circle cx="4" cy="-26" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-16 -2 q-20 -24 -34 -50" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+    <rect x="-56" y="-60" width="10" height="4" rx="1.5" fill="#f4f1ea" stroke="#2b3442" stroke-width="1" transform="rotate(-50 -51 -58)"/>
+  </g>
+</svg>

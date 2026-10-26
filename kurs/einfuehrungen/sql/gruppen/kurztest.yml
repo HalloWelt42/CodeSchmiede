@@ -1,0 +1,51 @@
+# Kurztest zu Kapitel 9: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-zeilen
+    text: Wie viele Zeilen liefert die Abfrage?
+    code: |
+      SELECT tag, COUNT(*) AS fuetterungen
+      FROM fuetterungen
+      GROUP BY tag;
+    optionen:
+      - text: "3"
+        richtig: true
+        erklaerung: Richtig. Gefüttert wurde an drei Tagen, also gibt es drei Gruppen.
+      - text: "12"
+        erklaerung: Zwölf Fütterungen, aber je Tag nur eine Ergebniszeile.
+      - text: "1"
+        erklaerung: Mit GROUP BY gibt es eine Zeile je Gruppe, nicht eine insgesamt.
+  - frageart: auswahl
+    id: kt-where-having
+    text: Was gehört in HAVING statt in WHERE?
+    optionen:
+      - text: Eine Bedingung über eine Zusammenfassung wie SUM(menge) > 10
+        richtig: true
+        erklaerung: Richtig. Summen gibt es erst, wenn die Gruppen gebildet sind.
+      - text: Eine Bedingung über eine einzelne Spalte wie fisch = 'Lachs'
+        erklaerung: Das prüft einzelne Zeilen und gehört in WHERE.
+      - text: Der Name der Tabelle
+        erklaerung: Der steht hinter FROM.
+  - frageart: luecke
+    id: kt-having
+    text: Ergänze, damit nur Kolonien mit mehr als zwei Pinguinen kommen.
+    code: |
+      SELECT kolonie, COUNT(*) AS anzahl
+      FROM pinguine
+      GROUP BY kolonie
+      ___ COUNT(*) > 2;
+    antworten: [["HAVING", "having"]]
+    erklaerung: Richtig, HAVING siebt ganze Gruppen.
+    hinweis: Das Sieb für Gruppen.
+  - frageart: auswahl
+    id: kt-spalten
+    text: "Warum passt `SELECT kolonie, name, COUNT(*) FROM pinguine GROUP BY kolonie` nicht zusammen?"
+    optionen:
+      - text: Weil eine Gruppe mehrere Namen enthält, die Zeile aber nur einen zeigen kann
+        richtig: true
+        erklaerung: Richtig. Neben GROUP BY stehen nur Gruppenspalten und Zusammenfassungen.
+      - text: Weil COUNT(*) immer allein stehen muss
+        erklaerung: COUNT darf neben den Gruppenspalten stehen.
+      - text: Weil kolonie vorn stehen muss
+        erklaerung: Die Reihenfolge im SELECT ist frei; das Problem ist name.
+uebung: q098-fischbilanz

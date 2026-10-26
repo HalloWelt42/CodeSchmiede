@@ -26,3 +26,14 @@ bloecke:
       - einfuehrung: sql-null
         uebungen: [q061-der-springer, q062-bekannte-fische, q063-raetsel-im-norden, q064-noch-offen, q065-kein-lachs, q066-halbe-saetze, q067-fischnamen-zaehlen]
         projekt: [q069-steckbrief-unbekannt]
+      - einfuehrung: sql-sortieren
+        uebungen: [q071-zum-wiegen, q072-rueckwaerts, q073-warm-zuerst, q074-die-juengsten, q075-fischsorten, q076-tagesplan, q077-groesste-portionen]
+        projekt: [q079-steckbrief-sortiert]
+  - titel: Zusammenfassen
+    kapitel:
+      - einfuehrung: sql-zusammenfassen
+        uebungen: [q081-wie-oft-gefuettert, q082-alle-fische, q083-nordkolonie-zaehlen, q084-leicht-und-schwer, q085-durchschnittsportion, q086-fischsorten-zaehlen, q087-pits-futter]
+        projekt: [q089-steckbrief-kopfzeile]
+      - einfuehrung: sql-gruppen
+        uebungen: [q091-je-fisch, q092-je-tag, q093-mahlzeiten, q094-gewicht-je-kolonie, q095-beliebte-fische, q096-schwerste-je-kolonie, q097-stammgaeste]
+        projekt: [q099-steckbrief-je-kolonie]

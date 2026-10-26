@@ -132,9 +132,10 @@ class Vorhersage(Streng):
     """Bei `eintippen`: Erklärung nach dem Vergleich mit dem echten Ergebnis."""
     frage: str | None = None
     """Eigene Frage statt "Was kommt heraus?", etwa "Wie viele Zeilen hat das Ergebnis?"."""
-    vergleich: Literal["ausgabe", "zeilen"] = "ausgabe"
-    """Womit der echte Lauf verglichen wird: die ganze Ausgabe oder nur die Zahl ihrer Zeilen (bei SQL: der
-    Ergebniszeilen). Bei `zeilen` steht in der richtigen Option die Zahl als erste Zahl im Text."""
+    vergleich: Literal["ausgabe", "zeilen", "anfang"] = "ausgabe"
+    """Womit der echte Lauf verglichen wird: die ganze Ausgabe, nur die Zahl ihrer Zeilen (bei SQL: der
+    Ergebniszeilen) oder nur ihr Anfang. Bei `zeilen` steht in der richtigen Option die Zahl als erste Zahl im Text,
+    bei `anfang` die ersten Zeilen der Ausgabe (etwa "Wer steht ganz oben?")."""
 
     @model_validator(mode="after")
     def _passend(self) -> Vorhersage:

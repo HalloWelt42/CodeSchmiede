@@ -10,6 +10,7 @@ from fastapi.testclient import TestClient
 from codeschmiede.api import app_bauen
 from codeschmiede.config import Settings
 from codeschmiede.kurs.begriffe import merkmale_sql
+from codeschmiede.kurs.dienst import vorhersage_stimmt
 from codeschmiede.kurs.einlesen import lade
 from codeschmiede.kurs.sql_ablauf import sql_lauf, zerlege
 from codeschmiede.state import AppState
@@ -178,3 +179,14 @@ def test_join_zeigt_gleichnamige_spalten_mit_tabelle(docker_runner):
     assert schritte["LEFT JOIN"].tabelle.spalten == kopf == schritte["SELECT"].tabelle.spalten
     assert schritte["SELECT"].tabelle.weg == [False, True, True, False, True, True]
     assert sorted(lauf.zeilen, key=str) == sorted([["Pinguin", "Pit"], ["Pinguin", "Paul"], ["Wal", None]], key=str)
+
+
+def test_vorhersage_vergleicht_ausgabe_zeilen_oder_anfang():
+    ausgabe = "Paul | 5.1\nPepe | 4.9\nPolly | 4.6\n"
+    assert vorhersage_stimmt("ausgabe", "Paul | 5.1\nPepe | 4.9\nPolly | 4.6", ausgabe)
+    assert not vorhersage_stimmt("ausgabe", "Paul | 5.1", ausgabe)
+    assert vorhersage_stimmt("zeilen", "3 Zeilen", ausgabe) and not vorhersage_stimmt("zeilen", "drei", ausgabe)
+    assert vorhersage_stimmt("anfang", "Paul | 5.1", ausgabe)
+    assert vorhersage_stimmt("anfang", "Paul | 5.1\nPepe | 4.9 ", ausgabe)
+    assert not vorhersage_stimmt("anfang", "Pepe | 4.9", ausgabe)
+    assert not vorhersage_stimmt("anfang", "", ausgabe)

@@ -10,6 +10,7 @@ richtig beantworteten Fragen.
 from __future__ import annotations
 
 import hashlib
+import re
 from collections.abc import Callable
 from pathlib import Path
 
@@ -60,6 +61,17 @@ def zeilenzahl(ausgabe: str) -> int:
     """Zeilen der Ausgabe (bei SQL: Ergebniszeilen); eine leere Ausgabe hat keine."""
     text = normalisiert(ausgabe)
     return len(text.split("\n")) if text else 0
+
+
+def vorhersage_stimmt(vergleich: str, antwort: str, ausgabe: str) -> bool:
+    """Ob eine Antwort zur echten Ausgabe passt, je nach Vergleich der Vorhersage (siehe Vorhersage.vergleich)."""
+    if vergleich == "zeilen":
+        zahl = re.search(r"\d+", antwort)
+        return zahl is not None and int(zahl.group()) == zeilenzahl(ausgabe)
+    if vergleich == "anfang":
+        anfang = normalisiert(antwort).split("\n")
+        return bool(anfang[0]) and normalisiert(ausgabe).split("\n")[:len(anfang)] == anfang
+    return normalisiert(antwort) == normalisiert(ausgabe)
 
 
 class Kursdienst:
@@ -326,12 +338,7 @@ class Kursdienst:
     def _vorhersage(self, e: Einfuehrung, b: Beispiel, v: Vorhersage, a: Antwort) -> tuple[bool, str]:
         if v.art == "auswahl":
             return self._auswahl(v.optionen, a)
-        echt = self.lauf(e, b).ausgabe
-        if v.vergleich == "zeilen":
-            ok = (a.eingetippt or "").strip() == str(zeilenzahl(echt))
-        else:
-            ok = normalisiert(a.eingetippt or "") == normalisiert(echt)
-        return ok, v.erklaerung
+        return vorhersage_stimmt(v.vergleich, a.eingetippt or "", self.lauf(e, b).ausgabe), v.erklaerung
 
     def abschnitt_fertig(self, eid: str, nummer: int) -> None:
         e = self._einfuehrung(eid)

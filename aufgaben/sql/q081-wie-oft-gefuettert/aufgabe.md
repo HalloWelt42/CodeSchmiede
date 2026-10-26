@@ -1,0 +1,45 @@
+---
+schema_version: 1
+id: q081-wie-oft-gefuettert
+revision: 1
+titel: Wie oft wurde gefüttert?
+sprache: sql
+task_type: sql_abfrage
+runner_type: docker_sqlite
+schwierigkeit: anfaenger
+schwierigkeit_score: 2
+schaetz_minuten: 2
+tags:
+- kurs
+- aggregat
+voraussetzungen: []
+quelle:
+  notiz: Aufbaukurs SQL, Kapitel 8
+lizenz: eigen
+autor: HalloWelt42
+erstellt_am: '2026-10-26'
+zeitlimit_sekunden: 5
+dataset: pinguinzoo
+schema_hinweis: 'kolonien(name, lage, wassertemperatur)
+
+  pinguine(id, name, kolonie, gewicht_kg, geburtsjahr, lieblingsfisch)
+
+  pfleger(id, name, kolonie)
+
+  fuetterungen(id, pinguin_id, tag, fisch, menge)
+
+  '
+erwartete_spalten:
+- anzahl
+sortierung_egal: false
+erwartetes_ergebnis:
+- - 12
+hints:
+- kosten: 0
+  text: Hier musst du nichts ändern, nur prüfen.
+starter_code: 'SELECT COUNT(*) AS anzahl
+
+  FROM fuetterungen;'
+---
+
+Die Abfrage steht schon da: sie zählt alle Fütterungen. Prüfe sie.

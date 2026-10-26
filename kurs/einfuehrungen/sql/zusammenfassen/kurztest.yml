@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 8: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-count-null
+    text: Was liefert die Abfrage? Bei einem der vier Pfleger fehlt die Kolonie.
+    code: |
+      SELECT COUNT(*), COUNT(kolonie)
+      FROM pfleger;
+    optionen:
+      - text: 4 | 3
+        richtig: true
+        erklaerung: Richtig. COUNT(*) zählt alle Zeilen, COUNT(kolonie) lässt Jonas mit NULL aus.
+      - text: 4 | 4
+        erklaerung: COUNT mit einer Spalte zählt NULL nicht mit.
+      - text: 3 | 3
+        erklaerung: COUNT(*) zählt Zeilen, egal was in ihnen steht.
+  - frageart: auswahl
+    id: kt-welche-funktion
+    text: Mit welcher Funktion findest du das früheste Geburtsjahr?
+    optionen:
+      - text: MIN(geburtsjahr)
+        richtig: true
+        erklaerung: Richtig, das früheste Jahr ist die kleinste Zahl.
+      - text: MAX(geburtsjahr)
+        erklaerung: Das wäre das späteste Jahr, also der jüngste Pinguin.
+      - text: COUNT(geburtsjahr)
+        erklaerung: COUNT zählt nur, wie viele Jahre eingetragen sind.
+  - frageart: luecke
+    id: kt-avg
+    text: Ergänze, damit der Durchschnitt der Wassertemperaturen herauskommt.
+    code: |
+      SELECT ___(wassertemperatur) AS schnitt
+      FROM kolonien;
+    antworten: [["AVG", "avg"]]
+    erklaerung: Richtig, AVG steht für den Durchschnitt.
+    hinweis: Die Abkürzung kommt vom englischen Wort average.
+  - frageart: auswahl
+    id: kt-reihenfolge
+    text: "Was passiert bei `SELECT SUM(menge) FROM fuetterungen WHERE fisch = 'Lachs'` zuerst?"
+    optionen:
+      - text: WHERE siebt die Lachs-Fütterungen aus, dann rechnet SUM
+        richtig: true
+        erklaerung: Richtig, zusammengefasst wird erst nach WHERE.
+      - text: SUM rechnet alle Mengen zusammen, dann siebt WHERE
+        erklaerung: Nach dem Zusammenfassen gäbe es nur noch eine Zeile, da könnte WHERE nichts mehr sieben.
+      - text: Beides gleichzeitig
+        erklaerung: Die Datenbank arbeitet die Klauseln nacheinander ab.
+uebung: q088-heringsbericht

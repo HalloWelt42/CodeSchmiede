@@ -64,11 +64,13 @@ vorhersage:
     - {text: "print(Hallo)", erklaerung: "Ausgegeben wird nur der Text."}
   erklaerung: ...         # bei eintippen: nach dem Vergleich mit dem echten Ergebnis
   frage: ...              # optional: eigene Frage statt "Was gibt das Beispiel aus?"
-  vergleich: zeilen       # optional: nur die Zahl der Zeilen vergleichen (Vorgabe: ausgabe)
+  vergleich: zeilen       # optional: zeilen oder anfang statt der ganzen Ausgabe (Vorgabe: ausgabe)
 ```
 
 Bei `vergleich: zeilen` steht in der richtigen Option die Zahl als erste Zahl im Text ("4 Zeilen"); beim Eintippen
-wird die Zahl getippt. Die Ausgabe einer SQL-Abfrage ist als Text je Ergebniszeile die Werte mit ` | ` getrennt, ohne
+wird die Zahl getippt. Bei `vergleich: anfang` ist die richtige Option der Anfang der Ausgabe, eine oder mehrere ganze
+Zeilen (passend zu Fragen wie "Wer steht ganz oben?"). Verglichen wird an einer Stelle (`vorhersage_stimmt`), für
+Antworten wie für die Prüfung des Bestands. Die Ausgabe einer SQL-Abfrage ist als Text je Ergebniszeile die Werte mit ` | ` getrennt, ohne
 Kopfzeile, NULL als `NULL`.
 
 ### Ablauf
