@@ -142,19 +142,40 @@ def zerlege(sql: str) -> list[Teilabfrage] | None:
     alle_spalten = _ohne(q, "where", "group", "having", "order", "limit", "offset", "distinct")
     alle_spalten.set("expressions", [exp.Star()])
 
+    # Nach einem JOIN tragen gleichnamige Spalten den Namen ihrer Tabelle davor (p.name, k.name). Welche Spalte zu
+    # welcher Tabelle gehört, zeigen die Stufen FROM und JOIN: jede bringt die Spalten einer Tabelle mehr mit.
+    quellen = [q.args["from_"].this, *(j.this for j in joins)]
+    bezuege = [k.alias_or_name for k in quellen]
+
+    def herkunft(e: list[dict[str, Any]], bis: int = len(joins)) -> tuple[list[str], list[int]]:
+        """Die Spalten nach dem JOIN Nummer bis (0: nur FROM) und je Spalte die Nummer ihrer Tabelle."""
+        grenzen = [len(e[k]["spalten"]) for k in range(bis + 1)]
+        return e[bis]["spalten"], [next(k for k, g in enumerate(grenzen) if j < g) for j in range(grenzen[-1])]
+
+    def beschriftet(e: list[dict[str, Any]], tabelle: Zwischentabelle, bis: int = len(joins)) -> Zwischentabelle:
+        if joins:
+            alle, tabelle_je = herkunft(e, bis)
+            kopf = [f"{bezuege[tabelle_je[j]]}.{n}" if alle.count(n) > 1 else n for j, n in enumerate(alle)]
+            tabelle.spalten = kopf + tabelle.spalten[len(alle):]
+        return tabelle
+
     # FROM und je JOIN eine Stufe mehr
     von = alle_spalten.copy()
     von.set("joins", None)
-    tabelle = _name(q.args["from_"].this)
-    teile.append(Teilabfrage("FROM", _text(von), lambda e, i, t=tabelle: (
-        _tabelle(e[i], "neu"), f"Zuerst holt die Datenbank die Tabelle {t}: {_zeilen_wort(len(e[i]['zeilen']))}."), r"\bFROM\b"))
+    erste = quellen[0]
+    woher = ("rechnet die Datenbank die Unterabfrage hinter FROM aus" if isinstance(erste, exp.Subquery)
+             else f"holt die Datenbank die Tabelle {_name(erste)}")
+    teile.append(Teilabfrage("FROM", _text(von), lambda e, i, w=woher: (
+        _tabelle(e[i], "neu"), f"Zuerst {w}: {_zeilen_wort(len(e[i]['zeilen']))}."), r"\bFROM\b"))
     for n, join in enumerate(joins, 1):
         stufe = alle_spalten.copy()
         stufe.set("joins", [j.copy() for j in joins[:n]])
         name = _name(join.this)
-        teile.append(Teilabfrage("JOIN", _text(stufe), lambda e, i, t=name: (
-            _tabelle(e[i], "neu"),
-            f"JOIN verbindet mit {t}: je passendes Paar eine Zeile, zusammen {_zeilen_wort(len(e[i]['zeilen']))}."),
+        art = "LEFT JOIN" if join.side else "JOIN"
+        ohne_partner = " Zeilen ohne Partner bleiben, ihre neuen Spalten sind leer (NULL)." if join.side else ""
+        teile.append(Teilabfrage(art, _text(stufe), lambda e, i, t=name, a=art, o=ohne_partner: (
+            beschriftet(e, _tabelle(e[i], "neu"), i),
+            f"{a} verbindet mit {t}: je passendes Paar eine Zeile, zusammen {_zeilen_wort(len(e[i]['zeilen']))}.{o}"),
             r"\bJOIN\b", n))
     vorher = len(teile) - 1
 
@@ -165,7 +186,7 @@ def zerlege(sql: str) -> list[Teilabfrage] | None:
 
         def deute_where(e: list[dict[str, Any]], i: int, v: int = vorher) -> tuple[Zwischentabelle, str]:
             t, bleiben = _gefiltert(e[v], e[i])
-            return t, f"WHERE prüft jede Zeile: {bleiben} von {len(e[v]['zeilen'])} bleiben, die anderen fallen durchs Sieb."
+            return beschriftet(e, t), f"WHERE prüft jede Zeile: {bleiben} von {len(e[v]['zeilen'])} bleiben, die anderen fallen durchs Sieb."
         teile.append(Teilabfrage("WHERE", _text(gefiltert), deute_where, r"\bWHERE\b"))
 
     group = q.args.get("group")
@@ -182,7 +203,7 @@ def zerlege(sql: str) -> list[Teilabfrage] | None:
             stelle = spalten.index(GRUPPE)
             zeilen = [z[:stelle] + z[stelle + 1:] for z in e[i]["zeilen"]]
             gruppe = [int(z[stelle]) for z in e[i]["zeilen"]]
-            t = Zwischentabelle(spalten=spalten[:stelle] + spalten[stelle + 1:], zeilen=zeilen, gruppe=gruppe)
+            t = beschriftet(e, Zwischentabelle(spalten=spalten[:stelle] + spalten[stelle + 1:], zeilen=zeilen, gruppe=gruppe))
             anzahl = max(gruppe, default=0)
             wort = "eine Gruppe" if anzahl == 1 else f"{anzahl} Gruppen"
             return t, f"GROUP BY legt Zeilen mit gleichem Wert in {nach} zusammen: {wort}. Jede Gruppe wird nachher zu einer Zeile."
@@ -201,17 +222,23 @@ def zerlege(sql: str) -> list[Teilabfrage] | None:
 
     # SELECT: bei reinen Spalten ohne Gruppen die Zeilen von vorher, nicht gewählte Spalten durchgestrichen
     auswahl = _ohne(q, "order", "limit", "offset", "distinct")
-    namen = [s.name for s in q.expressions]
+    gewaehlt = [(s.table, s.name) if isinstance(s, exp.Column) else ("", s.alias_or_name) for s in q.expressions]
     schlicht = (group is None and not q.find(exp.AggFunc) and q.expressions
                 and all(isinstance(s, exp.Column) and not isinstance(s.this, exp.Star) for s in q.expressions))
     quelle = len(teile) - 1
     liste = ", ".join(_text(s) for s in q.expressions)
 
+    def stelle_von(e: list[dict[str, Any]], tabelle: str, name: str) -> int | None:
+        """Stelle einer gewählten Spalte in der Tabelle vor SELECT; mit Tabellenname davor nur in dieser Tabelle."""
+        alle, tabelle_je = herkunft(e)
+        return next((j for j, n in enumerate(alle) if n == name and (not tabelle or bezuege[tabelle_je[j]] == tabelle)), None)
+
     def deute_select(e: list[dict[str, Any]], i: int, quelle: int = quelle) -> tuple[Zwischentabelle, str]:
         v = e[quelle]
-        if schlicht and set(namen) <= set(v["spalten"]):
-            t = Zwischentabelle(spalten=v["spalten"], zeilen=v["zeilen"], weg=[s not in namen for s in v["spalten"]])
-            return t, f"Jetzt erst wählt SELECT die Spalten {liste}; die übrigen fallen weg."
+        stellen = [stelle_von(e, t, n) for t, n in gewaehlt] if schlicht else [None]
+        if None not in stellen:
+            t = Zwischentabelle(spalten=v["spalten"], zeilen=v["zeilen"], weg=[j not in stellen for j in range(len(v["spalten"]))])
+            return beschriftet(e, t), f"Jetzt erst wählt SELECT die Spalten {liste}; die übrigen fallen weg."
         return _tabelle(e[i], "neu"), f"SELECT berechnet die Spalten {liste}: {_zeilen_wort(len(e[i]['zeilen']))}."
     teile.append(Teilabfrage("SELECT", _text(auswahl), deute_select, r"\bSELECT\b"))
 

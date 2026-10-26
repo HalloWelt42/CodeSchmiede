@@ -11,7 +11,7 @@ from codeschmiede.api import app_bauen
 from codeschmiede.config import Settings
 from codeschmiede.kurs.begriffe import merkmale_sql
 from codeschmiede.kurs.einlesen import lade
-from codeschmiede.kurs.sql_ablauf import zerlege
+from codeschmiede.kurs.sql_ablauf import sql_lauf, zerlege
 from codeschmiede.state import AppState
 
 from .conftest import braucht_sandbox, schreibe_aufgabe
@@ -165,3 +165,16 @@ def test_eintippen_vergleicht_die_zahl_der_zeilen(settings: Settings, docker_run
     antwort = "/api/kurs/einfuehrung/sql-filtern/antwort"
     assert not client.post(antwort, json={"element": "zaehlen", "eingetippt": "2"}).json()["richtig"]
     assert client.post(antwort, json={"element": "zaehlen", "eingetippt": " 3 "}).json()["richtig"]
+
+
+@braucht_sandbox
+def test_join_zeigt_gleichnamige_spalten_mit_tabelle(docker_runner):
+    daten = DATENSATZ + "CREATE TABLE arten (name TEXT, futter TEXT);\nINSERT INTO arten VALUES ('Pinguin', 'Fisch'), ('Wal', 'Krill');\n"
+    lauf = sql_lauf(docker_runner, daten, "SELECT a.name, t.name\nFROM arten a\nLEFT JOIN tiere t ON t.art = a.name")
+    schritte = {s.klausel: s for s in lauf.schritte}
+    assert list(schritte) == ["FROM", "LEFT JOIN", "SELECT"]
+    assert schritte["LEFT JOIN"].zeile == 3 and "ohne Partner" in schritte["LEFT JOIN"].text
+    kopf = ["a.name", "futter", "id", "t.name", "art", "gewicht"]
+    assert schritte["LEFT JOIN"].tabelle.spalten == kopf == schritte["SELECT"].tabelle.spalten
+    assert schritte["SELECT"].tabelle.weg == [False, True, True, False, True, True]
+    assert sorted(lauf.zeilen, key=str) == sorted([["Pinguin", "Pit"], ["Pinguin", "Paul"], ["Wal", None]], key=str)
