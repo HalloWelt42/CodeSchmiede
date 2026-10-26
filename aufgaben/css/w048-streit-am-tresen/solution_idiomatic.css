@@ -1,0 +1,16 @@
+#tresen {
+  color: gold;
+}
+
+#tresen p {
+  color: skyblue;
+}
+
+#tresen .leise {
+  color: gray;
+}
+
+.preis {
+  color: inherit;
+  background-color: navy;
+}

@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 5: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-gelb
+    text: Welche Mischung ergibt auf dem Bildschirm Gelb?
+    als_code: true
+    optionen:
+      - text: rgb(255, 255, 0)
+        richtig: true
+        erklaerung: Richtig, Rot und Grün als Licht ergeben Gelb.
+      - text: rgb(255, 0, 255)
+        erklaerung: Rot und Blau ergeben Magenta.
+      - text: rgb(0, 255, 255)
+        erklaerung: Grün und Blau ergeben Türkis.
+  - frageart: auswahl
+    id: kt-hex-gleich
+    text: "Welcher Wert ist dieselbe Farbe wie `rgb(255, 0, 0)`?"
+    als_code: true
+    optionen:
+      - text: "#f00"
+        richtig: true
+        erklaerung: 'Richtig, die Kurzform von #ff0000.'
+      - text: "#100"
+        erklaerung: 1 wird zu 11, das ist sehr dunkles Rot.
+      - text: "#0f0"
+        erklaerung: Das zweite Zeichen ist Grün, das wäre reines Grün.
+  - frageart: luecke
+    id: kt-luecke-alpha
+    text: Der Hintergrund soll schwarz sein und zur Hälfte decken. Ergänze das fehlende Zeichen und den Wert.
+    code: |
+      p {
+        background-color: rgb(0 0 0 ___ ___);
+      }
+    antworten: [["/"], ["0.5", ".5", "50%"]]
+    erklaerung: Richtig, Schrägstrich und dann der Alphawert.
+    hinweis: Zwischen Farbe und Deckkraft steht ein Schrägstrich, die Hälfte ist 0.5.
+  - frageart: auswahl
+    id: kt-opacity
+    text: "Was macht `opacity: 0.5` bei einem Absatz mit Hintergrund?"
+    optionen:
+      - text: Schrift und Hintergrund werden beide halb durchsichtig
+        richtig: true
+        erklaerung: Richtig, opacity gilt für das ganze Element.
+      - text: Nur der Hintergrund wird halb durchsichtig
+        erklaerung: Das ginge mit einem Alphawert bei background-color.
+      - text: Der Absatz wird halb so groß
+        erklaerung: opacity ändert nur die Deckkraft, nicht die Größe.
+uebung: w058-farbtafel

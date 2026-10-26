@@ -1,0 +1,42 @@
+body {
+  background-color: #0b1d3a;
+}
+
+h1, h2 {
+  color: #ffd166;
+}
+
+.preis {
+  color: gold;
+}
+
+.motto {
+  color: lightblue;
+}
+
+#tagesangebot {
+  background-color: darkgreen;
+}
+
+
+.karte h2 {
+  background-color: darkslateblue;
+}
+
+.karte > ul {
+  background-color: rgb(255 255 255 / 0.08);
+}
+
+.karte li {
+  background-color: darkslateblue;
+}
+
+.karte .ausverkauft {
+  color: lightgray;
+  background-color: dimgray;
+  opacity: 0.6;
+}
+
+#tagesangebot .preis {
+  color: orange;
+}

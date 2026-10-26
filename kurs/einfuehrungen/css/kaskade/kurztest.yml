@@ -1,0 +1,52 @@
+# Kurztest zu Kapitel 4: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-gewinner
+    text: Welche Farbe hat der Listeneintrag?
+    code: |
+      li.neu { color: gold; }
+      ul li { color: skyblue; }
+      li { color: tomato; }
+    optionen:
+      - text: gold
+        richtig: true
+        erklaerung: Richtig. li.neu hat eine Klasse, die anderen nur Elemente. Die Klasse wiegt mehr.
+      - text: tomato, die letzte Regel
+        erklaerung: Die Reihenfolge zählt erst bei gleicher Genauigkeit.
+      - text: skyblue, zwei Elemente sind mehr als eins
+        erklaerung: Erst zählen Klassen, dann Elemente. li.neu hat eine Klasse, ul li keine.
+  - frageart: auswahl
+    id: kt-was-erbt
+    text: Welche Eigenschaft wird an Kinder vererbt?
+    optionen:
+      - text: color
+        richtig: true
+        erklaerung: Richtig, die Schriftfarbe wandert zu allen Nachfahren.
+      - text: background-color
+        erklaerung: Der Hintergrund wird nicht vererbt. Man sieht ihn nur durch die durchsichtigen Kinder hindurch.
+      - text: Keine von beiden
+        erklaerung: color wird vererbt, deshalb färbt eine Regel für die Karte auch den Text darin.
+  - frageart: luecke
+    id: kt-luecke-genauer
+    text: Der Preis im Element mit der id angebot soll orange werden, obwohl .preis gold ist. Ergänze den Selektor.
+    code: |
+      .preis { color: gold; }
+      ___ .preis { color: orange; }
+    antworten: [["#angebot"]]
+    erklaerung: Richtig, mit der id davor ist der Selektor genauer.
+    hinweis: Eine id schreibt man mit Raute.
+  - frageart: auswahl
+    id: kt-erbe-verliert
+    text: "Welche Farbe hat der Absatz in `<div id=\"box\"><p>Hering</p></div>`?"
+    code: |
+      #box { color: gold; }
+      p { color: white; }
+    optionen:
+      - text: white
+        richtig: true
+        erklaerung: Richtig. Die eigene Regel für p schlägt die geerbte Farbe, auch wenn sie von einer id kommt.
+      - text: gold, wegen der id
+        erklaerung: Die id trifft das div. Beim Absatz käme gold nur geerbt an, und Geerbtes verliert gegen jede eigene Regel.
+      - text: Eine Mischung aus gold und white
+        erklaerung: Gemischt wird nicht, eine Angabe gewinnt.
+uebung: w048-streit-am-tresen

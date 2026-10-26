@@ -15,3 +15,9 @@ bloecke:
       - einfuehrung: css-kombinieren
         uebungen: [w031-nur-in-der-karte, w032-tief-drin, w033-direkt-in-der-kiste, w034-alle-ueberschriften, w035-alles-in-der-karte, w036-gruppe-mit-tiefe, w037-ein-leerzeichen]
         projekt: [w039-speisekarte-bereiche]
+      - einfuehrung: css-kaskade
+        uebungen: [w041-reihenfolge, w042-genauer-werden, w043-eine-fuer-alle, w044-erben-lassen, w045-eigene-regel, w046-hintergrund-erbt-nicht, w047-ausverkauft]
+        projekt: [w049-speisekarte-kaskade]
+      - einfuehrung: css-farben
+        uebungen: [w051-orange-mischen, w052-hex-lachs, w053-hex-kurz, w054-grautoene, w055-eisscholle, w056-blass, w057-glasfenster]
+        projekt: [w059-speisekarte-hausfarben]

@@ -1,0 +1,11 @@
+.hinweis {
+  color: gold;
+}
+
+span {
+  color: gray;
+}
+
+.hinweis span {
+  color: inherit;
+}

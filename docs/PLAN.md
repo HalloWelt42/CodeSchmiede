@@ -317,6 +317,17 @@ freigegebene Entwurf `mockups/rechner-einfuehrung-css.html`.
 - Bestand messen: wiederholbar in der Verwaltung im Browser (Musterlösung deckt voll, Startcode besteht nicht), mit
   derselben Messung wie die Aufgaben.
 
+## Ergebnis Schritt 7, Teil 6: CSS-Kurs, Block Erste Schritte (0.86.0)
+
+- Unterbau nach dem Plan oben: Beispiele mit Markup, CSS-Lauf für die Bühne ohne Sandbox, Werkbank nach dem Entwurf
+  (Schalter je Angabe, Abspieler, Bühne live, Kastenmodell mit Rechnung "Rand zu Rand"), Merkblatt mit Bühne,
+  Begriffserkennung über tinycss2 und html.parser, Messung des CSS-Bestands in der Verwaltung (mit Gegentest).
+- Block Erste Schritte: HTML lesen und die erste Regel; Klassen und ids; Selektoren kombinieren; Kaskade und
+  Vererbung; Farben. Je Kapitel eigene Zeichnung, Kurztest mit eigener Übung, sieben Übungen und ein Stück des
+  Kapitelprojekts Speisekarte (w011 bis w059); alle Musterlösungen decken voll, kein Startcode besteht.
+- Nebenbei behoben: Teile einer Einführung waren nur nach ihrer Stelle im Abschnitt geschlüsselt; eine Frage zeigte
+  dadurch den Stand der Frage an derselben Stelle im vorigen Abschnitt (alle Kurse).
+
 ## Offen
 
 - Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) zur Freigabe; Bau danach als eigener Abschnitt.

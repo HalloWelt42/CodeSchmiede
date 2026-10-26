@@ -1,0 +1,7 @@
+.karte li {
+  color: lightblue;
+}
+
+.karte .ausverkauft {
+  color: gray;
+}

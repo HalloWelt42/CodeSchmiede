@@ -1,0 +1,39 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin vor drei Farbeimern in Rot, Grün und Blau, aus denen Lichtkegel auf eine Wand fallen und sich dort zu Gelb, Türkis, Magenta und Weiß mischen">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Wand -->
+  <rect x="14" y="10" width="160" height="96" rx="3" fill="#1f2530" stroke="#2b3442" stroke-width="2"/>
+  <!-- Lichtkreise mischen sich wie Licht -->
+  <g style="mix-blend-mode: screen">
+    <circle cx="74" cy="48" r="28" fill="#ff3b3b"/>
+    <circle cx="112" cy="48" r="28" fill="#3bff5a"/>
+    <circle cx="93" cy="78" r="28" fill="#3b6bff"/>
+  </g>
+  <!-- Eimer -->
+  <g stroke="#2b3442" stroke-width="1.8">
+    <path d="M40 128 h30 l-4 34 h-22 Z" fill="#e2574c"/>
+    <path d="M84 128 h30 l-4 34 h-22 Z" fill="#4fd1a5"/>
+    <path d="M128 128 h30 l-4 34 h-22 Z" fill="#38bdf8"/>
+  </g>
+  <g fill="none" stroke="#2b3442" stroke-width="1.6">
+    <path d="M42 128 q13 -14 26 0 M86 128 q13 -14 26 0 M130 128 q13 -14 26 0"/>
+  </g>
+  <!-- Lichtstrahlen aus den Eimern -->
+  <g opacity=".35">
+    <path d="M47 128 L66 72 L84 68 L63 128 Z" fill="#ff8a8a"/>
+    <path d="M91 128 L104 76 L120 74 L107 128 Z" fill="#9affb0"/>
+    <path d="M135 128 L102 104 L114 98 L151 128 Z" fill="#9ab5ff"/>
+  </g>
+  <!-- Pinguin -->
+  <g transform="translate(214 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-14 -6 -26 -2" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+    <!-- Farbklecks auf dem Bauch -->
+    <circle cx="4" cy="18" r="3" fill="#4fd1a5"/><circle cx="-3" cy="8" r="2.2" fill="#e2574c"/>
+  </g>
+</svg>

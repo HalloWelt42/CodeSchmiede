@@ -56,3 +56,21 @@ begriffe:
   - id: universal
     titel: Der Stern trifft alles
     erkennung: {knoten: [universal]}
+  # Kapitel 4: Kaskade und Vererbung
+  - id: kaskade
+    titel: Bei Gleichstand gewinnt die spätere Regel
+  - id: spezifitaet
+    titel: Die genauere Regel gewinnt (id, Klasse, Element)
+  - id: vererbung
+    titel: Vererbung und inherit
+    erkennung: {werte: ["*:inherit"]}
+  # Kapitel 5: Farben
+  - id: rgb
+    titel: Farben mischen mit rgb
+    erkennung: {aufrufe: [rgb]}
+  - id: hex
+    titel: Farben in Hex-Schreibweise
+    erkennung: {literale: [hex]}
+  - id: transparenz
+    titel: Durchscheinen mit Alphawert und opacity
+    erkennung: {eigenschaften: [opacity], aufrufe: [rgba]}

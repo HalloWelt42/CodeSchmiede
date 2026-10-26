@@ -1,0 +1,17 @@
+.tafel {
+  background-color: #1d3557;
+}
+
+.rot {
+  background-color: rgb(230, 57, 70);
+}
+
+.gelb {
+  background-color: #fc3;
+  color: #000;
+}
+
+.blass {
+  background-color: rgb(255 255 255 / 0.25);
+  opacity: 0.5;
+}
