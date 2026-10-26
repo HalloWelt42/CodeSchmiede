@@ -1,6 +1,7 @@
 """Aufzeichnung eines Laufs: je ausgeführter Zeile des eigenen Codes der Speicher danach.
 
-Daraus entstehen im Kurs Ablauf und Speicherbild eines Beispiels, später im Debugger das Vor- und Zurückspulen.
+Daraus entstehen im Kurs Ablauf und Speicherbild eines Beispiels und bei den Aufgaben der Debugger, der den Lauf
+vor- und zurückspult (debuglauf.py).
 Aufgezeichnet wird in der Sandbox wie jeder andere Lauf: das Skript besteht aus einem kleinen Aufzeichner und dem
 Code des Nutzers als Zeichenkette, die der Aufzeichner unter dem Dateinamen BEISPIEL ausführt. Nur Zeilen aus dieser
 Datei zählen, Bibliotheken und der Aufzeichner selbst bleiben unsichtbar (kein Tiefendebugger).
@@ -9,9 +10,10 @@ Python verfolgt den Lauf über die Ablaufverfolgung des Interpreters (der Aufzei
 den Inspector von Node wie ein Debugger (aufzeichner.js). Beide liefern dieselbe Aufzeichnung; Werte aus JavaScript
 bekommen die Arten der Python-Werte (Array als Liste, Map als Wörterbuch, null und undefined als nichts).
 
-Grenzen halten die Aufzeichnung klein: höchstens MAX_SCHRITTE Schritte, Werte bis zur Tiefe MAX_TIEFE mit höchstens
-MAX_ELEMENTE Elementen, Darstellungen bis MAX_ZEICHEN Zeichen. Wird eine Grenze erreicht, läuft der Code trotzdem zu
-Ende, nur die Aufzeichnung endet (`gekuerzt`).
+Grenzen halten die Aufzeichnung klein (`Grenzen`, je Verwendung eigene): höchstens so viele Schritte und Bytes,
+Werte bis zu einer Tiefe mit höchstens so vielen Elementen, Darstellungen bis zu einer Länge. Wird eine Grenze
+erreicht, läuft der Code trotzdem zu Ende, nur die Aufzeichnung endet (`gekuerzt`). Die Bytes halten die Aufzeichnung
+unter der Ausgabegrenze der Sandbox, sonst ginge der ganze Lauf verloren.
 """
 
 from __future__ import annotations
@@ -20,7 +22,7 @@ import json
 from pathlib import Path
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from ..pruefung.testlauf import hinweise, lies_block, neue_marke
 from ..sandbox.result import RunLimits
@@ -31,10 +33,30 @@ BEISPIEL_JS = "beispiel.js"
 """Dateiname des Beispiels in JavaScript; der Inspector erkennt das Skript daran."""
 AUFZEICHNER_JS = Path(__file__).with_name("aufzeichner.js")
 ZEITGEBER_JS = Path(__file__).parent.parent / "pruefung" / "zeitgeber.js"
-MAX_SCHRITTE = 400
-MAX_TIEFE = 3
-MAX_ELEMENTE = 20
-MAX_ZEICHEN = 80
+
+
+class Grenzen(BaseModel):
+    """Wie groß eine Aufzeichnung werden darf."""
+
+    model_config = ConfigDict(frozen=True)
+
+    schritte: int = 400
+    tiefe: int = 3
+    """verschachtelte Werte bis zu dieser Tiefe"""
+    elemente: int = 20
+    """je Liste, Wörterbuch oder Objekt"""
+    zeichen: int = 80
+    """je Darstellung eines Werts"""
+    bytes: int = 600_000
+    """alle Schritte zusammen als JSON; muss mit der Ausgabe des Nutzers unter der Ausgabegrenze des Sandbox-Dienstes
+    bleiben (Vorgabe 1 MB, sandbox/dienst.py), sonst meldet der Lauf nur, die Ausgabe sei zu lang"""
+
+    def als_liste(self) -> list[int]:
+        return [self.schritte, self.tiefe, self.elemente, self.zeichen, self.bytes]
+
+
+KURS = Grenzen()
+"""Beispiele im Kurs: kurz, jeder Schritt wird angesehen"""
 
 Wertart = Literal["zahl", "text", "wahrheit", "nichts", "liste", "tupel", "menge", "woerterbuch", "funktion", "klasse", "objekt", "sonst"]
 
@@ -87,7 +109,7 @@ _AUFZEICHNER = r'''
 import json as _j, sys as _s, io as _io, types as _t
 
 _BEISPIEL = __BEISPIEL__
-_MAX_SCHRITTE, _MAX_TIEFE, _MAX_ELEMENTE, _MAX_ZEICHEN = __GRENZEN__
+_MAX_SCHRITTE, _MAX_TIEFE, _MAX_ELEMENTE, _MAX_ZEICHEN, _MAX_BYTES = __GRENZEN__
 _code = _j.loads(__CODE__)
 _eingabe = _j.loads(__EINGABE__)
 
@@ -156,7 +178,7 @@ def _rahmen(frame):
     return kette[::-1]
 
 _schritte, _mitschrift = [], _Mitschrift()
-_stand = {"zeile": None, "gekuerzt": False}
+_stand = {"zeile": None, "gekuerzt": False, "bytes": 0}
 
 def _festhalten(frame, rueckgabe=None, mit_rueckgabe=False):
     if _stand["zeile"] is None or _stand["gekuerzt"]:
@@ -167,6 +189,11 @@ def _festhalten(frame, rueckgabe=None, mit_rueckgabe=False):
     s = {"zeile": _stand["zeile"], "rahmen": _rahmen(frame), "ausgabe": _mitschrift.abholen()}
     if mit_rueckgabe:
         s["rueckgabe"] = _wert(rueckgabe)
+    _stand["bytes"] += len(_j.dumps(s))
+    if _stand["bytes"] > _MAX_BYTES:
+        _stand["gekuerzt"] = True
+        _mitschrift.neu.insert(0, s["ausgabe"])
+        return
     _schritte.append(s)
 
 def _verfolgen(frame, ereignis, arg):
@@ -216,21 +243,21 @@ print(_j.dumps({"schritte": _schritte, "ausgabe": "".join(_mitschrift.alles), "g
 '''
 
 
-def skript(code: str, marke: str, eingabe: list[str] | None = None) -> str:
+def skript(code: str, marke: str, eingabe: list[str] | None = None, grenzen: Grenzen = KURS) -> str:
     """Das Python-Skript für die Sandbox: Aufzeichner mit dem Nutzercode als Zeichenkette und den Zeilen für input()."""
     return (
         _AUFZEICHNER.replace("__BEISPIEL__", repr(BEISPIEL))
         .replace("__EINGABE__", repr(json.dumps(eingabe or [])))
-        .replace("__GRENZEN__", repr((MAX_SCHRITTE, MAX_TIEFE, MAX_ELEMENTE, MAX_ZEICHEN)))
+        .replace("__GRENZEN__", repr(tuple(grenzen.als_liste())))
         .replace("__MARKE__", repr(marke))
         .replace("__CODE__", repr(json.dumps(code)))
     )
 
 
-def skript_javascript(code: str, marke: str, eingabe: list[str] | None = None) -> str:
+def skript_javascript(code: str, marke: str, eingabe: list[str] | None = None, grenzen: Grenzen = KURS) -> str:
     """Das JavaScript für die Sandbox: aufzeichner.js mit dem Nutzercode und den Zeilen für prompt(). Der Code wird
     zuletzt eingesetzt, damit Platzhalter in ihm unberührt bleiben."""
-    werte = {"__BEISPIEL__": BEISPIEL_JS, "__GRENZEN__": [MAX_SCHRITTE, MAX_TIEFE, MAX_ELEMENTE, MAX_ZEICHEN],
+    werte = {"__BEISPIEL__": BEISPIEL_JS, "__GRENZEN__": grenzen.als_liste(),
              "__EINGABE__": eingabe or [], "__MARKE__": marke, "__CODE__": code}
     text = AUFZEICHNER_JS.read_text(encoding="utf-8").replace("__ZEITGEBER__", ZEITGEBER_JS.read_text(encoding="utf-8"))
     for platzhalter, wert in werte.items():
@@ -242,11 +269,11 @@ SKRIPTE = {"python": skript, "javascript": skript_javascript}
 
 
 def aufzeichnen(runner: Runner, code: str, limits: RunLimits | None = None, eingabe: list[str] | None = None,
-                sprache: Sprache = "python") -> Aufzeichnung:
+                sprache: Sprache = "python", grenzen: Grenzen = KURS) -> Aufzeichnung:
     """Führt Code in der Sandbox aus und liefert Ausgabe, Fehler und die Schritte mit dem Speicher; input() in Python
     und prompt() in JavaScript lesen die Zeilen aus `eingabe`."""
     marke = neue_marke()
-    erg = runner.run_code(SKRIPTE[sprache](code, marke, eingabe), sprache, limits or RunLimits())
+    erg = runner.run_code(SKRIPTE[sprache](code, marke, eingabe, grenzen), sprache, limits or RunLimits())
     _, block = lies_block(erg, marke)
     if block is None:
         # Der Aufzeichner kam nicht bis zum Ende: Zeit, Speicher oder Ausgabeflut

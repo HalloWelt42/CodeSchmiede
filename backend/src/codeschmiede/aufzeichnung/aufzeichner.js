@@ -1,4 +1,4 @@
-// Aufzeichnung eines JavaScript-Laufs für den Kurs, Gegenstück zum Python-Aufzeichner in aufzeichnung.py.
+// Aufzeichnung eines JavaScript-Laufs für Kurs und Debugger, Gegenstück zum Python-Aufzeichner in lauf.py.
 //
 // Der Nutzercode läuft im Hauptthread als Skript mit dem Dateinamen BEISPIEL. Ein Worker verbindet sich über den
 // Inspector mit dem Hauptthread wie ein Debugger: er setzt an jede mögliche Haltestelle des Beispiels einen
@@ -6,13 +6,13 @@
 // keine Haltepunkte und bleiben unsichtbar (kein Tiefendebugger). Rückrufe aus Zeitgebern und Versprechen werden
 // mit aufgezeichnet; die Ergebnisse kommen, sobald nichts mehr zu tun ist.
 //
-// Zeitgeber laufen auf einer eigenen Uhr (pruefung/zeitgeber.js, von aufzeichnung.py vor dem Rahmen eingesetzt). Die
-// übrigen Platzhalter ersetzt aufzeichnung.py durch JSON-Werte. Alles steht in einer Funktion, damit kein Name dieses
+// Zeitgeber laufen auf einer eigenen Uhr (pruefung/zeitgeber.js, von lauf.py vor dem Rahmen eingesetzt). Die
+// übrigen Platzhalter ersetzt lauf.py durch JSON-Werte. Alles steht in einer Funktion, damit kein Name dieses
 // Rahmens neben den Namen des Beispiels im Speicher erscheint.
 __ZEITGEBER__
 (() => {
   const BEISPIEL = __BEISPIEL__;
-  const [MAX_SCHRITTE, MAX_TIEFE, MAX_ELEMENTE, MAX_ZEICHEN] = __GRENZEN__;
+  const [MAX_SCHRITTE, MAX_TIEFE, MAX_ELEMENTE, MAX_ZEICHEN, MAX_BYTES] = __GRENZEN__;
   const CODE = __CODE__;
   const EINGABE = __EINGABE__;
   const MARKE = __MARKE__;
@@ -35,6 +35,7 @@ __ZEITGEBER__
     /** Zeilen des Beispiels: endet eine Funktion an einer schließenden Klammer, zählt die Zeile davor */
     let quelle = [];
     let gekuerzt = false;
+    let bytes = 0;
     let fertig = false;
     /** Zeile, Rahmentiefe und Spalte des letzten Halts: seine Zeile ist fertig, sobald es woanders weitergeht */
     let vorige = null;
@@ -99,8 +100,14 @@ __ZEITGEBER__
         });
         schritt.rueckgabe = w.result.value;
       }
-      schritte.push(schritt);
-      if (schritte.length >= workerData.maxSchritte) {
+      bytes += JSON.stringify(schritt).length;
+      if (bytes > workerData.maxBytes) {
+        // zu groß für die Ausgabe der Sandbox: hier endet die Aufzeichnung, die Ausgabe bleibt beim letzten Schritt
+        if (letzter) letzter.ausgabe += schritt.ausgabe;
+      } else {
+        schritte.push(schritt);
+      }
+      if (bytes > workerData.maxBytes || schritte.length >= workerData.maxSchritte) {
         gekuerzt = true;
         await post('Debugger.setBreakpointsActive', { active: false });
       }
@@ -284,7 +291,7 @@ __ZEITGEBER__
   const bereit = new Int32Array(new SharedArrayBuffer(4));
   const worker = new Worker(`(${verfolger.toString()})()`, {
     eval: true,
-    workerData: { bereit, beispiel: BEISPIEL, maxSchritte: MAX_SCHRITTE },
+    workerData: { bereit, beispiel: BEISPIEL, maxSchritte: MAX_SCHRITTE, maxBytes: MAX_BYTES },
     // klein halten: die Sandbox begrenzt den Adressraum, ein Worker mit Standardwerten passt nicht hinein
     resourceLimits: { codeRangeSizeMb: 8, maxOldGenerationSizeMb: 32, maxYoungGenerationSizeMb: 4, stackSizeMb: 1 },
   });

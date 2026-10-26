@@ -7,7 +7,7 @@ from contextlib import contextmanager
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 
-from ..kurs.aufzeichnung import Aufzeichnung
+from ..aufzeichnung import Aufzeichnung
 from ..kurs.css_lauf import CssLauf
 from ..kurs.sql_ablauf import SqlLauf
 from ..kurs.dienst import NichtErlaubt, NichtGefunden

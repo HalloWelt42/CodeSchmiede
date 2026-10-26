@@ -2,7 +2,7 @@
 tree-sitter."""
 
 from codeschmiede.api import app_bauen
-from codeschmiede.kurs.aufzeichnung import MAX_SCHRITTE, aufzeichnen
+from codeschmiede.aufzeichnung import KURS, aufzeichnen
 from codeschmiede.kurs.begriffe import merkmale_javascript
 from codeschmiede.pruefung.orchestrator import pruefe
 from codeschmiede.sandbox.result import RunLimits
@@ -79,7 +79,7 @@ def test_syntaxfehler_ohne_schritte(docker_runner):
 @braucht_sandbox
 def test_lange_laeufe_werden_gekuerzt_aber_laufen_zu_ende(docker_runner):
     a = _js(docker_runner, "let s = 0;\nfor (let i = 0; i < 5000; i++) {\n  s += i;\n}\nconsole.log(s);\n", limits=RunLimits(timeout_sekunden=40))
-    assert a.gekuerzt and len(a.schritte) == MAX_SCHRITTE and a.ausgabe == "12497500\n"
+    assert a.gekuerzt and len(a.schritte) == KURS.schritte and a.ausgabe == "12497500\n"
 
 
 @braucht_sandbox

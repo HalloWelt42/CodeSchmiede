@@ -1,6 +1,6 @@
 """Aufzeichnung eines Laufs: je Zeile des eigenen Codes der Speicher danach, gegen das echte Sandbox-Image."""
 
-from codeschmiede.kurs.aufzeichnung import MAX_SCHRITTE, aufzeichnen
+from codeschmiede.aufzeichnung import KURS, aufzeichnen
 from codeschmiede.sandbox.result import RunLimits
 
 from .conftest import braucht_sandbox
@@ -55,7 +55,7 @@ def test_syntaxfehler_ohne_schritte(docker_runner):
 
 def test_lange_laeufe_werden_gekuerzt_aber_laufen_zu_ende(docker_runner):
     a = aufzeichnen(docker_runner, "s = 0\nfor i in range(5000):\n    s += i\nprint(s)\n", GENUG)
-    assert a.gekuerzt and len(a.schritte) == MAX_SCHRITTE and a.ausgabe == "12497500\n"
+    assert a.gekuerzt and len(a.schritte) == KURS.schritte and a.ausgabe == "12497500\n"
 
 
 def test_endlosschleife_bricht_mit_zeit_ab(docker_runner):

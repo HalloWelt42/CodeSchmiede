@@ -18,7 +18,7 @@ from ..aufgaben.bestandspruefung import Befund
 from ..models.aufgabe import Aufgabe
 from ..sandbox.result import RunLimits
 from ..sandbox.runner import Runner
-from .aufzeichnung import Aufzeichnung, aufzeichnen
+from ..aufzeichnung import Aufzeichnung, aufzeichnen
 from .begriffe import erkenne
 from .css_lauf import CssLauf
 from .einlesen import Kursinhalt, lade

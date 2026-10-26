@@ -134,6 +134,18 @@ def test_probelauf(client):
     assert antwort["rueckgabe"] == 2 and antwort["stdout"].strip() == "hi"
 
 
+def test_debuggen(client):
+    code = "def verdoppeln(x):\n    y = x * 2\n    return y\n"
+    antwort = client.post("/api/submissions/debuggen", json={"aufgabe_id": "001-verdoppeln", "code": code, "input": [21]})
+    lauf = antwort.json()
+    assert antwort.status_code == 200 and lauf["rueckgabe"]["darstellung"] == "42"
+    assert [s["zeile"] for s in lauf["schritte"]] == [1, 2, 3]
+    # leere Felder fehlen in der Antwort, sie wäre sonst fast dreimal so groß
+    assert "paare" not in lauf["schritte"][0]["rahmen"][0]["variablen"]["verdoppeln"]
+    antwort = client.post("/api/submissions/debuggen", json={"aufgabe_id": "c005-knopf", "code": "b{}"})
+    assert antwort.status_code == 400
+
+
 def test_css_nur_im_browser(client):
     assert client.post("/api/submissions", json={"aufgabe_id": "c005-knopf", "code": "b{}"}).status_code == 400
     messung = {"deckung": 0.97, "laufzeit_ms": 1}

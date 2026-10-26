@@ -1,4 +1,4 @@
-"""HTTP-Routen für Submissions und Probelauf -- Code abschicken,
+"""HTTP-Routen für Submissions, Probelauf und Debugger -- Code abschicken,
 ausführen, bewerten oder probieren.
 
 Bei einem bestandenen Submit liefern wir einen Performance-Vergleich
@@ -17,6 +17,7 @@ from typing import Any
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
+from ..aufzeichnung.debuglauf import Debuglauf, debuggen, limits
 from ..models.aufgabe import Aufgabe
 from ..models.progress import Progress
 from ..models.spiel import Belohnung
@@ -202,5 +203,25 @@ def baue_submissions_router(state: AppState) -> APIRouter:
             timeout=lauf.timeout,
             fehler=aufruf.fehler,
         )
+
+    # ohne leere Felder: eine lange Aufzeichnung wäre sonst fast dreimal so groß
+    @router.post("/debuggen", response_model=Debuglauf, response_model_exclude_none=True)
+    def debuggen_route(anfrage: ProbelaufAnfrage) -> Debuglauf:
+        """Wie der Probelauf, aber als Aufzeichnung je Zeile für den Debugger (Python und JavaScript)."""
+        aufgabe = hole_aufgabe(anfrage.aufgabe_id)
+        if aufgabe.sprache not in ("python", "javascript"):
+            raise HTTPException(status_code=400, detail="Den Debugger gibt es für Python und JavaScript")
+        programm = aufgabe.task_type == "programm"
+        if not programm and not aufgabe.funktion:
+            raise HTTPException(status_code=400, detail="Aufgabe definiert keine Funktion")
+        try:
+            return debuggen(state.runner, aufgabe.sprache, anfrage.code, limits(aufgabe.zeitlimit_sekunden),
+                            funktion=None if programm else aufgabe.funktion,
+                            argumente=None if programm else anfrage.input,
+                            eingabe=[str(z) for z in anfrage.input] if programm else None)
+        except SandboxFehler as fehler:
+            raise HTTPException(status_code=503, detail=str(fehler)) from fehler
+        except ValueError as fehler:
+            raise HTTPException(status_code=422, detail=str(fehler)) from fehler
 
     return router
