@@ -208,6 +208,8 @@ i.fa-solid, i.fa-regular { line-height: 1; }
 /* ========== Knöpfe ========== */
 .knopf { display: inline-flex; align-items: center; gap: var(--sp-2); height: var(--knopf-h); padding: 0 var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius-sm); background: transparent; color: var(--fg-dim); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .05em; cursor: pointer; white-space: nowrap; }
 .knopf:hover:not(:disabled) { color: var(--accent); border-color: var(--accent); background: transparent; }
+a.knopf { text-decoration: none; }
+.knopf:disabled { opacity: .45; cursor: not-allowed; }
 .knopf.primaer { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
 .knopf.primaer:hover:not(:disabled) { background: color-mix(in srgb, var(--accent) 18%, transparent); }
 .knopf.voll { background: var(--accent); color: var(--auf-akzent); border-color: var(--accent); font-weight: 600; }

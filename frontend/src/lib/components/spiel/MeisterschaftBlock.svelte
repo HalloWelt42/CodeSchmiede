@@ -20,7 +20,8 @@
     {/each}
   </div>
   {#if raenge}
-    <p class="regel dim">Bronze ab {prozent(raenge.bronze)} %, Silber ab {prozent(raenge.silber)} %, Gold ab {prozent(raenge.gold)} %</p>
+    <!-- geschützte Leerzeichen: "ab 25 %" bricht nie auseinander -->
+    <p class="regel dim">Bronze ab&nbsp;{prozent(raenge.bronze)}&nbsp;%, Silber ab&nbsp;{prozent(raenge.silber)}&nbsp;%, Gold ab&nbsp;{prozent(raenge.gold)}&nbsp;%</p>
   {/if}
 </div>
 

@@ -23,6 +23,7 @@
   import EinfuehrungSeite from './kurs/EinfuehrungSeite.svelte';
   import KurztestSeite from './kurs/KurztestSeite.svelte';
   import MerkblattSeite from './kurs/MerkblattSeite.svelte';
+  import KursFlaeche from './kurs/KursFlaeche.svelte';
   import TelefonKurs from './telefon/TelefonKurs.svelte';
   import TelefonEinfuehrung from './telefon/TelefonEinfuehrung.svelte';
 
@@ -38,16 +39,18 @@
 {:else if route.aktiv === 'erfolge'}
   <ErfolgeSeite />
 {:else if route.aktiv === 'kurztest' && route.kursId}
-  {#key route.kursId}<KurztestSeite id={route.kursId} />{/key}
+  {#key route.kursId}<KursFlaeche><KurztestSeite id={route.kursId} /></KursFlaeche>{/key}
 {:else if route.aktiv === 'merkblatt' && route.kursId}
-  {#key route.kursId}<MerkblattSeite id={route.kursId} telefon={geraet.telefon} />{/key}
+  {#key route.kursId}<KursFlaeche><MerkblattSeite id={route.kursId} telefon={geraet.telefon} /></KursFlaeche>{/key}
 {:else if route.aktiv === 'einfuehrung' && route.kursId}
   {#key route.kursId}
-    {#if geraet.telefon}<TelefonEinfuehrung id={route.kursId} />{:else}<EinfuehrungSeite id={route.kursId} />{/if}
+    <KursFlaeche>
+      {#if geraet.telefon}<TelefonEinfuehrung id={route.kursId} />{:else}<EinfuehrungSeite id={route.kursId} />{/if}
+    </KursFlaeche>
   {/key}
 {:else if geraet.telefon}
   {#if route.aktiv === 'kurs'}
-    <TelefonKurs />
+    <KursFlaeche><TelefonKurs /></KursFlaeche>
   {:else if route.aktiv === 'aufgaben'}
     <TelefonAufgaben />
   {:else if route.aktiv === 'pfade'}
@@ -60,7 +63,7 @@
 {:else if !erlaubt || route.aktiv === 'dashboard'}
   <Dashboard />
 {:else if route.aktiv === 'kurs'}
-  <KursSeite />
+  <KursFlaeche><KursSeite /></KursFlaeche>
 {:else if route.aktiv === 'aufgaben'}
   <AufgabenListe />
 {:else if route.aktiv === 'pfade'}
