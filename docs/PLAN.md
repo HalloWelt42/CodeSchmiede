@@ -246,6 +246,19 @@ Offen für den Bau:
 - SQL-Kurs Kapitel 1 bis 3 (Die erste Abfrage, Rechnen und umbenennen, Zeilen filtern mit WHERE) mit eigenen
   Zeichnungen, Diagrammen, Kurztest, je sieben Übungen und dem Kapitelprojekt Pinguinsteckbrief
 
+## Ergebnis Schritt 7, Teil 3: SQL-Kurs fertig (0.83.0)
+
+- SQL-Kurs Kapitel 4 bis 12 in den Blöcken Genauer filtern (Mehrere Bedingungen, Texte durchsuchen, Wenn nichts
+  drinsteht), Sortieren und zusammenfassen (Sortieren und kürzen, Zusammenfassen, Gruppen bilden) und Verbinden und
+  entscheiden (Tabellen verbinden, Abfragen in Abfragen, Wenn, dann, sonst); je Kapitel Zeichnung, Kurztest, sieben
+  Übungen und ein Stück des Pinguinsteckbriefs bis zur fertigen Tafel; Kapitel 8 und 9 bauen deren Kopfzeile
+- Ablauf: nach einem JOIN tragen gleichnamige Spalten ihre Tabelle davor (p.name, k.name), LEFT JOIN ist ein eigener
+  Schritt, SELECT erklärt das Zusammenfassen zu einer Zeile oder je Gruppe
+- Vorhersagen vergleichen wahlweise den Anfang des Ergebnisses (`vergleich: anfang`, etwa "Wer steht ganz oben?");
+  ein Ort für alle Vergleiche (`vorhersage_stimmt`)
+- Übungen ohne ORDER BY nach JOIN oder GROUP BY vergleichen ohne Reihenfolge; Ranglisten verlangen eine zweite
+  Sortierspalte, damit Gleichstände (auch in den Gegenproben) eindeutig sind
+
 ## Offen
 
 - Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) zur Freigabe; Bau danach als eigener Abschnitt.
@@ -259,9 +272,8 @@ Offen für den Bau:
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
   Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.
-- Aufbaukurs SQL weiter: Kapitel ab 4 (AND/OR/IN, LIKE und NULL, Sortieren, Zusammenfassen, Gruppen, JOIN, Unterabfragen,
-  CASE); Daten ändern (INSERT, UPDATE, DELETE, CREATE TABLE) braucht Beispiele aus mehreren Anweisungen und ihre
-  Zwischenstände; danach JavaScript und CSS; Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
+- Aufbaukurs SQL weiter: Daten ändern (INSERT, UPDATE, DELETE, CREATE TABLE) braucht Beispiele aus mehreren
+  Anweisungen und ihre Zwischenstände; danach JavaScript und CSS; Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
 - Aufbaukurs mit Lehreinführungen: geklärt am 25.10.2026; Entwürfe liegen zur Freigabe in `mockups/` (Übersicht
   `mockups/index.html`, Abschnitt Aufbaukurs): Kursübersicht, Einführung für Python, SQL und CSS, Kurztest, Merkblatt,
   Kapitelende mit Sammelkarte, Telefon; freigegeben 25.10.2026 (der Bildbogen entfällt, Bilder kommen aus dem Medienpool).
