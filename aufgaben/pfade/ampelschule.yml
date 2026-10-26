@@ -1,0 +1,15 @@
+id: ampelschule
+titel: Ampelschule
+beschreibung: |
+  Ampeln mit Python steuern: vom Überweg im festen Takt über Taster und
+  Kontaktschleifen bis zur großen Kreuzung mit Abbiegern und Sonderfällen.
+  Verkehr und Fußgänger zeigen, ob die Steuerung sicher schaltet.
+reihenfolge:
+  - v001-fester-takt
+  - v002-knopfdruck
+  - v003-zwei-strassen
+  - v004-kontaktschleifen
+  - v005-fussgaenger-ringsum
+  - v006-linksabbieger
+  - v007-grosse-kreuzung
+  - v008-sonderfaelle

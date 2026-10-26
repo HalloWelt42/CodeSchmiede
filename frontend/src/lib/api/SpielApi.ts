@@ -3,6 +3,7 @@
  * Alles leitet der Server aus Abgaben und Fortschritt ab (docs/SPIELE.md);
  * die Belohnung einer Abgabe kommt mit der Abgabe.
  */
+import type { AmpelAnsicht, AmpelLaeufe } from '../types/Ampel';
 import { HttpBase } from './HttpBase';
 
 export type Rang = 'bronze' | 'silber' | 'gold';
@@ -233,6 +234,12 @@ export class SpielApi extends HttpBase {
   }
   roboterLauf(aufgabeId: string, code: string): Promise<RoboterLaeufe> {
     return this.post<RoboterLaeufe>(`/roboter/${aufgabeId}/lauf`, { code });
+  }
+  ampelAnlage(aufgabeId: string): Promise<AmpelAnsicht> {
+    return this.get<AmpelAnsicht>(`/ampel/${aufgabeId}/anlage`);
+  }
+  ampelLauf(aufgabeId: string, code: string): Promise<AmpelLaeufe> {
+    return this.post<AmpelLaeufe>(`/ampel/${aufgabeId}/lauf`, { code });
   }
   krimiAusfuehren(aufgabeId: string, code: string): Promise<KrimiErgebnis> {
     return this.post<KrimiErgebnis>(`/krimi/${aufgabeId}/ausfuehren`, { code });

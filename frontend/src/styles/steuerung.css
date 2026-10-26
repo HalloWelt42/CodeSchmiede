@@ -1,0 +1,101 @@
+/* Steuerungsspiele (Ampelschule, Aufzug): Teilschritte, Szene von oben, Ablaufplan und Kennzahlen.
+   Lampenfarben stehen einmal als Variablen; die Szene folgt sonst den Farben der App. */
+
+:root,
+:root[data-theme='dark'] {
+  --lampe-rot: #ef4444;
+  --lampe-gelb: #f5c518;
+  --lampe-gruen: #22c55e;
+  --lampe-rotgelb: #f97316;
+  --lampe-aus: #2b3038;
+  --signal-gehaeuse: #121519;
+  --matsch: #b91c1c;
+  /* Szene von oben: Wiese, Gehweg, Fahrbahn, Markierung */
+  --szene-gras: #1d2b1f;
+  --szene-gehweg: #41464d;
+  --szene-strasse: #23262a;
+  --szene-markierung: #c9ced4;
+}
+
+:root[data-theme='light'] {
+  --lampe-aus: #3a3f46;
+  --szene-gras: #cfe2c3;
+  --szene-gehweg: #e3e5e8;
+  --szene-strasse: #7d838a;
+  --szene-markierung: #f8fafc;
+}
+
+/* Teilschritte: eine Aufgabe baut sich Ziel für Ziel auf; erledigt, aktuell, noch offen */
+.modus { display: flex; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; margin: var(--sp-2) 0; }
+.modus button { flex: 1; height: 30px; border: 0; background: transparent; color: var(--fg-dim); font: inherit; font-size: var(--fs-sm); cursor: pointer; white-space: nowrap; }
+.modus button.aktiv { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); font-weight: 600; }
+.teilschritte { display: flex; flex-direction: column; gap: 4px; margin: var(--sp-2) 0 var(--sp-3); }
+.teilschritt { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: var(--sp-2); align-items: start; padding: 6px var(--sp-2); border: 1px solid var(--border); background: var(--bg-card-2); font-size: var(--fs-sm); }
+.teilschritt > i { margin-top: 3px; text-align: center; color: var(--fg-mute); }
+.teilschritt b { display: block; font-weight: 600; }
+.teilschritt small { display: block; color: var(--fg-dim); font-size: var(--fs-sm); line-height: 1.4; }
+.teilschritt.erledigt > i { color: var(--green); }
+.teilschritt.erledigt b { color: var(--fg-dim); font-weight: 500; }
+.teilschritt.aktuell { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--bg-card-2)); }
+.teilschritt.aktuell > i { color: var(--accent); }
+.teilschritt.offen > i { color: var(--red); }
+.teilschritt .stand { margin-top: 4px; color: var(--orange); font-size: var(--fs-sm); line-height: 1.4; }
+.teilschritt .stand div + div { margin-top: 2px; }
+
+/* Szene von oben (Ampel) oder von der Seite (Aufzug) */
+.szene { display: block; width: 100%; height: auto; background: var(--szene-gras); border: 1px solid var(--border); }
+.szene .gehweg { fill: var(--szene-gehweg); }
+.szene .strasse { fill: var(--szene-strasse); }
+.szene .zebra { fill: var(--szene-markierung); }
+.szene .schleife { fill: none; stroke: color-mix(in srgb, var(--accent) 60%, transparent); stroke-width: 1.2; stroke-dasharray: 3 2; }
+.szene .mittellinie { fill: none; stroke: var(--szene-markierung); stroke-width: 1.6; stroke-dasharray: 12 10; opacity: .8; }
+.szene .spurlinie { fill: none; stroke: var(--szene-markierung); stroke-width: 1.2; stroke-dasharray: 6 8; opacity: .7; }
+.szene .haltlinie { fill: none; stroke: var(--szene-markierung); stroke-width: 3; }
+.szene .pfeil { fill: none; stroke: var(--szene-markierung); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .75; }
+.szene .gehaeuse { fill: var(--signal-gehaeuse); stroke: var(--border-strong); stroke-width: .8; }
+.szene .lampe { fill: var(--lampe-aus); }
+.szene .lampe.rot.an { fill: var(--lampe-rot); }
+.szene .lampe.gelb.an { fill: var(--lampe-gelb); }
+.szene .lampe.gruen.an { fill: var(--lampe-gruen); }
+.szene .taster { fill: var(--signal-gehaeuse); stroke: var(--border-strong); }
+.szene .taster.an { fill: var(--accent); }
+.szene .fussgaenger { fill: var(--orange); stroke: var(--bg); stroke-width: 1.2; }
+.szene .fahrzeug { stroke: rgba(0, 0, 0, .35); stroke-width: .8; }
+.szene .scheibe { fill: rgba(255, 255, 255, .55); }
+.szene .fuehrerhaus { fill: #94a3b8; }
+.szene .blaulicht { fill: #3b82f6; }
+.szene .blaulicht.aus { fill: #1e3a8a; }
+/* Unfälle: Matschfleck, verbeultes Blech mit Rauch */
+.szene .matsch { fill: var(--matsch); opacity: .9; }
+.szene .verbeult { stroke: rgba(0, 0, 0, .6); stroke-width: 1; filter: saturate(.55) brightness(.8); }
+.szene .rauch { fill: color-mix(in srgb, var(--fg-mute) 55%, transparent); }
+.szene .nacht { fill: #020617; opacity: .38; pointer-events: none; }
+
+/* Ablaufplan: Signalplan der Ampeln, Fahrdiagramm des Aufzugs */
+.ablaufplan { display: block; width: 100%; height: auto; cursor: pointer; }
+.ablaufplan text { fill: var(--fg-dim); font: 500 12px var(--num); }
+.ablaufplan .raster { stroke: var(--border); stroke-dasharray: 2 4; }
+.ablaufplan .rot { fill: var(--lampe-rot); }
+.ablaufplan .gelb { fill: var(--lampe-gelb); }
+.ablaufplan .gruen { fill: var(--lampe-gruen); }
+.ablaufplan .rotgelb { fill: var(--lampe-rotgelb); }
+.ablaufplan .gelb_blinkt { fill: var(--lampe-gelb); opacity: .45; }
+.ablaufplan .aus { fill: var(--lampe-aus); }
+.ablaufplan .bedarf { fill: var(--accent); }
+.ablaufplan .nachtzeit { fill: #020617; opacity: .25; }
+.ablaufplan .unfall-marke { fill: var(--red); }
+.ablaufplan .zeiger { stroke: var(--fg); stroke-width: 1.5; }
+
+.ablauf-leiste { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.sim-werte { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--border); background: var(--bg-card-2); }
+.sim-werte > div { padding: 6px var(--sp-2); border-right: 1px solid var(--border); min-width: 0; }
+.sim-werte > div:last-child { border-right: 0; }
+.sim-werte .num { display: block; font-size: var(--fs-lg); font-weight: 600; }
+.sim-werte small { display: block; font-size: var(--fs-xs); color: var(--fg-dim); text-transform: uppercase; letter-spacing: .04em; line-height: 1.25; overflow-wrap: anywhere; hyphens: auto; }
+.sim-werte .gut { color: var(--green); }
+.sim-werte .schlecht { color: var(--red); }
+.ablaeufe { display: flex; flex-wrap: wrap; gap: 4px; }
+.ablaeufe .chip.ok { color: var(--green); border-color: var(--green); }
+.ablaeufe .chip.nein { color: var(--red); border-color: var(--red); }
+.ablaeufe button.chip { cursor: pointer; font: inherit; font-size: var(--fs-xs); }
+.ablaeufe .chip.gewaehlt { background: color-mix(in srgb, currentColor 14%, transparent); }

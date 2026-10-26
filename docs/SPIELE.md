@@ -70,45 +70,68 @@ Levels sind Grundpunkte mal Sterne durch drei; es zählt der beste Versuch.
   übereinstimmen.
 - **Sterne**: Bestehen; höchstens so lang wie die Musterlösung plus Spielraum; so kurz wie die Musterlösung.
 
-## Steuerungsspiele (Idee, Entwürfe zur Freigabe)
+## Steuerungsspiele
 
 Größere Spiele, bei denen eine Steuerung programmiert wird und echte Abläufe zeigen, ob sie stimmt (Nutzer
-25.10.2026). Der Rahmen ist vorgefertigt: Welt, Verkehr, Zeichnung, Szenarien. Geschrieben wird nur der Ablauf, eine
+25.10.2026). Der Rahmen ist vorgefertigt: Welt, Verkehr, Zeichnung, Abläufe. Geschrieben wird nur der Ablauf, eine
 Funktion `takt(lage)`, die jede Sekunde die Sensoren bekommt und die Stellung der Signale oder den Fahrbefehl
 zurückgibt. Wie beim Roboter kommt aus der Sandbox nur diese Folge; Verkehr, Unfälle, Regelverstöße und Wartezeiten
-rechnet das Backend selbst nach, die Szenarien laufen deterministisch.
+rechnet das Backend selbst nach, die Abläufe laufen deterministisch.
 
-- **Aufbau in Teilschritten**: Jedes Level ist eine Folge kleiner Ziele, die aufeinander aufbauen (erst Grün bis zum
-  Tastendruck, dann Gelb davor, dann die Fußgänger, dann die Räumzeit ...). Im einfachen Modus ("Schritt für Schritt")
-  wird nur das aktuelle Ziel geprüft; klappt es, kommt der nächste Teilschritt dazu, das Programm bleibt stehen und
-  wächst mit. Wer mag, nimmt "Alles auf einmal". Auch die Levels bauen aufeinander auf: das nächste beginnt mit dem
-  Programm des vorigen (Nutzer 25.10.2026).
-- **Spaß und Ton**: Fehler sind sichtbar und ein wenig lustig: roter Matschfleck für überfahrene Fußgänger, verbeultes
-  Blech, Rauch und Auffahrer dahinter; Klänge für Taster, Ticken der Fußgängerampel, Blechschaden, Matsch, Gong und Tür,
-  ausgewählt aus dem Bestand des Medienpools (CC0), Ton aus, bis man ihn einschaltet. Fehlende Klänge (Bremsen,
-  Autohupe) kommen über den Klanglader dazu.
-- **Prüfung**: sichtbare und versteckte Szenarien (andere Ankünfte, Stoßzeiten, Sonderfälle). Sicherheitsregeln sind
-  harte Tests: ein Unfall oder Verstoß, und das Level gilt nicht. Gezeigt wird die Stelle im Ablauf (Zeitmarke).
-- **Sterne**: einer ohne Unfall und Verstoß in allen Szenarien; zwei, wenn dazu die Wartezeiten im sichtbaren Szenario
-  unter der Schwelle liegen; drei, wenn dazu der Code höchstens so viele Zeichen hat.
-- **Ansicht**: links Aufgabe, Regeln, Sensoren und Signale; Mitte das Programm; rechts die Welt mit Abspielen und
-  darunter der Ablaufplan (Signalplan der Ampeln, Fahrdiagramm des Aufzugs), Kennzahlen und Szenarien.
+- **Aufbau in Teilschritten** (`backend/src/codeschmiede/steuerung/teilschritte.py`): Jedes Level ist eine Folge
+  kleiner Ziele mit eigenen Regeln, jedes schließt die vorigen ein. Der erste Teilschritt gilt im ersten sichtbaren
+  Ablauf, spätere nehmen weitere Abläufe beim Namen dazu, der letzte nimmt "alle", auch die versteckten. Geprüft wird
+  immer alles; "Schritt für Schritt" zeigt die Ziele bis zum ersten offenen, "Alles auf einmal" alle. Einen getrennt
+  gespeicherten Stand gibt es nicht: der Code selbst sagt, wie weit er ist. Auch die Levels bauen aufeinander auf:
+  gibt es noch kein eigenes Programm, beginnt ein Level mit dem bestandenen Programm des Levels davor
+  (`aufbauend_auf`).
+- **Spaß und Ton**: roter Matschfleck für überfahrene Fußgänger, verbeultes Blech mit Rauch; Klänge für Taster,
+  Ticken bei Grün für Fußgänger, Anfahren, Blechschaden und Matsch aus dem Bestand des Medienpools (CC0, Quellen in
+  `docs/KLAENGE.md`). Ton ist aus, bis man ihn einschaltet; die Wahl merkt sich der Browser.
+- **Prüfung**: sichtbare und versteckte Abläufe (andere Ankünfte, Stoßzeiten, langsame Lkw, Sonderfälle).
+  Sicherheitsregeln sind harte Tests: ein Unfall oder Verstoß, und das Level gilt nicht. Ein misslungener versteckter
+  Ablauf lässt sich ab kurz vor der ersten Stelle abspielen.
+- **Sterne**: einer, wenn alle Teilschritte in allen Abläufen erfüllt sind; zwei, wenn dazu im ersten sichtbaren
+  Ablauf die Fußgänger höchstens so lange und die Fahrzeuge im Mittel höchstens so lange warten; drei, wenn dazu der
+  Code höchstens so viele Zeichen hat.
+- **Ansicht**: links Aufgabe, Teilschritte, Sensoren, Signale und Sterne; Mitte das Programm mit "Ablauf" (die
+  sichtbaren Abläufe) und "Prüfen"; rechts die Anlage mit Abspielen, Ton und Tempo, darunter der Signalplan (Klick
+  springt zur Sekunde), Kennzahlen und die Abläufe. Am Telefon dieselben drei Teile als Schritte.
 
-### Ampelschule
+### Ampelschule (gebaut, 0.89.0)
 
-Draufsicht von oben, die Ampeln sichtbar am Straßenrand; Autos halten bei Rot, Fußgänger drücken den Taster.
+Draufsicht von oben, die Ampeln am Straßenrand; Autos halten bei Rot und bei Gelb, wenn sie noch halten können
+(ein Lkw hat den längeren Bremsweg), Fußgänger drücken den Taster und gehen bei Grün. Gebaut im Paket
+`backend/src/codeschmiede/steuerung/`:
+
+- **Welt** (`ampel_welt.py`): reines Python, dieselbe Quelle läuft in der Sandbox (für die Sensoren des Programms)
+  und im Backend (für das Urteil). Wege sind Linienzüge mit Gruppe, Haltlinie und Kontaktschleife; Konfliktzonen
+  entstehen aus der Geometrie (Wege fremder Gruppen, die sich kreuzen oder zusammenlaufen) und sagen auch, welche
+  Gruppen einander feind sind. Warten heißt: vor der Haltlinie stehen.
+- **Anlagen** (`ampel_anlage.py`): Vorlagen Überweg und Kreuzung (bis vier Zufahrten, je ein oder zwei Spuren mit
+  Bewegungen und Gruppe, Überwege je Zufahrt, Kontaktschleifen, Vorfahrt für das gelbe Blinken). Kreuzen sich Wege
+  einer Gruppe, meldet das die Bestandsprüfung.
+- **Abläufe** (`ampel_ablauf.py`): Verkehr als feste Zeiten, Takt oder Zufall je Sekunde mit festem Startwert, für
+  einen Weg, eine Zufahrt oder einen Überweg; dazu Nachtzeiten, eine gestörte Kontaktschleife und
+  Einsatzfahrzeuge, die sich zwölf Sekunden vorher anmelden.
+- **Sensoren** in `lage`: `sekunde`, `taster[g]`, `schleife[g]`, `wartend[g]`, `frei[g]` (niemand Fremdes auf den
+  Flächen, die g kreuzt), `einsatz`, `nacht`, `stoerung`. `taster` und `schleife` sind als Wahrheitswert "irgendwo".
+- **Regeln** (`ampel_regeln.py`): feindlich, gelb, rotgelb, raeumzeit, mindestgruen, ruhe, reagiert, nur_bei_bedarf,
+  bedient, kein_unfall, nacht, einsatz; jede mit ihren Werten in der Level-Datei.
+
+Die acht Levels (`aufgaben/python/v001` bis `v008`, Pfad `ampelschule`):
 
 1. Fußgängerampel im festen Takt
-2. Fußgängerampel auf Knopfdruck (Mindestgrün für Autos, Gelb, Räumzeit)
-3. Zwei Straßen, Umschaltautomatik mit Räumzeit
+2. Fußgänger auf Knopfdruck (Mindestgrün, Gelb, Räumzeit, langsamer Lkw im Lieferverkehr)
+3. Zwei Straßen, ein Umlauf
 4. Kontaktschleifen: Grün nur bei Bedarf
-5. Kreuzung mit Fußgängern an allen vier Seiten
+5. Kreuzung mit Fußgängern ringsum
 6. Linksabbieger mit eigener Phase
-7. Große Kreuzung, vier Zufahrten, zweispurig, Abbieger und Fußgänger
-8. Sonderfälle: Einsatzfahrzeug mit Vorrang, Nachtbetrieb mit gelbem Blinklicht, Störung
+7. Die große Kreuzung: vier Zufahrten, zweispurig, Abbieger, Fußgänger in eigener Phase
+8. Sonderfälle: Blaulicht, Nacht mit gelbem Blinklicht, gestörte Kontaktschleife (je ein sichtbarer Ablauf)
 
-Regeln (Beispiele): nie Grün für sich kreuzende Ströme, Gelb mindestens 3 s, Rot-Gelb 1 s, Räumzeit mit allem Rot,
-Fußgänger warten höchstens 60 s.
+Jede Musterlösung besteht mit drei Sternen, jeder Startcode scheitert am ersten Teilschritt, und wer `frei` nicht
+fragt, baut im versteckten Lieferverkehr einen Unfall (Tests in `backend/tests/test_ampel.py`).
 
 ### Aufzugsteuerung
 

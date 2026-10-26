@@ -96,6 +96,10 @@ aufgabentypen:
     titel: Muster-Jagd
     view: muster_jagd
     beschreibung: Treffer und Nieten sind vorgegeben - finde einen regulären Ausdruck, der alle Treffer und keine Niete trifft.
+  - id: ampel
+    titel: Ampelschule
+    view: ampel
+    beschreibung: Eine Ampelsteuerung in Python schreiben - Verkehr, Fußgänger und Unfälle zeigen, ob sie stimmt.
 
 # Spiele im Spielebereich. Ihre Levels sind Aufgaben des genannten
 # Aufgabentyps, die Reihenfolge geben die Pfade vor. Levels zählen in
@@ -127,6 +131,12 @@ spiele:
     beschreibung: "Reguläre Ausdrücke: alle Treffer fangen, keine Niete. Kürzere Muster bringen mehr Sterne."
     aufgabentyp: muster_jagd
     pfade: [muster-jagd]
+  - id: ampelschule
+    titel: Ampelschule
+    icon: fa-traffic-light
+    beschreibung: "Ampeln in Python steuern: vom Überweg bis zur großen Kreuzung. Nur wenn sie richtig schalten, gibt es keine Unfälle."
+    aufgabentyp: ampel
+    pfade: [ampelschule]
 
 # Spielmechanik (docs/SPIELE.md). Stufe k gilt ab stufe_basis * k * k
 # Punkten, alle titel_alle Stufen kommt der nächste Titel. Die Ränge der

@@ -367,16 +367,52 @@ JavaScript.
   helle derselben Entwicklungsumgebung (Nutzer 26.10.2026). Alle Editorfarben stehen als Variablen in
   `frontend/src/styles/editor.css`; Umschalten wirkt sofort, ohne den Editor neu aufzubauen.
 
+## Ergebnis: Steuerungsspiele, Ampelschule (0.89.0)
+
+Der Nutzer gibt den Bau frei ("bau mal weiter. immer pro idee", 26.10.2026): jede Idee aus "Offen" wird für sich
+gebaut, getestet und ausgerollt, erst die Ampelschule, dann die Aufzugsteuerung, danach die weiteren Spielideen. Die
+Speichergrenze der Sandbox bleibt ohne Speicher-cgroup ("speicher sollte reichen"); der Punkt ist erledigt.
+
+Aufbau (eine Wahrheit je Sache):
+
+- **Welt** (`backend/src/codeschmiede/steuerung/ampel_welt.py`): reines Python ohne Abhängigkeiten. Wege als
+  Linienzüge (Fahrspuren und Überwege), jeder Weg gehört zu einer Signalgruppe und hat eine Haltlinie; Konfliktpunkte
+  entstehen aus der Geometrie (Wege, die sich kreuzen oder zusammenlaufen). Fahrzeuge fahren mit festem Tempo, halten
+  bei Rot und bei Gelb, wenn sie noch halten können, und halten Abstand. Ein Fußgänger unter einem Fahrzeug wird zum
+  Fleck, zwei Fahrzeuge im selben Konfliktpunkt verbeulen. Dieselbe Quelle läuft in der Sandbox (für die Sensoren
+  des Programms) und im Backend (für das Urteil); aus der Sandbox kommt nur die Folge der Signale.
+- **Anlagen** (`steuerung/ampel_anlage.py`): Vorlagen für Überweg und Kreuzung erzeugen aus wenigen Angaben der
+  Level-Datei Wege, Signalgruppen, Sensoren und die Zeichnung. Der Browser zeichnet nur, was das Backend liefert.
+- **Abläufe**: sichtbar (einer oder mehrere) und versteckt, Ankünfte aus Takt und Zufall mit festem Startwert,
+  deterministisch.
+- **Regeln** (`steuerung/ampel_regeln.py`): kleine Prüfungen mit Werten aus der Level-Datei (feindliche Grün, Gelb
+  vor Rot, Rot-Gelb, Räumzeit, Mindestgrün, Wartezeiten, kein Unfall, Taster, Nacht, Einsatz, Störung).
+- **Teilschritte** (allgemein für alle Steuerungsspiele, `steuerung/teilschritte.py`): jedes Level ist eine Folge von
+  Zielen, jedes nennt seine Regeln und weitere Abläufe beim Namen (oder "alle"), und jedes schließt die vorigen ein.
+  Geprüft wird immer alles; "Schritt für Schritt" zeigt die Ziele bis zum ersten offenen und dieses als aktuelles,
+  "Alles auf einmal" alle. So gibt es keinen getrennt gespeicherten Stand: der Code selbst sagt, wie weit er ist.
+  Ein Level beginnt mit dem bestandenen Programm des Levels, auf dem es aufbaut, solange es kein eigenes gibt.
+- **Sterne**: einer, wenn alle Teilschritte erfüllt sind; zwei, wenn dazu die Wartezeiten im sichtbaren Ablauf unter
+  den Schwellen liegen; drei, wenn dazu der Code höchstens so viele Zeichen hat.
+- **Oberfläche**: drei Spalten wie im Entwurf `mockups/rechner-ampel.html`: Aufgabe mit Teilschritten, Sensoren und
+  Sternen; Programm; Kreuzung mit Abspielen, Ton, Tempo, Signalplan, Kennzahlen und Abläufen. Ein Unfall in einem
+  versteckten Ablauf lässt sich ab kurz vor der Stelle abspielen. Klänge aus dem Medienpool (CC0), Ton aus, bis man
+  ihn einschaltet. Am Telefon dieselbe Ansicht in Schritten.
+- **Gebaut**: acht Levels vom festen Takt bis zu den Sonderfällen (Liste in `docs/SPIELE.md`), Routen
+  `GET /api/spiel/ampel/{id}/anlage` und `POST /api/spiel/ampel/{id}/lauf`, Ansicht `AmpelView` mit Szene, Signalplan
+  und Teilschritten, Spielkarte mit eigenem Bild, Klänge unter `frontend/public/klaenge/`. Geprüft: jede Musterlösung
+  besteht mit drei Sternen, jeder Startcode scheitert am ersten Teilschritt, ohne `frei` kracht es im
+  Lieferverkehr; Sichtprüfung aller Anlagen in voller Größe, Nacht und Blaulicht.
+
 ## Offen
 
-- Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) zur Freigabe; Bau danach als eigener Abschnitt.
+- Steuerungsspiele: Aufzugsteuerung nach dem Entwurf (freigegeben 26.10.2026).
 - Weitere Spielideen (Nutzer 25.10.2026): Turingmaschine (sehr anschaulich, mehrere Aufgaben) und digitale Schaltungen
   bis zur 7-Segment-Anzeige, Halb- und Volladdierer, Verdrahtungsaufgaben mit und ohne fertige Anordnung; Skizze in
   `docs/SPIELE.md`, vor dem Bau Entwürfe.
 - Weitere Spielideen (Nutzer 25.10.2026): Codes knacken (Knacker schreiben, geprüft auf versteckten Geheimtexten) und
   Flaggenjagd (verwundbare Übungssysteme nur in der Sandbox, erst Flagge finden, dann Lücke schließen); Skizze in
   `docs/SPIELE.md`, vor dem Bau Entwürfe.
-- Volle Speichergrenze der Sandbox auf dem Pi: Speicher-cgroup einschalten (`cgroup_enable=memory`, Neustart des Pi), Entscheidung des Nutzers.
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
   Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.

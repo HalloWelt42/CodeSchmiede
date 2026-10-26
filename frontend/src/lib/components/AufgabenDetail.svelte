@@ -37,6 +37,7 @@
   import MusterJagdView from './MusterJagdView.svelte';
   import SprintView from './SprintView.svelte';
   import KrimiView from './KrimiView.svelte';
+  import AmpelView from './AmpelView.svelte';
   import RoboterView from './RoboterView.svelte';
   import { spielStore } from '../stores/SpielStore.svelte';
 
@@ -263,6 +264,8 @@
       <SprintView detail={aktuell} />
     {:else if aktuell.task_type === 'roboter'}
       <RoboterView detail={aktuell} />
+    {:else if aktuell.task_type === 'ampel'}
+      <AmpelView detail={aktuell} />
     {:else if aktuell.task_type === 'sql_krimi'}
       <KrimiView detail={aktuell} />
     {:else}

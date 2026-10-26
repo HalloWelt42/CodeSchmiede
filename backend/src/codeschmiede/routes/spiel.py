@@ -1,6 +1,6 @@
 """HTTP-Routen der Spielmechanik: Spielstand für Kopf und Startseite,
 Erfolge für ihre Seite, Spiele mit dem Stand ihrer Levels, Probeläufe des
-Roboters und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
+Roboters und der Ampelschule und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
 
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -12,7 +12,11 @@ from ..models.spiel import ErfolgsListe, Spielstand, SpielUebersicht
 from ..models.sprint import SprintAbschluss, SprintRueckmeldung, SprintRunde
 from ..pruefung import krimi_pruefer
 from ..pruefung.krimi_pruefer import Ergebnistabelle
+from ..pruefung import ampel_pruefer
+from ..pruefung.ampel_pruefer import AmpelLaeufe, AmpelSterne
 from ..pruefung.roboter_pruefer import Laeufe, lauf_sichtbar
+from ..steuerung import ampel_welt
+from ..steuerung.ampel_anlage import Anlage
 from ..sandbox.runner import SandboxFehler
 from ..spiel.sprint import FalscheAntwort, RundeNichtGefunden, RundeVorbei
 from ..state import AppState
@@ -23,8 +27,28 @@ class SprintAntwort(BaseModel):
     wahl: int
 
 
-class RoboterProbe(BaseModel):
+class ProgrammProbe(BaseModel):
     code: str = Field(min_length=1, max_length=50_000)
+
+
+class TeilschrittText(BaseModel):
+    titel: str
+    text: str
+
+
+class AmpelAnsicht(BaseModel):
+    """Was die Ampelschule vor dem ersten Lauf zeigt: Anlage, Dauer des ersten sichtbaren Ablaufs und vom Level, was
+    der Browser braucht (ohne Regeln und versteckte Abläufe)."""
+
+    anlage: Anlage
+    ablauf: str
+    dauer: int
+    # Maße je Art von Teilnehmer (Länge, Breite in Bildpunkten), für die Zeichnung
+    arten: dict[str, dict[str, float]]
+    sensoren: list[str]
+    teilschritte: list[TeilschrittText]
+    sterne: AmpelSterne
+    aufbauend_auf: str | None
 
 
 class KrimiAbfrage(BaseModel):
@@ -59,13 +83,42 @@ def baue_spiel_router(state: AppState) -> APIRouter:
         return state.spiel.spiele(state.bestand())
 
     @router.post("/roboter/{aufgabe_id}/lauf", response_model=Laeufe)
-    def roboter_lauf(aufgabe_id: str, anfrage: RoboterProbe) -> Laeufe:
+    def roboter_lauf(aufgabe_id: str, anfrage: ProgrammProbe) -> Laeufe:
         """Probelauf in der sichtbaren Welt, ohne Wertung und ohne Abgabe."""
         aufgabe = state.aufgaben.aufgabe(aufgabe_id)
         if aufgabe is None or aufgabe.task_type != "roboter":
             raise HTTPException(status_code=404, detail="Kein Roboter-Level")
         try:
             return lauf_sichtbar(aufgabe, anfrage.code, state.runner)
+        except SandboxFehler as fehler:
+            raise HTTPException(status_code=503, detail=str(fehler)) from fehler
+
+    def ampel_level(aufgabe_id: str):
+        aufgabe = state.aufgaben.aufgabe(aufgabe_id)
+        if aufgabe is None or aufgabe.task_type != "ampel":
+            raise HTTPException(status_code=404, detail="Kein Ampel-Level")
+        return aufgabe
+
+    @router.get("/ampel/{aufgabe_id}/anlage", response_model=AmpelAnsicht, response_model_exclude={"anlage": {"konflikte"}})
+    def ampel_anlage(aufgabe_id: str) -> AmpelAnsicht:
+        level = ampel_pruefer.level_von(ampel_level(aufgabe_id))
+        return AmpelAnsicht(
+            anlage=ampel_pruefer.anlage_von(level),
+            ablauf=level.sichtbar[0].name,
+            dauer=level.sichtbar[0].dauer,
+            arten={art: {"laenge": m["laenge"], "breite": m["breite"]} for art, m in ampel_welt.ARTEN.items()},
+            sensoren=list(level.sensoren),
+            teilschritte=[TeilschrittText(titel=s.titel, text=s.text) for s in level.teilschritte],
+            sterne=level.sterne,
+            aufbauend_auf=level.aufbauend_auf,
+        )
+
+    @router.post("/ampel/{aufgabe_id}/lauf", response_model=AmpelLaeufe)
+    def ampel_lauf(aufgabe_id: str, anfrage: ProgrammProbe) -> AmpelLaeufe:
+        """Probelauf in den sichtbaren Abläufen, ohne Wertung und ohne Abgabe."""
+        aufgabe = ampel_level(aufgabe_id)
+        try:
+            return ampel_pruefer.lauf_sichtbar(aufgabe, anfrage.code, state.runner)
         except SandboxFehler as fehler:
             raise HTTPException(status_code=503, detail=str(fehler)) from fehler
 

@@ -4,6 +4,7 @@ import './styles/fonts.css';
 import './styles/global.css';
 import './styles/editor.css';
 import './styles/kurs.css';
+import './styles/steuerung.css';
 import App from './App.svelte';
 
 const ziel = document.getElementById('app');

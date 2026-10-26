@@ -32,11 +32,33 @@
     <div><i class="fa-solid fa-check ok" aria-hidden="true"></i> <mark>24.10</mark>.2026</div>
     <div><i class="fa-solid fa-xmark nein" aria-hidden="true"></i> 2026-10-24</div>
   </div>
+{:else if id === 'ampelschule'}
+  <svg class="ampel-bild" viewBox="0 0 120 150" aria-hidden="true">
+    <rect class="gras" x="0" y="0" width="120" height="150" />
+    <rect class="strasse" x="0" y="52" width="120" height="46" />
+    {#each [55, 63, 71, 79, 87] as y (y)}<rect class="zebra" x="52" {y} width="16" height="4" />{/each}
+    <rect x="18" y="78" width="22" height="11" rx="3" fill="#60a5fa" />
+    <rect x="80" y="60" width="22" height="11" rx="3" fill="#f59e0b" />
+    <rect class="gehaeuse" x="40" y="104" width="10" height="28" rx="2" />
+    <circle cx="45" cy="110" r="3.2" fill="var(--lampe-rot)" /><circle class="aus" cx="45" cy="118" r="3.2" /><circle class="aus" cx="45" cy="126" r="3.2" />
+    <rect class="gehaeuse" x="72" y="18" width="9" height="20" rx="2" />
+    <circle class="aus" cx="76.5" cy="24" r="3" /><circle cx="76.5" cy="32" r="3" fill="var(--lampe-gruen)" />
+    <circle cx="60" cy="42" r="4" fill="var(--orange)" />
+  </svg>
 {:else}
   <i class="fa-solid fa-gamepad ersatz" aria-hidden="true"></i>
 {/if}
 
 <style>
+  .ampel-bild {
+    width: 100%;
+    height: 100%;
+  }
+  .ampel-bild .gras { fill: var(--szene-gras); }
+  .ampel-bild .strasse { fill: var(--szene-strasse); }
+  .ampel-bild .zebra { fill: var(--szene-markierung); }
+  .ampel-bild .gehaeuse { fill: var(--signal-gehaeuse); }
+  .ampel-bild .aus { fill: var(--lampe-aus); }
   .muster {
     font-family: var(--mono);
     font-size: 11px;
