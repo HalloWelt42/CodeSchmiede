@@ -147,11 +147,15 @@
     }
   }
 
-  // Ergebnis-Daten aus Pruefung extrahieren (sichtbar[0])
+  // Ergebnis-Daten aus Pruefung extrahieren (sichtbar[0]); Kommazahlen kommen dort als Text (4.0 bleibt 4.0)
   let tatsaechlich = $derived(
     ergebnis?.pruefung?.sichtbar?.[0]?.tatsaechlich as
       | { spalten: string[]; zeilen: unknown[][] }
       | undefined,
+  );
+  let soll = $derived(
+    (ergebnis?.pruefung?.sichtbar?.[0]?.erwartet as { spalten: string[] | null; zeilen: unknown[][] } | undefined) ??
+      { spalten: erwartete_spalten, zeilen: erwartetes_ergebnis },
   );
 </script>
 
@@ -244,13 +248,13 @@
         {/if}
         {#if !ergebnis.bestanden}
           <details class="soll-block">
-            <summary class="gruppe">Erwartetes Ergebnis ({erwartetes_ergebnis.length} Zeilen)</summary>
+            <summary class="gruppe">Erwartetes Ergebnis ({soll.zeilen.length} Zeilen)</summary>
             <table class="daten-tab">
-              {#if erwartete_spalten?.length}
-                <thead><tr>{#each erwartete_spalten as s}<th>{s}</th>{/each}</tr></thead>
+              {#if soll.spalten?.length}
+                <thead><tr>{#each soll.spalten as s}<th>{s}</th>{/each}</tr></thead>
               {/if}
               <tbody>
-                {#each erwartetes_ergebnis.slice(0, 50) as row}
+                {#each soll.zeilen.slice(0, 50) as row}
                   <tr>{#each (row as unknown[]) as v}<td>{v ?? 'NULL'}</td>{/each}</tr>
                 {/each}
               </tbody>

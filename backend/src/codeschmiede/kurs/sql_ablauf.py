@@ -25,7 +25,7 @@ import sqlglot
 from pydantic import BaseModel, Field
 from sqlglot import exp
 
-from ..pruefung.sql_pruefer import MAX_ZEILEN, skript
+from ..pruefung.sql_pruefer import MAX_ZEILEN, anzeigbar, skript
 from ..pruefung.testlauf import hinweise, lies_block, neue_marke
 from ..sandbox.result import RunLimits
 from ..sandbox.runner import Runner
@@ -72,11 +72,6 @@ class SqlLauf(BaseModel):
     def ausgabe(self) -> str:
         """Das Ergebnis als Text, wie Vorhersagen es schreiben: je Zeile die Werte mit " | " getrennt, ohne Kopf."""
         return als_text(self.zeilen)
-
-
-def anzeigbar(zeilen: list[list[Any]]) -> list[list[Any]]:
-    """Kommazahlen als Text, wie die Datenbank sie schreibt (4.0 bleibt 4.0); in JSON würde daraus sonst 4."""
-    return [[str(w) if isinstance(w, float) else w for w in z] for z in zeilen]
 
 
 def als_text(zeilen: list[list[Any]]) -> str:

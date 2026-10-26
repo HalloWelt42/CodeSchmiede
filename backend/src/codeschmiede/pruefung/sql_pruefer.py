@@ -86,6 +86,12 @@ def skript(schema_sql: str, laeufe: list[dict[str, Any]], marke: str) -> str:
     )
 
 
+def anzeigbar(zeilen: list[list[Any]]) -> list[list[Any]]:
+    """Kommazahlen als Text, wie die Datenbank sie schreibt (4.0 bleibt 4.0); in JSON würde daraus sonst 4. Nur für
+    die Anzeige, verglichen wird vorher."""
+    return [[str(w) if isinstance(w, float) else w for w in z] for z in zeilen]
+
+
 def _zeilen(rows: list[Any]) -> list[tuple[Any, ...]]:
     return [tuple(r) if isinstance(r, (list, tuple)) else (r,) for r in rows]
 
@@ -194,8 +200,8 @@ def _pruefe(aufgabe: Aufgabe, code: str, runner: Runner, kontrolle: str | None) 
                 index=0,
                 bestanden=bestanden_sichtbar,
                 eingabe=[dataset],
-                erwartet={"spalten": erwartete_spalten, "zeilen": [list(r) for r in soll]},
-                tatsaechlich={"spalten": spalten, "zeilen": [list(r) for r in ist]},
+                erwartet={"spalten": erwartete_spalten, "zeilen": anzeigbar([list(r) for r in soll])},
+                tatsaechlich={"spalten": spalten, "zeilen": anzeigbar([list(r) for r in ist])},
                 fehler=None if bestanden_sichtbar else "Ergebnis weicht ab.",
             )
         ],

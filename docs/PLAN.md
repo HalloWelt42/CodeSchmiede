@@ -259,6 +259,18 @@ Offen für den Bau:
 - Übungen ohne ORDER BY nach JOIN oder GROUP BY vergleichen ohne Reihenfolge; Ranglisten verlangen eine zweite
   Sortierspalte, damit Gleichstände (auch in den Gegenproben) eindeutig sind
 
+## Ergebnis Schritt 7, Teil 4: SQL, Daten ändern (0.84.0)
+
+- Block Daten ändern mit Kapitel 13 bis 16 (Zeilen einfügen, Werte ändern, Zeilen löschen, Tabellen anlegen), je
+  Kapitel Zeichnung, Kurztest, sieben Übungen und ein Stück des Kapitelprojekts Umzug in den Westen
+- Ablauf für Skripte: Anweisung für Anweisung (zerlegt an vollständigen Anweisungen), je Schritt die betroffene
+  Tabelle davor und danach über die rowid: neue Zeilen, geänderte Zellen mit durchgestrichenem alten Wert, gelöschte
+  Zeilen, neue Spalten; Fehler nennen Anweisung und Zeile, die Schritte davor bleiben sichtbar
+- Aufgabenart `sql_aenderung`: das Skript läuft vollständig, eine Kontrollabfrage (Pflichtfeld `kontrolle`, in der
+  Ansicht sichtbar) liefert das verglichene Ergebnis; Gegenproben auf ausgedünnten Daten wie bei Abfragen; den Aufbau
+  neuer Tabellen liest die Kontrolle über pragma_table_info
+- Kommazahlen erscheinen auch in den Ergebnissen der SQL-Aufgaben so, wie die Datenbank sie schreibt (4.0)
+
 ## Offen
 
 - Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) zur Freigabe; Bau danach als eigener Abschnitt.
@@ -272,8 +284,7 @@ Offen für den Bau:
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
   Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.
-- Aufbaukurs SQL weiter: Daten ändern (INSERT, UPDATE, DELETE, CREATE TABLE) braucht Beispiele aus mehreren
-  Anweisungen und ihre Zwischenstände; danach JavaScript und CSS; Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
+- Aufbaukurs weiter: JavaScript und CSS; Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
 - Aufbaukurs mit Lehreinführungen: geklärt am 25.10.2026; Entwürfe liegen zur Freigabe in `mockups/` (Übersicht
   `mockups/index.html`, Abschnitt Aufbaukurs): Kursübersicht, Einführung für Python, SQL und CSS, Kurztest, Merkblatt,
   Kapitelende mit Sammelkarte, Telefon; freigegeben 25.10.2026 (der Bildbogen entfällt, Bilder kommen aus dem Medienpool).
