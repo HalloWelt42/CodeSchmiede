@@ -100,6 +100,10 @@ aufgabentypen:
     titel: Ampelschule
     view: ampel
     beschreibung: Eine Ampelsteuerung in Python schreiben - Verkehr, Fußgänger und Unfälle zeigen, ob sie stimmt.
+  - id: aufzug
+    titel: Aufzugsteuerung
+    view: aufzug
+    beschreibung: Eine Aufzugsteuerung in Python schreiben - Fahrgäste, Türen und Wartezeiten zeigen, ob sie stimmt.
 
 # Spiele im Spielebereich. Ihre Levels sind Aufgaben des genannten
 # Aufgabentyps, die Reihenfolge geben die Pfade vor. Levels zählen in
@@ -137,6 +141,12 @@ spiele:
     beschreibung: "Ampeln in Python steuern: vom Überweg bis zur großen Kreuzung. Nur wenn sie richtig schalten, gibt es keine Unfälle."
     aufgabentyp: ampel
     pfade: [ampelschule]
+  - id: aufzugsteuerung
+    titel: Aufzugsteuerung
+    icon: fa-elevator
+    beschreibung: "Aufzüge in Python steuern: von zwei Etagen bis zu zwei Kabinen im Bürohaus, mit Lichtschranke, Überlast und Feueralarm."
+    aufgabentyp: aufzug
+    pfade: [aufzugsteuerung]
 
 # Spielmechanik (docs/SPIELE.md). Stufe k gilt ab stufe_basis * k * k
 # Punkten, alle titel_alle Stufen kommt der nächste Titel. Die Ränge der

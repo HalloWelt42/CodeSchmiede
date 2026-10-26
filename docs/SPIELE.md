@@ -133,19 +133,40 @@ Die acht Levels (`aufgaben/python/v001` bis `v008`, Pfad `ampelschule`):
 Jede Musterlösung besteht mit drei Sternen, jeder Startcode scheitert am ersten Teilschritt, und wer `frei` nicht
 fragt, baut im versteckten Lieferverkehr einen Unfall (Tests in `backend/tests/test_ampel.py`).
 
-### Aufzugsteuerung
+### Aufzugsteuerung (gebaut, 0.90.0)
 
-Schnitt durchs Haus von der Seite, Kabine im Schacht, wartende Leute mit Rufknöpfen, Fahrdiagramm (Etage über Zeit).
+Schnitt durchs Haus von der Seite: Schächte mit Seilen, Kabinen mit gleitenden Türen, Anzeigen über den Türen,
+Rufknöpfe und Wartende, darunter das Fahrdiagramm (Etage über Zeit je Kabine, Rufe als Punkte, Verstöße als Marken).
+Gebaut im Paket `backend/src/codeschmiede/steuerung/` auf demselben Unterbau wie die Ampelschule (Sandbox-Lauf,
+Teilschritte, gemeinsame Ansicht `SteuerungsView`):
 
-1. Zwei Etagen: rufen, fahren, Tür auf und zu
-2. Rufe sammeln: unterwegs halten, wer in Fahrtrichtung will
-3. Tür und Lichtschranke
-4. Bürohaus: abwärts sammeln
+- **Welt** (`aufzug_welt.py`): jede Kabine fragt `takt(lage)`, sobald sie mit ihrem Befehl fertig ist, und bekommt
+  "hoch", "runter" (eine Etage, zwei Sekunden), "auf", "zu" (je eine Sekunde) oder "warten". Bei offener Tür steigen
+  erst alle aus, dann ein, einer nach dem anderen und ohne Lücke (Lichtschranke). Wer an der Etage wartet, steigt ein,
+  solange Platz ist; wo die Kabine hält, entscheidet das Programm. Überladen wird zwei Sekunden verhandelt, dann steigt
+  der Letzte wieder aus und ruft erst, wenn die Kabine weiterfährt. Bei Feueralarm steigt niemand mehr ein, im EG
+  alle aus. Was gegen die Regeln geht, führt die Welt nicht aus und vermerkt es als Verstoß.
+- **Vorgaben** (`aufzug_ablauf.py`): Haus (Etagen, Kabinen, Plätze, Höchstlast) und Fahrgäste als feste Zeiten,
+  Takt oder Zufall mit festem Startwert, Start und Ziel als Etage, Liste oder Zufall; Feueralarm je Ablauf.
+- **Sensoren**: `etage`, `tuer`, `rufe[1]`, `rufe[-1]`, `ziele`, `richtung`, `sekunde`, dazu je Level `wartend`,
+  `lichtschranke`, `voll` und `drin`, `ueberlast`, `feuer`, `aufzuege` (alle Kabinen) und `aufzug`.
+- **Regeln** (`aufzug_regeln.py`): tuer_sicher, kein_einklemmen, ueberlast, bedient, mitnehmen (wer in
+  Fahrtrichtung wartet, wird mitgenommen), umkehren (erst wenden, wenn in der Richtung nichts mehr liegt, was schon
+  vor der Ankunft bestand), zuegig, feuer, parken.
+
+Die sieben Levels (`aufgaben/python/e001` bis `e007`, Pfad `aufzugsteuerung`):
+
+1. Zwei Etagen: rufen, fahren, Tür auf und zu, Lichtschranke
+2. Rufe sammeln: unterwegs mitnehmen, erst umkehren, wenn alles erledigt ist
+3. Volle Kabine: Gruppen, vier Plätze
+4. Bürohaus: zehn Etagen, im EG parken
 5. Zwei Aufzüge: wer fährt?
 6. Stoßzeit am Morgen
-7. Sonderfälle: Überlast, Wartung, Feuerwehrfahrt
+7. Sonderfälle: Überlast (ein Klavier) und Feueralarm, je ein sichtbarer Ablauf
 
-Regeln (Beispiele): nie fahren mit offener Tür, Tür nur im Halt an einer Etage öffnen, jeder Ruf wird bedient.
+"Tür und Lichtschranke" aus dem Entwurf steckt schon im ersten Level, weil die Tür von Anfang an dem Programm gehört;
+an seiner Stelle kam die volle Kabine dazu. Jede Musterlösung besteht mit drei Sternen, jeder Startcode scheitert am
+ersten Teilschritt, und das Programm des Levels davor reicht nicht (Tests in `backend/tests/test_aufzug.py`).
 
 ### Weitere Regelungen (Ideen)
 

@@ -1,8 +1,9 @@
 """Prüfer für `task_type: ampel` (Steuerungsspiel Ampelschule).
 
 Das Python-Programm hat eine Funktion takt(lage), die jede Sekunde die Sensoren bekommt und das Signal je Gruppe
-zurückgibt. In der Sandbox läuft es einmal je Ablauf (sichtbar und versteckt), jeweils mit frischem Zustand; die
-Welt dort ist dieselbe Quelle wie im Backend (steuerung/ampel_welt.py) und liefert nur die Sensoren. Aus der Sandbox
+zurückgibt. In der Sandbox läuft es einmal je Ablauf (sichtbar und versteckt), jeweils mit frischem Zustand
+(steuerung/sandbox_lauf.py); die Welt dort ist dieselbe Quelle wie im Backend (steuerung/ampel_welt.py) und liefert
+nur die Sensoren. Aus der Sandbox
 kommt je Ablauf die Folge der Signale; Verkehr, Unfälle und Wartezeiten rechnet das Backend nach, die Regeln der
 Teilschritte urteilen darauf.
 
@@ -21,74 +22,26 @@ Im Frontmatter:
     sterne: {fuss: 25, autos: 6, zeichen: 320}
 """
 
-import json
 from pathlib import Path
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from ..models.aufgabe import Aufgabe
-from ..sandbox.result import RunLimits
 from ..sandbox.runner import Runner
-from ..steuerung import ampel_ablauf, ampel_anlage, ampel_regeln, ampel_welt
+from ..steuerung import ampel_ablauf, ampel_anlage, ampel_regeln, ampel_welt, sandbox_lauf
 from ..steuerung.ampel_ablauf import Ablauf
 from ..steuerung.ampel_anlage import Anlage, AnlageVorgabe
 from ..steuerung.ampel_regeln import AmpelLauf, Regel
+from ..steuerung.sandbox_lauf import Gemeldet
 from ..steuerung.teilschritte import Befund, TeilschrittStand, ablauf_befunde, ablauf_mengen, auswerten
 from .ergebnis import Kennwerte, PruefErgebnis, SternKriterium, TestErgebnis, Wertung
 from .registry import registriere
 from .roboter_pruefer import zeichen_code, zeilen_code
-from .testlauf import hinweise, lies_block, neue_marke
 
 Sensor = Literal["taster", "schleife", "wartend", "frei", "einsatz", "nacht", "stoerung"]
 
 WELT_QUELLE = Path(ampel_welt.__file__).read_text(encoding="utf-8")
-
-# Läuft in der Sandbox hinter der Welt. _DATEN und _MARKE stehen davor (siehe skript()).
-LAUF = r'''
-import json as _j, sys as _s
-
-
-def _zeile(e):
-    tb, nr = e.__traceback__, 0
-    while tb is not None:
-        if tb.tb_frame.f_code.co_filename == "<programm>":
-            nr = tb.tb_lineno
-        tb = tb.tb_next
-    return nr
-
-
-def _lauf(ablauf):
-    welt = Welt(_DATEN["anlage"], ablauf)
-    namen = {"__name__": "__main__"}
-    try:
-        exec(compile(_DATEN["code"], "<programm>", "exec"), namen)
-    except SyntaxError as e:
-        return {"signale": [], "fehler": "SyntaxError: %s (Zeile %s)" % (e.msg, e.lineno)}
-    except Exception as e:
-        return {"signale": [], "fehler": "%s: %s (Zeile %d)" % (type(e).__name__, e, _zeile(e))}
-    takt = namen.get("takt")
-    if not callable(takt):
-        return {"signale": [], "fehler": "Es fehlt die Funktion takt(lage)."}
-    signale = []
-    for sekunde in range(ablauf["dauer"]):
-        try:
-            wert = takt(welt.lage())
-        except Exception as e:
-            return {"signale": signale, "fehler": "Sekunde %d: %s: %s (Zeile %d)" % (sekunde, type(e).__name__, e, _zeile(e))}
-        geprueft = signale_pruefen(welt.gruppen, wert)
-        if isinstance(geprueft, str):
-            return {"signale": signale, "fehler": "Sekunde %d: %s" % (sekunde, geprueft)}
-        signale.append(geprueft)
-        welt.sekunde(geprueft)
-    return {"signale": signale, "fehler": None}
-
-
-_ergebnis = [_lauf(a) for a in _DATEN["ablaeufe"]]
-_s.stdout.flush()
-_s.stdout.write("\n" + _MARKE + _j.dumps(_ergebnis) + "\n")
-'''
-
 
 class AmpelTeilschritt(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -201,16 +154,6 @@ def anlage_von(level: AmpelLevel) -> Anlage:
     return ampel_anlage.baue(level.anlage)
 
 
-def skript(code: str, anlage: Anlage, ablaeufe: list[dict], marke: str) -> str:
-    daten = {"code": code, "anlage": anlage.fuer_welt(), "ablaeufe": ablaeufe}
-    return f"_DATEN = __import__('json').loads({json.dumps(daten)!r})\n_MARKE = {marke!r}\n{WELT_QUELLE}\n{LAUF}"
-
-
-class Gemeldet(BaseModel):
-    signale: list[dict[str, str]]
-    fehler: str | None = None
-
-
 def _kennzahlen(lauf: AmpelLauf, befunde: list[Befund]) -> Kennzahlen:
     fuss = [t["warten"] for t in lauf.teilnehmer if t["art"] == "fuss"]
     fahrzeuge = [t["warten"] for t in lauf.teilnehmer if t["art"] != "fuss"]
@@ -223,15 +166,15 @@ def _kennzahlen(lauf: AmpelLauf, befunde: list[Befund]) -> Kennzahlen:
 
 
 def _nachspielen(anlage: Anlage, ablauf: dict, gemeldet: Gemeldet, sichtbar: bool) -> tuple[AmpelLauf, ampel_welt.Welt]:
-    welt, verlauf = ampel_welt.nachspielen(anlage.fuer_welt(), ablauf, gemeldet.signale)
+    welt = sandbox_lauf.nachspielen(ampel_welt.Welt(anlage.fuer_welt(), ablauf, aufzeichnen=True), gemeldet.befehle)
     lauf = AmpelLauf(
         name=ablauf["name"],
         sichtbar=sichtbar,
         dauer=ablauf["dauer"],
         arten={g: d["art"] for g, d in welt.gruppen.items()},
         feindlich=welt.feindlich,
-        signale=gemeldet.signale,
-        verlauf=verlauf,
+        signale=welt.signalfolge,
+        verlauf=welt.verlauf,
         teilnehmer=welt.bilanz(),
         unfaelle=welt.unfaelle,
         fehler=gemeldet.fehler,
@@ -259,19 +202,10 @@ def laufe(code: str, level: AmpelLevel, ablaeufe: list[Ablauf], runner: Runner, 
     """Lässt das Programm in den Abläufen laufen (zuerst die sichtbaren), spielt jeden nach und wertet aus."""
     anlage = anlage_von(level)
     breit = [ampel_ablauf.ausbreiten(a, anlage) for a in ablaeufe]
-    marke = neue_marke()
-    erg = runner.run_code(skript(code, anlage, breit, marke), "python", RunLimits(timeout_sekunden=sekunden))
-    stdout, block = lies_block(erg, marke)
-    auswertung = None
-    if isinstance(block, list) and len(block) == len(breit):
-        try:
-            gemeldet = [Gemeldet.model_validate(b) for b in block]
-        except ValidationError:
-            gemeldet = None
-        if gemeldet is not None:
-            auswertung = _auswerten(level, anlage, breit, gemeldet)
-    return AmpelLaeufe(auswertung=auswertung, stdout=stdout, stderr=hinweise(erg), laufzeit_ms=erg.laufzeit_ms,
-                       timeout=erg.timeout)
+    lauf = sandbox_lauf.laufe(WELT_QUELLE, code, anlage.fuer_welt(), breit, runner, sekunden)
+    auswertung = _auswerten(level, anlage, breit, lauf.gemeldet) if lauf.gemeldet is not None else None
+    return AmpelLaeufe(auswertung=auswertung, stdout=lauf.stdout, stderr=lauf.stderr, laufzeit_ms=lauf.laufzeit_ms,
+                       timeout=lauf.timeout)
 
 
 def _auswerten(level: AmpelLevel, anlage: Anlage, breit: list[dict], gemeldet: list[Gemeldet]) -> AmpelAuswertung:

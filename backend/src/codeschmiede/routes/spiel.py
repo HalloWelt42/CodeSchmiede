@@ -1,6 +1,6 @@
 """HTTP-Routen der Spielmechanik: Spielstand für Kopf und Startseite,
 Erfolge für ihre Seite, Spiele mit dem Stand ihrer Levels, Probeläufe des
-Roboters und der Ampelschule und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
+Roboters, der Ampelschule und der Aufzugsteuerung und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
 
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -12,8 +12,9 @@ from ..models.spiel import ErfolgsListe, Spielstand, SpielUebersicht
 from ..models.sprint import SprintAbschluss, SprintRueckmeldung, SprintRunde
 from ..pruefung import krimi_pruefer
 from ..pruefung.krimi_pruefer import Ergebnistabelle
-from ..pruefung import ampel_pruefer
+from ..pruefung import ampel_pruefer, aufzug_pruefer
 from ..pruefung.ampel_pruefer import AmpelLaeufe, AmpelSterne
+from ..pruefung.aufzug_pruefer import AufzugLaeufe, AufzugSterne
 from ..pruefung.roboter_pruefer import Laeufe, lauf_sichtbar
 from ..steuerung import ampel_welt
 from ..steuerung.ampel_anlage import Anlage
@@ -48,6 +49,26 @@ class AmpelAnsicht(BaseModel):
     sensoren: list[str]
     teilschritte: list[TeilschrittText]
     sterne: AmpelSterne
+    aufbauend_auf: str | None
+
+
+class HausBild(BaseModel):
+    etagen: int
+    namen: list[str]
+    aufzuege: list[str]
+    plaetze: int
+    last: int
+
+
+class AufzugAnsicht(BaseModel):
+    """Was die Aufzugsteuerung vor dem ersten Lauf zeigt: das Haus und vom Level, was der Browser braucht."""
+
+    haus: HausBild
+    ablauf: str
+    dauer: int
+    sensoren: list[str]
+    teilschritte: list[TeilschrittText]
+    sterne: AufzugSterne
     aufbauend_auf: str | None
 
 
@@ -119,6 +140,36 @@ def baue_spiel_router(state: AppState) -> APIRouter:
         aufgabe = ampel_level(aufgabe_id)
         try:
             return ampel_pruefer.lauf_sichtbar(aufgabe, anfrage.code, state.runner)
+        except SandboxFehler as fehler:
+            raise HTTPException(status_code=503, detail=str(fehler)) from fehler
+
+    def aufzug_level(aufgabe_id: str):
+        aufgabe = state.aufgaben.aufgabe(aufgabe_id)
+        if aufgabe is None or aufgabe.task_type != "aufzug":
+            raise HTTPException(status_code=404, detail="Kein Aufzug-Level")
+        return aufgabe
+
+    @router.get("/aufzug/{aufgabe_id}/haus", response_model=AufzugAnsicht)
+    def aufzug_haus(aufgabe_id: str) -> AufzugAnsicht:
+        level = aufzug_pruefer.level_von(aufzug_level(aufgabe_id))
+        welt = level.haus.fuer_welt()
+        return AufzugAnsicht(
+            haus=HausBild(etagen=level.haus.etagen, namen=level.haus.namen(), aufzuege=level.haus.aufzuege,
+                          plaetze=level.haus.plaetze, last=welt["last"]),
+            ablauf=level.sichtbar[0].name,
+            dauer=level.sichtbar[0].dauer,
+            sensoren=list(level.sensoren),
+            teilschritte=[TeilschrittText(titel=s.titel, text=s.text) for s in level.teilschritte],
+            sterne=level.sterne,
+            aufbauend_auf=level.aufbauend_auf,
+        )
+
+    @router.post("/aufzug/{aufgabe_id}/lauf", response_model=AufzugLaeufe)
+    def aufzug_lauf(aufgabe_id: str, anfrage: ProgrammProbe) -> AufzugLaeufe:
+        """Probelauf in den sichtbaren Abläufen, ohne Wertung und ohne Abgabe."""
+        aufgabe = aufzug_level(aufgabe_id)
+        try:
+            return aufzug_pruefer.lauf_sichtbar(aufgabe, anfrage.code, state.runner)
         except SandboxFehler as fehler:
             raise HTTPException(status_code=503, detail=str(fehler)) from fehler
 

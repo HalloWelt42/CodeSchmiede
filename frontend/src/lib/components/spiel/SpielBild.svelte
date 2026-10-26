@@ -45,6 +45,15 @@
     <circle class="aus" cx="76.5" cy="24" r="3" /><circle cx="76.5" cy="32" r="3" fill="var(--lampe-gruen)" />
     <circle cx="60" cy="42" r="4" fill="var(--orange)" />
   </svg>
+{:else if id === 'aufzugsteuerung'}
+  <svg class="ampel-bild" viewBox="0 0 120 150" aria-hidden="true">
+    <rect class="haus" x="14" y="12" width="92" height="126" />
+    <rect class="schacht" x="50" y="12" width="26" height="126" />
+    {#each [54, 96, 138] as y (y)}<line class="etage" x1="14" y1={y} x2="106" y2={y} />{/each}
+    <rect class="kabine" x="53" y="60" width="20" height="33" />
+    <path class="ruf" d="M 40 77 l 4 -6 l 4 6 z" /><path class="ruf" d="M 40 37 l 4 6 l 4 -6 z" />
+    <circle cx="30" cy="88" r="4" fill="var(--orange)" /><circle cx="30" cy="46" r="4" fill="var(--orange)" />
+  </svg>
 {:else}
   <i class="fa-solid fa-gamepad ersatz" aria-hidden="true"></i>
 {/if}
@@ -59,6 +68,11 @@
   .ampel-bild .zebra { fill: var(--szene-markierung); }
   .ampel-bild .gehaeuse { fill: var(--signal-gehaeuse); }
   .ampel-bild .aus { fill: var(--lampe-aus); }
+  .ampel-bild .haus { fill: var(--bg-card-2); }
+  .ampel-bild .schacht { fill: color-mix(in srgb, var(--fg) 6%, var(--bg)); stroke: var(--border); }
+  .ampel-bild .etage { stroke: var(--border-strong); }
+  .ampel-bild .kabine { fill: var(--bg-card-2); stroke: var(--accent); stroke-width: 2; }
+  .ampel-bild .ruf { fill: var(--gold); }
   .muster {
     font-family: var(--mono);
     font-size: 11px;

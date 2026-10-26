@@ -4,6 +4,7 @@
  * die Belohnung einer Abgabe kommt mit der Abgabe.
  */
 import type { AmpelAnsicht, AmpelLaeufe } from '../types/Ampel';
+import type { AufzugAnsicht, AufzugLaeufe } from '../types/Aufzug';
 import { HttpBase } from './HttpBase';
 
 export type Rang = 'bronze' | 'silber' | 'gold';
@@ -240,6 +241,12 @@ export class SpielApi extends HttpBase {
   }
   ampelLauf(aufgabeId: string, code: string): Promise<AmpelLaeufe> {
     return this.post<AmpelLaeufe>(`/ampel/${aufgabeId}/lauf`, { code });
+  }
+  aufzugHaus(aufgabeId: string): Promise<AufzugAnsicht> {
+    return this.get<AufzugAnsicht>(`/aufzug/${aufgabeId}/haus`);
+  }
+  aufzugLauf(aufgabeId: string, code: string): Promise<AufzugLaeufe> {
+    return this.post<AufzugLaeufe>(`/aufzug/${aufgabeId}/lauf`, { code });
   }
   krimiAusfuehren(aufgabeId: string, code: string): Promise<KrimiErgebnis> {
     return this.post<KrimiErgebnis>(`/krimi/${aufgabeId}/ausfuehren`, { code });

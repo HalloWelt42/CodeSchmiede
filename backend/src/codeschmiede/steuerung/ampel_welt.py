@@ -257,6 +257,9 @@ class Welt:
         self.paare = set()
         self.aufzeichnen = aufzeichnen
         self.bilder = []
+        # beim Aufzeichnen: je Sekunde die Signale und der Bedarf, mit dem das Programm entschieden hat
+        self.signalfolge = []
+        self.verlauf = []
 
     @property
     def zeit(self):
@@ -323,7 +326,7 @@ class Welt:
                     belegt[fremd.gruppe] = True
         return {g: not b for g, b in belegt.items()}
 
-    def lage(self):
+    def lage(self, wer=None):
         sekunde = int(round(self.zeit))
         wartend, schleife = self.bedarf()
         taster = {g: wartend[g] > 0 for g in self.gruppen if self.gruppen[g]["art"] == "fuss"}
@@ -338,15 +341,29 @@ class Welt:
             stoerung=self.gestoert(sekunde),
         )
 
-    # --- Ablauf -----------------------------------------------------------------
+    # --- Steuerung: Schnittstelle aller Welten (sandbox_lauf) -------------------
 
-    def sekunde(self, signale):
-        """Stellt die Signale und rechnet eine Sekunde weiter."""
+    def laeuft(self):
+        return self.takt < self.dauer * TAKTE
+
+    def bereit(self):
+        """Das Programm stellt die Signale je volle Sekunde."""
+        return [None] if self.takt % TAKTE == 0 else []
+
+    def befehl_pruefen(self, wert):
+        geprueft = signale_pruefen(self.gruppen, wert)
+        return (None, geprueft) if isinstance(geprueft, str) else (geprueft, None)
+
+    def befehl(self, wer, signale):
+        if self.aufzeichnen:
+            lage = self.lage()
+            bedarf = {g: lage.wartend[g] > 0 or bool(lage.schleife.get(g)) or lage.einsatz == g for g in self.gruppen}
+            self.verlauf.append({"bedarf": bedarf, "nacht": lage.nacht, "einsatz": lage.einsatz,
+                                 "stoerung": lage.stoerung})
+            self.signalfolge.append(dict(signale))
         self.signale = dict(signale)
-        for _ in range(TAKTE):
-            self._schritt()
 
-    def _schritt(self):
+    def schritt(self):
         jetzt = self.zeit
         self._ankommen(jetzt)
         self._fussgaenger()
@@ -511,17 +528,3 @@ class Welt:
             teilnehmer.append({"id": None, "art": a["art"], "weg": a["weg"], "gruppe": self.wege[a["weg"]].gruppe,
                                "ankunft": a["t"], "warten": round(a.get("warten", 0.0), 2), "vorbei": False})
         return teilnehmer
-
-
-def nachspielen(anlage, ablauf, signale, aufzeichnen=True):
-    """Spielt eine Folge von Signalen nach (eine je Sekunde). Liefert die Welt danach und je Sekunde den Bedarf,
-    mit dem das Programm entschieden hat."""
-    welt = Welt(anlage, ablauf, aufzeichnen=aufzeichnen)
-    verlauf = []
-    for s in signale:
-        lage = welt.lage()
-        bedarf = {g: lage.wartend[g] > 0 or bool(lage.schleife.get(g)) or lage.einsatz == g for g in welt.gruppen}
-        verlauf.append({"bedarf": bedarf,
-                        "nacht": lage.nacht, "einsatz": lage.einsatz, "stoerung": lage.stoerung})
-        welt.sekunde(s)
-    return welt, verlauf

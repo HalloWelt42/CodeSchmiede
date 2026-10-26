@@ -2,7 +2,7 @@
  * Ampelschule: Anlage, Auswertung und Wiedergabe, wie das Backend sie liefert
  * (backend/src/codeschmiede/steuerung/ampel_anlage.py, pruefung/ampel_pruefer.py).
  */
-import type { TeilschrittStand } from './Steuerung';
+import type { AnsichtBasis, Auswertung, Laeufe } from './Steuerung';
 
 export type Punkt = [number, number];
 export type Bewegung = 'gerade' | 'rechts' | 'links';
@@ -43,17 +43,12 @@ export interface Anlage {
   zeichnung: Zeichnung;
 }
 
-export interface AmpelAnsicht {
+export interface AmpelAnsicht extends AnsichtBasis {
   anlage: Anlage;
   ablauf: string;
-  dauer: number;
   /** Länge und Breite je Art von Teilnehmer */
   arten: Record<Teilnehmerart, { laenge: number; breite: number }>;
-  sensoren: string[];
-  teilschritte: { titel: string; text: string }[];
   sterne: { fuss: number | null; autos: number | null; zeichen: number };
-  /** dessen bestandenes Programm ist der Anfang, wenn es hier noch keins gibt */
-  aufbauend_auf: string | null;
 }
 
 export interface Kennzahlen {
@@ -90,25 +85,5 @@ export interface Wiedergabe {
   fehler: string | null;
 }
 
-export interface AblaufStand {
-  name: string;
-  sichtbar: boolean;
-  ok: boolean;
-  kennzahlen: Kennzahlen;
-  erste_stelle: number | null;
-  erster_befund: string | null;
-}
-
-export interface AmpelAuswertung {
-  teilschritte: TeilschrittStand[];
-  ablaeufe: AblaufStand[];
-  wiedergaben: Wiedergabe[];
-}
-
-export interface AmpelLaeufe {
-  auswertung: AmpelAuswertung | null;
-  stdout: string;
-  stderr: string;
-  laufzeit_ms: number;
-  timeout: boolean;
-}
+export type AmpelAuswertung = Auswertung<Wiedergabe, Kennzahlen>;
+export type AmpelLaeufe = Laeufe<Wiedergabe, Kennzahlen>;

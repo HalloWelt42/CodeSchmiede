@@ -17,6 +17,7 @@ from codeschmiede.pruefung.orchestrator import pruefe, pruefer_fuer
 from codeschmiede.sandbox.result import RunResult
 from codeschmiede.steuerung import ampel_anlage, ampel_welt
 from codeschmiede.steuerung.ampel_regeln import AmpelLauf, Feindlich, Gelb, Raeumzeit, Rotgelb
+from codeschmiede.steuerung.sandbox_lauf import nachspielen
 from codeschmiede.steuerung.teilschritte import ablauf_mengen
 
 from .conftest import braucht_sandbox
@@ -67,7 +68,7 @@ def test_kreuzende_wege_einer_gruppe_sind_ein_befund():
 def test_auto_haelt_bei_rot_und_faehrt_bei_gruen():
     anlage = ueberweg().fuer_welt()
     signale = [{"auto": "rot", "fuss": "rot"}] * 8 + [{"auto": "gruen", "fuss": "rot"}] * 10
-    welt, _ = ampel_welt.nachspielen(anlage, ablauf([{"t": 0, "weg": "west_gerade", "art": "auto"}], 18), signale)
+    welt = nachspielen(ampel_welt.Welt(anlage, ablauf([{"t": 0, "weg": "west_gerade", "art": "auto"}], 18), True), signale)
     auto = welt.alle[0]
     halt = next(w for w in anlage["wege"] if w["id"] == "west_gerade")["halt"]
     stand = [s for _, teilnehmer in welt.bilder[:32] for i, s in teilnehmer if i == 0]
@@ -79,7 +80,7 @@ def test_gruen_fuer_beide_ueberfaehrt_den_fussgaenger():
     anlage = ueberweg().fuer_welt()
     # das Auto erreicht den Überweg nach gut 3 s, der Fußgänger von Süden ist dann gerade auf seiner Spur
     ankuenfte = [{"t": 0, "weg": "west_gerade", "art": "auto"}, {"t": 2.8, "weg": "ueberweg_mitte_b", "art": "fuss"}]
-    welt, _ = ampel_welt.nachspielen(anlage, ablauf(ankuenfte, 12), [{"auto": "gruen", "fuss": "gruen"}] * 12)
+    welt = nachspielen(ampel_welt.Welt(anlage, ablauf(ankuenfte, 12), True), [{"auto": "gruen", "fuss": "gruen"}] * 12)
     assert [u["art"] for u in welt.unfaelle] == ["fuss"]
 
 

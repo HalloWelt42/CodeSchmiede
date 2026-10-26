@@ -1,0 +1,14 @@
+id: aufzugsteuerung
+titel: Aufzugsteuerung
+beschreibung: |
+  Aufzüge mit Python steuern: erst zwei Etagen, dann Rufe sammeln, Tür und
+  Lichtschranke, ein Bürohaus, zwei Kabinen, die Stoßzeit am Morgen und
+  Sonderfälle wie Überlast und Feueralarm.
+reihenfolge:
+  - e001-zwei-etagen
+  - e002-rufe-sammeln
+  - e003-volle-kabine
+  - e004-buerohaus
+  - e005-zwei-aufzuege
+  - e006-stosszeit
+  - e007-sonderfaelle

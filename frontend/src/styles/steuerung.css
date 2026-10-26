@@ -99,3 +99,27 @@
 .ablaeufe .chip.nein { color: var(--red); border-color: var(--red); }
 .ablaeufe button.chip { cursor: pointer; font: inherit; font-size: var(--fs-xs); }
 .ablaeufe .chip.gewaehlt { background: color-mix(in srgb, currentColor 14%, transparent); }
+
+/* Aufzug im Schnitt */
+.szene .etage { stroke: var(--border-strong); }
+.szene .schacht { fill: color-mix(in srgb, var(--fg) 6%, var(--bg)); stroke: var(--border); }
+.szene .kabine { fill: none; stroke: var(--accent); stroke-width: 2; }
+.szene .kabine-innen { fill: color-mix(in srgb, #fde68a 40%, var(--bg-card-2)); }
+.szene .handlauf { stroke: var(--fg-mute); stroke-width: 1.2; }
+.szene .tuerblatt { fill: #9aa5b1; stroke: #6b7682; stroke-width: .6; }
+.szene .tuerkante { stroke: #4b5560; stroke-width: 1; }
+.szene .rahmen-tuer { fill: none; stroke: #6b7682; stroke-width: 2; }
+.szene .anzeige-feld { fill: #0b0d10; stroke: var(--border-strong); stroke-width: .6; }
+.szene .anzeige { fill: #f59e0b; font: 700 6.5px var(--num); }
+.szene .seil line { stroke: var(--fg-mute); stroke-width: .8; }
+.szene .ruf { fill: var(--fg-mute); }
+.szene .ruf.an { fill: var(--gold); }
+.szene .beschriftung { fill: var(--fg-dim); font: 600 11px var(--num); }
+.szene .wartend { fill: var(--orange); }
+.szene .drin { fill: color-mix(in srgb, var(--fg) 55%, var(--bg)); }
+.szene .feuer-band { fill: var(--red); }
+.szene .feuer-text { fill: #fff; font: 700 10px var(--num); }
+.ablaufplan .fahrt { fill: none; stroke: var(--accent); stroke-width: 2; }
+.ablaufplan .fahrt.zweite { stroke: var(--gold); }
+.ablaufplan .marke { fill: var(--orange); }
+.ablaufplan .feuer-linie { stroke: var(--red); stroke-width: 2; }

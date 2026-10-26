@@ -404,9 +404,22 @@ Aufbau (eine Wahrheit je Sache):
   besteht mit drei Sternen, jeder Startcode scheitert am ersten Teilschritt, ohne `frei` kracht es im
   Lieferverkehr; Sichtprüfung aller Anlagen in voller Größe, Nacht und Blaulicht.
 
+## Ergebnis: Steuerungsspiele, Aufzugsteuerung (0.90.0)
+
+Nach dem freigegebenen Entwurf `mockups/rechner-aufzug.html`; Einzelheiten in `docs/SPIELE.md`.
+
+- Gemeinsamer Unterbau beider Steuerungsspiele: `steuerung/sandbox_lauf.py` (das Programm läuft in der Sandbox mit
+  der Welt, heraus kommen nur die Befehle; das Backend spielt sie mit derselben Welt nach), `teilschritte.py` und in
+  der Oberfläche `SteuerungsView` (Aufgabe, Teilschritte, Probelauf, Prüfen, Abspielen, Abläufe, Ergebnis). Jedes
+  Spiel bringt nur Welt, Vorgaben, Regeln, Szene, Ablaufplan, Kennzahlen und Klänge mit.
+- Aufzug: Welt mit Kabinen, Türen, Lichtschranke, Überlast und Feueralarm; sieben Levels von zwei Etagen bis zu den
+  Sonderfällen; Routen `GET /api/spiel/aufzug/{id}/haus` und `POST /api/spiel/aufzug/{id}/lauf`; Haus im Schnitt und
+  Fahrdiagramm; Gong und Türgeräusche aus dem Medienpool.
+- Geprüft: jede Musterlösung mit drei Sternen, jeder Startcode scheitert am ersten Teilschritt, das Programm des
+  vorigen Levels reicht nicht; Sichtprüfung von einer und zwei Kabinen und vom Feueralarm.
+
 ## Offen
 
-- Steuerungsspiele: Aufzugsteuerung nach dem Entwurf (freigegeben 26.10.2026).
 - Weitere Spielideen (Nutzer 25.10.2026): Turingmaschine (sehr anschaulich, mehrere Aufgaben) und digitale Schaltungen
   bis zur 7-Segment-Anzeige, Halb- und Volladdierer, Verdrahtungsaufgaben mit und ohne fertige Anordnung; Skizze in
   `docs/SPIELE.md`, vor dem Bau Entwürfe.
