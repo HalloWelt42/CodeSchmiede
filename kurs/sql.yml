@@ -37,3 +37,14 @@ bloecke:
       - einfuehrung: sql-gruppen
         uebungen: [q091-je-fisch, q092-je-tag, q093-mahlzeiten, q094-gewicht-je-kolonie, q095-beliebte-fische, q096-schwerste-je-kolonie, q097-stammgaeste]
         projekt: [q099-steckbrief-je-kolonie]
+  - titel: Mehrere Tabellen
+    kapitel:
+      - einfuehrung: sql-join
+        uebungen: [q101-wo-wohnt-wer, q102-wassertemperatur, q103-wer-pflegt-wen, q104-futterliste-mit-namen, q105-warmes-wasser, q106-alle-pfleger, q107-fische-je-pinguin]
+        projekt: [q109-steckbrief-lage]
+      - einfuehrung: sql-unterabfragen
+        uebungen: [q111-das-nesthaekchen, q112-ueberdurchschnittlich, q113-nie-hering, q114-raetselkolonien, q115-fische-nachgefragt, q116-mahlzeitenrekord, q117-abweichung]
+        projekt: [q119-steckbrief-mahlzeiten]
+      - einfuehrung: sql-case
+        uebungen: [q121-raetsel-oder-fisch, q122-grosse-portionen, q123-wassergefuehl, q124-jung-oder-erfahren, q125-schwere-je-kolonie, q126-raetsel-zaehlen, q127-portionsgroessen]
+        projekt: [q129-steckbrief-fertig]

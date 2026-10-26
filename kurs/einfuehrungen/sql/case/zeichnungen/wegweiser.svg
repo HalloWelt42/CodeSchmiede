@@ -1,0 +1,27 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin steht vor einem Wegweiser mit drei Armen, die in verschiedene Richtungen zeigen">
+  <ellipse cx="130" cy="170" rx="112" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Pfosten -->
+  <rect x="104" y="40" width="10" height="128" rx="2" fill="#a8733f" stroke="#2b3442" stroke-width="2.2"/>
+  <!-- drei Arme -->
+  <path d="M100 46 h-68 l-14 12 l14 12 h68 Z" fill="#7aa6c2" stroke="#2b3442" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M118 74 h66 l14 12 l-14 12 h-66 Z" fill="#f2a13b" stroke="#2b3442" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M100 104 h-56 l-12 11 l12 11 h56 Z" fill="#e2574c" stroke="#2b3442" stroke-width="2.2" stroke-linejoin="round"/>
+  <g stroke="#f4f1ea" stroke-width="3" stroke-linecap="round" opacity=".85">
+    <path d="M44 58 h44 M132 86 h44 M54 115 h34"/>
+  </g>
+  <circle cx="109" cy="36" r="6" fill="#c9a227" stroke="#2b3442" stroke-width="2"/>
+  <!-- Pinguin -->
+  <g transform="translate(196 132)">
+    <ellipse cx="0" cy="8" rx="17" ry="24" fill="#2b3442"/>
+    <ellipse cx="0" cy="12" rx="11" ry="17" fill="#f4f1ea"/>
+    <circle cx="0" cy="-22" r="12.5" fill="#2b3442"/>
+    <circle cx="-5" cy="-24" r="3.1" fill="#fff"/><circle cx="4" cy="-24" r="3.1" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.6" fill="#111"/><circle cx="3" cy="-25" r="1.6" fill="#111"/>
+    <path d="M-11 -19 l-8 3 l8 3 Z" fill="#f2a13b"/>
+    <path d="M-7 32 h-6 M7 32 h6" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-15 -4 q-8 10 -6 22" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+    <path d="M15 -4 q10 -10 8 -26" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+    <path d="M18 -42 q4 -8 10 -4 q4 4 -2 8 q-3 2 -3 6" fill="none" stroke="#2b3442" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="23" cy="-28" r="1.6" fill="#2b3442"/>
+  </g>
+</svg>

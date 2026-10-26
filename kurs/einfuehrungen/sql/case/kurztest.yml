@@ -1,0 +1,53 @@
+# Kurztest zu Kapitel 12: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-erste-gewinnt
+    text: Was steht für Pepe mit 4,9 Kilo in der Spalte klasse?
+    code: |
+      SELECT name,
+             CASE WHEN gewicht_kg > 4 THEN 'kräftig'
+                  WHEN gewicht_kg > 4.5 THEN 'mächtig'
+                  ELSE 'zierlich'
+             END AS klasse
+      FROM pinguine;
+    optionen:
+      - text: kräftig
+        richtig: true
+        erklaerung: Richtig. 4,9 ist größer als 4, und die erste zutreffende Bedingung gewinnt.
+      - text: mächtig
+        erklaerung: Die Bedingung stimmt zwar, aber CASE ist schon bei der ersten stehen geblieben.
+      - text: zierlich
+        erklaerung: ELSE gilt nur, wenn keine Bedingung stimmt.
+  - frageart: auswahl
+    id: kt-ohne-else
+    text: "Was liefert `CASE WHEN menge > 100 THEN 'Festmahl' END` für eine Fütterung mit 5 Fischen?"
+    optionen:
+      - text: "NULL"
+        richtig: true
+        erklaerung: Richtig, ohne ELSE kommt NULL.
+      - text: Festmahl
+        erklaerung: 5 ist nicht größer als 100.
+      - text: Einen Fehler
+        erklaerung: CASE ohne ELSE ist erlaubt.
+  - frageart: luecke
+    id: kt-then
+    text: Ergänze, damit Pinguine mit unbekanntem Lieblingsfisch "Rätsel" bekommen.
+    code: |
+      SELECT name,
+             CASE WHEN lieblingsfisch IS NULL ___ 'Rätsel' ELSE lieblingsfisch END AS fisch
+      FROM pinguine;
+    antworten: [["THEN", "then"]]
+    erklaerung: Richtig, hinter THEN steht der Wert für die Bedingung.
+    hinweis: Wenn ..., dann ...
+  - frageart: auswahl
+    id: kt-zaehlen
+    text: "Was zählt `SUM(CASE WHEN kolonie = 'Nord' THEN 1 ELSE 0 END)` in der Tabelle pinguine?"
+    optionen:
+      - text: Wie viele Pinguine im Norden wohnen
+        richtig: true
+        erklaerung: Richtig. Jeder Nordpinguin trägt 1 bei, alle anderen 0; heraus kommt 4.
+      - text: Wie viele Kolonien es gibt
+        erklaerung: Gezählt werden Zeilen der Tabelle pinguine, je Pinguin 1 oder 0.
+      - text: Das Gewicht der Nordkolonie
+        erklaerung: Summiert werden hier Einsen und Nullen, keine Gewichte.
+uebung: q128-tagesbericht

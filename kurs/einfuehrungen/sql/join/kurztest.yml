@@ -1,0 +1,50 @@
+# Kurztest zu Kapitel 10: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-join-zeilen
+    text: Wie viele Zeilen liefert die Abfrage? Jonas hat keine Kolonie eingetragen.
+    code: |
+      SELECT pf.name, k.lage
+      FROM pfleger pf
+      JOIN kolonien k ON k.name = pf.kolonie;
+    optionen:
+      - text: "3"
+        richtig: true
+        erklaerung: Richtig. Jonas findet keinen Partner und fällt beim JOIN heraus.
+      - text: "4"
+        erklaerung: Vier wären es mit LEFT JOIN.
+      - text: "16"
+        erklaerung: ON verbindet nur passende Paare, nicht jeden mit jedem.
+  - frageart: auswahl
+    id: kt-left
+    text: Welche Tabelle behält bei LEFT JOIN alle ihre Zeilen?
+    optionen:
+      - text: Die vor LEFT JOIN, also die hinter FROM
+        richtig: true
+        erklaerung: Richtig, links ist die, die zuerst genannt wird.
+      - text: Die hinter LEFT JOIN
+        erklaerung: Von der kommen nur die passenden Zeilen, sonst NULL.
+      - text: Beide
+        erklaerung: Das wäre ein FULL JOIN; LEFT JOIN behält nur die linke ganz.
+  - frageart: luecke
+    id: kt-kuerzel
+    text: Ergänze, damit der Name des Pinguins gemeint ist und nicht der der Kolonie.
+    code: |
+      SELECT ___.name, k.lage
+      FROM pinguine p
+      JOIN kolonien k ON k.name = p.kolonie;
+    antworten: [["p"]]
+    erklaerung: Richtig, p ist das Kürzel für pinguine.
+    hinweis: Welches Kürzel hat die Tabelle pinguine?
+  - frageart: auswahl
+    id: kt-count-left
+    text: "Bei `kolonien k LEFT JOIN pinguine p` und `GROUP BY k.name`: was zählt für die Westkolonie richtig null?"
+    optionen:
+      - text: COUNT(p.id)
+        richtig: true
+        erklaerung: Richtig. p.id ist bei West NULL, und COUNT mit einer Spalte lässt NULL aus.
+      - text: COUNT(*)
+        erklaerung: COUNT(*) zählt die eine Zeile, die LEFT JOIN für West behält, und liefert 1.
+      - text: COUNT(k.name)
+        erklaerung: k.name ist bei West nicht NULL, das zählt ebenfalls 1.
+uebung: q108-koloniebericht

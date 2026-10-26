@@ -1,0 +1,30 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin öffnet eine Kiste, in der eine kleinere Kiste mit einem Zettel liegt">
+  <ellipse cx="130" cy="170" rx="112" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- große Kiste -->
+  <path d="M30 98 h110 v68 h-110 Z" fill="#c38a55" stroke="#2b3442" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M30 98 l18 -16 h110 l-18 16" fill="#d9a774" stroke="#2b3442" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M140 98 l18 -16 v68 l-18 16" fill="#a8733f" stroke="#2b3442" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M30 98 l-6 -34 l20 -2 l4 20" fill="#d9a774" stroke="#2b3442" stroke-width="2.2" stroke-linejoin="round"/>
+  <g stroke="#2b3442" stroke-width="1.2" opacity=".4"><path d="M30 120 h110 M30 142 h110"/></g>
+  <!-- kleine Kiste darin -->
+  <path d="M64 92 h46 v26 h-46 Z" fill="#7aa6c2" stroke="#2b3442" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M64 92 l8 -8 h46 l-8 8" fill="#a6c6db" stroke="#2b3442" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M110 92 l8 -8 v26 l-8 8" fill="#5f8aa6" stroke="#2b3442" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Zettel -->
+  <g transform="rotate(-10 92 64)">
+    <rect x="78" y="44" width="30" height="36" rx="2" fill="#fbf4e2" stroke="#2b3442" stroke-width="1.8"/>
+    <g stroke="#a7afba" stroke-width="2.4" stroke-linecap="round"><path d="M84 54 h18 M84 62 h14 M84 70 h16"/></g>
+  </g>
+  <!-- Pinguin -->
+  <g transform="translate(202 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-18 -10 -40 -24" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+    <path d="M17 0 q8 10 4 20" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

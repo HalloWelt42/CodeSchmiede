@@ -1,0 +1,50 @@
+# Kurztest zu Kapitel 11: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-ein-wert
+    text: Was liefert die Abfrage?
+    code: |
+      SELECT name
+      FROM pinguine
+      WHERE gewicht_kg = (SELECT MIN(gewicht_kg) FROM pinguine);
+    optionen:
+      - text: Pünktchen
+        richtig: true
+        erklaerung: Richtig. Die Unterabfrage findet 2,9 Kilo, die äußere den Pinguin dazu.
+      - text: "2.9"
+        erklaerung: 2,9 liefert die Unterabfrage. Ausgegeben wird aber name.
+      - text: Paul
+        erklaerung: Paul ist der schwerste; gesucht ist MIN.
+  - frageart: auswahl
+    id: kt-not-in-null
+    text: Warum findet `WHERE name NOT IN (SELECT kolonie FROM pfleger)` keine einzige Kolonie?
+    optionen:
+      - text: Weil in der Liste ein NULL steht und dann kein Vergleich sicher stimmt
+        richtig: true
+        erklaerung: Richtig. Jonas hat keine Kolonie; ob West ungleich NULL ist, weiß niemand.
+      - text: Weil NOT IN mit Unterabfragen verboten ist
+        erklaerung: Erlaubt ist es, nur die NULL in der Liste stört.
+      - text: Weil jede Kolonie einen Pfleger hat
+        erklaerung: West hat keinen. Gefunden wird sie trotzdem nicht, wegen der NULL von Jonas.
+  - frageart: luecke
+    id: kt-bezug
+    text: Ergänze, damit für jeden Pinguin seine eigenen Fütterungen gezählt werden.
+    code: |
+      SELECT p.name,
+             (SELECT COUNT(*) FROM fuetterungen f WHERE f.pinguin_id = ___) AS mahlzeiten
+      FROM pinguine p;
+    antworten: [["p.id"]]
+    erklaerung: Richtig, p.id ist die Nummer des Pinguins der äußeren Zeile.
+    hinweis: Wie heißt die Nummer des Pinguins in der äußeren Abfrage?
+  - frageart: auswahl
+    id: kt-from
+    text: Was ist eine Unterabfrage hinter FROM für die äußere Abfrage?
+    optionen:
+      - text: Eine Tabelle, mit der sie weiterarbeitet
+        richtig: true
+        erklaerung: Richtig, ihr Ergebnis hat Zeilen und Spalten wie jede Tabelle.
+      - text: Eine einzelne Zahl
+        erklaerung: Eine einzelne Zahl braucht man zum Vergleichen in WHERE. Hinter FROM steht eine Tabelle.
+      - text: Eine Bedingung
+        erklaerung: Bedingungen stehen hinter WHERE oder ON.
+uebung: q118-spitzenreiter
