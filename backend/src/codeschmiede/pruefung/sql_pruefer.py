@@ -1,10 +1,16 @@
-"""Pruefer für `task_type: sql_abfrage`.
+"""Pruefer für `task_type: sql_abfrage` und `sql_aenderung`.
 
 Frontmatter-Erwartungen:
   dataset: <name>            # zeigt auf aufgaben/sql/datasets/<name>.sql
   erwartete_spalten: [...]   # optional, Reihenfolge der Spalten
   erwartetes_ergebnis: [[...], [...], ...]   # Liste von Zeilen
   sortierung_egal: bool      # default false
+  kontrolle: "SELECT ..."    # nur sql_aenderung: prüft die Tabellen nach dem Skript
+
+Bei `sql_abfrage` ist der Code eine einzelne Abfrage, ihr Ergebnis wird
+verglichen. Bei `sql_aenderung` ist er ein Skript aus beliebig vielen
+Anweisungen (INSERT, UPDATE, DELETE, CREATE TABLE ...); danach läuft die
+Kontrollabfrage der Aufgabe, und ihr Ergebnis wird verglichen.
 
 Die Abfrage läuft in der Sandbox (Python-Image mit SQLite im Speicher),
 nie im Backend: Zeit, Speicher und Ausgabe sind dort begrenzt, ATTACH
@@ -43,14 +49,16 @@ def datasets_dir(aufgabe: Aufgabe) -> Path:
 
 def skript(schema_sql: str, laeufe: list[dict[str, Any]], marke: str) -> str:
     """Python-Skript für die Sandbox: jede Abfrage auf einer frischen
-    SQLite-Datenbank aus `schema_sql`, wahlweise ausgedünnt."""
+    SQLite-Datenbank aus `schema_sql`, wahlweise ausgedünnt. Hat ein Lauf
+    eine `kontrolle`, ist `sql` ein Skript, und gemessen wird danach die
+    Kontrollabfrage."""
     return (
         "import json, sqlite3, sys\n"
         f"SCHEMA = json.loads({json.dumps(schema_sql)!r})\n"
         f"LAEUFE = json.loads({json.dumps(laeufe)!r})\n"
         f"MAX_ZEILEN = {MAX_ZEILEN}\n"
         "VERBOTEN = (sqlite3.SQLITE_ATTACH, sqlite3.SQLITE_DETACH)\n"
-        "def lauf(sql, n):\n"
+        "def lauf(sql, n, kontrolle=None):\n"
         "    conn = sqlite3.connect(':memory:')\n"
         "    conn.executescript(SCHEMA)\n"
         "    if n:\n"
@@ -58,14 +66,22 @@ def skript(schema_sql: str, laeufe: list[dict[str, Any]], marke: str) -> str:
         "            conn.execute(f'DELETE FROM \"{t}\" WHERE rowid % {n} = 0')\n"
         "    conn.set_authorizer(lambda aktion, *_: sqlite3.SQLITE_DENY if aktion in VERBOTEN else sqlite3.SQLITE_OK)\n"
         "    try:\n"
-        "        cur = conn.execute(sql)\n"
-        "        zeilen = cur.fetchmany(MAX_ZEILEN + 1)\n"
+        "        if kontrolle is None:\n"
+        "            cur = conn.execute(sql)\n"
+        "        else:\n"
+        "            conn.executescript(sql)\n"
         "    except (sqlite3.Error, sqlite3.Warning) as e:\n"
         "        return {'fehler': 'SQL-Fehler: ' + str(e)}\n"
+        "    try:\n"
+        "        if kontrolle is not None:\n"
+        "            cur = conn.execute(kontrolle)\n"
+        "        zeilen = cur.fetchmany(MAX_ZEILEN + 1)\n"
+        "    except (sqlite3.Error, sqlite3.Warning) as e:\n"
+        "        return {'fehler': 'Nach deinen Änderungen scheitert die Kontrollabfrage: ' + str(e)}\n"
         "    if len(zeilen) > MAX_ZEILEN:\n"
         "        return {'fehler': f'Mehr als {MAX_ZEILEN} Zeilen'}\n"
         "    return {'spalten': [d[0] for d in (cur.description or [])], 'zeilen': [list(z) for z in zeilen]}\n"
-        "ergebnisse = [lauf(l['sql'], l['ausduennen']) for l in LAEUFE]\n"
+        "ergebnisse = [lauf(l['sql'], l['ausduennen'], l.get('kontrolle')) for l in LAEUFE]\n"
         f"sys.stdout.write({marke!r} + json.dumps(ergebnisse, default=repr) + '\\n')\n"
     )
 
@@ -93,8 +109,29 @@ def anzahl_versteckt(aufgabe: Aufgabe) -> int:
     return len(AUSDUENNUNGEN) if hat_loesung else 0
 
 
+def _kontrolle(aufgabe: Aufgabe) -> str:
+    extra = getattr(aufgabe, "model_extra", {}) or {}
+    return str(extra.get("kontrolle") or "").strip()
+
+
+def _aufbau_aenderung(aufgabe: Aufgabe) -> list[str]:
+    return [] if _kontrolle(aufgabe) else ["sql_aenderung braucht eine Kontrollabfrage im Feld `kontrolle`"]
+
+
 @registriere("sql_abfrage", zaehle_versteckt=anzahl_versteckt)
 def pruefe(aufgabe: Aufgabe, code: str, runner: Runner) -> PruefErgebnis:
+    return _pruefe(aufgabe, code, runner, None)
+
+
+@registriere("sql_aenderung", zaehle_versteckt=anzahl_versteckt, pruefe_aufbau=_aufbau_aenderung)
+def pruefe_aenderung(aufgabe: Aufgabe, code: str, runner: Runner) -> PruefErgebnis:
+    kontrolle = _kontrolle(aufgabe)
+    if not kontrolle:
+        return _fehler("Aufgabe ohne Kontrollabfrage (`kontrolle`)")
+    return _pruefe(aufgabe, code, runner, kontrolle)
+
+
+def _pruefe(aufgabe: Aufgabe, code: str, runner: Runner, kontrolle: str | None) -> PruefErgebnis:
     extra = getattr(aufgabe, "model_extra", {}) or {}
     dataset = str(extra.get("dataset") or "")
     sortierung_egal = bool(extra.get("sortierung_egal", False))
@@ -109,11 +146,11 @@ def pruefe(aufgabe: Aufgabe, code: str, runner: Runner) -> PruefErgebnis:
 
     loesungen = AufgabenLoader.musterloesungen_neben(aufgabe.dateipfad.parent)
     referenz = loesungen[0]["code"] if loesungen else None
-    laeufe: list[dict[str, Any]] = [{"sql": code, "ausduennen": None}]
+    laeufe: list[dict[str, Any]] = [{"sql": code, "ausduennen": None, "kontrolle": kontrolle}]
     if referenz:
         for n in AUSDUENNUNGEN:
-            laeufe.append({"sql": code, "ausduennen": n})
-            laeufe.append({"sql": referenz, "ausduennen": n})
+            laeufe.append({"sql": code, "ausduennen": n, "kontrolle": kontrolle})
+            laeufe.append({"sql": referenz, "ausduennen": n, "kontrolle": kontrolle})
 
     marke = neue_marke()
     erg = runner.run_code(

@@ -1,0 +1,31 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin wirft eine einzelne Karteikarte in einen Papierkorb, die übrigen Karten bleiben im Kasten">
+  <ellipse cx="130" cy="170" rx="112" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Kasten mit Karten -->
+  <g stroke="#2b3442" stroke-width="1.6">
+    <rect x="20" y="96" width="70" height="26" rx="2" fill="#fbf4e2"/>
+    <rect x="26" y="102" width="70" height="26" rx="2" fill="#f4ecd6"/>
+  </g>
+  <path d="M14 114 h90 l-6 52 h-78 Z" fill="#c38a55" stroke="#2b3442" stroke-width="2.4" stroke-linejoin="round"/>
+  <rect x="46" y="132" width="26" height="10" rx="2" fill="#a8733f" stroke="#2b3442" stroke-width="1.6"/>
+  <!-- Papierkorb -->
+  <path d="M120 118 h56 l-6 48 h-44 Z" fill="#a7afba" stroke="#2b3442" stroke-width="2.4" stroke-linejoin="round"/>
+  <g stroke="#2b3442" stroke-width="1.4" opacity=".5"><path d="M134 124 l3 38 M148 124 v38 M162 124 l-3 38"/></g>
+  <ellipse cx="148" cy="118" rx="28" ry="5" fill="#8b939e" stroke="#2b3442" stroke-width="2"/>
+  <!-- fallende Karte -->
+  <g transform="rotate(28 150 84)">
+    <rect x="132" y="72" width="40" height="26" rx="2" fill="#fbf4e2" stroke="#2b3442" stroke-width="1.8"/>
+    <path d="M136 80 h30 M136 88 h22" stroke="#e2574c" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <g stroke="#2b3442" stroke-width="1.6" stroke-linecap="round" opacity=".5"><path d="M128 64 l-4 -6 M140 58 l-1 -7 M152 60 l3 -6"/></g>
+  <!-- Pinguin -->
+  <g transform="translate(216 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -4 q-16 -16 -36 -26" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

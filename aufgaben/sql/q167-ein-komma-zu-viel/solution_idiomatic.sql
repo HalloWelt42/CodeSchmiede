@@ -1,0 +1,4 @@
+CREATE TABLE notizen (
+  id INTEGER PRIMARY KEY,
+  text TEXT NOT NULL
+);

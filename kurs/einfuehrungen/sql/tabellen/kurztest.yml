@@ -1,0 +1,55 @@
+# Kurztest zu Kapitel 16: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-default
+    text: Was steht nach diesem Skript bei Ole in der Spalte jahre?
+    code: |
+      CREATE TABLE besucher (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL,
+        jahre INTEGER DEFAULT 10
+      );
+      INSERT INTO besucher (name) VALUES ('Ole');
+    optionen:
+      - text: "10"
+        richtig: true
+        erklaerung: Richtig, ohne Angabe gilt der DEFAULT.
+      - text: "NULL"
+        erklaerung: NULL stünde dort ohne DEFAULT. Hier gibt es einen Vorgabewert.
+      - text: Fehler
+        erklaerung: jahre ist nicht NOT NULL und hat sowieso einen Vorgabewert.
+  - frageart: auswahl
+    id: kt-drop-delete
+    text: Was ist der Unterschied zwischen DELETE FROM pfleger und DROP TABLE pfleger?
+    optionen:
+      - text: DELETE leert die Tabelle, DROP wirft sie samt Inhalt weg
+        richtig: true
+        erklaerung: Richtig. Nach DELETE gibt es pfleger noch, nach DROP nicht mehr.
+      - text: Es gibt keinen, beide leeren die Tabelle
+        erklaerung: Nach DROP meldet jede Abfrage no such table.
+      - text: DROP löscht nur die erste Zeile
+        erklaerung: DROP wirft die ganze Tabelle weg.
+  - frageart: luecke
+    id: kt-not-null
+    text: Ergänze, damit jede Lieferung einen Fisch haben muss.
+    code: |
+      CREATE TABLE lieferungen (
+        id INTEGER PRIMARY KEY,
+        fisch TEXT ___ NULL,
+        kilo REAL
+      );
+    antworten: [["NOT", "not"]]
+    erklaerung: Richtig, NOT NULL verlangt einen Wert.
+    hinweis: Nicht leer ...
+  - frageart: auswahl
+    id: kt-check
+    text: "Welche Zeile lässt `CHECK (menge > 0)` nicht zu?"
+    optionen:
+      - text: Eine mit menge 0
+        richtig: true
+        erklaerung: Richtig, 0 ist nicht größer als 0.
+      - text: Eine mit menge 1
+        erklaerung: 1 ist größer als 0, das ist erlaubt.
+      - text: Eine mit menge 100
+        erklaerung: 100 ist größer als 0, das ist erlaubt.
+uebung: q168-futterplan-tabelle

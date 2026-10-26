@@ -76,7 +76,7 @@ Direkt danach folgt die Markdown-Beschreibung.
 | Feld                  | Typ      | Default            | Beschreibung |
 |-----------------------|----------|--------------------|--------------|
 | `revision`            | int      | `1`                | Hochzählen bei jeder inhaltlichen Änderung |
-| `task_type`           | string   | `code_schreiben`   | `code_schreiben`, `bug_finden`, `lueckentext`, `output_quiz`, `sql_abfrage`, `css_klon` |
+| `task_type`           | string   | `code_schreiben`   | `code_schreiben`, `bug_finden`, `lueckentext`, `output_quiz`, `sql_abfrage`, `sql_aenderung`, `css_klon` |
 | `runner_type`         | string   | `docker_python`    | wie in `_konfig.yml` für die Sprache: `docker_python`, `docker_javascript`, `docker_sqlite`, `iframe_css` |
 | `tags`                | string[] | `[]`               | Frei wählbare Schlagworte (Kleinbuchstaben, kebab-case) |
 | `voraussetzungen`     | string[] | `[]`               | IDs anderer Aufgaben, die vorher Sinn ergeben |
@@ -199,6 +199,27 @@ starter_code: |
 - **Farben**: abwechslungsreich und in sich stimmig, nicht immer derselbe
   Akzent der App. Farbnamen im Text passen zum Farbwert (etwa "Lavendel" zu
   `#a78bfa`).
+
+### SQL-Abfragen und -Änderungen (`task_type: sql_abfrage`, `sql_aenderung`)
+
+```yaml
+dataset: pinguinzoo                 # aufgaben/sql/datasets/pinguinzoo.sql
+schema_hinweis: |
+  pinguine(id, name, kolonie, ...)
+erwartete_spalten: [id, name]
+erwartetes_ergebnis: [[9, Pelle]]
+sortierung_egal: false
+kontrolle: SELECT id, name FROM pinguine WHERE id > 8 ORDER BY id   # nur sql_aenderung
+```
+
+- `sql_abfrage`: der Code ist eine einzelne Abfrage; verglichen wird ihr Ergebnis.
+- `sql_aenderung`: der Code ist ein Skript aus beliebig vielen Anweisungen (INSERT, UPDATE, DELETE, CREATE TABLE ...).
+  Danach läuft `kontrolle` (Pflicht), verglichen wird deren Ergebnis. Die Kontrollabfrage steht in der Ansicht, also
+  sortiert sie selbst mit ORDER BY, wo die Reihenfolge zählt.
+- Beide: jede Abgabe läuft auf einer frischen Datenbank aus dem Datensatz. Gegenproben als versteckte Tests: Abgabe
+  und Musterlösung laufen zusätzlich auf ausgedünnten Fassungen des Datensatzes und müssen dort dasselbe liefern.
+  Darum gehört ins erwartete Ergebnis, was die Musterlösung liefert, und Gleichstände in Sortierungen werden mit einer
+  weiteren Spalte aufgelöst.
 
 ---
 

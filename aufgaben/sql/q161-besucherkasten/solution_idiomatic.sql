@@ -1,0 +1,5 @@
+CREATE TABLE besucher (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  jahre INTEGER
+);

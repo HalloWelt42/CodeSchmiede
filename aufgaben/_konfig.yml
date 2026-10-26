@@ -76,6 +76,10 @@ aufgabentypen:
     titel: SQL-Abfrage
     view: sql_abfrage
     beschreibung: "Ein Datensatz ist vorgegeben: schreibe eine SELECT-Abfrage, die das erwartete Ergebnis liefert."
+  - id: sql_aenderung
+    titel: SQL-Änderung
+    view: sql_abfrage
+    beschreibung: "Ein Datensatz ist vorgegeben: ändere ihn mit INSERT, UPDATE, DELETE oder CREATE TABLE; eine Kontrollabfrage prüft das Ergebnis."
   - id: sql_krimi
     titel: SQL-Krimi
     view: sql_krimi

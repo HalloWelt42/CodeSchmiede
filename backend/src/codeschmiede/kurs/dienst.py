@@ -36,7 +36,7 @@ BILDSATZ = "kurs"
 """Satz des Medienpools, dessen Export die Kurszeichnungen liefert (kurs/bilder/<satz>/<schluessel>.webp)."""
 LAUF = RunLimits(timeout_sekunden=10)
 VERTIEFUNG_HOECHSTENS = 5
-VERTIEFUNG_ARTEN = {"code_schreiben", "sql_abfrage"}
+VERTIEFUNG_ARTEN = {"code_schreiben", "sql_abfrage", "sql_aenderung"}
 """Aufgabenarten, aus denen die Vertiefung am Kapitelende kommt."""
 
 Frage = Auswahlfrage | Lueckenfrage | Ordnungsfrage | Fehlerstellenfrage

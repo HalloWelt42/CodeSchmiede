@@ -237,7 +237,7 @@
       <LueckentextView detail={aktuell} />
     {:else if aktuell.task_type === 'css_klon'}
       <CssKlonView detail={aktuell} />
-    {:else if aktuell.task_type === 'sql_abfrage'}
+    {:else if aktuell.task_type === 'sql_abfrage' || aktuell.task_type === 'sql_aenderung'}
       <SqlAbfrageView detail={aktuell} />
     {:else if aktuell.task_type === 'muster_jagd'}
       <MusterJagdView detail={aktuell} />

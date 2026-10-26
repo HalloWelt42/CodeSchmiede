@@ -12,7 +12,7 @@ from codeschmiede.config import Settings
 from codeschmiede.kurs.begriffe import merkmale_sql
 from codeschmiede.kurs.dienst import vorhersage_stimmt
 from codeschmiede.kurs.einlesen import lade
-from codeschmiede.kurs.sql_ablauf import sql_lauf, zerlege
+from codeschmiede.kurs.sql_ablauf import anweisungen, sql_lauf, zerlege
 from codeschmiede.state import AppState
 
 from .conftest import braucht_sandbox, schreibe_aufgabe
@@ -190,3 +190,29 @@ def test_vorhersage_vergleicht_ausgabe_zeilen_oder_anfang():
     assert vorhersage_stimmt("anfang", "Paul | 5.1\nPepe | 4.9 ", ausgabe)
     assert not vorhersage_stimmt("anfang", "Pepe | 4.9", ausgabe)
     assert not vorhersage_stimmt("anfang", "", ausgabe)
+
+
+def test_skript_zerfaellt_in_anweisungen():
+    code = "-- Neuzugang\nINSERT INTO t (name) VALUES ('a;b');\n\nUPDATE t\n   SET name = 'c';\nDELETE FROM t WHERE 1 = 0;\nCREATE TABLE u (id INTEGER);\nSELECT * FROM t"
+    teile = anweisungen(code)
+    assert [(a.art, a.tabelle, a.zeile) for a in teile] == [
+        ("INSERT", "t", 2), ("UPDATE", "t", 4), ("DELETE", "t", 6), ("CREATE TABLE", "u", 7), ("SELECT", None, 8)]
+    assert teile[0].sql.endswith("INSERT INTO t (name) VALUES ('a;b');")
+
+
+@braucht_sandbox
+def test_skript_zeigt_neue_geaenderte_und_geloeschte_zeilen(docker_runner):
+    code = ("INSERT INTO tiere (name, art, gewicht) VALUES ('Wal', 'Wal', 900.0);\n"
+            "UPDATE tiere SET gewicht = gewicht + 1 WHERE art = 'Pinguin';\n"
+            "DELETE FROM tiere WHERE art = 'Robbe';\n"
+            "SELECT COUNT(*) AS n FROM tiere;")
+    lauf = sql_lauf(docker_runner, DATENSATZ, code)
+    assert lauf.skript and lauf.fehler is None and lauf.zeilen == [[3]]
+    insert, update, delete, select = lauf.schritte
+    assert insert.klausel == "INSERT" and insert.tabelle.zustand == ["", "", "", "neu"]
+    assert update.tabelle.zustand == ["geaendert", "", "geaendert", ""]
+    assert update.tabelle.vorher[0] == [1, "Pit", "Pinguin", "4.2"] and update.tabelle.zeilen[0][3] == "5.2"
+    assert delete.tabelle.zustand == ["bleibt", "raus", "bleibt", "bleibt"] and "1 von 4 Zeilen" in delete.text
+    assert select.zeile == 4
+    kaputt = sql_lauf(docker_runner, DATENSATZ, "INSERT INTO tiere (id) VALUES (1);\nSELECT 1;")
+    assert kaputt.fehler.startswith("Anweisung 1 (Zeile 1)") and kaputt.schritte == []

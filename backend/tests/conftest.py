@@ -49,6 +49,7 @@ aufgabentypen:
   - {id: output_quiz, titel: Quiz, view: output_quiz}
   - {id: css_klon, titel: CSS, view: css_klon}
   - {id: sql_abfrage, titel: SQL, view: sql_abfrage}
+  - {id: sql_aenderung, titel: SQL-Änderung, view: sql_abfrage}
   - {id: muster_jagd, titel: Muster-Jagd, view: muster_jagd}
   - {id: ausgabe_sprint, titel: Ausgabe-Sprint, view: ausgabe_sprint}
   - {id: roboter, titel: Roboter-Parcours, view: roboter}
@@ -127,6 +128,13 @@ def baue_bestand(wurzel: Path) -> None:
         erwartetes_ergebnis: [[10], [20], [30], [40], [50], [60]]
         """)
     (ordner / "solution_idiomatic.sql").write_text("SELECT wert FROM z ORDER BY id;\n")
+    ordner = schreibe_aufgabe(wurzel, "sql", "s007-verdoppeln", "sql_aenderung", """\
+        dataset: zahlen
+        kontrolle: SELECT wert FROM z ORDER BY id
+        erwartete_spalten: [wert]
+        erwartetes_ergebnis: [[20], [40], [60], [80], [100], [120]]
+        """)
+    (ordner / "solution_idiomatic.sql").write_text("UPDATE z SET wert = wert * 2;\n")
     pfade = wurzel / "pfade"
     pfade.mkdir()
     (pfade / "start.yml").write_text(

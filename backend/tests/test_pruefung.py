@@ -88,6 +88,23 @@ def test_sql_eingetippte_werte_fallen_auf(client):
     assert not erg["bestanden"] and erg["pruefung"]["versteckt_fail"] == 2
 
 
+def test_sql_aenderung_prueft_mit_der_kontrollabfrage(client):
+    erg = submit(client, "s007-verdoppeln", "UPDATE z SET wert = wert * 2;\nSELECT 1;")
+    assert erg["bestanden"] and erg["pruefung"]["versteckt_pass"] == 2
+    assert erg["pruefung"]["sichtbar"][0]["tatsaechlich"]["zeilen"][0] == [20]
+
+
+def test_sql_aenderung_eingetippte_werte_fallen_auf(client):
+    code = "DELETE FROM z;\n" + "".join(f"INSERT INTO z (wert) VALUES ({w});\n" for w in (20, 40, 60, 80, 100, 120))
+    erg = submit(client, "s007-verdoppeln", code)
+    assert erg["pruefung"]["sichtbar"][0]["bestanden"] and not erg["bestanden"]
+
+
+def test_sql_aenderung_meldet_kaputte_kontrolle(client):
+    erg = submit(client, "s007-verdoppeln", "DROP TABLE z;")
+    assert not erg["bestanden"] and "Kontrollabfrage" in erg["pruefung"]["stderr"]
+
+
 def test_sql_attach_verboten(client):
     erg = submit(client, "s006-werte", "ATTACH DATABASE '/tmp/x.db' AS x")
     assert not erg["bestanden"] and "not authorized" in erg["pruefung"]["stderr"]

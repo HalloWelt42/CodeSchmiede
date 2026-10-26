@@ -93,7 +93,7 @@ def test_kaputte_datei_haelt_einlesen_nicht_auf(settings, bestand, docker_runner
     schreibe_aufgabe(bestand, "python", "012-mit-luecke", "code_schreiben", "funktion: f\nvoraussetzungen: [999-gibts-nicht]\n")
     client = TestClient(app_bauen(settings, runner=docker_runner))
     gesund = client.get("/api/healthz").json()
-    assert gesund["aufgaben_anzahl"] == 7
+    assert gesund["aufgaben_anzahl"] == 8
     befunde = client.get("/api/admin/befunde").json()
     orte = {b["ort"] for b in befunde}
     assert "python/009-kaputt/aufgabe.md" in orte

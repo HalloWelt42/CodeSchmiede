@@ -48,3 +48,17 @@ bloecke:
       - einfuehrung: sql-case
         uebungen: [q121-raetsel-oder-fisch, q122-grosse-portionen, q123-wassergefuehl, q124-jung-oder-erfahren, q125-schwere-je-kolonie, q126-raetsel-zaehlen, q127-portionsgroessen]
         projekt: [q129-steckbrief-fertig]
+  - titel: Daten ändern
+    kapitel:
+      - einfuehrung: sql-einfuegen
+        uebungen: [q131-kolonie-mitte, q132-karla, q133-pelle, q134-sardinen-fuer-pina, q135-zwei-kolonien, q136-kolonie-mit-pflegerin, q137-heringe-fuer-den-osten]
+        projekt: [q139-umzug-ankunft]
+      - einfuehrung: sql-aendern
+        uebungen: [q141-pina-entscheidet-sich, q142-warmes-wasser-im-sueden, q143-jonas-bleibt, q144-nachschlag, q145-umgebucht, q146-pablo-zieht-um, q147-nordlichter]
+        projekt: [q149-umzug-erste-woche]
+      - einfuehrung: sql-loeschen
+        uebungen: [q151-abgerechnet, q152-kein-springer-mehr, q153-ohne-sardinen, q154-kleine-portionen, q155-west-wird-abgerissen, q156-nur-pina, q157-raetselfutter]
+        projekt: [q159-umzug-abschied]
+      - einfuehrung: sql-tabellen
+        uebungen: [q161-besucherkasten, q162-lieferungen, q163-wetterbuch, q164-eintrittspreis, q165-spitznamen, q166-paten-fuer-pina, q167-ein-komma-zu-viel]
+        projekt: [q169-umzug-gesundheitsakte]

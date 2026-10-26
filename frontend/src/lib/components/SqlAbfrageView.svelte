@@ -14,6 +14,10 @@
    *   erwartetes_ergebnis:   [["Anna", 34], ...]
    *   sortierung_egal:       bool
    *   schema_hinweis:        kurze Tabellenstruktur als Markdown
+   *   kontrolle:             nur sql_aenderung: Abfrage, die nach dem Skript prüft
+   *
+   * Bei sql_aenderung ist der Code ein Skript aus mehreren Anweisungen; das
+   * Ergebnis rechts ist das der Kontrollabfrage nach dem Skript.
    */
   import { onMount } from 'svelte';
   import { progressStore } from '../stores/ProgressStore.svelte';
@@ -37,6 +41,7 @@
 
   let dataset = $derived((detail.extra?.['dataset'] as string) ?? 'bibliothek');
   let schema_hinweis = $derived((detail.extra?.['schema_hinweis'] as string) ?? '');
+  let kontrolle = $derived(detail.task_type === 'sql_aenderung' ? ((detail.extra?.['kontrolle'] as string) ?? '') : '');
   let erwartete_spalten = $derived<string[] | null>(
     (detail.extra?.['erwartete_spalten'] as string[]) ?? null,
   );
@@ -176,6 +181,12 @@
           quelle={detail.quelle}
           schwierigkeit_score={detail.schwierigkeit_score}
         />
+        {#if kontrolle}
+          <div class="schema">
+            <div class="gruppe">Geprüft wird nach deinem Skript mit</div>
+            <pre>{kontrolle}</pre>
+          </div>
+        {/if}
         {#if schema_hinweis}
           <div class="schema">
             <div class="gruppe">Schema, Datensatz <code>{dataset}</code></div>
@@ -205,7 +216,7 @@
       {#if fehler}
         <p class="hinweis-box fehler">{fehler}</p>
       {:else if pruefen_laeuft}
-        <p class="dim"><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Abfrage läuft in der Sandbox ...</p>
+        <p class="dim"><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> {kontrolle ? 'Skript' : 'Abfrage'} läuft in der Sandbox ...</p>
       {:else if ergebnis}
         {#if ergebnis.belohnung}<BelohnungsBand belohnung={ergebnis.belohnung} />{/if}
         <div class="ergebnis-kopf" class:nein={!ergebnis.bestanden}>
@@ -216,7 +227,7 @@
           <pre class="sql-fehler">{ergebnis.pruefung.stderr}</pre>
         {/if}
         {#if tatsaechlich}
-          <div class="gruppe">Dein Ergebnis ({tatsaechlich.zeilen.length} Zeilen)</div>
+          <div class="gruppe">{kontrolle ? 'Kontrolle nach deinem Skript' : 'Dein Ergebnis'} ({tatsaechlich.zeilen.length} Zeilen)</div>
           <table class="daten-tab">
             {#if tatsaechlich.spalten?.length}
               <thead><tr>{#each tatsaechlich.spalten as s}<th>{s}</th>{/each}</tr></thead>
@@ -251,7 +262,7 @@
           </button>
         {/if}
       {:else}
-        <p class="dim">Schreibe eine SELECT-Abfrage, dann <strong>Prüfen</strong>.</p>
+        <p class="dim">{kontrolle ? 'Schreibe die Anweisungen' : 'Schreibe eine SELECT-Abfrage'}, dann <strong>Prüfen</strong>.</p>
       {/if}
       <VerlaufBereich aufgabeId={detail.id} stand={abgaben} onUebernehmen={(c) => (code = c)} />
     </div>

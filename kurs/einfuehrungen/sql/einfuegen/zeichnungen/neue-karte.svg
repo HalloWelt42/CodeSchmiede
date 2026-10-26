@@ -1,0 +1,33 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin steckt eine frisch beschriebene Karteikarte in einen Karteikasten">
+  <ellipse cx="130" cy="170" rx="110" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Karten im Kasten -->
+  <g stroke="#2b3442" stroke-width="1.6">
+    <rect x="34" y="92" width="96" height="30" rx="2" fill="#fbf4e2"/>
+    <rect x="40" y="98" width="96" height="30" rx="2" fill="#f4ecd6"/>
+  </g>
+  <!-- Kasten -->
+  <path d="M26 110 h120 l-8 56 h-104 Z" fill="#c38a55" stroke="#2b3442" stroke-width="2.4" stroke-linejoin="round"/>
+  <rect x="70" y="130" width="32" height="12" rx="2" fill="#a8733f" stroke="#2b3442" stroke-width="1.6"/>
+  <!-- neue Karte, halb eingesteckt -->
+  <g transform="rotate(-12 110 80)">
+    <rect x="66" y="52" width="92" height="58" rx="3" fill="#fffaf0" stroke="#2b3442" stroke-width="2.2"/>
+    <path d="M66 66 h92" stroke="#e2574c" stroke-width="1.4"/>
+    <circle cx="82" cy="86" r="8" fill="#2b3442"/><circle cx="82" cy="88" r="5" fill="#f4f1ea"/>
+    <g fill="#7aa6c2"><rect x="96" y="76" width="50" height="6" rx="2"/><rect x="96" y="88" width="36" height="6" rx="2"/></g>
+  </g>
+  <!-- Funkeln -->
+  <g stroke="#f2a13b" stroke-width="2.4" stroke-linecap="round">
+    <path d="M150 30 v10 M145 35 h10"/><path d="M60 40 v8 M56 44 h8"/>
+  </g>
+  <!-- Pinguin -->
+  <g transform="translate(206 124)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-22 -10 -42 -26" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

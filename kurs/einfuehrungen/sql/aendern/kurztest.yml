@@ -1,0 +1,49 @@
+# Kurztest zu Kapitel 14: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-ohne-where
+    text: Was passiert bei diesem Skript?
+    code: |
+      UPDATE pfleger
+      SET kolonie = 'Nord';
+    optionen:
+      - text: Alle vier Pfleger gehören danach zur Nordkolonie
+        richtig: true
+        erklaerung: Richtig, ohne WHERE trifft UPDATE jede Zeile, auch Jonas.
+      - text: Nur Greta, die ohnehin im Norden ist
+        erklaerung: Ohne WHERE gibt es keine Auswahl, es trifft alle.
+      - text: Fehler, UPDATE braucht ein WHERE
+        erklaerung: Leider nicht; die Datenbank führt es ohne Rückfrage aus.
+  - frageart: auswahl
+    id: kt-rechnen
+    text: "Fütterung 3 hatte 8 Fische. Was steht nach `UPDATE fuetterungen SET menge = menge * 2 WHERE id = 3` dort?"
+    optionen:
+      - text: "16"
+        richtig: true
+        erklaerung: Richtig, der neue Wert wird aus dem alten gerechnet.
+      - text: "2"
+        erklaerung: menge * 2 rechnet mit dem alten Wert 8.
+      - text: "8"
+        erklaerung: Die Zeile mit id 3 wird getroffen und geändert.
+  - frageart: luecke
+    id: kt-komma
+    text: Ergänze, damit beide Spalten in einer Anweisung geändert werden.
+    code: |
+      UPDATE fuetterungen
+      SET fisch = 'Hering'___ menge = 5
+      WHERE id = 10;
+    antworten: [[","]]
+    erklaerung: Richtig, mehrere Zuweisungen hinter SET trennt ein Komma.
+    hinweis: Kein AND, sondern ein Satzzeichen.
+  - frageart: auswahl
+    id: kt-gewohnheit
+    text: Was ist vor einem UPDATE eine gute Gewohnheit?
+    optionen:
+      - text: Mit einem SELECT und demselben WHERE nachsehen, welche Zeilen getroffen werden
+        richtig: true
+        erklaerung: Richtig, dann gibt es keine Überraschungen.
+      - text: Das WHERE lieber weglassen, damit nichts vergessen wird
+        erklaerung: Ohne WHERE wird alles geändert, das ist meist das Gegenteil von dem, was man will.
+      - text: Die Tabelle vorher löschen
+        erklaerung: Dann gäbe es nichts mehr zu ändern.
+uebung: q148-futterumstellung

@@ -5,12 +5,17 @@ DISTINCT, ORDER BY, LIMIT. Dafür zerlegt der SQL-Parser die Abfrage in Teilabfr
 enthalten. Alle laufen in der Sandbox auf dem Datensatz wie jede andere Abfrage (sql_pruefer.skript), hier wird nur
 verglichen: welche Zeilen ein Filter behält, welche Spalten SELECT fallen lässt, welche Zeilen eine Gruppe bilden.
 
-Zerlegt wird eine einzelne SELECT-Abfrage ohne WITH und ohne UNION; alles andere liefert nur das Ergebnis.
+Zerlegt wird eine einzelne SELECT-Abfrage ohne WITH und ohne UNION. Ein Skript aus mehreren Anweisungen oder mit
+Änderungen (INSERT, UPDATE, DELETE, CREATE TABLE ...) läuft Anweisung für Anweisung auf einer Datenbank; je Anweisung
+zeigt ein Schritt die betroffene Tabelle davor und danach: neue Zeilen, geänderte Zellen mit ihrem alten Wert,
+gelöschte Zeilen. Zeilen werden dabei über ihre rowid wiedererkannt.
 """
 
 from __future__ import annotations
 
+import json
 import re
+import sqlite3
 from collections import Counter
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -20,12 +25,12 @@ import sqlglot
 from pydantic import BaseModel, Field
 from sqlglot import exp
 
-from ..pruefung.sql_pruefer import skript
+from ..pruefung.sql_pruefer import MAX_ZEILEN, skript
 from ..pruefung.testlauf import hinweise, lies_block, neue_marke
 from ..sandbox.result import RunLimits
 from ..sandbox.runner import Runner
 
-Zeilenzustand = Literal["", "neu", "bleibt", "raus"]
+Zeilenzustand = Literal["", "neu", "bleibt", "raus", "geaendert"]
 GRUPPE = "__gruppe"
 
 
@@ -38,6 +43,10 @@ class Zwischentabelle(BaseModel):
     """Je Spalte: fällt durch SELECT weg."""
     gruppe: list[int] = Field(default_factory=list)
     """Je Zeile die Nummer ihrer Gruppe ab 1 (nur nach GROUP BY)."""
+    vorher: list[list[Any] | None] = Field(default_factory=list)
+    """Je Zeile ihre Werte vor einem UPDATE, falls sie sich geändert hat (sonst None)."""
+    spalte_neu: list[bool] = Field(default_factory=list)
+    """Je Spalte: kam gerade erst dazu (ALTER TABLE ... ADD COLUMN)."""
 
 
 class Klauselschritt(BaseModel):
@@ -53,6 +62,8 @@ class SqlLauf(BaseModel):
     spalten: list[str] = Field(default_factory=list)
     zeilen: list[list[Any]] = Field(default_factory=list)
     schritte: list[Klauselschritt] = Field(default_factory=list)
+    skript: bool = False
+    """Anweisung für Anweisung statt Klausel für Klausel; das Ergebnis ist das der letzten Abfrage im Skript."""
     fehler: str | None = None
     zeitueberschreitung: bool = False
     laufzeit_ms: float = 0
@@ -123,6 +134,11 @@ def _gefiltert(vorher: dict[str, Any], nachher: dict[str, Any]) -> tuple[Zwische
 
 def _zeilen_wort(n: int) -> str:
     return "eine Zeile" if n == 1 else f"{n} Zeilen"
+
+
+def _anteil(k: int, n: int) -> str:
+    """"2 von 9 Zeilen", "1 von 1 Zeile"."""
+    return f"{k} von {n} {'Zeile' if n == 1 else 'Zeilen'}"
 
 
 def zerlege(sql: str) -> list[Teilabfrage] | None:
@@ -295,7 +311,11 @@ def _zeile(code: str, stichwort: str, vorkommen: int) -> int | None:
 
 
 def sql_lauf(runner: Runner, datensatz_sql: str, sql: str, limits: RunLimits | None = None) -> SqlLauf:
-    """Führt die Abfrage auf einer frischen Datenbank aus dem Datensatz aus und baut die Zwischentabellen."""
+    """Führt die Abfrage auf einer frischen Datenbank aus dem Datensatz aus und baut die Zwischentabellen; ein Skript
+    läuft Anweisung für Anweisung (skript_lauf)."""
+    teile_skript = anweisungen(sql)
+    if len(teile_skript) > 1 or (teile_skript and teile_skript[0].art != "SELECT"):
+        return skript_lauf(runner, datensatz_sql, teile_skript, limits)
     teile = zerlege(sql) or []
     abfragen = [sql, *(t.sql for t in teile)]
     marke = neue_marke()
@@ -318,4 +338,171 @@ def sql_lauf(runner: Runner, datensatz_sql: str, sql: str, limits: RunLimits | N
             tabelle.zeilen = anzeigbar(tabelle.zeilen)
             lauf.schritte.append(Klauselschritt(klausel=t.klausel, zeile=_zeile(sql, t.stichwort, t.vorkommen), text=text, tabelle=tabelle))
     lauf.zeilen = anzeigbar(lauf.zeilen)
+    return lauf
+
+
+# ---------- Skripte: Anweisung für Anweisung ----------
+
+
+@dataclass
+class Anweisung:
+    sql: str
+    zeile: int
+    """Zeile im Code, in der die Anweisung beginnt, ab 1."""
+    art: str
+    """INSERT, UPDATE, DELETE, CREATE TABLE, DROP TABLE, ALTER TABLE, SELECT oder das erste Wort."""
+    tabelle: str | None
+    """Die Tabelle, die die Anweisung verändert (bei SELECT keine)."""
+
+
+_ARTEN: dict[type[exp.Expression], str] = {
+    exp.Insert: "INSERT", exp.Update: "UPDATE", exp.Delete: "DELETE", exp.Select: "SELECT", exp.Union: "SELECT",
+}
+
+
+def _art_und_tabelle(sql: str) -> tuple[str, str | None]:
+    erstes = (re.findall(r"[A-Za-z]+", _ohne_kommentare(sql)) or ["?"])[0].upper()
+    try:
+        knoten = sqlglot.parse_one(sql, read="sqlite")
+    except sqlglot.errors.SqlglotError:
+        return erstes, None
+    art = _ARTEN.get(type(knoten))
+    if art is None and isinstance(knoten, (exp.Create, exp.Drop, exp.Alter)):
+        art = f"{erstes} {knoten.args.get('kind') or 'TABLE'}"
+    if art is None:
+        return erstes, None
+    tabelle = knoten.find(exp.Table) if art != "SELECT" else None
+    return art, tabelle.name if tabelle is not None else None
+
+
+def _ohne_kommentare(sql: str) -> str:
+    return re.sub(r"--[^\n]*|/\*.*?\*/", " ", sql, flags=re.S)
+
+
+def anweisungen(code: str) -> list[Anweisung]:
+    """Zerlegt ein Skript an den Semikolons, an denen eine Anweisung vollständig ist; Semikolons in Texten zählen
+    nicht (sqlite3.complete_statement). Leere Stücke und reine Kommentare fallen weg."""
+    stuecke: list[tuple[int, str]] = []
+    puffer, start = "", 0
+    for i, zeichen in enumerate(code):
+        puffer += zeichen
+        if zeichen == ";" and sqlite3.complete_statement(puffer):
+            stuecke.append((start, puffer))
+            puffer, start = "", i + 1
+    stuecke.append((start, puffer))
+    liste: list[Anweisung] = []
+    for anfang, text in stuecke:
+        rumpf = _ohne_kommentare(text).strip().rstrip(";").strip()
+        if not rumpf:
+            continue
+        erste = anfang + text.index(rumpf.split()[0]) if rumpf.split()[0] in text else anfang
+        art, tabelle = _art_und_tabelle(text)
+        liste.append(Anweisung(sql=text.strip(), zeile=code.count("\n", 0, erste) + 1, art=art, tabelle=tabelle))
+    return liste
+
+
+def _skript_sandbox(datensatz_sql: str, teile: list[Anweisung], marke: str) -> str:
+    """Python-Skript für die Sandbox: alle Anweisungen nacheinander auf einer Datenbank; je Anweisung der Stand der
+    betroffenen Tabelle davor und danach (mit rowid) und das Ergebnis einer Abfrage."""
+    laeufe = [{"sql": t.sql, "tabelle": t.tabelle} for t in teile]
+    return (
+        "import json, sqlite3, sys\n"
+        f"SCHEMA = json.loads({json.dumps(datensatz_sql)!r})\n"
+        f"LAEUFE = json.loads({json.dumps(laeufe)!r})\n"
+        f"MAX_ZEILEN = {MAX_ZEILEN}\n"
+        "conn = sqlite3.connect(':memory:')\n"
+        "conn.executescript(SCHEMA)\n"
+        "conn.set_authorizer(lambda aktion, *_: sqlite3.SQLITE_DENY if aktion in (sqlite3.SQLITE_ATTACH, sqlite3.SQLITE_DETACH) else sqlite3.SQLITE_OK)\n"
+        "def tabelle(cur):\n"
+        "    return {'spalten': [d[0] for d in cur.description], 'zeilen': [list(z) for z in cur.fetchmany(MAX_ZEILEN)]}\n"
+        "def stand(name):\n"
+        "    if not name: return None\n"
+        "    try: return tabelle(conn.execute('SELECT rowid AS __zeile, * FROM \"' + name.replace('\"', '\"\"') + '\"'))\n"
+        "    except sqlite3.Error: return None\n"
+        "aus = []\n"
+        "for l in LAEUFE:\n"
+        "    vorher = stand(l['tabelle'])\n"
+        "    try:\n"
+        "        cur = conn.execute(l['sql'])\n"
+        "        ergebnis = tabelle(cur) if cur.description else None\n"
+        "    except (sqlite3.Error, sqlite3.Warning) as e:\n"
+        "        aus.append({'fehler': 'SQL-Fehler: ' + str(e)})\n"
+        "        break\n"
+        "    aus.append({'vorher': vorher, 'nachher': stand(l['tabelle']), 'ergebnis': ergebnis})\n"
+        f"sys.stdout.write({marke!r} + json.dumps(aus, default=repr) + '\\n')\n"
+    )
+
+
+def _ohne_rowid(stand: dict[str, Any] | None) -> tuple[list[str], list[list[Any]], list[Any]]:
+    if not stand:
+        return [], [], []
+    return stand["spalten"][1:], [z[1:] for z in stand["zeilen"]], [z[0] for z in stand["zeilen"]]
+
+
+def _deute_anweisung(a: Anweisung, lauf: dict[str, Any]) -> tuple[Zwischentabelle, str]:
+    """Zwischentabelle und Erklärung einer Anweisung aus dem Stand davor und danach."""
+    t = a.tabelle or ""
+    v_spalten, v_zeilen, v_ids = _ohne_rowid(lauf.get("vorher"))
+    n_spalten, n_zeilen, n_ids = _ohne_rowid(lauf.get("nachher"))
+    if a.art == "SELECT" or lauf.get("ergebnis"):
+        e = lauf.get("ergebnis") or {"spalten": [], "zeilen": []}
+        return Zwischentabelle(spalten=e["spalten"], zeilen=e["zeilen"]), f"SELECT liefert {_zeilen_wort(len(e['zeilen']))}."
+    if a.art == "INSERT":
+        alt = set(v_ids)
+        zustand: list[Zeilenzustand] = ["neu" if i not in alt else "" for i in n_ids]
+        neu = zustand.count("neu")
+        return (Zwischentabelle(spalten=n_spalten, zeilen=n_zeilen, zustand=zustand),
+                f"INSERT fügt {_zeilen_wort(neu)} in {t} ein; jetzt hat {t} {_zeilen_wort(len(n_zeilen))}.")
+    if a.art == "UPDATE":
+        alt_je_id = dict(zip(v_ids, v_zeilen))
+        vorher = [alt_je_id.get(i) if alt_je_id.get(i) != z else None for i, z in zip(n_ids, n_zeilen)]
+        zustand = ["geaendert" if w is not None else "" for w in vorher]
+        geaendert = zustand.count("geaendert")
+        alle = " Ohne WHERE trifft es jede Zeile." if geaendert == len(n_zeilen) and geaendert > 1 and "WHERE" not in a.sql.upper() else ""
+        return (Zwischentabelle(spalten=n_spalten, zeilen=n_zeilen, zustand=zustand, vorher=vorher),
+                f"UPDATE ändert {_anteil(geaendert, len(n_zeilen))} in {t}; die alten Werte sind durchgestrichen.{alle}")
+    if a.art == "DELETE":
+        bleiben = set(n_ids)
+        zustand = ["bleibt" if i in bleiben else "raus" for i in v_ids]
+        weg = zustand.count("raus")
+        leer = (" Ohne WHERE trifft es jede Zeile; die Tabelle bleibt, nur leer."
+                if weg == len(v_zeilen) and weg > 1 and "WHERE" not in a.sql.upper() else "")
+        return (Zwischentabelle(spalten=v_spalten, zeilen=v_zeilen, zustand=zustand),
+                f"DELETE löscht {_anteil(weg, len(v_zeilen))} aus {t}; {len(v_zeilen) - weg} bleiben.{leer}")
+    if a.art.startswith("CREATE"):
+        zustand = ["neu"] * len(n_zeilen)
+        inhalt = f"gleich mit {_zeilen_wort(len(n_zeilen))}" if n_zeilen else "noch ohne Zeilen"
+        return (Zwischentabelle(spalten=n_spalten, zeilen=n_zeilen, zustand=zustand, spalte_neu=[True] * len(n_spalten)),
+                f"CREATE TABLE legt die Tabelle {t} an, mit den Spalten {', '.join(n_spalten)}, {inhalt}.")
+    if a.art.startswith("DROP"):
+        return (Zwischentabelle(spalten=v_spalten, zeilen=v_zeilen, zustand=["raus"] * len(v_zeilen)),
+                f"DROP TABLE löscht die Tabelle {t} samt ihren {_zeilen_wort(len(v_zeilen))}.")
+    if a.art.startswith("ALTER"):
+        neue = [sp not in v_spalten for sp in n_spalten]
+        dazu = [sp for sp, n in zip(n_spalten, neue) if n]
+        text = (f"ALTER TABLE gibt {t} die neue Spalte {', '.join(dazu)}; in den vorhandenen Zeilen steht dort NULL."
+                if dazu else f"ALTER TABLE ändert den Aufbau von {t}.")
+        return Zwischentabelle(spalten=n_spalten, zeilen=n_zeilen, spalte_neu=neue), text
+    return Zwischentabelle(spalten=n_spalten, zeilen=n_zeilen), f"{a.art} ist ausgeführt."
+
+
+def skript_lauf(runner: Runner, datensatz_sql: str, teile: list[Anweisung], limits: RunLimits | None = None) -> SqlLauf:
+    """Führt ein Skript Anweisung für Anweisung auf einer frischen Datenbank aus dem Datensatz aus."""
+    marke = neue_marke()
+    erg = runner.run_code(_skript_sandbox(datensatz_sql, teile, marke), "python", limits or RunLimits())
+    _, block = lies_block(erg, marke)
+    if not isinstance(block, list):
+        return SqlLauf(skript=True, fehler="Zeitgrenze überschritten" if erg.timeout else (hinweise(erg).strip() or "Das Skript lief nicht zu Ende."),
+                       zeitueberschreitung=erg.timeout, laufzeit_ms=erg.laufzeit_ms)
+    lauf = SqlLauf(skript=True, laufzeit_ms=erg.laufzeit_ms)
+    for a, ergebnis in zip(teile, block):
+        if "fehler" in ergebnis:
+            lauf.fehler = f"Anweisung {teile.index(a) + 1} (Zeile {a.zeile}): {ergebnis['fehler']}"
+            break
+        tabelle, text = _deute_anweisung(a, ergebnis)
+        tabelle.zeilen = anzeigbar(tabelle.zeilen)
+        tabelle.vorher = [anzeigbar([w])[0] if w is not None else None for w in tabelle.vorher]
+        lauf.schritte.append(Klauselschritt(klausel=a.art, zeile=a.zeile, text=text, tabelle=tabelle))
+        if ergebnis.get("ergebnis"):
+            lauf.spalten, lauf.zeilen = ergebnis["ergebnis"]["spalten"], anzeigbar(ergebnis["ergebnis"]["zeilen"])
     return lauf

@@ -62,3 +62,15 @@ begriffe:
   - id: textfunktionen
     titel: Textfunktionen
     erkennung: {aufrufe: [UPPER, LOWER, LENGTH, SUBSTR, SUBSTRING, REPLACE, TRIM, INSTR]}
+  - id: insert
+    titel: Zeilen einfügen mit INSERT
+    erkennung: {knoten: [Insert]}
+  - id: update
+    titel: Werte ändern mit UPDATE
+    erkennung: {knoten: [Update]}
+  - id: delete
+    titel: Zeilen löschen mit DELETE
+    erkennung: {knoten: [Delete]}
+  - id: create_table
+    titel: Tabellen anlegen, ändern und löschen
+    erkennung: {knoten: [Create, Alter, Drop, ColumnDef]}

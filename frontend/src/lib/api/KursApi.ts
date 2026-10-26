@@ -170,7 +170,7 @@ export interface Aufzeichnung {
   laufzeit_ms: number;
 }
 
-export type Zeilenzustand = '' | 'neu' | 'bleibt' | 'raus';
+export type Zeilenzustand = '' | 'neu' | 'bleibt' | 'raus' | 'geaendert';
 
 /** Zwischentabelle eines SQL-Schritts: je Zeile ihr Zustand und ihre Gruppe, je Spalte, ob sie wegfällt. */
 export interface Zwischentabelle {
@@ -179,6 +179,10 @@ export interface Zwischentabelle {
   zustand: Zeilenzustand[];
   weg: boolean[];
   gruppe: number[];
+  /** je Zeile die Werte vor einem UPDATE, falls sie sich geändert hat */
+  vorher: (unknown[] | null)[];
+  /** je Spalte: kam gerade erst dazu (ALTER TABLE ... ADD COLUMN, CREATE TABLE) */
+  spalte_neu: boolean[];
 }
 
 export interface Klauselschritt {
@@ -194,6 +198,8 @@ export interface SqlLauf {
   spalten: string[];
   zeilen: unknown[][];
   schritte: Klauselschritt[];
+  /** Skript: Anweisung für Anweisung; das Ergebnis ist das der letzten Abfrage */
+  skript: boolean;
   fehler: string | null;
   zeitueberschreitung: boolean;
   laufzeit_ms: number;

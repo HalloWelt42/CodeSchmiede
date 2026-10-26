@@ -1,0 +1,52 @@
+# Kurztest zu Kapitel 13: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-weggelassen
+    text: Was steht nach diesem Skript bei Hanna in der Spalte kolonie?
+    code: |
+      INSERT INTO pfleger (name) VALUES ('Hanna');
+    optionen:
+      - text: "NULL"
+        richtig: true
+        erklaerung: Richtig. Weggelassene Spalten ohne Vorgabewert bekommen NULL.
+      - text: Ein leerer Text
+        erklaerung: Ein leerer Text wäre ein Wert. Weggelassen heißt NULL.
+      - text: Die Kolonie des vorigen Pflegers
+        erklaerung: Die Datenbank denkt sich nichts aus; was fehlt, ist NULL.
+  - frageart: auswahl
+    id: kt-anzahl
+    text: Wie viele Zeilen kommen in die Tabelle?
+    code: |
+      INSERT INTO kolonien (name, lage, wassertemperatur)
+      VALUES ('Mitte', 'Lagune', 6.5),
+             ('Insel', 'Vulkanstrand', 12.0),
+             ('Bucht', 'Kiesstrand', 7.0);
+    optionen:
+      - text: "3"
+        richtig: true
+        erklaerung: Richtig, jede Klammer hinter VALUES ist eine Zeile.
+      - text: "1"
+        erklaerung: Eine Anweisung darf mehrere Zeilen einfügen, je Klammer eine.
+      - text: "9"
+        erklaerung: Neun Werte sind es, aber je drei bilden eine Zeile.
+  - frageart: luecke
+    id: kt-into
+    text: Ergänze, damit Pinguin 3 am 23. Oktober vier Heringe bekommt.
+    code: |
+      INSERT ___ fuetterungen (pinguin_id, tag, fisch, menge)
+      VALUES (3, '2026-10-23', 'Hering', 4);
+    antworten: [["INTO", "into"]]
+    erklaerung: Richtig, INSERT INTO und dann die Tabelle.
+    hinweis: Einfügen in ...
+  - frageart: auswahl
+    id: kt-select
+    text: Was fügt `INSERT INTO fuetterungen (pinguin_id, tag, fisch, menge) SELECT id, '2026-10-23', 'Hering', 1 FROM pinguine WHERE kolonie = 'Nord'` ein?
+    optionen:
+      - text: Je Pinguin des Nordens eine Fütterung
+        richtig: true
+        erklaerung: Richtig, vier Zeilen, je eine aus dem Ergebnis der Abfrage.
+      - text: Eine einzige Fütterung für die ganze Kolonie
+        erklaerung: Jede Ergebniszeile der Abfrage wird eine eigene Zeile.
+      - text: Nichts, INSERT braucht VALUES
+        erklaerung: Statt VALUES darf auch eine Abfrage stehen.
+uebung: q138-willkommenspaket

@@ -1,0 +1,50 @@
+# Kurztest zu Kapitel 15: eigene Fragen und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-ohne-where
+    text: Was ist nach diesem Skript?
+    code: |
+      DELETE FROM kolonien;
+    optionen:
+      - text: Die Tabelle kolonien gibt es noch, aber ohne Zeilen
+        richtig: true
+        erklaerung: Richtig. DELETE leert, die Tabelle mit ihren Spalten bleibt.
+      - text: Die Tabelle kolonien gibt es nicht mehr
+        erklaerung: Dafür bräuchte es DROP TABLE.
+      - text: Nichts, ohne WHERE löscht DELETE nichts
+        erklaerung: Leider umgekehrt, ohne WHERE trifft es jede Zeile.
+  - frageart: auswahl
+    id: kt-wie-viele
+    text: Wie viele Fütterungen bleiben übrig?
+    code: |
+      DELETE FROM fuetterungen
+      WHERE menge >= 6;
+    optionen:
+      - text: "8"
+        richtig: true
+        erklaerung: Richtig. Vier Fütterungen hatten sechs oder mehr Fische (6, 8, 6, 7), zwölf waren es.
+      - text: "4"
+        erklaerung: Vier werden gelöscht, acht bleiben.
+      - text: "12"
+        erklaerung: Die Bedingung trifft vier Fütterungen.
+  - frageart: luecke
+    id: kt-delete
+    text: Ergänze, damit Jonas aus der Tabelle pfleger verschwindet.
+    code: |
+      ___ FROM pfleger
+      WHERE name = 'Jonas';
+    antworten: [["DELETE", "delete"]]
+    erklaerung: Richtig, DELETE FROM löscht Zeilen.
+    hinweis: Das Wort fürs Löschen.
+  - frageart: auswahl
+    id: kt-verwaist
+    text: Paul (Nummer 3) soll samt seinen Fütterungen verschwinden. In welcher Reihenfolge löscht man?
+    optionen:
+      - text: Erst seine Fütterungen, dann Paul
+        richtig: true
+        erklaerung: Richtig, so zeigt nie eine Fütterung ins Leere.
+      - text: Erst Paul, dann seine Fütterungen
+        erklaerung: Dazwischen wären seine Fütterungen verwaist; viele Datenbanken lassen das gar nicht zu.
+      - text: Egal, das Ergebnis ist gleich
+        erklaerung: Am Ende vielleicht, aber nicht dazwischen und nicht in Datenbanken, die Verweise prüfen.
+uebung: q158-pepe-zieht-aus
