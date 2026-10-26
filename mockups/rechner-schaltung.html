@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="spiele">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Digitale Schaltungen</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<style>
+  .welt-spalte { padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); }
+  .bausteine { display: flex; flex-wrap: wrap; gap: 4px; padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--border); }
+  .baustein-chip { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 var(--sp-2); border: 1px solid var(--border); background: var(--bg-card-2); font: 600 12px var(--mono); color: var(--fg-dim); cursor: grab; }
+  .baustein-chip.gesperrt { opacity: .4; cursor: not-allowed; }
+  .plan { display: block; width: 100%; height: auto; background: var(--bg); }
+  .plan .raster { stroke: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .plan .gatter { fill: var(--bg-card-2); stroke: var(--border-strong); stroke-width: 1.6; }
+  .plan .gatter-text { fill: var(--fg); font: 700 12px var(--mono); }
+  .plan .pin { fill: var(--bg); stroke: var(--fg-mute); stroke-width: 1.4; }
+  .plan .draht { fill: none; stroke: var(--fg-mute); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .plan .draht.an { stroke: var(--accent); filter: drop-shadow(0 0 3px color-mix(in srgb, var(--accent) 60%, transparent)); }
+  .plan .schalter { fill: var(--bg-card-2); stroke: var(--border-strong); stroke-width: 1.4; cursor: pointer; }
+  .plan .schalter.an { fill: color-mix(in srgb, var(--accent) 30%, var(--bg-card-2)); stroke: var(--accent); }
+  .plan .schalter-text { fill: var(--fg); font: 700 13px var(--mono); pointer-events: none; }
+  .plan .lampe-a { fill: var(--lampe-aus, #2b3038); stroke: var(--border-strong); stroke-width: 1.4; }
+  .plan .lampe-a.an { fill: #fbbf24; filter: drop-shadow(0 0 6px #fbbf24); }
+  .plan .name { fill: var(--fg-dim); font: 600 12px var(--mono); }
+  .wahrheit { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 14px; text-align: center; }
+  .wahrheit th { font: 500 var(--fs-xs) var(--sans); text-transform: uppercase; letter-spacing: .05em; color: var(--fg-dim); padding: 6px; border-bottom: 1px solid var(--border); }
+  .wahrheit td { padding: 6px; border-bottom: 1px solid var(--border); }
+  .wahrheit tr.jetzt td { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+  .wahrheit .ok { color: var(--green); } .wahrheit .nein { color: var(--red); }
+  .stufen { display: flex; flex-wrap: wrap; gap: 4px; }
+  .stufen .chip.jetzt { color: var(--accent); border-color: var(--accent); }
+</style>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="a-kopf">
+      <button class="ikon"><i class="fa-solid fa-arrow-left"></i></button>
+      <span class="zelle-titel"><b>Schaltung 3: Halbaddierer</b><span>Digitale Schaltungen, Verdrahten</span></span>
+      <div class="meta">
+        <span class="badge" style="color:var(--green)">Anfänger</span>
+        <span class="sterne gross"><i class="fa-regular fa-star aus"></i><i class="fa-regular fa-star aus"></i><i class="fa-regular fa-star aus"></i></span>
+        <span class="num" style="color:var(--accent)"><i class="fa-solid fa-coins"></i> 0 / 20</span>
+      </div>
+    </header>
+    <div class="steuer-seite">
+      <section class="spalte">
+        <nav class="reiter-klein"><button class="aktiv">Aufgabe</button><button>Musterlösung</button><button>Verlauf</button></nav>
+        <div class="rollfeld md">
+          <p>Zwei Bits A und B sollen addiert werden. Die Summe hat zwei Stellen: S ist die Einerstelle, C der Übertrag. Die Bausteine stehen schon, du ziehst nur die Leitungen: von einem Ausgang (rechts am Baustein) zu einem Eingang (links).</p>
+          <div class="modus"><button class="aktiv">Verdrahten</button><button>Frei bauen</button></div>
+          <h2>Teilschritte</h2>
+          <div class="teilschritte">
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>1. Die Summe S</b><small>S ist 1, wenn genau eins von A und B 1 ist.</small></div></div>
+            <div class="teilschritt aktuell"><i class="fa-solid fa-crosshairs"></i><div><b>2. Der Übertrag C</b><small>C ist 1, wenn A und B beide 1 sind.</small><div class="stand"><i class="fa-solid fa-triangle-exclamation"></i> bei A = 1, B = 1 bleibt C dunkel</div></div></div>
+            <div class="teilschritt zu"><i class="fa-solid fa-lock"></i><div><b>3. Ganze Wahrheitstabelle</b><small>Alle vier Zeilen stimmen für S und C.</small></div></div>
+          </div>
+          <h2>Bausteine</h2>
+          <div class="spickzettel">
+            <code>UND</code><span>1, wenn beide Eingänge 1 sind</span>
+            <code>ODER</code><span>1, wenn mindestens einer 1 ist</span>
+            <code>XOR</code><span>1, wenn genau einer 1 ist</span>
+            <code>NICHT</code><span>dreht um: aus 1 wird 0</span>
+          </div>
+          <h2>Sterne</h2>
+          <div class="spickzettel" style="font-family:var(--sans)">
+            <span class="sterne"><i class="fa-solid fa-star"></i></span><span>die ganze Wahrheitstabelle stimmt</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>höchstens 2 Bausteine</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>dazu höchstens 1 Baustein auf dem längsten Weg</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte mitte">
+        <div class="spalten-kopf"><span class="kopf-titel">Schaltplan, 2 Bausteine, 5 Leitungen</span><button class="knopf voll" style="margin-left:auto"><i class="fa-solid fa-check"></i>Prüfen</button></div>
+        <div class="bausteine">
+          <span class="baustein-chip gesperrt"><i class="fa-solid fa-microchip"></i>UND</span>
+          <span class="baustein-chip gesperrt"><i class="fa-solid fa-microchip"></i>ODER</span>
+          <span class="baustein-chip gesperrt"><i class="fa-solid fa-microchip"></i>XOR</span>
+          <span class="baustein-chip gesperrt"><i class="fa-solid fa-microchip"></i>NICHT</span>
+          <span class="dim" style="margin-left:auto;font-size:var(--fs-sm);align-self:center">Verdrahten: Bausteine stehen fest</span>
+        </div>
+        <div class="rollfeld" style="padding:var(--sp-3)">
+          <svg class="plan" viewBox="0 0 520 300" role="img" aria-label="Schaltplan"></svg>
+          <p class="dim" style="font-size:var(--fs-sm)">Klick auf A oder B schaltet den Eingang um; leuchtende Leitungen führen 1. Die Leitung zu C fehlt noch: vom Ausgang des UND zum Lämpchen C ziehen.</p>
+        </div>
+      </section>
+
+      <section class="spalte" id="welt">
+        <div class="spalten-kopf"><span>Wahrheitstabelle</span></div>
+        <div class="rollfeld welt-spalte">
+          <table class="wahrheit">
+            <thead><tr><th>A</th><th>B</th><th>S soll</th><th>S ist</th><th>C soll</th><th>C ist</th></tr></thead>
+            <tbody data-tabelle></tbody>
+          </table>
+          <div class="sim-werte">
+            <div><span class="num" data-wert="zeilen">3 / 4</span><small>Zeilen richtig</small></div>
+            <div><span class="num">2</span><small>Bausteine</small></div>
+            <div><span class="num">1</span><small>Tiefe</small></div>
+            <div><span class="num">5</span><small>Leitungen</small></div>
+          </div>
+          <div class="gruppe" style="margin:0">Die Reihe</div>
+          <div class="stufen">
+            <span class="chip ok">1 Gatter kennen</span><span class="chip ok">2 NICHT und UND</span><span class="chip jetzt">3 Halbaddierer</span>
+            <span class="chip">4 Volladdierer</span><span class="chip">5 4-Bit-Addierer</span><span class="chip">6 Multiplexer</span>
+            <span class="chip">7 Dekoder</span><span class="chip">8 7-Segment-Anzeige</span><span class="chip">9 Flipflop</span><span class="chip">10 Zähler</span>
+          </div>
+          <p class="dim" style="margin:0;font-size:var(--fs-sm)">Geprüft wird die ganze Wahrheitstabelle, auf dem Server und ohne Sandbox: abgegeben wird kein Code, sondern der Schaltplan als Liste von Bausteinen und Leitungen. Ab Stufe 5 kommt "Frei bauen" dazu: dann setzt man die Bausteine selbst.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+(function () {
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.querySelector('.plan');
+  const el = (name, attr, eltern = svg) => { const e = document.createElementNS(NS, name); for (const [k, v] of Object.entries(attr)) e.setAttribute(k, v); eltern.appendChild(e); return e; };
+  for (let x = 0; x <= 520; x += 20) el('line', { class: 'raster', x1: x, y1: 0, x2: x, y2: 300 });
+  for (let y = 0; y <= 300; y += 20) el('line', { class: 'raster', x1: 0, y1: y, x2: 520, y2: y });
+  const ein = { A: 0, B: 1 };
+  const drahtEbene = el('g', {});
+  // Bausteine: Körper mit zwei Eingängen links, einem Ausgang rechts
+  function gatter(x, y, text) {
+    el('path', { class: 'gatter', d: `M ${x} ${y} h 46 a 26 26 0 0 1 0 52 h -46 z` });
+    el('text', { class: 'gatter-text', x: x + 30, y: y + 31, 'text-anchor': 'middle' }).textContent = text;
+    [[x, y + 14], [x, y + 38], [x + 72, y + 26]].forEach(([cx, cy]) => el('circle', { class: 'pin', cx, cy, r: 4 }));
+  }
+  gatter(230, 54, 'XOR');
+  gatter(230, 184, 'UND');
+  const schalter = {};
+  [['A', 60], ['B', 220]].forEach(([n, y]) => {
+    const g = el('g', {});
+    schalter[n] = el('rect', { class: 'schalter', x: 30, y: y - 18, width: 46, height: 36, rx: 6 }, g);
+    const t = el('text', { class: 'schalter-text', x: 53, y: y + 5, 'text-anchor': 'middle' }, g);
+    schalter[n].addEventListener('click', () => { ein[n] = 1 - ein[n]; zeichne(); });
+    schalter[n].t = t;
+  });
+  const lampen = { S: el('circle', { class: 'lampe-a', cx: 460, cy: 80, r: 16 }), C: el('circle', { class: 'lampe-a', cx: 460, cy: 210, r: 16 }) };
+  el('text', { class: 'name', x: 484, y: 85 }).textContent = 'S';
+  el('text', { class: 'name', x: 484, y: 215 }).textContent = 'C';
+  // Leitungen: [Signal, Punkte]; die zu C fehlt noch
+  const DRAEHTE = [
+    ['A', 'M 76 60 H 150 V 68 H 230'], ['B', 'M 76 220 H 170 V 92 H 230'],
+    ['A', 'M 150 60 V 198 H 230'], ['B', 'M 170 220 V 222 H 230'],
+    ['S', 'M 302 80 H 444'],
+  ];
+  const wege = DRAEHTE.map(([s, d]) => [s, el('path', { class: 'draht', d }, drahtEbene)]);
+  // Knoten, wo sich Leitungen teilen
+  [[150, 60], [170, 220]].forEach(([cx, cy]) => el('circle', { cx, cy, r: 3.5, fill: 'var(--fg-mute)' }));
+
+  const tbody = document.querySelector('[data-tabelle]');
+  function zeichne() {
+    const s = ein.A ^ ein.B, c = 0; // C ist noch nicht verdrahtet
+    const wert = { A: ein.A, B: ein.B, S: s };
+    wege.forEach(([n, p]) => p.classList.toggle('an', !!wert[n]));
+    Object.entries(schalter).forEach(([n, r]) => { r.classList.toggle('an', !!ein[n]); r.t.textContent = `${n} ${ein[n]}`; });
+    lampen.S.classList.toggle('an', !!s);
+    lampen.C.classList.toggle('an', !!c);
+    tbody.innerHTML = [[0, 0], [0, 1], [1, 0], [1, 1]].map(([a, b]) => {
+      const sSoll = a ^ b, cSoll = a & b, sIst = a ^ b, cIst = 0;
+      const jetzt = a === ein.A && b === ein.B;
+      return `<tr class="${jetzt ? 'jetzt' : ''}"><td>${a}</td><td>${b}</td><td>${sSoll}</td><td class="${sIst === sSoll ? 'ok' : 'nein'}">${sIst}</td><td>${cSoll}</td><td class="${cIst === cSoll ? 'ok' : 'nein'}">${cIst}</td></tr>`;
+    }).join('');
+  }
+  zeichne();
+})();
+</script>
+</body>
+</html>
