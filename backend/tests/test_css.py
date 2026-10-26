@@ -68,3 +68,12 @@ def test_verlauf_punkte_und_pixelgenau(settings):
     assert any(e["id"] == "pixelgenau" for e in erg["belohnung"]["neue_erfolge"])
     verlauf = client.get("/api/aufgaben/c005-knopf/submissions").json()
     assert [v["deckung"] for v in verlauf] == [1.0, 0.96]
+
+
+def test_css_bestand_fuer_die_messung_im_browser(settings):
+    client = TestClient(app_bauen(settings, runner=object()))
+    bestand = client.get("/api/admin/css-bestand").json()
+    assert bestand["voll"] == 0.9995 and bestand["bestehen"] == 0.95
+    knopf = next(a for a in bestand["aufgaben"] if a["id"] == "c005-knopf")
+    assert knopf["ziel_html"] and knopf["ziel_css"] and knopf["musterloesungen"][0]["code"]
+    assert [a["id"] for a in bestand["aufgaben"]] == ["c005-knopf"]  # nur CSS-Nachbauten

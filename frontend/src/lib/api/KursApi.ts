@@ -45,7 +45,7 @@ export type TeilSicht =
   | { art: 'augenzwinkern'; text: string }
   | { art: 'zeichnung'; url: string; unterschrift: string }
   | { art: 'diagramm'; url: string | null; titel: string }
-  | { art: 'beispiel'; id: string; code: string; vorhersage: VorhersageSicht | null; eingabe: string[]; ablauf: boolean }
+  | { art: 'beispiel'; id: string; code: string; html: string | null; vorhersage: VorhersageSicht | null; eingabe: string[]; ablauf: boolean }
   | { art: 'frage'; frage: FrageSicht };
 
 export type BeispielTeil = Extract<TeilSicht, { art: 'beispiel' }>;
@@ -115,7 +115,8 @@ export interface MerkblattSicht {
   kapitel: number | null;
   lernziele: string[];
   merke: string[];
-  beispiele: { code: string; ausgabe: string | null }[];
+  /** bei CSS mit dem Markup; das Merkblatt zeigt dazu die Bühne */
+  beispiele: { code: string; html: string | null; ausgabe: string | null }[];
   fallen: { titel: string; text: string }[];
   begriffe: string[];
   bild: BildVerweis | null;
@@ -205,7 +206,14 @@ export interface SqlLauf {
   laufzeit_ms: number;
 }
 
-export type Lauf = Aufzeichnung | SqlLauf;
+/** Lauf eines CSS-Beispiels: Markup und CSS für die Bühne, gerendert im Browser. */
+export interface CssLauf {
+  art: 'css';
+  html: string;
+  css: string;
+}
+
+export type Lauf = Aufzeichnung | SqlLauf | CssLauf;
 
 class KursApi extends HttpBase {
   uebersicht() {

@@ -19,6 +19,7 @@
   import Seite from './Seite.svelte';
   import AufgabeEditor from './AufgabeEditor.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
+  import CssBestandMessung from './CssBestandMessung.svelte';
   import PfadEditor from './PfadEditor.svelte';
 
   let eintraege = $state<VerwaltungsEintrag[]>([]);
@@ -330,6 +331,7 @@
         </ul>
       {/if}
     {/if}
+    {#if aktiver_tab === 'aufgaben'}<CssBestandMessung />{/if}
     {#if aktiver_tab === 'aufgaben' && eintraege.length > 0}
       <div class="kennzahlen">
         <div class="kennzahl"><span class="num">{aggregat.gesamt}</span><small>Aufgaben</small></div>

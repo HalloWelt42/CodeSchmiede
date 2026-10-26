@@ -1,0 +1,17 @@
+# CSS-Kurs: Kapitel in Reihenfolge, je Kapitel Einführung, Übungen (verblassend, je Übung eine neue Sache) und das
+# Stück des Kapitelprojekts Speisekarte. Ein Kapitel steht hier erst, wenn es fertig ist (Inbetriebnahme
+# kapitelweise). Beispiele und Übungen laufen auf der Bühne im Browser; geübt wird als CSS-Nachbau mit vorgegebenem HTML.
+sprache: css
+titel: CSS
+bloecke:
+  - titel: Erste Schritte
+    kapitel:
+      - einfuehrung: css-html
+        uebungen: [w011-erste-farbe, w012-ueberschrift-gold, w013-schild, w014-buehne-faerben, w015-liste, w016-markieren, w017-abschalten]
+        projekt: [w019-speisekarte-farben]
+      - einfuehrung: css-klassen
+        uebungen: [w021-punkt, w022-zwei-klassen, w023-gleiche-klasse, w024-id, w025-mehrere-klassen, w026-nur-listeneintraege, w027-ausnahme]
+        projekt: [w029-speisekarte-klassen]
+      - einfuehrung: css-kombinieren
+        uebungen: [w031-nur-in-der-karte, w032-tief-drin, w033-direkt-in-der-kiste, w034-alle-ueberschriften, w035-alles-in-der-karte, w036-gruppe-mit-tiefe, w037-ein-leerzeichen]
+        projekt: [w039-speisekarte-bereiche]

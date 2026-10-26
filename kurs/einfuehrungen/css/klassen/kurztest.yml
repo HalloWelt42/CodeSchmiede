@@ -1,0 +1,52 @@
+# Kurztest zu Kapitel 2: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-raute
+    text: "Welche Regel färbt nur das Element mit `id=\"kasse\"`?"
+    als_code: true
+    optionen:
+      - text: "#kasse { color: gold; }"
+        richtig: true
+        erklaerung: Richtig, die Raute steht für eine id.
+      - text: ".kasse { color: gold; }"
+        erklaerung: Der Punkt wählt Klassen. Das Element hat aber eine id.
+      - text: "kasse { color: gold; }"
+        erklaerung: Ohne Zeichen davor sucht der Browser ein Element namens kasse.
+  - frageart: auswahl
+    id: kt-zwei-klassen
+    text: "Welche Regeln gelten für `<p class=\"hinweis wichtig\">`?"
+    code: |
+      .hinweis { color: skyblue; }
+      .wichtig { background-color: maroon; }
+      p.wichtig { color: gold; }
+    optionen:
+      - text: Alle drei
+        richtig: true
+        erklaerung: Richtig. Der Absatz trägt beide Klassen und ist ein p, also passen alle drei Selektoren.
+      - text: Nur die erste, weil hinweis zuerst im Attribut steht
+        erklaerung: Die Reihenfolge der Klassen im Attribut spielt keine Rolle.
+      - text: Nur die ersten beiden
+        erklaerung: p.wichtig passt auch, denn es ist ein p mit der Klasse wichtig.
+  - frageart: fehlerstelle
+    id: kt-doppelte-id
+    text: Hier verstößt das HTML gegen eine Regel für ids. In welcher Zeile zum ersten Mal?
+    code: |
+      <ul>
+        <li id="hering">Hering</li>
+        <li id="makrele">Makrele</li>
+        <li id="hering">Hering vom Grill</li>
+      </ul>
+    zeile: 4
+    erklaerung: Genau. Die id hering gibt es schon in Zeile 2, eine id darf es aber nur einmal geben.
+    hinweis: Welche id kommt doppelt vor?
+  - frageart: luecke
+    id: kt-luecke-element-klasse
+    text: Nur Überschriften h2 mit der Klasse neu sollen grün werden. Ergänze den Selektor.
+    code: |
+      ___ {
+        color: lightgreen;
+      }
+    antworten: [["h2.neu"]]
+    erklaerung: Richtig, Element und Klasse ohne Leerzeichen zusammen.
+    hinweis: Erst das Element, dann ohne Lücke die Klasse mit Punkt.
+uebung: w028-wochenplan

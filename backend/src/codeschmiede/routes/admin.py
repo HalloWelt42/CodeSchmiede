@@ -4,7 +4,8 @@ Eigener Präfix `/api/admin`, eigene Pydantic-Modelle. Liefert die
 komplette Sicht auf Aufgaben (inkl. versteckter Tests, Hints,
 Musterlösungen, Statistik), die Befunde der Bestandsprüfung und erlaubt
 CRUD: Aufgaben, Musterlösungen und Pfade anlegen, ändern, löschen,
-gegen ihre eigenen Tests validieren.
+gegen ihre eigenen Tests validieren. Für die CSS-Nachbauten liefert sie,
+was die Messung im Browser braucht (rendern kann nur der Browser).
 
 Schreiben geht nur, wenn `aufgaben_schreibbar` gesetzt ist; auf dem Pi
 kommen die Aufgaben aus dem Repo und werden am Mac bearbeitet.
@@ -24,6 +25,7 @@ from ..models.konfig import Konfiguration
 from ..models.pfad import Pfad
 from ..models.progress import Progress
 from ..progress.submissions import SubmissionStatistik
+from ..pruefung.css_klon_pruefer import BESTEHEN, VOLL
 from ..pruefung.orchestrator import pruefe
 from ..sandbox.runner import SandboxFehler
 from ..state import AppState
@@ -107,6 +109,26 @@ class AufgabeSchreibAnfrage(BaseModel):
 class MusterloesungEintrag(BaseModel):
     variante: str
     code: str
+
+
+class CssNachbau(BaseModel):
+    """Eine CSS-Aufgabe, wie die Messung des Bestands sie braucht."""
+
+    id: str
+    titel: str
+    ziel_html: str
+    ziel_css: str
+    starter_code: str
+    musterloesungen: list[MusterloesungEintrag]
+
+
+class CssBestand(BaseModel):
+    """Alle CSS-Nachbauten mit den Schwellen des Prüfers: die Musterlösung muss voll decken, der Startcode darf nicht
+    bestehen."""
+
+    voll: float
+    bestehen: float
+    aufgaben: list[CssNachbau]
 
 
 class MusterloesungInhalt(BaseModel):
@@ -222,6 +244,21 @@ def baue_admin_router(state: AppState) -> APIRouter:
     def befunde() -> list[Befund]:
         """Was die Bestandsprüfung beim letzten Einlesen gefunden hat."""
         return state.befunde
+
+    @router.get("/css-bestand", response_model=CssBestand)
+    def css_bestand() -> CssBestand:
+        """Alles für die Messung der CSS-Nachbauten im Browser (Verwaltung, "CSS-Bestand messen")."""
+        nachbauten = []
+        for a in state.aufgaben.alle_aufgaben():
+            if a.task_type != "css_klon":
+                continue
+            extra = a.model_extra or {}
+            nachbauten.append(CssNachbau(
+                id=a.id, titel=a.titel, ziel_html=str(extra.get("ziel_html", "")), ziel_css=str(extra.get("ziel_css", "")),
+                starter_code=a.starter_code or "",
+                musterloesungen=[MusterloesungEintrag(variante=m["variante"], code=m["code"]) for m in state.loader.lade_musterloesungen(a.id)],
+            ))
+        return CssBestand(voll=VOLL, bestehen=BESTEHEN, aufgaben=sorted(nachbauten, key=lambda n: n.id))
 
     @router.get("/export")
     def export() -> dict:

@@ -20,6 +20,7 @@ from ..sandbox.result import RunLimits
 from ..sandbox.runner import Runner
 from .aufzeichnung import Aufzeichnung, aufzeichnen
 from .begriffe import erkenne
+from .css_lauf import CssLauf
 from .einlesen import Kursinhalt, lade
 from .fortschritt import KursBeitrag, KursfortschrittRepository, Stand
 from .modelle import (Alltag, Augenzwinkern, Auswahlfrage, Beispiel, Diagramm, Einfuehrung, Falle,
@@ -40,9 +41,11 @@ VERTIEFUNG_ARTEN = {"code_schreiben", "sql_abfrage", "sql_aenderung"}
 """Aufgabenarten, aus denen die Vertiefung am Kapitelende kommt."""
 
 Frage = Auswahlfrage | Lueckenfrage | Ordnungsfrage | Fehlerstellenfrage
-Lauf = Aufzeichnung | SqlLauf
+Lauf = Aufzeichnung | SqlLauf | CssLauf
 MIT_ABLAUF = {"python", "sql", "javascript"}
-"""Sprachen, deren Beispiele die Codeschmiede ausführt und abspielt."""
+"""Sprachen, deren Beispiele die Codeschmiede in der Sandbox ausführt und abspielt."""
+AUSFUEHRBAR = MIT_ABLAUF | {"css"}
+"""Sprachen, deren Beispiele sich ausführen lassen; CSS rendert der Browser auf der Bühne."""
 
 
 class NichtGefunden(LookupError):
@@ -270,7 +273,7 @@ class Kursdienst:
             return DiagrammSicht(url=f"/api/kurs/diagramme/{t.pruefsumme}.svg" if datei else None, titel=t.titel)
         if isinstance(t, Beispiel):
             v = t.vorhersage
-            return BeispielSicht(id=t.id, code=t.code, eingabe=t.eingabe, ablauf=t.ablauf and e.kopf.sprache in MIT_ABLAUF, vorhersage=None if v is None else VorhersageSicht(
+            return BeispielSicht(id=t.id, code=t.code, html=t.html, eingabe=t.eingabe, ablauf=t.ablauf and e.kopf.sprache in MIT_ABLAUF, vorhersage=None if v is None else VorhersageSicht(
                 art=v.art, frage=v.frage, optionen=[o.text for o in v.optionen] or None,
                 beantwortet=stand.beantwortet("vorhersage", e.id, t.id), richtig=stand.richtig("vorhersage", e.id, t.id)))
         if isinstance(t, FrageTeil):
@@ -338,7 +341,10 @@ class Kursdienst:
     def _vorhersage(self, e: Einfuehrung, b: Beispiel, v: Vorhersage, a: Antwort) -> tuple[bool, str]:
         if v.art == "auswahl":
             return self._auswahl(v.optionen, a)
-        return vorhersage_stimmt(v.vergleich, a.eingetippt or "", self.lauf(e, b).ausgabe), v.erklaerung
+        lauf = self.lauf(e, b)
+        if isinstance(lauf, CssLauf):
+            raise NichtErlaubt("Vorhersagen zu CSS gehen nur als Auswahl")
+        return vorhersage_stimmt(v.vergleich, a.eingetippt or "", lauf.ausgabe), v.erklaerung
 
     def abschnitt_fertig(self, eid: str, nummer: int) -> None:
         e = self._einfuehrung(eid)
@@ -363,10 +369,13 @@ class Kursdienst:
 
     def lauf(self, e: Einfuehrung, b: Beispiel, code: str | None = None) -> Lauf:
         """Lauf eines Beispiels: bei Python und JavaScript die Aufzeichnung, bei SQL Ergebnis und Zwischentabellen auf
-        dem Datensatz der Einführung. Das Original wird je Inhalt nur einmal gerechnet."""
-        if e.kopf.sprache not in MIT_ABLAUF:
+        dem Datensatz der Einführung, bei CSS Markup und CSS für die Bühne. Das Original wird je Inhalt nur einmal
+        gerechnet."""
+        if e.kopf.sprache not in AUSFUEHRBAR:
             raise NichtErlaubt(f"Beispiele in {e.kopf.sprache} lassen sich noch nicht ausführen")
         quelltext = b.code if code is None else code
+        if e.kopf.sprache == "css":
+            return CssLauf(html=b.html or "", css=quelltext)
         schluessel = hashlib.sha256("\0".join([e.kopf.sprache, e.kopf.datensatz or "", quelltext, *b.eingabe]).encode()).hexdigest()
         if code is None and schluessel in self._laeufe:
             return self._laeufe[schluessel]
@@ -452,7 +461,7 @@ class Kursdienst:
                     ausgabe = lauf.ausgabe if not lauf.fehler else None
                 except Exception:  # noqa: BLE001 - ohne Sandbox bleibt das Merkblatt ohne Ausgaben
                     ausgabe = None
-            beispiele.append(MerkBeispiel(code=erstes.code, ausgabe=ausgabe))
+            beispiele.append(MerkBeispiel(code=erstes.code, html=erstes.html, ausgabe=ausgabe))
         kapitel = self._kapitelnummer(eid)
         return MerkblattSicht(
             einfuehrung=eid, sprache=e.kopf.sprache, titel=e.kopf.titel, kapitel=kapitel[1] if kapitel else None,

@@ -8,6 +8,7 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 
 from ..kurs.aufzeichnung import Aufzeichnung
+from ..kurs.css_lauf import CssLauf
 from ..kurs.sql_ablauf import SqlLauf
 from ..kurs.dienst import NichtErlaubt, NichtGefunden
 from ..kurs.sicht import (Antwort, AusfuehrenAnfrage, EinfuehrungSicht, KursSicht, KurztestSicht, MerkblattSicht,
@@ -63,8 +64,8 @@ def baue_kurs_router(state: AppState) -> APIRouter:
             state.kurs.abschnitt_fertig(eid, nummer)
             return state.kurs.einfuehrung(eid)
 
-    @router.post("/einfuehrung/{eid}/beispiel/{bid}/ausfuehren", response_model=Aufzeichnung | SqlLauf)
-    def ausfuehren(eid: str, bid: str, anfrage: AusfuehrenAnfrage) -> Aufzeichnung | SqlLauf:
+    @router.post("/einfuehrung/{eid}/beispiel/{bid}/ausfuehren", response_model=Aufzeichnung | SqlLauf | CssLauf)
+    def ausfuehren(eid: str, bid: str, anfrage: AusfuehrenAnfrage) -> Aufzeichnung | SqlLauf | CssLauf:
         with _fehler():
             offen(eid)
             return state.kurs.ausfuehren(eid, bid, anfrage.code)

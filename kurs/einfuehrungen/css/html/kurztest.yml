@@ -1,0 +1,50 @@
+# Kurztest zu Kapitel 1: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-kind
+    text: Welches Element ist hier das Elternelement von strong?
+    code: |
+      <ul>
+        <li>Hering <strong>frisch</strong></li>
+      </ul>
+    optionen:
+      - text: li
+        richtig: true
+        erklaerung: Richtig. strong steckt direkt im li, und das li steckt in der ul.
+      - text: ul
+        erklaerung: ul ist eine Ebene weiter außen, sozusagen die Großmutter.
+      - text: strong hat kein Elternelement
+        erklaerung: Jedes Element außer dem äußersten steckt in einem anderen.
+  - frageart: luecke
+    id: kt-luecke-hintergrund
+    text: Der Absatz soll einen goldenen Hintergrund bekommen. Ergänze die Eigenschaft.
+    code: |
+      p {
+        ___: gold;
+      }
+    antworten: [["background-color"]]
+    erklaerung: Richtig, background-color färbt den Kasten hinter dem Text.
+    hinweis: Hintergrund heißt auf Englisch background, Farbe color.
+  - frageart: fehlerstelle
+    id: kt-semikolon
+    text: Hier wird nichts blau und nichts gold. In welcher Zeile steckt der Fehler?
+    code: |
+      h2 {
+        color: navy
+        background-color: gold;
+      }
+    zeile: 2
+    erklaerung: Genau. Ohne Semikolon gehört die nächste Zeile zum Wert, und beide Angaben fallen weg.
+    hinweis: Jede Angabe endet mit einem bestimmten Zeichen.
+  - frageart: auswahl
+    id: kt-selektor
+    text: "Für welche Elemente gilt die Regel `li { color: gold; }`?"
+    optionen:
+      - text: Für jeden Listeneintrag, egal in welcher Liste
+        richtig: true
+        erklaerung: Richtig, der Name als Selektor wählt alle Elemente dieser Art.
+      - text: Nur für den ersten Listeneintrag
+        erklaerung: Ein Selektor mit dem Namen wählt alle, nicht nur den ersten.
+      - text: Für die ganze Liste samt Überschrift darüber
+        erklaerung: Die Überschrift ist kein li. Und die ul selbst auch nicht.
+uebung: w018-preisschild

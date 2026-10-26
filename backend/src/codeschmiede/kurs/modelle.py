@@ -203,6 +203,8 @@ class Beispiel(Streng):
     id: str = Field(pattern=KENNUNG)
     code: str
     vorhersage: Vorhersage | None = None
+    html: str | None = None
+    """CSS: das Markup, auf das die Regeln in `code` wirken (Pflicht bei CSS, sonst nicht erlaubt)."""
     eingabe: list[str] = Field(default_factory=list)
     """Zeilen, die input() der Reihe nach liest."""
     ablauf: bool = True
@@ -262,6 +264,21 @@ class Einfuehrung(Streng):
     def id(self) -> str:
         return self.kopf.id
 
+    @model_validator(mode="after")
+    def _beispiele_passend(self) -> Einfuehrung:
+        """CSS-Beispiele brauchen Markup und lassen sich nur als Auswahl vorhersagen (es gibt keine Textausgabe, nur
+        ein Bild); Beispiele anderer Sprachen haben kein Markup."""
+        css = self.kopf.sprache == "css"
+        for a in self.abschnitte:
+            for b in a.beispiele():
+                if css and not b.html:
+                    raise ValueError(f"Beispiel {b.id}: CSS-Beispiele brauchen html")
+                if not css and b.html is not None:
+                    raise ValueError(f"Beispiel {b.id}: html gibt es nur bei CSS")
+                if css and b.vorhersage is not None and b.vorhersage.art != "auswahl":
+                    raise ValueError(f"Beispiel {b.id}: Vorhersagen zu CSS gehen nur als Auswahl")
+        return self
+
 
 class Kurztest(Streng):
     fragen: list[Frage] = Field(min_length=2)
@@ -298,10 +315,12 @@ class Erkennung(Streng):
     knoten: list[str] = Field(default_factory=list)
     """Python: Namen von Knoten des Syntaxbaums (For, While, ListComp ...); SQL: Ausdrucksarten des SQL-Parsers
     (Select, Where, Order, Join, Like ...); JavaScript: Knotenarten von tree-sitter (if_statement, template_string,
-    arrow_function ...)."""
+    arrow_function ...); CSS: Selektorarten (typ, klasse, id, nachfahre, kind, gruppe ...), Pseudoklassen und
+    -elemente mit Namen (:first-child, ::before), at-Regeln (@media), regel, kommentar, eigene_eigenschaft."""
     aufrufe: list[str] = Field(default_factory=list)
     """Python: aufgerufene Namen (print, range, len ...); SQL: Funktionen in Großbuchstaben (COUNT, UPPER ...);
-    JavaScript: aufgerufene Namen (prompt, Number ...) und Aufrufe an einem Namen mit Punkt (console.log, Math.round)."""
+    JavaScript: aufgerufene Namen (prompt, Number ...) und Aufrufe an einem Namen mit Punkt (console.log, Math.round);
+    CSS: Funktionen (rgb, calc, var, linear-gradient ...)."""
     methoden: list[str] = Field(default_factory=list)
     """Python und JavaScript: aufgerufene Methoden (append, split; push, toUpperCase ...)."""
     operatoren: list[str] = Field(default_factory=list)
@@ -309,9 +328,17 @@ class Erkennung(Streng):
     im Code stehen (===, %, let, const ...)."""
     literale: list[str] = Field(default_factory=list)
     """Python: Typen fester Werte im Code (str, int, float, bool, NoneType); JavaScript: Knotenarten fester Werte
-    (number, string, template_string, true, false, null, undefined)."""
+    (number, string, template_string, true, false, null, undefined); CSS: Einheiten (px, em, %), hex, zahl, text."""
     eigenschaften: list[str] = Field(default_factory=list)
-    """JavaScript: gelesene Eigenschaften hinter einem Punkt, die keine Methoden sind (length, size ...)."""
+    """JavaScript: gelesene Eigenschaften hinter einem Punkt, die keine Methoden sind (length, size ...); CSS:
+    Eigenschaften der Angaben (color, margin ...)."""
+    werte: list[str] = Field(default_factory=list)
+    """CSS: Schlüsselwörter als eigenschaft:wert (display:flex, position:absolute) oder *:wert für jede Eigenschaft
+    (*:inherit)."""
+    elemente: list[str] = Field(default_factory=list)
+    """CSS: Elemente im Markup und als Selektor (p, li, div ...)."""
+    attribute: list[str] = Field(default_factory=list)
+    """CSS: Attribute im Markup (class, id ...)."""
 
 
 class Begriff(Streng):

@@ -13,6 +13,8 @@
   --ed-grund: #2b2b2b; --ed-text: #a9b7c6; --ed-rand: #313335; --ed-nr: #606366;
   --ed-kw: #cc7832; --ed-str: #6a8759; --ed-zahl: #6897bb; --ed-kom: #808080; --ed-fn: #ffc66d; --ed-feld: #9876aa;
   --ed-zeile: #323232;
+  /* Kastenmodell in der CSS-Werkbank: Inhalt, Innenabstand, Rahmen, Außenabstand */
+  --kasten-inhalt: #38bdf8; --kasten-padding: #4fd1a5; --kasten-border: #ec6aa8; --kasten-margin: #f59e0b;
 }
 :root[data-geraet='telefon'] { --fs-lesen: 18px; }
 [data-sprache='python'] { --s-a: var(--py-a); --s-b: var(--py-b); --s-c: var(--py-c); }
@@ -190,12 +192,6 @@
   .regel-liste .regel .schalter::after { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 50%; background: var(--fg-mute); transition: left .15s; }
   .regel-liste .regel:not(.aus) .schalter { background: color-mix(in srgb, var(--accent) 30%, var(--bg)); border-color: var(--accent); }
   .regel-liste .regel:not(.aus) .schalter::after { left: 18px; background: var(--accent); }
-  .css-buehne { position: relative; min-height: 260px; display: grid; place-items: center; background: repeating-conic-gradient(#20242b 0 25%, #1c2026 0 50%) 0 0 / 16px 16px; border: 1px solid var(--border); overflow: hidden; }
-  .kastenmodell { position: relative; transition: all .35s; }
-  .km-aussen { background: color-mix(in srgb, #f59e0b 30%, transparent); outline: 1px dashed #f59e0b; transition: padding .35s; }
-  .km-rand { border-style: solid; border-color: #ec6aa8; transition: border-width .35s; }
-  .km-innen { background: color-mix(in srgb, #4fd1a5 30%, transparent); transition: padding .35s; }
-  .km-inhalt { background: color-mix(in srgb, #38bdf8 45%, var(--bg)); color: #0b1220; font-family: var(--quick); font-weight: 700; padding: 6px 10px; white-space: nowrap; }
   .legende { display: flex; flex-wrap: wrap; gap: var(--sp-3); font-size: var(--fs-xs); color: var(--fg-dim); }
   .legende span { display: inline-flex; align-items: center; gap: 6px; }
   .legende b { width: 14px; height: 14px; display: inline-block; border-radius: 2px; }

@@ -50,7 +50,7 @@ Zaunzeilen (die schließende Zeile ist genau drei Backticks). Je Abschnitt genau
 | ` ```merke ` | `text` | Merksatz; erscheint auch auf dem Merkblatt |
 | ` ```falle ` | `titel`, `text` | typischer Fehler; erscheint auch auf dem Merkblatt |
 | ` ```augenzwinkern ` | `text` | ein lockerer Satz zum Schluss |
-| ` ```beispiel ` | `id`, `code`, `vorhersage` (optional), `ablauf` (Vorgabe ja) | Beispiel zum Ausführen, mit Ablauf und Speicherbild |
+| ` ```beispiel ` | `id`, `code`, `vorhersage` (optional), `ablauf` (Vorgabe ja), bei CSS `html` (Pflicht) | Beispiel zum Ausführen, mit Ablauf und Speicherbild |
 | ` ```frage ` | siehe unten | Verständnisfrage |
 | ` ```mermaid ` | Mermaid-Code (kein YAML) | Diagramm, als SVG gebaut |
 
@@ -83,6 +83,14 @@ Versprechen laufen mit. Zeitgeber laufen dabei, wie in den Programm-Aufgaben, au
 Zwischentabelle in der Reihenfolge der Abarbeitung (FROM, JOIN, WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY,
 LIMIT); der SQL-Parser zerlegt die Abfrage in Teilabfragen, die in der Sandbox auf dem Datensatz laufen. Zerlegt wird
 eine einzelne SELECT-Abfrage ohne WITH und UNION, sonst gibt es nur das Ergebnis.
+
+CSS: `code` ist das CSS, `html` das Markup, auf das es wirkt. Es gibt keine Textausgabe, darum gehen Vorhersagen nur
+als Auswahl, und die richtige Option beschreibt das Bild ("Wie sieht es auf der Bühne aus?"). Der Lauf braucht keine
+Sandbox: der Browser rendert Markup und CSS auf derselben Bühne wie bei den CSS-Aufgaben (`frontend/src/lib/css/buehne.ts`).
+Die Werkbank zeigt das CSS Zeile für Zeile mit einem Schalter je Angabe und einem Abspieler (Angabe für Angabe
+zuschalten), die Bühne folgt jeder Änderung im Editor sofort, und das Kastenmodell eines Elements (das erste, das unter
+dem Zeiger oder das angetippte) erscheint als farbige Ringe mit der Rechnung "Rand zu Rand". In Fragen erkennt die
+Oberfläche Markup am ersten Zeichen `<`.
 
 Ausführen geht erst nach der Vorhersage (der Server erzwingt es). Bei `eintippen` vergleicht der Server mit der
 Ausgabe des echten Laufs.
@@ -125,7 +133,10 @@ Funktionen gibt es den Aufgabentyp `programm` (ganzes Programm, `tests_sichtbar`
 Liste der Eingabezeilen und `expected` als erwartete Ausgabe), in Python wie in JavaScript. Die Eingabezeilen liest
 `input()` in Python und `prompt()` in JavaScript; beide schreiben ihre Frage ohne Zeilenumbruch in die Ausgabe, und
 `prompt()` liefert `null`, wenn keine Zeile mehr da ist. Ein JavaScript-Programm ist fertig, wenn auch seine
-Zeitgeber und Versprechen erledigt sind. Vertiefung aus dem Bestand sucht die Codeschmiede
+Zeitgeber und Versprechen erledigt sind. Im CSS-Kurs sind die Übungen CSS-Nachbauten (`css_klon`, Kennungen
+`w<Kapitel><Nummer>`): das HTML ist vorgegeben, geschrieben wird das CSS. Ob jede Musterlösung ihr Ziel voll deckt und
+kein Startcode schon besteht, misst die Verwaltung im Browser ("CSS-Bestand messen"), mit derselben Messung wie beim
+Lösen. Vertiefung aus dem Bestand sucht die Codeschmiede
 selbst: Aufgaben, die nur Eingeführtes brauchen und das Neue des Kapitels üben.
 
 ## Begriffskatalog und Prüfung
@@ -134,7 +145,13 @@ selbst: Aufgaben, die nur Eingeführtes brauchen und das Neue des Kapitels üben
 `methoden`, `literale` aus dem Syntaxbaum; SQL: `knoten` als Ausdrucksarten des SQL-Parsers, dazu `LeftJoin` und
 `RightJoin`, und `aufrufe` als Funktionen in Großbuchstaben; JavaScript: `knoten` und `literale` als Knotenarten von
 tree-sitter, `operatoren` als Operatoren und Schlüsselwörter, wie sie im Code stehen (`===`, `let`, `of`), `aufrufe`
-als Namen, auch mit Punkt (`console.log`, `Math.round`), `methoden` und `eigenschaften` hinter einem Punkt (`length`)). Für jedes Kapitel gilt als bekannt, was dieses und alle früheren
+als Namen, auch mit Punkt (`console.log`, `Math.round`), `methoden` und `eigenschaften` hinter einem Punkt (`length`);
+CSS über tinycss2: `knoten` als Selektorarten (`typ`, `klasse`, `id`, `universal`, `attribut`, `nachfahre`, `kind`,
+`gruppe`, `nachbar`, `geschwister`), Pseudoklassen und -elemente mit Namen (`:first-child`, `::before`), at-Regeln
+(`@media`) sowie `regel`, `kommentar` und `eigene_eigenschaft`, `eigenschaften` der Angaben, `werte` als
+`eigenschaft:wert` oder `*:wert` (`display:flex`, `*:inherit`), `aufrufe` als Funktionen (`rgb`, `calc`), `literale`
+als Einheiten, `hex`, `zahl` und `text`; Markup (beginnt mit `<`, auch `html` der Beispiele und `ziel_html` der
+Aufgaben) über html.parser mit `elemente` und `attribute`). Für jedes Kapitel gilt als bekannt, was dieses und alle früheren
 einführen. Benutzt Code in Beispielen, Fragen, Kurztest, Übungen oder Projekt einen Begriff, der dort noch nicht
 eingeführt ist, meldet die Prüfung einen Vorgriff. Weitere Befunde: unbekannte Begriffe, doppelt eingeführte, fehlende
 Einführungen, Aufgaben oder Zeichnungen, ungebaute Diagramme, Einführungen ohne Kurs.

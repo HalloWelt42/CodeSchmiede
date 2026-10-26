@@ -32,12 +32,14 @@ def frage_code(f: Auswahlfrage | Lueckenfrage | Ordnungsfrage | Fehlerstellenfra
 
 
 def codestuecke(e: Einfuehrung) -> list[tuple[str, str]]:
-    """(Ort, Code) aller Beispiele und Fragen einer Einführung."""
+    """(Ort, Code) aller Beispiele und Fragen einer Einführung; bei CSS-Beispielen auch das Markup."""
     stuecke: list[tuple[str, str]] = []
     for a in e.abschnitte:
         for t in a.teile:
             if isinstance(t, Beispiel):
                 stuecke.append((f"Abschnitt {a.nummer}, Beispiel {t.id}", t.code))
+                if t.html:
+                    stuecke.append((f"Abschnitt {a.nummer}, Beispiel {t.id}, HTML", t.html))
             elif isinstance(t, FrageTeil) and (code := frage_code(t.frage)):
                 stuecke.append((f"Abschnitt {a.nummer}, Frage {t.frage.id}", code))
     return stuecke
@@ -102,6 +104,9 @@ def pruefe_kurs(inhalt: Kursinhalt, aufgaben: dict[str, Aufgabe], musterloesunge
                 stuecke += [(f"Aufgabe {aid}, Musterlösung {m['variante']}", m["code"]) for m in musterloesungen(aid)]
                 if a.starter_code:
                     stuecke.append((f"Aufgabe {aid}, Startcode", a.starter_code))
+                for feld in ("ziel_html", "ziel_css"):
+                    if isinstance(wert := (a.model_extra or {}).get(feld), str):
+                        stuecke.append((f"Aufgabe {aid}, {feld}", wert))
             if katalog is None:
                 continue
             for wo, code in stuecke:

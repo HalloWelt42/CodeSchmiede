@@ -22,8 +22,9 @@
   let optionen = $derived(frage?.optionen ?? vorhersage?.optionen ?? []);
   let mehrere = $derived(frage?.mehrere ?? false);
   // Vorhersagen zeigen Ausgaben in fester Breite, außer sie stellen eine eigene Frage (etwa nach der Zeilenzahl)
-  let alsCode = $derived(vorhersage ? !vorhersage.frage : (frage?.als_code ?? false));
-  let vorhersageText = $derived(vorhersage?.frage ?? (sprache === 'sql' ? 'Was liefert die Abfrage?' : 'Was gibt das Beispiel aus?'));
+  // Vorhersagen ohne eigene Frage zeigen Ausgaben als Code; bei CSS beschreiben die Optionen das Bild der Bühne
+  let alsCode = $derived(vorhersage ? !vorhersage.frage && sprache !== 'css' : (frage?.als_code ?? false));
+  let vorhersageText = $derived(vorhersage?.frage ?? ({ sql: 'Was liefert die Abfrage?', css: 'Wie sieht es auf der Bühne aus?' }[sprache] ?? 'Was gibt das Beispiel aus?'));
 
   let urteil = $state<Urteil | null>(null);
   let gewaehlt = $state<number[]>([]);

@@ -1,0 +1,11 @@
+#woche {
+  color: gold;
+}
+
+.tag {
+  color: lightgreen;
+}
+
+li.frei {
+  background-color: maroon;
+}

@@ -241,7 +241,7 @@ def test_merkblatt_sammelt_merke_fallen_und_beispiele(kurs_client):
     m = kurs_client.get("/api/kurs/merkblatt/py-ausgabe").json()
     assert m["merke"] == ["print gibt aus, was in den Klammern steht."]
     assert m["fallen"][0]["titel"] == "Anführungszeichen vergessen"
-    assert m["beispiele"][0] == {"code": 'print("Hallo")\n', "ausgabe": "Hallo\n"}
+    assert m["beispiele"][0] == {"code": 'print("Hallo")\n', "html": None, "ausgabe": "Hallo\n"}
     assert m["begriffe"] == ["Ausgabe mit print", "Text"]
 
 

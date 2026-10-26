@@ -131,7 +131,7 @@
               <KapitelEnde einfuehrung={e} {kapitel} />
             {:else if abschnitt}
               <div><div class="dachzeile">Abschnitt {abschnitt.nummer} von {e.abschnitte.length}</div><h2>{abschnitt.titel}</h2></div>
-              {#each abschnitt.teile as teil, i (i)}
+              {#each abschnitt.teile as teil, i (`${abschnitt.nummer}-${i}`)}
                 <TeilAnzeige {teil} sprache={e.sprache} {senden} {beiUrteil} beispielWaehlen={(b) => (beispielId = b)} gewaehltesBeispiel={beispiel?.id ?? null} />
               {/each}
               <div class="weiter-zeile">

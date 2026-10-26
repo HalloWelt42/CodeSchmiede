@@ -586,6 +586,9 @@ Bevor eine Aufgabe ins Repo wandert:
    Hersteller-Verweise).
 5. **Hardcoding-Probe** -- ein simples Lookup-Dict mit den sichtbaren
    Inputs als Keys darf die Aufgabe nicht bestehen.
+6. **CSS-Nachbauten**: in der Verwaltung "CSS-Bestand messen" drücken.
+   Jede Musterlösung muss ihr Ziel voll decken, kein Startcode darf schon
+   bestehen; gemessen wird im Browser wie beim Lösen.
 
 Wenn alles passt: in den entsprechenden Pfad einchecken
 (`aufgaben/<sprache>/<id>/`), Backend startet die Aufgabe beim

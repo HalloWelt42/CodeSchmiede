@@ -1,0 +1,58 @@
+# Begriffskatalog CSS: woran die Prüfung erkennt, dass CSS oder Markup einen Baustein benutzt.
+#
+# Jede Einführung nennt unter fuehrt_ein die Begriffe, die sie erklärt. Benutzt Code in einem Kapitel einen Begriff,
+# den weder dieses noch ein früheres Kapitel einführt, meldet die Prüfung einen Vorgriff.
+# Erkennung im CSS (tinycss2): knoten (Selektorarten typ, klasse, id, universal, attribut, nachfahre, kind, gruppe,
+# nachbar, geschwister; Pseudoklassen wie :first-child und Pseudoelemente wie ::before mit Namen; at-Regeln wie
+# @media; regel, kommentar, eigene_eigenschaft), eigenschaften (color, margin ...), werte (Schlüsselwörter als
+# eigenschaft:wert, etwa display:flex, oder *:wert für jede Eigenschaft, etwa *:inherit), aufrufe (Funktionen wie rgb,
+# calc, var), literale (Einheiten px, em, %, dazu hex, zahl und text). Im Markup (beginnt mit <): elemente und
+# attribute; Elemente im Selektor zählen auch als elemente.
+
+sprache: css
+begriffe:
+  # Kapitel 1: HTML lesen und die erste Regel
+  - id: html_text
+    titel: Überschriften, Absätze und Betonung (h1, h2, p, strong, em)
+    erkennung: {elemente: [h1, h2, h3, p, strong, em, br]}
+  - id: html_gruppe
+    titel: Kästen ohne eigene Bedeutung (div, span)
+    erkennung: {elemente: [div, span]}
+  - id: html_liste
+    titel: Listen (ul, ol, li)
+    erkennung: {elemente: [ul, ol, li]}
+  - id: regel
+    titel: Regel aus Selektor und Angaben
+    erkennung: {knoten: [regel]}
+  - id: typ_selektor
+    titel: Elemente nach ihrem Namen wählen
+    erkennung: {knoten: [typ]}
+  - id: color
+    titel: Schriftfarbe mit color
+    erkennung: {eigenschaften: [color]}
+  - id: background_color
+    titel: Hintergrundfarbe mit background-color
+    erkennung: {eigenschaften: [background-color]}
+  - id: kommentar
+    titel: Kommentare mit /* */ und <!-- -->
+    erkennung: {knoten: [kommentar]}
+  # Kapitel 2: Klassen und ids
+  - id: klasse
+    titel: Klassen mit class und dem Punkt
+    erkennung: {attribute: [class], knoten: [klasse]}
+  - id: id
+    titel: Eine id und die Raute
+    erkennung: {attribute: [id], knoten: [id]}
+  # Kapitel 3: Selektoren kombinieren
+  - id: nachfahre
+    titel: Nachfahren mit dem Leerzeichen
+    erkennung: {knoten: [nachfahre]}
+  - id: kind
+    titel: Direkte Kinder mit >
+    erkennung: {knoten: [kind]}
+  - id: gruppe
+    titel: Mehrere Selektoren mit Komma
+    erkennung: {knoten: [gruppe]}
+  - id: universal
+    titel: Der Stern trifft alles
+    erkennung: {knoten: [universal]}

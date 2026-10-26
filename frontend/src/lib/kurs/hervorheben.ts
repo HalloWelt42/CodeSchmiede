@@ -22,10 +22,11 @@ function schuetzen(s: string): string {
   return s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c] ?? c);
 }
 
-/** Zeilen als HTML; ohne bekannte Sprache nur geschützter Text. */
+/** Zeilen als HTML; ohne bekannte Sprache nur geschützter Text. Im CSS-Kurs ist Code, der mit < beginnt, Markup
+ * (wie in der Begriffserkennung des Servers). */
 export function zeilen(code: string, sprache: string): string[] {
   const text = code.replace(/\n$/, '');
-  const parser = PARSER[sprache]?.();
+  const parser = PARSER[sprache === 'css' && text.trimStart().startsWith('<') ? 'html' : sprache]?.();
   if (!parser) return text.split('\n').map(schuetzen);
   const ergebnis: string[] = [''];
   highlightCode(

@@ -2,13 +2,16 @@
   /*
    * Werkbank eines Beispiels: ausführen (erst nach der Vorhersage), am Rechner verändern und das Original
    * wiederherstellen. Der Lauf kommt aus der Sandbox; wie er sich zeigt, hängt an der Sprache: bei Python und JavaScript Ausgabe,
-   * Ablauf und Speicherbild, bei SQL Ergebnis und Zwischentabellen auf dem Datensatz der Einführung.
+   * Ablauf und Speicherbild, bei SQL Ergebnis und Zwischentabellen auf dem Datensatz der Einführung. Bei CSS steht
+   * das Markup über dem CSS; nach dem ersten Ausführen folgt die Bühne jeder Änderung sofort, mit Schaltern je Angabe
+   * und dem Kastenmodell.
    */
   import type { Snippet } from 'svelte';
   import { kursApi, type BeispielTeil, type Lauf } from '../../api/KursApi';
   import EditorBereich from '../EditorBereich.svelte';
   import CodeBlock from './CodeBlock.svelte';
   import AufzeichnungAblauf from './AufzeichnungAblauf.svelte';
+  import CssAblauf from './CssAblauf.svelte';
   import SqlAblauf from './SqlAblauf.svelte';
 
   interface Props {
@@ -58,6 +61,11 @@
 </script>
 
 <div class="werkbank-inhalt">
+  {#if beispiel.html}
+    <span class="sprach-marke">HTML</span>
+    <CodeBlock code={beispiel.html} sprache="html" />
+    <span class="sprach-marke">CSS</span>
+  {/if}
   {#if !bearbeitbar}
     <CodeBlock {code} {sprache} jetzt={zeile} />
     {#if vorAusfuehren}{@render vorAusfuehren()}{/if}
@@ -83,7 +91,9 @@
   {#if beispiel.eingabe.length}
     <div class="eingabe-zeile"><span class="dim">Eingabe für {sprache === 'javascript' ? 'prompt()' : 'input()'}:</span>{#each beispiel.eingabe as z, i (i)}<code>{z}</code>{/each}</div>
   {/if}
-  {#if lauf?.art === 'sql'}
+  {#if lauf?.art === 'css'}
+    <CssAblauf html={lauf.html} css={code} />
+  {:else if lauf?.art === 'sql'}
     <SqlAblauf {lauf} ablauf={beispiel.ablauf} bind:zeile />
   {:else if lauf}
     <AufzeichnungAblauf {lauf} ablauf={beispiel.ablauf} bind:zeile />
@@ -97,4 +107,5 @@
   .werkbank-editor { height: 220px; border: 1px solid var(--border); }
   .rechts { margin-left: auto; }
   .eingabe-zeile { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--fs-sm); }
+  .sprach-marke { font-size: var(--fs-xs); font-weight: 600; letter-spacing: .06em; color: var(--fg-dim); margin-bottom: calc(-1 * var(--sp-2)); }
 </style>

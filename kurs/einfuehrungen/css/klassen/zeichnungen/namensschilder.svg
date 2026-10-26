@@ -1,0 +1,33 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Drei Pinguine mit farbigen Namensschildern, zwei grün und einer blau, der mittlere trägt zusätzlich einen goldenen Orden">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <defs>
+    <g id="pinguin">
+      <ellipse cx="0" cy="10" rx="21" ry="30" fill="#2b3442"/>
+      <ellipse cx="0" cy="15" rx="14" ry="21" fill="#f4f1ea"/>
+      <circle cx="0" cy="-27" r="15" fill="#2b3442"/>
+      <circle cx="-5" cy="-29" r="3.6" fill="#fff"/><circle cx="5" cy="-29" r="3.6" fill="#fff"/>
+      <circle cx="-5" cy="-28" r="1.8" fill="#111"/><circle cx="5" cy="-28" r="1.8" fill="#111"/>
+      <path d="M-4 -21 l4 7 l4 -7 Z" fill="#f2a13b"/>
+      <path d="M-9 41 h-7 M9 41 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M-20 0 q-8 10 -6 22 M20 0 q8 10 6 22" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <use href="#pinguin" x="54" y="118"/>
+  <use href="#pinguin" x="130" y="112"/>
+  <use href="#pinguin" x="206" y="118"/>
+  <!-- Namensschilder: zwei grüne, ein blaues -->
+  <g stroke="#2b3442" stroke-width="1.6">
+    <rect x="42" y="118" width="24" height="14" rx="2" fill="#4fd1a5"/>
+    <rect x="118" y="112" width="24" height="14" rx="2" fill="#38bdf8"/>
+    <rect x="194" y="118" width="24" height="14" rx="2" fill="#4fd1a5"/>
+  </g>
+  <g stroke="#2b3442" stroke-width="1.6" stroke-linecap="round" opacity=".55">
+    <path d="M47 125 h14 M123 119 h14 M199 125 h14"/>
+  </g>
+  <!-- goldener Orden des mittleren Pinguins -->
+  <path d="M124 130 l6 10 l6 -10" fill="#e2574c" stroke="#2b3442" stroke-width="1.4"/>
+  <circle cx="130" cy="146" r="8" fill="#f2c94c" stroke="#2b3442" stroke-width="1.8"/>
+  <path d="M130 140 l1.8 4 4.2 .4 -3.2 2.8 1 4.2 -3.8 -2.2 -3.8 2.2 1 -4.2 -3.2 -2.8 4.2 -.4 Z" fill="#fff6d0"/>
+  <!-- Glanz am Orden -->
+  <g stroke="#f2c94c" stroke-width="2" stroke-linecap="round"><path d="M146 138 l6 -4 M148 148 h7 M144 156 l5 4"/></g>
+</svg>

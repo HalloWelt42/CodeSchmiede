@@ -1,0 +1,50 @@
+# Kurztest zu Kapitel 3: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-direkt
+    text: "Welche Absätze trifft `.box > p`?"
+    code: |
+      <div class="box">
+        <p>A</p>
+        <div><p>B</p></div>
+      </div>
+      <p>C</p>
+    optionen:
+      - text: Nur A
+        richtig: true
+        erklaerung: Richtig. Nur A ist direktes Kind der box, B ist ein Enkel und C steht draußen.
+      - text: A und B
+        erklaerung: Das wäre .box p mit Leerzeichen. Das Größerzeichen will direkte Kinder.
+      - text: A, B und C
+        erklaerung: C steht gar nicht in der box.
+  - frageart: luecke
+    id: kt-luecke-komma
+    text: Absätze und Listeneinträge sollen dieselbe Farbe bekommen, mit einer einzigen Regel. Ergänze das Zeichen.
+    code: |
+      p___ li {
+        color: skyblue;
+      }
+    antworten: [[","]]
+    erklaerung: Richtig, das Komma bündelt mehrere Selektoren.
+    hinweis: Zwei Selektoren, die nichts miteinander zu tun haben, trennt man wie in einer Aufzählung.
+  - frageart: auswahl
+    id: kt-stern
+    text: "Was trifft `ul *`?"
+    optionen:
+      - text: Jedes Element, das irgendwo in einer ul steckt
+        richtig: true
+        erklaerung: Richtig. Der Stern passt auf alles, das Leerzeichen begrenzt auf das Innere der ul.
+      - text: Jede ul und alles darin
+        erklaerung: Die ul selbst steckt nicht in einer ul, sie wird also nicht getroffen.
+      - text: Nur die direkten Kinder der ul
+        erklaerung: Dafür bräuchte es das Größerzeichen.
+  - frageart: ordnen
+    id: kt-ordnen
+    text: Bring die Zeilen in Reihenfolge, damit alle Preise in der Karte gold werden.
+    zeilen:
+      - .karte .preis {
+      - '  color: gold;'
+      - '}'
+    erklaerung: Richtig. Erst der Selektor mit Leerzeichen, dann die Angabe in Klammern.
+    hinweis: Der Selektor steht vor der öffnenden Klammer.
+uebung: w038-lager

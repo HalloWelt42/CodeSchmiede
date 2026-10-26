@@ -88,6 +88,8 @@ class BeispielSicht(BaseModel):
     art: Literal["beispiel"] = "beispiel"
     id: str
     code: str
+    html: str | None = None
+    """CSS: das Markup, auf das das CSS in `code` wirkt."""
     vorhersage: VorhersageSicht | None = None
     eingabe: list[str] = []
     """Was input() liest; die Oberfläche zeigt es neben der Ausgabe."""
@@ -170,6 +172,8 @@ class KurztestSicht(BaseModel):
 
 class MerkBeispiel(BaseModel):
     code: str
+    html: str | None = None
+    """CSS: das Markup; das Merkblatt zeigt dazu die Bühne."""
     ausgabe: str | None
 
 

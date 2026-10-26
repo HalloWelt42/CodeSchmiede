@@ -55,6 +55,7 @@
       <span>Beispiel</span>
       {#if beispielWaehlen}<button class="knopf-klein" onclick={() => beispielWaehlen?.(teil.id)}><i class="fa-solid fa-play" aria-hidden="true"></i>In der Werkbank</button>{/if}
     </div>
+    {#if teil.html}<CodeBlock code={teil.html} sprache="html" />{/if}
     <CodeBlock code={teil.code} {sprache} />
   </div>
   {#if teil.vorhersage}

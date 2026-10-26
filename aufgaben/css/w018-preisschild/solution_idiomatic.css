@@ -1,0 +1,16 @@
+body {
+  background-color: darkslategray;
+}
+
+h1 {
+  color: gold;
+}
+
+span {
+  color: black;
+  background-color: gold;
+}
+
+li {
+  color: lightgreen;
+}

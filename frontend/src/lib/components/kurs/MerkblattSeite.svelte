@@ -1,13 +1,14 @@
 <script lang="ts">
   /*
-   * Merkblatt eines Kapitels auf einer Seite: Grundform aus den Beispielen mit ihrer Ausgabe, Merksätze, typische
-   * Fallen und Begriffe. Alles kommt aus der Einführung (eine Wahrheit); zum Nachschlagen und zum Ausdrucken.
+   * Merkblatt eines Kapitels auf einer Seite: Grundform aus den Beispielen mit ihrer Ausgabe (bei CSS Markup, CSS und
+   * die Bühne), Merksätze, typische Fallen und Begriffe. Alles kommt aus der Einführung (eine Wahrheit); zum Nachschlagen und zum Ausdrucken.
    */
   import { kursApi, type MerkblattSicht } from '../../api/KursApi';
   import { markdownRenderer } from '../../markdown/MarkdownRenderer';
   import { route } from '../../stores/RouteStore.svelte';
   import { kursStore } from '../../stores/KursStore.svelte';
   import CodeBlock from './CodeBlock.svelte';
+  import CssBuehne from './CssBuehne.svelte';
 
   interface Props {
     id: string;
@@ -50,8 +51,10 @@
         {#each blatt.beispiele as b, i (i)}
           <section class="feld-merk">
             <h3>{i === 0 ? 'Grundform' : `Beispiel ${i + 1}`}</h3>
+            {#if b.html}<CodeBlock code={b.html} sprache="html" />{/if}
             <CodeBlock code={b.code} sprache={blatt.sprache} />
             {#if b.ausgabe}<pre class="ausgabe">{b.ausgabe}</pre>{/if}
+            {#if b.html}<div class="merk-buehne"><CssBuehne html={b.html} css={b.code} titel="Bühne zu {i === 0 ? 'der Grundform' : `Beispiel ${i + 1}`}" /></div>{/if}
           </section>
         {/each}
         {#if blatt.merke.length}
@@ -85,6 +88,7 @@
   .blatt-bild { width: 76px; height: 76px; display: grid; place-items: center; font-size: 34px; color: #8a5a00; }
   .blatt-bild img { width: 100%; height: 100%; object-fit: contain; }
   .merk-liste { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+  .merk-buehne { max-width: 360px; }
   .merk-liste :global(p), .falle :global(p) { display: inline; margin: 0; }
   .fallen { display: flex; flex-direction: column; gap: 6px; }
   .begriffe { display: flex; flex-wrap: wrap; gap: 6px; }

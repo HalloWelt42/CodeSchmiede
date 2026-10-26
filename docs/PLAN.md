@@ -291,6 +291,32 @@ Offen für den Bau:
   und niemand echt wartet; Begriffserkennung über tree-sitter mit Knotenarten, Operatoren, Aufrufen, Methoden und
   Eigenschaften
 
+## Schritt 7, Teil 6: CSS-Kurs mit HTML-Grundlagen (Plan)
+
+Wie die übrigen Kurse 21 Kapitel, hier in vier Blöcken; die HTML-Grundlagen stehen vorn, so weit, dass man das
+vorgegebene HTML lesen und Selektoren treffen kann (Klärung vom 25.10.2026). Grundlage für Werkbank und Bühne ist der
+freigegebene Entwurf `mockups/rechner-einfuehrung-css.html`.
+
+- Gliederung: Erste Schritte (HTML lesen und die erste Regel; Klassen und ids; Selektoren kombinieren; Kaskade und
+  Vererbung; Farben), Gestalten (Text und Schrift; Das Kastenmodell; Ränder und Ecken; Einheiten; Schatten und
+  Verläufe), Anordnen (display; Flexbox; Flexbox ausrichten; Grid; Grid-Bereiche; Positionieren), Feinschliff
+  (Pseudoklassen; Pseudoelemente; Variablen und calc; Verwandeln; Media Queries). Kapitelprojekt: die Speisekarte des
+  Fischwagens Zum frostigen Hering als Webseite, Kapitel für Kapitel schöner.
+- Beispiele: zusätzlich `html` (Pflicht bei CSS), `code` ist das CSS; Vorhersagen nur als Auswahl, die richtige Option
+  beschreibt das Bild. Ausführen prüft wie sonst die Vorhersage und liefert einen CSS-Lauf (Markup und CSS) ohne
+  Sandbox; gerendert wird im Browser auf derselben Bühne wie bei den CSS-Aufgaben (`css/buehne.ts`).
+- Werkbank CSS nach dem Entwurf: das HTML, der Editor (am Rechner), das CSS Zeile für Zeile mit einem Schalter je
+  Angabe und einem Abspieler (Angabe für Angabe zuschalten), darunter die Bühne live und das Kastenmodell eines
+  Elements als farbige Ringe (Inhalt, padding, border, margin) mit der Rechnung "Rand zu Rand"; gezeigt wird das erste
+  Element, das unter dem Zeiger oder das angeklickte. Das Merkblatt zeigt die Beispiele mit kleiner Bühne.
+- Begriffe: Erkenner über tinycss2 (Selektorarten, Pseudoklassen und -elemente, at-Regeln, Eigenschaften,
+  Schlüsselwörter als eigenschaft:wert, Funktionen, Einheiten) und html.parser (Elemente, Attribute); neue Felder
+  `werte`, `elemente`, `attribute` in der Erkennung. Markup erkennt der Erkenner am ersten Zeichen `<`.
+- Übungen: Aufgabentyp `css_klon` wie im Bestand, Kennungen `w<Kapitel><Nummer>` (w wie Web); keine Übung, die nur mit Zeiger,
+  Übergang oder Animation sichtbar wird (die Bühne ist ein Standbild).
+- Bestand messen: wiederholbar in der Verwaltung im Browser (Musterlösung deckt voll, Startcode besteht nicht), mit
+  derselben Messung wie die Aufgaben.
+
 ## Offen
 
 - Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) zur Freigabe; Bau danach als eigener Abschnitt.
@@ -304,14 +330,12 @@ Offen für den Bau:
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
   Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.
-- Aufbaukurs weiter: CSS mit HTML-Grundlagen; Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
+- Aufbaukurs weiter: CSS mit HTML-Grundlagen (Plan oben, im Bau); Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
 - Aufbaukurs mit Lehreinführungen: geklärt am 25.10.2026; Entwürfe liegen zur Freigabe in `mockups/` (Übersicht
   `mockups/index.html`, Abschnitt Aufbaukurs): Kursübersicht, Einführung für Python, SQL und CSS, Kurztest, Merkblatt,
   Kapitelende mit Sammelkarte, Telefon; freigegeben 25.10.2026 (der Bildbogen entfällt, Bilder kommen aus dem Medienpool).
 - Spielerische Grundlagenübungen zu Flexbox und Grid (Nutzer 25.10.2026): eigene Bildwelt, je Level eine neue
   Eigenschaft, Teil der CSS-Übungen vor den Herausforderungen; Skizze in `docs/CSS-IDEEN.md`, vor dem Bau Entwürfe.
-- CSS-Bestand automatisch messen: die Prüfung beim Bau (Musterlösung deckt voll, Startcode besteht nicht) lief
-  einmalig im Browser; als wiederholbare Prüfung (etwa in der Verwaltung) einrichten, bevor neue CSS-Aufgaben kommen.
 - Bildkarten für Lernfelder und Bereiche: Motive und Beschreibungen festlegen, Bilder mit Flux2 über die Leitstelle
   erzeugen und freistellen, sobald dort alles entladen ist; Entwurf der Karten vorab.
 - Literaturhinweise aus den eigenen Büchern: Schalter, Quelle im Wissenspool und Anzeige vor dem Bau klären.

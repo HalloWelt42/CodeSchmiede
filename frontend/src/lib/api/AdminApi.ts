@@ -53,6 +53,23 @@ export interface Befund {
   meldung: string;
 }
 
+/** Eine CSS-Aufgabe, wie die Messung des Bestands sie braucht */
+export interface CssNachbau {
+  id: string;
+  titel: string;
+  ziel_html: string;
+  ziel_css: string;
+  starter_code: string;
+  musterloesungen: MusterloesungEintrag[];
+}
+
+/** Alle CSS-Nachbauten mit den Schwellen des Prüfers */
+export interface CssBestand {
+  voll: number;
+  bestehen: number;
+  aufgaben: CssNachbau[];
+}
+
 export class AdminApi extends HttpBase {
   constructor() {
     super('/api/admin');
@@ -61,6 +78,11 @@ export class AdminApi extends HttpBase {
   /** Was die Bestandsprüfung beim letzten Einlesen gefunden hat */
   befunde(): Promise<Befund[]> {
     return this.get<Befund[]>('/befunde');
+  }
+
+  /** Alles für die Messung der CSS-Nachbauten im Browser */
+  cssBestand(): Promise<CssBestand> {
+    return this.get<CssBestand>('/css-bestand');
   }
 
   aufgaben(): Promise<VerwaltungsEintrag[]> {

@@ -92,7 +92,7 @@
     {:else if e && abschnitt}
       <div class="lesen-innen">
         <h2>{abschnitt.titel}</h2>
-        {#each abschnitt.teile as teil, i (i)}
+        {#each abschnitt.teile as teil, i (`${abschnitt.nummer}-${i}`)}
           {#if teil.art === 'beispiel'}
             {@const b = teil}
             <Werkbank einfuehrung={id} beispiel={b} sprache={e.sprache} bearbeitbar={false}
