@@ -1,0 +1,46 @@
+# Kurztest zu Kapitel 20: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-platz
+    text: Ein Element wird mit transform um 50 Pixel nach unten verschoben. Was passiert mit dem Element darunter?
+    optionen:
+      - text: Nichts, es bleibt an seinem Platz und wird womöglich überdeckt
+        richtig: true
+        erklaerung: Richtig, transform ändert nur das Bild.
+      - text: Es rückt 50 Pixel nach unten
+        erklaerung: Das passiert mit margin, nicht mit transform.
+      - text: Es rückt nach oben in die Lücke
+        erklaerung: Eine Lücke entsteht nicht, der Platz bleibt reserviert.
+  - frageart: auswahl
+    id: kt-grad
+    text: "Wie weit dreht `rotate(180deg)`?"
+    optionen:
+      - text: Eine halbe Drehung, das Element steht auf dem Kopf
+        richtig: true
+        erklaerung: Richtig.
+      - text: Eine ganze Drehung, nichts ändert sich
+        erklaerung: Eine ganze Drehung wären 360 Grad.
+      - text: Eine Vierteldrehung
+        erklaerung: Das wären 90 Grad.
+  - frageart: luecke
+    id: kt-luecke-scale
+    text: Das Bild soll doppelt so groß erscheinen. Ergänze die Funktion.
+    code: |
+      .bild {
+        transform: ___(2);
+      }
+    antworten: [["scale"]]
+    erklaerung: Richtig.
+    hinweis: Größe ändern heißt skalieren, scale.
+  - frageart: auswahl
+    id: kt-transition
+    text: "Was macht `transition: transform 0.5s`?"
+    optionen:
+      - text: Ändert sich transform, gleitet der Wechsel in einer halben Sekunde
+        richtig: true
+        erklaerung: Richtig.
+      - text: Das Element dreht sich eine halbe Sekunde lang von selbst
+        erklaerung: transition läuft nur, wenn sich ein Wert ändert.
+      - text: transform wird nach einer halben Sekunde abgeschaltet
+        erklaerung: Abgeschaltet wird nichts.
+uebung: w208-wimpel

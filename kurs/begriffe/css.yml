@@ -250,3 +250,20 @@ begriffe:
   - id: calc
     titel: Rechnen mit calc
     erkennung: {aufrufe: [calc, min, max, clamp]}
+  # Kapitel 20: Verwandeln
+  - id: transform
+    titel: Verwandeln mit transform, translate, rotate und scale
+    erkennung: {eigenschaften: [transform, translate, rotate, scale], aufrufe: [translate, translatex, translatey, rotate, scale, scalex, scaley]}
+  - id: grad
+    titel: Winkel in Grad (deg)
+    erkennung: {literale: [deg, turn]}
+  - id: transform_origin
+    titel: Der Drehpunkt mit transform-origin
+    erkennung: {eigenschaften: [transform-origin]}
+  - id: transition
+    titel: Sanfte Wechsel mit transition
+    erkennung: {eigenschaften: [transition, transition-property, transition-duration, transition-timing-function, transition-delay]}
+  # Kapitel 21: Media Queries
+  - id: media_query
+    titel: Regeln mit Bedingung durch @media
+    erkennung: {knoten: ["@media"]}

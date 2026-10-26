@@ -1,0 +1,13 @@
+.bild {
+  height: 120px;
+  padding: 10px;
+  background-color: #38bdf8;
+  color: #0b1d3a;
+}
+
+@media (orientation: landscape) {
+  .bild {
+    height: 300px;
+    background: linear-gradient(to bottom, #38bdf8, #0b4f8a);
+  }
+}

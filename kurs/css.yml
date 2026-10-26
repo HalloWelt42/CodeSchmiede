@@ -69,3 +69,9 @@ bloecke:
       - einfuehrung: css-variablen
         uebungen: [w191-hausfarbe, w192-variable-benutzen, w193-ersatzwert, w194-nachtkarte, w195-rest-breite, w196-abstand-mal-zwei, w197-drei-spalten-rechnen]
         projekt: [w199-speisekarte-variablen]
+      - einfuehrung: css-verwandeln
+        uebungen: [w201-schief, w202-verschoben, w203-groesser, w204-am-nagel, w205-kombiniert, w206-zentrieren, w207-gespiegelt]
+        projekt: [w209-speisekarte-schwung]
+      - einfuehrung: css-media
+        uebungen: [w211-ab-500, w212-mehr-spalten, w213-quer, w214-dazwischen, w215-reihenfolge, w216-zusatz-zeigen, w217-schrift-wachsen]
+        projekt: [w219-speisekarte-fertig]

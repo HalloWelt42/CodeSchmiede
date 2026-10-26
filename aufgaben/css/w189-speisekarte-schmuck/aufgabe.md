@@ -50,15 +50,17 @@ ziel_css: "body {\n  background-color: #0b1d3a;\n}\n\nh1, h2 {\n  color: #ffd166
   \ 1fr;\n}\n\n.karte {\n  position: relative;\n}\n\n.aufkleber {\n  position: absolute;\n  top: -18px;\n  right: -18px;\n\
   \  z-index: 1;\n  padding: 6px 12px;\n  font-weight: bold;\n  color: white;\n  background-color: crimson;\n  border-radius:\
   \ 999px;\n  box-shadow: 0 3px 8px black;\n}\n\n.karte li:not(.ausverkauft):not(#tagesangebot) {\n  background-color: #0f5257;\n\
-  }\n\n.karte li:last-child {\n  border-bottom: none;\n}\n\n.karte h2:first-of-type {\n  color: white;\n}\n\n.preis::after\
-  \ {\n  content: \" €\";\n}\n\nh1::first-letter {\n  color: white;\n  font-size: 1.3em;\n}\n\n.motto::before {\n  content:\
-  \ \"~ \";\n}\n\n.motto::after {\n  content: \" ~\";\n}\n"
+  }\n\n.karte li:last-child {\n  border-bottom: none;\n}\n\n.karte h2:first-of-type {\n  color: white;\n}\n\n.karte::after\
+  \ {\n  content: \"Alle Preise in Euro\";\n  grid-column: 1 / -1;\n  font-size: 12px;\n  color: gray;\n}\n\nh1::first-letter\
+  \ {\n  color: white;\n  font-size: 1.3em;\n}\n\n.motto::before {\n  content: \"~ \";\n}\n\n.motto::after {\n  content: \"\
+  \ ~\";\n}\n"
 hints:
 - kosten: 0
-  text: 'Vier Pseudoelemente: Euro hinter jedem Preis, ein großer weißer Anfangsbuchstabe im Namen, Wellen vor und hinter
-    dem Motto.'
+  text: 'Vier Pseudoelemente: ein Hinweis zur Währung unten in der Karte, ein großer weißer Anfangsbuchstabe im Namen, Wellen
+    vor und hinter dem Motto.'
 - kosten: 3
-  text: .preis::after, h1::first-letter, .motto::before und .motto::after
+  text: .karte::after (ein Kind des Rasters, darum mit grid-column 1 / -1 über die ganze Breite), h1::first-letter, .motto::before
+    und .motto::after
 starter_code: "body {\n  background-color: #0b1d3a;\n}\n\nh1, h2 {\n  color: #ffd166;\n}\n\n.preis {\n  color: gold;\n}\n\n\
   .motto {\n  color: lightblue;\n}\n\n#tagesangebot {\n  background-color: darkgreen;\n}\n\n\n.karte h2 {\n  background-color:\
   \ darkslateblue;\n}\n\n.karte > ul {\n  background-color: rgb(255 255 255 / 0.08);\n}\n\n.karte li {\n  background-color:\
@@ -91,7 +93,7 @@ Die Speisekarte bekommt Schmuck, ohne dass sich das HTML ändert. Dein CSS aus K
 
 ## Vorgaben
 
-- `.preis::after`: Inhalt `" €"`
+- `.karte::after`: Inhalt `"Alle Preise in Euro"`, über die ganze Breite des Rasters (`grid-column: 1 / -1`), Schrift `12px`, `gray`
 - `h1::first-letter`: Schrift `white`, Größe `1.3em`
 - `.motto::before`: Inhalt `"~ "`
 - `.motto::after`: Inhalt `" ~"`

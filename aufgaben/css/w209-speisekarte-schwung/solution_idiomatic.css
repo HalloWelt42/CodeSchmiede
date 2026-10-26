@@ -1,0 +1,272 @@
+body {
+  background-color: #0b1d3a;
+}
+
+h1, h2 {
+  color: #ffd166;
+}
+
+.preis {
+  color: gold;
+}
+
+.motto {
+  color: lightblue;
+}
+
+#tagesangebot {
+  background-color: darkgreen;
+}
+
+
+.karte h2 {
+  background-color: darkslateblue;
+}
+
+.karte > ul {
+  background-color: rgb(255 255 255 / 0.08);
+}
+
+.karte li {
+  background-color: darkslateblue;
+}
+
+.karte .ausverkauft {
+  color: lightgray;
+  background-color: dimgray;
+  opacity: 0.6;
+}
+
+#tagesangebot .preis {
+  color: orange;
+}
+
+h1 {
+  font-family: serif;
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.motto {
+  font-style: italic;
+  text-align: center;
+}
+
+h2 {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.preis {
+  font-weight: bold;
+}
+
+.karte .ausverkauft {
+  text-decoration: line-through;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+}
+
+.karte {
+  width: 440px;
+  margin: 8px auto 0;
+  padding: 4px 16px;
+  border: 3px solid #ffd166;
+}
+
+h2 {
+  padding: 2px 8px;
+}
+
+.karte {
+  border-style: double;
+  border-width: 6px;
+  border-radius: 16px;
+}
+
+h2 {
+  border-radius: 6px;
+}
+
+#tagesangebot {
+  border-left: 6px solid orange;
+}
+
+.preis {
+  padding: 0 6px;
+  border: 1px dotted #ffd166;
+  border-radius: 999px;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+.karte {
+  width: 80%;
+  max-width: 460px;
+}
+
+h2 {
+  font-size: 1rem;
+  padding: 0.25em 0.5em;
+}
+
+.preis {
+  font-size: 0.9em;
+}
+
+body {
+  background: linear-gradient(to bottom, #0b1d3a, #12305e);
+}
+
+h1 {
+  text-shadow: 2px 2px 0 #2b1a4a;
+}
+
+.karte {
+  box-shadow: 0 8px 24px black;
+}
+
+.karte h2 {
+  background: linear-gradient(to right, darkslateblue, transparent);
+}
+
+h2 {
+  display: inline-block;
+}
+
+.preis {
+  display: inline-block;
+  min-width: 3.5em;
+  text-align: center;
+}
+
+.karte > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.karte li {
+  display: flex;
+  gap: 12px;
+}
+
+.karte > ul {
+  padding: 0;
+}
+
+.karte li {
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  border-bottom: 2px dotted #ffd166;
+}
+
+.karte > ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px 16px;
+}
+
+.karte {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    "titel-essen titel-trinken"
+    "essen trinken";
+  column-gap: 16px;
+  align-items: start;
+}
+
+.titel-essen { grid-area: titel-essen; }
+.titel-trinken { grid-area: titel-trinken; }
+
+.karte .essen {
+  grid-area: essen;
+  grid-template-columns: 1fr;
+}
+
+.karte .trinken {
+  grid-area: trinken;
+  grid-template-columns: 1fr;
+}
+
+.karte {
+  position: relative;
+}
+
+.aufkleber {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  z-index: 1;
+  padding: 6px 12px;
+  font-weight: bold;
+  color: white;
+  background-color: crimson;
+  border-radius: 999px;
+  box-shadow: 0 3px 8px black;
+}
+
+.karte li:not(.ausverkauft):not(#tagesangebot) {
+  background-color: #0f5257;
+}
+
+.karte li:last-child {
+  border-bottom: none;
+}
+
+.karte h2:first-of-type {
+  color: white;
+}
+
+.karte::after {
+  content: "Alle Preise in Euro";
+  grid-column: 1 / -1;
+  font-size: 12px;
+  color: gray;
+}
+
+h1::first-letter {
+  color: white;
+  font-size: 1.3em;
+}
+
+.motto::before {
+  content: "~ ";
+}
+
+.motto::after {
+  content: " ~";
+}
+
+:root {
+  --akzent: #7dd3fc;
+  --abstand: 16px;
+}
+
+h1, h2 {
+  color: var(--akzent);
+}
+
+.karte {
+  border-color: var(--akzent);
+  padding: calc(var(--abstand) / 2) var(--abstand);
+}
+
+.karte {
+  transform: rotate(-1.5deg);
+}
+
+.aufkleber {
+  transform: rotate(12deg) scale(1.1);
+}

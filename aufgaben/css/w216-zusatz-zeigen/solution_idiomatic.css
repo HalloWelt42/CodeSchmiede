@@ -1,0 +1,24 @@
+.seite {
+  display: flex;
+  gap: 8px;
+}
+
+.inhalt {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: teal;
+}
+
+.zusatz {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .zusatz {
+    display: block;
+    width: 140px;
+    padding: 20px;
+    background-color: #38bdf8;
+    color: #0b1d3a;
+  }
+}

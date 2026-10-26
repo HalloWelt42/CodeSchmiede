@@ -1,0 +1,25 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin zeigt dieselbe Speisekarte zweimal: auf einer großen Tafel mit drei Spalten und auf einem kleinen Telefon mit einer Spalte untereinander">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- große Tafel mit drei Spalten -->
+  <rect x="10" y="14" width="130" height="96" rx="4" fill="#0b1d3a" stroke="#2b3442" stroke-width="2"/>
+  <rect x="20" y="22" width="110" height="12" rx="2" fill="#ffd166"/>
+  <g fill="#4fd1a5"><rect x="20" y="42" width="32" height="56" rx="2"/><rect x="59" y="42" width="32" height="56" rx="2"/><rect x="98" y="42" width="32" height="56" rx="2"/></g>
+  <rect x="70" y="110" width="10" height="44" fill="#c98c55" stroke="#2b3442" stroke-width="1.4"/>
+  <!-- Telefon mit einer Spalte -->
+  <rect x="156" y="40" width="40" height="76" rx="6" fill="#2b3442"/>
+  <rect x="160" y="46" width="32" height="62" rx="2" fill="#0b1d3a"/>
+  <rect x="163" y="49" width="26" height="6" rx="1" fill="#ffd166"/>
+  <g fill="#4fd1a5"><rect x="163" y="59" width="26" height="13" rx="1"/><rect x="163" y="75" width="26" height="13" rx="1"/><rect x="163" y="91" width="26" height="13" rx="1"/></g>
+  <circle cx="176" cy="112" r="1.8" fill="#a7afba"/>
+  <!-- Pinguin hält das Telefon -->
+  <g transform="translate(224 126)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-10 -10 -24 -16" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

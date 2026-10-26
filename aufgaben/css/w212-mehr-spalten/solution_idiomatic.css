@@ -1,0 +1,15 @@
+.kacheln {
+  display: grid;
+  gap: 6px;
+}
+
+.kacheln div {
+  padding: 14px;
+  background-color: teal;
+}
+
+@media (min-width: 500px) {
+  .kacheln {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

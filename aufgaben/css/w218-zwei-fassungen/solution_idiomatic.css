@@ -1,0 +1,32 @@
+.kopf {
+  padding: 10px;
+  background-color: #0b1d3a;
+}
+
+.logo {
+  color: #ffd166;
+  font-size: 20px;
+}
+
+.inhalt {
+  display: grid;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.inhalt div {
+  padding: 12px;
+  background-color: teal;
+}
+
+@media (min-width: 500px) {
+  .kopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .inhalt {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,11 @@
+.kiste {
+  width: 180px;
+  padding: 10px;
+  margin-bottom: 6px;
+  background-color: teal;
+}
+
+.kiste.mitte {
+  transform: translate(120px, 0);
+  background-color: crimson;
+}

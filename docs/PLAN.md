@@ -328,6 +328,21 @@ freigegebene Entwurf `mockups/rechner-einfuehrung-css.html`.
 - Nebenbei behoben: Teile einer Einführung waren nur nach ihrer Stelle im Abschnitt geschlüsselt; eine Frage zeigte
   dadurch den Stand der Frage an derselben Stelle im vorigen Abschnitt (alle Kurse).
 
+## Ergebnis Schritt 7, Teil 7: CSS-Kurs fertig (0.87.0)
+
+- Alle 21 Kapitel in vier Blöcken: Erste Schritte (HTML lesen und die erste Regel; Klassen und ids; Selektoren
+  kombinieren; Kaskade und Vererbung; Farben), Gestalten (Text und Schrift; Das Kastenmodell; Ränder und Ecken;
+  Einheiten; Schatten und Verläufe), Anordnen (display; Flexbox; Flexbox ausrichten; Grid; Grid-Bereiche;
+  Positionieren), Feinschliff (Pseudoklassen; Pseudoelemente; Variablen und calc; Verwandeln; Media Queries).
+- Je Kapitel eigene Zeichnung, Kurztest mit eigener Übung, sieben Übungen und ein Stück des Kapitelprojekts
+  (w011 bis w219, 189 CSS-Nachbauten): Die Speisekarte des Fischwagens Zum frostigen Hering wächst von den ersten
+  Farben über Kästen, Raster und Bereiche, einen Aufkleber, Variablen und Drehungen bis zur Fassung für jeden
+  Bildschirm; ab Kapitel 15 tragen ihre Überschriften und Listen Klassen, ab 16 hat sie einen Aufkleber.
+- Prüfung beim Bau: alle Musterlösungen decken voll, kein Startcode besteht (auch in der Verwaltung gemessen, 300
+  Nachbauten ohne Befund); jede Angabe jedes Ziels und Beispiels einzeln abgeschaltet und neu gerastert, damit
+  keine Vorgabe von einer genaueren Regel überstimmt wird (so gefundene Kaskadenfehler behoben); Bildbögen aller
+  Beispiele gegen die richtige Vorhersage und aller Zielbilder gesichtet.
+
 ## Offen
 
 - Entwürfe der Steuerungsspiele (Ampelschule, Aufzugsteuerung) zur Freigabe; Bau danach als eigener Abschnitt.
@@ -341,7 +356,7 @@ freigegebene Entwurf `mockups/rechner-einfuehrung-css.html`.
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
   Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.
-- Aufbaukurs weiter: CSS mit HTML-Grundlagen (Plan oben, im Bau); Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
+- Aufbaukurs weiter: Debugger auf der Aufzeichnung; Wiederholung von Fragen; Bilder der Sammelkarten nach Klärung.
 - Aufbaukurs mit Lehreinführungen: geklärt am 25.10.2026; Entwürfe liegen zur Freigabe in `mockups/` (Übersicht
   `mockups/index.html`, Abschnitt Aufbaukurs): Kursübersicht, Einführung für Python, SQL und CSS, Kurztest, Merkblatt,
   Kapitelende mit Sammelkarte, Telefon; freigegeben 25.10.2026 (der Bildbogen entfällt, Bilder kommen aus dem Medienpool).

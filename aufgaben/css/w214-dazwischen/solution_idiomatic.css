@@ -1,0 +1,11 @@
+.geraet {
+  padding: 12px;
+  background-color: #2b3442;
+}
+
+@media (min-width: 500px) and (max-width: 900px) {
+  .geraet {
+    background-color: purple;
+    border-left: 8px solid gold;
+  }
+}

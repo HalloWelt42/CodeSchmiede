@@ -1,0 +1,10 @@
+h2 {
+  color: skyblue;
+}
+
+@media (min-width: 500px) {
+  h2 {
+    color: gold;
+    font-size: 40px;
+  }
+}

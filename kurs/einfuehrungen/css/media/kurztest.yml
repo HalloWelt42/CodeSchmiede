@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 21: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-telefon
+    text: Ein Telefon ist 380 Pixel breit. Welche Media Query gilt dort?
+    als_code: true
+    optionen:
+      - text: "@media (max-width: 500px)"
+        richtig: true
+        erklaerung: Richtig, 380 sind höchstens 500.
+      - text: "@media (min-width: 500px)"
+        erklaerung: Mindestens 500 Pixel hat das Telefon nicht.
+      - text: "@media (min-width: 400px)"
+        erklaerung: 380 sind weniger als 400.
+  - frageart: auswahl
+    id: kt-mobile-first
+    text: Mobile First. Wo stehen die Regeln für breite Fenster?
+    optionen:
+      - text: In Media Queries mit min-width, nach dem Grundgerüst
+        richtig: true
+        erklaerung: Richtig. Das Grundgerüst gilt überall, die Erweiterungen kommen dazu.
+      - text: Im Grundgerüst, die schmalen Fenster bekommen max-width
+        erklaerung: Das wäre der umgekehrte Weg, vom großen Bildschirm aus.
+      - text: In einer eigenen Datei, die nur Rechner laden
+        erklaerung: Es bleibt ein Stylesheet, die Bedingungen entscheiden.
+  - frageart: luecke
+    id: kt-luecke-and
+    text: Die Regeln sollen nur zwischen 600 und 1000 Pixeln gelten. Ergänze das verbindende Wort.
+    code: |
+      @media (min-width: 600px) ___ (max-width: 1000px) {
+        .menue { display: flex; }
+      }
+    antworten: [["and"]]
+    erklaerung: Richtig.
+    hinweis: Beide Bedingungen sollen gelten, auf Englisch and.
+  - frageart: fehlerstelle
+    id: kt-ohne-klammern
+    text: Eine Media Query ist ungültig. In welcher Zeile?
+    code: |
+      h1 { color: white; }
+      @media min-width: 500px {
+        h1 { color: gold; }
+      }
+    zeile: 2
+    erklaerung: Genau. Die Bedingung braucht runde Klammern.
+    hinweis: Wie schreibt man die Bedingung richtig?
+uebung: w218-zwei-fassungen

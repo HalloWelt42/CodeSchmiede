@@ -229,8 +229,11 @@ h2 {
   color: white;
 }
 
-.preis::after {
-  content: " €";
+.karte::after {
+  content: "Alle Preise in Euro";
+  grid-column: 1 / -1;
+  font-size: 12px;
+  color: gray;
 }
 
 h1::first-letter {
@@ -248,7 +251,7 @@ h1::first-letter {
 
 :root {
   --akzent: #7dd3fc;
-  --abstand: 20px;
+  --abstand: 16px;
 }
 
 h1, h2 {

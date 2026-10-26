@@ -50,11 +50,11 @@ ziel_css: "body {\n  background-color: #0b1d3a;\n}\n\nh1, h2 {\n  color: #ffd166
   \ 1fr;\n}\n\n.karte {\n  position: relative;\n}\n\n.aufkleber {\n  position: absolute;\n  top: -18px;\n  right: -18px;\n\
   \  z-index: 1;\n  padding: 6px 12px;\n  font-weight: bold;\n  color: white;\n  background-color: crimson;\n  border-radius:\
   \ 999px;\n  box-shadow: 0 3px 8px black;\n}\n\n.karte li:not(.ausverkauft):not(#tagesangebot) {\n  background-color: #0f5257;\n\
-  }\n\n.karte li:last-child {\n  border-bottom: none;\n}\n\n.karte h2:first-of-type {\n  color: white;\n}\n\n.preis::after\
-  \ {\n  content: \" €\";\n}\n\nh1::first-letter {\n  color: white;\n  font-size: 1.3em;\n}\n\n.motto::before {\n  content:\
-  \ \"~ \";\n}\n\n.motto::after {\n  content: \" ~\";\n}\n\n:root {\n  --akzent: #7dd3fc;\n  --abstand: 20px;\n}\n\nh1, h2\
-  \ {\n  color: var(--akzent);\n}\n\n.karte {\n  border-color: var(--akzent);\n  padding: calc(var(--abstand) / 2) var(--abstand);\n\
-  }\n"
+  }\n\n.karte li:last-child {\n  border-bottom: none;\n}\n\n.karte h2:first-of-type {\n  color: white;\n}\n\n.karte::after\
+  \ {\n  content: \"Alle Preise in Euro\";\n  grid-column: 1 / -1;\n  font-size: 12px;\n  color: gray;\n}\n\nh1::first-letter\
+  \ {\n  color: white;\n  font-size: 1.3em;\n}\n\n.motto::before {\n  content: \"~ \";\n}\n\n.motto::after {\n  content: \"\
+  \ ~\";\n}\n\n:root {\n  --akzent: #7dd3fc;\n  --abstand: 16px;\n}\n\nh1, h2 {\n  color: var(--akzent);\n}\n\n.karte {\n\
+  \  border-color: var(--akzent);\n  padding: calc(var(--abstand) / 2) var(--abstand);\n}\n"
 hints:
 - kosten: 0
   text: Zwei Variablen in :root, dann benutzen die Überschriften und der Rahmen der Karte den Akzent, und das Polster der
@@ -86,15 +86,16 @@ starter_code: "body {\n  background-color: #0b1d3a;\n}\n\nh1, h2 {\n  color: #ff
   \ 1fr;\n}\n\n.karte {\n  position: relative;\n}\n\n.aufkleber {\n  position: absolute;\n  top: -18px;\n  right: -18px;\n\
   \  z-index: 1;\n  padding: 6px 12px;\n  font-weight: bold;\n  color: white;\n  background-color: crimson;\n  border-radius:\
   \ 999px;\n  box-shadow: 0 3px 8px black;\n}\n\n.karte li:not(.ausverkauft):not(#tagesangebot) {\n  background-color: #0f5257;\n\
-  }\n\n.karte li:last-child {\n  border-bottom: none;\n}\n\n.karte h2:first-of-type {\n  color: white;\n}\n\n.preis::after\
-  \ {\n  content: \" €\";\n}\n\nh1::first-letter {\n  color: white;\n  font-size: 1.3em;\n}\n\n.motto::before {\n  content:\
-  \ \"~ \";\n}\n\n.motto::after {\n  content: \" ~\";\n}\n"
+  }\n\n.karte li:last-child {\n  border-bottom: none;\n}\n\n.karte h2:first-of-type {\n  color: white;\n}\n\n.karte::after\
+  \ {\n  content: \"Alle Preise in Euro\";\n  grid-column: 1 / -1;\n  font-size: 12px;\n  color: gray;\n}\n\nh1::first-letter\
+  \ {\n  color: white;\n  font-size: 1.3em;\n}\n\n.motto::before {\n  content: \"~ \";\n}\n\n.motto::after {\n  content: \"\
+  \ ~\";\n}\n"
 ---
 
 Die Speisekarte bekommt eine Akzentfarbe als Variable, ein kühles Eisblau, und einen Grundabstand. Dein CSS aus Kapitel 18 steht schon da.
 
 ## Vorgaben
 
-- `:root`: `--akzent: #7dd3fc`, `--abstand: 20px`
+- `:root`: `--akzent: #7dd3fc`, `--abstand: 16px`
 - `h1` und `h2`: Schrift `var(--akzent)`
 - `.karte`: Randfarbe `var(--akzent)`, Polster `calc(var(--abstand) / 2) var(--abstand)`

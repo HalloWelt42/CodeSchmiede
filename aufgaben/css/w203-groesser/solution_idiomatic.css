@@ -1,0 +1,16 @@
+.reihe {
+  display: flex;
+  gap: 40px;
+  margin: 40px;
+}
+
+.reihe div {
+  padding: 14px;
+  background-color: teal;
+}
+
+.reihe .gewinn {
+  transform: scale(1.6);
+  background-color: gold;
+  color: #2b3442;
+}

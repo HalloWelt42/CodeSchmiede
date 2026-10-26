@@ -1,0 +1,10 @@
+h1 {
+  color: white;
+}
+
+@media (min-width: 500px) {
+  h1 {
+    color: gold;
+    font-size: 48px;
+  }
+}
