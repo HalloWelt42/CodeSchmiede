@@ -1,0 +1,36 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fische fahren auf einem Fließband an Stationen vorbei, an der ersten werden sie bemalt, an der zweiten nur die großen durchgelassen, am Ende sammelt ein Pinguin sie in einem Korb">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Band -->
+  <rect x="6" y="112" width="190" height="14" rx="7" fill="#8b939e" stroke="#2b3442" stroke-width="2"/>
+  <g fill="#a7afba" stroke="#2b3442" stroke-width="1.4">
+    <circle cx="20" cy="132" r="7"/><circle cx="70" cy="132" r="7"/><circle cx="120" cy="132" r="7"/><circle cx="170" cy="132" r="7"/>
+  </g>
+  <path d="M20 139 v28 M182 139 v28" stroke="#2b3442" stroke-width="3"/>
+  <!-- Station 1: Farbpinsel -->
+  <rect x="44" y="52" width="34" height="26" rx="4" fill="#5b9bd5" stroke="#2b3442" stroke-width="2"/>
+  <path d="M61 78 v14" stroke="#2b3442" stroke-width="3"/>
+  <path d="M55 92 h12 l-2 10 h-8 Z" fill="#5b9bd5" stroke="#2b3442" stroke-width="1.6"/>
+  <!-- Station 2: Tor, nur große durch -->
+  <path d="M104 112 v-56 h40 v56" fill="none" stroke="#2b3442" stroke-width="3"/>
+  <rect x="104" y="56" width="40" height="10" fill="#f2c94c" stroke="#2b3442" stroke-width="2"/>
+  <!-- Fische: grau vor Station 1, blau danach, kleiner fällt vor dem Tor herunter -->
+  <g stroke="#2b3442" stroke-width="1.4">
+    <g transform="translate(26 104)"><path d="M-10 0 q10 -7 19 0 q-9 7 -19 0 Z" fill="#a7afba"/><path d="M9 0 l6 -5 v10 Z" fill="#a7afba"/></g>
+    <g transform="translate(88 102)"><path d="M-13 0 q13 -9 25 0 q-12 9 -25 0 Z" fill="#5b9bd5"/><path d="M12 0 l7 -6 v12 Z" fill="#5b9bd5"/></g>
+    <g transform="translate(150 150) rotate(30)"><path d="M-7 0 q7 -5 13 0 q-6 5 -13 0 Z" fill="#5b9bd5"/><path d="M6 0 l4 -3 v6 Z" fill="#5b9bd5"/></g>
+    <g transform="translate(168 102)"><path d="M-13 0 q13 -9 25 0 q-12 9 -25 0 Z" fill="#5b9bd5"/><path d="M12 0 l7 -6 v12 Z" fill="#5b9bd5"/></g>
+  </g>
+  <!-- Korb -->
+  <path d="M198 124 h44 l-6 34 h-32 Z" fill="#d9a774" stroke="#2b3442" stroke-width="2.2" stroke-linejoin="round"/>
+  <g stroke="#a8733f" stroke-width="1.4"><path d="M202 134 h36 M204 144 h32"/></g>
+  <!-- Pinguin hinter dem Korb -->
+  <g transform="translate(222 90) scale(0.75)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-17 2 q-10 6 -18 18 M17 2 q10 6 18 18" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

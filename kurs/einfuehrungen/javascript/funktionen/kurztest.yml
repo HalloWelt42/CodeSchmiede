@@ -1,0 +1,55 @@
+# Kurztest zu Kapitel 14: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-aufruf
+    text: Was gibt dieses Programm aus?
+    code: |
+      function rechne(a, b = 10) {
+        return a * b;
+        console.log("fertig");
+      }
+      console.log(rechne(3), rechne(3, 2));
+    optionen:
+      - text: 30 6
+        richtig: true
+        erklaerung: Richtig. Ohne zweiten Wert ist b 10. Das console.log hinter return läuft nie.
+      - text: |-
+          fertig
+          30 6
+        erklaerung: Hinter return ist die Funktion zu Ende, fertig wird nie ausgegeben.
+      - text: NaN 6
+        erklaerung: b hat den Standardwert 10, also 3 * 10.
+  - frageart: luecke
+    id: kt-luecke-function
+    text: Ergänze das Wort, das eine Funktion anlegt.
+    code: |
+      ___ halbieren(x) {
+        return x / 2;
+      }
+    antworten: [["function"]]
+    erklaerung: Richtig, function legt die Funktion an.
+    hinweis: Englisch für Funktion.
+  - frageart: fehlerstelle
+    id: kt-fehler-aufruf
+    text: Das Programm bricht ab. In welcher Zeile?
+    code: |
+      function laenge(text) {
+        return text.length;
+      }
+      console.log(laenge("Hering"));
+      console.log(laenge());
+    zeile: 2
+    erklaerung: Genau. Beim zweiten Aufruf fehlt der Wert, text ist undefined, und undefined hat kein length. Abgebrochen wird in der Funktion.
+    hinweis: Was steht in text, wenn nichts übergeben wird?
+  - frageart: auswahl
+    id: kt-ohne-return
+    text: Was liefert ein Aufruf einer Funktion ohne return?
+    optionen:
+      - text: 'undefined'
+        richtig: true
+        erklaerung: Richtig, nicht festgelegt.
+      - text: 'null'
+        erklaerung: null setzt man absichtlich; ohne return kommt undefined.
+      - text: Den letzten Wert, der im Block ausgerechnet wurde
+        erklaerung: So ist es in manchen Sprachen; in JavaScript braucht es ein return.
+uebung: j148-wechselgeld

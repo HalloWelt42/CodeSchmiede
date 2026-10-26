@@ -49,3 +49,17 @@ bloecke:
       - einfuehrung: js-map-set
         uebungen: [j131-erste-map, j132-umbuchen, j133-telefonbuch, j134-preisliste-map, j135-doppelte-weg, j136-schon-gesehen, j137-gemeinsam]
         projekt: [j139-fischwagen-maps]
+  - titel: Eigene Funktionen
+    kapitel:
+      - einfuehrung: js-funktionen
+        uebungen: [j141-jubelruf, j142-quadrat, j143-gruss, j144-preisfunktion, j145-ist-gerade, j146-groessere, j147-vokalzaehler]
+        projekt: [j149-fischwagen-funktionen]
+      - einfuehrung: js-pfeilfunktionen
+        uebungen: [j151-pfeil, j152-preise-mit-map, j153-nur-grosse, j154-summe-reduce, j155-sortieren, j156-finden, j157-kette]
+        projekt: [j159-fischwagen-rangliste]
+      - einfuehrung: js-sichtbarkeit
+        uebungen: [j161-draussen, j162-zaehler, j163-parameter-statt-aussen, j164-zaehlerfabrik, j165-konto, j166-gedaechtnis, j167-var-flicken]
+        projekt: [j169-fischwagen-bonnummern]
+      - einfuehrung: js-fehler
+        uebungen: [j171-erstes-netz, j172-durch-null, j173-sichere-zahl, j174-kasse-zu, j175-noten, j176-weiterwerfen, j177-unbekannte-ware]
+        projekt: [j179-fischwagen-eingaben]

@@ -1,0 +1,31 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin springt vom Steg und landet sicher in einem rot-weißen Rettungsring, den ein zweiter Pinguin hält">
+  <defs>
+    <g id="pingu-r">
+      <ellipse cx="0" cy="10" rx="16" ry="23" fill="#2b3442"/>
+      <ellipse cx="0" cy="13" rx="10.5" ry="16" fill="#f4f1ea"/>
+      <circle cx="0" cy="-19" r="12" fill="#2b3442"/>
+      <circle cx="-4" cy="-21" r="2.8" fill="#fff"/><circle cx="4" cy="-21" r="2.8" fill="#fff"/>
+      <circle cx="-5" cy="-20.5" r="1.4" fill="#111"/><circle cx="3" cy="-20.5" r="1.4" fill="#111"/>
+      <path d="M-10 -16 l-8 2.5 l8 2.5 Z" fill="#f2a13b"/>
+    </g>
+  </defs>
+  <!-- Wasser -->
+  <path d="M0 140 q16 -6 32 0 t32 0 t32 0 t32 0 t32 0 t32 0 t32 0 t32 0 v40 h-260 Z" fill="#5b9bd5" stroke="#2b3442" stroke-width="2"/>
+  <!-- Steg links -->
+  <rect x="0" y="70" width="70" height="10" fill="#c38a55" stroke="#2b3442" stroke-width="2"/>
+  <path d="M14 80 v62 M54 80 v62" stroke="#a8733f" stroke-width="6"/>
+  <!-- Sprungbogen -->
+  <path d="M60 64 q40 -50 92 22" fill="none" stroke="#2b3442" stroke-width="2" stroke-dasharray="5 5" opacity=".5"/>
+  <!-- Rettungsring auf dem Wasser -->
+  <circle cx="156" cy="132" r="26" fill="none" stroke="#e2574c" stroke-width="14"/>
+  <g stroke="#fffaf0" stroke-width="14"><path d="M156 106 a26 26 0 0 1 18 8" fill="none"/><path d="M182 132 a26 26 0 0 1 -8 18" fill="none"/><path d="M156 158 a26 26 0 0 1 -18 -8" fill="none"/><path d="M130 132 a26 26 0 0 1 8 -18" fill="none"/></g>
+  <circle cx="156" cy="132" r="33" fill="none" stroke="#2b3442" stroke-width="2"/>
+  <circle cx="156" cy="132" r="19" fill="none" stroke="#2b3442" stroke-width="2"/>
+  <!-- springender Pinguin, kopfüber im Ring -->
+  <use href="#pingu-r" transform="translate(156 108) rotate(160)"/>
+  <!-- Seil zum Helfer -->
+  <path d="M188 128 q20 -2 30 -16" fill="none" stroke="#a8733f" stroke-width="2.4"/>
+  <!-- Helfer am rechten Ufer -->
+  <path d="M206 120 h54 v24 h-54 Z" fill="#e8f2fa" stroke="#2b3442" stroke-width="2"/>
+  <use href="#pingu-r" transform="translate(232 92)"/>
+</svg>

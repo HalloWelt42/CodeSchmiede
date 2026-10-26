@@ -1,0 +1,70 @@
+# Kurztest zu Kapitel 16: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-ueberdecken
+    text: Was gibt dieses Programm aus?
+    code: |
+      let x = 1;
+      function f(x) {
+        x = x + 10;
+        return x;
+      }
+      console.log(f(5), x);
+    optionen:
+      - text: 15 1
+        richtig: true
+        erklaerung: Richtig. Der Parameter x überdeckt das äußere x; geändert wird nur der Parameter.
+      - text: 15 15
+        erklaerung: Das äußere x bleibt 1, die Funktion arbeitet mit ihrem eigenen x.
+      - text: 11 1
+        erklaerung: Der Parameter bekommt die 5, also 5 + 10.
+  - frageart: luecke
+    id: kt-luecke-aussen
+    text: Ergänze das Wort, damit gesamt nach der Schleife noch bekannt ist und 6 ausgegeben wird.
+    code: |
+      ___ gesamt = 0;
+      for (let i = 1; i <= 3; i++) {
+        gesamt += i;
+      }
+      console.log(gesamt);
+    antworten: [["let"]]
+    erklaerung: Richtig. gesamt ändert sich und steht außerhalb der Schleife, also let außen.
+    hinweis: Es muss sich ändern dürfen.
+  - frageart: auswahl
+    id: kt-closure
+    text: Was gibt das Programm aus?
+    code: |
+      function sammler() {
+        const liste = [];
+        return (x) => {
+          liste.push(x);
+          return liste.length;
+        };
+      }
+      const a = sammler();
+      const b = sammler();
+      a("Hering");
+      a("Aal");
+      console.log(a("Butt"), b("Lachs"));
+    optionen:
+      - text: 3 1
+        richtig: true
+        erklaerung: Richtig. a und b haben je eine eigene Liste. a hat drei Fische, b einen.
+      - text: 4 4
+        erklaerung: Jeder Aufruf von sammler legt eine neue, eigene Liste an.
+      - text: 3 3
+        erklaerung: b ist ein eigener Sammler mit eigener Liste.
+  - frageart: fehlerstelle
+    id: kt-fehler-funktion
+    text: Das Programm bricht ab. In welcher Zeile?
+    code: |
+      function bon() {
+        const summe = 12;
+        return summe * 2;
+      }
+      console.log(bon());
+      console.log(summe);
+    zeile: 6
+    erklaerung: Genau. summe gehört der Funktion bon und ist außerhalb unbekannt.
+    hinweis: Wem gehört summe?
+uebung: j168-stempelautomat

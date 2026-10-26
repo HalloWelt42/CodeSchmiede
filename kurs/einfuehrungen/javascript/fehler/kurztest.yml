@@ -1,0 +1,72 @@
+# Kurztest zu Kapitel 17: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-ablauf
+    text: Was gibt dieses Programm aus?
+    code: |
+      try {
+        console.log("A");
+        throw new Error("B");
+        console.log("C");
+      } catch (f) {
+        console.log(f.message);
+      } finally {
+        console.log("D");
+      }
+    optionen:
+      - text: |-
+          A
+          B
+          D
+        richtig: true
+        erklaerung: Richtig. Nach dem throw wird C übersprungen, catch gibt die Meldung B aus, finally läuft immer.
+      - text: |-
+          A
+          C
+          B
+          D
+        erklaerung: Hinter throw läuft im try-Block nichts mehr.
+      - text: |-
+          A
+          B
+        erklaerung: finally läuft immer, auch nach einem aufgefangenen Fehler.
+  - frageart: luecke
+    id: kt-luecke-catch
+    text: Ergänze das Wort, das den Fehler auffängt.
+    code: |
+      try {
+        undefiniert();
+      } ___ (fehler) {
+        console.log(fehler.name);
+      }
+    antworten: [["catch"]]
+    erklaerung: Richtig, catch fängt.
+    hinweis: Fangen heißt auf Englisch...
+  - frageart: auswahl
+    id: kt-art
+    text: Welche Fehlerart meldet JavaScript bei `kunde.name`, wenn kunde undefined ist?
+    optionen:
+      - text: TypeError
+        richtig: true
+        erklaerung: Richtig. Den Namen kunde gibt es, aber sein Wert hat keine Eigenschaften.
+      - text: ReferenceError
+        erklaerung: Ein ReferenceError käme, wenn es den Namen kunde gar nicht gäbe.
+      - text: RangeError
+        erklaerung: RangeError meldet Werte außerhalb des Erlaubten, etwa toFixed(200).
+  - frageart: fehlerstelle
+    id: kt-fehler-verschluckt
+    text: Das Programm gibt bei der Summe NaN aus, ohne zu sagen, warum. In welcher Zeile wird der Fehler verschluckt?
+    code: |
+      let summe = 0;
+      for (const text of ["2", "zwei", "3"]) {
+        let zahl = NaN;
+        try {
+          zahl = liesZahl(text);
+        } catch (f) {}
+        summe += zahl;
+      }
+      console.log(summe);
+    zeile: 6
+    erklaerung: Genau. Das leere catch fängt den Fehler und tut nichts; NaN rutscht in die Summe. Besser eine Meldung ausgeben und die Eingabe überspringen.
+    hinweis: Wo wird ein Fehler aufgefangen, ohne dass etwas passiert?
+uebung: j178-bestellzettel

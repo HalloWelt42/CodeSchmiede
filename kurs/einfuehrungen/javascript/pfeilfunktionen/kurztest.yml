@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 15: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-kette
+    text: Was gibt dieses Programm aus?
+    code: |
+      const z = [1, 2, 3, 4];
+      console.log(z.map(x => x * x).filter(x => x % 2 === 0));
+    optionen:
+      - text: '[ 4, 16 ]'
+        richtig: true
+        erklaerung: Richtig. Erst quadrieren, 1, 4, 9, 16, dann die geraden behalten.
+      - text: '[ 2, 4 ]'
+        erklaerung: Gefiltert wird nach dem Quadrieren, also unter 1, 4, 9, 16.
+      - text: '[ 1, 9 ]'
+        erklaerung: x % 2 === 0 lässt die geraden durch.
+  - frageart: luecke
+    id: kt-luecke-reduce
+    text: Ergänze den Startwert, damit die Summe stimmt, auch bei einem leeren Array.
+    code: console.log([3, 5].reduce((s, x) => s + x, ___));
+    antworten: [["0"]]
+    erklaerung: Richtig, die Summe beginnt bei 0.
+    hinweis: Womit fängt man beim Zusammenzählen an?
+  - frageart: fehlerstelle
+    id: kt-fehler-klammern
+    text: Die Funktion soll das Dreifache liefern, gibt aber undefined. In welcher Zeile liegt das Problem?
+    code: |
+      const dreifach = x => {
+        x * 3;
+      };
+      console.log(dreifach(4));
+    zeile: 2
+    erklaerung: Genau. Mit geschweiften Klammern ist der Ausdruck nicht mehr automatisch der Rückgabewert; es fehlt return.
+    hinweis: Was ändert sich, wenn hinter dem Pfeil geschweifte Klammern stehen?
+  - frageart: auswahl
+    id: kt-sort
+    text: Wie sortiert man `preise` absteigend, den teuersten zuerst?
+    als_code: true
+    optionen:
+      - text: preise.sort((a, b) => b - a)
+        richtig: true
+        erklaerung: Richtig. Ist b größer, ist das Ergebnis positiv, und b kommt nach vorn.
+      - text: preise.sort((a, b) => a - b)
+        erklaerung: Das sortiert aufsteigend, den billigsten zuerst.
+      - text: preise.sort().reverse()
+        erklaerung: sort ohne Vergleich ordnet Zahlen als Text; 10 käme vor 9.
+uebung: j158-fangbuch
