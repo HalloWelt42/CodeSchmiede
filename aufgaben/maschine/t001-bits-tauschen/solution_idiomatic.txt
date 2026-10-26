@@ -1,0 +1,4 @@
+# Zustand liest -> schreibt geht danach
+tauschen 0 -> 1 R tauschen
+tauschen 1 -> 0 R tauschen
+tauschen _ -> _ N fertig

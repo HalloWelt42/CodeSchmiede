@@ -1,0 +1,4 @@
+# Zustand liest -> schreibt geht danach
+plus 1 -> 0 L plus
+plus 0 -> 1 N fertig
+plus _ -> 1 N fertig

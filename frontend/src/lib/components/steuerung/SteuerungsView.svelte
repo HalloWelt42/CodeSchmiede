@@ -9,7 +9,8 @@
    * bestandenen Programm des Levels, auf dem es aufbaut.
    *
    * Jedes Spiel bringt mit: wie es Ansicht und Probelauf holt, die Hilfe (Sensoren, Befehle, Sterne), die Szene,
-   * den Ablaufplan, die Kennzahlen und die Klänge je Bild.
+   * den Ablaufplan, die Kennzahlen und die Klänge je Bild. Wer kein Python schreibt (Turingmaschine), bringt auch
+   * seinen Editor mit; der bekommt den Code zum Lesen und Schreiben und das gezeigte Bild.
    */
   import { onDestroy, onMount, type Snippet } from 'svelte';
   import { aufgabenApi } from '../../api/AufgabenApi';
@@ -21,7 +22,7 @@
   import { progressStore } from '../../stores/ProgressStore.svelte';
   import { route } from '../../stores/RouteStore.svelte';
   import type { AufgabeDetail } from '../../types/Aufgabe';
-  import type { AnsichtBasis, Auswertung, Laeufe, WiedergabeBasis } from '../../types/Steuerung';
+  import type { AnsichtBasis, Auswertung, CodeZugriff, Laeufe, WiedergabeBasis } from '../../types/Steuerung';
   import type { SubmissionAntwort } from '../../types/Submission';
   import BeschreibungsBereich from '../BeschreibungsBereich.svelte';
   import DreiSpaltenLayout from '../DreiSpaltenLayout.svelte';
@@ -32,6 +33,7 @@
   import BelohnungsBand from '../spiel/BelohnungsBand.svelte';
   import Teilschritte from './Teilschritte.svelte';
 
+  // Sekunden je Bild der Aufzeichnung, wenn das Spiel nichts anderes sagt
   const DT = 0.25;
 
   interface Props {
@@ -51,9 +53,20 @@
     szene: Snippet<[A, W | null, number]>;
     plan: Snippet<[A, W | null, number, number, (sekunde: number) => void]>;
     kennzahlen: Snippet<[A, W]>;
+    /** eigener Editor statt Python; bekommt den Code, die Wiedergabe und das gezeigte Bild */
+    editor?: Snippet<[A, CodeZugriff, W | null, number]>;
+    /** Titel der mittleren Spalte; ab Werk "Programm, n Zeichen" */
+    mitteTitel?: (code: string) => string;
+    /** Anzeige der Zeit; ab Werk Minuten und Sekunden */
+    zeitText?: (zeit: number, dauer: number) => string;
+    /** Sekunden je Bild beim Abspielen in 1-fach */
+    takt?: number;
+    /** Hinweis neben dem Titel des Ablaufplans */
+    planHinweis?: string;
   }
   let {
     detail, welt, symbol, planTitel, ladeAnsicht, probieren, tonZuBild, mitUnfall, hilfe, szene, plan, kennzahlen,
+    editor, mitteTitel, zeitText, takt = DT, planHinweis = 'Klick springt zur Sekunde',
   }: Props = $props();
 
   let ansicht = $state<A | null>(null);
@@ -77,23 +90,39 @@
 
   // Zeichen wie beim Prüfen ungefähr: ohne Leerraum und ohne Kommentare
   let zeichen = $derived(code.split('\n').map((z) => z.replace(/#.*$/, '')).join('').replace(/\s/g, '').length);
+  const zugriff: CodeZugriff = {
+    get code() {
+      return code;
+    },
+    set code(neu: string) {
+      code = neu;
+    },
+  };
 
   let wiedergabe = $derived<W | null>(
     auswertung?.wiedergaben.find((w) => w.name === gewaehlt) ?? auswertung?.wiedergaben[0] ?? null,
   );
   let dauer = $derived(wiedergabe?.dauer ?? ansicht?.dauer ?? 60);
 
-  const abspieler = new Abspieler(DT, (nr) => {
+  // svelte-ignore state_referenced_locally
+  const abspieler = new Abspieler(takt, (nr) => {
     if (klang.an && ansicht && wiedergabe && nr >= 0) tonZuBild?.(ansicht, wiedergabe, nr);
   });
   onDestroy(() => abspieler.anhalten());
   let zeit = $derived(wiedergabe && abspieler.bild >= 0 ? wiedergabe.bilder[abspieler.bild][0] : 0);
 
+  /** Das letzte Bild, das bis zu dieser Zeit gezeigt wird (-1 vor dem ersten). */
+  function bildBei(w: W, sekunde: number): number {
+    let nr = -1;
+    while (nr + 1 < w.bilder.length && w.bilder[nr + 1][0] <= sekunde + 1e-6) nr += 1;
+    return nr;
+  }
+
   function zeige(name: string | null, ab = 0): void {
     gewaehlt = name;
     const w = auswertung?.wiedergaben.find((x) => x.name === name) ?? auswertung?.wiedergaben[0];
     if (!w) return;
-    abspieler.laden(w.bilder.length, Math.round(ab / DT) - 1);
+    abspieler.laden(w.bilder.length, ab > 0 ? bildBei(w, ab) : -1);
     abspieler.abspielen();
   }
 
@@ -189,7 +218,7 @@
 {/snippet}
 
 <DreiSpaltenLayout
-  mitteTitel="Programm, {zeichen} Zeichen"
+  mitteTitel={mitteTitel ? mitteTitel(code) : `Programm, ${zeichen} Zeichen`}
   rechtsTitel={welt}
   schritte={['Aufgabe', 'Programm', welt]}
   pruefen={{ aktion: pruefen, laeuft: pruefen_laeuft, moeglich: code.trim() !== '' }}
@@ -236,7 +265,11 @@
 
   {#snippet mitte()}
     <div class="editor-host">
-      <EditorBereich sprache="python" bind:code />
+      {#if editor && ansicht}
+        {@render editor(ansicht, zugriff, wiedergabe, abspieler.bild)}
+      {:else}
+        <EditorBereich sprache="python" bind:code />
+      {/if}
     </div>
   {/snippet}
 
@@ -253,9 +286,11 @@
         <button class="knopf-klein" onclick={() => abspieler.springe(-1)} disabled={!wiedergabe}>
           <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>Von vorn
         </button>
-        <button class="knopf-klein" class:aktiv={klang.an} onclick={() => klang.umschalten()} title="Klänge beim Abspielen">
-          <i class="fa-solid {klang.an ? 'fa-volume-high' : 'fa-volume-xmark'}" aria-hidden="true"></i>Ton {klang.an ? 'an' : 'aus'}
-        </button>
+        {#if tonZuBild}
+          <button class="knopf-klein" class:aktiv={klang.an} onclick={() => klang.umschalten()} title="Klänge beim Abspielen">
+            <i class="fa-solid {klang.an ? 'fa-volume-high' : 'fa-volume-xmark'}" aria-hidden="true"></i>Ton {klang.an ? 'an' : 'aus'}
+          </button>
+        {/if}
         <select
           class="wahl tempo"
           value={abspieler.tempo}
@@ -264,15 +299,15 @@
         >
           {#each TEMPI as t (t)}<option value={t}>{t}-fach</option>{/each}
         </select>
-        <span class="num zeit">{uhr(zeit)} / {uhr(dauer)}</span>
+        <span class="num zeit">{zeitText ? zeitText(zeit, dauer) : `${uhr(zeit)} / ${uhr(dauer)}`}</span>
       </div>
 
       {#if ansicht}
         {@render szene(ansicht, wiedergabe, abspieler.bild)}
         <div class="gruppe">
-          {planTitel}{#if wiedergabe}<span class="dim klein">{wiedergabe.name}, Klick springt zur Sekunde</span>{/if}
+          {planTitel}{#if wiedergabe}<span class="dim klein">{wiedergabe.name}, {planHinweis}</span>{/if}
         </div>
-        {@render plan(ansicht, wiedergabe, dauer, zeit, (s) => abspieler.springe(Math.round(s / DT) - 1))}
+        {@render plan(ansicht, wiedergabe, dauer, zeit, (s) => wiedergabe && abspieler.springe(bildBei(wiedergabe, s)))}
       {:else if !fehler}
         <p class="dim"><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> {welt} wird geladen ...</p>
       {/if}

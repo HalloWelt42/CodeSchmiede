@@ -1,0 +1,22 @@
+# vorne ein Zeichen nehmen und im Zustand merken
+start 0 -> _ R hat0
+start 1 -> _ R hat1
+start _ -> _ N ja
+# bis ans Ende laufen
+hat0 0 -> 0 R hat0
+hat0 1 -> 1 R hat0
+hat0 _ -> _ L ende0
+hat1 0 -> 0 R hat1
+hat1 1 -> 1 R hat1
+hat1 _ -> _ L ende1
+# hinten vergleichen
+ende0 0 -> _ L zurueck
+ende0 1 -> 1 N nein
+ende0 _ -> _ N ja
+ende1 1 -> _ L zurueck
+ende1 0 -> 0 N nein
+ende1 _ -> _ N ja
+# zurück an den Anfang
+zurueck 0 -> 0 L zurueck
+zurueck 1 -> 1 L zurueck
+zurueck _ -> _ R start

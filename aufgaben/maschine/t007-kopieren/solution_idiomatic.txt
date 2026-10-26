@@ -1,0 +1,27 @@
+# Trennzeichen ans Ende
+start 0 -> 0 R start
+start 1 -> 1 R start
+start _ -> | L zurueck
+# zurück bis hinter die letzte Markierung
+zurueck 0 -> 0 L zurueck
+zurueck 1 -> 1 L zurueck
+zurueck | -> | L zurueck
+zurueck A -> A R nimm
+zurueck B -> B R nimm
+zurueck _ -> _ R nimm
+# das nächste Zeichen markieren und tragen
+nimm 0 -> A R trage0
+nimm 1 -> B R trage1
+nimm | -> | L aufraeumen
+trage0 0 -> 0 R trage0
+trage0 1 -> 1 R trage0
+trage0 | -> | R trage0
+trage0 _ -> 0 L zurueck
+trage1 0 -> 0 R trage1
+trage1 1 -> 1 R trage1
+trage1 | -> | R trage1
+trage1 _ -> 1 L zurueck
+# Markierungen zurück
+aufraeumen A -> 0 L aufraeumen
+aufraeumen B -> 1 L aufraeumen
+aufraeumen _ -> _ N fertig

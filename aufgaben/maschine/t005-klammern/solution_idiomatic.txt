@@ -1,0 +1,13 @@
+# such: nach rechts zur ersten schließenden Klammer
+such ( -> ( R such
+such X -> X R such
+such ) -> X L zurueck
+such _ -> _ L pruefe
+# zurueck: nach links zur passenden öffnenden, beide werden X
+zurueck X -> X L zurueck
+zurueck ( -> X R such
+zurueck _ -> _ N nein
+# pruefe: am Ende darf keine öffnende übrig sein
+pruefe X -> X L pruefe
+pruefe ( -> ( N nein
+pruefe _ -> _ N ja

@@ -418,11 +418,20 @@ Nach dem freigegebenen Entwurf `mockups/rechner-aufzug.html`; Einzelheiten in `d
 - Geprüft: jede Musterlösung mit drei Sternen, jeder Startcode scheitert am ersten Teilschritt, das Programm des
   vorigen Levels reicht nicht; Sichtprüfung von einer und zwei Kabinen und vom Feueralarm.
 
+## Ergebnis: Turingmaschine (0.91.0)
+
+Nach dem freigegebenen Entwurf `mockups/rechner-turing.html` (Freigabe 26.10.2026 zusammen mit den Schaltungen);
+Einzelheiten in `docs/SPIELE.md`.
+
+- Neue Sprache "Maschinen" (`aufgaben/maschine/`, Musterlösungen als `.txt`) für Spiele ohne Code.
+- Übergangstabelle als Text mit Tabellen- und Textansicht, Prüfung im Backend ohne Sandbox, sieben Levels von
+  Bits tauschen bis Kopieren; Routen `GET /api/spiel/turing/{id}/maschine` und `POST /api/spiel/turing/{id}/lauf`.
+- Die gemeinsame Ansicht der Steuerungsspiele kann jetzt einen eigenen Editor, eigenen Titel, eigene Zeitanzeige
+  und Takt aufnehmen; ohne Klänge fehlt der Tonknopf.
+
 ## Offen
 
-- Weitere Spielideen (Nutzer 25.10.2026): Turingmaschine (sehr anschaulich, mehrere Aufgaben) und digitale Schaltungen
-  bis zur 7-Segment-Anzeige, Halb- und Volladdierer, Verdrahtungsaufgaben mit und ohne fertige Anordnung; Skizze in
-  `docs/SPIELE.md`, vor dem Bau Entwürfe.
+- Digitale Schaltungen nach dem freigegebenen Entwurf `mockups/rechner-schaltung.html` (im Bau).
 - Weitere Spielideen (Nutzer 25.10.2026): Codes knacken (Knacker schreiben, geprüft auf versteckten Geheimtexten) und
   Flaggenjagd (verwundbare Übungssysteme nur in der Sandbox, erst Flagge finden, dann Lücke schließen); Skizze in
   `docs/SPIELE.md`, vor dem Bau Entwürfe.

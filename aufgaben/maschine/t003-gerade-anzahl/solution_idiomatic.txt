@@ -1,0 +1,7 @@
+# der Zustand merkt sich, ob bisher gerade oder ungerade viele Einsen kamen
+gerade 0 -> 0 R gerade
+gerade 1 -> 1 R ungerade
+gerade _ -> _ N ja
+ungerade 0 -> 0 R ungerade
+ungerade 1 -> 1 R gerade
+ungerade _ -> _ N nein

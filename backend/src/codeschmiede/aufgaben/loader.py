@@ -26,7 +26,7 @@ from ..models.pfad import Pfad
 
 FRONTMATTER_TRENNER = "---"
 RESERVIERTE_VERZEICHNISSE = {"pfade"}
-MUSTERLOESUNG_ENDUNGEN = ("py", "js", "ts", "html", "css", "sql")
+MUSTERLOESUNG_ENDUNGEN = ("py", "js", "ts", "html", "css", "sql", "txt")
 # Didaktische Reihenfolge der Musterlösungen laut Aufgabenformat
 # (docs/AUFGABEN-FORMAT.md); andere Varianten folgen alphabetisch.
 MUSTERLOESUNG_REIHENFOLGE = ("naive", "idiomatic", "optimal")

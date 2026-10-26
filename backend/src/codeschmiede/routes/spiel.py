@@ -1,6 +1,6 @@
 """HTTP-Routen der Spielmechanik: Spielstand für Kopf und Startseite,
 Erfolge für ihre Seite, Spiele mit dem Stand ihrer Levels, Probeläufe des
-Roboters, der Ampelschule und der Aufzugsteuerung und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
+Roboters, der Steuerungsspiele und der Turingmaschine und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
 
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -12,9 +12,10 @@ from ..models.spiel import ErfolgsListe, Spielstand, SpielUebersicht
 from ..models.sprint import SprintAbschluss, SprintRueckmeldung, SprintRunde
 from ..pruefung import krimi_pruefer
 from ..pruefung.krimi_pruefer import Ergebnistabelle
-from ..pruefung import ampel_pruefer, aufzug_pruefer
+from ..pruefung import ampel_pruefer, aufzug_pruefer, turing_pruefer
 from ..pruefung.ampel_pruefer import AmpelLaeufe, AmpelSterne
 from ..pruefung.aufzug_pruefer import AufzugLaeufe, AufzugSterne
+from ..pruefung.turing_pruefer import Band, TuringLaeufe, TuringSterne
 from ..pruefung.roboter_pruefer import Laeufe, lauf_sichtbar
 from ..steuerung import ampel_welt
 from ..steuerung.ampel_anlage import Anlage
@@ -69,6 +70,23 @@ class AufzugAnsicht(BaseModel):
     sensoren: list[str]
     teilschritte: list[TeilschrittText]
     sterne: AufzugSterne
+    aufbauend_auf: str | None
+
+
+class TuringAnsicht(BaseModel):
+    """Was die Turingmaschine vor dem ersten Lauf zeigt: Zeichen, Zustände, die sichtbaren Bänder und vom Level, was
+    der Browser braucht."""
+
+    zeichen: list[str]
+    start: str
+    ende: list[str]
+    kopf: str
+    grenze: int
+    baender: list[Band]
+    dauer: int
+    sensoren: list[str]
+    teilschritte: list[TeilschrittText]
+    sterne: TuringSterne
     aufbauend_auf: str | None
 
 
@@ -172,6 +190,27 @@ def baue_spiel_router(state: AppState) -> APIRouter:
             return aufzug_pruefer.lauf_sichtbar(aufgabe, anfrage.code, state.runner)
         except SandboxFehler as fehler:
             raise HTTPException(status_code=503, detail=str(fehler)) from fehler
+
+    def turing_level(aufgabe_id: str):
+        aufgabe = state.aufgaben.aufgabe(aufgabe_id)
+        if aufgabe is None or aufgabe.task_type != "turing":
+            raise HTTPException(status_code=404, detail="Kein Turing-Level")
+        return aufgabe
+
+    @router.get("/turing/{aufgabe_id}/maschine", response_model=TuringAnsicht)
+    def turing_maschine(aufgabe_id: str) -> TuringAnsicht:
+        level = turing_pruefer.level_von(turing_level(aufgabe_id))
+        return TuringAnsicht(
+            zeichen=level.zeichen, start=level.start, ende=level.ende, kopf=level.kopf, grenze=level.grenze,
+            baender=level.sichtbar, dauer=20, sensoren=[],
+            teilschritte=[TeilschrittText(titel=s.titel, text=s.text) for s in level.teilschritte],
+            sterne=level.sterne, aufbauend_auf=level.aufbauend_auf,
+        )
+
+    @router.post("/turing/{aufgabe_id}/lauf", response_model=TuringLaeufe)
+    def turing_lauf(aufgabe_id: str, anfrage: ProgrammProbe) -> TuringLaeufe:
+        """Probelauf auf den sichtbaren Bändern, ohne Wertung und ohne Abgabe (ohne Sandbox: eine Tabelle ist Daten)."""
+        return turing_pruefer.lauf_sichtbar(turing_level(aufgabe_id), anfrage.code)
 
     def krimi_kapitel(aufgabe_id: str):
         aufgabe = state.aufgaben.aufgabe(aufgabe_id)

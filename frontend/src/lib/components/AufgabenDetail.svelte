@@ -39,6 +39,7 @@
   import KrimiView from './KrimiView.svelte';
   import AmpelView from './AmpelView.svelte';
   import AufzugView from './AufzugView.svelte';
+  import TuringView from './TuringView.svelte';
   import RoboterView from './RoboterView.svelte';
   import { spielStore } from '../stores/SpielStore.svelte';
 
@@ -269,6 +270,8 @@
       <AmpelView detail={aktuell} />
     {:else if aktuell.task_type === 'aufzug'}
       <AufzugView detail={aktuell} />
+    {:else if aktuell.task_type === 'turing'}
+      <TuringView detail={aktuell} />
     {:else if aktuell.task_type === 'sql_krimi'}
       <KrimiView detail={aktuell} />
     {:else}

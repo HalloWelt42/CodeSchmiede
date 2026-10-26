@@ -173,7 +173,7 @@ ersten Teilschritt, und das Programm des Levels davor reicht nicht (Tests in `ba
 Bahnübergang mit Schranke, Schleuse mit Wasserstand, Heizungsregler mit Schaltpause, Parkhaus mit Belegung und
 Schranken, Förderband mit Weiche, Garagentor mit Sicherheitsleiste.
 
-## Weitere Spielideen: Turingmaschine und digitale Schaltungen (Idee, vor dem Bau Entwürfe)
+## Turingmaschine und digitale Schaltungen (Entwürfe freigegeben 26.10.2026)
 
 Vorschlag des Nutzers (25.10.2026): eine Turingmaschine programmieren, extrem anschaulich, mit mehreren Aufgaben, und
 digitale Schaltungen bis zur 7-Segment-Anzeige, Halb- und Volladdierer; einfache und etwas komplexere Aufgaben,
@@ -191,6 +191,25 @@ Verdrahtungsaufgaben mal mit, mal ohne fertige Anordnung.
   Binärzahl um eins erhöhen, Einsen zählen, Kopieren, Palindrom, Klammern prüfen, unäre Addition. Prüfung auf sichtbaren
   und versteckten Bändern mit Schrittgrenze; Sterne nach Zahl der Zustände und Schritte. Passt zur Ampel: beides sind
   Zustandsautomaten.
+
+Entwürfe: `mockups/rechner-turing.html` und `mockups/rechner-schaltung.html`. Beide Spiele liegen unter der Sprache
+"Maschinen" (`aufgaben/maschine/`), weil sie keinen Code schreiben.
+
+### Turingmaschine (gebaut, 0.91.0)
+
+- **Tabelle als Text** (`backend/src/codeschmiede/steuerung/turing.py`): eine Regel je Zeile, `Zustand liest ->
+  schreibt geht danach`, Kommentare mit `#`, `_` ist leer. Der Text ist die eine Wahrheit; die Oberfläche zeigt ihn
+  als Tabelle (Zustände als Eingaben, Zeichen und Richtung als Auswahl) oder als Text, Kommentare bleiben stehen.
+- **Prüfung** (`pruefung/turing_pruefer.py`) im Backend ohne Sandbox: jedes Band läuft bis zu einem Endzustand,
+  ohne passende Regel oder bis zur Grenze an Schritten. Ein Band stimmt, wenn die Maschine hält und das Band
+  stimmt, bei Entscheidern der Endzustand (ja, nein). Teilschritte nennen Bänder beim Namen.
+- **Sterne**: alle Bänder; höchstens so viele Zustände (ohne Endzustände); dazu höchstens so viele Zeilen.
+- **Ansicht** `TuringView` in der gemeinsamen Ansicht: Tabelle mit Zustandsdiagramm (Zustände im Kreis, Regeln als
+  beschriftete Pfeile, Zustand und Regel des Schritts leuchten), rechts das Band mit Kopf und Zustand und die Spur
+  aller Schritte (Klick springt).
+- **Levels** (`t001` bis `t007`, Pfad `turingmaschine`): Bits tauschen, Plus eins, Gerade Anzahl (erster
+  Entscheider), Unär addieren, Klammern prüfen, Palindrom, Kopieren. Jede Musterlösung besteht mit drei Sternen,
+  jeder Startcode scheitert am ersten Teilschritt (Tests in `backend/tests/test_turing.py`).
 
 ## Weitere Spielideen: Codes knacken und Flaggenjagd (Idee, vor dem Bau Entwürfe)
 

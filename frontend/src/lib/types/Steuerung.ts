@@ -49,3 +49,8 @@ export interface Laeufe<W, K> {
   laufzeit_ms: number;
   timeout: boolean;
 }
+
+/** Lesen und Schreiben des Programms für einen eigenen Editor */
+export interface CodeZugriff {
+  code: string;
+}

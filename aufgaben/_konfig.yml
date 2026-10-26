@@ -46,6 +46,11 @@ sprachen:
     editor_lang: sql
     endung: sql
     runner_type: docker_sqlite
+  - id: maschine
+    titel: Maschinen
+    editor_lang: plaintext
+    endung: txt
+    runner_type: server
 
 aufgabentypen:
   - id: code_schreiben
@@ -104,6 +109,10 @@ aufgabentypen:
     titel: Aufzugsteuerung
     view: aufzug
     beschreibung: Eine Aufzugsteuerung in Python schreiben - Fahrgäste, Türen und Wartezeiten zeigen, ob sie stimmt.
+  - id: turing
+    titel: Turingmaschine
+    view: turing
+    beschreibung: Eine Übergangstabelle bauen - Band, Kopf und Zustände zeigen Schritt für Schritt, was sie tut.
 
 # Spiele im Spielebereich. Ihre Levels sind Aufgaben des genannten
 # Aufgabentyps, die Reihenfolge geben die Pfade vor. Levels zählen in
@@ -147,6 +156,12 @@ spiele:
     beschreibung: "Aufzüge in Python steuern: von zwei Etagen bis zu zwei Kabinen im Bürohaus, mit Lichtschranke, Überlast und Feueralarm."
     aufgabentyp: aufzug
     pfade: [aufzugsteuerung]
+  - id: turingmaschine
+    titel: Turingmaschine
+    icon: fa-tape
+    beschreibung: "Rechnen mit Band, Kopf und Tabelle: Bits tauschen, plus eins, Klammern prüfen, Palindrome und Kopieren."
+    aufgabentyp: turing
+    pfade: [turingmaschine]
 
 # Spielmechanik (docs/SPIELE.md). Stufe k gilt ab stufe_basis * k * k
 # Punkten, alle titel_alle Stufen kommt der nächste Titel. Die Ränge der

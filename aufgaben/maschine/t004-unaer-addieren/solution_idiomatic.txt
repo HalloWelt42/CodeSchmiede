@@ -1,0 +1,6 @@
+# das Plus wird eine 1, dafür fällt am Ende eine 1 weg
+a 1 -> 1 R a
+a + -> 1 R b
+b 1 -> 1 R b
+b _ -> _ L c
+c 1 -> _ N fertig

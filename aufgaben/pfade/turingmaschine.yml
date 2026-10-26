@@ -1,0 +1,13 @@
+id: turingmaschine
+titel: Turingmaschine
+beschreibung: |
+  Rechnen mit Band, Kopf und Übergangstabelle: Bits tauschen, plus eins,
+  entscheiden, unär addieren, Klammern prüfen, Palindrome und Kopieren.
+reihenfolge:
+  - t001-bits-tauschen
+  - t002-plus-eins
+  - t003-gerade-anzahl
+  - t004-unaer-addieren
+  - t005-klammern
+  - t006-palindrom
+  - t007-kopieren
