@@ -1,0 +1,46 @@
+# Kurztest zu Kapitel 17: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-nth
+    text: "Welche Stellen trifft `:nth-child(2n+1)`?"
+    optionen:
+      - text: 1, 3, 5 und so weiter
+        richtig: true
+        erklaerung: Richtig, für n gleich 0, 1, 2 ergibt das 1, 3, 5. Dasselbe wie odd.
+      - text: 2, 4, 6 und so weiter
+        erklaerung: Das wäre 2n oder even.
+      - text: Nur die dritte
+        erklaerung: Mit n darin ist es ein Muster, keine einzelne Stelle.
+  - frageart: auswahl
+    id: kt-leerzeichen
+    text: "Was trifft `ul li:first-child`?"
+    optionen:
+      - text: Jedes li, das das erste Kind seiner Eltern ist, irgendwo in einer ul
+        richtig: true
+        erklaerung: Richtig.
+      - text: Das erste Kind in jedem li
+        erklaerung: Das wäre li :first-child mit Leerzeichen.
+      - text: Die erste ul der Seite
+        erklaerung: Die Pseudoklasse hängt am li, nicht an der ul.
+  - frageart: luecke
+    id: kt-luecke-gerade
+    text: Jede gerade Zeile soll einen Streifen bekommen. Ergänze das Wort.
+    code: |
+      tr:nth-child(___) {
+        background-color: #2b3442;
+      }
+    antworten: [["even", "2n"]]
+    erklaerung: Richtig.
+    hinweis: Gerade heißt auf Englisch even.
+  - frageart: auswahl
+    id: kt-not
+    text: "Welche Absätze trifft `p:not(.hinweis)`?"
+    optionen:
+      - text: Alle Absätze ohne die Klasse hinweis
+        richtig: true
+        erklaerung: Richtig.
+      - text: Nur die Absätze mit der Klasse hinweis
+        erklaerung: not dreht die Auswahl um.
+      - text: Alle Elemente außer Absätzen
+        erklaerung: Das p davor bleibt, ausgeschlossen werden nur die mit der Klasse.
+uebung: w178-tabelle

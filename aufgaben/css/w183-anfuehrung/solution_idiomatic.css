@@ -1,0 +1,14 @@
+.zitat {
+  font-size: 20px;
+  font-style: italic;
+}
+
+.zitat::before {
+  content: "> ";
+  color: gold;
+}
+
+.zitat::after {
+  content: " <";
+  color: gold;
+}

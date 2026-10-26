@@ -1,0 +1,48 @@
+# Kurztest zu Kapitel 18: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-doppelpunkte
+    text: Woran erkennt man ein Pseudoelement am Selektor?
+    optionen:
+      - text: An zwei Doppelpunkten, etwa ::before
+        richtig: true
+        erklaerung: Richtig. Pseudoklassen haben einen, Pseudoelemente zwei.
+      - text: An einem Doppelpunkt, etwa :hover
+        erklaerung: Das ist eine Pseudoklasse.
+      - text: An einer Raute
+        erklaerung: Die Raute steht für eine id.
+  - frageart: fehlerstelle
+    id: kt-ohne-content
+    text: Das Schmuckstück erscheint nicht. In welcher Zeile fehlt etwas Entscheidendes? Zeige auf die Zeile mit dem Selektor.
+    code: |
+      h2::after {
+        display: block;
+        width: 40px;
+        height: 4px;
+        background-color: gold;
+      }
+    zeile: 1
+    erklaerung: Genau. Der Regel fehlt content, ohne den es kein Pseudoelement gibt.
+    hinweis: Was braucht jedes ::before und ::after?
+  - frageart: luecke
+    id: kt-luecke-after
+    text: Hinter jeder Überschrift soll ein Stern stehen. Ergänze das Pseudoelement.
+    code: |
+      h2::___ {
+        content: " *";
+      }
+    antworten: [["after"]]
+    erklaerung: Richtig, after hängt am Ende an.
+    hinweis: Danach heißt after.
+  - frageart: auswahl
+    id: kt-first-line
+    text: Was gestaltet p::first-line?
+    optionen:
+      - text: Die erste Zeile des Absatzes, so lang sie gerade ist
+        richtig: true
+        erklaerung: Richtig. Wird der Absatz schmaler, enthält die erste Zeile weniger Wörter.
+      - text: Den ersten Satz
+        erklaerung: Gemeint ist die erste Zeile, nicht der erste Satz.
+      - text: Den ersten Absatz der Seite
+        erklaerung: Das wäre p:first-child oder p:first-of-type.
+uebung: w188-angebotsschild

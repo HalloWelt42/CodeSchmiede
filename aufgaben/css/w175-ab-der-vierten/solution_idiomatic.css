@@ -1,0 +1,8 @@
+.liste li {
+  padding: 6px;
+  background-color: #1f6f8b;
+}
+
+.liste li:nth-child(n+4) {
+  opacity: 0.5;
+}

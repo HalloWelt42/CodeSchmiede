@@ -1,0 +1,14 @@
+.geschichte {
+  width: 400px;
+  line-height: 1.6;
+}
+
+.geschichte::first-letter {
+  font-size: 48px;
+  font-family: serif;
+  color: gold;
+}
+
+.geschichte::first-line {
+  text-transform: uppercase;
+}

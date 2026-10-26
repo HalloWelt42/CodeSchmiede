@@ -1,0 +1,47 @@
+# Kurztest zu Kapitel 19: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-name
+    text: Welche Zeile legt eine Variable richtig fest?
+    als_code: true
+    optionen:
+      - text: "--rand: 4px;"
+        richtig: true
+        erklaerung: Richtig, zwei Bindestriche vor dem Namen.
+      - text: "$rand: 4px;"
+        erklaerung: Das Dollarzeichen gibt es in CSS nicht für Variablen.
+      - text: "var-rand: 4px;"
+        erklaerung: Eigene Eigenschaften beginnen mit zwei Bindestrichen.
+  - frageart: auswahl
+    id: kt-calc
+    text: "Wie breit ist `calc(50% + 20px)` in einem 400 Pixel breiten Elternelement?"
+    optionen:
+      - text: 220 Pixel
+        richtig: true
+        erklaerung: Richtig, 200 plus 20.
+      - text: 70 Pixel
+        erklaerung: 50 Prozent sind die Hälfte von 400, nicht 50 Pixel.
+      - text: 420 Pixel
+        erklaerung: Es sind 50 Prozent, nicht 100.
+  - frageart: luecke
+    id: kt-luecke-ersatz
+    text: Fehlt die Variable --rahmen, soll gray gelten. Ergänze.
+    code: |
+      .kasten {
+        border-color: var(--rahmen___ gray);
+      }
+    antworten: [[","]]
+    erklaerung: Richtig, der Ersatzwert folgt nach einem Komma.
+    hinweis: Ein Trennzeichen zwischen Variable und Ersatz.
+  - frageart: auswahl
+    id: kt-ueberschreiben
+    text: "In `:root` steht `--farbe: gold;`, bei `.nacht` steht `--farbe: navy;`. Welche Farbe hat `color: var(--farbe)` bei einem Absatz in .nacht?"
+    optionen:
+      - text: navy
+        richtig: true
+        erklaerung: Richtig, der nächste Vorfahr mit der Variable gewinnt.
+      - text: gold
+        erklaerung: .nacht setzt die Variable für alles darin neu.
+      - text: Gar keine, die Variable ist doppelt
+        erklaerung: Doppelt festlegen ist erlaubt, es gilt die nächstgelegene.
+uebung: w198-farbschema

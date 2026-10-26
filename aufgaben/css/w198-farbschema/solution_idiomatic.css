@@ -1,0 +1,22 @@
+:root {
+  --akzent: #38bdf8;
+  --abstand: 10px;
+}
+
+.rot {
+  --akzent: #f87171;
+}
+
+.karte {
+  width: calc(50% - 4 * var(--abstand));
+  display: inline-block;
+  margin-right: var(--abstand);
+  padding: var(--abstand);
+  border-top: calc(var(--abstand) / 2) solid var(--akzent);
+  background-color: #2b3442;
+}
+
+.karte h2 {
+  margin: 0;
+  color: var(--akzent, white);
+}

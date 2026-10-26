@@ -1,0 +1,15 @@
+:root {
+  --luecke: 12px;
+}
+
+.reihe {
+  display: flex;
+  gap: var(--luecke);
+}
+
+.reihe div {
+  width: calc((100% - 2 * var(--luecke)) / 3);
+  padding: 10px 0;
+  text-align: center;
+  background-color: teal;
+}

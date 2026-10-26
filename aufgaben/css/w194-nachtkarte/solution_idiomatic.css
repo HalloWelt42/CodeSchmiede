@@ -1,0 +1,16 @@
+:root {
+  --grund: #fbf4e2;
+  --schrift: #2b3442;
+}
+
+.karte {
+  padding: 20px;
+  margin-bottom: 10px;
+  background-color: var(--grund);
+  color: var(--schrift);
+}
+
+.nacht {
+  --grund: #0b1d3a;
+  --schrift: #ffd166;
+}

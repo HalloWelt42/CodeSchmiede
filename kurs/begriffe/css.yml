@@ -220,3 +220,33 @@ begriffe:
   - id: z_index
     titel: Stapelreihenfolge mit z-index
     erkennung: {eigenschaften: [z-index]}
+  # Kapitel 17: Pseudoklassen
+  - id: erstes_letztes
+    titel: Das erste und letzte Kind
+    erkennung: {knoten: [":first-child", ":last-child", ":first-of-type", ":last-of-type"]}
+  - id: nth_child
+    titel: Abzählen mit nth-child
+    erkennung: {knoten: [":nth-child", ":nth-of-type"]}
+  - id: not
+    titel: Ausschließen mit not
+    erkennung: {knoten: [":not"]}
+  - id: zustand
+    titel: Zustände wie hover und focus
+    erkennung: {knoten: [":hover", ":focus"]}
+  # Kapitel 18: Pseudoelemente
+  - id: before_after
+    titel: Einfügen mit ::before, ::after und content
+    erkennung: {knoten: ["::before", "::after"], eigenschaften: [content]}
+  - id: first_letter
+    titel: Erster Buchstabe und erste Zeile
+    erkennung: {knoten: ["::first-letter", "::first-line"]}
+  - id: marker
+    titel: Listenpunkte mit ::marker
+    erkennung: {knoten: ["::marker"]}
+  # Kapitel 19: Variablen und calc
+  - id: variablen
+    titel: Eigene Eigenschaften mit var() und :root
+    erkennung: {knoten: [eigene_eigenschaft, ":root"], aufrufe: [var]}
+  - id: calc
+    titel: Rechnen mit calc
+    erkennung: {aufrufe: [calc, min, max, clamp]}

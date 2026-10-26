@@ -1,0 +1,5 @@
+.tipp::before {
+  content: "Tipp: ";
+  color: gold;
+  font-weight: bold;
+}

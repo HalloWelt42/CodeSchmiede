@@ -1,0 +1,8 @@
+.liste li {
+  padding: 6px;
+  background-color: #1f6f8b;
+}
+
+.liste li:nth-child(even) {
+  background-color: #2b3442;
+}

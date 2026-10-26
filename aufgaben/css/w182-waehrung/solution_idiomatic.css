@@ -1,0 +1,7 @@
+.preis {
+  color: gold;
+}
+
+.preis::after {
+  content: " €";
+}

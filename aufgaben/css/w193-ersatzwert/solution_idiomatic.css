@@ -1,0 +1,11 @@
+:root {
+  --fisch: skyblue;
+}
+
+.a {
+  color: var(--fisch);
+}
+
+.b {
+  color: var(--fish, tomato);
+}

@@ -1,0 +1,27 @@
+.schild {
+  position: relative;
+  width: 260px;
+  margin: 30px;
+  padding: 16px;
+  background-color: #fbf4e2;
+  color: #2b3442;
+}
+
+.schild::before {
+  content: "Angebot";
+  position: absolute;
+  top: -12px;
+  left: 12px;
+  padding: 2px 8px;
+  background-color: crimson;
+  color: white;
+}
+
+.name::first-letter {
+  font-size: 28px;
+  color: crimson;
+}
+
+.preis::after {
+  content: " €";
+}

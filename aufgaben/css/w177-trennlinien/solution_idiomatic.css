@@ -1,0 +1,13 @@
+.karte {
+  width: 240px;
+  padding: 0;
+  background-color: #2b3442;
+}
+
+.karte li {
+  padding: 8px;
+}
+
+.karte li:not(:last-child) {
+  border-bottom: 3px dotted gold;
+}

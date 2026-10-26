@@ -1,0 +1,21 @@
+.liste li {
+  padding: 6px;
+  background-color: #1f6f8b;
+}
+
+.liste li:first-child {
+  font-weight: bold;
+  color: gold;
+}
+
+.liste li:nth-child(odd):not(:first-child) {
+  background-color: #2b3442;
+}
+
+.liste li:last-child {
+  border-bottom: 4px solid gold;
+}
+
+.liste li:nth-child(n+5) {
+  font-style: italic;
+}

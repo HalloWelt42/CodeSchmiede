@@ -1,0 +1,12 @@
+:root {
+  --hausfarbe: #f472b6;
+}
+
+h2, .preis {
+  color: var(--hausfarbe);
+}
+
+.streifen {
+  height: 12px;
+  background-color: var(--hausfarbe);
+}

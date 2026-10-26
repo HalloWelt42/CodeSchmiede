@@ -1,0 +1,9 @@
+h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 6px;
+  margin-top: 8px;
+  background-color: gold;
+  border-radius: 3px;
+}

@@ -1,0 +1,14 @@
+.schlange {
+  display: flex;
+  gap: 4px;
+}
+
+.schlange div {
+  padding: 10px 14px;
+  background-color: teal;
+}
+
+.schlange div:nth-child(3n) {
+  background-color: gold;
+  color: #2b3442;
+}

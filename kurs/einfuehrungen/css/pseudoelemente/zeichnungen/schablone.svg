@@ -1,0 +1,29 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein Pinguin sprüht mit einer Schablone goldene Sterne vor und hinter ein Holzschild, das Schild selbst bleibt unbemalt">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <!-- Wand -->
+  <rect x="6" y="20" width="196" height="120" rx="4" fill="#2b3442"/>
+  <!-- Holzschild -->
+  <rect x="58" y="58" width="92" height="44" rx="4" fill="#c98c55" stroke="#2b3442" stroke-width="2"/>
+  <g stroke="#b77a45" stroke-width="1.4"><path d="M62 72 h84 M62 86 h84"/></g>
+  <!-- Sterne davor und dahinter -->
+  <g fill="#f2c94c" stroke="#2b3442" stroke-width="1">
+    <path d="M34 80 l4 8 9 1 -7 6 2 9 -8 -5 -8 5 2 -9 -7 -6 9 -1 Z"/>
+    <path d="M174 80 l4 8 9 1 -7 6 2 9 -8 -5 -8 5 2 -9 -7 -6 9 -1 Z"/>
+  </g>
+  <!-- Schablone mit Sternloch -->
+  <g transform="rotate(-10 186 46)">
+    <rect x="164" y="26" width="44" height="40" rx="3" fill="#e3f1f8" stroke="#2b3442" stroke-width="1.6"/>
+    <path d="M186 34 l3 6 7 1 -5 5 1 7 -6 -4 -6 4 1 -7 -5 -5 7 -1 Z" fill="#2b3442"/>
+  </g>
+  <!-- Pinguin -->
+  <g transform="translate(226 126)">
+    <ellipse cx="0" cy="10" rx="19" ry="27" fill="#2b3442"/>
+    <ellipse cx="0" cy="14" rx="12.5" ry="19" fill="#f4f1ea"/>
+    <circle cx="0" cy="-24" r="14" fill="#2b3442"/>
+    <circle cx="-5" cy="-26" r="3.4" fill="#fff"/><circle cx="5" cy="-26" r="3.4" fill="#fff"/>
+    <circle cx="-6" cy="-25" r="1.7" fill="#111"/><circle cx="4" cy="-25" r="1.7" fill="#111"/>
+    <path d="M-12 -20 l-9 3 l9 3 Z" fill="#f2a13b"/>
+    <path d="M-8 37 h-7 M8 37 h7" stroke="#f2a13b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M-17 -2 q-6 -30 -20 -56" fill="none" stroke="#2b3442" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

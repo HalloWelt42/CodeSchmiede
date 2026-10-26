@@ -1,0 +1,8 @@
+.liste li {
+  padding: 6px;
+}
+
+.liste li:not(.weg) {
+  background-color: #3fb950;
+  color: #0b1d3a;
+}

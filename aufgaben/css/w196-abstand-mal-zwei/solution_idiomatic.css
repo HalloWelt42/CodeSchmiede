@@ -1,0 +1,19 @@
+:root {
+  --abstand: 12px;
+}
+
+.kasten {
+  padding: calc(var(--abstand) * 2);
+  background-color: #1f6f8b;
+  border-radius: var(--abstand);
+}
+
+.kasten h2 {
+  margin: 0 0 var(--abstand);
+}
+
+.kasten p {
+  margin: 0;
+  padding: var(--abstand);
+  background-color: #2b3442;
+}

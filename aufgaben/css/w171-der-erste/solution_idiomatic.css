@@ -1,0 +1,9 @@
+.liste li {
+  padding: 6px;
+  background-color: #1f6f8b;
+}
+
+.liste li:first-child {
+  background-color: gold;
+  color: #2b3442;
+}

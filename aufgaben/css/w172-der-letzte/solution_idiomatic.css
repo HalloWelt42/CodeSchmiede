@@ -1,0 +1,10 @@
+.liste li {
+  padding: 6px;
+  background-color: #1f6f8b;
+}
+
+.liste li:last-child {
+  background-color: #444;
+  color: gray;
+  text-decoration: line-through;
+}
