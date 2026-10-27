@@ -28,7 +28,7 @@ from ..yaml_lesen import lies_yaml
 from .modelle import (Abschnitt, Begriffskatalog, Einfuehrung, Frage, FrageTeil, Kopf, Kurs, Kurssprache, Kurztest,
                       Teil)
 
-YAML_BLOECKE = {"beispiel", "frage", "alltag", "merke", "falle", "zeichnung", "augenzwinkern"}
+YAML_BLOECKE = {"beispiel", "frage", "alltag", "merke", "falle", "zeichnung", "augenzwinkern", "kv"}
 ZAUN = re.compile(r"^```([a-z]+)\s*$")
 _teil = TypeAdapter(Teil)
 _frage = TypeAdapter(Frage)
@@ -163,7 +163,7 @@ def lade(wurzel: Path) -> Kursinhalt:
             k = versuche(test, lambda d: Kurztest.model_validate(lies_yaml(d.read_text(encoding="utf-8")) or {}))
             if k is not None:
                 inhalt.kurztests[e.id] = k
-    sprachen: tuple[Kurssprache, ...] = ("python", "sql", "javascript", "css")
+    sprachen: tuple[Kurssprache, ...] = ("python", "sql", "javascript", "css", "digital")
     for sprache in sprachen:
         datei = wurzel / f"{sprache}.yml"
         if datei.exists():

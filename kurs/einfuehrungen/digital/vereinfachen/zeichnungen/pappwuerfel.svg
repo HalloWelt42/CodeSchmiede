@@ -1,0 +1,27 @@
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ein aufgeschnittener Pappwürfel liegt flach ausgebreitet, zwei Kanten, die zusammengehörten, sind an beiden Enden markiert">
+  <ellipse cx="130" cy="170" rx="118" ry="6" fill="rgba(0,0,0,.12)"/>
+  <rect x="6" y="6" width="248" height="150" rx="4" fill="#fdf3dc"/>
+  <!-- Netz des Würfels: vier Seiten in einer Reihe, oben und unten je eine -->
+  <g stroke="#2b3442" stroke-width="2" fill="#e8c992">
+    <rect x="30" y="62" width="50" height="50"/>
+    <rect x="80" y="62" width="50" height="50"/>
+    <rect x="130" y="62" width="50" height="50"/>
+    <rect x="180" y="62" width="50" height="50"/>
+    <rect x="80" y="12" width="50" height="50"/>
+    <rect x="80" y="112" width="50" height="40"/>
+  </g>
+  <!-- Ecken mit Lämpchen -->
+  <g fill="#fbbf24" stroke="#2b3442" stroke-width="1.2">
+    <circle cx="80" cy="62" r="5"/><circle cx="130" cy="62" r="5"/><circle cx="180" cy="62" r="5"/>
+    <circle cx="80" cy="112" r="5"/><circle cx="130" cy="112" r="5"/><circle cx="180" cy="112" r="5"/>
+  </g>
+  <!-- die beiden Kanten, die vorher zusammengeklebt waren -->
+  <line x1="30" y1="62" x2="30" y2="112" stroke="#38bdf8" stroke-width="5"/>
+  <line x1="230" y1="62" x2="230" y2="112" stroke="#38bdf8" stroke-width="5"/>
+  <path d="M 30 120 Q 130 175 230 120" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="5 4"/>
+  <!-- Schere -->
+  <g transform="translate(212 24) rotate(30)" stroke="#2b3442" stroke-width="2" fill="none">
+    <circle cx="0" cy="0" r="6"/><circle cx="0" cy="16" r="6"/>
+    <line x1="5" y1="3" x2="30" y2="14"/><line x1="5" y1="13" x2="30" y2="2"/>
+  </g>
+</svg>

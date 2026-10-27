@@ -1,5 +1,5 @@
 ---
-zweck: "Eigener Programmier-Trainer: Aufbaukurs von null an und Aufgaben in Python, JavaScript, SQL und CSS mit Prüfung in einer abgeschotteten Sandbox, Punkten, Lernspielen, Pfaden und Wiederholungen; am Rechner und als Web-App am Telefon."
+zweck: "Eigener Programmier-Trainer: Aufbaukurs von null an (Python, SQL, JavaScript, CSS und Digitaltechnik) und Aufgaben in Python, JavaScript, SQL und CSS mit Prüfung in einer abgeschotteten Sandbox, Punkten, Lernspielen, Pfaden und Wiederholungen; am Rechner und als Web-App am Telefon."
 geraet: [pi]
 abhaengigkeiten: [kellerwolke, appkern]
 daten:

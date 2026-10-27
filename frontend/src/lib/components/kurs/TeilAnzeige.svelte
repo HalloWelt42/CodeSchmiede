@@ -6,6 +6,7 @@
    */
   import type { Antwort, TeilSicht, Urteil } from '../../api/KursApi';
   import { markdownRenderer } from '../../markdown/MarkdownRenderer';
+  import { zerlege, type Stellen } from '../../steuerung/kv';
   import CodeBlock from './CodeBlock.svelte';
   import FrageBlock from './FrageBlock.svelte';
 
@@ -19,6 +20,11 @@
     gewaehltesBeispiel?: string | null;
   }
   let { teil, sprache, senden, beiUrteil, beispielWaehlen, gewaehltesBeispiel = null }: Props = $props();
+
+  function termeVon(formel: string, eingaenge: string[]): Stellen[] {
+    const z = zerlege(`f = ${formel}`, eingaenge, ['f'])[0];
+    return z.art === 'formel' ? z.terme : [];
+  }
 
   let svg = $state('');
   $effect(() => {
@@ -61,12 +67,35 @@
   {#if teil.vorhersage}
     <FrageBlock element={teil.id} {sprache} vorhersage={teil.vorhersage} {senden} beiUrteil={(u) => beiUrteil(teil.id, u)} />
   {/if}
+{:else if teil.art === 'kv'}
+  <div class="beispiel-im-text" class:gewaehlt={gewaehltesBeispiel === teil.id}>
+    <div class="schema-titel">
+      <span>{teil.start === 'wuerfel' ? 'Würfel' : 'KV-Diagramm'} mit {teil.eingaenge.join(', ')}</span>
+      {#if beispielWaehlen}<button class="knopf-klein" onclick={() => beispielWaehlen?.(teil.id)}><i class="fa-solid fa-cube" aria-hidden="true"></i>In der Werkbank</button>{/if}
+    </div>
+    <div class="kv-formeln">
+      {#each teil.formeln as f (f.titel)}
+        <span><b>{f.titel}:</b> f =
+          {#each termeVon(f.formel, teil.eingaenge) as term, i (i)}{#if i > 0} + {/if}{#each term as s, k (k)}{#if s != null}<span class="lit" class:ol={s === 0}>{teil.eingaenge[k]}</span>{/if}{/each}{#if term.every((s) => s == null)}1{/if}{/each}
+        </span>
+      {/each}
+    </div>
+  </div>
 {:else if teil.art === 'frage'}
   <FrageBlock element={teil.frage.id} {sprache} frage={teil.frage} {senden} beiUrteil={(u) => beiUrteil(teil.frage.id, u)} />
 {/if}
 
 <style>
   .alltag.ohne-bild { grid-template-columns: minmax(0, 1fr); }
+  .lit { display: inline-block; margin: 0 1px; }
+  .lit.ol { text-decoration: overline; }
+  .kv-formeln {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: var(--mono);
+    font-size: var(--fs-sm);
+  }
   .alltag img, .zeichnung-gross img { width: 100%; height: auto; display: block; }
   .zeichnung-gross { margin: 0; display: flex; flex-direction: column; align-items: center; gap: var(--sp-1); }
   .zeichnung-gross img { max-width: 420px; }

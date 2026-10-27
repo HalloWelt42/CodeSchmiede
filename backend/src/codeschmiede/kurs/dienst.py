@@ -19,18 +19,19 @@ from ..models.aufgabe import Aufgabe
 from ..sandbox.result import RunLimits
 from ..sandbox.runner import Runner
 from ..aufzeichnung import Aufzeichnung, aufzeichnen
+from ..steuerung import kv
 from .begriffe import erkenne
 from .css_lauf import CssLauf
 from .einlesen import Kursinhalt, lade
 from .fortschritt import KursBeitrag, KursfortschrittRepository, Stand
 from .modelle import (Alltag, Augenzwinkern, Auswahlfrage, Beispiel, Diagramm, Einfuehrung, Falle,
-                      Fehlerstellenfrage, FrageTeil, Kapitel, Lueckenfrage, Merke, Option, Ordnungsfrage, Text,
-                      Vorhersage, Zeichnung)
+                      Fehlerstellenfrage, FrageTeil, Kapitel, KvFormel, KvTeil, Lueckenfrage, Merke, Option,
+                      Ordnungsfrage, Text, Vorhersage, Zeichnung)
 from .pruefung import pruefe_kurs
 from .sql_ablauf import SqlLauf, sql_lauf
 from .sicht import (AbschnittSicht, AlltagSicht, Antwort, AugenzwinkernSicht, BeispielSicht, BildVerweis,
                     BlockSicht, DiagrammSicht, EinfuehrungSicht, FalleSicht, FrageSicht, FrageTeilSicht, KapitelSicht,
-                    KursSicht, KurztestSicht, MerkBeispiel, MerkblattSicht, MerkeSicht, TextSicht, UebungSicht, Urteil,
+                    KursSicht, KurztestSicht, KvFormelSicht, KvSicht, MerkBeispiel, MerkblattSicht, MerkeSicht, TextSicht, UebungSicht, Urteil,
                     VorhersageSicht, ZeichnungSicht)
 
 BILDSATZ = "kurs"
@@ -255,6 +256,11 @@ class Kursdienst:
                                 karte=e.kopf.karte, kapitel=kapitel[1] if kapitel else None, datensatz=e.kopf.datensatz,
                                 abschnitte=abschnitte)
 
+    @staticmethod
+    def _kv_formel(t: KvTeil, f: KvFormel) -> KvFormelSicht:
+        plan, bausteine, _ = kv.schaltplan(kv.lies(f"f = {f.formel}", t.eingaenge, ["f"]), t.eingaenge, ["f"])
+        return KvFormelSicht(titel=f.titel, formel=f.formel, bausteine=bausteine, plan=plan)
+
     def _teil(self, e: Einfuehrung, t, stand: Stand):
         if isinstance(t, Text):
             return TextSicht(markdown=t.markdown)
@@ -276,6 +282,9 @@ class Kursdienst:
             return BeispielSicht(id=t.id, code=t.code, html=t.html, eingabe=t.eingabe, ablauf=t.ablauf and e.kopf.sprache in MIT_ABLAUF, vorhersage=None if v is None else VorhersageSicht(
                 art=v.art, frage=v.frage, optionen=[o.text for o in v.optionen] or None,
                 beantwortet=stand.beantwortet("vorhersage", e.id, t.id), richtig=stand.richtig("vorhersage", e.id, t.id)))
+        if isinstance(t, KvTeil):
+            return KvSicht(id=t.id, eingaenge=t.eingaenge, werte=t.werte, start=t.start, regler=t.regler, plan=t.plan,
+                           formeln=[self._kv_formel(t, f) for f in t.formeln])
         if isinstance(t, FrageTeil):
             return FrageTeilSicht(frage=self.frage_sicht(t.frage, stand.beantwortet("frage", e.id, t.frage.id),
                                                          stand.richtig("frage", e.id, t.frage.id)))

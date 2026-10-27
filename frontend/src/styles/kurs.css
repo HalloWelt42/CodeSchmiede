@@ -7,6 +7,7 @@
   --sql-a: #8b7cf6; --sql-b: #38bdf8; --sql-c: #ddd6fe;
   --js-a: #e9d44c; --js-b: #f08a5d; --js-c: #fbf3b8;
   --css-a: #ec6aa8; --css-b: #4fd1a5; --css-c: #fbcfe8;
+  --dig-a: #fb923c; --dig-b: #34d399; --dig-c: #fed7aa;
   /* Lesetext */
   --fs-lesen: 18px;
   /* Editorfarben stehen in editor.css */
@@ -18,6 +19,7 @@
 [data-sprache='sql'] { --s-a: var(--sql-a); --s-b: var(--sql-b); --s-c: var(--sql-c); }
 [data-sprache='javascript'] { --s-a: var(--js-a); --s-b: var(--js-b); --s-c: var(--js-c); }
 [data-sprache='css'] { --s-a: var(--css-a); --s-b: var(--css-b); --s-c: var(--css-c); }
+[data-sprache='digital'] { --s-a: var(--dig-a); --s-b: var(--dig-b); --s-c: var(--dig-c); }
 
 /* Alles Weitere gilt nur in Kursflächen (Kursübersicht, Einführung, Kurztest, Merkblatt, auch am Telefon), damit
    allgemeine Namen wie .code, .erklaerung oder .regel keine anderen Ansichten verändern. :where() hält die

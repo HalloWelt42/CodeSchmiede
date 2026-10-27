@@ -7,6 +7,7 @@
   import { route } from '../../stores/RouteStore.svelte';
   import { kursStore } from '../../stores/KursStore.svelte';
   import TeilAnzeige from '../kurs/TeilAnzeige.svelte';
+  import KvWerkbank from '../kurs/KvWerkbank.svelte';
   import Werkbank from '../kurs/Werkbank.svelte';
   import FrageBlock from '../kurs/FrageBlock.svelte';
 
@@ -101,6 +102,8 @@
                 {#if b.vorhersage}<FrageBlock element={b.id} sprache={e!.sprache} vorhersage={b.vorhersage} {senden} beiUrteil={(u) => beiUrteil(b.id, u)} />{/if}
               {/snippet}
             </Werkbank>
+          {:else if teil.art === 'kv'}
+            <KvWerkbank {teil} />
           {:else}
             <TeilAnzeige {teil} sprache={e.sprache} {senden} {beiUrteil} />
           {/if}

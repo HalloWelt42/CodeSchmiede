@@ -27,7 +27,7 @@ Kopf in YAML zwischen `---`-Zeilen:
 | Feld | Pflicht | Bedeutung |
 |---|---|---|
 | `id` | ja | Kennung, klein mit Bindestrichen (`py-schleifen-for`) |
-| `sprache` | ja | `python`, `sql`, `javascript`, `css`; muss zum Ordner passen |
+| `sprache` | ja | `python`, `sql`, `javascript`, `css`, `digital`; muss zum Ordner passen |
 | `titel` | ja | Titel des Kapitels |
 | `kurz` | ja | ein Satz für die Kursübersicht |
 | `fuehrt_ein` | nein | Begriffe aus dem Katalog, die diese Einführung erklärt |
@@ -51,6 +51,7 @@ Zaunzeilen (die schließende Zeile ist genau drei Backticks). Je Abschnitt genau
 | ` ```falle ` | `titel`, `text` | typischer Fehler; erscheint auch auf dem Merkblatt |
 | ` ```augenzwinkern ` | `text` | ein lockerer Satz zum Schluss |
 | ` ```beispiel ` | `id`, `code`, `vorhersage` (optional), `ablauf` (Vorgabe ja), bei CSS `html` (Pflicht) | Beispiel zum Ausführen, mit Ablauf und Speicherbild |
+| ` ```kv ` | `id`, `eingaenge` (2 bis 4), `werte` (je Belegung 0, 1 oder x), `formeln` (Liste aus `titel` und `formel` wie in der KV-Werkstatt, etwa `C + A B`), `start` (`raster` oder `wuerfel`), `regler`, `plan` | Digitaltechnik: Funktion in der Werkbank als Würfel (nur drei Eingänge, mit `regler` zum Raster aufklappbar) oder KV-Raster; jede Formel muss beim Einlesen zur Funktion passen |
 | ` ```frage ` | siehe unten | Verständnisfrage |
 | ` ```mermaid ` | Mermaid-Code (kein YAML) | Diagramm, als SVG gebaut |
 
@@ -137,7 +138,9 @@ Zeitgeber und Versprechen erledigt sind. Im CSS-Kurs sind die Übungen CSS-Nachb
 `w<Kapitel><Nummer>`): das HTML ist vorgegeben, geschrieben wird das CSS. Ob jede Musterlösung ihr Ziel voll deckt und
 kein Startcode schon besteht, misst die Verwaltung im Browser ("CSS-Bestand messen"), mit derselben Messung wie beim
 Lösen. Vertiefung aus dem Bestand sucht die Codeschmiede
-selbst: Aufgaben, die nur Eingeführtes brauchen und das Neue des Kapitels üben.
+selbst: Aufgaben, die nur Eingeführtes brauchen und das Neue des Kapitels üben. Der Kurs Digitaltechnik (`digital`) übt mit
+Aufgaben unter `aufgaben/maschine/` (KV-Werkstatt, Schaltungen), die zugleich Levels der Spiele sind
+(`AUFGABEN_SPRACHE` in `kurs/modelle.py`); seine Beispiele laufen nicht, sie sind ` ```kv `-Blöcke zum Anschauen.
 
 ## Begriffskatalog und Prüfung
 

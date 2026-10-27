@@ -1,0 +1,37 @@
+# Kurztest zum Kapitel Schaltungen vereinfachen: eigene Fragen (nicht die der Einführung) und eine Übung, die alles aus
+# dem Kapitel braucht.
+fragen:
+  - frageart: auswahl
+    id: kt-spalten
+    text: In welcher Reihenfolge stehen die Spalten eines KV-Diagramms mit zwei Eingängen an der Achse?
+    optionen:
+      - text: "00, 01, 11, 10"
+        richtig: true
+        erklaerung: Richtig. Nebeneinander unterscheiden sich die Spalten in genau einem Eingang, auch über den Rand.
+      - text: "00, 01, 10, 11"
+        erklaerung: Zwischen 01 und 10 wechseln zwei Eingänge. Dann wären Nachbarn im Raster keine Nachbarn mehr.
+      - text: "11, 10, 01, 00"
+        erklaerung: Auch hier wechseln zwischen 10 und 01 zwei Eingänge.
+  - frageart: auswahl
+    id: kt-blockgroesse
+    text: Wie viele Felder darf ein Block haben?
+    optionen:
+      - text: "1, 2, 4, 8 oder 16"
+        richtig: true
+        erklaerung: Richtig, immer eine Zweierpotenz. Bei jedem Verdoppeln fällt ein Eingang weg.
+      - text: Jede Zahl, solange keine 0 drin ist
+        erklaerung: Drei Felder ergeben keinen Term. Nimm zwei Blöcke aus je zwei Feldern.
+      - text: Nur 2 oder 4
+        erklaerung: Auch ein einzelnes Feld ist ein Block, und bei vier Eingängen gehen 8 und 16.
+  - frageart: auswahl
+    id: kt-term-ablesen
+    text: "Ein Block aus vier Feldern liegt bei A = 1, C = 0; B und D wechseln. Welcher Term ist das?"
+    optionen:
+      - text: "A·C̄"
+        richtig: true
+        erklaerung: Richtig. A ist überall 1, C überall 0; B und D fallen weg.
+      - text: "A·B·C̄·D"
+        erklaerung: Das wäre ein einzelnes Feld. B und D wechseln im Block.
+      - text: "B·D"
+        erklaerung: Es bleibt, was gleich ist, nicht was wechselt.
+uebung: b006-ganze-anzeige

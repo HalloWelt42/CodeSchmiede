@@ -1,0 +1,19 @@
+# Begriffskatalog Digitaltechnik. Jede Einführung nennt unter fuehrt_ein die Begriffe, die sie erklärt. Formeln und
+# Schaltpläne werden (noch) nicht auf Vorgriffe untersucht: es gibt keine Erkennung, die Begriffe stehen für
+# Lernziele, Merkblatt und Kursübersicht.
+
+sprache: digital
+begriffe:
+  # Kapitel: Schaltungen vereinfachen
+  - id: minterm
+    titel: Ein UND je Zeile mit einer 1 (Minterm)
+  - id: nachbarn
+    titel: Nachbarn unterscheiden sich in einem Eingang und fassen sich zusammen
+  - id: wuerfel
+    titel: Der Würfel der Belegungen
+  - id: kv_diagramm
+    titel: Das KV-Diagramm mit Spalten 00, 01, 11, 10
+  - id: block
+    titel: Blöcke aus 1, 2, 4 und 8 Feldern einkreisen
+  - id: egal_feld
+    titel: Egal-Felder (x) als Joker

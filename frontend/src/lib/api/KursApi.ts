@@ -49,9 +49,21 @@ export type TeilSicht =
   | { art: 'zeichnung'; url: string; unterschrift: string }
   | { art: 'diagramm'; url: string | null; titel: string }
   | { art: 'beispiel'; id: string; code: string; html: string | null; vorhersage: VorhersageSicht | null; eingabe: string[]; ablauf: boolean }
+  | { art: 'kv'; id: string; eingaenge: string[]; werte: string; start: 'wuerfel' | 'raster'; regler: boolean; plan: boolean; formeln: KvFormelSicht[] }
   | { art: 'frage'; frage: FrageSicht };
 
+/** Digitaltechnik: eine Formel aus Blöcken, ihre Bausteine und ihr Schaltplan (Text der Schaltungen) */
+export interface KvFormelSicht {
+  titel: string;
+  formel: string;
+  bausteine: number;
+  plan: string;
+}
+
 export type BeispielTeil = Extract<TeilSicht, { art: 'beispiel' }>;
+export type KvTeil = Extract<TeilSicht, { art: 'kv' }>;
+/** Was in der Werkbank liegen kann: ein Beispiel zum Ausführen oder eine Funktion zum Anschauen */
+export type Werkstueck = BeispielTeil | KvTeil;
 
 export interface AbschnittSicht {
   nummer: number;

@@ -12,8 +12,17 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ..steuerung import kv
+
 KENNUNG = r"^[a-z0-9][a-z0-9-]{0,79}$"
-Kurssprache = Literal["python", "sql", "javascript", "css"]
+Kurssprache = Literal["python", "sql", "javascript", "css", "digital"]
+# Übungen eines Kurses sind Aufgaben seiner Sprache; Digitaltechnik übt mit Schaltungen und KV-Diagrammen, die als
+# Aufgaben unter "maschine" liegen (sie sind auch Levels der Spiele).
+AUFGABEN_SPRACHE: dict[str, str] = {"digital": "maschine"}
+
+
+def aufgaben_sprache(kurssprache: str) -> str:
+    return AUFGABEN_SPRACHE.get(kurssprache, kurssprache)
 
 
 class Streng(BaseModel):
@@ -211,12 +220,52 @@ class Beispiel(Streng):
     """Ablauf anbieten: bei Python Zeile für Zeile mit Speicherbild, bei SQL die Zwischentabelle je Klausel."""
 
 
+class KvFormel(Streng):
+    titel: str
+    formel: str
+    """Blöcke als Terme wie in der KV-Werkstatt: `C + A B`, `!` heißt 0."""
+
+
+class KvTeil(Streng):
+    """Digitaltechnik: eine Funktion zum Anschauen in der Werkbank, als Würfel der Belegungen (bei drei Eingängen,
+    mit Regler zum Aufklappen) oder als KV-Raster, mit Formeln, deren Blöcke man einzeln zeigen kann."""
+
+    art: Literal["kv"] = "kv"
+    id: str = Field(pattern=KENNUNG)
+    eingaenge: list[str] = Field(min_length=2, max_length=4)
+    werte: str
+    """je Belegung 0, 1 oder x, binär gezählt mit dem ersten Eingang vorn"""
+    start: Literal["wuerfel", "raster"] = "raster"
+    regler: bool = False
+    """Würfel per Regler zum Raster aufklappen"""
+    plan: bool = False
+    """zu jeder Formel den Schaltplan zeigen"""
+    formeln: list[KvFormel] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def _stimmig(self) -> KvTeil:
+        n = len(self.eingaenge)
+        if len(self.werte) != 2 ** n or set(self.werte) - set("01x"):
+            raise ValueError(f"KV {self.id}: werte braucht {2 ** n} Zeichen aus 0, 1 und x")
+        if (self.start == "wuerfel" or self.regler) and n != 3:
+            raise ValueError(f"KV {self.id}: den Würfel gibt es nur bei drei Eingängen")
+        for f in self.formeln:
+            gelesen = kv.lies(f"f = {f.formel}", self.eingaenge, ["f"])
+            if gelesen.fehler:
+                raise ValueError(f"KV {self.id}, Formel {f.titel}: {gelesen.fehler[0]}")
+            falsch = [x for x in range(2 ** n) if self.werte[x] != "x" and kv.wert(gelesen.bloecke["f"], x, n) != int(self.werte[x])]
+            if falsch:
+                raise ValueError(f"KV {self.id}, Formel {f.titel}: stimmt nicht bei Belegung {falsch[0]}")
+        return self
+
+
 class FrageTeil(Streng):
     art: Literal["frage"] = "frage"
     frage: Frage
 
 
-Teil = Annotated[Text | Alltag | Merke | Falle | Augenzwinkern | Zeichnung | Diagramm | Beispiel | FrageTeil, Field(discriminator="art")]
+Teil = Annotated[Text | Alltag | Merke | Falle | Augenzwinkern | Zeichnung | Diagramm | Beispiel | KvTeil | FrageTeil,
+                 Field(discriminator="art")]
 
 
 class Abschnitt(Streng):

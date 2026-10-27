@@ -4,10 +4,11 @@
    * Werkbank mit dem Beispiel des Abschnitts. Weiter geht es, wenn alle Fragen des Abschnitts richtig beantwortet
    * sind; nach dem letzten Abschnitt folgt das Kapitelende mit "Kann ich jetzt" und den Übungen.
    */
-  import { kursApi, type Antwort, type BeispielTeil, type EinfuehrungSicht, type KapitelSicht, type Urteil } from '../../api/KursApi';
+  import { kursApi, type Antwort, type BeispielTeil, type EinfuehrungSicht, type KapitelSicht, type Urteil, type Werkstueck } from '../../api/KursApi';
   import { route } from '../../stores/RouteStore.svelte';
   import { kursStore } from '../../stores/KursStore.svelte';
   import TeilAnzeige from './TeilAnzeige.svelte';
+  import KvWerkbank from './KvWerkbank.svelte';
   import Werkbank from './Werkbank.svelte';
   import KapitelEnde from './KapitelEnde.svelte';
 
@@ -41,7 +42,7 @@
   });
 
   let abschnitt = $derived(e?.abschnitte.find((a) => a.nummer === nummer) ?? null);
-  let beispiele = $derived((abschnitt?.teile.filter((t) => t.art === 'beispiel') ?? []) as BeispielTeil[]);
+  let beispiele = $derived((abschnitt?.teile.filter((t) => t.art === 'beispiel' || t.art === 'kv') ?? []) as Werkstueck[]);
   let beispiel = $derived(beispiele.find((b) => b.id === beispielId) ?? beispiele[0] ?? null);
   let kapitel = $derived<KapitelSicht | null>(kursStore.kapitel(id));
 
@@ -147,11 +148,15 @@
       </section>
 
       <section class="spalte werkbank">
-        <div class="spalten-kopf"><span>Werkbank</span>{#if beispiele.length > 1}<span class="dim" style="margin-left:auto;text-transform:none;letter-spacing:0">Beispiel {beispiele.indexOf(beispiel as BeispielTeil) + 1} von {beispiele.length}</span>{/if}</div>
+        <div class="spalten-kopf"><span>Werkbank</span>{#if beispiele.length > 1}<span class="dim" style="margin-left:auto;text-transform:none;letter-spacing:0">Beispiel {beispiele.indexOf(beispiel as Werkstueck) + 1} von {beispiele.length}</span>{/if}</div>
         <div class="rollfeld">
           {#if beispiel && !ende}
             {#key beispiel.id}
-              <Werkbank einfuehrung={id} {beispiel} sprache={e.sprache} gesperrt={!istBeantwortet(beispiel)} />
+              {#if beispiel.art === 'kv'}
+                <KvWerkbank teil={beispiel} />
+              {:else}
+                <Werkbank einfuehrung={id} {beispiel} sprache={e.sprache} gesperrt={!istBeantwortet(beispiel)} />
+              {/if}
             {/key}
           {:else}
             <p class="dim" style="font-family:var(--quick)">{ende ? 'Die Übungen warten.' : 'In diesem Abschnitt gibt es nichts auszuführen.'}</p>

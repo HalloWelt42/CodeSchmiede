@@ -34,7 +34,7 @@ MEDIENPOOL = os.environ.get("CODESCHMIEDE_MEDIENPOOL", "http://127.0.0.1:8470").
 PROJEKT = os.environ.get("CODESCHMIEDE_MEDIENPOOL_PROJEKT", "codeschmiede")
 SCHLUESSEL = re.compile(r"^[a-z0-9_]{1,60}$")
 ARTEN = {"sinnbild": "Sinnbild", "alltag": "Alltagsbeispiel", "sammelkarte": "Sammelkarte", "bereich": "Bildkarte Bereich"}
-SPRACHEN = ("python", "sql", "javascript", "css")
+SPRACHEN = ("python", "sql", "javascript", "css", "digital")
 
 # Erste Fassung von Stil und Farbfamilien beim Anlegen; danach gehören sie dem Medienpool und werden dort gepflegt.
 STIL = {
@@ -66,6 +66,9 @@ FARBFAMILIEN = {
     "css": ("CSS", "#ec6aa8", "#4fd1a5", "raspberry pink (#ec6aa8), mint green (#4fd1a5) and blush (#fbcfe8) with small dark slate accents",
             "Himbeerrosa (#ec6aa8), Mintgrün (#4fd1a5) und Zartrosa (#fbcfe8) mit kleinen dunklen Akzenten",
             "artful, neat and decorative", "kunstvoll, sauber und dekorativ"),
+    "digital": ("Digitaltechnik", "#fb923c", "#34d399", "copper orange (#fb923c), circuit board green (#34d399) and pale apricot (#fed7aa) with small dark slate accents",
+                "Kupferorange (#fb923c), Platinengrün (#34d399) und blasses Apricot (#fed7aa) mit kleinen dunklen Akzenten",
+                "tinkering, precise and a little electric", "tüftelnd, genau und ein wenig elektrisch"),
 }
 
 

@@ -6,7 +6,7 @@ titel: Würfel auf der 7-Segment-Anzeige
 sprache: maschine
 task_type: takt
 runner_type: server
-schwierigkeit: profi
+schwierigkeit: experte
 schwierigkeit_score: 85
 schaetz_minuten: 50
 tags: [schaltung, takt]

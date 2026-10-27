@@ -96,13 +96,32 @@ class BeispielSicht(BaseModel):
     ablauf: bool = True
 
 
+class KvFormelSicht(BaseModel):
+    titel: str
+    formel: str
+    bausteine: int
+    plan: str
+    """die Formel als Schaltplan im Text der Schaltungen"""
+
+
+class KvSicht(BaseModel):
+    art: Literal["kv"] = "kv"
+    id: str
+    eingaenge: list[str]
+    werte: str
+    start: str
+    regler: bool
+    plan: bool
+    formeln: list[KvFormelSicht]
+
+
 class FrageTeilSicht(BaseModel):
     art: Literal["frage"] = "frage"
     frage: FrageSicht
 
 
 TeilSicht = Annotated[TextSicht | AlltagSicht | MerkeSicht | FalleSicht | AugenzwinkernSicht | ZeichnungSicht | DiagrammSicht
-                      | BeispielSicht | FrageTeilSicht, Field(discriminator="art")]
+                      | BeispielSicht | KvSicht | FrageTeilSicht, Field(discriminator="art")]
 
 
 class AbschnittSicht(BaseModel):

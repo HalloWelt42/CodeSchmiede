@@ -470,10 +470,22 @@ Nach den freigegebenen Entwürfen `mockups/rechner-kv-werkstatt.html` und `mocku
   Teilschritte, Sterne aus der kleinsten Lösung; Routen `GET /api/spiel/kv/{id}/raster` und `POST /api/spiel/kv/{id}/lauf`.
 - Nebenbei (0.94.1): Sandbox-Läufe, die Docker nicht starten konnte, bleiben nicht als angelegte Container liegen.
 
+## Ergebnis: Kurs Digitaltechnik (0.96.0)
+
+Nach dem freigegebenen Entwurf `mockups/rechner-einfuehrung-kv.html` (Freigabe 27.10.2026).
+
+- Fünfte Kurssprache `digital` mit dem Kapitel "Schaltungen vereinfachen": sieben Abschnitte von den Mintermen über
+  Nachbarn, den Würfel der Belegungen und das Aufklappen zum KV-Raster bis zu Egal-Feldern und zum Schaltplan; Übungen
+  aus der KV-Werkstatt (Aufgaben unter `maschine`, `AUFGABEN_SPRACHE`), Kurztest mit der ganzen 7-Segment-Anzeige.
+- Neuer Teil ` ```kv ` (Funktion, Formeln, Würfel oder Raster, Regler, Schaltplan); jede Formel wird beim Einlesen gegen
+  die Funktion geprüft. Werkbank `KvWerkbank` am Rechner und am Telefon. Format in `docs/KURS-FORMAT.md`.
+- Nebenbei: Level 7 der Schaltungen mit Takt hatte die unbekannte Schwierigkeit `profi` (jetzt `experte`), gefunden
+  von der Bestandsprüfung.
+
 ## Offen
 
-- Kurs Digitaltechnik mit der Lehreinführung "Schaltungen vereinfachen" (Würfel, der sich zum KV-Raster aufklappt),
-  freigegeben 27.10.2026: als nächster Schritt (0.96.0).
+- Kurs Digitaltechnik weiter: Kapitel zu Gattern, Addierern und Flipflops (die Spiele sind da, die Einführungen nicht).
+- Sammelkarte "Schaltungen vereinfachen": Bild im Medienpool erzeugen (Bildauftrag steht in der Einführung).
 
 - Flaggenjagd (Nutzer 25.10.2026): verwundbare Übungssysteme nur in der Sandbox, erst Flagge finden, dann Lücke
   schließen; Skizze in `docs/SPIELE.md`, vor dem Bau ein eigener Entwurf.

@@ -16,7 +16,7 @@ from ..models.aufgabe import Aufgabe
 from .begriffe import erkenne
 from .einlesen import Kursinhalt
 from .modelle import (Alltag, Auswahlfrage, Beispiel, Diagramm, Einfuehrung, Fehlerstellenfrage, FrageTeil,
-                      Lueckenfrage, Ordnungsfrage, Zeichnung)
+                      Lueckenfrage, Ordnungsfrage, Zeichnung, aufgaben_sprache)
 
 
 def frage_code(f: Auswahlfrage | Lueckenfrage | Ordnungsfrage | Fehlerstellenfrage) -> str | None:
@@ -99,8 +99,8 @@ def pruefe_kurs(inhalt: Kursinhalt, aufgaben: dict[str, Aufgabe], musterloesunge
                 if a is None:
                     befund(ort, f"Aufgabe {aid} gibt es nicht")
                     continue
-                if a.sprache != sprache:
-                    befund(ort, f"Aufgabe {aid} ist {a.sprache}, nicht {sprache}")
+                if a.sprache != aufgaben_sprache(sprache):
+                    befund(ort, f"Aufgabe {aid} ist {a.sprache}, nicht {aufgaben_sprache(sprache)}")
                 stuecke += [(f"Aufgabe {aid}, Musterlösung {m['variante']}", m["code"]) for m in musterloesungen(aid)]
                 if a.starter_code:
                     stuecke.append((f"Aufgabe {aid}, Startcode", a.starter_code))
