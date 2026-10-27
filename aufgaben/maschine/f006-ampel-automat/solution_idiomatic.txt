@@ -1,0 +1,9 @@
+n0 = NICHT(f0) @ 130,40
+f0 = FF(n0) @ 260,40
+x1 = XOR(f0, f1) @ 130,170
+f1 = FF(x1) @ 260,170
+oben = NICHT(f1) @ 400,20
+unten = UND(f1, n0) @ 400,170
+OBEN = oben
+MITTE = f0
+UNTEN = unten

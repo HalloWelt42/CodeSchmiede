@@ -121,6 +121,10 @@ aufgabentypen:
     titel: Codes knacken
     view: codes
     beschreibung: Einen Knacker in Python schreiben - geprüft wird mit versteckten Nachrichten und anderen Schlüsseln.
+  - id: takt
+    titel: Schaltung mit Takt
+    view: takt
+    beschreibung: Flipflops und Gatter verdrahten - ein Zeitverlauf zeigt jeden Takt mit Soll und Ist.
 
 # Spiele im Spielebereich. Ihre Levels sind Aufgaben des genannten
 # Aufgabentyps, die Reihenfolge geben die Pfade vor. Levels zählen in
@@ -176,6 +180,12 @@ spiele:
     beschreibung: "Mit UND, ODER und NICHT rechnen: vom Halbaddierer über Multiplexer und Dekoder bis zur 7-Segment-Anzeige."
     aufgabentyp: schaltung
     pfade: [schaltungen]
+  - id: schaltungen-mit-takt
+    titel: Schaltungen mit Takt
+    icon: fa-clock
+    beschreibung: "Flipflops merken sich ein Bit: vom Umschalter über Zähler und Lauflicht bis zur Ampel und zum Würfel auf der 7-Segment-Anzeige."
+    aufgabentyp: takt
+    pfade: [schaltungen-mit-takt]
   - id: codes-knacken
     titel: Codes knacken
     icon: fa-key

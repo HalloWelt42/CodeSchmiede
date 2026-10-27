@@ -65,12 +65,15 @@
     planHinweis?: string;
     /** ohne Abspielen (Schaltungen): keine Leiste, das Bild ist eine Auswahl */
     abspielen?: boolean;
-    /** jede Änderung am Code rechnet sofort neu (Spiele ohne Sandbox) */
+    /** jede Änderung am Code rechnet sofort neu (Spiele ohne Sandbox); die gezeigte Stelle bleibt dabei stehen */
     live?: boolean;
+    /** Anzeige der ersten falschen Stelle an einem Ablauf; ab Werk Minuten und Sekunden */
+    stelleText?: (stelle: number) => string;
   }
   let {
     detail, welt, symbol, planTitel, ladeAnsicht, probieren, tonZuBild, mitUnfall, hilfe, szene, plan, kennzahlen,
     editor, mitteTitel, zeitText, takt = DT, planHinweis = 'Klick springt zur Sekunde', abspielen = true, live = false,
+    stelleText,
   }: Props = $props();
 
   let ansicht = $state<A | null>(null);
@@ -136,9 +139,9 @@
 
   function neueAuswertung(neu: Auswertung<W, K> | null): void {
     auswertung = neu;
-    if (!abspielen) {
+    if (!abspielen || live) {
       // die Auswahl bleibt stehen, solange es sie noch gibt
-      const n = neu?.wiedergaben[0]?.bilder.length ?? 0;
+      const n = (neu?.wiedergaben.find((w) => w.name === gewaehlt) ?? neu?.wiedergaben[0])?.bilder.length ?? 0;
       abspieler.laden(n, n ? Math.min(Math.max(abspieler.bild, 0), n - 1) : -1);
       return;
     }
@@ -354,7 +357,7 @@
                 title={a.ok ? 'abspielen' : 'ab kurz vor der ersten Stelle abspielen'}
               >
                 <i class="fa-solid {a.ok ? 'fa-check' : mitUnfall?.(a.kennzahlen) ? 'fa-car-burst' : 'fa-xmark'}" aria-hidden="true"></i>
-                {a.name}{#if !a.ok && a.erste_stelle != null}, {uhr(a.erste_stelle)}{/if}
+                {a.name}{#if !a.ok && a.erste_stelle != null}, {(stelleText ?? uhr)(a.erste_stelle)}{/if}
               </button>
             {:else}
               <span class="chip" class:ok={a.ok} class:nein={!a.ok}>

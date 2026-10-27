@@ -10,6 +10,10 @@ Der Schaltplan ist Text, ein Baustein oder Ausgang je Zeile, Kommentare mit #:
 Links der Name, rechts die Art mit ihren Eingängen (Eingänge der Schaltung, andere Bausteine oder die festen Werte
 0 und 1); hinter `@` steht, wo der Baustein im Plan liegt (nur für die Zeichnung). Ausgänge der Schaltung bekommen
 ein Signal. `?` ist ein noch nicht verbundener Eingang. Gerechnet wird im Backend ohne Sandbox: ein Schaltplan ist Daten, kein Code.
+
+Schaltungen mit Takt haben dazu Flipflops (`f0 = FF(d0)`): beim Takt übernimmt ein Flipflop, was an seinem Eingang D
+anliegt, und zeigt es bis zum nächsten Takt als sein Signal. Alle beginnen bei 0, alle hängen am selben Takt. Ein
+Kreis ist erlaubt, wenn auf ihm ein Flipflop sitzt; ein Kreis nur aus Gattern bliebe nicht berechenbar.
 """
 
 import re
@@ -24,6 +28,9 @@ ARTEN = {
     "NOR": (2, lambda a, b: 1 - (a | b)),
     "NICHT": (1, lambda a: 1 - a),
 }
+# Flipflop: ein Eingang D, gerechnet wird er nicht zwischen den Gattern, sondern beim Takt (siehe takte)
+SPEICHER = "FF"
+EINGAENGE = {**{art: n for art, (n, _) in ARTEN.items()}, SPEICHER: 1}
 OFFEN = "?"
 FEST = {"0": 0, "1": 1}
 NAME = re.compile(r"^[A-Za-z][A-Za-z0-9_]*$")
@@ -62,13 +69,13 @@ def lies(text: str, eingaenge: list[str], ausgaenge: list[str], erlaubt: list[st
         if b:
             name, art, roh_ein, x, y = b.groups()
             ein = [e.strip() for e in roh_ein.split(",")] if roh_ein.strip() else []
-            if art not in ARTEN:
+            if art not in EINGAENGE:
                 fehler.append(f"Zeile {nr}: einen Baustein {art} gibt es nicht")
                 continue
             if art not in erlaubt:
                 fehler.append(f"Zeile {nr}: {art} ist hier nicht erlaubt, nur {', '.join(erlaubt)}")
-            if len(ein) != ARTEN[art][0]:
-                fehler.append(f"Zeile {nr}: {art} hat {ARTEN[art][0]} Eingänge, nicht {len(ein)}")
+            if len(ein) != EINGAENGE[art]:
+                fehler.append(f"Zeile {nr}: {art} hat {EINGAENGE[art]} {'Eingang' if EINGAENGE[art] == 1 else 'Eingänge'}, nicht {len(ein)}")
             if name in eingaenge or name in ausgaenge or any(x.name == name for x in bausteine):
                 fehler.append(f"Zeile {nr}: der Name {name} ist schon vergeben")
             bausteine.append(Baustein(nr, name, art, ein, int(x) if x else None, int(y) if y else None))
@@ -95,14 +102,20 @@ def lies(text: str, eingaenge: list[str], ausgaenge: list[str], erlaubt: list[st
             fehler.append(f"Ausgang {name}: das Signal {quelle} gibt es nicht")
     plan = Plan(bausteine, belegt, fehler)
     if not fehler and reihenfolge(plan, eingaenge) is None:
-        fehler.append("Die Schaltung hat einen Kreis: ein Baustein hängt von sich selbst ab")
+        nur = " ohne Flipflop" if SPEICHER in erlaubt else ""
+        fehler.append(f"Die Schaltung hat einen Kreis{nur}: ein Baustein hängt von sich selbst ab")
     return plan
 
 
+def flipflops(plan: Plan) -> list[Baustein]:
+    return [b for b in plan.bausteine if b.art == SPEICHER]
+
+
 def reihenfolge(plan: Plan, eingaenge: list[str]) -> list[Baustein] | None:
-    """Bausteine so geordnet, dass jeder nach seinen Eingängen kommt; None bei einem Kreis."""
-    fertig = set(eingaenge) | set(FEST)
-    rest = list(plan.bausteine)
+    """Die Gatter so geordnet, dass jedes nach seinen Eingängen kommt; None bei einem Kreis. Flipflops zählen als
+    Quelle wie ein Eingang: ihr Signal steht zu Beginn des Takts schon fest."""
+    fertig = set(eingaenge) | set(FEST) | {b.name for b in flipflops(plan)}
+    rest = [b for b in plan.bausteine if b.art != SPEICHER]
     folge = []
     while rest:
         bereit = [b for b in rest if all(e in fertig for e in b.eingaenge)]
@@ -116,22 +129,40 @@ def reihenfolge(plan: Plan, eingaenge: list[str]) -> list[Baustein] | None:
 
 
 def tiefe(plan: Plan, eingaenge: list[str]) -> int:
-    """Längster Weg in Bausteinen von einem Eingang zu einem Ausgang."""
-    stufe = {e: 0 for e in [*eingaenge, *FEST]}
+    """Längster Weg in Gattern von einem Eingang oder Flipflop zu einem Ausgang oder dem Eingang eines Flipflops."""
+    ff = flipflops(plan)
+    stufe = {e: 0 for e in [*eingaenge, *FEST, *(b.name for b in ff)]}
     for b in reihenfolge(plan, eingaenge) or []:
         stufe[b.name] = 1 + max((stufe[e] for e in b.eingaenge), default=0)
-    return max((stufe.get(q, 0) for q in plan.ausgaenge.values()), default=0)
+    ziele = [*plan.ausgaenge.values(), *(b.eingaenge[0] for b in ff)]
+    return max((stufe.get(q, 0) for q in ziele), default=0)
+
+
+def _rechne(folge: list[Baustein], plan: Plan, signal: dict[str, int]) -> dict[str, int]:
+    for b in folge:
+        signal[b.name] = ARTEN[b.art][1](*(signal[e] for e in b.eingaenge))
+    for name, quelle in plan.ausgaenge.items():
+        signal[name] = signal[quelle]
+    return signal
 
 
 def wahrheitstabelle(plan: Plan, eingaenge: list[str]) -> list[dict[str, int]]:
     """Je Belegung der Eingänge (der erste Eingang ist die höchste Stelle) die Werte aller Signale und Ausgänge."""
     folge = reihenfolge(plan, eingaenge) or []
-    zeilen = []
-    for werte in product((0, 1), repeat=len(eingaenge)):
-        signal = {**FEST, **dict(zip(eingaenge, werte))}
-        for b in folge:
-            signal[b.name] = ARTEN[b.art][1](*(signal[e] for e in b.eingaenge))
-        for name, quelle in plan.ausgaenge.items():
-            signal[name] = signal[quelle]
-        zeilen.append(signal)
-    return zeilen
+    return [_rechne(folge, plan, {**FEST, **dict(zip(eingaenge, werte))})
+            for werte in product((0, 1), repeat=len(eingaenge))]
+
+
+def takte(plan: Plan, eingaenge: list[str], eingaben: list[dict[str, int]]) -> list[dict[str, int]]:
+    """Je Takt die Werte aller Signale und Ausgänge, wie sie bis zum Takt anliegen: die Flipflops zeigen, was sie beim
+    vorigen Takt übernommen haben (zu Beginn 0), die Gatter rechnen damit und mit den Eingängen dieses Takts. Beim Takt
+    übernehmen dann alle Flipflops zugleich ihren Eingang D."""
+    ff = flipflops(plan)
+    folge = reihenfolge(plan, eingaenge) or []
+    stand = {b.name: 0 for b in ff}
+    verlauf = []
+    for werte in eingaben:
+        signal = _rechne(folge, plan, {**FEST, **werte, **stand})
+        verlauf.append(signal)
+        stand = {b.name: signal[b.eingaenge[0]] for b in ff}
+    return verlauf

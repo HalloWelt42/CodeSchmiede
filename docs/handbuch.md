@@ -21,7 +21,7 @@ stand: 1afcbf7
 ## Zweck
 
 Die Codeschmiede ist der eigene Programmier-Trainer: Aufgaben als Dateien im Repo, ein Editor im Browser mit Debugger
-(Haltepunkte, Schritte vor und zurück, Speicher), Lernspiele bis zur Ampelschule, Aufzugsteuerung, Turingmaschine, zu digitalen Schaltungen und zum Codeknacken, eine Prüfung mit sichtbaren und versteckten Tests, Punkte, Pfade, Wiederholungen und eine Verwaltung, die auch die versteckten
+(Haltepunkte, Schritte vor und zurück, Speicher), Lernspiele bis zur Ampelschule, Aufzugsteuerung, Turingmaschine, zu digitalen Schaltungen, Schaltungen mit Takt und zum Codeknacken, eine Prüfung mit sichtbaren und versteckten Tests, Punkte, Pfade, Wiederholungen und eine Verwaltung, die auch die versteckten
 Tests zeigt. Fassung {{fassung}}, erreichbar unter {{adresse}}.
 
 Eingereichter Code läuft nie im Backend, sondern im Sandbox-Dienst: je Prüfung ein eigener Container ohne Netz, nur

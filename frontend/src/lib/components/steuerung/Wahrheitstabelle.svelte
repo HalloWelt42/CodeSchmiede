@@ -4,7 +4,9 @@
    * wählt die Zeile; der Plan zeigt dann, welche Leitungen 1 führen. Heißen die Ausgänge a bis g, steht darüber eine
    * 7-Segment-Anzeige mit der gewählten Zeile.
    */
+  import { istSiebenSegment } from '../../steuerung/schaltplan';
   import type { SchaltungAnsicht, SchaltungWiedergabe } from '../../types/Schaltung';
+  import SiebenSegment from './SiebenSegment.svelte';
 
   interface Props {
     ansicht: SchaltungAnsicht;
@@ -14,20 +16,8 @@
   }
   let { ansicht, wiedergabe, zeile, waehle }: Props = $props();
 
-  const SEGMENTE = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
-  // Lage der Segmente als Polygon in einer Ziffer von 60 mal 100
-  const FORM: Record<string, string> = {
-    a: '12,6 48,6 42,12 18,12',
-    b: '50,8 50,46 44,42 44,14',
-    c: '50,54 50,92 44,86 44,58',
-    d: '12,94 48,94 42,88 18,88',
-    e: '10,54 10,92 16,86 16,58',
-    f: '10,8 10,46 16,42 16,14',
-    g: '12,50 18,46 42,46 48,50 42,54 18,54',
-  };
-
   let zeilen = $derived(Array.from({ length: 2 ** ansicht.eingaenge.length }, (_, i) => i));
-  let siebenSegment = $derived(ansicht.ausgaenge.join('') === SEGMENTE.join(''));
+  let siebenSegment = $derived(istSiebenSegment(ansicht.ausgaenge));
   let gewaehlt = $derived(Math.max(0, zeile));
 
   function bit(nr: number, i: number): number {
@@ -49,9 +39,7 @@
 
 {#if siebenSegment}
   <div class="anzeige-rahmen">
-    <svg class="sieben" viewBox="0 0 60 100" role="img" aria-label="7-Segment-Anzeige">
-      {#each SEGMENTE as s (s)}<polygon class="segment" class:an={leuchtet(s)} points={FORM[s]} />{/each}
-    </svg>
+    <SiebenSegment an={leuchtet} />
     <span class="dim">Zeile {gewaehlt}: {ansicht.eingaenge.map((e, i) => `${e} = ${bit(gewaehlt, i)}`).join(', ')}</span>
   </div>
 {/if}
@@ -86,15 +74,6 @@
     gap: var(--sp-3);
     font-size: var(--fs-sm);
   }
-  .sieben {
-    width: 60px;
-    height: 100px;
-    background: #0b0d10;
-    border: 1px solid var(--border-strong);
-    padding: 4px;
-  }
-  .segment { fill: #2b1a12; }
-  .segment.an { fill: #ff6b3d; filter: drop-shadow(0 0 3px #ff6b3d); }
   .tabelle-scroll {
     max-height: 420px;
     overflow: auto;

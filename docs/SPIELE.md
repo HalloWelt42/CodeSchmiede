@@ -227,10 +227,12 @@ Entwürfe: `mockups/rechner-turing.html` und `mockups/rechner-schaltung.html`. B
   Volladdierer, Multiplexer, Dekoder, XOR nur aus NAND, 7-Segment-Anzeige von 0 bis 3. Flipflop und Zähler brauchen
   einen Takt und kommen später (Tests in `backend/tests/test_schaltung.py`).
 
-### Schaltungen mit Takt (Entwurf zur Freigabe, 27.10.2026)
+### Schaltungen mit Takt (gebaut, 0.94.0)
 
-Entwurf: `mockups/rechner-takt.html`. Fortsetzung der Schaltungen: Flipflops merken sich ein Bit, damit kann eine
-Schaltung zählen, Muster laufen lassen und Zustände durchlaufen.
+Nach dem freigegebenen Entwurf `mockups/rechner-takt.html` (Freigabe 27.10.2026). Fortsetzung der Schaltungen:
+Flipflops merken sich ein Bit, damit kann eine Schaltung zählen, Muster laufen lassen und Zustände durchlaufen. Ein
+eigenes Spiel "Schaltungen mit Takt" (Aufgabentyp `takt`, Pfad `schaltungen-mit-takt`), weil ein Spiel genau einen
+Aufgabentyp hat; der Entwurf zählte die Levels als 9 bis 15 der Schaltungen weiter.
 
 - **Baustein FF** (D-Flipflop): beim Takt übernimmt er D, bis zum nächsten Takt zeigt er es an Q. Der Takt ist für alle
   Flipflops derselbe (ein Takt, synchron); im Plan ein Taster T mit gestrichelter Taktleitung.
@@ -238,16 +240,21 @@ Schaltung zählen, Muster laufen lassen und Zustände durchlaufen.
   Gattern bleibt ein Fehler; so bleibt jede Schaltung eindeutig berechenbar (kein schwingender Ring).
 - **Text**: dieselbe Schreibweise wie bisher, `f0 = FF(n0)`, `n0 = NICHT(f0)`, `Q0 = f0`. Alle Flipflops beginnen
   bei 0.
-- **Prüfung** ohne Sandbox auf dem Server: ein Ablauf ist eine Folge von Takten, je Takt die Eingänge (etwa ein Taster
-  R zum Rücksetzen) und das Soll der Ausgänge. Gerechnet wird je Takt erst alle Gatter, dann übernehmen alle Flipflops
-  zugleich. Versteckte Abläufe drücken die Eingänge zu anderen Zeiten.
-- **Ansicht**: statt der Wahrheitstabelle ein Zeitverlauf (Takt, Ausgänge, Soll gestrichelt in Gold, Ist, Abweichung
-  rot), darüber der Zählerstand als Zahl mit Soll. Takt, Abspielen, Von vorn; ein Klick in den Verlauf springt zum
-  Takt, der Plan zeigt dann, was die Flipflops gemerkt haben.
+- **Prüfung** (`pruefung/takt_pruefer.py`) ohne Sandbox auf dem Server: ein Ablauf ist eine Folge von Takten, je
+  Takt die Eingänge (etwa ein Taster R zum Rücksetzen) und das Soll der Ausgänge. Gerechnet wird je Takt erst alle
+  Gatter, dann übernehmen alle Flipflops zugleich (`schaltung.takte`). Versteckte Abläufe drücken die Eingänge zu
+  anderen Zeiten. Teilschritte nennen Ausgänge und Abläufe; ein Befund nennt Takt, Ausgang, Ist und Soll.
+- **Ansicht** `TaktView` in der gemeinsamen Ansicht, mit sofortigem Neurechnen: der Plan-Editor der Schaltungen mit
+  Flipflops und dem Takt T, rechts der Stand im gezeigten Takt (Zahl aus den Ausgängen unter `zahl`, Lämpchen oder
+  7-Segment-Anzeige, je mit Soll) und der Zeitverlauf (Takt, Eingänge, Soll gestrichelt in Gold, Ist, Abweichung rot).
+  Abspielen, Nächster Takt, Von vorn; ein Klick in den Verlauf springt zum Takt, der Plan zeigt dann, was die
+  Flipflops gemerkt haben.
 - **Sterne**: alle Takte; höchstens so viele Bausteine außer den Flipflops; dazu höchstens so tief zwischen zwei
   Flipflops (der längste Weg bestimmt, wie schnell der Takt sein darf).
-- **Reihe**: Ein Bit merken, Umschalter (kippt bei jedem Takt), Zähler bis 3, Zähler bis 9 mit Rücksetzen, Lauflicht
-  (Schieberegister), Ampel als Automat (die Ampelschule in Hardware), Würfel auf der 7-Segment-Anzeige.
+- **Levels** (`aufgaben/maschine/f001` bis `f007`): Ein Bit merken, Umschalter (kippt bei gedrückter Taste), Zähler
+  bis 3, Zähler bis 9 mit Rücksetzen, Lauflicht (Schieberegister), Ampel als Automat (der Zähler steht schon im Plan),
+  Würfel auf der 7-Segment-Anzeige. Die Soll-Folgen sind aus Vorbildern gerechnet; jede Musterlösung besteht mit drei
+  Sternen, jeder Startplan scheitert (Tests in `backend/tests/test_takt.py`).
 
 ## Weitere Spielideen: Codes knacken (gebaut) und Flaggenjagd (Idee)
 

@@ -54,6 +54,12 @@
     <path class="ruf" d="M 40 77 l 4 -6 l 4 6 z" /><path class="ruf" d="M 40 37 l 4 6 l 4 -6 z" />
     <circle cx="30" cy="88" r="4" fill="var(--orange)" /><circle cx="30" cy="46" r="4" fill="var(--orange)" />
   </svg>
+{:else if id === 'schaltungen-mit-takt'}
+  <svg class="ampel-bild" viewBox="0 0 120 150" aria-hidden="true">
+    <path class="takt-welle" d="M 10 52 H 22 V 32 H 32 V 52 H 46 V 32 H 56 V 52 H 70 V 32 H 80 V 52 H 94 V 32 H 104 V 52 H 110" />
+    <path class="zaehl-welle" d="M 10 92 H 34 V 74 H 58 V 92 H 82 V 74 H 110" />
+    <path class="zaehl-welle" d="M 10 132 H 58 V 114 H 106 V 132 H 110" />
+  </svg>
 {:else if id === 'codes-knacken'}
   <div class="muster">
     <div class="akz">AYLMMWBURA PZA</div>
@@ -79,6 +85,8 @@
   .ampel-bild .etage { stroke: var(--border-strong); }
   .ampel-bild .kabine { fill: var(--bg-card-2); stroke: var(--accent); stroke-width: 2; }
   .ampel-bild .ruf { fill: var(--gold); }
+  .ampel-bild .takt-welle { fill: none; stroke: var(--fg-dim); stroke-width: 2; }
+  .ampel-bild .zaehl-welle { fill: none; stroke: var(--accent); stroke-width: 3; }
   .muster {
     font-family: var(--mono);
     font-size: 11px;

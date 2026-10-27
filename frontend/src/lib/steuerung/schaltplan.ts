@@ -5,7 +5,15 @@
  */
 
 export const OFFEN = '?';
-export const EINGAENGE_JE_ART: Record<string, number> = { UND: 2, ODER: 2, XOR: 2, NAND: 2, NOR: 2, NICHT: 1 };
+export const EINGAENGE_JE_ART: Record<string, number> = { UND: 2, ODER: 2, XOR: 2, NAND: 2, NOR: 2, NICHT: 1, FF: 1 };
+/** Flipflop: merkt sich beim Takt seinen Eingang D (Schaltungen mit Takt) */
+export const SPEICHER = 'FF';
+/** Ausgänge, die zusammen eine 7-Segment-Anzeige sind: a oben, dann im Uhrzeigersinn, g in der Mitte */
+export const SEGMENTE = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+
+export function istSiebenSegment(ausgaenge: string[]): boolean {
+  return ausgaenge.join('') === SEGMENTE.join('');
+}
 
 export interface Baustein {
   art: 'baustein';

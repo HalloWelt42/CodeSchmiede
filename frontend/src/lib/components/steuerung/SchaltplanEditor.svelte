@@ -5,21 +5,25 @@
    * Schalter oder Baustein), dann ein Eingang (linker Punkt an einem Baustein oder am Lämpchen); ein Klick auf einen
    * belegten Eingang nimmt die Leitung weg. Bausteine lassen sich ziehen; beim freien Bauen kommen sie aus der Leiste
    * dazu und lassen sich löschen. Alles schreibt den Text des Plans; Leitungen mit 1 leuchten in der gewählten Zeile.
+   * Mit Takt kommen Flipflops dazu: unter den festen Werten steht der Takt T, gestrichelt zu jedem Flipflop; die
+   * Eingänge stellt dann der Ablauf, sie lassen sich nicht umschalten.
    */
-  import { EINGAENGE_JE_ART, OFFEN, neuerName, zerlege, zusammen, type Baustein, type Zeile } from '../../steuerung/schaltplan';
+  import { EINGAENGE_JE_ART, OFFEN, SPEICHER, neuerName, zerlege, zusammen, type Baustein, type Zeile } from '../../steuerung/schaltplan';
   import type { SchaltungAnsicht } from '../../types/Schaltung';
   import type { CodeZugriff } from '../../types/Steuerung';
   import EditorBereich from '../EditorBereich.svelte';
 
   interface Props {
-    ansicht: SchaltungAnsicht;
+    ansicht: Pick<SchaltungAnsicht, 'eingaenge' | 'ausgaenge' | 'bausteine' | 'vorgabe'>;
     zugriff: CodeZugriff;
     /** Werte aller Signale in der gewählten Zeile, ohne gültigen Plan null */
     werte: Record<string, number> | null;
     zeile: number;
     waehle: (zeile: number) => void;
+    /** Schaltung mit Takt: Takt T und Flipflops, Eingänge kommen aus dem Ablauf */
+    takt?: boolean;
   }
-  let { ansicht, zugriff, werte, zeile, waehle }: Props = $props();
+  let { ansicht, zugriff, werte, zeile, waehle, takt = false }: Props = $props();
 
   const B = 600;
   const GW = 70;
@@ -28,7 +32,7 @@
   const LAMPE_X = 566;
   const FEST = ['0', '1'];
   const BESCHREIBUNG: Record<string, string> = {
-    UND: 'UND', ODER: 'ODER', XOR: 'XOR', NAND: 'NAND', NOR: 'NOR', NICHT: 'NICHT',
+    UND: 'UND', ODER: 'ODER', XOR: 'XOR', NAND: 'NAND', NOR: 'NOR', NICHT: 'NICHT', FF: 'Flipflop',
   };
 
   let ansichtArt = $state<'plan' | 'text'>('plan');
@@ -53,7 +57,7 @@
   let hoehe = $derived(
     Math.max(
       300,
-      40 + ansicht.eingaenge.length * einAbstand + 90,
+      40 + ansicht.eingaenge.length * einAbstand + (takt ? 140 : 90),
       40 + ansicht.ausgaenge.length * ausAbstand,
       ...bausteine.map((b) => b.y + GH + 30),
     ),
@@ -64,6 +68,15 @@
   }
   function festY(i: number): number {
     return 40 + ansicht.eingaenge.length * einAbstand + 10 + i * 34;
+  }
+  /** Mitte des Takts T, unter den festen Werten */
+  let taktY = $derived(festY(FEST.length) + 16);
+  function taktLeitung(b: { x: number; y: number }): string {
+    const [px, py] = taktPin(b);
+    return `M ${EIN_X + 44} ${taktY} H ${b.x - 12} V ${py} H ${px}`;
+  }
+  function taktPin(b: { x: number; y: number }): [number, number] {
+    return [b.x, b.y + GH - 9];
   }
   function ausgangY(j: number): number {
     return 40 + j * ausAbstand;
@@ -200,10 +213,14 @@
   {:else}
     <p class="hinweis dim">
       {#if auswahl}Von <b>{auswahl}</b>: jetzt einen Eingang anklicken (links an einem Baustein oder am Lämpchen).
+      {:else if takt}Klick auf einen Ausgangspunkt, dann auf einen Eingang. Die Eingänge stellt der Ablauf, T gibt den Takt.
       {:else}Klick auf einen Ausgangspunkt, dann auf einen Eingang. Schalter A, B ... wählen die Zeile.{/if}
     </p>
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <svg bind:this={svg} class="plan" viewBox="0 0 {B} {hoehe}" role="img" aria-label="Schaltplan" onpointermove={bewege} onpointerup={lasse}>
+      {#if takt}
+        {#each bausteine.filter((b) => b.typ === SPEICHER) as b (b.name)}<path class="draht takt-draht" d={taktLeitung(b)} />{/each}
+      {/if}
       {#each bausteine as b (b.name)}
         {#each b.eingaenge as e, i (i)}
           {@const von = e !== OFFEN ? quellPunkt(e) : null}
@@ -218,7 +235,7 @@
 
       {#each ansicht.eingaenge as name, i (name)}
         {@const wert = werte?.[name] ?? (zeile >= 0 ? (zeile >> (ansicht.eingaenge.length - 1 - i)) & 1 : 0)}
-        <g class="schalter" class:an={wert === 1} onclick={() => schalte(i)} role="button" tabindex="-1" onkeydown={() => {}}>
+        <g class="schalter" class:an={wert === 1} class:fest-gestellt={takt} onclick={() => schalte(i)} role="button" tabindex="-1" onkeydown={() => {}}>
           <rect x={EIN_X} y={eingangY(i) - 16} width="44" height="32" rx="6" />
           <text x={EIN_X + 22} y={eingangY(i) + 5} text-anchor="middle">{name} {wert}</text>
         </g>
@@ -230,9 +247,15 @@
         <circle class="pin quelle" class:gewaehlt={auswahl === name} cx={EIN_X + 36} cy={festY(i)} r="5" onclick={() => waehleQuelle(name)} role="button" tabindex="-1" onkeydown={() => {}} />
       {/each}
 
+      {#if takt}
+        <rect class="takt-quelle" x={EIN_X} y={taktY - 14} width="44" height="28" rx="6" />
+        <text class="takt-text" x={EIN_X + 22} y={taktY + 5} text-anchor="middle">T</text>
+      {/if}
+
       {#each bausteine as b (b.name)}
-        <g class="baustein" class:markiert={markiert === b.name} class:an={an(b.name)} onpointerdown={(e) => greife(e, b)} role="button" tabindex="-1">
-          <rect x={b.x} y={b.y} width={GW} height={GH} rx="8" />
+        <g class="baustein" class:ff={b.typ === SPEICHER} class:markiert={markiert === b.name} class:an={an(b.name)} onpointerdown={(e) => greife(e, b)} role="button" tabindex="-1">
+          <rect x={b.x} y={b.y} width={GW} height={GH} rx={b.typ === SPEICHER ? 3 : 8} />
+          {#if b.typ === SPEICHER}<path class="takt-pin" d="M {b.x} {b.y + GH - 15} l 8 6 l -8 6" />{/if}
           <text class="typ" x={b.x + GW / 2} y={b.y + 21} text-anchor="middle">{b.typ}</text>
           <text class="name-b" x={b.x + GW / 2} y={b.y + 36} text-anchor="middle">{b.name}</text>
         </g>
@@ -302,6 +325,7 @@
   .draht { fill: none; stroke: var(--fg-mute); stroke-width: 2.4; stroke-linejoin: round; }
   .draht.an { stroke: var(--accent); filter: drop-shadow(0 0 3px color-mix(in srgb, var(--accent) 60%, transparent)); }
   .schalter { cursor: pointer; }
+  .schalter.fest-gestellt { cursor: default; }
   .schalter rect { fill: var(--bg-card-2); stroke: var(--border-strong); stroke-width: 1.4; }
   .schalter.an rect { fill: color-mix(in srgb, var(--accent) 30%, var(--bg-card-2)); stroke: var(--accent); }
   .schalter text { fill: var(--fg); font: 700 13px var(--mono); pointer-events: none; }
@@ -311,6 +335,13 @@
   .baustein rect { fill: var(--bg-card-2); stroke: var(--border-strong); stroke-width: 1.6; }
   .baustein.an rect { stroke: var(--accent); }
   .baustein.markiert rect { stroke: var(--gold); stroke-width: 2.4; }
+  .baustein.ff rect { stroke: var(--accent); stroke-width: 1.8; }
+  .baustein.ff.an rect { fill: color-mix(in srgb, var(--accent) 24%, var(--bg-card-2)); }
+  .baustein.ff.markiert rect { stroke: var(--gold); }
+  .takt-pin { fill: none; stroke: var(--fg-dim); stroke-width: 1.4; pointer-events: none; }
+  .takt-draht { stroke-dasharray: 5 4; stroke-width: 1.6; }
+  .takt-quelle { fill: var(--bg-card-2); stroke: var(--border-strong); stroke-width: 1.4; }
+  .takt-text { fill: var(--fg); font: 700 13px var(--mono); }
   .typ { fill: var(--fg); font: 700 12px var(--mono); pointer-events: none; }
   .name-b { fill: var(--fg-mute); font: 500 10px var(--mono); pointer-events: none; }
   .pin { stroke-width: 1.6; cursor: pointer; }

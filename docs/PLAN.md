@@ -451,9 +451,18 @@ Nach dem freigegebenen Entwurf `mockups/rechner-codes.html` (Freigabe 27.10.2026
   Balkenbild. Routen `GET /api/spiel/codes/{id}/nachrichten` und `POST /api/spiel/codes/{id}/lauf`.
 - Werkbank zum Probieren von Hand je Verfahren; gewertet wird allein das Programm.
 
+## Ergebnis: Schaltungen mit Takt (0.94.0)
+
+Nach dem freigegebenen Entwurf `mockups/rechner-takt.html` (Freigabe 27.10.2026); Einzelheiten in `docs/SPIELE.md`.
+
+- Flipflop als Baustein im Schaltplan, Rückkopplung über ein Flipflop erlaubt; Prüfung je Takt ohne Sandbox, sieben
+  Levels vom Bit merken bis zum Würfel. Routen `GET /api/spiel/takt/{id}/plan` und `POST /api/spiel/takt/{id}/lauf`.
+- Eigenes Spiel neben den Schaltungen (ein Spiel hat genau einen Aufgabentyp).
+- Die 7-Segment-Anzeige ist eine gemeinsame Komponente; die gemeinsame Ansicht hält beim sofortigen Neurechnen die
+  gezeigte Stelle fest.
+
 ## Offen
 
-- Schaltungen mit Takt: Entwurf `mockups/rechner-takt.html` zur Freigabe (27.10.2026), Konzept in `docs/SPIELE.md`.
 - Flaggenjagd (Nutzer 25.10.2026): verwundbare Übungssysteme nur in der Sandbox, erst Flagge finden, dann Lücke
   schließen; Skizze in `docs/SPIELE.md`, vor dem Bau ein eigener Entwurf.
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).

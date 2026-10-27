@@ -1,0 +1,6 @@
+nw = NICHT(W) @ 110,170
+a = UND(W, E) @ 220,30
+b = UND(nw, q) @ 220,150
+d = ODER(a, b) @ 330,90
+q = FF(d) @ 450,90
+Q = q

@@ -1,0 +1,14 @@
+id: schaltungen-mit-takt
+titel: Schaltungen mit Takt
+beschreibung: |
+  Flipflops merken sich ein Bit bis zum nächsten Takt: ein Bit merken,
+  Umschalter, Zähler bis 3 und bis 9, Lauflicht, Ampel als Automat und
+  ein Würfel auf der 7-Segment-Anzeige.
+reihenfolge:
+  - f001-ein-bit-merken
+  - f002-umschalter
+  - f003-zaehler-bis-3
+  - f004-zaehler-bis-9
+  - f005-lauflicht
+  - f006-ampel-automat
+  - f007-wuerfel
