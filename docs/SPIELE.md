@@ -227,7 +227,7 @@ Entwürfe: `mockups/rechner-turing.html` und `mockups/rechner-schaltung.html`. B
   Volladdierer, Multiplexer, Dekoder, XOR nur aus NAND, 7-Segment-Anzeige von 0 bis 3. Flipflop und Zähler brauchen
   einen Takt und kommen später (Tests in `backend/tests/test_schaltung.py`).
 
-## Weitere Spielideen: Codes knacken und Flaggenjagd (Idee, vor dem Bau Entwürfe)
+## Weitere Spielideen: Codes knacken (gebaut) und Flaggenjagd (Idee)
 
 Vorschlag des Nutzers (25.10.2026): geheime Codes knacken und Hacking-Aufgaben, bei denen man eine versteckte Flagge
 findet.
@@ -242,6 +242,33 @@ findet.
   Aufbau in Teilschritten: erst die Flagge finden, dann im zweiten Teilschritt die Lücke im Code schließen; die
   Prüfung greift dann erneut an und darf die Flagge nicht mehr finden. So lernt man Angriff und Abwehr zusammen.
 - **Grenze**: nie gegen echte Systeme, kein Netz; alle Ziele sind eigene Übungssysteme in der Sandbox.
+
+### Codes knacken (gebaut, 0.93.0)
+
+Nach dem freigegebenen Entwurf `mockups/rechner-codes.html` (Freigabe 27.10.2026). Flaggenjagd bekommt einen eigenen
+Entwurf.
+
+- **Nachrichten** (`backend/src/codeschmiede/steuerung/codes.py`): im Level stehen je Nachricht nur Klartext und
+  Schlüssel, den Geheimtext rechnet der Server. Verfahren: Cäsar (Zahl), Ersetzung (Mischung oder Startwert),
+  Vigenère (Wort), XOR (Wort, Ergebnis als Hex), Schichten (Liste aus `caesar:N`, `base64`, `hex`), PIN (Prüfwert
+  SHA-256). Verschlüsselt werden nur A bis Z; Leerzeichen, Satzzeichen, Ä, Ö, Ü und ß bleiben stehen.
+- **Häufigkeiten** (`steuerung/codes_deutsch.json`, erzeugt von `tools/codes_deutsch.py` aus den eigenen Texten der
+  Codeschmiede): `DEUTSCH` je Buchstabe in Prozent, `PAARE` je Buchstabenpaar in Promille mit `_` für Wortanfang und
+  Wortende. Das Level nennt, was dem Programm bereitsteht; die Oberfläche bekommt `DEUTSCH` für das Balkenbild.
+- **Prüfung** (`pruefung/codes_pruefer.py`): Python in der Sandbox, hinein gehen nur Programm und Eingaben, nie ein
+  Klartext; verglichen wird im Backend. Je Nachricht eine Funktion (meist `knacke(geheim)`, im ersten Teilschritt
+  etwa `schiebe(geheim, -3)`), beim Verschlüsseln (`pruefwert("1234")`) umgekehrt. Beim Knacken genügt ab
+  `mindestens` der Anteil richtiger Buchstaben (Ersetzung: 80 %, die erste Vermutung 40 %), sonst muss alles stimmen.
+  Die Uhr greift der Lauf vor dem Programm, das sie deshalb nicht verstellen kann.
+- **Sterne**: alle Nachrichten; alle zusammen in höchstens so vielen Millisekunden; dazu höchstens so viele Zeichen
+  Code (ohne Leerraum und Kommentare).
+- **Ansicht** `CodesView` in der gemeinsamen Ansicht ohne Abspielen: rechts die gewählte Nachricht, was das Programm
+  daraus macht (abweichende Zeichen rot) und was erwartet war, darunter eine Werkbank zum Probieren von Hand je
+  Verfahren (Verschiebung, Zuordnung mit erster Vermutung, Schlüsselwort, Schalen abziehen, PIN gegen Prüfwert) mit
+  Balkenbild gegen die goldene Linie des Deutschen. Gewertet wird allein das Programm.
+- **Levels** (`aufgaben/python/c001` bis `c006`, Pfad `codes-knacken`): Cäsar, Ersetzung und Häufigkeit (Klettern
+  über Buchstabenpaare), Vigenère (Länge über den Koinzidenzindex), XOR mit kurzem Schlüssel, Schicht um Schicht, PIN
+  gegen Prüfwert. Jede Musterlösung besteht, jeder Startcode scheitert (Tests in `backend/tests/test_codes.py`).
 
 ## Spielmechanik in der ganzen App
 

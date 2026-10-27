@@ -441,12 +441,21 @@ Nach dem freigegebenen Entwurf `mockups/rechner-schaltung.html`; Einzelheiten in
   können eine Zeile oder ein Bild wählen.
 - Später: Flipflop und Zähler (brauchen einen Takt).
 
+## Ergebnis: Codes knacken (0.93.0)
+
+Nach dem freigegebenen Entwurf `mockups/rechner-codes.html` (Freigabe 27.10.2026); Einzelheiten in `docs/SPIELE.md`.
+
+- Sechs Levels in Python: Cäsar, Ersetzung mit Häufigkeit, Vigenère, XOR, Schichten aus Base64 und Hex, PIN gegen
+  Prüfwert; geprüft mit versteckten Nachrichten und anderen Schlüsseln, Sterne nach Zeit und Kürze.
+- Häufigkeiten des Deutschen aus den eigenen Texten (`tools/codes_deutsch.py`), eine Wahrheit für Programm und
+  Balkenbild. Routen `GET /api/spiel/codes/{id}/nachrichten` und `POST /api/spiel/codes/{id}/lauf`.
+- Werkbank zum Probieren von Hand je Verfahren; gewertet wird allein das Programm.
+
 ## Offen
 
 - Schaltungen mit Takt: Flipflop und Zähler (später, eigener Entwurf).
-- Weitere Spielideen (Nutzer 25.10.2026): Codes knacken (Knacker schreiben, geprüft auf versteckten Geheimtexten) und
-  Flaggenjagd (verwundbare Übungssysteme nur in der Sandbox, erst Flagge finden, dann Lücke schließen); Skizze in
-  `docs/SPIELE.md`, vor dem Bau Entwürfe.
+- Flaggenjagd (Nutzer 25.10.2026): verwundbare Übungssysteme nur in der Sandbox, erst Flagge finden, dann Lücke
+  schließen; Skizze in `docs/SPIELE.md`, vor dem Bau ein eigener Entwurf.
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).
 - Vorschläge aus `docs/DIDAKTIK.md`, die nicht in den Kurs übernommen sind (Tagesrätsel, Fehler gegen die Uhr,
   Wochenaufgabe "kürzer als die Musterlösung", echte eigene Daten als Datensätze): später einzeln entscheiden.

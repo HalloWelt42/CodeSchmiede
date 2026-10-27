@@ -32,7 +32,7 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 
 [tool.setuptools.package-data]
-codeschmiede = ["db/migrations/*.sql", "aufzeichnung/*.js", "pruefung/*.js"]
+codeschmiede = ["db/migrations/*.sql", "aufzeichnung/*.js", "pruefung/*.js", "steuerung/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

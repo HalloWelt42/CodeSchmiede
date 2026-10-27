@@ -1,6 +1,6 @@
 """HTTP-Routen der Spielmechanik: Spielstand für Kopf und Startseite,
 Erfolge für ihre Seite, Spiele mit dem Stand ihrer Levels, Probeläufe des
-Roboters, der Steuerungsspiele, der Turingmaschine und der Schaltungen und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
+Roboters, der Steuerungsspiele, der Turingmaschine, der Schaltungen und der Codeknacker und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
 
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -12,13 +12,14 @@ from ..models.spiel import ErfolgsListe, Spielstand, SpielUebersicht
 from ..models.sprint import SprintAbschluss, SprintRueckmeldung, SprintRunde
 from ..pruefung import krimi_pruefer
 from ..pruefung.krimi_pruefer import Ergebnistabelle
-from ..pruefung import ampel_pruefer, aufzug_pruefer, schaltung_pruefer, turing_pruefer
+from ..pruefung import ampel_pruefer, aufzug_pruefer, codes_pruefer, schaltung_pruefer, turing_pruefer
 from ..pruefung.ampel_pruefer import AmpelLaeufe, AmpelSterne
 from ..pruefung.aufzug_pruefer import AufzugLaeufe, AufzugSterne
+from ..pruefung.codes_pruefer import CodesLaeufe, CodesSterne
 from ..pruefung.schaltung_pruefer import SchaltungLaeufe, SchaltungSterne, Vorgabe
 from ..pruefung.turing_pruefer import Band, TuringLaeufe, TuringSterne
 from ..pruefung.roboter_pruefer import Laeufe, lauf_sichtbar
-from ..steuerung import ampel_welt
+from ..steuerung import ampel_welt, codes
 from ..steuerung.ampel_anlage import Anlage
 from ..sandbox.runner import SandboxFehler
 from ..spiel.sprint import FalscheAntwort, RundeNichtGefunden, RundeVorbei
@@ -104,6 +105,31 @@ class SchaltungAnsicht(BaseModel):
     sensoren: list[str]
     teilschritte: list[TeilschrittText]
     sterne: SchaltungSterne
+    aufbauend_auf: str | None
+
+
+class GeheimeNachricht(BaseModel):
+    name: str
+    # der Aufruf, wie er im Programm stünde, etwa knacke(geheim)
+    aufruf: str
+    # das erste Argument: der Geheimtext (beim Verschlüsseln der Klartext)
+    eingabe: str
+
+
+class CodesAnsicht(BaseModel):
+    """Was Codes knacken vor dem ersten Lauf zeigt: die sichtbaren Nachrichten als Geheimtext, die Häufigkeiten des
+    Deutschen für das Balkenbild und vom Level, was der Browser braucht (ohne Klartexte)."""
+
+    verfahren: str
+    funktion: str
+    bereit: list[str]
+    deutsch: dict[str, float]
+    nachrichten: list[GeheimeNachricht]
+    mindestens: float
+    dauer: int
+    sensoren: list[str]
+    teilschritte: list[TeilschrittText]
+    sterne: CodesSterne
     aufbauend_auf: str | None
 
 
@@ -249,6 +275,33 @@ def baue_spiel_router(state: AppState) -> APIRouter:
     def schaltung_lauf(aufgabe_id: str, anfrage: ProgrammProbe) -> SchaltungLaeufe:
         """Wahrheitstabelle des Plans, ohne Wertung und ohne Abgabe (ohne Sandbox: ein Plan ist Daten)."""
         return schaltung_pruefer.lauf_sichtbar(schaltung_level(aufgabe_id), anfrage.code)
+
+    def codes_level(aufgabe_id: str):
+        aufgabe = state.aufgaben.aufgabe(aufgabe_id)
+        if aufgabe is None or aufgabe.task_type != "codes":
+            raise HTTPException(status_code=404, detail="Kein Codes-Level")
+        return aufgabe
+
+    @router.get("/codes/{aufgabe_id}/nachrichten", response_model=CodesAnsicht)
+    def codes_nachrichten(aufgabe_id: str) -> CodesAnsicht:
+        level = codes_pruefer.level_von(codes_level(aufgabe_id))
+        return CodesAnsicht(
+            verfahren=level.verfahren, funktion=level.funktion, bereit=list(level.bereit), deutsch=codes.DEUTSCH,
+            nachrichten=[GeheimeNachricht(name=n.name, aufruf=codes_pruefer.aufruf_text(level, n),
+                                          eingabe=str(level.eingabe(n)[0])) for n in level.sichtbar],
+            mindestens=level.mindestens, dauer=0, sensoren=[],
+            teilschritte=[TeilschrittText(titel=s.titel, text=s.text) for s in level.teilschritte],
+            sterne=level.sterne, aufbauend_auf=level.aufbauend_auf,
+        )
+
+    @router.post("/codes/{aufgabe_id}/lauf", response_model=CodesLaeufe)
+    def codes_lauf(aufgabe_id: str, anfrage: ProgrammProbe) -> CodesLaeufe:
+        """Probelauf mit den sichtbaren Nachrichten, ohne Wertung und ohne Abgabe."""
+        aufgabe = codes_level(aufgabe_id)
+        try:
+            return codes_pruefer.lauf_sichtbar(aufgabe, anfrage.code, state.runner)
+        except SandboxFehler as fehler:
+            raise HTTPException(status_code=503, detail=str(fehler)) from fehler
 
     def krimi_kapitel(aufgabe_id: str):
         aufgabe = state.aufgaben.aufgabe(aufgabe_id)

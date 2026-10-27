@@ -117,6 +117,10 @@ aufgabentypen:
     titel: Digitale Schaltung
     view: schaltung
     beschreibung: Gatter verdrahten oder selbst setzen - die ganze Wahrheitstabelle zeigt, ob die Schaltung stimmt.
+  - id: codes
+    titel: Codes knacken
+    view: codes
+    beschreibung: Einen Knacker in Python schreiben - geprüft wird mit versteckten Nachrichten und anderen Schlüsseln.
 
 # Spiele im Spielebereich. Ihre Levels sind Aufgaben des genannten
 # Aufgabentyps, die Reihenfolge geben die Pfade vor. Levels zählen in
@@ -172,6 +176,12 @@ spiele:
     beschreibung: "Mit UND, ODER und NICHT rechnen: vom Halbaddierer über Multiplexer und Dekoder bis zur 7-Segment-Anzeige."
     aufgabentyp: schaltung
     pfade: [schaltungen]
+  - id: codes-knacken
+    titel: Codes knacken
+    icon: fa-key
+    beschreibung: "Geheime Nachrichten ohne Schlüssel lesen: Cäsar, Ersetzung, Vigenère, XOR, Schichten aus Base64 und Hex und eine PIN gegen ihren Prüfwert."
+    aufgabentyp: codes
+    pfade: [codes-knacken]
 
 # Spielmechanik (docs/SPIELE.md). Stufe k gilt ab stufe_basis * k * k
 # Punkten, alle titel_alle Stufen kommt der nächste Titel. Die Ränge der

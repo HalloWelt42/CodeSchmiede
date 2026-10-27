@@ -41,6 +41,7 @@
   import AufzugView from './AufzugView.svelte';
   import TuringView from './TuringView.svelte';
   import SchaltungView from './SchaltungView.svelte';
+  import CodesView from './CodesView.svelte';
   import RoboterView from './RoboterView.svelte';
   import { spielStore } from '../stores/SpielStore.svelte';
 
@@ -275,6 +276,8 @@
       <TuringView detail={aktuell} />
     {:else if aktuell.task_type === 'schaltung'}
       <SchaltungView detail={aktuell} />
+    {:else if aktuell.task_type === 'codes'}
+      <CodesView detail={aktuell} />
     {:else if aktuell.task_type === 'sql_krimi'}
       <KrimiView detail={aktuell} />
     {:else}

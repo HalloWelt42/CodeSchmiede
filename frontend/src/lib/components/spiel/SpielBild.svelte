@@ -54,6 +54,12 @@
     <path class="ruf" d="M 40 77 l 4 -6 l 4 6 z" /><path class="ruf" d="M 40 37 l 4 6 l 4 -6 z" />
     <circle cx="30" cy="88" r="4" fill="var(--orange)" /><circle cx="30" cy="46" r="4" fill="var(--orange)" />
   </svg>
+{:else if id === 'codes-knacken'}
+  <div class="muster">
+    <div class="akz">AYLMMWBURA PZA</div>
+    <div><i class="fa-solid fa-key" aria-hidden="true"></i> -7</div>
+    <div class="ok">TREFFPUNKT IST</div>
+  </div>
 {:else}
   <i class="fa-solid fa-gamepad ersatz" aria-hidden="true"></i>
 {/if}

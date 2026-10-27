@@ -1,0 +1,13 @@
+id: codes-knacken
+titel: Codes knacken
+beschreibung: |
+  Nicht raten, sondern einen Knacker schreiben: Cäsar, Ersetzung mit
+  Häufigkeit, Vigenère, XOR mit kurzem Schlüssel, Schichten aus Base64
+  und Hex und zum Schluss eine PIN gegen ihren Prüfwert.
+reihenfolge:
+  - c001-caesar
+  - c002-ersetzung
+  - c003-vigenere
+  - c004-xor
+  - c005-schichten
+  - c006-pin
