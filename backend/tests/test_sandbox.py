@@ -114,6 +114,28 @@ def test_langsames_aufraeumen_kippt_keine_pruefung(monkeypatch):
     DockerRunner({"python": "bild-py"})._beende("lauf")  # wirft nicht
 
 
+def test_nie_gestarteter_lauf_wird_weggeraeumt(tmp_path):
+    """Kann Docker einen Container anlegen, aber nicht starten (Exit 125), entfernt `--rm` ihn nicht: der Läufer
+    räumt ihn selbst weg."""
+    from codeschmiede.sandbox.docker_runner import DockerRunner
+
+    protokoll = tmp_path / "aufrufe.txt"
+    falsches_docker = tmp_path / "docker"
+    falsches_docker.write_text(
+        "#!/bin/sh\n"
+        f'echo "$@" >> {protokoll}\n'
+        'if [ "$1" = run ]; then echo "failed to create task: cannot allocate memory" >&2; exit 125; fi\n'
+    )
+    falsches_docker.chmod(0o755)
+    runner = DockerRunner({"python": "bild-py"}, docker=str(falsches_docker))
+    runner._speicher_cgroup = True
+    erg = runner.run_code("print(1)", "python", KURZ)
+    aufrufe = protokoll.read_text().splitlines()
+    name = next(a.split("--name ")[1].split()[0] for a in aufrufe if a.startswith("run "))
+    assert erg.exit_code == 125 and "cannot allocate memory" in erg.stderr
+    assert f"rm -f {name}" in aufrufe
+
+
 def test_datengrenze_wirkt(docker_runner):
     erg = docker_runner.run_code("x = bytearray(400 * 1024 * 1024)", "python", GENUG)
     assert erg.exit_code != 0 and not erg.timeout

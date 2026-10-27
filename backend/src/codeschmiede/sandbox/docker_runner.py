@@ -48,6 +48,8 @@ MINDEST_DATEN_MB: dict[str, int] = {"javascript": 512}
 # Containers und taugt nicht zur Unterscheidung.
 TIMEOUT_EXIT = 124
 KILL_EXIT = 137
+# Docker selbst ist gescheitert (etwa kein Speicher für den Start): der Container kann angelegt, aber nie gestartet sein
+DOCKER_FEHLER_EXIT = 125
 NOBODY = "65534:65534"
 
 
@@ -172,6 +174,9 @@ class DockerRunner:
         laufzeit_ms = (time.perf_counter() - start) * 1000
 
         exit_code = proc.returncode
+        if exit_code == DOCKER_FEHLER_EXIT and not hart_beendet:
+            # `--rm` räumt nur Container weg, die gelaufen sind; ein nie gestarteter bliebe als "Created" liegen
+            self._beende(name)
         gekuerzt = aus.ueberlauf or err.ueberlauf
         stderr = err.text()
         if exit_code == KILL_EXIT and not gekuerzt and not hart_beendet:
@@ -212,7 +217,7 @@ class DockerRunner:
         ]
 
     def _beende(self, name: str) -> None:
-        """Entfernt den Container nach Zeit- oder Ausgabeüberschreitung. Unter hoher Last antwortet Docker
+        """Entfernt den Container nach Zeit- oder Ausgabeüberschreitung oder wenn Docker ihn nicht starten konnte. Unter hoher Last antwortet Docker
         manchmal nicht rechtzeitig; das darf die Prüfung nicht umwerfen. Der Container endet ohnehin durch sein
         eigenes `timeout` und wird dann durch `--rm` entfernt."""
         try:
