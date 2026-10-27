@@ -453,7 +453,7 @@ Nach dem freigegebenen Entwurf `mockups/rechner-codes.html` (Freigabe 27.10.2026
 
 ## Offen
 
-- Schaltungen mit Takt: Flipflop und Zähler (später, eigener Entwurf).
+- Schaltungen mit Takt: Entwurf `mockups/rechner-takt.html` zur Freigabe (27.10.2026), Konzept in `docs/SPIELE.md`.
 - Flaggenjagd (Nutzer 25.10.2026): verwundbare Übungssysteme nur in der Sandbox, erst Flagge finden, dann Lücke
   schließen; Skizze in `docs/SPIELE.md`, vor dem Bau ein eigener Entwurf.
 - Bausteine aus eigenen Projekten: Ideenliste in `docs/CSS-IDEEN.md` vor dem Bau an den echten Bausteinen aus Orbit abgleichen (Schritt 7).

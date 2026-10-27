@@ -227,6 +227,28 @@ Entwürfe: `mockups/rechner-turing.html` und `mockups/rechner-schaltung.html`. B
   Volladdierer, Multiplexer, Dekoder, XOR nur aus NAND, 7-Segment-Anzeige von 0 bis 3. Flipflop und Zähler brauchen
   einen Takt und kommen später (Tests in `backend/tests/test_schaltung.py`).
 
+### Schaltungen mit Takt (Entwurf zur Freigabe, 27.10.2026)
+
+Entwurf: `mockups/rechner-takt.html`. Fortsetzung der Schaltungen: Flipflops merken sich ein Bit, damit kann eine
+Schaltung zählen, Muster laufen lassen und Zustände durchlaufen.
+
+- **Baustein FF** (D-Flipflop): beim Takt übernimmt er D, bis zum nächsten Takt zeigt er es an Q. Der Takt ist für alle
+  Flipflops derselbe (ein Takt, synchron); im Plan ein Taster T mit gestrichelter Taktleitung.
+- **Rückkopplung**: bisher ein Fehler ("Kreis"), jetzt erlaubt, wenn auf dem Weg ein Flipflop sitzt. Ein Kreis nur aus
+  Gattern bleibt ein Fehler; so bleibt jede Schaltung eindeutig berechenbar (kein schwingender Ring).
+- **Text**: dieselbe Schreibweise wie bisher, `f0 = FF(n0)`, `n0 = NICHT(f0)`, `Q0 = f0`. Alle Flipflops beginnen
+  bei 0.
+- **Prüfung** ohne Sandbox auf dem Server: ein Ablauf ist eine Folge von Takten, je Takt die Eingänge (etwa ein Taster
+  R zum Rücksetzen) und das Soll der Ausgänge. Gerechnet wird je Takt erst alle Gatter, dann übernehmen alle Flipflops
+  zugleich. Versteckte Abläufe drücken die Eingänge zu anderen Zeiten.
+- **Ansicht**: statt der Wahrheitstabelle ein Zeitverlauf (Takt, Ausgänge, Soll gestrichelt in Gold, Ist, Abweichung
+  rot), darüber der Zählerstand als Zahl mit Soll. Takt, Abspielen, Von vorn; ein Klick in den Verlauf springt zum
+  Takt, der Plan zeigt dann, was die Flipflops gemerkt haben.
+- **Sterne**: alle Takte; höchstens so viele Bausteine außer den Flipflops; dazu höchstens so tief zwischen zwei
+  Flipflops (der längste Weg bestimmt, wie schnell der Takt sein darf).
+- **Reihe**: Ein Bit merken, Umschalter (kippt bei jedem Takt), Zähler bis 3, Zähler bis 9 mit Rücksetzen, Lauflicht
+  (Schieberegister), Ampel als Automat (die Ampelschule in Hardware), Würfel auf der 7-Segment-Anzeige.
+
 ## Weitere Spielideen: Codes knacken (gebaut) und Flaggenjagd (Idee)
 
 Vorschlag des Nutzers (25.10.2026): geheime Codes knacken und Hacking-Aufgaben, bei denen man eine versteckte Flagge

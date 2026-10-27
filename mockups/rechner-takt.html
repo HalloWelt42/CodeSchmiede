@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="spiele">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Schaltungen mit Takt</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<style>
+  .welt-spalte { padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); }
+  .bausteine { display: flex; flex-wrap: wrap; gap: 4px; padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--border); }
+  .baustein-chip { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 var(--sp-2); border: 1px solid var(--border); background: var(--bg-card-2); font: 600 12px var(--mono); color: var(--fg-dim); cursor: grab; }
+  .baustein-chip.neu { color: var(--accent); border-color: var(--accent); }
+  .plan { display: block; width: 100%; height: auto; background: var(--bg); }
+  .plan .raster { stroke: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .plan .gatter { fill: var(--bg-card-2); stroke: var(--border-strong); stroke-width: 1.6; }
+  .plan .ff { fill: var(--bg-card-2); stroke: var(--accent); stroke-width: 1.8; }
+  .plan .ff.gemerkt { fill: color-mix(in srgb, var(--accent) 22%, var(--bg-card-2)); }
+  .plan .gatter-text { fill: var(--fg); font: 700 12px var(--mono); }
+  .plan .pin-text { fill: var(--fg-dim); font: 600 11px var(--mono); }
+  .plan .pin { fill: var(--bg); stroke: var(--fg-mute); stroke-width: 1.4; }
+  .plan .takt-pin { fill: none; stroke: var(--fg-mute); stroke-width: 1.4; }
+  .plan .draht { fill: none; stroke: var(--fg-mute); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .plan .draht.an { stroke: var(--accent); filter: drop-shadow(0 0 3px color-mix(in srgb, var(--accent) 60%, transparent)); }
+  .plan .draht.takt { stroke-dasharray: 5 4; }
+  .plan .draht.falsch { stroke: var(--red); }
+  .plan .schalter { fill: var(--bg-card-2); stroke: var(--border-strong); stroke-width: 1.4; cursor: pointer; }
+  .plan .schalter.an { fill: color-mix(in srgb, var(--accent) 30%, var(--bg-card-2)); stroke: var(--accent); }
+  .plan .schalter-text { fill: var(--fg); font: 700 13px var(--mono); pointer-events: none; }
+  .plan .lampe-a { fill: var(--lampe-aus, #2b3038); stroke: var(--border-strong); stroke-width: 1.4; }
+  .plan .lampe-a.an { fill: #fbbf24; filter: drop-shadow(0 0 6px #fbbf24); }
+  .plan .name { fill: var(--fg-dim); font: 600 12px var(--mono); }
+  .leiste { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); }
+  .leiste .zeit { margin-left: auto; font-size: var(--fs-sm); }
+  .diagramm { display: block; width: 100%; height: auto; }
+  .diagramm .spur-name { fill: var(--fg-dim); font: 600 13px var(--mono); }
+  .diagramm .takt-zahl { fill: var(--fg-mute); font: 600 11px var(--mono); }
+  .diagramm .soll { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-dasharray: 4 3; }
+  .diagramm .ist { fill: none; stroke: var(--accent); stroke-width: 2.4; }
+  .diagramm .takt { fill: none; stroke: var(--fg-dim); stroke-width: 1.6; }
+  .diagramm .fehler { fill: color-mix(in srgb, var(--red) 22%, transparent); }
+  .diagramm .zeiger { fill: color-mix(in srgb, var(--accent) 12%, transparent); stroke: var(--accent); stroke-width: 1; }
+  .diagramm .spalte-klick { fill: transparent; cursor: pointer; }
+  .diagramm .trenn { stroke: var(--border); }
+  .legende { display: flex; flex-wrap: wrap; gap: var(--sp-3); font-size: var(--fs-xs); color: var(--fg-dim); }
+  .legende span::before { content: ""; display: inline-block; width: 16px; height: 0; margin-right: 6px; vertical-align: 3px; border-top: 2px solid var(--accent); }
+  .legende .l-soll::before { border-top: 2px dashed var(--gold); }
+  .legende .l-fehler::before { height: 10px; border: 0; background: color-mix(in srgb, var(--red) 35%, transparent); vertical-align: -1px; }
+  .zaehler { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border); background: var(--bg); }
+  .zaehler .gross { font: 700 34px var(--mono); color: var(--accent); min-width: 1.4ch; text-align: center; }
+  .zaehler .bits { font: 600 var(--fs-sm) var(--mono); color: var(--fg-dim); }
+  .zaehler .soll-wert { margin-left: auto; text-align: right; font-size: var(--fs-sm); color: var(--fg-dim); }
+  .zaehler .soll-wert b { display: block; font: 700 20px var(--mono); color: var(--gold); }
+  .befund { margin: 0; font-size: var(--fs-sm); color: var(--red); }
+  .stufen { display: flex; flex-wrap: wrap; gap: 4px; }
+  .stufen .chip.jetzt { color: var(--accent); border-color: var(--accent); }
+</style>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="a-kopf">
+      <button class="ikon"><i class="fa-solid fa-arrow-left"></i></button>
+      <span class="zelle-titel"><b>Schaltung 11: Zähler bis 3</b><span>Digitale Schaltungen, mit Takt</span></span>
+      <div class="meta">
+        <span class="badge" style="color:var(--orange)">Mittel</span>
+        <span class="sterne gross"><i class="fa-regular fa-star aus"></i><i class="fa-regular fa-star aus"></i><i class="fa-regular fa-star aus"></i></span>
+        <span class="num" style="color:var(--accent)"><i class="fa-solid fa-coins"></i> 0 / 30</span>
+      </div>
+    </header>
+    <div class="steuer-seite">
+      <section class="spalte">
+        <nav class="reiter-klein"><button class="aktiv">Aufgabe</button><button>Musterlösung</button><button>Verlauf</button></nav>
+        <div class="rollfeld md">
+          <p>Bisher hat jede Schaltung sofort gerechnet und sofort vergessen. Ein <b>Flipflop</b> merkt sich ein Bit: Bei jedem Takt übernimmt es, was an D anliegt, und zeigt es an Q, bis zum nächsten Takt. Zwei davon, und die Schaltung kann zählen.</p>
+          <p>Baue einen Zähler aus zwei Flipflops: Bei jedem Takt zählen Q1 und Q0 als Binärzahl eins weiter, 0, 1, 2, 3 und dann wieder 0.</p>
+          <div class="modus"><button class="aktiv">Schritt für Schritt</button><button>Alles auf einmal</button></div>
+          <h2>Teilschritte</h2>
+          <div class="teilschritte">
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>1. Q0 kippt</b><small>Bei jedem Takt wechselt Q0: 0, 1, 0, 1. Tipp: D0 bekommt das Gegenteil von Q0.</small></div></div>
+            <div class="teilschritt aktuell"><i class="fa-solid fa-crosshairs"></i><div><b>2. Der Übertrag</b><small>Q1 wechselt genau dann, wenn Q0 gerade 1 ist.</small><div class="stand"><i class="fa-solid fa-triangle-exclamation"></i> Takt 3: Q1 ist 0, soll 1. D1 übernimmt nur Q0, statt Q1 umzuschalten.</div></div></div>
+            <div class="teilschritt zu"><i class="fa-solid fa-lock"></i><div><b>3. Alle acht Takte</b><small>Zweimal ganz herum, von 0 bis 3 und wieder 0.</small></div></div>
+          </div>
+          <h2>Bausteine</h2>
+          <div class="spickzettel">
+            <code>FF</code><span>Flipflop: übernimmt D beim Takt, zeigt es an Q</span>
+            <code>NICHT</code><span>dreht um: aus 1 wird 0</span>
+            <code>XOR</code><span>1, wenn genau einer 1 ist; mit 1 dreht es um</span>
+            <code>UND</code><span>1, wenn beide Eingänge 1 sind</span>
+          </div>
+          <h2>Plan als Text</h2>
+          <div class="spickzettel">
+            <code>f0 = FF(n0)</code><span>ein Flipflop, D hängt an n0</span>
+            <code>n0 = NICHT(f0)</code><span>Rückkopplung: erlaubt, wenn ein Flipflop dazwischen sitzt</span>
+            <code>Q0 = f0</code><span>Ausgang Q0 zeigt, was f0 gemerkt hat</span>
+          </div>
+          <h2>Sterne</h2>
+          <div class="spickzettel" style="font-family:var(--sans)">
+            <span class="sterne"><i class="fa-solid fa-star"></i></span><span>alle Takte stimmen, auch in den versteckten Abläufen</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>höchstens 2 Bausteine außer den Flipflops</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>dazu höchstens 1 Baustein zwischen zwei Flipflops</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte mitte">
+        <div class="spalten-kopf"><span class="kopf-titel">Schaltplan, 2 Flipflops, 1 Baustein</span><button class="knopf voll" style="margin-left:auto"><i class="fa-solid fa-check"></i>Prüfen</button></div>
+        <div class="bausteine">
+          <span class="baustein-chip neu"><i class="fa-solid fa-memory"></i>FF</span>
+          <span class="baustein-chip"><i class="fa-solid fa-microchip"></i>UND</span>
+          <span class="baustein-chip"><i class="fa-solid fa-microchip"></i>ODER</span>
+          <span class="baustein-chip"><i class="fa-solid fa-microchip"></i>XOR</span>
+          <span class="baustein-chip"><i class="fa-solid fa-microchip"></i>NICHT</span>
+          <span class="dim" style="margin-left:auto;font-size:var(--fs-sm);align-self:center">Frei bauen</span>
+        </div>
+        <div class="rollfeld" style="padding:var(--sp-3)">
+          <svg class="plan" viewBox="0 0 520 330" role="img" aria-label="Schaltplan mit zwei Flipflops"></svg>
+          <p class="dim" style="font-size:var(--fs-sm)">Ein Klick auf T gibt einen Takt. Flipflops, die gerade 1 gemerkt haben, sind gefüllt; leuchtende Leitungen führen 1, gestrichelt ist die Taktleitung. Die rote Leitung ist der Fehler: D1 hängt direkt an Q0.</p>
+        </div>
+      </section>
+
+      <section class="spalte" id="welt">
+        <div class="spalten-kopf"><span>Zeitverlauf</span></div>
+        <div class="rollfeld welt-spalte">
+          <div class="leiste">
+            <button class="knopf-klein" data-takt><i class="fa-solid fa-forward-step"></i>Takt</button>
+            <button class="knopf-klein" data-abspielen><i class="fa-solid fa-play"></i>Abspielen</button>
+            <button class="knopf-klein" data-vorn><i class="fa-solid fa-rotate-left"></i>Von vorn</button>
+            <span class="num zeit" data-zeit>Takt 0 von 8</span>
+          </div>
+          <div class="zaehler">
+            <span class="gross" data-ist-wert>0</span>
+            <span class="bits">Q1 Q0<br><span data-bits>0 0</span></span>
+            <span class="soll-wert">soll<b data-soll-wert>0</b></span>
+          </div>
+          <svg class="diagramm" viewBox="0 0 480 196" role="img" aria-label="Zeitverlauf von Takt, Q0 und Q1"></svg>
+          <div class="legende"><span class="l-ist">ist</span><span class="l-soll">soll</span><span class="l-fehler">weicht ab</span></div>
+          <p class="befund" data-befund></p>
+          <div class="ablaeufe">
+            <span class="chip nein gewaehlt"><i class="fa-solid fa-xmark"></i>Zählen, Takt 3</span>
+            <span class="chip"><i class="fa-solid fa-lock"></i>2 versteckte</span>
+          </div>
+          <div class="sim-werte">
+            <div><span class="num">5 / 8</span><small>Takte richtig</small></div>
+            <div><span class="num">2</span><small>Flipflops</small></div>
+            <div><span class="num">1</span><small>Bausteine</small></div>
+            <div><span class="num">1</span><small>Tiefe</small></div>
+          </div>
+          <div class="gruppe" style="margin:0">Die Reihe mit Takt</div>
+          <div class="stufen">
+            <span class="chip">9 Ein Bit merken</span><span class="chip">10 Umschalter</span><span class="chip jetzt">11 Zähler bis 3</span>
+            <span class="chip">12 Zähler bis 9 mit Rücksetzen</span><span class="chip">13 Lauflicht</span><span class="chip">14 Ampel als Automat</span><span class="chip">15 Würfel auf der 7-Segment-Anzeige</span>
+          </div>
+          <p class="dim" style="margin:0;font-size:var(--fs-sm)">Geprüft wird jeder Takt eines Ablaufs: Eingänge je Takt (etwa ein Taster R zum Rücksetzen), dahinter Soll der Ausgänge. Wie bisher auf dem Server und ohne Sandbox. Versteckte Abläufe drücken die Eingänge zu anderen Zeiten.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+(function () {
+  const NS = 'http://www.w3.org/2000/svg';
+  const TAKTE = 8;
+  // Schaltung mit dem Fehler des Beispiels: D0 = NICHT Q0 (richtig), D1 = Q0 (soll Q1 XOR Q0)
+  const ist = [[0, 0]];
+  for (let i = 0; i < TAKTE; i++) { const [q0, q1] = ist[i]; ist.push([1 - q0, q0]); }
+  const soll = Array.from({ length: TAKTE + 1 }, (_, i) => [i % 2, (i >> 1) % 2]);
+  let jetzt = 0;
+  let uhr = null;
+
+  // --- Plan ---
+  const plan = document.querySelector('.plan');
+  const el = (name, attr, eltern) => { const e = document.createElementNS(NS, name); for (const [k, v] of Object.entries(attr)) e.setAttribute(k, v); eltern.appendChild(e); return e; };
+  for (let x = 0; x <= 520; x += 20) el('line', { class: 'raster', x1: x, y1: 0, x2: x, y2: 330 }, plan);
+  for (let y = 0; y <= 330; y += 20) el('line', { class: 'raster', x1: 0, y1: y, x2: 520, y2: y }, plan);
+  const draehte = el('g', {}, plan);
+  const draht = (d, signal, extra = '') => ({ signal, p: el('path', { class: `draht ${extra}`, d }, draehte) });
+  const DRAEHTE = [
+    draht('M 76 290 H 120 V 136 H 210', 'T', 'takt'),
+    draht('M 120 290 H 120 V 266 H 210', 'T', 'takt'),
+    draht('M 282 100 H 330 V 40 H 140 V 100 H 160', 'q0'),      // Q0 zurück zum NICHT
+    draht('M 200 100 H 210', 'n0'),                             // NICHT -> D0
+    draht('M 330 100 H 400', 'q0'),                             // Q0 -> Lampe
+    draht('M 330 100 V 200 H 180 V 230 H 210', 'q0', 'falsch'), // Fehler: Q0 direkt an D1
+    draht('M 282 230 H 400', 'q1'),                             // Q1 -> Lampe
+  ];
+  el('circle', { cx: 330, cy: 100, r: 3.5, fill: 'var(--fg-mute)' }, plan);
+  el('circle', { cx: 120, cy: 290, r: 3.5, fill: 'var(--fg-mute)' }, plan);
+  // NICHT
+  el('path', { class: 'gatter', d: 'M 160 82 L 192 100 L 160 118 Z' }, plan);
+  el('circle', { class: 'pin', cx: 196, cy: 100, r: 4 }, plan);
+  el('text', { class: 'gatter-text', x: 160, y: 76 }, plan).textContent = 'NICHT';
+  // Flipflops
+  const ff = [];
+  [[210, 70, 'f0'], [210, 200, 'f1']].forEach(([x, y, name]) => {
+    const k = el('rect', { class: 'ff', x, y, width: 72, height: 76, rx: 4 }, plan);
+    el('text', { class: 'gatter-text', x: x + 36, y: y - 6, 'text-anchor': 'middle' }, plan).textContent = `FF ${name}`;
+    el('text', { class: 'pin-text', x: x + 7, y: y + 34 }, plan).textContent = 'D';
+    el('text', { class: 'pin-text', x: x + 58, y: y + 34 }, plan).textContent = 'Q';
+    el('path', { class: 'takt-pin', d: `M ${x} ${y + 58} l 10 8 l -10 8` }, plan);
+    [[x, y + 30], [x + 72, y + 30]].forEach(([cx, cy]) => el('circle', { class: 'pin', cx, cy, r: 4 }, plan));
+    ff.push(k);
+  });
+  // Takt-Taster
+  const tg = el('g', {}, plan);
+  const taster = el('rect', { class: 'schalter', x: 30, y: 272, width: 46, height: 36, rx: 6 }, tg);
+  el('text', { class: 'schalter-text', x: 53, y: 295, 'text-anchor': 'middle' }, tg).textContent = 'T';
+  taster.addEventListener('click', () => takt());
+  // Lampen
+  const lampen = [el('circle', { class: 'lampe-a', cx: 416, cy: 100, r: 16 }, plan), el('circle', { class: 'lampe-a', cx: 416, cy: 230, r: 16 }, plan)];
+  el('text', { class: 'name', x: 440, y: 105 }, plan).textContent = 'Q0';
+  el('text', { class: 'name', x: 440, y: 235 }, plan).textContent = 'Q1';
+
+  // --- Zeitverlauf ---
+  const dia = document.querySelector('.diagramm');
+  const X0 = 46, BREITE = 50;
+  const SPUREN = [['T', 30], ['Q0', 92], ['Q1', 154]];
+  const x = (i) => X0 + i * BREITE;
+  SPUREN.forEach(([n, y]) => {
+    el('text', { class: 'spur-name', x: 4, y: y + 4 }, dia).textContent = n;
+    el('line', { class: 'trenn', x1: X0, y1: y + 26, x2: x(TAKTE), y2: y + 26 }, dia);
+  });
+  for (let i = 0; i <= TAKTE; i++) el('text', { class: 'takt-zahl', x: x(i) + BREITE / 2 - 3, y: 192 }, dia).textContent = i < TAKTE ? i : '';
+  const fehlerEbene = el('g', {}, dia);
+  const zeiger = el('rect', { class: 'zeiger', y: 6, width: BREITE, height: 172 }, dia);
+  // Takt als Rechteckwelle: steigende Flanke zu Beginn jedes Takts
+  let t = `M ${x(0)} 42`;
+  for (let i = 1; i <= TAKTE; i++) t += ` H ${x(i) - 0.01} V 18 H ${x(i) + BREITE / 3} V 42`;
+  el('path', { class: 'takt', d: t.replace(/ H [\d.]+ V 18 H [\d.]+ V 42$/, '') }, dia);
+  function welle(werte, y) {
+    let d = `M ${x(0)} ${y + (werte[0] ? -10 : 10)}`;
+    werte.forEach((w, i) => { d += ` V ${y + (w ? -10 : 10)} H ${x(i + 1)}`; });
+    return d;
+  }
+  SPUREN.slice(1).forEach(([, y], b) => {
+    el('path', { class: 'soll', d: welle(soll.slice(0, TAKTE).map((s) => s[b]), y) }, dia);
+    el('path', { class: 'ist', d: welle(ist.slice(0, TAKTE).map((s) => s[b]), y) }, dia);
+    for (let i = 0; i < TAKTE; i++) if (ist[i][b] !== soll[i][b]) el('rect', { class: 'fehler', x: x(i), y: y - 16, width: BREITE, height: 32 }, fehlerEbene);
+  });
+  for (let i = 0; i < TAKTE; i++) {
+    const k = el('rect', { class: 'spalte-klick', x: x(i), y: 0, width: BREITE, height: 196 }, dia);
+    k.addEventListener('click', () => { anhalten(); jetzt = i; zeichne(); });
+  }
+
+  // --- Ablauf ---
+  const $ = (s) => document.querySelector(s);
+  function zeichne() {
+    const [q0, q1] = ist[jetzt];
+    const [s0, s1] = soll[jetzt];
+    const wert = { T: 0, q0, q1, n0: 1 - q0 };
+    DRAEHTE.forEach(({ signal, p }) => p.classList.toggle('an', !!wert[signal]));
+    ff[0].classList.toggle('gemerkt', !!q0);
+    ff[1].classList.toggle('gemerkt', !!q1);
+    lampen[0].classList.toggle('an', !!q0);
+    lampen[1].classList.toggle('an', !!q1);
+    zeiger.setAttribute('x', x(jetzt));
+    $('[data-zeit]').textContent = `Takt ${jetzt} von ${TAKTE}`;
+    $('[data-ist-wert]').textContent = q1 * 2 + q0;
+    $('[data-bits]').textContent = `${q1} ${q0}`;
+    $('[data-soll-wert]').textContent = s1 * 2 + s0;
+    $('[data-befund]').textContent = q1 !== s1 ? `Takt ${jetzt}: Q1 ist ${q1}, soll ${s1}` : q0 !== s0 ? `Takt ${jetzt}: Q0 ist ${q0}, soll ${s0}` : '';
+  }
+  function takt() {
+    // ein kurzes Aufblitzen der Taktleitung, dann der neue Zustand
+    DRAEHTE.filter((d) => d.signal === 'T').forEach((d) => d.p.classList.add('an'));
+    setTimeout(() => { jetzt = (jetzt + 1) % TAKTE; zeichne(); }, 180);
+  }
+  function anhalten() { clearInterval(uhr); uhr = null; }
+  $('[data-takt]').addEventListener('click', () => { anhalten(); takt(); });
+  $('[data-abspielen]').addEventListener('click', () => { anhalten(); uhr = setInterval(takt, 700); });
+  $('[data-vorn]').addEventListener('click', () => { anhalten(); jetzt = 0; zeichne(); });
+  zeichne();
+})();
+</script>
+</body>
+</html>
