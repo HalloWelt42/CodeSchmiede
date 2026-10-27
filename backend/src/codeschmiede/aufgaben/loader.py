@@ -40,11 +40,14 @@ class Ladefehler:
 
 
 class AufgabenLoader:
-    """Liest Aufgaben und Pfade von der Platte. Keine Persistenz, kein Caching."""
+    """Liest Aufgaben und Pfade von der Platte. Keine Persistenz, kein Caching von Inhalten; gemerkt wird nur, in
+    welchem Ordner eine Aufgabe beim letzten Einlesen lag (jedes Dateisystem-Nachsehen kostet über eingebundene
+    Ordner viel Zeit)."""
 
     def __init__(self, wurzel: Path):
         self.wurzel = wurzel
         self.ladefehler: list[Ladefehler] = []
+        self._ordner: dict[str, Path] = {}
 
     def aufgaben_dateien(self) -> list[Path]:
         if not self.wurzel.exists():
@@ -76,6 +79,7 @@ class AufgabenLoader:
                 continue
             aufgaben.append(aufgabe)
         self.ladefehler = fehler
+        self._ordner = {a.id: a.dateipfad.parent for a in aufgaben}
         return aufgaben
 
     def lade_aufgabe(self, datei: Path) -> Aufgabe:
@@ -107,6 +111,12 @@ class AufgabenLoader:
         return pfade
 
     def lade_musterloesungen(self, aufgabe_id: str) -> list[dict[str, str]]:
+        bekannt = self._ordner.get(aufgabe_id)
+        if bekannt is not None:
+            try:
+                return self.musterloesungen_neben(bekannt)
+            except OSError:
+                pass  # seit dem Einlesen verschoben oder gelöscht: neu suchen
         for sprache_dir in self.wurzel.iterdir():
             if not sprache_dir.is_dir() or sprache_dir.name in RESERVIERTE_VERZEICHNISSE:
                 continue
@@ -120,10 +130,13 @@ class AufgabenLoader:
         """Alle `solution_<variante>.<endung>` eines Aufgabenordners als
         `{variante, code}`, didaktisch sortiert."""
         ergebnis: dict[str, str] = {}
+        # einmal nachsehen, dann je Endung in ihrer Reihenfolge
+        namen = sorted(d.name for d in verzeichnis.iterdir() if d.name.startswith("solution_"))
         for endung in MUSTERLOESUNG_ENDUNGEN:
-            for datei in sorted(verzeichnis.glob(f"solution_*.{endung}")):
-                variante = datei.stem.removeprefix("solution_")
-                ergebnis.setdefault(variante, datei.read_text(encoding="utf-8"))
+            for name in namen:
+                if name.endswith(f".{endung}"):
+                    variante = name.removesuffix(f".{endung}").removeprefix("solution_")
+                    ergebnis.setdefault(variante, (verzeichnis / name).read_text(encoding="utf-8"))
 
         def sortier_key(variante: str) -> tuple[int, str]:
             if variante in MUSTERLOESUNG_REIHENFOLGE:
