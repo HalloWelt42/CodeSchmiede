@@ -68,7 +68,7 @@ codes:
     - titel: Alle Nachrichten
       text: "Zum Schluss die versteckten Nachrichten, auch eine ganz kurze."
       nachrichten: alle
-  sterne: {ms: 100, zeichen: 260}
+  sterne: {ms: 20, zeichen: 260}
 ---
 
 # Cäsar knacken

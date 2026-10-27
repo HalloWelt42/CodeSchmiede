@@ -80,7 +80,7 @@ codes:
     - titel: Alle Nachrichten
       text: "Zum Schluss die versteckten Nachrichten, mit Schlüsseln von einem bis sechs Zeichen."
       nachrichten: alle
-  sterne: {ms: 1500, zeichen: 900}
+  sterne: {ms: 700, zeichen: 900}
 ---
 
 # XOR mit kurzem Schlüssel

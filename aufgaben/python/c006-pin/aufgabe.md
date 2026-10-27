@@ -63,7 +63,7 @@ codes:
     - titel: Alle Schlösser
       text: "Zum Schluss die versteckten Prüfwerte, auch PINs mit führenden Nullen."
       nachrichten: alle
-  sterne: {ms: 600, zeichen: 220}
+  sterne: {ms: 120, zeichen: 220}
 ---
 
 # PIN gegen Prüfwert

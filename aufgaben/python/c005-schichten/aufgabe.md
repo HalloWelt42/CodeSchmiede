@@ -75,7 +75,7 @@ codes:
     - titel: Alle Nachrichten
       text: "Zum Schluss die versteckten Nachrichten, mit bis zu drei Schalen."
       nachrichten: alle
-  sterne: {ms: 100, zeichen: 560}
+  sterne: {ms: 20, zeichen: 560}
 ---
 
 # Schicht um Schicht

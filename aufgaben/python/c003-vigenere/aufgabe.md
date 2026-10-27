@@ -103,7 +103,7 @@ codes:
     - titel: Alle Nachrichten
       text: "Zum Schluss die versteckten Nachrichten, auch eine mit einem Schlüssel aus zehn Buchstaben."
       nachrichten: alle
-  sterne: {ms: 200, zeichen: 820}
+  sterne: {ms: 80, zeichen: 820}
 ---
 
 # Vigenère knacken

@@ -103,7 +103,7 @@ codes:
     - titel: Alle Nachrichten
       text: "Zum Schluss die versteckten Nachrichten, jede mit einer anderen Mischung."
       nachrichten: alle
-  sterne: {ms: 15000, zeichen: 1200}
+  sterne: {ms: 4000, zeichen: 1200}
 ---
 
 # Ersetzung und Häufigkeit
