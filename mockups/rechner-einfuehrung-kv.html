@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="kurs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: Einführung KV-Diagramm</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="kurs.css">
+<script src="kurs.js"></script>
+<style>
+  /* Farbfamilie Digitaltechnik (Vorschlag): Lämpchengelb, Leitungsblau */
+  [data-sprache='digital'] { --s-a: #fbbf24; --s-b: #38bdf8; --s-c: #fde68a; }
+  .kv-svg { display: block; width: 100%; height: auto; background: var(--bg); border: 1px solid var(--border); }
+  .kv-svg .kante { stroke: var(--border-strong); stroke-width: 2; fill: none; }
+  .kv-svg .kante.im-block { stroke: var(--s-a); stroke-width: 4; }
+  .kv-svg .kante.nachbar { stroke: var(--s-b); stroke-width: 3.5; }
+  .kv-svg .zelle { fill: var(--bg-card-2); stroke: var(--border-strong); stroke-width: 1.4; }
+  .kv-svg .ecke { stroke: var(--fg-mute); stroke-width: 2; fill: var(--bg-card); cursor: pointer; }
+  .kv-svg .ecke.eins { fill: var(--s-a); stroke: var(--s-a); }
+  .kv-svg .ecke.gewaehlt { stroke: #fff; stroke-width: 3.5; }
+  .kv-svg .ecke.nachbar { stroke: var(--s-b); stroke-width: 3.5; }
+  .kv-svg .ecke.blass { opacity: .3; }
+  .kv-svg .bits { fill: var(--fg); font: 700 13px var(--mono); pointer-events: none; }
+  .kv-svg .achse { fill: var(--fg-dim); font: 600 13px var(--mono); }
+  .kv-svg .block { fill: color-mix(in srgb, var(--s-a) 20%, transparent); stroke: var(--s-a); stroke-width: 2.4; }
+  .regler-zeile { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); }
+  .regler-zeile input { flex: 1; accent-color: var(--s-a); }
+  .block-knoepfe { display: flex; flex-wrap: wrap; gap: 4px; }
+  .block-knoepfe button { font: 600 13px var(--mono); padding: 6px 10px; border: 1px solid var(--border); background: var(--bg-card-2); color: var(--fg); cursor: pointer; border-radius: var(--radius-sm); }
+  .block-knoepfe button.aktiv { border-color: var(--s-a); color: var(--s-a); }
+  .tab-kv { width: 100%; border-collapse: collapse; font: 13px var(--mono); text-align: center; }
+  .tab-kv th { color: var(--fg-dim); font-weight: 600; padding: 3px; border-bottom: 1px solid var(--border); }
+  .tab-kv td { padding: 3px; border-bottom: 1px solid var(--border); }
+  .tab-kv tr.hell td { background: color-mix(in srgb, var(--s-a) 16%, transparent); }
+  .tab-kv tr.nachbar td { background: color-mix(in srgb, var(--s-b) 16%, transparent); }
+  .formel { font: 600 18px var(--mono); padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border); background: var(--bg-card-2); }
+  .formel .t { padding: 1px 4px; border-radius: 3px; }
+  .formel .t.hell { background: color-mix(in srgb, var(--s-a) 28%, transparent); }
+  /* jeder Buchstabe ein eigener Strich: zwei Striche dürfen nicht zu einem verschmelzen (das wäre NICHT(A UND B)) */
+  .ol { text-decoration: overline; display: inline-block; margin: 0 3px; }
+  .formel .t > span:not(.ol) { display: inline-block; margin: 0 3px; }
+  .zahlen { display: flex; gap: var(--sp-3); font-size: var(--fs-sm); color: var(--fg-dim); }
+  .zahlen b { color: var(--fg); font-family: var(--num); }
+</style>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite" data-sprache="digital">
+    <header class="a-kopf">
+      <a class="ikon" href="#" title="Zur Kursübersicht"><i class="fa-solid fa-arrow-left"></i></a>
+      <span class="zelle-titel"><b>Schaltungen vereinfachen</b><span>Digitaltechnik, Kapitel 3: Einführung, Abschnitt 4 von 7</span></span>
+      <div class="meta">
+        <div class="t-abschnitte" style="width:190px"><span class="fertig"></span><span class="fertig"></span><span class="fertig"></span><span class="jetzt"></span><span></span><span></span><span></span></div>
+        <a class="knopf" href="#"><i class="fa-solid fa-note-sticky"></i>Merkblatt</a>
+      </div>
+    </header>
+    <div class="lehr-seite">
+      <section class="spalte gliederung-spalte">
+        <div class="spalten-kopf"><span>Einführung</span></div>
+        <div class="rollfeld"><div class="gliederung">
+          <button class="fertig"><i class="fa-solid fa-circle-check"></i><span>Jede 1 ein eigener Baustein</span></button>
+          <button class="fertig"><i class="fa-solid fa-circle-check"></i><span>Nachbarn fassen sich zusammen</span></button>
+          <button class="fertig"><i class="fa-solid fa-circle-check"></i><span>Der Würfel der Belegungen</span></button>
+          <button class="jetzt"><i class="fa-solid fa-circle-play"></i><span>Vom Würfel zum Raster</span></button>
+          <button class="zu"><i class="fa-regular fa-circle"></i><span>Blöcke einkreisen</span></button>
+          <button class="zu"><i class="fa-regular fa-circle"></i><span>Egal-Felder als Joker</span></button>
+          <button class="zu"><i class="fa-regular fa-circle"></i><span>Vom Block zum Schaltplan</span></button>
+        </div></div>
+      </section>
+
+      <section class="spalte">
+        <div class="rollfeld lesen"><div class="lesen-innen">
+          <div><div class="dachzeile">Abschnitt 4 von 7</div><h2>Vom Würfel zum Raster</h2></div>
+          <div class="alltag">
+            <div class="zeichnung" style="aspect-ratio:4/3;background:radial-gradient(circle,color-mix(in srgb,var(--s-c) 22%,var(--bg)),var(--bg) 70%)"><i class="fa-solid fa-cube" style="font-size:60px;color:var(--s-a)"></i><span class="auftrag-hinweis">Bildauftrag: aufgeschnittener Pappwürfel, flach ausgebreitet</span></div>
+            <div><span class="marke-klein">Aus dem Leben</span>Eine Würfelverpackung aus Pappe kann man aufschneiden und flach hinlegen. Dann sieht man alle Seiten auf einmal, aber zwei Kanten, die vorher zusammengehörten, liegen plötzlich am linken und am rechten Rand.</div>
+          </div>
+          <p>Im letzten Abschnitt hatte jede Belegung von A, B und C eine Ecke am Würfel. Nachbarn, die sich nur in einem Eingang unterscheiden, sind durch eine Kante verbunden, und genau die lassen sich zusammenfassen.</p>
+          <p>Ein Würfel ist schön zum Verstehen, aber mühsam zum Zeichnen. Also klappen wir ihn auf: die Ecken mit A = 0 in die obere Zeile, die mit A = 1 in die untere. Schieb rechts den Regler und sieh zu.</p>
+          <div class="merksatz"><b>Merke:</b> Die Spalten heißen nicht 00, 01, 10, 11, sondern <b>00, 01, 11, 10</b>. Nur so unterscheiden sich Spalten, die nebeneinander liegen, in genau einem Eingang. Und die erste und die letzte Spalte sind auch Nachbarn: dort war der Würfel zusammengeklebt.</div>
+          <div class="frage-block vorhersage">
+            <div class="frage-kopf"><i class="fa-solid fa-wand-magic-sparkles"></i>Vorhersage</div>
+            <div class="frage-text">Welche Felder sind Nachbarn von ABC = 010 (obere Zeile, ganz rechts)?</div>
+            <div class="wahl-liste" id="v-wahl"></div><div id="v-erkl"></div>
+          </div>
+          <p>Klick rechts auf eine Ecke: ihre drei Nachbarn leuchten blau, im Würfel genauso wie im Raster und in der Tabelle.</p>
+          <div class="augenzwinkern"><i class="fa-solid fa-face-smile-wink"></i><span>Ein Raster, das links und rechts zusammenklebt: Wer Pac-Man gespielt hat, kennt das schon.</span></div>
+        </div></div>
+      </section>
+
+      <section class="spalte werkbank">
+        <div class="spalten-kopf"><span>Beispiel: f = 1 bei 001, 011, 101, 110, 111</span></div>
+        <div class="rollfeld">
+          <svg class="kv-svg" viewBox="0 0 460 300" role="img" aria-label="Würfel, der sich zum KV-Raster aufklappt"></svg>
+          <div class="regler-zeile"><i class="fa-solid fa-cube"></i><input type="range" min="0" max="100" value="0" id="aufklappen" aria-label="Würfel aufklappen"><i class="fa-solid fa-table-cells"></i><span class="num" id="klapp-text" style="min-width:5ch">Würfel</span></div>
+          <div class="gruppe" style="margin:0">Zusammenfassen</div>
+          <div class="block-knoepfe" id="bloecke"></div>
+          <div class="formel" id="formel"></div>
+          <div class="zahlen" id="zahlen"></div>
+          <table class="tab-kv"><thead><tr><th>A</th><th>B</th><th>C</th><th>f</th></tr></thead><tbody id="tabelle"></tbody></table>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+(function () {
+  const NS = 'http://www.w3.org/2000/svg';
+  const $ = (id) => document.getElementById(id);
+  const svg = document.querySelector('.kv-svg');
+  const el = (name, attr, eltern = svg) => { const e = document.createElementNS(NS, name); for (const [k, v] of Object.entries(attr)) e.setAttribute(k, v); eltern.appendChild(e); return e; };
+  const F = new Set([1, 3, 5, 6, 7]); // Belegung als Zahl ABC
+  const bit = (n, i) => (n >> (2 - i)) & 1; // i: 0 = A, 1 = B, 2 = C
+  const GRAY = [0b00, 0b01, 0b11, 0b10]; // Spalten BC
+  const name = (n) => `${bit(n, 0)}${bit(n, 1)}${bit(n, 2)}`;
+  // Lage am Würfel (C nach rechts, B nach hinten, A nach unten) und im Raster
+  const wuerfel = (n) => [120 + bit(n, 2) * 150 + bit(n, 1) * 80, 70 + bit(n, 0) * 150 - bit(n, 1) * 50];
+  const raster = (n) => [95 + GRAY.indexOf(n & 3) * 90, 120 + bit(n, 0) * 90];
+  const BLOECKE = {
+    einzeln: { text: 'Jede 1 einzeln', terme: [[1, '<span class="ol">A</span><span class="ol">B</span><span>C</span>'], [3, '<span class="ol">A</span><span>B</span><span>C</span>'], [5, '<span>A</span><span class="ol">B</span><span>C</span>'], [6, '<span>A</span><span>B</span><span class="ol">C</span>'], [7, '<span>A</span><span>B</span><span>C</span>']].map(([n, t]) => ({ felder: [n], t })), bausteine: 12 },
+    gross: { text: 'Große Blöcke', terme: [{ felder: [1, 3, 5, 7], t: '<span>C</span>' }, { felder: [6, 7], t: '<span>A</span><span>B</span>' }], bausteine: 2 },
+  };
+  let art = 'einzeln';
+  let hell = null; // Index des hervorgehobenen Terms
+  let gewaehlt = null;
+  let t = 0;
+
+  const zellen = el('g', {});
+  const bloecke = el('g', {});
+  const kanten = el('g', {});
+  const ecken = el('g', {});
+  const achsen = el('g', {});
+  const nachbarn = (n) => [4, 2, 1].map((m) => n ^ m);
+  const paare = [];
+  for (let n = 0; n < 8; n++) for (const m of nachbarn(n)) if (m > n) paare.push([n, m]);
+
+  function lage(n) {
+    const [wx, wy] = wuerfel(n), [rx, ry] = raster(n);
+    return [wx + (rx - wx) * t, wy + (ry - wy) * t];
+  }
+  function zeichne() {
+    zellen.innerHTML = bloecke.innerHTML = kanten.innerHTML = ecken.innerHTML = achsen.innerHTML = '';
+    // Felder und Achsen des Rasters erscheinen beim Aufklappen
+    for (let n = 0; n < 8; n++) { const [x, y] = raster(n); el('rect', { class: 'zelle', x: x - 45, y: y - 45, width: 90, height: 90, opacity: t }, zellen); }
+    GRAY.forEach((g, i) => el('text', { class: 'achse', x: 95 + i * 90, y: 64, 'text-anchor': 'middle', opacity: t }, achsen).textContent = `${g >> 1}${g & 1}`);
+    el('text', { class: 'achse', x: 30, y: 64, opacity: t }, achsen).textContent = 'A\\BC';
+    [0, 1].forEach((a) => el('text', { class: 'achse', x: 34, y: 125 + a * 90, opacity: t }, achsen).textContent = a);
+    const terme = BLOECKE[art].terme;
+    const imBlock = hell != null ? new Set(terme[hell].felder) : null;
+    // Blöcke im Raster als Rechtecke (ab halb aufgeklappt)
+    if (imBlock && t > .5) {
+      const xs = [...imBlock].map((n) => raster(n)[0]), ys = [...imBlock].map((n) => raster(n)[1]);
+      el('rect', { class: 'block', x: Math.min(...xs) - 38, y: Math.min(...ys) - 38, width: Math.max(...xs) - Math.min(...xs) + 76, height: Math.max(...ys) - Math.min(...ys) + 76, rx: 14, opacity: (t - .5) * 2 }, bloecke);
+    }
+    const nah = gewaehlt != null ? new Set(nachbarn(gewaehlt)) : null;
+    for (const [n, m] of paare) {
+      const [x1, y1] = lage(n), [x2, y2] = lage(m);
+      const klebt = GRAY.indexOf(n & 3) === 0 && GRAY.indexOf(m & 3) === 3 || GRAY.indexOf(m & 3) === 0 && GRAY.indexOf(n & 3) === 3;
+      const cls = imBlock && imBlock.has(n) && imBlock.has(m) ? 'kante im-block' : gewaehlt != null && (n === gewaehlt || m === gewaehlt) ? 'kante nachbar' : 'kante';
+      // Kanten zwischen erster und letzter Spalte wölben sich beim Aufklappen über das Raster: dort war geklebt
+      const d = klebt ? `M ${x1} ${y1} Q ${(x1 + x2) / 2} ${(y1 + y2) / 2 - 150 * t} ${x2} ${y2}` : `M ${x1} ${y1} L ${x2} ${y2}`;
+      el('path', { class: cls, d, 'stroke-dasharray': klebt && t > .3 ? '6 5' : '' }, kanten);
+    }
+    for (let n = 0; n < 8; n++) {
+      const [x, y] = lage(n);
+      const c = el('circle', { class: 'ecke', cx: x, cy: y, r: 17 }, ecken);
+      c.classList.toggle('eins', F.has(n));
+      c.classList.toggle('gewaehlt', n === gewaehlt);
+      c.classList.toggle('nachbar', !!nah && nah.has(n));
+      c.classList.toggle('blass', !!imBlock && !imBlock.has(n));
+      c.addEventListener('click', () => { gewaehlt = gewaehlt === n ? null : n; hell = null; zeichne(); });
+      el('text', { class: 'bits', x, y: y + 34, 'text-anchor': 'middle' }, ecken).textContent = name(n);
+    }
+    $('klapp-text').textContent = t < .05 ? 'Würfel' : t > .95 ? 'Raster' : '...';
+    $('bloecke').innerHTML = Object.entries(BLOECKE).map(([k, b]) => `<button class="${k === art ? 'aktiv' : ''}" data-art="${k}">${b.text}</button>`).join('');
+    $('bloecke').querySelectorAll('button').forEach((b) => b.addEventListener('click', () => { art = b.dataset.art; hell = null; zeichne(); }));
+    $('formel').innerHTML = 'f = ' + terme.map((x, i) => `<span class="t ${i === hell ? 'hell' : ''}" data-i="${i}">${x.t}</span>`).join(' + ');
+    $('formel').querySelectorAll('.t').forEach((s) => s.addEventListener('click', () => { const i = +s.dataset.i; hell = hell === i ? null : i; gewaehlt = null; zeichne(); }));
+    $('zahlen').innerHTML = `<span><b>${terme.length}</b> ${terme.length === 1 ? 'Term' : 'Terme'}</span><span><b>${BLOECKE[art].bausteine}</b> Bausteine</span><span class="dim">Klick auf einen Term zeigt seinen Block</span>`;
+    $('tabelle').innerHTML = Array.from({ length: 8 }, (_, n) => {
+      const cls = imBlock && imBlock.has(n) ? 'hell' : nah && nah.has(n) ? 'nachbar' : n === gewaehlt ? 'hell' : '';
+      return `<tr class="${cls}"><td>${bit(n, 0)}</td><td>${bit(n, 1)}</td><td>${bit(n, 2)}</td><td>${F.has(n) ? 1 : 0}</td></tr>`;
+    }).join('');
+  }
+  $('aufklappen').addEventListener('input', (e) => { t = e.target.value / 100; zeichne(); });
+  wahlFrage('v-wahl', 'v-erkl', [
+    { t: '011, 000 und 110', richtig: true, erkl: 'Richtig. 011 liegt links daneben, 110 darunter, und 000 ganz links am anderen Rand: dort war der Würfel zusammengeklebt.' },
+    { t: 'nur 011 und 110', erkl: 'Die sieht man sofort. Aber 010 hat am Würfel drei Kanten; die dritte führt über den Rand zu 000.' },
+    { t: '011, 001 und 110', erkl: '001 unterscheidet sich von 010 in zwei Eingängen (B und C). Das ist kein Nachbar, auch wenn es nah aussieht.' },
+    { t: '000, 011, 110 und 111', erkl: '111 unterscheidet sich in A und C. Jede Ecke hat bei drei Eingängen genau drei Nachbarn.' },
+  ]);
+  zeichne();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="de" data-geraet="rechner" data-bereich="spiele">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Rechner: KV-Werkstatt</title>
+<link rel="stylesheet" href="schriften.css">
+<link rel="stylesheet" href="stil.css">
+<style>
+  :root { --kv: #fbbf24; --kv-b: #38bdf8; }
+  .welt-spalte { padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); }
+  .werkzeuge { display: flex; flex-wrap: wrap; gap: 4px; padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--border); align-items: center; }
+  .werkzeuge button { height: 30px; padding: 0 var(--sp-2); border: 1px solid var(--border); background: var(--bg-card-2); color: var(--fg); font: 600 12px var(--mono); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+  .werkzeuge button.aktiv { border-color: var(--accent); color: var(--accent); }
+  .kv { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; }
+  .kv .feld { fill: var(--bg-card-2); stroke: var(--border-strong); stroke-width: 1.2; cursor: pointer; }
+  .kv .feld.gewaehlt { stroke: #fff; stroke-width: 2.4; }
+  .kv .wert { font: 700 22px var(--mono); pointer-events: none; }
+  .kv .wert.eins { fill: var(--kv); }
+  .kv .wert.null { fill: var(--fg-mute); }
+  .kv .wert.egal { fill: var(--kv-b); }
+  .kv .nr { fill: var(--fg-mute); font: 500 10px var(--mono); pointer-events: none; }
+  .kv .achse { fill: var(--fg-dim); font: 600 14px var(--mono); }
+  .kv .block { fill: none; stroke-width: 3; }
+  .kv .block.b0 { stroke: #34d399; fill: color-mix(in srgb, #34d399 10%, transparent); }
+  .kv .block.b1 { stroke: #f472b6; fill: color-mix(in srgb, #f472b6 10%, transparent); }
+  .kv .block.vorschlag { stroke-dasharray: 7 5; }
+  .block-liste { display: flex; flex-direction: column; gap: 6px; }
+  .block-zeile { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: var(--sp-2); align-items: center; padding: 6px var(--sp-2); border: 1px solid var(--border); background: var(--bg-card-2); font-size: var(--fs-sm); }
+  .block-zeile .farbe { width: 12px; height: 12px; border-radius: 3px; }
+  .block-zeile code { font-size: 15px; }
+  .ol { text-decoration: overline; display: inline-block; margin: 0 3px; }
+  .lit { display: inline-block; margin: 0 3px; }
+  .formel { font: 600 20px var(--mono); padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border); background: var(--bg); }
+  .ziffern { width: 100%; border-collapse: collapse; font: 14px var(--mono); text-align: center; }
+  .ziffern th { color: var(--fg-dim); font: 600 var(--fs-xs) var(--sans); text-transform: uppercase; letter-spacing: .05em; padding: 5px; border-bottom: 1px solid var(--border); }
+  .ziffern td { padding: 4px; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .ziffern tr.jetzt td { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+  .ziffern .ok { color: var(--green); } .ziffern .nein { color: var(--red); font-weight: 700; }
+  .anzeige { display: flex; align-items: center; gap: var(--sp-3); }
+  .sieben { width: 60px; height: 100px; background: #0b0d10; border: 1px solid var(--border-strong); padding: 4px; flex-shrink: 0; }
+  .segment { fill: #2b1a12; } .segment.an { fill: #ff6b3d; filter: drop-shadow(0 0 3px #ff6b3d); } .segment.e-seg { stroke: var(--kv); stroke-width: 1; }
+  .stufen { display: flex; flex-wrap: wrap; gap: 4px; }
+  .stufen .chip.jetzt { color: var(--accent); border-color: var(--accent); }
+</style>
+</head>
+<body>
+<template id="inhalt">
+  <div class="seite">
+    <header class="a-kopf">
+      <button class="ikon"><i class="fa-solid fa-arrow-left"></i></button>
+      <span class="zelle-titel"><b>KV 5: Egal-Felder als Joker</b><span>KV-Werkstatt, Segment e der 7-Segment-Anzeige</span></span>
+      <div class="meta">
+        <span class="badge" style="color:var(--orange)">Mittel</span>
+        <span class="sterne gross"><i class="fa-solid fa-star"></i><i class="fa-regular fa-star aus"></i><i class="fa-regular fa-star aus"></i></span>
+        <span class="num" style="color:var(--accent)"><i class="fa-solid fa-coins"></i> 10 / 30</span>
+      </div>
+    </header>
+    <div class="steuer-seite">
+      <section class="spalte">
+        <nav class="reiter-klein"><button class="aktiv">Aufgabe</button><button>Musterlösung</button><button>Verlauf</button></nav>
+        <div class="rollfeld md">
+          <p>Die 7-Segment-Anzeige bekommt eine Ziffer von 0 bis 9 als vier Bits A B C D (A ist die höchste Stelle). Segment e, links unten, leuchtet bei 0, 2, 6 und 8.</p>
+          <p>Die Belegungen 10 bis 15 kommen nie vor. Dort steht <b style="color:var(--kv-b)">x</b>: egal. Ein x darfst du in einen Block nehmen, wenn er dadurch größer wird, musst aber nicht.</p>
+          <div class="modus"><button class="aktiv">Schritt für Schritt</button><button>Alles auf einmal</button></div>
+          <h2>Teilschritte</h2>
+          <div class="teilschritte">
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>1. Alle Einsen abgedeckt</b><small>Jede 1 liegt in mindestens einem Block.</small></div></div>
+            <div class="teilschritt erledigt"><i class="fa-solid fa-circle-check"></i><div><b>2. Keine Null erwischt</b><small>Kein Block enthält eine 0.</small></div></div>
+            <div class="teilschritt aktuell"><i class="fa-solid fa-crosshairs"></i><div><b>3. So groß wie möglich</b><small>Jeder Block ist so groß, wie es geht: 1, 2, 4, 8 oder 16 Felder, rechteckig, auch über den Rand.</small><div class="stand"><i class="fa-solid fa-triangle-exclamation"></i> Der rosa Block lässt sich verdoppeln: mit den beiden x darunter wird er eine ganze Spalte.</div></div></div>
+            <div class="teilschritt zu"><i class="fa-solid fa-lock"></i><div><b>4. So wenige wie möglich</b><small>Kein Block, den man weglassen kann.</small></div></div>
+          </div>
+          <h2>Zur Hand</h2>
+          <div class="spickzettel">
+            <code>00 01 11 10</code><span>Reihenfolge an beiden Achsen: Nachbarn unterscheiden sich in einem Bit</span>
+            <code>Rand</code><span>links und rechts, oben und unten sind Nachbarn, die vier Ecken auch</span>
+            <code>Block</code><span>was im Block gleich bleibt, steht im Term; was wechselt, fällt weg</span>
+          </div>
+          <h2>Sterne</h2>
+          <div class="spickzettel" style="font-family:var(--sans)">
+            <span class="sterne"><i class="fa-solid fa-star"></i></span><span>e stimmt für alle Ziffern 0 bis 9</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>höchstens 2 Blöcke</span>
+            <span class="sterne"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span>dazu höchstens 4 Buchstaben in der Formel</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="spalte mitte">
+        <div class="spalten-kopf"><span class="kopf-titel">KV-Diagramm, 2 Blöcke</span><button class="knopf voll" style="margin-left:auto"><i class="fa-solid fa-check"></i>Prüfen</button></div>
+        <div class="werkzeuge">
+          <button class="aktiv"><i class="fa-solid fa-vector-square"></i>Block ziehen</button>
+          <button><i class="fa-solid fa-eraser"></i>Block löschen</button>
+          <button><i class="fa-solid fa-font"></i>Formel</button>
+          <span class="dim" style="margin-left:auto;font-size:var(--fs-sm)">Ziehen über den Rand geht weiter auf der anderen Seite</span>
+        </div>
+        <div class="rollfeld" style="padding:var(--sp-3);display:flex;flex-direction:column;gap:var(--sp-3)">
+          <svg class="kv" viewBox="0 0 460 420" role="img" aria-label="KV-Diagramm mit vier Eingängen"></svg>
+          <div class="formel" id="formel"></div>
+          <div class="block-liste" id="liste"></div>
+          <p class="dim" style="margin:0;font-size:var(--fs-sm)">Ein Klick auf ein Feld wählt die Ziffer rechts. Abgegeben werden die Blöcke; der Server liest daraus die Formel und rechnet sie für alle Ziffern nach.</p>
+        </div>
+      </section>
+
+      <section class="spalte" id="welt">
+        <div class="spalten-kopf"><span>Anzeige</span></div>
+        <div class="rollfeld welt-spalte">
+          <div class="anzeige">
+            <svg class="sieben" viewBox="0 0 60 100" role="img" aria-label="7-Segment-Anzeige" id="sieben"></svg>
+            <div><b id="ziffer-text"></b><br><span class="dim" id="ziffer-bits"></span></div>
+          </div>
+          <table class="ziffern"><thead><tr><th>Ziffer</th><th>A B C D</th><th>e soll</th><th>e ist</th></tr></thead><tbody id="ziffern"></tbody></table>
+          <div class="sim-werte">
+            <div><span class="num" style="color:var(--green)">10 / 10</span><small>Ziffern richtig</small></div>
+            <div><span class="num">2</span><small>Blöcke</small></div>
+            <div><span class="num" style="color:var(--red)">5</span><small>Buchstaben</small></div>
+            <div><span class="num">5</span><small>Bausteine</small></div>
+          </div>
+          <div class="gruppe" style="margin:0">Die Reihe</div>
+          <div class="stufen">
+            <span class="chip ok">1 Zwei Eingänge</span><span class="chip ok">2 Mehrheit aus drei</span><span class="chip ok">3 Über den Rand</span>
+            <span class="chip ok">4 Vier Eingänge</span><span class="chip jetzt">5 Egal-Felder als Joker</span><span class="chip">6 Die ganze Anzeige</span><span class="chip">7 Vom Block zum Schaltplan</span>
+          </div>
+          <p class="dim" style="margin:0;font-size:var(--fs-sm)">Geprüft auf dem Server ohne Sandbox: Die Blöcke müssen Rechtecke aus 1, 2, 4, 8 oder 16 Feldern sein; die Formel daraus wird für alle Belegungen nachgerechnet. Im letzten Level wird die Formel zum Schaltplan und landet im Spiel Digitale Schaltungen.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="gemeinsam.js"></script>
+<script>
+(function () {
+  const NS = 'http://www.w3.org/2000/svg';
+  const $ = (id) => document.getElementById(id);
+  const el = (name, attr, eltern) => { const e = document.createElementNS(NS, name); for (const [k, v] of Object.entries(attr)) e.setAttribute(k, v); eltern.appendChild(e); return e; };
+  const GRAY = [0b00, 0b01, 0b11, 0b10];
+  // Segment e leuchtet bei 0, 2, 6, 8; 10 bis 15 sind egal
+  const wert = (n) => (n >= 10 ? 'x' : [0, 2, 6, 8].includes(n) ? '1' : '0');
+  const zahl = (zeile, spalte) => (GRAY[zeile] << 2) | GRAY[spalte];
+  const lage = (n) => [GRAY.indexOf(n & 3), GRAY.indexOf(n >> 2)]; // [Spalte, Zeile]
+  const X0 = 70, Y0 = 60, S = 90;
+  // Blöcke als Felder; der rosa ist noch zu klein, gestrichelt der Vorschlag
+  const BLOECKE = [
+    { felder: [0, 2, 8, 10], term: '<span class="ol">B</span><span class="ol">D</span>', klasse: 'b0', farbe: '#34d399', text: 'vier Ecken, über beide Ränder' },
+    { felder: [2, 6], term: '<span class="ol">A</span><span class="lit">C</span><span class="ol">D</span>', klasse: 'b1', farbe: '#f472b6', text: 'zwei Felder, geht größer', besser: { felder: [2, 6, 14, 10], term: '<span class="lit">C</span><span class="ol">D</span>' } },
+  ];
+  let vergroessert = false;
+  let ziffer = 6;
+
+  const svg = document.querySelector('.kv');
+  const SEG = { a: '12,6 48,6 42,12 18,12', b: '50,8 50,46 44,42 44,14', c: '50,54 50,92 44,86 44,58', d: '12,94 48,94 42,88 18,88', e: '10,54 10,92 16,86 16,58', f: '10,8 10,46 16,42 16,14', g: '12,50 18,46 42,46 48,50 42,54 18,54' };
+  const ZIFFERN = ['abcdef', 'bc', 'abdeg', 'abcdg', 'bcfg', 'acdfg', 'acdefg', 'abc', 'abcdefg', 'abcdfg'];
+
+  /** Rechtecke eines Blocks im Raster; über den Rand zerfällt er in Teile */
+  function teile(felder) {
+    const spalten = [...new Set(felder.map((n) => lage(n)[0]))].sort();
+    const zeilen = [...new Set(felder.map((n) => lage(n)[1]))].sort();
+    const laeufe = (werte) => { const l = []; werte.forEach((w) => (l.length && w === l.at(-1).at(-1) + 1 ? l.at(-1).push(w) : l.push([w]))); return l; };
+    return laeufe(spalten).flatMap((sp) => laeufe(zeilen).map((ze) => [sp[0], ze[0], sp.length, ze.length]));
+  }
+  function zeichne() {
+    svg.innerHTML = '';
+    GRAY.forEach((g, i) => {
+      el('text', { class: 'achse', x: X0 + i * S + S / 2, y: Y0 - 14, 'text-anchor': 'middle' }, svg).textContent = `${g >> 1}${g & 1}`;
+      el('text', { class: 'achse', x: X0 - 14, y: Y0 + i * S + S / 2 + 5, 'text-anchor': 'end' }, svg).textContent = `${g >> 1}${g & 1}`;
+    });
+    el('text', { class: 'achse', x: X0 - 14, y: Y0 - 14, 'text-anchor': 'end' }, svg).textContent = 'AB\\CD';
+    for (let z = 0; z < 4; z++) for (let s = 0; s < 4; s++) {
+      const n = zahl(z, s), w = wert(n);
+      const f = el('rect', { class: `feld ${n === ziffer ? 'gewaehlt' : ''}`, x: X0 + s * S, y: Y0 + z * S, width: S, height: S }, svg);
+      f.addEventListener('click', () => { if (n < 10) { ziffer = n; zeichne(); } });
+      el('text', { class: `wert ${w === '1' ? 'eins' : w === 'x' ? 'egal' : 'null'}`, x: X0 + s * S + S / 2, y: Y0 + z * S + S / 2 + 8, 'text-anchor': 'middle' }, svg).textContent = w;
+      el('text', { class: 'nr', x: X0 + s * S + 6, y: Y0 + z * S + 14 }, svg).textContent = n;
+    }
+    BLOECKE.forEach((b, i) => {
+      const felder = vergroessert && b.besser ? b.besser.felder : b.felder;
+      teile(felder).forEach(([s, z, bs, bz]) => el('rect', { class: `block ${b.klasse}`, x: X0 + s * S + 6 + i * 4, y: Y0 + z * S + 6 + i * 4, width: bs * S - 12 - i * 8, height: bz * S - 12 - i * 8, rx: 16 }, svg));
+      if (b.besser && !vergroessert) teile(b.besser.felder).forEach(([s, z, bs, bz]) => el('rect', { class: 'block b1 vorschlag', x: X0 + s * S + 14, y: Y0 + z * S + 14, width: bs * S - 28, height: bz * S - 28, rx: 14 }, svg));
+    });
+    const terme = BLOECKE.map((b) => (vergroessert && b.besser ? b.besser.term : b.term));
+    $('formel').innerHTML = 'e = ' + terme.join(' + ');
+    $('liste').innerHTML = BLOECKE.map((b, i) => `<div class="block-zeile"><span class="farbe" style="background:${b.farbe}"></span><span><code>${terme[i]}</code> <span class="dim">${vergroessert && b.besser ? 'vier Felder, eine ganze Spalte' : b.text}</span></span>${b.besser ? `<button class="knopf-klein" id="groesser">${vergroessert ? 'zurück' : 'vergrößern'}</button>` : '<span></span>'}</div>`).join('');
+    $('groesser').addEventListener('click', () => { vergroessert = !vergroessert; zeichne(); });
+    // Anzeige und Tabelle
+    const sieben = $('sieben'); sieben.innerHTML = '';
+    for (const [s, p] of Object.entries(SEG)) el('polygon', { class: `segment ${ZIFFERN[ziffer].includes(s) ? 'an' : ''} ${s === 'e' ? 'e-seg' : ''}`, points: p }, sieben);
+    $('ziffer-text').textContent = `Ziffer ${ziffer}`;
+    $('ziffer-bits').textContent = `A B C D = ${(ziffer >> 3) & 1} ${(ziffer >> 2) & 1} ${(ziffer >> 1) & 1} ${ziffer & 1}`;
+    $('ziffern').innerHTML = Array.from({ length: 10 }, (_, n) => `<tr class="${n === ziffer ? 'jetzt' : ''}" data-n="${n}"><td>${n}</td><td>${(n >> 3) & 1} ${(n >> 2) & 1} ${(n >> 1) & 1} ${n & 1}</td><td>${wert(n)}</td><td class="ok">${wert(n)}</td></tr>`).join('');
+    $('ziffern').querySelectorAll('tr').forEach((tr) => tr.addEventListener('click', () => { ziffer = +tr.dataset.n; zeichne(); }));
+  }
+  zeichne();
+})();
+</script>
+</body>
+</html>
