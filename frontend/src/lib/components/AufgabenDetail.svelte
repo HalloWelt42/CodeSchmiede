@@ -43,6 +43,7 @@
   import SchaltungView from './SchaltungView.svelte';
   import CodesView from './CodesView.svelte';
   import TaktView from './TaktView.svelte';
+  import KvView from './KvView.svelte';
   import RoboterView from './RoboterView.svelte';
   import { spielStore } from '../stores/SpielStore.svelte';
 
@@ -281,6 +282,8 @@
       <CodesView detail={aktuell} />
     {:else if aktuell.task_type === 'takt'}
       <TaktView detail={aktuell} />
+    {:else if aktuell.task_type === 'kv'}
+      <KvView detail={aktuell} />
     {:else if aktuell.task_type === 'sql_krimi'}
       <KrimiView detail={aktuell} />
     {:else}

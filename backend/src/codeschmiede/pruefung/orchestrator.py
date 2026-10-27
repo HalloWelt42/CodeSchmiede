@@ -24,6 +24,7 @@ from . import turing_pruefer  # noqa: F401  registriert "turing"
 from . import schaltung_pruefer  # noqa: F401  registriert "schaltung"
 from . import codes_pruefer  # noqa: F401  registriert "codes"
 from . import takt_pruefer  # noqa: F401  registriert "takt"
+from . import kv_pruefer  # noqa: F401  registriert "kv"
 from . import krimi_pruefer  # noqa: F401  registriert "sql_krimi"
 from . import programm_pruefer  # noqa: F401  registriert "programm"
 from .ergebnis import PruefErgebnis

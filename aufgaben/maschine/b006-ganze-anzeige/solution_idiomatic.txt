@@ -1,0 +1,7 @@
+a = A + !B !D + B D + C
+b = !B + !C !D + C D
+c = B + !C + D
+d = A + !B C + !B !D + B !C D + C !D
+e = !B !D + C !D
+f = A + B !C + B !D + !C !D
+g = A + !B C + B !C + B !D

@@ -461,7 +461,19 @@ Nach dem freigegebenen Entwurf `mockups/rechner-takt.html` (Freigabe 27.10.2026)
 - Die 7-Segment-Anzeige ist eine gemeinsame Komponente; die gemeinsame Ansicht hält beim sofortigen Neurechnen die
   gezeigte Stelle fest.
 
+## Ergebnis: KV-Werkstatt (0.95.0)
+
+Nach den freigegebenen Entwürfen `mockups/rechner-kv-werkstatt.html` und `mockups/rechner-einfuehrung-kv.html`
+(Freigabe 27.10.2026); Einzelheiten in `docs/SPIELE.md`.
+
+- Sieben Levels vom 2x2-Raster bis zur ganzen 7-Segment-Anzeige, Blöcke ziehen auch über den Rand, vier feste
+  Teilschritte, Sterne aus der kleinsten Lösung; Routen `GET /api/spiel/kv/{id}/raster` und `POST /api/spiel/kv/{id}/lauf`.
+- Nebenbei (0.94.1): Sandbox-Läufe, die Docker nicht starten konnte, bleiben nicht als angelegte Container liegen.
+
 ## Offen
+
+- Kurs Digitaltechnik mit der Lehreinführung "Schaltungen vereinfachen" (Würfel, der sich zum KV-Raster aufklappt),
+  freigegeben 27.10.2026: als nächster Schritt (0.96.0).
 
 - Flaggenjagd (Nutzer 25.10.2026): verwundbare Übungssysteme nur in der Sandbox, erst Flagge finden, dann Lücke
   schließen; Skizze in `docs/SPIELE.md`, vor dem Bau ein eigener Entwurf.

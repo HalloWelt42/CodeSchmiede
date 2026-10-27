@@ -1,0 +1,14 @@
+id: kv-werkstatt
+titel: KV-Werkstatt
+beschreibung: |
+  Schaltungen vereinfachen mit dem KV-Diagramm: zwei Eingänge, Mehrheit
+  aus drei, Blöcke über den Rand, vier Eingänge, Egal-Felder, die ganze
+  7-Segment-Anzeige und vom Block zum Schaltplan.
+reihenfolge:
+  - b001-zwei-eingaenge
+  - b002-mehrheit
+  - b003-ueber-den-rand
+  - b004-vier-eingaenge
+  - b005-egal-felder
+  - b006-ganze-anzeige
+  - b007-vom-block-zum-schaltplan

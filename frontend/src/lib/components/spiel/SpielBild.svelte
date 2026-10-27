@@ -54,6 +54,12 @@
     <path class="ruf" d="M 40 77 l 4 -6 l 4 6 z" /><path class="ruf" d="M 40 37 l 4 6 l 4 -6 z" />
     <circle cx="30" cy="88" r="4" fill="var(--orange)" /><circle cx="30" cy="46" r="4" fill="var(--orange)" />
   </svg>
+{:else if id === 'kv-werkstatt'}
+  <svg class="ampel-bild" viewBox="0 0 120 150" aria-hidden="true">
+    {#each [0, 1, 2, 3] as z (z)}{#each [0, 1, 2, 3] as s (s)}<rect class="kv-feld" x={14 + s * 23} y={30 + z * 23} width="23" height="23" />{/each}{/each}
+    <rect class="kv-block" x="18" y="34" width="38" height="84" rx="8" />
+    <rect class="kv-block b" x="64" y="57" width="38" height="38" rx="8" />
+  </svg>
 {:else if id === 'schaltungen-mit-takt'}
   <svg class="ampel-bild" viewBox="0 0 120 150" aria-hidden="true">
     <path class="takt-welle" d="M 10 52 H 22 V 32 H 32 V 52 H 46 V 32 H 56 V 52 H 70 V 32 H 80 V 52 H 94 V 32 H 104 V 52 H 110" />
@@ -87,6 +93,9 @@
   .ampel-bild .ruf { fill: var(--gold); }
   .ampel-bild .takt-welle { fill: none; stroke: var(--fg-dim); stroke-width: 2; }
   .ampel-bild .zaehl-welle { fill: none; stroke: var(--accent); stroke-width: 3; }
+  .ampel-bild .kv-feld { fill: var(--bg-card-2); stroke: var(--border-strong); }
+  .ampel-bild .kv-block { fill: none; stroke: #34d399; stroke-width: 3; }
+  .ampel-bild .kv-block.b { stroke: #f472b6; }
   .muster {
     font-family: var(--mono);
     font-size: 11px;

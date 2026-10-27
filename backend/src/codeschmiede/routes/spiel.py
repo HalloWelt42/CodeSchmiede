@@ -1,6 +1,6 @@
 """HTTP-Routen der Spielmechanik: Spielstand für Kopf und Startseite,
 Erfolge für ihre Seite, Spiele mit dem Stand ihrer Levels, Probeläufe des
-Roboters, der Steuerungsspiele, der Turingmaschine, der Schaltungen (auch mit Takt) und der Codeknacker und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
+Roboters, der Steuerungsspiele, der Turingmaschine, der Schaltungen (auch mit Takt), der KV-Werkstatt und der Codeknacker und die Runden des Ausgabe-Sprints. Die Belohnung einer Abgabe kommt mit der Abgabe."""
 
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -12,11 +12,12 @@ from ..models.spiel import ErfolgsListe, Spielstand, SpielUebersicht
 from ..models.sprint import SprintAbschluss, SprintRueckmeldung, SprintRunde
 from ..pruefung import krimi_pruefer
 from ..pruefung.krimi_pruefer import Ergebnistabelle
-from ..pruefung import ampel_pruefer, aufzug_pruefer, codes_pruefer, schaltung_pruefer, takt_pruefer, turing_pruefer
+from ..pruefung import ampel_pruefer, aufzug_pruefer, codes_pruefer, kv_pruefer, schaltung_pruefer, takt_pruefer, turing_pruefer
 from ..pruefung.ampel_pruefer import AmpelLaeufe, AmpelSterne
 from ..pruefung.aufzug_pruefer import AufzugLaeufe, AufzugSterne
 from ..pruefung.codes_pruefer import CodesLaeufe, CodesSterne
 from ..pruefung.schaltung_pruefer import SchaltungLaeufe, SchaltungSterne, Vorgabe
+from ..pruefung.kv_pruefer import KvLaeufe
 from ..pruefung.takt_pruefer import TaktAblauf, TaktLaeufe, TaktSterne
 from ..pruefung.turing_pruefer import Band, TuringLaeufe, TuringSterne
 from ..pruefung.roboter_pruefer import Laeufe, lauf_sichtbar
@@ -123,6 +124,27 @@ class TaktAnsicht(BaseModel):
     sensoren: list[str]
     teilschritte: list[TeilschrittText]
     sterne: TaktSterne
+    aufbauend_auf: str | None
+
+
+class KvSterne(BaseModel):
+    """Blöcke und Buchstaben der kleinsten Lösung, aus der Funktion gerechnet."""
+
+    bloecke: int
+    buchstaben: int
+
+
+class KvAnsicht(BaseModel):
+    """Was die KV-Werkstatt vor dem ersten Lauf zeigt: Eingänge, Ausgänge, die Werte jeder Belegung und ihre Namen."""
+
+    eingaenge: list[str]
+    ausgaenge: list[str]
+    werte: dict[str, str]
+    namen: list[str]
+    dauer: int
+    sensoren: list[str]
+    teilschritte: list[TeilschrittText]
+    sterne: KvSterne
     aufbauend_auf: str | None
 
 
@@ -314,6 +336,28 @@ def baue_spiel_router(state: AppState) -> APIRouter:
     def takt_lauf(aufgabe_id: str, anfrage: ProgrammProbe) -> TaktLaeufe:
         """Zeitverlauf der sichtbaren Abläufe, ohne Wertung und ohne Abgabe (ohne Sandbox: ein Plan ist Daten)."""
         return takt_pruefer.lauf_sichtbar(takt_level(aufgabe_id), anfrage.code)
+
+    def kv_level(aufgabe_id: str):
+        aufgabe = state.aufgaben.aufgabe(aufgabe_id)
+        if aufgabe is None or aufgabe.task_type != "kv":
+            raise HTTPException(status_code=404, detail="Kein Level der KV-Werkstatt")
+        return aufgabe
+
+    @router.get("/kv/{aufgabe_id}/raster", response_model=KvAnsicht)
+    def kv_raster(aufgabe_id: str) -> KvAnsicht:
+        level = kv_pruefer.level_von(kv_level(aufgabe_id))
+        bloecke, buchstaben = level.kleinste()
+        return KvAnsicht(
+            eingaenge=level.eingaenge, ausgaenge=level.ausgaenge, werte=level.werte, namen=level.namen,
+            dauer=2 ** level.n, sensoren=[],
+            teilschritte=[TeilschrittText(titel=t, text=x) for t, x in kv_pruefer.TEILSCHRITTE],
+            sterne=KvSterne(bloecke=bloecke, buchstaben=buchstaben), aufbauend_auf=None,
+        )
+
+    @router.post("/kv/{aufgabe_id}/lauf", response_model=KvLaeufe)
+    def kv_lauf(aufgabe_id: str, anfrage: ProgrammProbe) -> KvLaeufe:
+        """Tabelle und Teilschritte der Formel, ohne Wertung und ohne Abgabe (ohne Sandbox: eine Formel ist Daten)."""
+        return kv_pruefer.lauf_sichtbar(kv_level(aufgabe_id), anfrage.code)
 
     def codes_level(aufgabe_id: str):
         aufgabe = state.aufgaben.aufgabe(aufgabe_id)

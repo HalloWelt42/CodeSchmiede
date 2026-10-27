@@ -125,6 +125,10 @@ aufgabentypen:
     titel: Schaltung mit Takt
     view: takt
     beschreibung: Flipflops und Gatter verdrahten - ein Zeitverlauf zeigt jeden Takt mit Soll und Ist.
+  - id: kv
+    titel: KV-Diagramm
+    view: kv
+    beschreibung: Blöcke im KV-Diagramm einkreisen - daraus wird die kürzeste Formel und ein kleiner Schaltplan.
 
 # Spiele im Spielebereich. Ihre Levels sind Aufgaben des genannten
 # Aufgabentyps, die Reihenfolge geben die Pfade vor. Levels zählen in
@@ -186,6 +190,12 @@ spiele:
     beschreibung: "Flipflops merken sich ein Bit: vom Umschalter über Zähler und Lauflicht bis zur Ampel und zum Würfel auf der 7-Segment-Anzeige."
     aufgabentyp: takt
     pfade: [schaltungen-mit-takt]
+  - id: kv-werkstatt
+    titel: KV-Werkstatt
+    icon: fa-table-cells
+    beschreibung: "Schaltungen vereinfachen mit dem KV-Diagramm: von zwei Eingängen über Ränder und Egal-Felder bis zur ganzen 7-Segment-Anzeige."
+    aufgabentyp: kv
+    pfade: [kv-werkstatt]
   - id: codes-knacken
     titel: Codes knacken
     icon: fa-key

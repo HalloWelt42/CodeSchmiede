@@ -1,0 +1,2 @@
+S = !A !B C + !A B !C + A !B !C + A B C
+Co = A B + A C + B C

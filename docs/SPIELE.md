@@ -256,6 +256,27 @@ Aufgabentyp hat; der Entwurf zählte die Levels als 9 bis 15 der Schaltungen wei
   Würfel auf der 7-Segment-Anzeige. Die Soll-Folgen sind aus Vorbildern gerechnet; jede Musterlösung besteht mit drei
   Sternen, jeder Startplan scheitert (Tests in `backend/tests/test_takt.py`).
 
+### KV-Werkstatt (gebaut, 0.95.0)
+
+Nach dem freigegebenen Entwurf `mockups/rechner-kv-werkstatt.html` (Freigabe 27.10.2026, zusammen mit der
+Lehreinführung `mockups/rechner-einfuehrung-kv.html`, die als Kurs Digitaltechnik folgt). Schaltungen vereinfachen mit
+dem KV-Diagramm, eigenes Spiel (Aufgabentyp `kv`, Pfad `kv-werkstatt`).
+
+- **Formel als Text** (`backend/src/codeschmiede/steuerung/kv.py`): je Ausgang eine Zeile `e = !B !D + C !D`; jeder
+  Term ist ein Block, `!` heißt 0 (in der Oberfläche überstrichen). Die eine Wahrheit; das Raster schreibt sie.
+- **Prüfung** (`pruefung/kv_pruefer.py`) ohne Sandbox über alle Belegungen; vier feste Teilschritte: alle Einsen
+  abgedeckt, keine Null erwischt, jeder Block so groß wie möglich (Primblock), keiner zu viel. Befunde nennen Block und
+  Belegung (mit Namen, etwa der Ziffer). Sterne: kleinste Zahl an Blöcken, dann an Buchstaben; der Server rechnet die
+  kleinste Lösung aus der Funktion selbst (bis vier Eingänge durch Probieren), im Level steht dafür nichts.
+- **Ansicht** `KvView`: Raster in Gray-Reihenfolge für 2 bis 4 Eingänge, Blöcke ziehen (über den Rand geht es auf der
+  anderen Seite weiter, erlaubt sind 1, 2 oder 4 Felder je Richtung, sonst rot), löschen, oder die Formel als Text;
+  mehrere Ausgänge mit je einem Raster. Rechts die gewählte Belegung (bei a bis g als 7-Segment-Anzeige mit Soll), die
+  Tabelle mit Soll und Ist und der Schaltplan, den die Formel ergibt (gleiche Blöcke nur einmal gebaut).
+- **Levels** (`aufgaben/maschine/b001` bis `b007`): Zwei Eingänge, Mehrheit aus drei, Über den Rand, Vier Eingänge
+  (Primzahlen), Egal-Felder (Segment e), Die ganze Anzeige (a bis g), Vom Block zum Schaltplan (Volladdierer: das
+  Schachbrett der Summe zeigt, wo das KV-Diagramm nicht hilft). Musterlösungen sind kleinste Abdeckungen (Tests in
+  `backend/tests/test_kv.py`).
+
 ## Weitere Spielideen: Codes knacken (gebaut) und Flaggenjagd (Idee)
 
 Vorschlag des Nutzers (25.10.2026): geheime Codes knacken und Hacking-Aufgaben, bei denen man eine versteckte Flagge
