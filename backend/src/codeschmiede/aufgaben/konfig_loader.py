@@ -7,9 +7,8 @@ App läuft dann mit harten Defaults im Frontend (oder leerer Liste).
 
 from pathlib import Path
 
-import yaml
-
 from ..models.konfig import Konfiguration
+from ..yaml_lesen import lies_yaml
 
 
 KONFIG_DATEINAME = "_konfig.yml"
@@ -23,5 +22,5 @@ class KonfigLoader:
         if not self.datei.exists():
             return Konfiguration()
         with self.datei.open(encoding="utf-8") as f:
-            daten = yaml.safe_load(f) or {}
+            daten = lies_yaml(f.read()) or {}
         return Konfiguration.model_validate(daten)

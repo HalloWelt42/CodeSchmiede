@@ -22,6 +22,7 @@ import yaml
 
 from ..models.aufgabe import Aufgabe, Frontmatter
 from ..models.pfad import Pfad
+from ..yaml_lesen import lies_yaml
 
 
 FRONTMATTER_TRENNER = "---"
@@ -81,7 +82,7 @@ class AufgabenLoader:
         text = datei.read_text(encoding="utf-8")
         frontmatter_text, beschreibung = self._spalte(text)
 
-        frontmatter_dict = yaml.safe_load(frontmatter_text) or {}
+        frontmatter_dict = lies_yaml(frontmatter_text) or {}
         frontmatter = Frontmatter.model_validate(frontmatter_dict)
 
         return Aufgabe(
@@ -99,7 +100,7 @@ class AufgabenLoader:
         for datei in sorted(pfade_dir.glob("*.yml")):
             try:
                 with datei.open(encoding="utf-8") as f:
-                    daten = yaml.safe_load(f) or {}
+                    daten = lies_yaml(f.read()) or {}
                 pfade.append(Pfad.model_validate(daten))
             except (ValueError, yaml.YAMLError, OSError) as e:
                 self.ladefehler.append(Ladefehler(self._relativ(datei), str(e)))

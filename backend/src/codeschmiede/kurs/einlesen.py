@@ -24,6 +24,7 @@ from pathlib import Path
 import yaml
 from pydantic import TypeAdapter, ValidationError
 
+from ..yaml_lesen import lies_yaml
 from .modelle import (Abschnitt, Begriffskatalog, Einfuehrung, Frage, FrageTeil, Kopf, Kurs, Kurssprache, Kurztest,
                       Teil)
 
@@ -62,7 +63,7 @@ def zerlege(text: str) -> tuple[dict, str]:
     kopf, trenner, rumpf = text[4:].partition("\n---\n")
     if not trenner:
         raise ValueError("Kopf endet nicht mit ---")
-    return yaml.safe_load(kopf) or {}, rumpf
+    return lies_yaml(kopf) or {}, rumpf
 
 
 def _block(art: str, inhalt: str, wo: str) -> Teil:
@@ -70,7 +71,7 @@ def _block(art: str, inhalt: str, wo: str) -> Teil:
         return _teil.validate_python({"art": "diagramm", "quelle": inhalt.strip()})
     if art not in YAML_BLOECKE:
         raise ValueError(f"{wo}: unbekannter Block ```{art}")
-    daten = yaml.safe_load(inhalt) or {}
+    daten = lies_yaml(inhalt) or {}
     if not isinstance(daten, dict):
         raise ValueError(f"{wo}: Block ```{art} braucht YAML mit Feldern")
     if art == "frage":
@@ -159,19 +160,19 @@ def lade(wurzel: Path) -> Kursinhalt:
         inhalt.einfuehrungen[e.id] = e
         test = datei.parent / "kurztest.yml"
         if test.exists():
-            k = versuche(test, lambda d: Kurztest.model_validate(yaml.safe_load(d.read_text(encoding="utf-8")) or {}))
+            k = versuche(test, lambda d: Kurztest.model_validate(lies_yaml(d.read_text(encoding="utf-8")) or {}))
             if k is not None:
                 inhalt.kurztests[e.id] = k
     sprachen: tuple[Kurssprache, ...] = ("python", "sql", "javascript", "css")
     for sprache in sprachen:
         datei = wurzel / f"{sprache}.yml"
         if datei.exists():
-            kurs = versuche(datei, lambda d: Kurs.model_validate(yaml.safe_load(d.read_text(encoding="utf-8")) or {}))
+            kurs = versuche(datei, lambda d: Kurs.model_validate(lies_yaml(d.read_text(encoding="utf-8")) or {}))
             if kurs is not None:
                 inhalt.kurse[sprache] = kurs
         datei = wurzel / "begriffe" / f"{sprache}.yml"
         if datei.exists():
-            katalog = versuche(datei, lambda d: Begriffskatalog.model_validate(yaml.safe_load(d.read_text(encoding="utf-8")) or {}))
+            katalog = versuche(datei, lambda d: Begriffskatalog.model_validate(lies_yaml(d.read_text(encoding="utf-8")) or {}))
             if katalog is not None:
                 inhalt.begriffe[sprache] = katalog
     return inhalt
