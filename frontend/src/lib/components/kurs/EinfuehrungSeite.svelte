@@ -83,6 +83,18 @@
     beispielId = null;
     document.querySelector('.lesen')?.scrollTo({ top: 0 });
   }
+
+  // "In der Werkbank": Beispiel rechts in die Werkbank holen und die Werkbank sichtbar machen; vorher geschah bei
+  // einem schon gewählten Beispiel oder einer verdeckten Spalte sichtbar nichts
+  let werkbankSpalte: HTMLElement | undefined = $state();
+  let blitz = $state(false);
+  function werkbankZeigen(b: string): void {
+    beispielId = b;
+    werkbankSpalte?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+    blitz = false;
+    requestAnimationFrame(() => (blitz = true));
+    setTimeout(() => (blitz = false), 1200);
+  }
 </script>
 
 <div class="seite" data-sprache={e?.sprache ?? 'python'}>
@@ -133,7 +145,7 @@
             {:else if abschnitt}
               <div><div class="dachzeile">Abschnitt {abschnitt.nummer} von {e.abschnitte.length}</div><h2>{abschnitt.titel}</h2></div>
               {#each abschnitt.teile as teil, i (`${abschnitt.nummer}-${i}`)}
-                <TeilAnzeige {teil} sprache={e.sprache} {senden} {beiUrteil} beispielWaehlen={(b) => (beispielId = b)} gewaehltesBeispiel={beispiel?.id ?? null} />
+                <TeilAnzeige {teil} sprache={e.sprache} {senden} {beiUrteil} beispielWaehlen={werkbankZeigen} gewaehltesBeispiel={beispiel?.id ?? null} />
               {/each}
               <div class="weiter-zeile">
                 {#if nummer > 1}<button class="knopf" onclick={() => gehe(nummer - 1)}><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>Abschnitt {nummer - 1}</button>{/if}
@@ -147,7 +159,7 @@
         </div>
       </section>
 
-      <section class="spalte werkbank">
+      <section class="spalte werkbank" class:blitz bind:this={werkbankSpalte}>
         <div class="spalten-kopf"><span>Werkbank</span>{#if beispiele.length > 1}<span class="dim" style="margin-left:auto;text-transform:none;letter-spacing:0">Beispiel {beispiele.indexOf(beispiel as Werkstueck) + 1} von {beispiele.length}</span>{/if}</div>
         <div class="rollfeld">
           {#if beispiel && !ende}
@@ -166,3 +178,8 @@
     </div>
   {/if}
 </div>
+
+<style>
+  .werkbank.blitz { animation: werkbank-blitz 1.2s ease-out; }
+  @keyframes werkbank-blitz { from { box-shadow: inset 0 0 0 3px var(--accent); } to { box-shadow: inset 0 0 0 3px transparent; } }
+</style>

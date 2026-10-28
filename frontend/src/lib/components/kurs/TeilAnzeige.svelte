@@ -59,7 +59,7 @@
   <div class="beispiel-im-text" class:gewaehlt={gewaehltesBeispiel === teil.id}>
     <div class="schema-titel">
       <span>Beispiel</span>
-      {#if beispielWaehlen}<button class="knopf-klein" onclick={() => beispielWaehlen?.(teil.id)}><i class="fa-solid fa-play" aria-hidden="true"></i>In der Werkbank</button>{/if}
+      {#if beispielWaehlen}<button class="knopf-klein" onclick={() => beispielWaehlen?.(teil.id)} title="Holt das Beispiel rechts in die Werkbank: dort ausführen und selbst verändern"><i class="fa-solid fa-play" aria-hidden="true"></i>In der Werkbank</button>{/if}
     </div>
     {#if teil.html}<CodeBlock code={teil.html} sprache="html" />{/if}
     <CodeBlock code={teil.code} {sprache} />
@@ -71,7 +71,7 @@
   <div class="beispiel-im-text" class:gewaehlt={gewaehltesBeispiel === teil.id}>
     <div class="schema-titel">
       <span>{teil.start === 'wuerfel' ? 'Würfel' : 'KV-Diagramm'} mit {teil.eingaenge.join(', ')}</span>
-      {#if beispielWaehlen}<button class="knopf-klein" onclick={() => beispielWaehlen?.(teil.id)}><i class="fa-solid fa-cube" aria-hidden="true"></i>In der Werkbank</button>{/if}
+      {#if beispielWaehlen}<button class="knopf-klein" onclick={() => beispielWaehlen?.(teil.id)} title="Holt das Beispiel rechts in die Werkbank: dort ausführen und selbst verändern"><i class="fa-solid fa-cube" aria-hidden="true"></i>In der Werkbank</button>{/if}
     </div>
     <div class="kv-formeln">
       {#each teil.formeln as f (f.titel)}
