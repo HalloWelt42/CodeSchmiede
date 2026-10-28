@@ -14,7 +14,7 @@
   {#each BEREICHE as bereich (bereich.id)}
     <button
       class="nav-btn"
-      class:aktiv={istAktiv(bereich, route.aktiv)}
+      class:aktiv={istAktiv(bereich, route.aktiv, route.kursId)}
       onclick={() => route.setze(bereich.id)}
       aria-label={bereich.titel}
       title={layout.navBreit ? undefined : bereich.titel}
@@ -29,7 +29,8 @@
 <style>
   .nav {
     --nav-dauer: 0.2s;
-    width: 200px;
+    /* wächst mit der halben Schriftvergrößerung, damit Einträge und Fußzeile bei 160 % noch hineinpassen */
+    width: calc(200px * (1 + (var(--schrift-zoom, 1) - 1) / 2));
     flex: none;
     display: flex;
     flex-direction: column;

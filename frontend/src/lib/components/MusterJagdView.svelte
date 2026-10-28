@@ -314,7 +314,6 @@
     letter-spacing: 0;
   }
   .wertung-leiste {
-    grid-template-columns: auto minmax(0, 1fr);
     margin-bottom: var(--sp-3);
   }
   .ergebnis-kopf .sterne { margin-left: auto; }

@@ -231,8 +231,9 @@ a.knopf { text-decoration: none; }
 .reiter button.aktiv { color: var(--accent); border-bottom-color: var(--accent); }
 .reiter .num { font-size: var(--fs-xs); color: var(--fg-mute); }
 .reiter button.aktiv .num { color: var(--accent); }
-.reiter-klein { display: flex; border-bottom: 1px solid var(--border); flex: none; container-type: inline-size; }
-.reiter-klein button { flex: 1; min-width: 0; display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 34px; padding: 0 6px; border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: transparent; color: var(--fg-dim); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .04em; cursor: pointer; white-space: nowrap; }
+/* Reiter teilen sich die Breite; reicht sie bei großer Schrift nicht, brechen sie in eine zweite Zeile um (nie ineinander, nie seitlich rollen) */
+.reiter-klein { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--border); flex: none; container-type: inline-size; }
+.reiter-klein button { flex: 1 0 auto; display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 34px; padding: 0 6px; border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: transparent; color: var(--fg-dim); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .04em; cursor: pointer; white-space: nowrap; }
 .reiter-klein button:hover:not(:disabled) { color: var(--fg); background: transparent; }
 .reiter-klein button.aktiv { color: var(--accent); border-bottom-color: var(--accent); }
 /* in schmalen Spalten tragen die Reiter nur ihren Text, damit keiner abgeschnitten wird */
@@ -269,10 +270,12 @@ a.knopf { text-decoration: none; }
 /* ========== Tabellen mit fester Kopfzeile im Rollfeld ========== */
 .tabelle { display: flex; flex-direction: column; }
 .tabelle .t-kopf, .tabelle .t-zeile { display: grid; align-items: center; gap: var(--sp-3); padding: 0 var(--sp-4); }
-.tabelle .t-kopf { position: sticky; top: 0; z-index: 1; height: 30px; background: var(--bg-card-2); border-bottom: 1px solid var(--border); font-size: var(--fs-xs); color: var(--fg-mute); text-transform: uppercase; letter-spacing: .05em; }
+.tabelle .t-kopf { position: sticky; top: 0; z-index: 1; min-height: 30px; background: var(--bg-card-2); border-bottom: 1px solid var(--border); font-size: var(--fs-xs); color: var(--fg-mute); text-transform: uppercase; letter-spacing: .05em; }
 .tabelle .t-kopf button { all: unset; cursor: pointer; display: inline-flex; gap: 4px; align-items: center; }
 .tabelle .t-kopf button:hover { color: var(--fg); }
 .tabelle .t-kopf button.aktiv { color: var(--accent); }
+/* Spaltenköpfe bleiben in ihrer Spalte, auch wenn große Schrift eine Spalte knapp macht */
+.tabelle .t-kopf > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tabelle .t-zeile { min-height: 44px; border-bottom: 1px solid var(--border); cursor: pointer; border-left: 3px solid transparent; padding-left: calc(var(--sp-4) - 3px); }
 .tabelle .t-zeile:hover { background: var(--bg-card-2); }
 .tabelle .t-zeile.offen { background: var(--bg-card-2); border-left-color: var(--accent); }
@@ -401,7 +404,7 @@ button.karte:hover:not(:disabled) { border-color: var(--accent); background: var
 .auftrag-ziel.erledigt span { color: var(--fg-dim); text-decoration: line-through; }
 .auftrag-ziel span { min-width: 0; }
 /* Meisterschaft je Bereich */
-.meister { display: grid; grid-template-columns: 22px 92px minmax(0, 1fr) 72px; gap: 6px var(--sp-2); align-items: center; font-size: var(--fs-sm); }
+.meister { display: grid; grid-template-columns: 22px calc(92px * var(--schrift-zoom, 1)) minmax(0, 1fr) calc(72px * var(--schrift-zoom, 1)); gap: 6px var(--sp-2); align-items: center; font-size: var(--fs-sm); }
 .medaille { width: 20px; height: 20px; flex: none; overflow: hidden; border-radius: 50%; display: grid; place-items: center; font-size: 10px; color: var(--bg); background: var(--fg-mute); }
 .medaille.gold { background: var(--gold); } .medaille.silber { background: var(--silber); } .medaille.bronze { background: var(--bronze); }
 .medaille.keine { background: transparent; border: 1px dashed var(--border-strong); color: var(--fg-mute); }
@@ -526,11 +529,15 @@ button.level-punkt { padding: 0; cursor: pointer; }
 .telefon .spiel-raster { grid-template-columns: minmax(0, 1fr); }
 
 /* Wertung mit Ring (Spiele, CSS-Aufgaben) */
-.wertung-leiste { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: var(--sp-3); padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border); background: var(--bg-card); }
-.ring { position: relative; width: 64px; height: 64px; border-radius: 50%; background: conic-gradient(var(--accent) calc(var(--wert) * 1%), var(--bg-card-2) 0); display: grid; place-items: center; }
+/* Ring, Urteil und Kennzahlen in einer Zeile; wird es eng (schmale Spalte, große Schrift), rutschen die Kennzahlen
+   rechtsbündig in die nächste Zeile, statt das Urteil Wort für Wort zu zerbrechen */
+.wertung-leiste { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-3); padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border); background: var(--bg-card); }
+.wertung-leiste > .ring { flex: none; }
+.wert-kacheln { flex: none; margin-left: auto; display: flex; gap: var(--sp-3); }
+.ring { position: relative; width: calc(64px * var(--schrift-zoom, 1)); height: calc(64px * var(--schrift-zoom, 1)); border-radius: 50%; background: conic-gradient(var(--accent) calc(var(--wert) * 1%), var(--bg-card-2) 0); display: grid; place-items: center; }
 .ring::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: var(--bg-card); }
-.ring span { position: relative; font-family: var(--num); font-weight: 700; font-size: 15px; }
-.wertung-text { min-width: 0; font-size: var(--fs-sm); line-height: 1.3; hyphens: auto; overflow-wrap: anywhere; }
+.ring span { position: relative; font-family: var(--num); font-weight: 700; font-size: var(--fs-md); }
+.wertung-text { flex: 1 1 9em; min-width: 0; font-size: var(--fs-sm); line-height: 1.3; hyphens: auto; overflow-wrap: break-word; }
 .wertung-text b { display: block; font-size: var(--fs-md); }
 .wertung-text span { color: var(--fg-dim); }
 .wert-kachel { text-align: right; }

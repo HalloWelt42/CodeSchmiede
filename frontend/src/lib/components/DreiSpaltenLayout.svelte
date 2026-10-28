@@ -191,9 +191,13 @@
     display: grid;
     overflow: hidden;
   }
-  /* Aufgabe und Vergleich wachsen mit der Breite bis zur Obergrenze, der Editor bekommt den Rest */
+  /* Aufgabe und Vergleich wachsen mit der Breite bis zur Obergrenze, der Editor bekommt den Rest; mit größerer Schrift
+     (--schrift-zoom) wachsen Breite und Obergrenze mit, höchstens bis 26 und 32 % der Fensterbreite */
   .spalten.raster-css {
-    grid-template-columns: clamp(270px, 22vw, 290px) minmax(0, 1fr) clamp(340px, 30vw, 400px);
+    grid-template-columns:
+      clamp(270px, calc(22vw * var(--schrift-zoom, 1)), min(calc(290px * var(--schrift-zoom, 1)), 26vw))
+      minmax(0, 1fr)
+      clamp(340px, calc(30vw * var(--schrift-zoom, 1)), min(calc(400px * var(--schrift-zoom, 1)), 32vw));
   }
   .spalten.raster-css > .spalte + .spalte {
     border-left: 1px solid var(--border);

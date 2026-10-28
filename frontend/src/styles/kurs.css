@@ -9,12 +9,12 @@
   --css-a: #ec6aa8; --css-b: #4fd1a5; --css-c: #fbcfe8;
   --dig-a: #fb923c; --dig-b: #34d399; --dig-c: #fed7aa;
   /* Lesetext */
-  --fs-lesen: 18px;
+  --fs-lesen: calc(18px * var(--schrift-zoom, 1));
   /* Editorfarben stehen in editor.css */
   /* Kastenmodell in der CSS-Werkbank: Inhalt, Innenabstand, Rahmen, Außenabstand */
   --kasten-inhalt: #38bdf8; --kasten-padding: #4fd1a5; --kasten-border: #ec6aa8; --kasten-margin: #f59e0b;
 }
-:root[data-geraet='telefon'] { --fs-lesen: 18px; }
+:root[data-geraet='telefon'] { --fs-lesen: calc(18px * var(--schrift-zoom, 1)); }
 [data-sprache='python'] { --s-a: var(--py-a); --s-b: var(--py-b); --s-c: var(--py-c); }
 [data-sprache='sql'] { --s-a: var(--sql-a); --s-b: var(--sql-b); --s-c: var(--sql-c); }
 [data-sprache='javascript'] { --s-a: var(--js-a); --s-b: var(--js-b); --s-c: var(--js-c); }
@@ -89,7 +89,9 @@
   .detail-aktionen { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
   
   /* ----- Einführung ----- */
-  .lehr-seite { flex: 1; min-height: 0; display: grid; grid-template-columns: clamp(200px, 15vw, 240px) minmax(0, 1fr) clamp(360px, 32vw, 500px); }
+  /* die Gliederung wächst mit der Schrift (--schrift-zoom), höchstens bis 18 % der Fensterbreite; der Lesetext behält den Rest */
+  .lehr-seite { flex: 1; min-height: 0; display: grid;
+    grid-template-columns: clamp(200px, calc(15vw * var(--schrift-zoom, 1)), min(calc(240px * var(--schrift-zoom, 1)), 18vw)) minmax(0, 1fr) clamp(360px, 32vw, 500px); }
   .lehr-seite > .spalte + .spalte { border-left: 1px solid var(--border); }
   .gliederung { display: flex; flex-direction: column; gap: 2px; }
   .gliederung button { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: var(--sp-2); align-items: start; padding: 6px var(--sp-2); border: 1px solid transparent; border-radius: var(--radius-sm); background: transparent; color: var(--fg-dim); font-size: var(--fs-sm); text-align: left; cursor: pointer; line-height: 1.3; }
@@ -99,8 +101,8 @@
   .gliederung button.jetzt i { color: var(--accent); }
   .gliederung button.zu { opacity: .5; }
   .lesen { font-family: var(--quick); font-size: var(--fs-lesen); line-height: 1.6; }
-  .lesen-innen { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--sp-3); }
-  .lesen h2 { font-family: var(--sans); font-size: 26px; line-height: 1.2; margin: 0; }
+  .lesen-innen { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--sp-3); container-type: inline-size; }
+  .lesen h2 { font-family: var(--sans); font-size: calc(26px * var(--schrift-zoom, 1)); line-height: 1.2; margin: 0; }
   .lesen .dachzeile { font-family: var(--sans); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .08em; color: var(--s-a); }
   .lesen p { margin: 0; }
   .lesen code { font-size: .85em; }
@@ -271,9 +273,15 @@
     .blatt { grid-template-columns: minmax(0, 1fr); }
   }
   
+  /* wird der Lesetext schmal (große Schrift, schmales Fenster), steht die Zeichnung über dem Text statt daneben */
+  @container (max-width: 24em) {
+    .alltag { grid-template-columns: minmax(0, 1fr); }
+    .alltag .zeichnung { max-width: 210px; justify-self: center; }
+  }
+
   /* ----- Telefon ----- */
   .telefon & .lesen-innen { gap: var(--sp-3); }
-  .telefon & .lesen h2 { font-size: 24px; }
+  .telefon & .lesen h2 { font-size: calc(24px * var(--schrift-zoom, 1)); }
   .telefon & .alltag { grid-template-columns: minmax(0, 1fr); }
   .telefon & .alltag .zeichnung { max-width: 220px; justify-self: center; }
   .telefon & .wahl-liste { grid-template-columns: minmax(0, 1fr); }

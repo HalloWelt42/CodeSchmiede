@@ -78,7 +78,7 @@
 
 <div class="probelauf">
   <div class="zeile">
-    <div class="eingabe">
+    <div class="probe-eingabe">
     {#if programm}
     <textarea
       rows="3"
@@ -148,7 +148,9 @@
     align-items: center;
     gap: var(--sp-2);
   }
-  .eingabe {
+  /* nicht .eingabe: das ist die globale Klasse der Eingabefelder (38 px hoch, mit Rahmen) und lag als zweiter Kasten
+     hinter dem Feld */
+  .probe-eingabe {
     flex: 1 1 200px;
     min-width: 0;
     display: flex;
@@ -165,17 +167,17 @@
   input, textarea {
     flex: 1;
     min-width: 0;
-    height: 28px;
+    height: calc(28px * var(--schrift-zoom, 1));
     padding: 0 var(--sp-2);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     background: var(--bg);
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: var(--fs-xs);
   }
   textarea { height: auto; min-height: calc(3 * 1.5em + 2 * var(--sp-2) + 2px); padding: var(--sp-2) var(--sp-3); font-size: var(--fs-sm); line-height: 1.5; resize: vertical; color: var(--fg); align-self: stretch; }
   input:focus, textarea:focus { outline: none; border-color: var(--accent); }
-  .knopf { height: 28px; }
+  .knopf { height: calc(28px * var(--schrift-zoom, 1)); }
   .knopf.debug { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 60%, var(--border)); }
   .knopf.debug:hover:not(:disabled) { color: var(--gold); border-color: var(--gold); }
   .meldung {

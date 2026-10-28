@@ -558,8 +558,10 @@
 />
 
 <style>
+  /* feste Spalten wachsen mit der Schrift (--schrift-zoom), damit Kopf und Werte nicht über den Rand ragen */
   .cols {
-    grid-template-columns: minmax(0, 2.4fr) 124px 80px 44px 64px 52px 52px 70px 112px;
+    --z: var(--schrift-zoom, 1);
+    grid-template-columns: minmax(0, 2.4fr) calc(124px * var(--z)) calc(80px * var(--z)) calc(44px * var(--z)) calc(64px * var(--z)) calc(52px * var(--z)) calc(52px * var(--z)) calc(70px * var(--z)) calc(112px * var(--z));
   }
   .cols-pfade {
     grid-template-columns: minmax(0, 1fr) 80px 60px;

@@ -109,8 +109,10 @@
 </Seite>
 
 <style>
+  /* feste Spalten wachsen mit der Schrift (--schrift-zoom), damit Kopf und Werte nicht über den Rand ragen */
   .cols {
-    grid-template-columns: 20px minmax(0, 2.6fr) 124px 96px 52px 56px minmax(0, 1.4fr);
+    --z: var(--schrift-zoom, 1);
+    grid-template-columns: calc(20px * var(--z)) minmax(0, 2.6fr) calc(124px * var(--z)) calc(96px * var(--z)) calc(52px * var(--z)) calc(56px * var(--z)) minmax(0, 1.4fr);
   }
   .zelle-tags .tag {
     border: 0;
