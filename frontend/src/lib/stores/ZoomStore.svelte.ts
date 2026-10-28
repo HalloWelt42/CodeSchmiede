@@ -1,10 +1,10 @@
 /*
- * Vergrößerung der ganzen Oberfläche, wie das Zoomen im Browser: alles wird mitskaliert (Schrift, Abstände, Knöpfe,
- * Editor). Stufen wie im Browser, je Gerät in localStorage gemerkt, angewendet über CSS zoom am <html>.
+ * Schrift vergrößern: alle Schriftstufen (--fs-*, global.css) wachsen mit --schrift-zoom, das Layout bleibt und fließt
+ * mit (kein CSS zoom, das schob die Seite aus dem Bild und verschob die Klicks im Editor). Je Gerät gemerkt.
  */
 
 const SCHLUESSEL = 'codeschmiede.zoom';
-const STUFEN = [0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2] as const;
+const STUFEN = [0.9, 1, 1.1, 1.25, 1.4, 1.6] as const;
 const NORMAL = STUFEN.indexOf(1);
 
 class ZoomStore {
@@ -52,7 +52,7 @@ class ZoomStore {
   }
 
   private anwenden(): void {
-    document.documentElement.style.zoom = this.faktor === 1 ? '' : String(this.faktor);
+    document.documentElement.style.setProperty('--schrift-zoom', String(this.faktor));
   }
 }
 

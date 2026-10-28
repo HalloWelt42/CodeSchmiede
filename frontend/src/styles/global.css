@@ -12,12 +12,13 @@
   --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
   --sp-5: 24px; --sp-6: 32px;
 
-  --fs-xs: 12px;
-  --fs-sm: 13px;
-  --fs-md: 15px;
-  --fs-lg: 18px;
-  --fs-xl: 22px;
-  --fs-xxl: 28px;
+  /* Schriftstufen; --schrift-zoom (ZoomStore) vergrößert nur die Schrift, das Layout fließt mit */
+  --fs-xs: calc(12px * var(--schrift-zoom, 1));
+  --fs-sm: calc(13px * var(--schrift-zoom, 1));
+  --fs-md: calc(15px * var(--schrift-zoom, 1));
+  --fs-lg: calc(18px * var(--schrift-zoom, 1));
+  --fs-xl: calc(22px * var(--schrift-zoom, 1));
+  --fs-xxl: calc(28px * var(--schrift-zoom, 1));
 
   /* Container eckig, Knöpfe und Felder leicht gerundet */
   --radius-sm: 3px;
@@ -85,11 +86,11 @@
    Eigene, größere Stufen (GeraetStore setzt data-geraet). Eingabefelder
    ab 17px, sonst zoomt iOS beim Tippen. */
 :root[data-geraet='telefon'] {
-  --fs-xs: 13px;
-  --fs-sm: 15px;
-  --fs-md: 17px;
-  --fs-lg: 20px;
-  --fs-xl: 24px;
+  --fs-xs: calc(13px * var(--schrift-zoom, 1));
+  --fs-sm: calc(15px * var(--schrift-zoom, 1));
+  --fs-md: calc(17px * var(--schrift-zoom, 1));
+  --fs-lg: calc(20px * var(--schrift-zoom, 1));
+  --fs-xl: calc(24px * var(--schrift-zoom, 1));
   --knopf-h: 44px;
 }
 :root[data-geraet='telefon'] :is(input, select, textarea) {

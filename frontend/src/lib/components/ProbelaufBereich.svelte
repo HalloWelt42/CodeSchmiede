@@ -81,7 +81,7 @@
     <div class="eingabe">
     {#if programm}
     <textarea
-      rows="1"
+      rows="3"
       bind:value={eingabe_text}
       placeholder="Eingaben für {eingabeBefehl}, eine je Zeile (leer lassen, wenn das Programm nichts fragt)"
       aria-label="Eingaben für den Probelauf"
@@ -173,7 +173,7 @@
     font-family: var(--mono);
     font-size: 12px;
   }
-  textarea { min-height: 28px; height: auto; padding: 4px var(--sp-2); resize: vertical; color: var(--fg); }
+  textarea { min-height: calc(3lh + 2 * var(--sp-2)); height: auto; padding: var(--sp-2) var(--sp-3); line-height: 1.5; resize: vertical; color: var(--fg); }
   input:focus, textarea:focus { outline: none; border-color: var(--accent); }
   .knopf { height: 28px; }
   .knopf.debug { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 60%, var(--border)); }
