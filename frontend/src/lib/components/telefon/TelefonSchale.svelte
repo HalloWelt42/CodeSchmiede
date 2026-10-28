@@ -38,7 +38,7 @@
   </main>
   <nav class="t-reiter">
     {#each reiter as bereich (bereich.id)}
-      <button class:aktiv={istAktiv(bereich, route.aktiv)} onclick={() => route.setze(bereich.id)}>
+      <button class:aktiv={istAktiv(bereich, route.aktiv, route.kursId)} onclick={() => route.setze(bereich.id)}>
         <i class="fa-solid {bereich.icon}" aria-hidden="true"></i>
         {bereich.titel}
       </button>

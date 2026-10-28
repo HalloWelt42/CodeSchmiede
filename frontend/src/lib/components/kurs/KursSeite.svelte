@@ -117,13 +117,13 @@
                 <div class="schritt" class:zu><span class="t">Einführung, {k.abschnitte} Abschnitte</span><span class="art">{k.abschnitte_fertig} fertig</span>
                   <i class="fa-solid {k.abschnitte_fertig === k.abschnitte ? 'fa-circle-check' : 'fa-book-open'}" aria-hidden="true"></i></div>
                 {#each k.uebungen as u, i (u.id)}
-                  <button class="schritt uebung" class:zu={!k.uebungen_offen} disabled={!k.uebungen_offen} onclick={() => route.setze('aufgabe', u.id)}>
+                  <button class="schritt uebung" class:zu={!k.uebungen_offen} disabled={!k.uebungen_offen} onclick={() => route.setze('aufgabe', u.id, k.einfuehrung)}>
                     <span class="t">Übung {i + 1}: {u.titel}</span>
                     <i class="fa-solid {u.geloest ? 'fa-circle-check' : k.uebungen_offen ? 'fa-circle' : 'fa-lock'}" style={u.geloest ? 'color:var(--green)' : ''} aria-hidden="true"></i>
                   </button>
                 {/each}
                 {#each k.projekt as u (u.id)}
-                  <button class="schritt uebung" class:zu={!k.uebungen_offen} disabled={!k.uebungen_offen} onclick={() => route.setze('aufgabe', u.id)}>
+                  <button class="schritt uebung" class:zu={!k.uebungen_offen} disabled={!k.uebungen_offen} onclick={() => route.setze('aufgabe', u.id, k.einfuehrung)}>
                     <span class="t">Kapitelprojekt: {u.titel}</span><span class="art">Projekt wächst</span>
                     <i class="fa-solid {u.geloest ? 'fa-circle-check' : k.uebungen_offen ? 'fa-circle' : 'fa-lock'}" aria-hidden="true"></i>
                   </button>
@@ -133,7 +133,7 @@
             {#if k.vertiefung.length}
               <div class="block">
                 <div class="block-kopf"><span>Vertiefung aus dem Bestand, freiwillig</span></div>
-                <div class="chips">{#each k.vertiefung as v (v.id)}<button class="chip" disabled={!k.uebungen_offen} onclick={() => route.setze('aufgabe', v.id)}>{v.titel}</button>{/each}</div>
+                <div class="chips">{#each k.vertiefung as v (v.id)}<button class="chip" disabled={!k.uebungen_offen} onclick={() => route.setze('aufgabe', v.id, k.einfuehrung)}>{v.titel}</button>{/each}</div>
               </div>
             {/if}
             <div class="detail-aktionen" style="margin-top:var(--sp-3)">
@@ -142,7 +142,7 @@
                 <span class="dim" style="font-size:var(--fs-sm);align-self:center">Öffnet sich nach Kapitel {k.nr - 1}</span>
               {:else}
                 <button class="knopf voll" onclick={() => route.setze('einfuehrung', k.einfuehrung)}><i class="fa-solid fa-book-open" aria-hidden="true"></i>Einführung</button>
-                <button class="knopf" disabled={!k.uebungen_offen || !k.uebungen.length} onclick={() => { const u = naechsteUebung(k); if (u) route.setze('aufgabe', u.id); }}><i class="fa-solid fa-code" aria-hidden="true"></i>Üben</button>
+                <button class="knopf" disabled={!k.uebungen_offen || !k.uebungen.length} onclick={() => { const u = naechsteUebung(k); if (u) route.setze('aufgabe', u.id, k.einfuehrung); }}><i class="fa-solid fa-code" aria-hidden="true"></i>Üben</button>
                 <button class="knopf" onclick={() => route.setze('merkblatt', k.einfuehrung)}><i class="fa-solid fa-note-sticky" aria-hidden="true"></i>Merkblatt</button>
                 {#if k.kurztest && k.stand !== 'fertig' && k.stand !== 'uebersprungen'}<button class="knopf" onclick={() => route.setze('kurztest', k.einfuehrung)}><i class="fa-solid fa-forward" aria-hidden="true"></i>Kurztest</button>{/if}
               {/if}

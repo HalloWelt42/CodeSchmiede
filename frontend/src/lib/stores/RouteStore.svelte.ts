@@ -9,6 +9,7 @@
  *   /spiele              -> Spielebereich
  *   /verwaltung          -> Verwaltungsübersicht aller Aufgaben (Admin)
  *   /aufgabe/<id>        -> Detail-Ansicht einer Aufgabe
+ *   /kurs/<id>/aufgabe/<a> -> Aufgabe a aus dem Kapitel id geöffnet; "nächste Aufgabe" bleibt im Kurs
  *   /kurs                -> Kursübersicht
  *   /kurs/<id>           -> Einführung eines Kapitels
  *   /kurs/<id>/kurztest  -> Kurztest zum Überspringen
@@ -28,8 +29,9 @@ const KURS_UNTERSEITEN: Partial<Record<Route, string>> = { einfuehrung: '', kurz
 /** Routen ohne Parameter, deren Pfad ihr Name ist */
 const EINFACH: Route[] = ['erfolge', 'kurs', 'aufgaben', 'pfade', 'spiele', 'verwaltung'];
 
-/** Pfad einer Route, etwa für href */
-export function pfadVon(ziel: Route, kennung?: string): string {
+/** Pfad einer Route, etwa für href; `kapitel` hält bei einer Aufgabe das Kurskapitel fest, aus dem sie kommt. */
+export function pfadVon(ziel: Route, kennung?: string, kapitel?: string): string {
+  if (ziel === 'aufgabe' && kennung && kapitel) return `/kurs/${encodeURIComponent(kapitel)}/aufgabe/${encodeURIComponent(kennung)}`;
   if (ziel === 'aufgabe' && kennung) return `/aufgabe/${encodeURIComponent(kennung)}`;
   const unter = KURS_UNTERSEITEN[ziel];
   if (unter !== undefined) return kennung ? `/kurs/${encodeURIComponent(kennung)}${unter}` : '/kurs';
@@ -40,7 +42,8 @@ export function pfadVon(ziel: Route, kennung?: string): string {
 class RouteStore {
   aktiv = $state<Route>('dashboard');
   aufgabeId = $state<string | null>(null);
-  /** Kennung der Einführung bei Einführung, Kurztest und Merkblatt */
+  /** Kennung der Einführung bei Einführung, Kurztest und Merkblatt; bei einer Aufgabe das Kurskapitel, aus dem sie
+   * geöffnet wurde (sonst null) */
   kursId = $state<string | null>(null);
 
   init(): void {
@@ -49,8 +52,8 @@ class RouteStore {
     window.addEventListener('popstate', () => this.ortGewechselt());
   }
 
-  setze(ziel: Route, kennung?: string): void {
-    const pfad = pfadVon(ziel, kennung);
+  setze(ziel: Route, kennung?: string, kapitel?: string): void {
+    const pfad = pfadVon(ziel, kennung, kapitel);
     if (pfad !== window.location.pathname) window.history.pushState(null, '', pfad);
     this.ortGewechselt();
   }
@@ -73,6 +76,10 @@ class RouteStore {
     if (teile[0] === 'aufgabe' && teile[1]) {
       this.aktiv = 'aufgabe';
       this.aufgabeId = decodeURIComponent(teile[1]);
+    } else if (teile[0] === 'kurs' && teile[1] && teile[2] === 'aufgabe' && teile[3]) {
+      this.aktiv = 'aufgabe';
+      this.kursId = decodeURIComponent(teile[1]);
+      this.aufgabeId = decodeURIComponent(teile[3]);
     } else if (teile[0] === 'kurs' && teile[1]) {
       this.aktiv = teile[2] === 'kurztest' ? 'kurztest' : teile[2] === 'merkblatt' ? 'merkblatt' : 'einfuehrung';
       this.kursId = decodeURIComponent(teile[1]);

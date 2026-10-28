@@ -17,8 +17,7 @@
   import { progressStore } from '../stores/ProgressStore.svelte';
   import { submissionsApi } from '../api/SubmissionsApi';
   import { aufgabenApi } from '../api/AufgabenApi';
-  import { progressApi } from '../api/ProgressApi';
-  import { route } from '../stores/RouteStore.svelte';
+  import { geheZurNaechstenAufgabe } from '../kurs/weiter';
   import { fassung } from '../stores/FassungStore.svelte';
   import { buehnenDokument } from '../css/buehne';
   import { rastere, vergleiche, type Vergleich } from '../css/deckung';
@@ -153,16 +152,7 @@
   }
 
   async function geheZuNaechster(): Promise<void> {
-    try {
-      const v = await progressApi.weiter(detail.id);
-      if (v.naechste_id) {
-        route.setze('aufgabe', v.naechste_id);
-      } else {
-        route.setze('aufgaben');
-      }
-    } catch {
-      route.setze('aufgaben');
-    }
+    await geheZurNaechstenAufgabe(detail.id);
   }
 
   let ziel_srcdoc = $derived(buehnenDokument(ziel_html, ziel_css));
@@ -242,8 +232,10 @@
               <b>{urteil}</b><span>{deckung >= 0.9995 ? 'kein Bildpunkt weicht ab' : `noch ${prozentZahl(1 - deckung)} % Abweichung`}</span>
             {/if}
           </div>
-          <div class="wert-kachel"><span class="num">{zeichen}</span><small>Zeichen</small></div>
-          <div class="wert-kachel"><span class="num gedimmt">{bestwert ?? '-'}</span><small>Bestwert</small></div>
+          <div class="wert-kacheln">
+            <div class="wert-kachel"><span class="num">{zeichen}</span><small>Zeichen</small></div>
+            <div class="wert-kachel"><span class="num gedimmt">{bestwert ?? '-'}</span><small>Bestwert</small></div>
+          </div>
         </div>
         {#if gewertet && gewertet.teile.length === 2}
           {@const [deckungsteil, kuerze] = gewertet.teile}

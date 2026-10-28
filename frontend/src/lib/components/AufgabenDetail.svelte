@@ -14,6 +14,7 @@
   import { fassung } from '../stores/FassungStore.svelte';
   import { aufgabenApi } from '../api/AufgabenApi';
   import { progressApi } from '../api/ProgressApi';
+  import { geheZurNaechstenAufgabe, zurueckVonAufgabe } from '../kurs/weiter';
   import { submissionsApi } from '../api/SubmissionsApi';
   import { farbeZuCss } from '../types/Konfig';
   import type { AufgabeDetail } from '../types/Aufgabe';
@@ -143,20 +144,11 @@
 
   async function geheZuNaechster(): Promise<void> {
     if (!detail) return;
-    try {
-      const v = await progressApi.weiter(detail.id);
-      if (v.naechste_id) {
-        route.setze('aufgabe', v.naechste_id);
-      } else {
-        route.setze('aufgaben');
-      }
-    } catch {
-      route.setze('aufgaben');
-    }
+    await geheZurNaechstenAufgabe(detail.id);
   }
 
   function zurueck(): void {
-    route.setze('aufgaben');
+    zurueckVonAufgabe();
   }
 
   function resetAnfragen(): void {

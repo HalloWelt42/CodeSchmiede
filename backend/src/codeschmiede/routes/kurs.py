@@ -10,6 +10,7 @@ from fastapi.responses import FileResponse
 from ..aufzeichnung import Aufzeichnung
 from ..kurs.css_lauf import CssLauf
 from ..kurs.sql_ablauf import SqlLauf
+from ..kurs.weiter import KursWeiter, naechster_schritt
 from ..kurs.dienst import NichtErlaubt, NichtGefunden
 from ..kurs.sicht import (Antwort, AusfuehrenAnfrage, EinfuehrungSicht, KursSicht, KurztestSicht, MerkblattSicht,
                           Urteil)
@@ -81,6 +82,11 @@ def baue_kurs_router(state: AppState) -> APIRouter:
     def kurztest_antwort(eid: str, a: Antwort) -> Urteil:
         with _fehler():
             return state.kurs.kurztest_antworten(eid, a, geloest())
+
+    @router.get("/weiter/{aufgabe_id}", response_model=KursWeiter)
+    def weiter(aufgabe_id: str, einfuehrung: str | None = None) -> KursWeiter:
+        """Nächster Schritt nach einer Aufgabe im Kapitel `einfuehrung`; ohne Angabe im Kapitel, zu dem sie gehört."""
+        return naechster_schritt(state.kurs.inhalt, aufgabe_id, einfuehrung)
 
     @router.get("/merkblatt/{eid}", response_model=MerkblattSicht)
     def merkblatt(eid: str) -> MerkblattSicht:

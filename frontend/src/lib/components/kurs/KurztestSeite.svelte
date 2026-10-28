@@ -76,7 +76,7 @@
             <h2>{test.uebung.titel}</h2>
             <p>Zum Schluss eine kleine Übung, die alles aus dem Kapitel braucht. Sie öffnet sich wie jede Aufgabe; ist sie gelöst, kommst du hierher zurück.</p>
             <div class="weiter-zeile">
-              <button class="knopf voll" onclick={() => route.setze('aufgabe', test!.uebung.id)}><i class="fa-solid fa-code" aria-hidden="true"></i>{test.uebung.geloest ? 'Übung ansehen' : 'Übung lösen'}</button>
+              <button class="knopf voll" onclick={() => route.setze('aufgabe', test!.uebung.id, id)}><i class="fa-solid fa-code" aria-hidden="true"></i>{test.uebung.geloest ? 'Übung ansehen' : 'Übung lösen'}</button>
             </div>
           {/if}
         </div></div>

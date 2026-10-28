@@ -26,6 +26,8 @@ const GEHOERT_ZU: Partial<Record<Route, Route>> = {
   aufgabe: 'aufgaben', erfolge: 'dashboard', einfuehrung: 'kurs', kurztest: 'kurs', merkblatt: 'kurs',
 };
 
-export function istAktiv(bereich: Bereich, aktiv: Route): boolean {
+/** `kapitel`: Kurskapitel, aus dem eine Aufgabe geöffnet wurde; dann gehört sie zum Kurs. */
+export function istAktiv(bereich: Bereich, aktiv: Route, kapitel: string | null = null): boolean {
+  if (aktiv === 'aufgabe' && kapitel) return bereich.id === 'kurs';
   return bereich.id === aktiv || GEHOERT_ZU[aktiv] === bereich.id;
 }

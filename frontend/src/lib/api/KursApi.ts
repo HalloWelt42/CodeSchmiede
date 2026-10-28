@@ -196,6 +196,13 @@ export interface CssLauf {
 
 export type Lauf = Aufzeichnung | SqlLauf | CssLauf;
 
+/** Nächster Schritt nach einer Aufgabe im Kurs (backend/.../kurs/weiter.py) */
+export interface KursWeiter {
+  art: 'aufgabe' | 'kapitel' | 'kurs' | 'keiner';
+  einfuehrung: string | null;
+  aufgabe_id: string | null;
+}
+
 class KursApi extends HttpBase {
   uebersicht() {
     return this.get<KursSicht[]>('/api/kurs');
@@ -220,6 +227,10 @@ class KursApi extends HttpBase {
   }
   merkblatt(id: string) {
     return this.get<MerkblattSicht>(`/api/kurs/merkblatt/${encodeURIComponent(id)}`);
+  }
+  weiter(aufgabeId: string, einfuehrung: string | null) {
+    const kapitel = einfuehrung ? `?einfuehrung=${encodeURIComponent(einfuehrung)}` : '';
+    return this.get<KursWeiter>(`/api/kurs/weiter/${encodeURIComponent(aufgabeId)}${kapitel}`);
   }
 }
 

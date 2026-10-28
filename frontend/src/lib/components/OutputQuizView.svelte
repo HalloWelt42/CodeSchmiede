@@ -9,9 +9,8 @@
    * der gewählte Index als String; der Server sagt nur richtig oder falsch.
    */
   import { progressStore } from '../stores/ProgressStore.svelte';
-  import { route } from '../stores/RouteStore.svelte';
   import { fassung } from '../stores/FassungStore.svelte';
-  import { progressApi } from '../api/ProgressApi';
+  import { geheZurNaechstenAufgabe } from '../kurs/weiter';
   import { submissionsApi } from '../api/SubmissionsApi';
   import type { AufgabeDetail } from '../types/Aufgabe';
   import type { Belohnung } from '../api/SpielApi';
@@ -60,16 +59,7 @@
   }
 
   async function geheZuNaechster(): Promise<void> {
-    try {
-      const v = await progressApi.weiter(detail.id);
-      if (v.naechste_id) {
-        route.setze('aufgabe', v.naechste_id);
-      } else {
-        route.setze('aufgaben');
-      }
-    } catch {
-      route.setze('aufgaben');
-    }
+    await geheZurNaechstenAufgabe(detail.id);
   }
 
   function nochmal(): void {

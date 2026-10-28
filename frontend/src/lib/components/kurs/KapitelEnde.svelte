@@ -23,7 +23,7 @@
       <div class="block-kopf"><span>{titel}</span><span class="num">{uebungen.filter((u) => u.geloest).length} / {uebungen.length}</span></div>
       <div class="schritt-liste">
         {#each uebungen as u, i (u.id)}
-          <button class="schritt uebung" class:jetzt={u.id === naechste?.id} onclick={() => route.setze('aufgabe', u.id)}>
+          <button class="schritt uebung" class:jetzt={u.id === naechste?.id} onclick={() => route.setze('aufgabe', u.id, einfuehrung.id)}>
             <span class="nr">{i + 1}</span><span class="t">{u.titel}</span>
             <i class="fa-solid {u.geloest ? 'fa-circle-check' : 'fa-circle'}" style={u.geloest ? 'color:var(--green)' : ''} aria-hidden="true"></i>
           </button>
@@ -50,13 +50,13 @@
     {#if kapitel.vertiefung.length}
       <div class="block">
         <div class="block-kopf"><span>Vertiefung, freiwillig</span></div>
-        <div class="chips">{#each kapitel.vertiefung as v (v.id)}<button class="chip" onclick={() => route.setze('aufgabe', v.id)}>{v.titel}</button>{/each}</div>
+        <div class="chips">{#each kapitel.vertiefung as v (v.id)}<button class="chip" onclick={() => route.setze('aufgabe', v.id, einfuehrung.id)}>{v.titel}</button>{/each}</div>
       </div>
     {/if}
     <div class="weiter-zeile">
       <button class="knopf" onclick={() => route.setze('merkblatt', einfuehrung.id)}><i class="fa-solid fa-note-sticky" aria-hidden="true"></i>Merkblatt</button>
       {#if naechste}
-        <button class="knopf voll" onclick={() => naechste && route.setze('aufgabe', naechste.id)}><i class="fa-solid fa-code" aria-hidden="true"></i>Üben: {naechste.titel}</button>
+        <button class="knopf voll" onclick={() => naechste && route.setze('aufgabe', naechste.id, einfuehrung.id)}><i class="fa-solid fa-code" aria-hidden="true"></i>Üben: {naechste.titel}</button>
       {:else}
         <button class="knopf voll" onclick={() => route.setze('kurs')}><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>Zur Kursübersicht</button>
       {/if}
