@@ -22,7 +22,7 @@ import { sql } from '@codemirror/lang-sql';
 import { bracketMatching, foldGutter, foldKeymap, indentOnInput, indentUnit } from '@codemirror/language';
 import { lintKeymap } from '@codemirror/lint';
 import { highlightSelectionMatches, searchKeymap } from '@codemirror/search';
-import { EditorState } from '@codemirror/state';
+import { Compartment, EditorState } from '@codemirror/state';
 import {
   crosshairCursor,
   drawSelection,
@@ -73,11 +73,19 @@ export interface EditorOptionen {
   beiHaltepunkten?: (zeilen: number[]) => void;
 }
 
+// Die Rinne für Haltepunkte lässt sich zu- und abschalten: ob eine Aufgabe einen Debugger hat, steht oft erst fest,
+// wenn der Editor schon steht (vorher fehlte die Rinne dann ganz)
+const haltepunktRinne = new Compartment();
+
+export function haltepunkteSchalten(view: EditorView, beiHaltepunkten?: (zeilen: number[]) => void): void {
+  view.dispatch({ effects: haltepunktRinne.reconfigure(beiHaltepunkten ? haltepunkte(beiHaltepunkten) : []) });
+}
+
 export function erstelleEditor(opts: EditorOptionen): EditorView {
   const state = EditorState.create({
     doc: opts.initialerCode,
     extensions: [
-      opts.beiHaltepunkten ? haltepunkte(opts.beiHaltepunkten) : [],
+      haltepunktRinne.of(opts.beiHaltepunkten ? haltepunkte(opts.beiHaltepunkten) : []),
       lineNumbers(),
       highlightActiveLineGutter(),
       foldGutter(),

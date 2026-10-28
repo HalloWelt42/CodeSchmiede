@@ -136,7 +136,7 @@
     border-top: 1px solid var(--border);
     background: var(--bg-card);
     padding: var(--sp-2) var(--sp-3);
-    max-height: 220px;
+    max-height: 45vh;   /* Eingabe dreizeilig plus Ausgabe; vorher 220 px, dann rollte die Eingabe unter den Hinweis */
     overflow-y: auto;
     font-family: var(--mono);
     font-size: 12px;
@@ -173,7 +173,7 @@
     font-family: var(--mono);
     font-size: 12px;
   }
-  textarea { min-height: calc(3lh + 2 * var(--sp-2)); height: auto; padding: var(--sp-2) var(--sp-3); line-height: 1.5; resize: vertical; color: var(--fg); }
+  textarea { height: auto; min-height: calc(3 * 1.5em + 2 * var(--sp-2) + 2px); padding: var(--sp-2) var(--sp-3); font-size: var(--fs-sm); line-height: 1.5; resize: vertical; color: var(--fg); align-self: stretch; }
   input:focus, textarea:focus { outline: none; border-color: var(--accent); }
   .knopf { height: 28px; }
   .knopf.debug { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 60%, var(--border)); }

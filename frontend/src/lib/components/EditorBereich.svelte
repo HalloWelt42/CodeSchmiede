@@ -6,7 +6,7 @@
    */
   import { onDestroy, onMount } from 'svelte';
   import type { EditorView } from '@codemirror/view';
-  import { erstelleEditor } from '../editor/EditorFactory';
+  import { erstelleEditor, haltepunkteSchalten } from '../editor/EditorFactory';
   import { setzeZeilenMarke } from '../editor/ZeilenMarke';
 
   interface Props {
@@ -23,7 +23,7 @@
   let { sprache, code = $bindable(), markierteZeile = null, befehle = [], mitHaltepunkten = false, haltepunkte = $bindable([]) }: Props = $props();
 
   let host: HTMLDivElement | undefined = $state();
-  let view: EditorView | null = null;
+  let view = $state.raw<EditorView | null>(null);
 
   onMount(() => {
     if (!host) return;
@@ -35,8 +35,14 @@
       beiAenderung: (neuerCode) => {
         code = neuerCode;
       },
-      beiHaltepunkten: mitHaltepunkten ? (zeilen) => (haltepunkte = zeilen) : undefined,
     });
+  });
+
+  // Rinne für Haltepunkte folgt `mitHaltepunkten`, auch wenn es erst nach dem Aufbau des Editors feststeht
+  $effect(() => {
+    if (!view) return;
+    haltepunkteSchalten(view, mitHaltepunkten ? (zeilen) => (haltepunkte = zeilen) : undefined);
+    if (!mitHaltepunkten) haltepunkte = [];
   });
 
   // Synchronisiere CodeMirror, wenn der Parent code von aussen aendert

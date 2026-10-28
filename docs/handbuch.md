@@ -13,7 +13,7 @@ schluessel_orte:
   - "Pi: `{{wurzel}}/.env` (Modus 0600): gemeinsamer Schlüssel von Backend und Sandbox-Dienst, vom Ausrollen einmal erzeugt"
   - "Pi: `{{wurzel}}/zertifikate/`, Blattzertifikat mit Schlüssel aus der Hausstelle (vom Ausrollen)"
 einrichten: einrichten.sh
-stand: c7ea465
+stand: 8238991
 ---
 
 # Codeschmiede
