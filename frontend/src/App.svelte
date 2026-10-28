@@ -7,6 +7,7 @@
    */
   import { onMount } from 'svelte';
   import { theme } from './lib/stores/ThemeStore.svelte';
+  import { zoom } from './lib/stores/ZoomStore.svelte';
   import { route } from './lib/stores/RouteStore.svelte';
   import { layout } from './lib/stores/LayoutStore.svelte';
   import { konfig } from './lib/stores/KonfigStore.svelte';
@@ -24,6 +25,7 @@
 
   onMount(() => {
     theme.init();
+    zoom.init();
     route.init();
     layout.init();
     const geraetEnde = geraet.init();

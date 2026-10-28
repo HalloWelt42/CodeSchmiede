@@ -1,6 +1,7 @@
 <script lang="ts">
   import { layout } from '../stores/LayoutStore.svelte';
   import { theme } from '../stores/ThemeStore.svelte';
+  import { zoom } from '../stores/ZoomStore.svelte';
   import { zugang } from '../stores/ZugangStore.svelte';
   import KopfStand from './spiel/KopfStand.svelte';
 </script>
@@ -30,6 +31,17 @@
         </button>
       </span>
     {/if}
+    <div class="zoom" role="group" aria-label="Größe der Anzeige">
+      <button class="ikon" onclick={() => zoom.kleiner()} disabled={zoom.kleinste} aria-label="Kleiner" title="Kleiner">
+        <i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i>
+      </button>
+      <button class="prozent" onclick={() => zoom.zuruecksetzen()} title="Auf 100 % zurücksetzen" aria-label="Größe {zoom.prozent} %, zurücksetzen">
+        {zoom.prozent} %
+      </button>
+      <button class="ikon" onclick={() => zoom.groesser()} disabled={zoom.groesste} aria-label="Größer" title="Größer">
+        <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+      </button>
+    </div>
     <button class="ikon" onclick={() => theme.toggle()} aria-label="Theme wechseln">
       <i class="fa-solid {theme.modus === 'dark' ? 'fa-sun' : 'fa-moon'}" aria-hidden="true"></i>
     </button>
@@ -56,6 +68,19 @@
     letter-spacing: 0.02em;
   }
   .marke i { color: var(--accent); }
+  .zoom { display: flex; align-items: center; gap: var(--sp-1); }
+  .prozent {
+    min-width: 4.5em;
+    height: var(--knopf-h);
+    padding: 0 var(--sp-1);
+    border: none;
+    background: transparent;
+    color: var(--fg-dim);
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+  }
+  .prozent:hover { color: var(--accent); }
   .rechts {
     margin-left: auto;
     display: flex;
