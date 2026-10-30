@@ -94,6 +94,8 @@ export interface KapitelSicht {
   uebungen_offen: boolean;
   kurztest: boolean;
   vertiefung: UebungSicht[];
+  /** Erstes offenes Element ("Weiter hier", Regel in backend/.../kurs/weiter.py); null, wenn fertig, übersprungen oder zu */
+  offen: KursWeiter | null;
 }
 
 export interface KursSicht {

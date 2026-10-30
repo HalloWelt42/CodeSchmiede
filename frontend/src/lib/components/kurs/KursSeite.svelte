@@ -9,6 +9,7 @@
   import { route } from '../../stores/RouteStore.svelte';
   import { kursStore } from '../../stores/KursStore.svelte';
   import Sammelkarte from './Sammelkarte.svelte';
+  import { oeffneKapitel, weiterText } from '../../kurs/weiter';
 
   onMount(() => {
     void kursStore.laden(true);
@@ -48,7 +49,7 @@
       <span class="lead">Von null an, eine neue Sache nach der anderen: erst die Einführung, dann üben</span>
       {#if kursStore.weiter}
         {@const w = kursStore.weiter}
-        <div class="aktionen"><button class="knopf voll kuerzbar" onclick={() => route.setze('einfuehrung', w.einfuehrung)}><i class="fa-solid fa-play" aria-hidden="true"></i><span>Weiter: {w.titel}</span></button></div>
+        <div class="aktionen"><button class="knopf voll kuerzbar" onclick={() => oeffneKapitel(w)} title="Kapitel {w.nr}, {w.titel}: {weiterText(w)}"><i class="fa-solid fa-play" aria-hidden="true"></i><span>Weiter: {w.titel}</span></button></div>
       {/if}
     </div>
     <div class="titelzeile kurs-kopf">

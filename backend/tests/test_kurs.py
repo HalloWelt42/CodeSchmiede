@@ -190,6 +190,7 @@ def test_einfuehrung_verraet_keine_antworten(kurs_client):
 def test_kapitel_fortschritt_bis_fertig(kurs_client):
     kapitel = kurs_client.get("/api/kurs").json()[0]["bloecke"][0]["kapitel"][0]
     assert kapitel["stand"] == "aktuell" and not kapitel["uebungen_offen"] and kapitel["bild"]["url"] is None
+    assert kapitel["offen"] == {"art": "kapitel", "einfuehrung": "py-ausgabe", "aufgabe_id": None}
 
     # Abschnitt erst nach richtiger Antwort fertig
     assert kurs_client.post("/api/kurs/einfuehrung/py-ausgabe/abschnitt/1/fertig").status_code == 409
@@ -206,6 +207,8 @@ def test_kapitel_fortschritt_bis_fertig(kurs_client):
 
     kapitel = kurs_client.get("/api/kurs").json()[0]["bloecke"][0]["kapitel"][0]
     assert kapitel["uebungen_offen"] and kapitel["stand"] == "aktuell" and kapitel["abschnitte_fertig"] == 2
+    # "Weiter hier" zeigt jetzt auf die offene Übung, nicht mehr auf die fertige Einführung
+    assert kapitel["offen"] == {"art": "aufgabe", "einfuehrung": "py-ausgabe", "aufgabe_id": "090-programm-hallo"}
 
 
 @braucht_sandbox

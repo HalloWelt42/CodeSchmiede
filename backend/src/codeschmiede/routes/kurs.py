@@ -85,8 +85,9 @@ def baue_kurs_router(state: AppState) -> APIRouter:
 
     @router.get("/weiter/{aufgabe_id}", response_model=KursWeiter)
     def weiter(aufgabe_id: str, einfuehrung: str | None = None) -> KursWeiter:
-        """Nächster Schritt nach einer Aufgabe im Kapitel `einfuehrung`; ohne Angabe im Kapitel, zu dem sie gehört."""
-        return naechster_schritt(state.kurs.inhalt, aufgabe_id, einfuehrung)
+        """Nächster offener Schritt nach einer Aufgabe im Kapitel `einfuehrung`; ohne Angabe im Kapitel, zu dem sie
+        gehört."""
+        return naechster_schritt(state.kurs.inhalt, aufgabe_id, state.kurs.erledigt(geloest()), einfuehrung)
 
     @router.get("/merkblatt/{eid}", response_model=MerkblattSicht)
     def merkblatt(eid: str) -> MerkblattSicht:

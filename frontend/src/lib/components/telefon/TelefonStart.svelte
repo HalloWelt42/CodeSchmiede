@@ -5,6 +5,7 @@
   import { route } from '../../stores/RouteStore.svelte';
   import { spielStore } from '../../stores/SpielStore.svelte';
   import { kursStore } from '../../stores/KursStore.svelte';
+  import { oeffneKapitel, weiterText } from '../../kurs/weiter';
   import { ladeStart, lead, letzteAufgabe, wiederholungen } from '../../startseite.svelte';
   import { schildText } from '../../spielanzeige';
   import EmptyState from '../EmptyState.svelte';
@@ -23,7 +24,7 @@
     const liste = [letzteAufgabe()];
     const kurs = kursStore.weiter;
     if (kurs) {
-      liste.unshift({ icon: 'fa-graduation-cap', titel: 'Kurs', wert: kurs.titel, unter: `Kapitel ${kurs.nr}, Einführung ${kurs.abschnitte_fertig} von ${kurs.abschnitte}`, oeffnen: () => route.setze('einfuehrung', kurs.einfuehrung) });
+      liste.unshift({ icon: 'fa-graduation-cap', titel: 'Kurs', wert: kurs.titel, unter: `Kapitel ${kurs.nr}, ${weiterText(kurs)}`, oeffnen: () => oeffneKapitel(kurs) });
     }
     const faellig = wiederholungen();
     if (faellig) {

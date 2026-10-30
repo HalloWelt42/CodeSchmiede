@@ -4,6 +4,7 @@
   import type { KapitelSicht } from '../../api/KursApi';
   import { route } from '../../stores/RouteStore.svelte';
   import { kursStore } from '../../stores/KursStore.svelte';
+  import { oeffneKapitel, weiterText } from '../../kurs/weiter';
 
   onMount(() => {
     void kursStore.laden(true);
@@ -32,9 +33,9 @@
   </header>
   <div class="rollfeld">
     {#if weiter}
-      <button class="weiter-karte" onclick={() => route.setze('einfuehrung', weiter.einfuehrung)}>
+      <button class="weiter-karte" onclick={() => oeffneKapitel(weiter)}>
         <span class="mini-karte"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
-        <span class="text"><small>Weiter hier, Kapitel {weiter.nr}</small><b>{weiter.titel}</b><small>Einführung {weiter.abschnitte_fertig} von {weiter.abschnitte}</small></span>
+        <span class="text"><small>Weiter hier, Kapitel {weiter.nr}</small><b>{weiter.titel}</b><small>{weiterText(weiter)}</small></span>
       </button>
     {/if}
     {#each kursStore.kurs?.bloecke ?? [] as b (b.titel)}

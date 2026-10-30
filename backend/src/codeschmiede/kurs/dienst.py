@@ -29,6 +29,7 @@ from .modelle import (Alltag, Augenzwinkern, Auswahlfrage, Beispiel, Diagramm, E
                       Ordnungsfrage, Text, Vorhersage, Zeichnung)
 from .pruefung import pruefe_kurs
 from .sql_ablauf import SqlLauf, sql_lauf
+from .weiter import Erledigt, kapitel_fertig, offener_schritt
 from .sicht import (AbschnittSicht, AlltagSicht, Antwort, AugenzwinkernSicht, BeispielSicht, BildVerweis,
                     BlockSicht, DiagrammSicht, EinfuehrungSicht, FalleSicht, FrageSicht, FrageTeilSicht, KapitelSicht,
                     KursSicht, KurztestSicht, KvFormelSicht, KvSicht, MerkBeispiel, MerkblattSicht, MerkeSicht, TextSicht, UebungSicht, Urteil,
@@ -175,8 +176,20 @@ class Kursdienst:
 
     # ---------- Übersicht ----------
 
+    def erledigt(self, geloest: set[str]) -> Erledigt:
+        """Erledigtes für die Regel in weiter.py: gelöste Aufgaben, fertige Einführungen, per Kurztest Übersprungenes."""
+        stand = Stand(self.fortschritt.alle())
+        einfuehrungen = self.inhalt.einfuehrungen.values()
+        return Erledigt(
+            aufgaben=frozenset(geloest),
+            einfuehrungen=frozenset(e.id for e in einfuehrungen
+                                    if {a.nummer for a in e.abschnitte} <= stand.abschnitte_fertig(e.id)),
+            uebersprungen=frozenset(e.id for e in einfuehrungen if stand.kurztest_bestanden(e.id)),
+        )
+
     def uebersicht(self, aufgaben: dict[str, Aufgabe], geloest: set[str]) -> list[KursSicht]:
         stand = Stand(self.fortschritt.alle())
+        erledigt = self.erledigt(geloest)
         kurse = []
         for sprache, kurs in self.inhalt.kurse.items():
             vorige_erledigt = True
@@ -190,7 +203,7 @@ class Kursdienst:
                     e = self.inhalt.einfuehrungen.get(kap.einfuehrung)
                     if e is None:
                         continue
-                    sicht = self._kapitel(nr, kap, e, stand, aufgaben, geloest, vorige_erledigt, erstes_offen)
+                    sicht = self._kapitel(nr, kap, e, stand, erledigt, aufgaben, vorige_erledigt, erstes_offen)
                     if sicht.stand in ("aktuell", "offen"):
                         erstes_offen = False
                     vorige_erledigt = sicht.stand in ("fertig", "uebersprungen")
@@ -199,18 +212,17 @@ class Kursdienst:
             kurse.append(KursSicht(sprache=sprache, titel=kurs.titel, bloecke=bloecke))
         return kurse
 
-    def _kapitel(self, nr: int, kap: Kapitel, e: Einfuehrung, stand: Stand, aufgaben: dict[str, Aufgabe], geloest: set[str],
+    def _kapitel(self, nr: int, kap: Kapitel, e: Einfuehrung, stand: Stand, erledigt: Erledigt, aufgaben: dict[str, Aufgabe],
                  vorige_erledigt: bool, erstes_offen: bool) -> KapitelSicht:
         def uebung(aid: str) -> UebungSicht:
             a = aufgaben.get(aid)
-            return UebungSicht(id=aid, titel=a.titel if a else aid, geloest=aid in geloest)
+            return UebungSicht(id=aid, titel=a.titel if a else aid, geloest=aid in erledigt.aufgaben)
 
         fertig_abschnitte = stand.abschnitte_fertig(e.id) & {a.nummer for a in e.abschnitte}
-        einfuehrung_fertig = len(fertig_abschnitte) == len(e.abschnitte)
-        alles_geloest = all(aid in geloest for aid in (*kap.uebungen, *kap.projekt))
-        if einfuehrung_fertig and alles_geloest:
+        einfuehrung_fertig = e.id in erledigt.einfuehrungen
+        if kapitel_fertig(kap, erledigt):
             zustand = "fertig"
-        elif stand.kurztest_bestanden(e.id):
+        elif e.id in erledigt.uebersprungen:
             zustand = "uebersprungen"
         elif not vorige_erledigt:
             zustand = "zu"
@@ -223,6 +235,7 @@ class Kursdienst:
             uebungen_offen=einfuehrung_fertig or zustand in ("fertig", "uebersprungen"),
             kurztest=e.id in self.inhalt.kurztests,
             vertiefung=[uebung(a) for a in self._vertiefung.get(e.id, [])],
+            offen=offener_schritt(kap, erledigt) if zustand != "zu" else None,
         )
 
     def beitrag(self, aufgaben: dict[str, Aufgabe], geloest: set[str]) -> KursBeitrag:

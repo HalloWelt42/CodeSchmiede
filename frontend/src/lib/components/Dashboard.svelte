@@ -5,6 +5,7 @@
   import { route } from '../stores/RouteStore.svelte';
   import { spielStore } from '../stores/SpielStore.svelte';
   import { kursStore } from '../stores/KursStore.svelte';
+  import { oeffneKapitel, weiterText } from '../kurs/weiter';
   import { ladeStart, lead, weitermachen, wiederholungen } from '../startseite.svelte';
   import { schildText, serieUnter, tage } from '../spielanzeige';
   import EmptyState from './EmptyState.svelte';
@@ -46,7 +47,7 @@
     {#snippet aktionen()}
       {#if kursStore.weiter}
         {@const k = kursStore.weiter}
-        <button class="knopf voll kuerzbar kurs-knopf" onclick={() => route.setze('einfuehrung', k.einfuehrung)} title="Kurs, Kapitel {k.nr}: {k.titel}"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>Kurs: {k.titel}</span></button>
+        <button class="knopf voll kuerzbar kurs-knopf" onclick={() => oeffneKapitel(k)} title="Kurs, Kapitel {k.nr}: {k.titel}, {weiterText(k)}"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>Kurs: {k.titel}</span></button>
       {/if}
       {#if weiter}
         <button class="knopf primaer kuerzbar" onclick={weiter.oeffnen} title={weiter.text}><i class="fa-solid fa-play" aria-hidden="true"></i><span>{weiter.text}</span></button>

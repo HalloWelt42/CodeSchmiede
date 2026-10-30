@@ -10,6 +10,8 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, Field
 
+from .weiter import KursWeiter
+
 Kapitelstand = Literal["fertig", "uebersprungen", "aktuell", "offen", "zu"]
 
 
@@ -155,6 +157,9 @@ class KapitelSicht(BaseModel):
     """Übungen sind freigeschaltet (Einführung fertig oder Kapitel übersprungen)."""
     kurztest: bool
     vertiefung: list[UebungSicht]
+    offen: KursWeiter | None = None
+    """Erstes offenes Element (Einführung oder Aufgabe) nach der Regel in weiter.py; leer, wenn das Kapitel fertig,
+    übersprungen oder noch zu ist."""
 
 
 class BlockSicht(BaseModel):

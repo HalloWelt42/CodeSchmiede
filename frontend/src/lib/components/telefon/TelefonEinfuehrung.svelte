@@ -38,6 +38,12 @@
     void kursStore.laden();
   });
 
+  let kapitel = $derived(kursStore.kapitel(id));
+  let aufgaben = $derived(kapitel ? [
+    ...kapitel.uebungen.map((u, i) => ({ ...u, text: `Übung ${i + 1}: ${u.titel}` })),
+    ...kapitel.projekt.map((u) => ({ ...u, text: `Kapitelprojekt: ${u.titel}` })),
+  ] : []);
+  let geschafft = $derived(aufgaben.some((u) => !u.geloest) ? 'Einführung geschafft' : 'geschafft');
   let abschnitt = $derived(e?.abschnitte.find((a) => a.nummer === nummer) ?? null);
   let fragenRichtig = $derived((abschnitt?.teile ?? []).every((t) => t.art !== 'frage' || t.frage.richtig || richtig[t.frage.id]));
   const senden = (a: Antwort) => kursApi.antworten(id, a);
@@ -67,7 +73,7 @@
   <header class="seiten-kopf">
     <div class="titelzeile">
       <button class="ikon" onclick={() => route.setze('kurs')} aria-label="Zur Kursübersicht"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
-      <span class="zelle-titel"><b>{e?.titel ?? 'Einführung'}</b>{#if e}<span>{e.kapitel ? `Kapitel ${e.kapitel}, ` : ''}{ende ? 'geschafft' : `Abschnitt ${nummer} von ${e.abschnitte.length}`}</span>{/if}</span>
+      <span class="zelle-titel"><b>{e?.titel ?? 'Einführung'}</b>{#if e}<span>{e.kapitel ? `Kapitel ${e.kapitel}, ` : ''}{ende ? geschafft : `Abschnitt ${nummer} von ${e.abschnitte.length}`}</span>{/if}</span>
       <button class="ikon" style="margin-left:auto" onclick={() => route.setze('merkblatt', id)} aria-label="Merkblatt"><i class="fa-solid fa-note-sticky" aria-hidden="true"></i></button>
     </div>
     {#if e}<div class="t-abschnitte">{#each e.abschnitte as a (a.nummer)}<span class:fertig={a.fertig} class:jetzt={!ende && a.nummer === nummer && !a.fertig}></span>{/each}</div>{/if}
@@ -78,10 +84,19 @@
       <div class="erklaerung schlecht"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span>{fehler}</span></div>
     {:else if e && ende}
       <div class="lesen-innen">
-        <h2>{e.titel} geschafft</h2>
+        <h2>{geschafft === 'geschafft' ? `${e.titel} geschafft` : geschafft}</h2>
         <div class="block"><div class="block-kopf"><span>Das kannst du jetzt</span></div>
           <ul class="lernziele">{#each e.lernziele as z (z)}<li><i class="fa-solid fa-check" aria-hidden="true"></i><span>{z}</span></li>{/each}</ul></div>
-        <p class="dim">Die Übungen warten am Rechner.</p>
+        {#if aufgaben.length}
+          <div class="block"><div class="block-kopf"><span>Üben</span><span class="num">{aufgaben.filter((u) => u.geloest).length} / {aufgaben.length}</span></div>
+            <div class="schritt-liste">
+              {#each aufgaben as u (u.id)}
+                <button class="schritt nachlesen" onclick={() => route.setze('aufgabe', u.id, id)}><span class="t">{u.text}</span>
+                  <i class="fa-solid {u.geloest ? 'fa-circle-check' : 'fa-circle'}" style={u.geloest ? 'color:var(--green)' : ''} aria-hidden="true" title={u.geloest ? 'gelöst' : 'offen'}></i></button>
+              {/each}
+            </div>
+          </div>
+        {/if}
         <div class="block"><div class="block-kopf"><span>Nochmal lesen</span></div>
           <div class="schritt-liste">
             {#each e.abschnitte as a (a.nummer)}
