@@ -1,7 +1,8 @@
 """Ausrollen der Codeschmiede auf den Pi (vom Mac aus, über tools/ausrollen.sh).
 
 Die Schritte, die für alle Apps gleich sind, kommen aus dem Appkern (appkern.werkzeuge.ausrollen): Pi prüfen,
-Zertifikat der Hausstelle, Stand holen, bauen, laufende Arbeit abwarten, Datenbank sichern, starten. Eigen sind hier,
+Zertifikat der Hausstelle, Stand holen, bauen, laufende Arbeit abwarten, Datenbank sichern (nach der Regel des Appkern,
+im Abbild der App mit ihren Werten CODESCHMIEDE_SICHERUNG_*), starten, nach dem Prüfen Docker aufräumen. Eigen sind hier,
 weil die Codeschmiede nicht auf dem Gerüst des Appkern steht:
 
 - Stand und Tests: nur gepushte Stände; Backend-Tests und Typprüfung der Oberfläche grün (die Prüfung des ganzen
@@ -111,6 +112,7 @@ def ausrollen(ergaenzung: Path, sofort: bool) -> int:
         a.sichern(z)
         a.starten(z)
         pruefen(z)
+        a.aufraeumen(z)
     except a.Abbruch as f:
         print(f"\nAbbruch: {f}", file=sys.stderr)
         return 1

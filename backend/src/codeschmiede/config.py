@@ -2,7 +2,8 @@
 
 from pathlib import Path
 
-from pydantic import SecretStr
+from appkern.sicherung import VORGABE, Regel
+from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # backend/src/codeschmiede/config.py -> Projekt-Wurzel ist 4 Ebenen darüber
@@ -51,11 +52,17 @@ class Settings(BaseSettings):
     # Leer: die mkcert-Stelle dieses Rechners, wenn es eine gibt.
     ca_datei: Path | None = None
 
-    # Nächtliche Sicherung der Datenbank in diesen Ordner (Betrieb).
-    # Leer: keine; vor jedem Ausrollen sichert zusätzlich das Ausrollen.
+    # Sicherung der Datenbank in diesen Ordner nach der Regel des Appkern
+    # (appkern.sicherung): eine neue, wenn die jüngste älter ist als
+    # sicherung_abstand_tage, vor dem Ausrollen nur, wenn sie älter ist als
+    # sicherung_vor_ausrollen_ab_stunden; nie ohne Änderung; höchstens
+    # sicherung_behalten Stände (codeschmiede-*.sqlite). Die Sicherung vor dem
+    # Ausrollen liest dieselben Werte (CODESCHMIEDE_SICHERUNG_*).
+    # Ordner leer: keine regelmäßige Sicherung (Entwicklung, Tests).
     sicherungen_pfad: Path | None = None
-    sicherung_stunde: int = 3
-    sicherungen_behalten: int = 14
+    sicherung_abstand_tage: int = Field(VORGABE.abstand_tage, ge=1, le=365)
+    sicherung_vor_ausrollen_ab_stunden: int = Field(VORGABE.vor_ausrollen_ab_stunden, ge=0, le=8760)
+    sicherung_behalten: int = Field(VORGABE.behalten, ge=1, le=100)
 
     # Gebaute Oberfläche, die das Backend selbst ausliefert (Betrieb).
     # Leer: keine; in der Entwicklung liefert Vite die Oberfläche.
@@ -63,3 +70,7 @@ class Settings(BaseSettings):
 
     api_host: str = "127.0.0.1"
     api_port: int = 8200
+
+    def sicherungsregel(self) -> Regel:
+        return Regel(abstand_tage=self.sicherung_abstand_tage, vor_ausrollen_ab_stunden=self.sicherung_vor_ausrollen_ab_stunden,
+                     behalten=self.sicherung_behalten)

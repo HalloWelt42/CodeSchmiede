@@ -19,6 +19,8 @@ from urllib.parse import urlsplit
 
 import httpx
 from appkern.anmeldung.api import angemeldet, anmeldungs_router
+from appkern.app.sicherung import RegelmaessigeSicherung
+from appkern.sicherung import Ablage
 from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -28,7 +30,6 @@ from . import _finde_version
 from .aufgaben.watcher import AufgabenWatcher
 from .config import Settings
 from .oberflaeche import fassung_der_oberflaeche, oberflaeche_einhaengen
-from .sicherung import nachts_sichern
 from .routes.admin import baue_admin_router
 from .routes.aufgaben import baue_aufgaben_router
 from .routes.pfade import baue_pfade_router
@@ -41,6 +42,7 @@ from .routes.zugang import baue_zugangs_router
 from .sandbox.runner import Runner
 from .state import AppState
 from .zugang import Zugang
+from .zugang.dienst import KENNUNG
 
 SICHERE_METHODEN = {"GET", "HEAD", "OPTIONS"}
 FREMD = {"cross-site", "same-site"}
@@ -67,6 +69,14 @@ def herkunft_erlaubt(request: Request, erlaubte: set[str]) -> bool:
     return True
 
 
+def sicherung_bauen(settings: Settings) -> RegelmaessigeSicherung | None:
+    """Sicherung der Datenbank als Begleiter nach der Regel des Appkern (Werte aus den Settings, Kopien
+    `codeschmiede-*.sqlite`); ohne Ordner keine. Ältere Kopien unter anderem Namen (nachts-*.sqlite) fasst sie nicht an."""
+    if settings.sicherungen_pfad is None:
+        return None
+    return RegelmaessigeSicherung(Ablage(settings.db_datei, settings.sicherungen_pfad, KENNUNG), settings.sicherungsregel)
+
+
 def app_bauen(
     settings: Settings | None = None,
     runner: Runner | None = None,
@@ -78,6 +88,7 @@ def app_bauen(
     watcher = AufgabenWatcher(state)
     erlaubte = set(aktive_settings.erlaubte_herkuenfte)
     oberflaeche = aktive_settings.oberflaeche_pfad
+    sicherung = sicherung_bauen(aktive_settings)
     # ändernde Anfragen in Arbeit (Prüfungen, Probeläufe): das Ausrollen wartet darauf
     laufend = 0
 
@@ -87,14 +98,13 @@ def app_bauen(
         aufgaben = []
         if aktive_settings.aufgaben_beobachten:
             aufgaben.append(asyncio.create_task(watcher.laufe()))
-        if aktive_settings.sicherungen_pfad is not None:
-            aufgaben.append(asyncio.create_task(nachts_sichern(
-                aktive_settings.db_datei, aktive_settings.sicherungen_pfad,
-                aktive_settings.sicherung_stunde, aktive_settings.sicherungen_behalten,
-            )))
+        if sicherung is not None:
+            await sicherung.starten()
         try:
             yield
         finally:
+            if sicherung is not None:
+                await sicherung.stoppen()
             for aufgabe in aufgaben:
                 aufgabe.cancel()
             await asyncio.gather(*aufgaben, return_exceptions=True)

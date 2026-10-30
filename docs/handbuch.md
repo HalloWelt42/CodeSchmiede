@@ -6,14 +6,14 @@ daten:
   - "Pi: `{{wurzel}}/daten/codeschmiede.sqlite` (Lernfortschritt, Abgaben, Punkte, Tagesaufträge, Zugang zur Kellerwolke) und `daten/einrichtungscode`, solange die App uneingerichtet ist"
   - "Pi: Aufgaben und Kurs kommen nur lesend aus dem Stand des Repos in `{{wurzel}}/aufgaben` und `{{wurzel}}/kurs`; bearbeitet wird am Mac, ausgerollt über das Repo"
 sicherung:
-  - "nachts um 3 Uhr eine Kopie der Datenbank nach `{{wurzel}}/sicherungen/nachts-*.sqlite` (die letzten 14 bleiben), dazu vor jedem Ausrollen `codeschmiede-*.sqlite` (die letzten zehn bleiben); das Werkzeug Sicherungen holt sie täglich nach `~/Sicherungen/codeschmiede/pi`"
+  - "Datenbank: nach der Regel des Appkerns eine Kopie nach `{{wurzel}}/sicherungen/codeschmiede-*.sqlite`, wöchentlich und vor dem Ausrollen (nur, wenn die jüngste älter als 24 Stunden ist), nie ohne Änderung, höchstens drei Stände (Umgebung `CODESCHMIEDE_SICHERUNG_ABSTAND_TAGE`, `..._VOR_AUSROLLEN_AB_STUNDEN`, `..._BEHALTEN`); das Werkzeug Sicherungen holt sie täglich nach `~/Sicherungen/codeschmiede/pi`. Ältere `nachts-*.sqlite` aus der Zeit davor bleiben liegen"
   - "Aufgaben und Kurs (Einführungen, Bilder) sind Dateien im Repo auf GitHub und brauchen keine eigene Sicherung"
 schluessel_orte:
   - "Pi: App-Schlüssel der Kellerwolke in der Tabelle `einstellungen` von `codeschmiede.sqlite` (eingetragen in der ersten Einrichtung im Browser)"
   - "Pi: `{{wurzel}}/.env` (Modus 0600): gemeinsamer Schlüssel von Backend und Sandbox-Dienst, vom Ausrollen einmal erzeugt"
   - "Pi: `{{wurzel}}/zertifikate/`, Blattzertifikat mit Schlüssel aus der Hausstelle (vom Ausrollen)"
 einrichten: einrichten.sh
-stand: 032fb7d
+stand: b9abc1e
 ---
 
 # Codeschmiede
@@ -62,7 +62,8 @@ cd {{ordner}} && tools/ausrollen.sh
 
 Das Ausrollen holt Rechner, Ordner und Adresse aus dem Handbuch, stellt das Zertifikat der Hausstelle aus, holt den
 Stand nach `{{wurzel}}` auf {{rechner}}, legt den Schlüssel des Sandbox-Dienstes einmal in `{{wurzel}}/.env` an, baut
-Backend, Sandbox-Dienst und die Sandbox-Abbilder, sichert die Datenbank und startet neu.
+Backend, Sandbox-Dienst und die Sandbox-Abbilder, sichert die Datenbank nach der Sicherungsregel und startet neu;
+nach dem Prüfen räumt es auf dem Pi verwaiste Abbilder und den Baucache von Docker auf.
 
 Probe: das Ausrollen endet mit "Ausgerollt: {{adresse}}"; `curl --cacert {{wurzel}}/zertifikate/rootCA.pem
 {{adresse}}/api/v1/app` auf dem Pi nennt dieselbe Fassung für Server und Oberfläche.
@@ -98,9 +99,9 @@ Probe: die Web-App zeigt die Startseite mit den Reitern unten.
 
 ## Sicherung und Rückspielen
 
-Gesichert wird die Datenbank: nachts um 3 Uhr nach `{{wurzel}}/sicherungen/nachts-*.sqlite` (14 bleiben) und vor
-jedem Ausrollen `codeschmiede-*.sqlite` (zehn bleiben). Das Werkzeug Sicherungen holt beides täglich auf den Mac nach
-`~/Sicherungen/codeschmiede/pi`. Zurückspielen wie in Schritt 4; prüfen, dass nach dem Anmelden der Fortschritt stimmt.
+Gesichert wird die Datenbank nach der Regel des Appkerns nach `{{wurzel}}/sicherungen/codeschmiede-*.sqlite`:
+wöchentlich und vor dem Ausrollen (nur, wenn die jüngste älter als 24 Stunden ist), nie ohne Änderung, höchstens drei
+Stände. Das Werkzeug Sicherungen holt sie täglich auf den Mac nach `~/Sicherungen/codeschmiede/pi`. Zurückspielen wie in Schritt 4; prüfen, dass nach dem Anmelden der Fortschritt stimmt.
 
 ## Wenn etwas klemmt
 

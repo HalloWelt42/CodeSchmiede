@@ -35,13 +35,13 @@ wheels = [
 
 [[package]]
 name = "appkern"
-version = "0.47.12"
-source = { url = "https://github.com/HalloWelt42/appkern/archive/07ac14ace952927f733acebb044eaa65782a0fec.tar.gz" }
+version = "0.56.0"
+source = { url = "https://github.com/HalloWelt42/appkern/archive/c34ab4181b4a6d7ee96ef51640d296a0b4534de2.tar.gz" }
 dependencies = [
     { name = "httpx" },
     { name = "pydantic" },
 ]
-sdist = { hash = "sha256:26706b1b0df860f0ac360b328e3357f1f96c0f27080a7fc3769c7033c4bc0f0a" }
+sdist = { hash = "sha256:8509b14a5ee25059eba139e5942e5e887db2eef7230f6d633149bc831ca7a7c8" }
 
 [package.optional-dependencies]
 web = [
@@ -53,17 +53,21 @@ requires-dist = [
     { name = "fastapi", marker = "extra == 'test'", specifier = ">=0.110" },
     { name = "fastapi", marker = "extra == 'tondienst'", specifier = ">=0.110" },
     { name = "fastapi", marker = "extra == 'web'", specifier = ">=0.110" },
+    { name = "http-ece", marker = "extra == 'push'", specifier = ">=1.2" },
+    { name = "http-ece", marker = "extra == 'test'", specifier = ">=1.2" },
     { name = "httpx", specifier = ">=0.27" },
     { name = "numpy", marker = "extra == 'test'", specifier = ">=1.26" },
     { name = "numpy", marker = "extra == 'ton'", specifier = ">=1.26" },
     { name = "numpy", marker = "extra == 'tondienst'", specifier = ">=1.26" },
+    { name = "py-vapid", marker = "extra == 'push'", specifier = ">=1.9" },
+    { name = "py-vapid", marker = "extra == 'test'", specifier = ">=1.9" },
     { name = "pydantic", specifier = ">=2.7" },
     { name = "pytest", marker = "extra == 'test'", specifier = ">=8" },
     { name = "pytest-asyncio", marker = "extra == 'test'", specifier = ">=0.24" },
     { name = "python-multipart", marker = "extra == 'test'", specifier = ">=0.0.9" },
     { name = "python-multipart", marker = "extra == 'tondienst'", specifier = ">=0.0.9" },
 ]
-provides-extras = ["web", "ton", "tondienst", "test"]
+provides-extras = ["web", "push", "ton", "tondienst", "test"]
 
 [[package]]
 name = "certifi"
@@ -109,7 +113,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "appkern", extras = ["web"], url = "https://github.com/HalloWelt42/appkern/archive/07ac14ace952927f733acebb044eaa65782a0fec.tar.gz" },
+    { name = "appkern", extras = ["web"], url = "https://github.com/HalloWelt42/appkern/archive/c34ab4181b4a6d7ee96ef51640d296a0b4534de2.tar.gz" },
     { name = "fastapi", specifier = ">=0.162.0" },
     { name = "httpx2", specifier = ">=2.16.0" },
     { name = "pydantic", specifier = ">=2.14.1" },

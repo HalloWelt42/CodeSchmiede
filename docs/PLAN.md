@@ -122,7 +122,7 @@ Jeder Schritt einzeln committet und gepusht.
 - Erste Einrichtung im Browser (Adresse und App-Schlüssel der Kellerwolke), von anderen Geräten nur mit dem Einrichtungscode aus der Datei am Rechner; Anmelde- und Einrichtungsseite nach Entwurf `mockups/rechner-anmeldung.html`, `telefon-anmeldung.html`
 - Betrieb auf dem Pi unter `/mnt/data/codeschmiede`, Port 8661: Vorschaltdienst mit Zertifikat der Hausstelle und HTTP/2, Backend mit gebauter Oberfläche, Sandbox-Dienst als einziger Teil mit Docker-Socket, Sandbox-Abbilder beim Ausrollen gebaut; Aufgaben nur lesend aus dem Repo
 - Ausrollen `tools/ausrollen.sh` mit den Schritten des Appkern (Zertifikat, Stand, Bauen, Sicherung, Start) und eigenen (Tests, Sandbox-Schlüssel nur auf dem Pi, Abbilder, Fassungen); vorher Probelauf des Handbuchs in einer abgeschotteten Umgebung
-- Datenbank nachts und vor jedem Ausrollen gesichert, vom Werkzeug Sicherungen auf den Mac geholt; Handbuchseite `docs/handbuch.md`, Einrichtungsskript `einrichten.sh`
+- Datenbank nach der Sicherungsregel des Appkern (wöchentlich und vor dem Ausrollen, höchstens drei) gesichert, vom Werkzeug Sicherungen auf den Mac geholt; Handbuchseite `docs/handbuch.md`, Einrichtungsskript `einrichten.sh`
 - Sandbox auf dem Pi gemessen: Containerstart warm unter 1 s, kalt rund 5 s (schneller als Docker am Mac); ohne Netz bestätigt
 - Speicher-cgroup ist auf dem Pi aus (`cgroup_disable=memory`): der Sandbox-Dienst erkennt das und begrenzt über die Datengrenze je Prozess
 - Zwei zufällig rote Tests behoben (die gesuchte 42 stand in Laufzeiten und Laufkennungen)

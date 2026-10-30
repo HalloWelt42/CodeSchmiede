@@ -23,7 +23,8 @@ services:
       CODESCHMIEDE_KURS_PFAD: /app/kurs
       CODESCHMIEDE_DATEN_PFAD: /app/daten
       CODESCHMIEDE_DB_DATEI: /app/daten/codeschmiede.sqlite
-      # nächtliche Kopie der Datenbank; dort liegen auch die Kopien vor jedem Ausrollen
+      # Sicherungen der Datenbank nach der Regel des Appkern (wöchentlich und vor dem Ausrollen, höchstens drei);
+      # Werte über CODESCHMIEDE_SICHERUNG_ABSTAND_TAGE, ..._VOR_AUSROLLEN_AB_STUNDEN, ..._BEHALTEN
       CODESCHMIEDE_SICHERUNGEN_PFAD: /app/sicherungen
       CODESCHMIEDE_AUFGABEN_SCHREIBBAR: "false"
       CODESCHMIEDE_AUFGABEN_BEOBACHTEN: "false"
