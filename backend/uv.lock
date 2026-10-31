@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.14"
 
 [[package]]
@@ -35,13 +35,13 @@ wheels = [
 
 [[package]]
 name = "appkern"
-version = "0.56.0"
-source = { url = "https://github.com/HalloWelt42/appkern/archive/c34ab4181b4a6d7ee96ef51640d296a0b4534de2.tar.gz" }
+version = "0.67.1"
+source = { url = "https://github.com/HalloWelt42/appkern/archive/f74edef0d33fba6bdb384ef552988e36bb99e5f9.tar.gz" }
 dependencies = [
     { name = "httpx" },
     { name = "pydantic" },
 ]
-sdist = { hash = "sha256:8509b14a5ee25059eba139e5942e5e887db2eef7230f6d633149bc831ca7a7c8" }
+sdist = { hash = "sha256:fcf52b43a095fcc3350cb62581139307fb7feafdb03753719edeab2de0c53148" }
 
 [package.optional-dependencies]
 web = [
@@ -113,7 +113,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "appkern", extras = ["web"], url = "https://github.com/HalloWelt42/appkern/archive/c34ab4181b4a6d7ee96ef51640d296a0b4534de2.tar.gz" },
+    { name = "appkern", extras = ["web"], url = "https://github.com/HalloWelt42/appkern/archive/f74edef0d33fba6bdb384ef552988e36bb99e5f9.tar.gz" },
     { name = "fastapi", specifier = ">=0.162.0" },
     { name = "httpx2", specifier = ">=2.16.0" },
     { name = "pydantic", specifier = ">=2.14.1" },

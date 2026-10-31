@@ -93,9 +93,7 @@
   --fs-xl: calc(24px * var(--schrift-zoom, 1));
   --knopf-h: 44px;
 }
-:root[data-geraet='telefon'] :is(input, select, textarea) {
-  font-size: 17px;
-}
+/* Eingaben am Telefon ohne Zoom beim Tippen: aus dem Rahmen des Appkerns (appkern-oberflaeche/rahmen.css) */
 
 /* ========== Grundlage ========== */
 * { box-sizing: border-box; }

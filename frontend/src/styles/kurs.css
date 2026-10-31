@@ -61,7 +61,7 @@
   .kapitel.zu { opacity: .55; }
   .kapitel-text { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
   .kapitel-text b { font-weight: 600; font-size: var(--fs-md); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .kapitel-text b .nr { font-family: var(--num); color: var(--fg-mute); margin-right: 6px; }
+  .kapitel-text b .nr { font-family: var(--num); color: var(--fg-dim); margin-right: 6px; }
   .kapitel-stand { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-xs); color: var(--fg-dim); flex-wrap: wrap; }
   .kapitel-stand .balken { width: 110px; }
   .kapitel-marke { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }

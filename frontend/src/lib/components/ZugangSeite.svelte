@@ -63,15 +63,15 @@
   );
 </script>
 
-<div class="rahmen">
-  <header class={geraet.telefon ? 't-kopf' : 'topbar'}>
+<div class="rahmen" data-rahmen={geraet.telefon ? 'app' : undefined}>
+  <header class={geraet.telefon ? 't-kopf' : 'topbar'} data-rahmen={geraet.telefon ? 'kopf' : undefined}>
     <div class="marke"><i class="fa-solid fa-hammer" aria-hidden="true"></i>Codeschmiede</div>
     <button class="ikon rechts" onclick={() => theme.toggle()} aria-label="Theme wechseln">
       <i class="fa-solid {theme.modus === 'dark' ? 'fa-sun' : 'fa-moon'}" aria-hidden="true"></i>
     </button>
   </header>
 
-  <main class="zugang">
+  <main class="zugang" data-rahmen={geraet.telefon ? 'inhalt' : undefined}>
     {#if zugang.stand === 'laden'}
       <p class="dim">Lade ...</p>
     {:else if zugang.stand === 'fehler'}
@@ -143,12 +143,11 @@
     background: var(--bg-card);
     border-bottom: 1px solid var(--border);
   }
+  /* am Telefon Höhe und sicherer Rand aus dem Rahmen des Appkerns (data-rahmen) */
   .t-kopf {
-    flex: none;
     display: flex;
     align-items: center;
-    height: calc(48px + env(safe-area-inset-top));
-    padding: env(safe-area-inset-top) var(--sp-3) 0;
+    padding-inline: var(--rahmen-rand);
     background: var(--bg-card);
     border-bottom: 1px solid var(--border);
   }

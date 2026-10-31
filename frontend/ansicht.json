@@ -1,0 +1,11 @@
+{
+  "anmeldung": false,
+  "thema": { "schluessel": "codeschmiede.theme", "hell": "light", "dunkel": "dark" },
+  "seiten": [
+    { "name": "start", "pfad": "/" },
+    { "name": "kurs", "pfad": "/kurs" },
+    { "name": "aufgaben", "pfad": "/aufgaben" },
+    { "name": "pfade", "pfad": "/pfade" },
+    { "name": "spiele", "pfad": "/spiele" }
+  ]
+}

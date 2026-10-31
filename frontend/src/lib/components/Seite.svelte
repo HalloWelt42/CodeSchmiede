@@ -41,7 +41,7 @@
 
 <style>
   :global([data-geraet='telefon']) .seiten-kopf {
-    padding: var(--sp-2) var(--sp-3);
+    padding: var(--sp-2) var(--rahmen-rand);
   }
   :global([data-geraet='telefon']) .titelzeile {
     flex-wrap: wrap;
@@ -52,6 +52,6 @@
     white-space: normal;
   }
   :global([data-geraet='telefon']) .rollfeld:not(.ohne-rand) {
-    padding: var(--sp-2) var(--sp-3) var(--sp-3);
+    padding: var(--sp-2) var(--rahmen-rand) var(--rahmen-rand);
   }
 </style>

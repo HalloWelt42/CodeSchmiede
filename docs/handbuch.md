@@ -13,7 +13,7 @@ schluessel_orte:
   - "Pi: `{{wurzel}}/.env` (Modus 0600): gemeinsamer Schlüssel von Backend und Sandbox-Dienst, vom Ausrollen einmal erzeugt"
   - "Pi: `{{wurzel}}/zertifikate/`, Blattzertifikat mit Schlüssel aus der Hausstelle (vom Ausrollen)"
 einrichten: einrichten.sh
-stand: b9abc1e
+stand: 9b4af2d
 ---
 
 # Codeschmiede
@@ -59,6 +59,10 @@ Probe: `backend/.venv/bin/python -m pytest -q` ist grün.
 ```
 cd {{ordner}} && tools/ausrollen.sh
 ```
+
+Vorher einmal je Stand der Oberfläche die Prüfung des Telefonrahmens (Kopf, Fußleiste, sichere Ränder, Eingaben ohne
+Zoom) gegen einen laufenden Probebetrieb: `node frontend/node_modules/appkern-oberflaeche/oberflaeche/werkzeuge/ansicht.mjs
+<adresse> --rahmen`; ohne befundfreien Lauf für den committeten Stand bricht das Ausrollen ab.
 
 Das Ausrollen holt Rechner, Ordner und Adresse aus dem Handbuch, stellt das Zertifikat der Hausstelle aus, holt den
 Stand nach `{{wurzel}}` auf {{rechner}}, legt den Schlüssel des Sandbox-Dienstes einmal in `{{wurzel}}/.env` an, baut

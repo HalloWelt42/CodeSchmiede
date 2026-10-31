@@ -46,6 +46,7 @@ def stand_und_tests(z: a.Ziel) -> None:
     print("Oberfläche:", (typen.stdout.strip().splitlines() or [""])[-1])
     if typen.returncode != 0:
         raise a.Abbruch("Typprüfung der Oberfläche nicht grün")
+    a.rahmen_nachweis(WURZEL)      # Rahmen am Telefon für diesen Stand geprüft (HELF-13)
 
 
 def sandbox_schluessel(z: a.Ziel) -> None:

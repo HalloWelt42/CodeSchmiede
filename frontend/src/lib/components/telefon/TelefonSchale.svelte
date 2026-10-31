@@ -1,9 +1,10 @@
 <script lang="ts">
   /*
    * Eigene Schale für das Telefon: schmaler Kopf, Inhalt in voller
-   * Breite, Reiterleiste ganz unten (ohne Abstand über dem Home-Balken).
-   * Oben nur die sichere Zone des Geräts, damit nichts unter Uhr und
-   * Kamera liegt.
+   * Breite, Reiterleiste ganz unten. Höhe, Kopf, Fußleiste und sichere
+   * Ränder kommen allein aus dem Rahmen des Appkerns
+   * (appkern-oberflaeche/rahmen.css, data-rahmen); die Lösung stammt
+   * von hier und ist dort die eine Wahrheit für alle Apps.
    */
   import { route } from '../../stores/RouteStore.svelte';
   import { theme } from '../../stores/ThemeStore.svelte';
@@ -15,8 +16,8 @@
   const reiter = BEREICHE.filter((b) => b.telefon);
 </script>
 
-<div class="telefon">
-  <header class="t-kopf">
+<div class="telefon" data-rahmen="app">
+  <header class="t-kopf" data-rahmen="kopf">
     <div class="marke">
       <i class="fa-solid fa-hammer" aria-hidden="true"></i>
       Codeschmiede
@@ -33,10 +34,10 @@
     </div>
   </header>
   <FassungsBand />
-  <main class="t-inhalt">
+  <main class="t-inhalt" data-rahmen="inhalt">
     <Inhalt />
   </main>
-  <nav class="t-reiter">
+  <nav class="t-reiter" data-rahmen="fuss">
     {#each reiter as bereich (bereich.id)}
       <button class:aktiv={istAktiv(bereich, route.aktiv, route.kursId)} onclick={() => route.setze(bereich.id)}>
         <i class="fa-solid {bereich.icon}" aria-hidden="true"></i>
@@ -48,21 +49,13 @@
 
 <style>
   .telefon {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 0;
-    overflow: hidden;
     background: var(--bg-card);
   }
   .t-kopf {
-    flex: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: calc(48px + env(safe-area-inset-top));
-    padding: env(safe-area-inset-top) var(--sp-3) 0;
+    padding-inline: var(--rahmen-rand);
     border-bottom: 1px solid var(--border);
   }
   .marke {
@@ -78,14 +71,11 @@
     gap: var(--sp-2);
   }
   .t-inhalt {
-    flex: 1;
-    min-height: 0;
     display: flex;
     flex-direction: column;
     overflow: hidden;
   }
   .t-reiter {
-    flex: none;
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: minmax(0, 1fr);
@@ -93,7 +83,8 @@
     background: var(--bg-card);
   }
   .t-reiter button {
-    height: 56px;
+    height: 100%;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
