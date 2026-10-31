@@ -61,7 +61,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   vorne:
-    image: caddy:2.11.6-alpine
+    image: caddy:2.11.7-alpine
     container_name: codeschmiede-vorne
     restart: unless-stopped
     security_opt: ["no-new-privileges:true"]
