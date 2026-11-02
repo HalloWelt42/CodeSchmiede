@@ -4,5 +4,8 @@
 ARG PHP_FASSUNG=8.4
 FROM php:${PHP_FASSUNG}-cli-alpine
 
+# Der Dienst ruft `timeout -k`; das BusyBox alter Abbilder (PHP 5.6) kennt -k nicht, dort kommen die coreutils dazu
+RUN timeout -k 1 1 true 2>/dev/null || apk add --no-cache coreutils
+
 WORKDIR /tmp
 CMD ["php", "-r", "echo 'codeschmiede-sandbox:php ', PHP_VERSION, ' bereit', PHP_EOL;"]
