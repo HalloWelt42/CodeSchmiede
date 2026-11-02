@@ -31,7 +31,8 @@ def client(tmp_path, konto: Konto) -> TestClient:
 
 
 def test_erlaubte_app_bekommt_die_aufzeichnung(tmp_path):
-    c = client(tmp_path, Konto(id="1", name="probe", app="nachschlag"))
+    # die Kellerwolke nennt die App mit ihrem Namen, die Erlaubnisliste führt die Kennung "nachschlag"
+    c = client(tmp_path, Konto(id="1", name="probe", app="Nachschlag"))
     r = c.post("/api/v1/sandbox/aufzeichnen", json={"code": "x = 2\nprint(x * 3)\n", "sprache": "python"})
     assert r.status_code == 200, r.text
     a = r.json()

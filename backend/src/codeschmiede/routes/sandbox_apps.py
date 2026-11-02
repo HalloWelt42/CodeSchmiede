@@ -36,15 +36,17 @@ def baue_sandbox_apps_router(state: AppState, pruefen: Callable[..., Awaitable[K
 
     @r.post("/aufzeichnen", response_model=Aufzeichnung)
     async def aufzeichnen_fuer_app(anfrage: SandboxAnfrage, konto: Konto = Depends(pruefen)) -> Aufzeichnung:
-        if not konto.app or konto.app not in erlaubt():
+        # die Kellerwolke nennt die App mit ihrem Namen ("Nachschlag"), die Liste führt Kennungen: ohne Groß/klein
+        app = (konto.app or "").strip().lower()
+        if not app or app not in {e.strip().lower() for e in erlaubt()}:
             raise HTTPException(status_code=403, detail="Diese App darf die Sandbox nicht nutzen (Einstellung Sandbox für Apps)")
-        if konto.app in laufend:
+        if app in laufend:
             raise HTTPException(status_code=429, detail="Es läuft schon ein Lauf dieser App")
-        laufend.add(konto.app)
+        laufend.add(app)
         try:
             return await asyncio.to_thread(aufzeichnen, state.runner, anfrage.code, RunLimits(timeout_sekunden=MIN_SEKUNDEN),
                                            anfrage.eingabe, anfrage.sprache, DEBUGGER)
         finally:
-            laufend.discard(konto.app)
+            laufend.discard(app)
 
     return r
