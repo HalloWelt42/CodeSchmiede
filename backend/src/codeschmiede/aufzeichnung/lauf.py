@@ -7,8 +7,9 @@ Code des Nutzers als Zeichenkette, die der Aufzeichner unter dem Dateinamen BEIS
 Datei zählen, Bibliotheken und der Aufzeichner selbst bleiben unsichtbar (kein Tiefendebugger).
 
 Python verfolgt den Lauf über die Ablaufverfolgung des Interpreters (der Aufzeichner steht unten), JavaScript über
-den Inspector von Node wie ein Debugger (aufzeichner.js). Beide liefern dieselbe Aufzeichnung; Werte aus JavaScript
-bekommen die Arten der Python-Werte (Array als Liste, Map als Wörterbuch, null und undefined als nichts).
+den Inspector von Node wie ein Debugger (aufzeichner.js), PHP über Xdebug und DBGp, je PHP-Fassung in ihrem Abbild
+(aufzeichner.php, für andere Apps). Alle liefern dieselbe Aufzeichnung; Werte aus JavaScript und PHP bekommen die
+Arten der Python-Werte (Array als Liste oder Wörterbuch, Map als Wörterbuch, null und undefined als nichts).
 
 Grenzen halten die Aufzeichnung klein (`Grenzen`, je Verwendung eigene): höchstens so viele Schritte und Bytes,
 Werte bis zu einer Tiefe mit höchstens so vielen Elementen, Darstellungen bis zu einer Länge. Wird eine Grenze
@@ -18,6 +19,7 @@ unter der Ausgabegrenze der Sandbox, sonst ginge der ganze Lauf verloren.
 
 from __future__ import annotations
 
+import base64
 import json
 from pathlib import Path
 from typing import Literal
@@ -25,6 +27,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field
 
 from ..pruefung.testlauf import hinweise, lies_block, neue_marke
+from ..sandbox.laufzeiten import laufzeit
 from ..sandbox.result import RunLimits
 from ..sandbox.runner import Runner
 
@@ -32,6 +35,9 @@ BEISPIEL = "<beispiel>"
 BEISPIEL_JS = "beispiel.js"
 """Dateiname des Beispiels in JavaScript; der Inspector erkennt das Skript daran."""
 AUFZEICHNER_JS = Path(__file__).with_name("aufzeichner.js")
+AUFZEICHNER_PHP = Path(__file__).with_name("aufzeichner.php")
+PHP_RESERVE_S = 1.5
+"""so lange vor der Zeitgrenze der Sandbox beendet der PHP-Aufzeichner ein Beispiel, damit sein Ergebnis noch ankommt"""
 ZEITGEBER_JS = Path(__file__).parent.parent / "pruefung" / "zeitgeber.js"
 
 
@@ -91,7 +97,7 @@ class Schritt(BaseModel):
     """Bei der letzten Zeile einer Funktion: ihr Rückgabewert."""
 
 
-Sprache = Literal["python", "javascript"]
+Sprache = Literal["python", "javascript", "php"]
 
 
 class Aufzeichnung(BaseModel):
@@ -103,6 +109,8 @@ class Aufzeichnung(BaseModel):
     gekuerzt: bool = False
     zeitueberschreitung: bool = False
     laufzeit_ms: float = 0
+    hinweise: str = ""
+    """Warnungen eines Laufs, der trotzdem zu Ende kam (PHP)"""
 
 
 _AUFZEICHNER = r'''
@@ -265,15 +273,35 @@ def skript_javascript(code: str, marke: str, eingabe: list[str] | None = None, g
     return text
 
 
+def skript_php(code: str, marke: str, eingabe: list[str] | None = None, grenzen: Grenzen = KURS,
+               sekunden: float = 8.5) -> str:
+    """Das PHP für die Sandbox: aufzeichner.php mit Base64 von JSON in den Platzhaltern (kein Zeichen des Codes kann
+    den Rahmen brechen). `sekunden`: so lange darf das Beispiel laufen, bevor der Aufzeichner es beendet."""
+    def b64(wert: object) -> str:
+        return base64.b64encode(json.dumps(wert).encode("utf-8")).decode("ascii")
+    werte = {"__GRENZEN__": b64(grenzen.als_liste()), "__EINGABE__": b64(eingabe or []),
+             "__MARKE__": base64.b64encode(marke.encode("utf-8")).decode("ascii"), "__SEKUNDEN__": f"{max(1.0, sekunden):.1f}",
+             "__CODE__": base64.b64encode(code.encode("utf-8")).decode("ascii")}
+    text = AUFZEICHNER_PHP.read_text(encoding="utf-8")
+    for platzhalter, wert in werte.items():
+        text = text.replace(platzhalter, wert)
+    return text
+
+
 SKRIPTE = {"python": skript, "javascript": skript_javascript}
 
 
 def aufzeichnen(runner: Runner, code: str, limits: RunLimits | None = None, eingabe: list[str] | None = None,
-                sprache: Sprache = "python", grenzen: Grenzen = KURS) -> Aufzeichnung:
+                sprache: Sprache = "python", grenzen: Grenzen = KURS, fassung: str = "") -> Aufzeichnung:
     """Führt Code in der Sandbox aus und liefert Ausgabe, Fehler und die Schritte mit dem Speicher; input() in Python
-    und prompt() in JavaScript lesen die Zeilen aus `eingabe`."""
+    und prompt() in JavaScript lesen die Zeilen aus `eingabe`, in PHP STDIN. `fassung`: die PHP-Fassung (ihr Abbild)."""
     marke = neue_marke()
-    erg = runner.run_code(SKRIPTE[sprache](code, marke, eingabe, grenzen), sprache, limits or RunLimits())
+    limits = limits or RunLimits()
+    if sprache == "php":
+        quelltext = skript_php(code, marke, eingabe, grenzen, limits.timeout_sekunden - PHP_RESERVE_S)
+    else:
+        quelltext = SKRIPTE[sprache](code, marke, eingabe, grenzen)
+    erg = runner.run_code(quelltext, laufzeit(sprache, fassung), limits)
     _, block = lies_block(erg, marke)
     if block is None:
         # Der Aufzeichner kam nicht bis zum Ende: Zeit, Speicher oder Ausgabeflut

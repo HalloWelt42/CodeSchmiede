@@ -17,9 +17,11 @@ for datei in "$BILDER_DIR"/*.Dockerfile; do
 done
 
 # PHP: je Fassung ein Abbild codeschmiede-sandbox:php-<fassung>; die Fassungen stehen nur in sandbox/laufzeiten.py
-for fassung in $("$ROOT_DIR/backend/.venv/bin/python" -c "from codeschmiede.sandbox.laufzeiten import PHP_FASSUNGEN; print(*PHP_FASSUNGEN)"); do
-  echo "Baue codeschmiede-sandbox:php-$fassung ..."
-  docker build --quiet --build-arg "PHP_FASSUNG=$fassung" --tag "codeschmiede-sandbox:php-$fassung" \
+# (mit der passenden Fassung von Xdebug für den Debugger)
+"$ROOT_DIR/backend/.venv/bin/python" -c "from codeschmiede.sandbox.laufzeiten import PHP_FASSUNGEN, xdebug; print(*(f'{f}:{xdebug(f)}' for f in PHP_FASSUNGEN))" \
+  | tr ' ' '\n' | while IFS=: read -r fassung xdebug; do
+  echo "Baue codeschmiede-sandbox:php-$fassung (Xdebug $xdebug) ..."
+  docker build --quiet --build-arg "PHP_FASSUNG=$fassung" --build-arg "XDEBUG=$xdebug" --tag "codeschmiede-sandbox:php-$fassung" \
     --file "$BILDER_DIR/php.Dockerfile" "$BILDER_DIR"
 done
 

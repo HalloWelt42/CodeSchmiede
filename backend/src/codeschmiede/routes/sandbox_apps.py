@@ -1,6 +1,6 @@
 """Sandbox für andere Apps (Nachschlag WIKI-48, "Ausprobieren"): eine App auf der Erlaubnisliste schickt Code und
 Sprache und bekommt die Aufzeichnung zurück (Ausgabe, Fehler, Schritte mit Speicher; dieselbe wie der Debugger der
-Codeschmiede). Sprachen ohne Aufzeichnung (PHP, je Fassung ein Abbild) laufen über "ausfuehren"; welche Sprachen und
+Codeschmiede; PHP in der gewählten Fassung über Xdebug). Nur ausführen geht über "ausfuehren"; welche Sprachen und
 Fassungen es gibt, sagt "sprachen", welche Funktionen eine PHP-Fassung kennt, "funktionen/php" (für den Editor,
 WIKI-52). Der Sandbox-Dienst bleibt im eigenen Netz; offen ist nur dieser Weg, mit dem App-Schlüssel der Kellerwolke.
 Je App höchstens ein Lauf zugleich, Code begrenzt, Grenzen wie im Debugger."""
@@ -18,7 +18,7 @@ from pydantic import BaseModel, Field
 from ..aufzeichnung.debuglauf import DEBUGGER, MIN_SEKUNDEN
 from ..aufzeichnung.lauf import Aufzeichnung, aufzeichnen
 from ..sandbox.ausfuehrung import Ausfuehrung, ausfuehren, php_funktionen
-from ..sandbox.laufzeiten import MIT_AUFZEICHNUNG, PHP_FASSUNGEN
+from ..sandbox.laufzeiten import EINE_FASSUNG, MIT_AUFZEICHNUNG, PHP_FASSUNGEN
 from ..sandbox.result import RunLimits
 from ..sandbox.runner import SandboxFehler
 from ..state import AppState
@@ -29,8 +29,9 @@ HOECHSTENS_ZEICHEN = 20_000
 
 class SandboxAnfrage(BaseModel):
     code: str = Field(min_length=1, max_length=HOECHSTENS_ZEICHEN)
-    sprache: Literal["python", "javascript"]
-    eingabe: list[str] = Field(default_factory=list, max_length=50, description="Zeilen für input() oder prompt()")
+    sprache: Literal["python", "javascript", "php"]
+    fassung: str = Field("", max_length=10, description="PHP-Fassung, etwa 8.3; leer: die neueste")
+    eingabe: list[str] = Field(default_factory=list, max_length=50, description="Zeilen für input(), prompt() oder STDIN")
 
 
 class AusfuehrenAnfrage(BaseModel):
@@ -46,8 +47,20 @@ class Sprachangebot(BaseModel):
 
 
 def angebot() -> list[Sprachangebot]:
-    return [*(Sprachangebot(sprache=s, aufzeichnen=True) for s in MIT_AUFZEICHNUNG),
-            Sprachangebot(sprache="php", fassungen=list(PHP_FASSUNGEN), aufzeichnen=False)]
+    return [Sprachangebot(sprache=s, fassungen=list(PHP_FASSUNGEN) if s == "php" else [], aufzeichnen=s in MIT_AUFZEICHNUNG)
+            for s in (*EINE_FASSUNG, "php")]
+
+
+def fassung_von(sprache: str, wunsch: str) -> str:
+    """Die Fassung eines Laufs: bei PHP die gewünschte (leer: die neueste), sonst keine."""
+    fassung = wunsch.strip()
+    if sprache == "php":
+        fassung = fassung or PHP_FASSUNGEN[0]
+        if fassung not in PHP_FASSUNGEN:
+            raise HTTPException(status_code=422, detail=f"PHP {fassung} gibt es in der Sandbox nicht ({', '.join(PHP_FASSUNGEN)})")
+    elif fassung:
+        raise HTTPException(status_code=422, detail=f"Für {sprache} gibt es keine Wahl der Fassung")
+    return fassung
 
 
 def baue_sandbox_apps_router(state: AppState, pruefen: Callable[..., Awaitable[Konto]],
@@ -84,19 +97,14 @@ def baue_sandbox_apps_router(state: AppState, pruefen: Callable[..., Awaitable[K
 
     @r.post("/aufzeichnen", response_model=Aufzeichnung)
     async def aufzeichnen_fuer_app(anfrage: SandboxAnfrage, konto: Konto = Depends(pruefen)) -> Aufzeichnung:
+        fassung = fassung_von(anfrage.sprache, anfrage.fassung)
         return await einzeln(konto, lambda: aufzeichnen(state.runner, anfrage.code, RunLimits(timeout_sekunden=MIN_SEKUNDEN),
-                                                        anfrage.eingabe, anfrage.sprache, DEBUGGER))
+                                                        anfrage.eingabe, anfrage.sprache, DEBUGGER, fassung))
 
     @r.post("/ausfuehren", response_model=Ausfuehrung)
     async def ausfuehren_fuer_app(anfrage: AusfuehrenAnfrage, konto: Konto = Depends(pruefen)) -> Ausfuehrung:
         """Nur ausführen (ohne Aufzeichnung): Ausgabe, Hinweise, Fehler mit Zeile. PHP in der gewählten Fassung."""
-        fassung = anfrage.fassung.strip()
-        if anfrage.sprache == "php":
-            fassung = fassung or PHP_FASSUNGEN[0]
-            if fassung not in PHP_FASSUNGEN:
-                raise HTTPException(status_code=422, detail=f"PHP {fassung} gibt es in der Sandbox nicht ({', '.join(PHP_FASSUNGEN)})")
-        elif fassung:
-            raise HTTPException(status_code=422, detail=f"Für {anfrage.sprache} gibt es keine Wahl der Fassung")
+        fassung = fassung_von(anfrage.sprache, anfrage.fassung)
         try:
             return await einzeln(konto, lambda: ausfuehren(state.runner, anfrage.code, anfrage.sprache, fassung,
                                                           RunLimits(timeout_sekunden=MIN_SEKUNDEN)))

@@ -9,8 +9,20 @@ from __future__ import annotations
 #: PHP-Fassungen mit eigenem Abbild, neueste zuerst
 PHP_FASSUNGEN: tuple[str, ...] = ("8.5", "8.4", "8.3", "8.2", "8.1", "8.0", "7.4", "5.6")
 
+#: Xdebug je PHP-Fassung, für den Debugger (aufzeichnung/aufzeichner.php); 3.5 deckt 8.0 bis 8.5 ab
+XDEBUG: dict[str, str] = {"7.4": "3.1.6", "5.6": "2.5.5"}
+XDEBUG_VORGABE = "3.5.3"
+
+#: Sprachen mit genau einem Abbild (ohne Wahl der Fassung)
+EINE_FASSUNG: tuple[str, ...] = ("python", "javascript")
+
 #: Sprachen, deren Lauf der Debugger aufzeichnen kann (die übrigen nur ausführen)
-MIT_AUFZEICHNUNG: tuple[str, ...] = ("python", "javascript")
+MIT_AUFZEICHNUNG: tuple[str, ...] = ("python", "javascript", "php")
+
+
+def xdebug(fassung: str) -> str:
+    """Die Fassung von Xdebug, die zu einer PHP-Fassung passt."""
+    return XDEBUG.get(fassung, XDEBUG_VORGABE)
 
 
 def laufzeit(sprache: str, fassung: str = "") -> str:
@@ -29,5 +41,5 @@ def abbild(name: str) -> str:
 
 def bilder() -> dict[str, str]:
     """Vorgabe des Sandbox-Dienstes: jede Laufzeit mit ihrem Abbild."""
-    namen = [*MIT_AUFZEICHNUNG, *(laufzeit("php", f) for f in PHP_FASSUNGEN)]
+    namen = [*EINE_FASSUNG, *(laufzeit("php", f) for f in PHP_FASSUNGEN)]
     return {n: abbild(n) for n in namen}

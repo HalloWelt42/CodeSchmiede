@@ -82,14 +82,17 @@ Backend (FastAPI :8200)                       kein Docker-Zugang
 ### Sandbox für andere Apps
 
 Apps auf der Erlaubnisliste (Einstellung "Sandbox für Apps", Anmeldung mit dem App-Schlüssel der Kellerwolke) nutzen
-`/api/v1/sandbox`: `sprachen` (Angebot mit PHP-Fassungen, ob aufgezeichnet wird), `aufzeichnen` (Python, JavaScript:
-die Aufzeichnung des Debuggers), `ausfuehren` (auch PHP in einer Fassung: Ausgabe, Hinweise, Fehler mit Zeile) und
-`funktionen/php` (je Fassung die eingebauten Funktionen, für den Editor). Je App höchstens ein Lauf zugleich.
+`/api/v1/sandbox`: `sprachen` (Angebot mit PHP-Fassungen, ob aufgezeichnet wird), `aufzeichnen` (die Aufzeichnung
+des Debuggers; PHP in einer Fassung über Xdebug und DBGp, `aufzeichnung/aufzeichner.php`), `ausfuehren` (nur
+ausführen: Ausgabe, Hinweise, Fehler mit Zeile) und `funktionen/php` (je Fassung die eingebauten Funktionen, für den
+Editor). Je App höchstens ein Lauf zugleich.
 
 ### Neue PHP-Fassung
 
-Die Fassung in `sandbox/laufzeiten.py:PHP_FASSUNGEN` eintragen; das Ausrollen baut ihr Abbild aus
-`sandbox-bilder/php.Dockerfile`, der Dienst und die Schnittstelle für Apps nehmen sie von dort.
+Die Fassung in `sandbox/laufzeiten.py:PHP_FASSUNGEN` eintragen, dazu in `XDEBUG` die passende Fassung von Xdebug,
+wenn die Vorgabe sie nicht abdeckt; das Ausrollen baut ihr Abbild aus `sandbox-bilder/php.Dockerfile` (Xdebug gebaut,
+aber nur für den Debugger geladen), der Dienst und die Schnittstelle für Apps nehmen sie von dort. Der Aufzeichner
+läuft unter jeder Fassung, also auch unter PHP 5.6 (kein `??`, keine Typangaben).
 
 ### Neue Sprache in der Sandbox
 

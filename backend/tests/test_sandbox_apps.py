@@ -48,7 +48,7 @@ def test_andere_apps_und_menschen_nicht_und_code_begrenzt(tmp_path):
     assert mensch.post("/api/v1/sandbox/aufzeichnen", json={"code": "print(1)", "sprache": "python"}).status_code == 403
     app = client(tmp_path, Konto(id="1", name="probe", app="nachschlag"))
     assert app.post("/api/v1/sandbox/aufzeichnen", json={"code": "x" * 20_001, "sprache": "python"}).status_code == 422
-    assert app.post("/api/v1/sandbox/aufzeichnen", json={"code": "print(1)", "sprache": "php"}).status_code == 422
+    assert app.post("/api/v1/sandbox/aufzeichnen", json={"code": "print(1)", "sprache": "ruby"}).status_code == 422
 
 
 class PhpRunner:
@@ -73,11 +73,11 @@ def php_client(tmp_path, runner) -> TestClient:
     return TestClient(app)
 
 
-def test_angebot_nennt_php_fassungen_ohne_aufzeichnung(tmp_path):
+def test_angebot_nennt_php_fassungen_mit_aufzeichnung(tmp_path):
     c = php_client(tmp_path, PhpRunner())
     angebot = {a["sprache"]: a for a in c.get("/api/v1/sandbox/sprachen").json()}
     assert angebot["python"]["aufzeichnen"] and not angebot["python"]["fassungen"]
-    assert angebot["php"]["fassungen"] == list(PHP_FASSUNGEN) and not angebot["php"]["aufzeichnen"]
+    assert angebot["php"]["fassungen"] == list(PHP_FASSUNGEN) and angebot["php"]["aufzeichnen"]
     assert PHP_FASSUNGEN[0] == "8.5" and "5.6" in PHP_FASSUNGEN
 
 
@@ -98,6 +98,14 @@ def test_php_ausfuehren_in_der_gewaehlten_fassung(tmp_path):
     assert alt["fehler"] == "Parse error: syntax error, unexpected ':' in beispiel.php on line 2" and alt["fehlerzeile"] == 2
     assert c.post("/api/v1/sandbox/ausfuehren", json={"code": "1", "sprache": "php", "fassung": "4.4"}).status_code == 422
     assert c.post("/api/v1/sandbox/ausfuehren", json={"code": "1", "sprache": "python", "fassung": "3.12"}).status_code == 422
+
+
+def test_php_aufzeichnen_in_der_gewaehlten_fassung(tmp_path):
+    runner = PhpRunner()
+    c = php_client(tmp_path, runner)
+    assert c.post("/api/v1/sandbox/aufzeichnen", json={"code": "<?php echo 1;", "sprache": "php", "fassung": "5.6"}).status_code == 200
+    assert runner.laufzeiten[-1] == "php-5.6"
+    assert c.post("/api/v1/sandbox/aufzeichnen", json={"code": "1", "sprache": "php", "fassung": "4.4"}).status_code == 422
 
 
 def test_php_funktionen_je_fassung_einmal_gefragt(tmp_path):
