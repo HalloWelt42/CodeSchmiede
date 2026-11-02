@@ -3,9 +3,11 @@
 // aufzeichner.js. Das Beispiel läuft in einem eigenen PHP-Prozess mit Xdebug; dieser Rahmen verbindet sich mit ihm
 // über DBGp wie ein Debugger, geht Schritt für Schritt (step_into) und liest bei jedem Halt den Aufrufstapel und die
 // lokalen Namen jedes Rahmens. Nur Rahmen des Beispiels zählen; eingebaute Funktionen (array_map) bleiben unsichtbar.
-// Haltepunkte vom Typ "return" auf jeder Funktion des Beispiels zeigen, wann sie zurückkehrt; so trennt sich der
-// nächste Aufruf von einer Schleife, und ab Xdebug 3 steht dort der Rückgabewert ($__RETURN_VALUE). Wie in Python ist
-// jeder Schritt eine ausgeführte Zeile mit dem Speicher danach.
+// Haltepunkte vom Typ "return" auf jeder Funktion des Beispiels zeigen, wann sie zurückkehrt (ihr Trefferzähler
+// steigt); so trennt sich der nächste Aufruf von einer Schleife, und ab PHP 8.1 mit Xdebug 3.5 steht dort der
+// Rückgabewert ($__RETURN_VALUE). Xdebug 3.0 und
+// 3.1 (PHP 7.4) stürzen nach einem solchen Halt ab; dort bleibt nur der kleiner werdende Stapel als Zeichen der
+// Rückkehr. Wie in Python ist jeder Schritt eine ausgeführte Zeile mit dem Speicher danach.
 //
 // Läuft unter derselben PHP-Fassung wie das Beispiel, also auch unter 5.6: kein ??, keine Typangaben, kein fn.
 // Die Platzhalter setzt lauf.py ein (Base64 von JSON, damit kein Zeichen den Rahmen bricht).
@@ -277,11 +279,15 @@ $fehlerzeile = null;
 $abgebrochen = false;
 $v = @stream_socket_accept($server, max(1, (int) ($FRIST - microtime(true))));
 if ($v) {
-    dbgp_lesen($v);                                       // Anmeldung des Prozesses (init)
+    $anmeldung = dbgp_lesen($v);                          // Anmeldung des Prozesses (init) mit der Fassung von Xdebug
+    $xdebug = $anmeldung !== null && isset($anmeldung->engine) ? (string) $anmeldung->engine['version'] : '';
+    $mit_rueckkehr = !(version_compare($xdebug, '3.0', '>=') && version_compare($xdebug, '3.2', '<'));
     dbgp($v, 'feature_set -n max_depth -v ' . $MAX_TIEFE);
     dbgp($v, 'feature_set -n max_children -v ' . $MAX_ELEMENTE);
     dbgp($v, 'feature_set -n max_data -v ' . max(256, $MAX_ZEICHEN * 4));
-    foreach (funktionen($CODE) as $f) dbgp($v, 'breakpoint_set -t return -m ' . $f[0] . ($f[1] !== null ? ' -a ' . $f[1] : ''));
+    $rueckkehr_punkte = $mit_rueckkehr ? funktionen($CODE) : array();
+    foreach ($rueckkehr_punkte as $f) dbgp($v, 'breakpoint_set -t return -m ' . $f[0] . ($f[1] !== null ? ' -a ' . $f[1] : ''));
+    $treffer = 0;
     $vorige = null;
     $davor = '';                                          // Ausgabe vor dem ersten Halt
     $status = '';
@@ -294,14 +300,25 @@ if ($v) {
         $ausgabe = $davor . neue_ausgabe($rohre[1]);
         $davor = '';
         if (!$ebenen) { $davor = $ausgabe; continue; }
-        // Rückkehr: die Meldung nennt die Zeile des Aufrufers, der Stapel zeigt noch die Funktion
-        $gemeldet = isset($antwort->message) ? (int) $antwort->message['lineno'] : $ebenen[0][2];
-        if ($gemeldet !== $ebenen[0][2]) {
+        // Rückkehr: ein Haltepunkt "return" hat getroffen; die Meldung nennt die Zeile des Aufrufers, der Stapel zeigt
+        // noch die Funktion
+        $rueckkehr = false;
+        if ($rueckkehr_punkte) {
+            $liste = dbgp($v, 'breakpoint_list');
+            $summe = 0;
+            if ($liste !== null) foreach ($liste->breakpoint as $b) $summe += (int) $b['hit_count'];
+            $rueckkehr = $summe > $treffer;
+            $treffer = $summe;
+        }
+        if ($rueckkehr) {
+            $gemeldet = isset($antwort->message) ? (int) $antwort->message['lineno'] : $ebenen[0][2];
             $r = dbgp($v, 'property_get -d ' . $ebenen[0][0] . ' -c 0 -n $__RETURN_VALUE');
             $rueckgabe = $r !== null && isset($r->property) ? wert($r->property) : null;
-            // Xdebug 3 zeigt die Funktion noch mit ihren Namen, Xdebug 2 ohne (Zeile 0): dann der Stand davor
-            $zustand = $ebenen[0][2] > 0 ? zustand_lesen($v, $ebenen) : ($vorige !== null ? $vorige['zustand'] : null);
-            if ($vorige !== null && $zustand !== null) festhalten($vorige['zeile'], $zustand, $ausgabe, $rueckgabe);
+            // manche Fassungen zeigen die Funktion dabei noch mit ihren Namen, andere leer: dann der Stand davor
+            $jetzt = zustand_lesen($v, $ebenen);
+            $innen = $jetzt[count($jetzt) - 1]['variablen'];
+            $zustand = is_array($innen) || $vorige === null ? $jetzt : $vorige['zustand'];
+            if ($vorige !== null) festhalten($vorige['zeile'], $zustand, $ausgabe, $rueckgabe);
             array_shift($ebenen);
             $vorige = $ebenen ? array('zeile' => $gemeldet, 'zustand' => zustand_lesen($v, $ebenen)) : null;
             continue;
