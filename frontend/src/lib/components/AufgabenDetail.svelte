@@ -21,7 +21,7 @@
   import type { SubmissionAntwort } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
-  import { DebuggerBereich, DebugSitzung, EditorBereich } from 'appkern-oberflaeche/code';
+  import { DebuggerBereich, DebugSitzung, EditorBereich, type Rahmen } from 'appkern-oberflaeche/code';
   import CssKlonView from './CssKlonView.svelte';
   import DreiSpaltenLayout from './DreiSpaltenLayout.svelte';
   import SpaltenReiter from './SpaltenReiter.svelte';
@@ -70,6 +70,8 @@
   let rechter_tab = $state<'ergebnis' | 'debugger'>('ergebnis');
   /** Zeile, die der Debugger gerade zeigt */
   let debug_zeile = $state<number | null>(null);
+  /** Rahmen dieses Schritts: ihre Werte zeigt der Editor beim Überfahren eines Namens (Nachschlag WIKI-53) */
+  let debug_rahmen = $state.raw<readonly Rahmen[] | null>(null);
   let mit_debugger = $derived(!geraet.telefon && (detail?.sprache === 'python' || detail?.sprache === 'javascript'));
   $effect(() => {
     if (!sitzung.aktiv) rechter_tab = 'ergebnis';
@@ -327,6 +329,7 @@
               markierteZeile={rechter_tab === 'debugger' ? debug_zeile : null}
               mitHaltepunkten={mit_debugger}
               bind:haltepunkte={sitzung.haltepunkte}
+              werte={rechter_tab === 'debugger' ? debug_rahmen : null}
             />
           </div>
           {#if mit_debugger}
@@ -355,7 +358,7 @@
           {/if}
           {#if rechter_tab === 'debugger'}
             <div class="rollfeld">
-              <DebuggerBereich {sitzung} sprache={aktuell.sprache} {code} bind:zeile={debug_zeile} />
+              <DebuggerBereich {sitzung} sprache={aktuell.sprache} {code} bind:zeile={debug_zeile} bind:rahmen={debug_rahmen} />
             </div>
           {:else}
           <div class="rollfeld">
