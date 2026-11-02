@@ -16,8 +16,8 @@ from .runner import Runner, SandboxFehler
 
 #: wie der Code in Meldungen heißt (wie die Datei im Editor)
 DATEINAMEN = {"php": "beispiel.php", "python": "beispiel.py", "javascript": "beispiel.js"}
-#: so nennt PHP Code, der über stdin kam
-PHP_EINGABE = "Standard input code"
+#: so nennt PHP Code, der über stdin kam ("Standard input code", PHP 5.6 schlicht "-": "in - on line 2")
+PHP_EINGABE = re.compile(r"Standard input code|(?<=\bin )-(?= on line)")
 #: Zeile in einer Meldung: "on line 3" oder "beispiel.php:3" (Stapel)
 ZEILE = re.compile(r"on line (\d+)|\.php:(\d+)")
 
@@ -37,7 +37,7 @@ class Ausfuehrung(BaseModel):
 
 def ausfuehren(runner: Runner, code: str, sprache: str, fassung: str, limits: RunLimits) -> Ausfuehrung:
     ergebnis = runner.run_code(code, laufzeit(sprache, fassung), limits)
-    meldungen = ergebnis.stderr.replace(PHP_EINGABE, DATEINAMEN.get(sprache, "beispiel")).strip()
+    meldungen = PHP_EINGABE.sub(DATEINAMEN.get(sprache, "beispiel"), ergebnis.stderr).strip()
     gescheitert = ergebnis.exit_code != 0 or ergebnis.timeout or ergebnis.gekuerzt
     fehler = None
     if ergebnis.timeout:

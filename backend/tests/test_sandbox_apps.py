@@ -93,6 +93,9 @@ def test_php_ausfuehren_in_der_gewaehlten_fassung(tmp_path):
                                        "  thrown in Standard input code on line 2"), 255
     kaputt = c.post("/api/v1/sandbox/ausfuehren", json={"code": "<?php\nx();", "sprache": "php", "fassung": "8.3"}).json()
     assert kaputt["fehlerzeile"] == 2 and "beispiel.php" in kaputt["fehler"] and not kaputt["hinweise"]
+    runner.stderr = "Parse error: syntax error, unexpected ':' in - on line 2"   # PHP 5.6 nennt stdin "-"
+    alt = c.post("/api/v1/sandbox/ausfuehren", json={"code": "<?php\nx();", "sprache": "php", "fassung": "5.6"}).json()
+    assert alt["fehler"] == "Parse error: syntax error, unexpected ':' in beispiel.php on line 2" and alt["fehlerzeile"] == 2
     assert c.post("/api/v1/sandbox/ausfuehren", json={"code": "1", "sprache": "php", "fassung": "4.4"}).status_code == 422
     assert c.post("/api/v1/sandbox/ausfuehren", json={"code": "1", "sprache": "python", "fassung": "3.12"}).status_code == 422
 
