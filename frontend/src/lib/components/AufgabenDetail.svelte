@@ -21,14 +21,12 @@
   import type { SubmissionAntwort } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
   import ConfirmModal from './ConfirmModal.svelte';
-  import DebuggerBereich from './DebuggerBereich.svelte';
-  import { DebugSitzung } from '../debugger/sitzung.svelte';
+  import { DebuggerBereich, DebugSitzung, EditorBereich } from 'appkern-oberflaeche/code';
   import CssKlonView from './CssKlonView.svelte';
   import DreiSpaltenLayout from './DreiSpaltenLayout.svelte';
   import SpaltenReiter from './SpaltenReiter.svelte';
   import { geraet } from '../stores/GeraetStore.svelte';
   import MusterloesungenBereich from './MusterloesungenBereich.svelte';
-  import EditorBereich from './EditorBereich.svelte';
   import LueckentextView from './LueckentextView.svelte';
   import OutputBereich from './OutputBereich.svelte';
   import OutputQuizView from './OutputQuizView.svelte';
@@ -79,7 +77,10 @@
 
   function debuggen(eingabe: unknown[], aufruf: string | null): void {
     rechter_tab = 'debugger';
-    if (detail) void sitzung.starten(detail.id, code, eingabe, aufruf);
+    if (!detail) return;
+    const id = detail.id;
+    // aufgezeichnet wird die Aufgabe mit der Eingabe dieses Probelaufs, auch bei "Neu" nach einer Änderung
+    void sitzung.starten(code, (c) => submissionsApi.debuggen(id, c, eingabe), aufruf);
   }
 
   let musterloesungen_frei = $state(false);

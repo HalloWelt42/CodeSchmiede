@@ -1,5 +1,5 @@
 import { HttpBase } from './HttpBase';
-import type { Debuglauf } from '../types/Aufzeichnung';
+import type { Debuglauf } from 'appkern-oberflaeche/code';
 import type { Messung, ProbelaufAntwort, SubmissionAntwort } from '../types/Submission';
 
 export class SubmissionsApi extends HttpBase {

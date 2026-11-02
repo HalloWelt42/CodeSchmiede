@@ -39,7 +39,7 @@
 
 /* ========== Dunkel (Standard) ========== */
 :root,
-:root[data-theme='dark'] {
+:root[data-theme='dunkel'] {
   --bg:        #1a1d23;
   --bg-card:   #22262d;
   --bg-card-2: #2a2f37;
@@ -61,7 +61,7 @@
 }
 
 /* ========== Hell ========== */
-:root[data-theme='light'] {
+:root[data-theme='hell'] {
   --bg:        #f5f6f8;
   --bg-card:   #ffffff;
   --bg-card-2: #ebedf0;
@@ -94,6 +94,22 @@
   --knopf-h: 44px;
 }
 /* Eingaben am Telefon ohne Zoom beim Tippen: aus dem Rahmen des Appkerns (appkern-oberflaeche/rahmen.css) */
+
+/* ========== Marken des Appkerns ==========
+   Editor, Debugger und Speicherbild sind gemeinsame Bausteine (appkern-oberflaeche/code) und lesen nur die Marken des
+   Appkerns (appkern-oberflaeche/marken.css, dort auch die Farben des Editors). Hier, an einer Stelle, bekommen die
+   Marken die Farben und Schriften der Codeschmiede; alles verweist auf die eigenen Werte und folgt so Thema und
+   Schriftzoom. html:root wiegt mehr als die Themen der Marken ([data-theme]), unabhängig von der Ladefolge. */
+html:root {
+  --schrift: var(--sans); --schrift-code: var(--mono); --schrift-zahl: var(--num);
+  --gross: var(--fs-md); --klein: var(--fs-sm); --marke: var(--fs-xs);
+  --hg: var(--bg); --flaeche: var(--bg-card); --flaeche-2: var(--bg-card-2);
+  --text: var(--fg); --text-2: var(--fg-dim); --text-3: var(--fg-mute);
+  --rand: var(--border); --rand-stark: var(--border-strong);
+  --akzent: var(--accent); --warn: var(--orange); --gefahr: var(--red); --gut: var(--green);
+}
+/* Speicherbild in der Farbfamilie der Sprache (kurs.css), wo eine Sprache gesetzt ist */
+[data-sprache] { --ed-speicher-reihe: var(--s-a); --ed-speicher-wert: var(--s-b); }
 
 /* ========== Grundlage ========== */
 * { box-sizing: border-box; }
@@ -371,7 +387,7 @@ button.karte:hover:not(:disabled) { border-color: var(--accent); background: var
 
 /* ----- Spielmechanik: Stufe, Serie, Tagesauftrag, Meisterschaft, Sterne, Belohnung ----- */
 :root { --gold: #e3b341; --silber: #a8b3bf; --bronze: #c98a5a; }
-:root[data-theme='light'] { --gold: #9a6a00; --silber: #6b7785; --bronze: #9a5b2c; }
+:root[data-theme='hell'] { --gold: #9a6a00; --silber: #6b7785; --bronze: #9a5b2c; }
 /* Kopf: Stufe und Serie als schmale Anzeigen */
 .kopf-stand { display: inline-flex; align-items: center; gap: var(--sp-2); height: var(--knopf-h); padding: 0 var(--sp-3) 0 4px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: var(--fs-sm); color: var(--fg-dim); white-space: nowrap; }
 .kopf-stand .num { color: var(--fg); font-weight: 600; }

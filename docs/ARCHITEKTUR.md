@@ -87,7 +87,7 @@ Backend (FastAPI :8200)                       kein Docker-Zugang
 3. In `pruefung/testlauf.py:LAEUFE` einen Testlauf für die Sprache
    ergänzen (Rückgaben mit Typmarken, siehe `kodierung.py`).
 4. Sprache in `_konfig.yml` (mit `endung` und `runner_type`) und das
-   CodeMirror-Sprach-Plugin in `EditorFactory.ts`.
+   CodeMirror-Sprach-Plugin im Editor des Appkerns (`appkern-oberflaeche/code`, `editor/editor.ts`).
 
 ## Frontend-Schichten (`frontend/src/`)
 
@@ -98,7 +98,7 @@ Backend (FastAPI :8200)                       kein Docker-Zugang
 | `lib/api/`               | HTTP-Wrapper + eine Klasse pro Domäne; Fehlertext kommt aus `detail` des Servers |
 | `lib/stores/`            | Svelte 5 Runes (`*.svelte.ts`) |
 | `lib/markdown/`          | MarkdownRenderer (marked + KaTeX + Mermaid strikt + DOMPurify) |
-| `lib/editor/`            | CodeMirror-Setup + Petrol-Theme |
+| `appkern-oberflaeche/code` | Editor (CodeMirror), Debugger und Speicherbild, gemeinsam mit anderen Apps (WIKI-48); Farben in den Marken des Appkerns, ihre Zuordnung zu den Farben der Codeschmiede in `styles/global.css` |
 | `lib/sandbox/`           | `IframeCssRunner` für CSS-Nachbauten (einziger Lauf im Browser) |
 | `lib/types/`             | TS-Interfaces, gespiegelt zu Pydantic |
 | `styles/`                | CSS-Variablen + Font-Imports |

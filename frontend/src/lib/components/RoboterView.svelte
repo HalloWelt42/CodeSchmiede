@@ -24,7 +24,7 @@
   import type { SubmissionAntwort } from '../types/Submission';
   import BeschreibungsBereich from './BeschreibungsBereich.svelte';
   import DreiSpaltenLayout from './DreiSpaltenLayout.svelte';
-  import EditorBereich from './EditorBereich.svelte';
+  import { EditorBereich } from 'appkern-oberflaeche/code';
   import MusterloesungenBereich from './MusterloesungenBereich.svelte';
   import SpaltenReiter from './SpaltenReiter.svelte';
   import VerlaufBereich from './VerlaufBereich.svelte';

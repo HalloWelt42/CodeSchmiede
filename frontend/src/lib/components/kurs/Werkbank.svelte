@@ -8,7 +8,7 @@
    */
   import type { Snippet } from 'svelte';
   import { kursApi, type BeispielTeil, type Lauf } from '../../api/KursApi';
-  import EditorBereich from '../EditorBereich.svelte';
+  import { EditorBereich } from 'appkern-oberflaeche/code';
   import CodeBlock from './CodeBlock.svelte';
   import AufzeichnungAblauf from './AufzeichnungAblauf.svelte';
   import CssAblauf from './CssAblauf.svelte';

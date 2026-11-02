@@ -27,6 +27,20 @@ const fassungEinsetzen = {
 
 export default defineConfig({
   plugins: [svelte(), fassungEinsetzen],
+  optimizeDeps: {
+    // die Bausteine des Appkerns (auch appkern-oberflaeche/code) sind Svelte-Quellen mit .svelte.ts; vorgebündelt
+    // scheitert Vite daran, darum übersetzt sie das Svelte-Plugin wie eigene Dateien
+    exclude: ['appkern-oberflaeche'],
+    // CodeMirror nur einmal: der Editor des Appkerns (nicht vorgebündelt) und die Hervorhebung im Kurs (vorgebündelt)
+    // müssen dieselben Module nutzen, sonst greifen Erweiterungen und Farben nicht ("multiple instances of
+    // @codemirror/state"). Als eigene Einträge vorgebündelt teilen sie sich eine Fassung jedes Pakets.
+    include: [
+      '@codemirror/autocomplete', '@codemirror/commands', '@codemirror/lang-css', '@codemirror/lang-html',
+      '@codemirror/lang-javascript', '@codemirror/lang-markdown', '@codemirror/lang-php', '@codemirror/lang-python',
+      '@codemirror/lang-sql', '@codemirror/language', '@codemirror/lint', '@codemirror/search', '@codemirror/state',
+      '@codemirror/view', '@lezer/common', '@lezer/highlight',
+    ],
+  },
   define: {
     __APP_VERSION__: JSON.stringify(APP_VERSION),
   },

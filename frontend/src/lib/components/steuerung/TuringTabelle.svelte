@@ -7,7 +7,7 @@
   import { regeln, zerlege, zusammen, type Regel, type Richtung, type Zeile } from '../../steuerung/turingTabelle';
   import type { CodeZugriff } from '../../types/Steuerung';
   import type { TuringAnsicht } from '../../types/Turing';
-  import EditorBereich from '../EditorBereich.svelte';
+  import { EditorBereich } from 'appkern-oberflaeche/code';
   import Zustandsdiagramm from './Zustandsdiagramm.svelte';
 
   interface Props {

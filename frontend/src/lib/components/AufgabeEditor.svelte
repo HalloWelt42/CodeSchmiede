@@ -18,7 +18,7 @@
   import { fassung } from '../stores/FassungStore.svelte';
   import { markdownRenderer } from '../markdown/MarkdownRenderer';
   import type { VerwaltungsEintrag } from '../types/Admin';
-  import EditorBereich from './EditorBereich.svelte';
+  import { EditorBereich } from 'appkern-oberflaeche/code';
 
   interface Props {
     offen: boolean;

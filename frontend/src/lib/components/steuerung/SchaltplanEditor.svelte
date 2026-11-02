@@ -11,7 +11,7 @@
   import { EINGAENGE_JE_ART, OFFEN, SPEICHER, neuerName, zerlege, zusammen, type Baustein, type Zeile } from '../../steuerung/schaltplan';
   import type { SchaltungAnsicht } from '../../types/Schaltung';
   import type { CodeZugriff } from '../../types/Steuerung';
-  import EditorBereich from '../EditorBereich.svelte';
+  import { EditorBereich } from 'appkern-oberflaeche/code';
 
   interface Props {
     ansicht: Pick<SchaltungAnsicht, 'eingaenge' | 'ausgaenge' | 'bausteine' | 'vorgabe'>;

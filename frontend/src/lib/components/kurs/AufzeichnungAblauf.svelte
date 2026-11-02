@@ -5,7 +5,7 @@
    */
   import { onDestroy } from 'svelte';
   import type { Aufzeichnung } from '../../api/KursApi';
-  import Speicherbild from './Speicherbild.svelte';
+  import { Speicherbild } from 'appkern-oberflaeche/code';
 
   interface Props {
     lauf: Aufzeichnung;

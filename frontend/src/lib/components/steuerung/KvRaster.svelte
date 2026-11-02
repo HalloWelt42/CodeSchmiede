@@ -8,7 +8,7 @@
   import { felder, mitTermen, raster, rechtecke, spanne, termText, zerlege, zusammen, blockAus, type Stellen } from '../../steuerung/kv';
   import type { KvAnsicht } from '../../types/Kv';
   import type { CodeZugriff } from '../../types/Steuerung';
-  import EditorBereich from '../EditorBereich.svelte';
+  import { EditorBereich } from 'appkern-oberflaeche/code';
 
   interface Props {
     ansicht: KvAnsicht;

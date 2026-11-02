@@ -34,7 +34,7 @@
   import SpaltenReiter from './SpaltenReiter.svelte';
   import MusterloesungenBereich from './MusterloesungenBereich.svelte';
   import VerlaufBereich from './VerlaufBereich.svelte';
-  import EditorBereich from './EditorBereich.svelte';
+  import { EditorBereich } from 'appkern-oberflaeche/code';
   import BelohnungsBand from './spiel/BelohnungsBand.svelte';
 
   let { detail }: { detail: AufgabeDetail } = $props();

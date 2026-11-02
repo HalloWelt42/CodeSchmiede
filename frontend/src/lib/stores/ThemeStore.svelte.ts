@@ -41,7 +41,8 @@ class ThemeStore {
           ? 'light'
           : 'dark'
         : this.modus;
-    document.documentElement.dataset.theme = effektiv;
+    // am <html> mit den Namen des Appkerns (hell, dunkel), damit seine Marken und Bausteine dem Thema folgen
+    document.documentElement.dataset.theme = effektiv === 'light' ? 'hell' : 'dunkel';
   }
 }
 

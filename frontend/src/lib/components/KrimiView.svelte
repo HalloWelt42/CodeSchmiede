@@ -27,7 +27,7 @@
   import type { AufgabeDetail } from '../types/Aufgabe';
   import type { SubmissionAntwort } from '../types/Submission';
   import DreiSpaltenLayout from './DreiSpaltenLayout.svelte';
-  import EditorBereich from './EditorBereich.svelte';
+  import { EditorBereich } from 'appkern-oberflaeche/code';
   import HinweisListe from './HinweisListe.svelte';
   import MusterloesungenBereich from './MusterloesungenBereich.svelte';
   import SpaltenReiter from './SpaltenReiter.svelte';

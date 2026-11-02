@@ -4,9 +4,9 @@
  * (backend/.../kurs/sicht.py ist die Wahrheit dieser Typen).
  */
 import { HttpBase } from './HttpBase';
-import type { Aufzeichnung } from '../types/Aufzeichnung';
+import type { Aufzeichnung } from 'appkern-oberflaeche/code';
 
-export type { Aufzeichnung, Rahmen, Schritt, Wert } from '../types/Aufzeichnung';
+export type { Aufzeichnung, Rahmen, Schritt, Wert } from 'appkern-oberflaeche/code';
 
 export type Kapitelstand = 'fertig' | 'uebersprungen' | 'aktuell' | 'offen' | 'zu';
 export type Frageart = 'auswahl' | 'luecke' | 'ordnen' | 'fehlerstelle';

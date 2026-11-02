@@ -2,7 +2,7 @@
    Lampenfarben stehen einmal als Variablen; die Szene folgt sonst den Farben der App. */
 
 :root,
-:root[data-theme='dark'] {
+:root[data-theme='dunkel'] {
   --lampe-rot: #ef4444;
   --lampe-gelb: #f5c518;
   --lampe-gruen: #22c55e;
@@ -17,7 +17,7 @@
   --szene-markierung: #c9ced4;
 }
 
-:root[data-theme='light'] {
+:root[data-theme='hell'] {
   --lampe-aus: #3a3f46;
   --szene-gras: #cfe2c3;
   --szene-gehweg: #e3e5e8;

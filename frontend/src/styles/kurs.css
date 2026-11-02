@@ -10,7 +10,7 @@
   --dig-a: #fb923c; --dig-b: #34d399; --dig-c: #fed7aa;
   /* Lesetext */
   --fs-lesen: calc(18px * var(--schrift-zoom, 1));
-  /* Editorfarben stehen in editor.css */
+  /* Editorfarben stehen in den Marken des Appkerns (appkern-oberflaeche/marken.css, Abschnitt Editor) */
   /* Kastenmodell in der CSS-Werkbank: Inhalt, Innenabstand, Rahmen, Außenabstand */
   --kasten-inhalt: #38bdf8; --kasten-padding: #4fd1a5; --kasten-border: #ec6aa8; --kasten-margin: #f59e0b;
 }
@@ -156,23 +156,6 @@
   .sperre { display: flex; gap: var(--sp-2); align-items: center; padding: var(--sp-2) var(--sp-3); border: 1px dashed var(--border-strong); color: var(--fg-dim); font-size: var(--fs-sm); }
   .sperre i { color: var(--s-b); }
   
-  /* Speicherbild: Kästen, Fächerreihe, Pfeil */
-  .speicher { border: 1px solid var(--border); background: var(--bg-card); padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-3); }
-  .speicher-titel { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .06em; color: var(--fg-dim); display: flex; justify-content: space-between; }
-  .speicher-zeile { display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: var(--sp-2); align-items: center; }
-  .speicher-name { font-family: var(--mono); font-size: 13px; color: var(--ed-feld); text-align: right; }
-  .kasten-wert { display: inline-flex; align-items: center; min-height: 36px; padding: 0 var(--sp-3); border: 2px solid var(--s-b); border-radius: 4px; background: color-mix(in srgb, var(--s-b) 12%, var(--bg)); font-family: var(--mono); font-size: 15px; color: var(--fg); transition: background .25s; }
-  .kasten-wert.neu { background: color-mix(in srgb, var(--gold) 30%, var(--bg)); border-color: var(--gold); }
-  .kasten-wert.leer { border-style: dashed; color: var(--fg-mute); font-style: italic; font-family: var(--sans); }
-  .faecher { display: flex; gap: 0; flex-wrap: wrap; }
-  .fach { display: flex; flex-direction: column; align-items: center; }
-  .fach span { min-width: 64px; height: 36px; display: grid; place-items: center; padding: 0 var(--sp-2); border: 2px solid var(--s-a); margin-left: -2px; background: color-mix(in srgb, var(--s-a) 10%, var(--bg)); font-family: var(--mono); font-size: 14px; }
-  .fach:first-child span { margin-left: 0; border-radius: 4px 0 0 4px; }
-  .fach:last-child span { border-radius: 0 4px 4px 0; }
-  .fach small { font-family: var(--num); font-size: 11px; color: var(--fg-mute); margin-top: 2px; }
-  .fach.zeigt span { background: color-mix(in srgb, var(--gold) 30%, var(--bg)); border-color: var(--gold); position: relative; z-index: 1; }
-  .fach.zeigt small { color: var(--gold); }
-  
   /* ----- SQL: Abarbeitung Schritt für Schritt ----- */
   .klausel-leiste { display: flex; flex-wrap: wrap; gap: 4px; }
   .klausel { height: 30px; padding: 0 var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg-card); color: var(--fg-dim); font-family: var(--mono); font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
@@ -294,8 +277,6 @@
   .t-abschnitte span.fertig { background: var(--green); border-color: var(--green); }
   .t-abschnitte span.jetzt { background: var(--accent); border-color: var(--accent); }
   .telefon & .code { font-size: 13px; }
-  .telefon & .speicher-zeile { grid-template-columns: 64px minmax(0, 1fr); }
-  .telefon & .fach span { min-width: 54px; font-size: 13px; }
   .weiter-karte { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: var(--sp-3); align-items: center; padding: var(--sp-3); border: 1px solid var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--bg-card-2)); }
   .weiter-karte .mini-karte { width: 64px; height: 64px; font-size: 26px; }
   .weiter-karte b { display: block; font-size: var(--fs-lg); }
