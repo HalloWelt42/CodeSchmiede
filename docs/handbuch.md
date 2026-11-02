@@ -13,7 +13,7 @@ schluessel_orte:
   - "Pi: `{{wurzel}}/.env` (Modus 0600): gemeinsamer Schlüssel von Backend und Sandbox-Dienst, vom Ausrollen einmal erzeugt"
   - "Pi: `{{wurzel}}/zertifikate/`, Blattzertifikat mit Schlüssel aus der Hausstelle (vom Ausrollen)"
 einrichten: einrichten.sh
-stand: 01b986c
+stand: 58c54a4
 ---
 
 # Codeschmiede
@@ -66,7 +66,7 @@ Zoom) gegen einen laufenden Probebetrieb: `node frontend/node_modules/appkern-ob
 
 Das Ausrollen holt Rechner, Ordner und Adresse aus dem Handbuch, stellt das Zertifikat der Hausstelle aus, holt den
 Stand nach `{{wurzel}}` auf {{rechner}}, legt den Schlüssel des Sandbox-Dienstes einmal in `{{wurzel}}/.env` an, baut
-Backend, Sandbox-Dienst und die Sandbox-Abbilder, sichert die Datenbank nach der Sicherungsregel und startet neu;
+Backend, Sandbox-Dienst und die Sandbox-Abbilder (PHP je Fassung eines, für andere Apps), sichert die Datenbank nach der Sicherungsregel und startet neu;
 nach dem Prüfen räumt es auf dem Pi verwaiste Abbilder und den Baucache von Docker auf.
 
 Probe: das Ausrollen endet mit "Ausgerollt: {{adresse}}"; `curl --cacert {{wurzel}}/zertifikate/rootCA.pem
@@ -111,7 +111,8 @@ Stände. Das Werkzeug Sicherungen holt sie täglich auf den Mac nach `~/Sicherun
 
 - "Sandbox nicht erreichbar" beim Prüfen: `docker compose -f compose.pi.yml ps` im Ordner `{{wurzel}}`; läuft
   `codeschmiede-sandbox` nicht, `docker compose -f compose.pi.yml logs sandbox`. Fehlt ein Abbild
-  `codeschmiede-sandbox:python`, erneut ausrollen (es baut die Abbilder mit).
+  `codeschmiede-sandbox:python` (oder eines der PHP-Abbilder `codeschmiede-sandbox:php-<fassung>`), erneut ausrollen
+  (es baut die Abbilder mit).
 - Prüfungen laufen in die Zeitgrenze: der Pi startet Container langsamer als der Mac; die Startreserve des Sandbox-Dienstes
   (`CODESCHMIEDE_SANDBOX_STARTZEIT_SEKUNDEN`, Vorgabe 20) in `compose.pi.yml` erhöhen.
 - Speichergrenze: Raspberry Pi OS startet den Kernel mit `cgroup_disable=memory`; dann setzt Docker `--memory` nicht

@@ -8,7 +8,8 @@ weil die Codeschmiede nicht auf dem Gerüst des Appkern steht:
 - Stand und Tests: nur gepushte Stände; Backend-Tests und Typprüfung der Oberfläche grün (die Prüfung des ganzen
   Aufgabenbestands gehört vor den Commit, siehe docs/handbuch.md)
 - Schlüssel des Sandbox-Dienstes: einmal auf dem Pi erzeugt in `<wurzel>/.env` (Modus 0600), nie im Repo
-- Sandbox-Abbilder: die Dienste mit Profil "bilder" werden mitgebaut
+- Sandbox-Abbilder: die Dienste mit Profil "bilder" werden mitgebaut, dazu je PHP-Fassung ein Abbild aus
+  sandbox-bilder/php.Dockerfile (Fassungen aus codeschmiede.sandbox.laufzeiten)
 - Prüfen: Server, gebaute Oberfläche und VERSION nennen dieselbe Fassung, HTTP/2, Symbole und Manifest, Symbole des
   Startbildschirms deckend
 
@@ -25,6 +26,7 @@ import sys
 from pathlib import Path
 
 from appkern.werkzeuge import ausrollen as a
+from codeschmiede.sandbox.laufzeiten import PHP_FASSUNGEN, abbild, laufzeit
 
 WURZEL = Path(__file__).resolve().parents[1]
 
@@ -65,6 +67,9 @@ def bilder(z: a.Ziel) -> None:
     a._schritt("Sandbox-Abbilder bauen")
     a._ssh(z, f"cd {shlex.quote(z.wurzel)} && docker compose -f {shlex.quote(z.compose)} --profile bilder build --quiet "
               "bild-python bild-javascript")
+    for fassung in PHP_FASSUNGEN:
+        a._ssh(z, f"cd {shlex.quote(z.wurzel)} && docker build --quiet --build-arg PHP_FASSUNG={shlex.quote(fassung)} "
+                  f"-t {shlex.quote(abbild(laufzeit('php', fassung)))} -f sandbox-bilder/php.Dockerfile sandbox-bilder >/dev/null")
     print(a._ssh(z, "docker images --filter reference=codeschmiede-sandbox --format '{{.Repository}}:{{.Tag}} {{.Size}}'"))
 
 

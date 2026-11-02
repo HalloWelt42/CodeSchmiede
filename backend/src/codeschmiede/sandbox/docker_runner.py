@@ -26,16 +26,19 @@ import uuid
 from dataclasses import dataclass
 from typing import IO
 
+from .laufzeiten import grundsprache
 from .result import RunLimits, RunResult
 from .runner import SandboxFehler
 
 logger = logging.getLogger("codeschmiede.sandbox")
 
 
-# Wie jede Sprache ihr Programm von stdin liest.
+# Wie jede Sprache ihr Programm von stdin liest (je Laufzeit nach ihrer Sprache, "php-8.3" wie "php"). PHP meldet
+# Warnungen und Fehler auf stderr, ohne HTML, und schreibt kein eigenes Protokoll.
 SPRACHBEFEHLE: dict[str, tuple[str, ...]] = {
     "python": ("python", "-"),
     "javascript": ("node", "-"),
+    "php": ("php", "-d", "display_errors=stderr", "-d", "html_errors=0", "-d", "log_errors=0"),
 }
 
 # Datengrenze je Prozess (RLIMIT_DATA): wirkt auch ohne Speicher-cgroup (Raspberry Pi OS startet mit
@@ -94,10 +97,10 @@ class DockerRunner:
         docker: str = "docker",
     ):
         self.bilder = {
-            sprache: Sprachbild(image=image, befehl=SPRACHBEFEHLE[sprache],
-                                mindest_daten_mb=MINDEST_DATEN_MB.get(sprache, 0))
-            for sprache, image in bilder.items()
-            if sprache in SPRACHBEFEHLE
+            name: Sprachbild(image=image, befehl=SPRACHBEFEHLE[grundsprache(name)],
+                             mindest_daten_mb=MINDEST_DATEN_MB.get(grundsprache(name), 0))
+            for name, image in bilder.items()
+            if grundsprache(name) in SPRACHBEFEHLE
         }
         self.max_ausgabe_bytes = max_ausgabe_bytes
         # Zeit für den Containerstart, die über die Laufzeitgrenze hinaus

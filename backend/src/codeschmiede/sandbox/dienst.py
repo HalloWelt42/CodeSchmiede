@@ -20,6 +20,7 @@ from pydantic import BaseModel, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from ..config import PROJEKT_WURZEL
+from . import laufzeiten
 from .docker_runner import DockerRunner
 from .result import RunLimits, RunResult
 from .runner import SandboxFehler
@@ -39,10 +40,8 @@ class DienstEinstellungen(BaseSettings):
     schluessel: SecretStr = SecretStr("")
     # Gemeinsame Schlüsseldatei mit dem Backend (Vorgabe `<daten_pfad>/sandbox-schluessel`).
     schluessel_datei: Path | None = None
-    bilder: dict[str, str] = {
-        "python": "codeschmiede-sandbox:python",
-        "javascript": "codeschmiede-sandbox:javascript",
-    }
+    # je Laufzeit ihr Abbild (sandbox/laufzeiten.py), etwa "php-8.3" -> codeschmiede-sandbox:php-8.3
+    bilder: dict[str, str] = Field(default_factory=laufzeiten.bilder)
     max_parallel: int = Field(default=2, ge=1, le=16)
     # Wie lange ein Lauf auf einen freien Platz wartet, bevor er abgewiesen wird.
     warte_sekunden: float = Field(default=30, gt=0)

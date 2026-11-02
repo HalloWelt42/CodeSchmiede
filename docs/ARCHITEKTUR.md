@@ -23,7 +23,7 @@ Backend (FastAPI :8200)                       kein Docker-Zugang
                                                    +-- Docker-Socket
                                                          |
                                                          v
-                                   Container codeschmiede-sandbox:<sprache>
+                                   Container codeschmiede-sandbox:<laufzeit>
                                    (Code über stdin, kein Netz, nur lesend,
                                     nobody, keine Capabilities)
 ```
@@ -46,6 +46,8 @@ Backend (FastAPI :8200)                       kein Docker-Zugang
 | `aufgaben/schreiber.py`   | Aufgaben, Musterlösungen und Pfade schreiben (nur wenn `aufgaben_schreibbar`) |
 | `aufgaben/watcher.py`     | watchfiles -> `AppState.neu_einlesen()` |
 | `sandbox/runner.py`       | Runner-Protocol, `SandboxFehler` |
+| `sandbox/laufzeiten.py`   | Laufzeiten und ihre Abbilder; einzige Liste der PHP-Fassungen (`php-8.3` usw.) |
+| `sandbox/ausfuehrung.py`  | Ausführen ohne Aufzeichnung (PHP) und Funktionen je PHP-Fassung, für andere Apps |
 | `sandbox/docker_runner.py`| Gehärteter Containerlauf (nur im Sandbox-Dienst) |
 | `sandbox/dienst.py`       | Sandbox-Dienst (FastAPI, Schlüssel, begrenzte Parallelität) |
 | `sandbox/dienst_runner.py`| Runner des Backends: HTTP zum Dienst |
@@ -76,6 +78,18 @@ Backend (FastAPI :8200)                       kein Docker-Zugang
 2. In `pruefung/orchestrator.py` den Import ergänzen.
 3. Typ in `aufgaben/_konfig.yml` eintragen; die Bestandsprüfung meldet
    Aufgaben mit unbekanntem Typ.
+
+### Sandbox für andere Apps
+
+Apps auf der Erlaubnisliste (Einstellung "Sandbox für Apps", Anmeldung mit dem App-Schlüssel der Kellerwolke) nutzen
+`/api/v1/sandbox`: `sprachen` (Angebot mit PHP-Fassungen, ob aufgezeichnet wird), `aufzeichnen` (Python, JavaScript:
+die Aufzeichnung des Debuggers), `ausfuehren` (auch PHP in einer Fassung: Ausgabe, Hinweise, Fehler mit Zeile) und
+`funktionen/php` (je Fassung die eingebauten Funktionen, für den Editor). Je App höchstens ein Lauf zugleich.
+
+### Neue PHP-Fassung
+
+Die Fassung in `sandbox/laufzeiten.py:PHP_FASSUNGEN` eintragen; das Ausrollen baut ihr Abbild aus
+`sandbox-bilder/php.Dockerfile`, der Dienst und die Schnittstelle für Apps nehmen sie von dort.
 
 ### Neue Sprache in der Sandbox
 
