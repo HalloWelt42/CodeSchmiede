@@ -31,6 +31,7 @@ from .aufgaben.watcher import AufgabenWatcher
 from .config import Settings
 from .oberflaeche import fassung_der_oberflaeche, oberflaeche_einhaengen
 from .routes.admin import baue_admin_router
+from .routes.sandbox_apps import baue_sandbox_apps_router
 from .routes.aufgaben import baue_aufgaben_router
 from .routes.pfade import baue_pfade_router
 from .routes.progress import baue_progress_router
@@ -155,6 +156,9 @@ def app_bauen(
     app.include_router(baue_kurs_router(state), dependencies=schutz)
     app.include_router(baue_kurs_dateien_router(state))
     app.include_router(baue_admin_router(state), dependencies=schutz)
+    sandbox_pruefen = angemeldet(zugang.anmeldung)          # auch App-Schlüssel; der Router prüft die Erlaubnisliste
+    app.state.sandbox_pruefen = sandbox_pruefen
+    app.include_router(baue_sandbox_apps_router(state, sandbox_pruefen, lambda: aktive_settings.sandbox_fuer_apps))
     app.include_router(anmeldungs_router(zugang.anmeldung))
     app.include_router(baue_zugangs_router(
         zugang,
