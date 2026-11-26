@@ -41,6 +41,12 @@ def test_erlaubte_app_bekommt_die_aufzeichnung(tmp_path):
     assert a["ausgabe"].strip() == "6" and a["fehler"] is None and a["schritte"]
 
 
+def test_buecherfreunde_mit_umlaut_im_namen_darf(tmp_path):
+    # BücherFreunde (BF-29) heißt in der Kellerwolke mit Umlaut; verglichen wird ohne Groß und klein
+    c = client(tmp_path, Konto(id="1", name="probe", app="BücherFreunde"))
+    assert c.get("/api/v1/sandbox/sprachen").status_code == 200
+
+
 def test_andere_apps_und_menschen_nicht_und_code_begrenzt(tmp_path):
     fremd = client(tmp_path, Konto(id="1", name="probe", app="fremde-app"))
     assert fremd.post("/api/v1/sandbox/aufzeichnen", json={"code": "print(1)", "sprache": "python"}).status_code == 403

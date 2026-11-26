@@ -40,8 +40,9 @@ class Settings(BaseSettings):
     sandbox_schluessel_datei: Path | None = None
 
     # Apps, die die Sandbox über /api/v1/sandbox nutzen dürfen (mit ihrem App-Schlüssel der Kellerwolke), etwa
-    # Nachschlag für "Ausprobieren" (WIKI-48). Leer: keine.
-    sandbox_fuer_apps: list[str] = ["nachschlag"]
+    # Nachschlag für "Ausprobieren" (WIKI-48) und BücherFreunde für Code aus Büchern (BF-29). Verglichen wird der Name
+    # des App-Zugangs in der Kellerwolke ohne Groß und klein. Leer: keine.
+    sandbox_fuer_apps: list[str] = ["nachschlag", "bücherfreunde"]
 
     # Fremde Herkünfte, die die API aus dem Browser nutzen dürfen. Leer:
     # nur die eigene Herkunft (Oberfläche und API unter derselben Adresse).
